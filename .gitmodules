@@ -1,0 +1,12 @@
+[submodule "repos/effect-smol"]
+	path = repos/effect-smol
+	url = https://github.com/effect-TS/effect-smol.git
+[submodule "repos/base-ui"]
+	path = repos/base-ui
+	url = https://github.com/mui/base-ui.git
+[submodule "repos/ui"]
+	path = repos/ui
+	url = https://github.com/shadcn-ui/ui.git
+[submodule "repos/components.build"]
+	path = repos/components.build
+	url = https://github.com/vercel/components.build.git
