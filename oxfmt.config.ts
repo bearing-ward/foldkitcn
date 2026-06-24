@@ -6,6 +6,11 @@ const ignorePatterns = [
   'node_modules',
   'dist',
   'repos',
+  '.agents/skills/generate-program/**',
+  '.agents/skills/improve/**',
+  'plans/001-establish-registry-foundation.md',
+  'plans/README.md',
+  'src/main.ts',
   '*.tsbuildinfo',
   'pnpm-lock.yaml',
 ]

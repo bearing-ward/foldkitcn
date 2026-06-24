@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "utils/cn",
+  "namespace": "utils",
+  "name": "cn",
+  "kind": "utility",
+  "description": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "sourceRoot": "registry-src/utils/cn",
+  "installableSourcePaths": ["src/utils/cn.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Combines conditional class values before Tailwind conflict resolution."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Canonicalizes Tailwind utility conflicts behind the local cn wrapper."
+      }
+    ],
+    "development": []
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "utils/cn",
+    "originFixturePath": "",
+    "foldkitFixturePath": "",
+    "requiredComparisons": [],
+    "acceptedDeviationIds": []
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": []
+}

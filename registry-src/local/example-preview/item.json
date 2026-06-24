@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "local/example-preview",
+  "namespace": "local",
+  "name": "Example preview",
+  "kind": "example",
+  "description": "Private preview fixture used to validate the registry foundation.",
+  "sourceRoot": "registry-src/local/example-preview",
+  "installableSourcePaths": [],
+  "consumedThemeTokens": [],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [],
+    "development": []
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "local/example-preview",
+    "originFixturePath": "",
+    "foldkitFixturePath": "",
+    "requiredComparisons": [],
+    "acceptedDeviationIds": []
+  },
+  "lifecycle": {
+    "implementationStatus": "planned",
+    "parityStatus": "not-started",
+    "driftStatus": "unknown",
+    "availability": "private"
+  },
+  "deviations": []
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-24T15:25:15.523Z",
+  "sourceRoot": "registry-src",
+  "items": [
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "local/example-preview",
+        "namespace": "local",
+        "name": "Example preview",
+        "kind": "example",
+        "description": "Private preview fixture used to validate the registry foundation.",
+        "sourceRoot": "registry-src/local/example-preview",
+        "installableSourcePaths": [],
+        "consumedThemeTokens": [],
+        "originProvenance": [],
+        "dependencies": {
+          "registry": [],
+          "runtime": [],
+          "development": []
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "local/example-preview",
+          "originFixturePath": "",
+          "foldkitFixturePath": "",
+          "requiredComparisons": [],
+          "acceptedDeviationIds": []
+        },
+        "lifecycle": {
+          "implementationStatus": "planned",
+          "parityStatus": "not-started",
+          "driftStatus": "unknown",
+          "availability": "private"
+        },
+        "deviations": []
+      },
+      "manifestHash": "0b6a39ce4525682a84ebd38ca69e8a6578ea11c358c3ddf9fb7b3ef76ae02820",
+      "artifacts": [
+        {
+          "path": "registry-src/local/example-preview/item.json",
+          "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
+          "sizeBytes": 818,
+          "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "utils/cn",
+        "namespace": "utils",
+        "name": "cn",
+        "kind": "utility",
+        "description": "Local class-name composition utility for shadcn-style Foldkit components.",
+        "sourceRoot": "registry-src/utils/cn",
+        "installableSourcePaths": ["src/utils/cn.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Combines conditional class values before Tailwind conflict resolution."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Canonicalizes Tailwind utility conflicts behind the local cn wrapper."
+            }
+          ],
+          "development": []
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "utils/cn",
+          "originFixturePath": "",
+          "foldkitFixturePath": "",
+          "requiredComparisons": [],
+          "acceptedDeviationIds": []
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "waived",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": []
+      },
+      "manifestHash": "b9737978ae397a332b3800835d2a69e6f62b06f76266cb28d88dab5916f6399a",
+      "artifacts": [
+        {
+          "path": "registry-src/utils/cn/item.json",
+          "sha256": "6813185825800f5e8c6b86fae235a5b7c5c559d63b802a14281745416750bc6e",
+          "sizeBytes": 1241,
+          "role": "manifest"
+        },
+        {
+          "path": "src/utils/cn.ts",
+          "sha256": "6f9d42354d23f21e8d134f4f04356795c741ee405d870a9fc7ca6fe2e898bacd",
+          "sizeBytes": 204,
+          "role": "source"
+        }
+      ]
+    }
+  ]
+}
