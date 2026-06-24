@@ -1,0 +1,128 @@
+{
+  "batch": ["base-ui/button", "shadcn/button"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Button",
+      "docsUrl": "https://base-ui.com/react/components/button",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/button/Button.tsx",
+        "repos/base-ui/packages/react/src/button/ButtonDataAttributes.tsx",
+        "repos/base-ui/packages/react/src/button/index.ts",
+        "repos/base-ui/packages/react/src/internals/use-button/useButton.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/css-modules/index.tsx"
+      ],
+      "testPaths": ["repos/base-ui/packages/react/src/button/Button.test.tsx"],
+      "specPaths": ["repos/base-ui/packages/react/src/button/Button.spec.tsx"],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.md"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/button"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Button",
+      "docsUrl": "https://ui.shadcn.com/docs/components/button",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/button.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/button.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/button.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/button-demo.tsx",
+        "repos/ui/apps/v4/examples/base/button-default.tsx",
+        "repos/ui/apps/v4/examples/base/button-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/button-ghost.tsx",
+        "repos/ui/apps/v4/examples/base/button-outline.tsx",
+        "repos/ui/apps/v4/examples/base/button-render.tsx",
+        "repos/ui/apps/v4/examples/base/button-size.tsx",
+        "repos/ui/apps/v4/examples/base/button-spinner.tsx",
+        "repos/ui/apps/v4/examples/base/button-with-icon.tsx"
+      ],
+      "testPaths": [
+        "repos/ui/packages/tests/src/tests/add.test.ts",
+        "repos/ui/packages/tests/src/tests/view.test.ts"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/button.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/button.tsx",
+        "repos/ui/apps/v4/styles/radix-nova/ui/button.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/button", "utils/cn"],
+      "runtimeDependencyHints": ["class-variance-authority"],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures.",
+        "Replace CVA variant handling with Effect Schema literals and pure class maps."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "base-ui/button",
+      "classification": "registry-local",
+      "target": "base-ui/button",
+      "reason": "shadcn/button composes the local Base UI Button primitive."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "shadcn/button uses local class canonicalization and Tailwind conflict handling."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/button/Button.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit update/view tests should preserve disabled, focus, and click facts without React event internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/button/Button.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in parity fixtures."
+    },
+    {
+      "path": "repos/ui/packages/tests/src/tests/add.test.ts",
+      "classification": "not-applicable",
+      "reason": "shadcn CLI installation behavior is replaced by this registry workflow."
+    }
+  ]
+}
