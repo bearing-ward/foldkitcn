@@ -42,4 +42,21 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'bounding-box',
     ],
   },
+  {
+    itemId: 'base-ui/separator',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/separator.fixture.tsx',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/separator.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
 ]
