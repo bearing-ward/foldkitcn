@@ -1,8 +1,117 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-24T15:25:15.523Z",
+  "generatedAt": "2026-06-24T19:51:42.535Z",
   "sourceRoot": "registry-src",
   "items": [
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/button",
+        "namespace": "base-ui",
+        "name": "Button",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
+        "sourceRoot": "registry-src/base-ui/button",
+        "installableSourcePaths": ["src/registry/base-ui/button/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Button",
+            "docsUrl": "https://base-ui.com/react/components/button",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/button",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "74ec10d181816c05916358c264cf9ab821e27cb3555e99b63317096b530f3bde",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/button/Button.tsx",
+              "repos/base-ui/packages/react/src/button/ButtonDataAttributes.tsx",
+              "repos/base-ui/packages/react/src/button/index.ts",
+              "repos/base-ui/packages/react/src/internals/use-button/useButton.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/css-modules/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/button/Button.test.tsx",
+              "repos/base-ui/packages/react/src/button/Button.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema and Option for the serializable options and event mapping."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/button",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/button",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/button.fixture.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/button.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": []
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": []
+      },
+      "manifestHash": "1922249e50599383ee422a81e8047be68ac19c3d6e0c0fa17ff007aa6a571f7b",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/button/item.json",
+          "sha256": "e69c6502dbd9c6bd7afa85c06e986d5046a4f8b4731bf984d580167ac1fa7d24",
+          "sizeBytes": 3544,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/button/index.ts",
+          "sha256": "2cec0e800c23c8b6de929933f5d37c4e4f1cc16111d76c2257c02d9af4454ad5",
+          "sizeBytes": 4773,
+          "role": "source"
+        }
+      ]
+    },
     {
       "item": {
         "schemaVersion": 1,
@@ -43,6 +152,293 @@
           "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
           "sizeBytes": 818,
           "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/button",
+        "namespace": "shadcn",
+        "name": "Button",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Button wrapper using local Base UI Button behavior and pure class maps.",
+        "sourceRoot": "registry-src/shadcn/button",
+        "installableSourcePaths": [
+          "src/registry/shadcn/button/index.ts",
+          "src/registry/shadcn/button/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--primary",
+          "--primary-foreground",
+          "--radius-lg",
+          "--radius-md",
+          "--ring",
+          "--secondary",
+          "--secondary-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Button",
+            "docsUrl": "https://ui.shadcn.com/docs/components/button",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/button.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "141083036420a83aab726f0fb5e8374f097499e162bb8a8aaed299c86092afe0",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/button.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/button.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/button-demo.tsx",
+              "repos/ui/apps/v4/examples/base/button-default.tsx",
+              "repos/ui/apps/v4/examples/base/button-outline.tsx",
+              "repos/ui/apps/v4/examples/base/button-secondary.tsx",
+              "repos/ui/apps/v4/examples/base/button-ghost.tsx",
+              "repos/ui/apps/v4/examples/base/button-destructive.tsx",
+              "repos/ui/apps/v4/examples/base/button-link.tsx",
+              "repos/ui/apps/v4/examples/base/button-icon.tsx",
+              "repos/ui/apps/v4/examples/base/button-with-icon.tsx",
+              "repos/ui/apps/v4/examples/base/button-size.tsx",
+              "repos/ui/apps/v4/examples/base/button-rounded.tsx",
+              "repos/ui/apps/v4/examples/base/button-spinner.tsx",
+              "repos/ui/apps/v4/examples/base/button-render.tsx",
+              "repos/ui/apps/v4/examples/base/button-rtl.tsx"
+            ],
+            "testPaths": [
+              "repos/ui/packages/tests/src/tests/add.test.ts",
+              "repos/ui/packages/tests/src/tests/view.test.ts"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/button",
+              "classification": "registry-local",
+              "target": "base-ui/button",
+              "reason": "shadcn Button composes the local Base UI Button primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Button uses the local class composition helper instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for variant and size options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/button",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/button",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "@tabler/icons-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/button-default",
+            "title": "ButtonDefault",
+            "description": "Default shadcn Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-demo",
+            "title": "ButtonDemo",
+            "description": "Outline Button and icon Button demo.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-outline",
+            "title": "ButtonOutline",
+            "description": "Outline variant Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-secondary",
+            "title": "ButtonSecondary",
+            "description": "Secondary variant Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-ghost",
+            "title": "ButtonGhost",
+            "description": "Ghost variant Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-destructive",
+            "title": "ButtonDestructive",
+            "description": "Destructive variant Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-link",
+            "title": "ButtonLink",
+            "description": "Link variant Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-icon",
+            "title": "ButtonIcon",
+            "description": "Icon-sized Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-with-icon",
+            "title": "ButtonWithIcon",
+            "description": "Inline start and end icon Button examples.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-size",
+            "title": "ButtonSize",
+            "description": "Button size matrix example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-rounded",
+            "title": "ButtonRounded",
+            "description": "Rounded Button example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-spinner",
+            "title": "ButtonSpinner",
+            "description": "Disabled Button examples using an example-local spinner helper.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-render",
+            "title": "ButtonRender",
+            "description": "Plain anchor using the shadcn Button class helper.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-rtl",
+            "title": "ButtonRtl",
+            "description": "RTL Button layout example.",
+            "sourcePath": "src/registry/shadcn/button/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/button",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-button-local-icons"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-button-local-icons",
+            "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react or @tabler/icons-react. Local SVGs preserve the inline icon DOM role and visual footprint for Button examples without adding icon registry items."
+          }
+        ]
+      },
+      "manifestHash": "ada700d7dd5f57436fe18d15c409eb150467e5c0e9499fcaeb1acafc3445082a",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/button/item.json",
+          "sha256": "e1dc2f6c6fa49544cd79191e58a925e9640586dcbf04ba52a1582b6f980fca05",
+          "sizeBytes": 8910,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/button/index.ts",
+          "sha256": "f899e5b745c3d75ece719a5d3d0f2ef1a470812f7ace09cb1be642641f75e714",
+          "sizeBytes": 5378,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/button/examples.ts",
+          "sha256": "b9a07fe3c2a24c944f8f5369f814677706d70a9e9da0f0cd37198a8c709bd18f",
+          "sizeBytes": 8507,
+          "role": "source"
         }
       ]
     },

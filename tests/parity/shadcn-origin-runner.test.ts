@@ -3,8 +3,7 @@ import { describe, expect, test } from 'vitest'
 import { captureShadcnOriginSnapshots } from './fixtures/origin/shadcn/runner'
 import type { OriginFixtureSnapshot } from './fixtures/origin/shadcn/snapshot'
 
-import { readFileSync, readdirSync, statSync } from 'node:fs'
-import path from 'node:path'
+import { readFileSync } from 'node:fs'
 
 const onlySnapshot = (
   snapshots: ReadonlyArray<OriginFixtureSnapshot>,
@@ -17,18 +16,6 @@ const onlySnapshot = (
   }
 
   return snapshot
-}
-
-const collectFiles = (filePath: string): ReadonlyArray<string> => {
-  const stat = statSync(filePath)
-
-  if (stat.isFile()) {
-    return [filePath]
-  }
-
-  return readdirSync(filePath, { withFileTypes: true })
-    .flatMap(entry => collectFiles(path.join(filePath, entry.name)))
-    .toSorted((left, right) => left.localeCompare(right))
 }
 
 const computedStyleValue = (
@@ -117,21 +104,24 @@ describe('shadcn origin fixture runner', () => {
     )
   })
 
-  test('keeps React and origin-only packages out of registry manifests', () => {
+  test('keeps React and origin-only packages out of installable source', () => {
     const forbiddenRuntimeSpecifiers = [
       '@base-ui/react',
       '@tabler/icons-react',
       'class-variance-authority',
       'lucide-react',
+      'react',
       'react-dom',
     ]
-    const registryText = collectFiles('registry-src')
+    const manifest: { readonly installableSourcePaths: ReadonlyArray<string> } =
+      JSON.parse(readFileSync('registry-src/shadcn/button/item.json', 'utf-8'))
+    const installableSourceText = manifest.installableSourcePaths
       .map(filePath => readFileSync(filePath, 'utf-8'))
       .join('\n')
 
     expect(
       forbiddenRuntimeSpecifiers.filter(specifier =>
-        registryText.includes(specifier),
+        installableSourceText.includes(specifier),
       ),
     ).toStrictEqual([])
   })

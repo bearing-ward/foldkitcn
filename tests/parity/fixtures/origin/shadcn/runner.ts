@@ -61,6 +61,7 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
   const server = await createServer({
     root: fixtureRoot,
     configFile: false,
+    cacheDir: path.join(repoRoot, 'node_modules/.vite-shadcn-origin-fixture'),
     logLevel: 'silent',
     appType: 'spa',
     plugins: [tailwindcss(), originAliasPlugin()],
@@ -70,6 +71,9 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
     },
     esbuild: {
       jsx: 'automatic',
+    },
+    optimizeDeps: {
+      force: true,
     },
     resolve: {
       alias: [
@@ -169,6 +173,15 @@ export const captureShadcnOriginSnapshots = async (
     const page = await browser.newPage({
       viewport: { width: 800, height: 400 },
     })
+    const pageErrors: Array<string> = []
+    page.on('pageerror', error => {
+      pageErrors.push(error.message)
+    })
+    page.on('console', message => {
+      if (message.type() === 'error') {
+        pageErrors.push(message.text())
+      }
+    })
     const baseUrl = serverUrl(server)
 
     return await originCases.reduce(async (pendingSnapshots, originCase) => {
@@ -177,7 +190,24 @@ export const captureShadcnOriginSnapshots = async (
       url.searchParams.set('case', originCase.id)
 
       await page.goto(url.toString(), { waitUntil: 'networkidle' })
-      await page.waitForSelector('[data-origin-fixture-root] > *')
+      try {
+        await page.waitForSelector('[data-origin-fixture-root] > *', {
+          timeout: 5000,
+        })
+      } catch (error: unknown) {
+        const bodyText = await page.locator('body').textContent()
+        const message = error instanceof Error ? error.message : String(error)
+
+        throw new Error(
+          [
+            `shadcn origin fixture did not render case ${originCase.id}`,
+            message,
+            `pageErrors=${pageErrors.join(' | ')}`,
+            `body=${bodyText ?? ''}`,
+          ].join('\n'),
+          { cause: error },
+        )
+      }
       const snapshot = await page.evaluate(() =>
         window.__SHADCN_ORIGIN_FIXTURE__.captureSnapshot(),
       )

@@ -1,11 +1,13 @@
 import { Schema as S } from 'effect'
 
 import { RegistryIndex } from '../src/registry/schema'
+import type { RegistryIndex as RegistryIndexType } from '../src/registry/schema'
 import {
   registrySourceRoot,
   validateRegistryItemManifest,
 } from '../src/registry/validation'
 
+import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import {
   existsSync,
@@ -27,6 +29,11 @@ interface RegistryCheckResult {
     ReturnType<typeof validateRegistryItemManifest>['manifest']
   >
   readonly entries: ReadonlyArray<RawManifestEntry>
+}
+
+interface BuildRegistryIndexOptions {
+  readonly previousIndex?: RegistryIndexType
+  readonly generatedAt?: string
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -77,6 +84,20 @@ const walkManifestPaths = (root: string): ReadonlyArray<string> => {
 const readJson = (path: string): unknown =>
   JSON.parse(readFileSync(path, 'utf-8'))
 
+export const readRegistryIndex = (
+  outputPath: string,
+): RegistryIndexType | undefined => {
+  if (!existsSync(outputPath)) {
+    return undefined
+  }
+
+  try {
+    return S.decodeUnknownSync(RegistryIndex)(readJson(outputPath))
+  } catch {
+    return undefined
+  }
+}
+
 const readInstallableSource = (sourcePath: string): string => {
   if (!existsSync(sourcePath)) {
     throw new Error(`Installable source path does not exist: ${sourcePath}`)
@@ -107,6 +128,7 @@ export const checkRegistry = (): RegistryCheckResult => {
       ...entry,
       allItemIds,
       readInstallableSource,
+      pathExists: existsSync,
     }),
   )
   const errors = validationResults.flatMap(result => result.errors)
@@ -123,8 +145,26 @@ export const checkRegistry = (): RegistryCheckResult => {
   }
 }
 
-export const buildRegistryIndex = () => {
+const registryIndexSemanticHash = (index: RegistryIndexType): string =>
+  hashJson({
+    schemaVersion: index.schemaVersion,
+    sourceRoot: index.sourceRoot,
+    items: index.items,
+  })
+
+export const selectRegistryGeneratedAt = (
+  nextIndex: RegistryIndexType,
+  options: BuildRegistryIndexOptions = {},
+): string =>
+  options.previousIndex !== undefined &&
+  registryIndexSemanticHash(options.previousIndex) ===
+    registryIndexSemanticHash(nextIndex)
+    ? options.previousIndex.generatedAt
+    : (options.generatedAt ?? new Date().toISOString())
+
+export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   const result = checkRegistry()
+  const generatedAt = options.generatedAt ?? new Date().toISOString()
   const manifestById = new Map(
     result.entries.map(entry =>
       isRecord(entry.rawManifest) && typeof entry.rawManifest.id === 'string'
@@ -161,15 +201,26 @@ export const buildRegistryIndex = () => {
   })
   const index = {
     schemaVersion: 1,
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     sourceRoot: registrySourceRoot,
     items,
   }
 
-  return S.decodeUnknownSync(RegistryIndex)(index)
+  const decodedIndex = S.decodeUnknownSync(RegistryIndex)(index)
+
+  return {
+    ...decodedIndex,
+    generatedAt: selectRegistryGeneratedAt(decodedIndex, {
+      ...options,
+      generatedAt,
+    }),
+  }
 }
 
 export const writeJson = (outputPath: string, value: unknown): void => {
   mkdirSync(pathModule.dirname(outputPath), { recursive: true })
   writeFileSync(outputPath, `${JSON.stringify(value, null, 2)}\n`)
+  execFileSync('bun', ['x', 'oxfmt', '--write', outputPath], {
+    stdio: 'ignore',
+  })
 }

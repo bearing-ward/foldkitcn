@@ -1,22 +1,8 @@
 @import 'tailwindcss';
 @import '../../../../../repos/ui/packages/shadcn/src/tailwind.css';
 
-@source "../../../../../repos/ui/apps/v4/examples/base/button-default.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-demo.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-outline.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-secondary.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-ghost.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-destructive.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-link.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-icon.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-with-icon.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-size.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-rounded.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-spinner.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-render.tsx";
-@source "../../../../../repos/ui/apps/v4/examples/base/button-rtl.tsx";
-@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/button.tsx";
-@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx";
+@source "../../../../../src/registry/shadcn/button/index.ts";
+@source "../../../../../src/registry/shadcn/button/examples.ts";
 
 @custom-variant dark (&:is(.dark *));
 

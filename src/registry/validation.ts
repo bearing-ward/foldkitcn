@@ -14,12 +14,14 @@ export interface ValidationError {
 }
 
 export type SourceFileReader = (path: string) => string
+export type PathExists = (path: string) => boolean
 
 export interface ManifestValidationInput {
   readonly manifestPath: string
   readonly rawManifest: unknown
   readonly allItemIds: ReadonlySet<string>
   readonly readInstallableSource: SourceFileReader
+  readonly pathExists: PathExists
 }
 
 export interface ManifestValidationResult {
@@ -238,6 +240,52 @@ const installabilityErrors = (
   return [...implementationErrors, ...parityErrors]
 }
 
+const parityFixturePathErrors = (
+  manifestPath: string,
+  manifest: RegistryItemManifestType,
+  pathExists: PathExists,
+): ReadonlyArray<ValidationError> => {
+  if (
+    manifest.lifecycle.availability !== 'installable' ||
+    manifest.lifecycle.parityStatus !== 'accepted'
+  ) {
+    return []
+  }
+
+  const fixturePaths = [
+    {
+      field: 'originFixturePath',
+      path: manifest.parity.originFixturePath,
+    },
+    {
+      field: 'foldkitFixturePath',
+      path: manifest.parity.foldkitFixturePath,
+    },
+  ]
+
+  return fixturePaths.flatMap(fixturePath => {
+    if (fixturePath.path === '') {
+      return [
+        {
+          path: manifestPath,
+          message: `Accepted installable parity requires ${fixturePath.field}.`,
+        },
+      ]
+    }
+
+    if (!pathExists(fixturePath.path)) {
+      return [
+        {
+          path: manifestPath,
+          message: `Parity fixture path does not exist: ${fixturePath.path}`,
+        },
+      ]
+    }
+
+    return []
+  })
+}
+
 const importErrors = (
   manifestPath: string,
   manifest: RegistryItemManifestType,
@@ -263,6 +311,7 @@ export const validateRegistryItemManifest = ({
   rawManifest,
   allItemIds,
   readInstallableSource,
+  pathExists,
 }: ManifestValidationInput): ManifestValidationResult => {
   const manifest = S.decodeUnknownSync(RegistryItemManifest)(rawManifest)
   const expectedId = idFromManifestPath(manifestPath)
@@ -304,6 +353,7 @@ export const validateRegistryItemManifest = ({
       ...parityErrors,
       ...dependencyErrors(manifestPath, manifest, allItemIds),
       ...installabilityErrors(manifestPath, manifest),
+      ...parityFixturePathErrors(manifestPath, manifest, pathExists),
       ...importErrors(manifestPath, manifest, readInstallableSource),
     ],
   }

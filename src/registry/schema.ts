@@ -3,47 +3,55 @@ import { Schema as S } from 'effect'
 export const RegistrySchemaVersion = S.Literal(1)
 export type RegistrySchemaVersion = typeof RegistrySchemaVersion.Type
 
-export const RegistryNamespace = S.Literals([
-  'base-ui',
-  'shadcn',
-  'utils',
-  'themes',
-  'blocks',
-  'charts',
-  'local',
+export const RegistryNamespace = S.Union([
+  S.Literal('base-ui'),
+  S.Literal('shadcn'),
+  S.Literal('utils'),
+  S.Literal('themes'),
+  S.Literal('blocks'),
+  S.Literal('charts'),
+  S.Literal('local'),
 ])
 export type RegistryNamespace = typeof RegistryNamespace.Type
 
-export const RegistryItemKind = S.Literals([
-  'component',
-  'utility',
-  'theme',
-  'block',
-  'chart',
-  'example',
+export const RegistryItemKind = S.Union([
+  S.Literal('component'),
+  S.Literal('utility'),
+  S.Literal('theme'),
+  S.Literal('block'),
+  S.Literal('chart'),
+  S.Literal('example'),
 ])
 export type RegistryItemKind = typeof RegistryItemKind.Type
 
-export const ImplementationStatus = S.Literals([
-  'planned',
-  'dossier-ready',
-  'implemented',
-  'deprecated',
+export const ImplementationStatus = S.Union([
+  S.Literal('planned'),
+  S.Literal('dossier-ready'),
+  S.Literal('implemented'),
+  S.Literal('deprecated'),
 ])
 export type ImplementationStatus = typeof ImplementationStatus.Type
 
-export const ParityStatus = S.Literals([
-  'not-started',
-  'partial',
-  'accepted',
-  'waived',
+export const ParityStatus = S.Union([
+  S.Literal('not-started'),
+  S.Literal('partial'),
+  S.Literal('accepted'),
+  S.Literal('waived'),
 ])
 export type ParityStatus = typeof ParityStatus.Type
 
-export const DriftStatus = S.Literals(['current', 'upstream-drift', 'unknown'])
+export const DriftStatus = S.Union([
+  S.Literal('current'),
+  S.Literal('upstream-drift'),
+  S.Literal('unknown'),
+])
 export type DriftStatus = typeof DriftStatus.Type
 
-export const Availability = S.Literals(['private', 'preview', 'installable'])
+export const Availability = S.Union([
+  S.Literal('private'),
+  S.Literal('preview'),
+  S.Literal('installable'),
+])
 export type Availability = typeof Availability.Type
 
 export const Lifecycle = S.Struct({
@@ -54,12 +62,12 @@ export const Lifecycle = S.Struct({
 })
 export type Lifecycle = typeof Lifecycle.Type
 
-export const DependencyClassification = S.Literals([
-  'registry-local',
-  'allowed-runtime',
-  'dev-or-fixture-only',
-  'replace-with-foldkit',
-  'reject-or-defer',
+export const DependencyClassification = S.Union([
+  S.Literal('registry-local'),
+  S.Literal('allowed-runtime'),
+  S.Literal('dev-or-fixture-only'),
+  S.Literal('replace-with-foldkit'),
+  S.Literal('reject-or-defer'),
 ])
 export type DependencyClassification = typeof DependencyClassification.Type
 
@@ -78,12 +86,12 @@ export const DependencyGraph = S.Struct({
 })
 export type DependencyGraph = typeof DependencyGraph.Type
 
-export const OriginKind = S.Literals([
-  'base-ui',
-  'shadcn',
-  'components.build',
-  'local',
-  'other',
+export const OriginKind = S.Union([
+  S.Literal('base-ui'),
+  S.Literal('shadcn'),
+  S.Literal('components.build'),
+  S.Literal('local'),
+  S.Literal('other'),
 ])
 export type OriginKind = typeof OriginKind.Type
 
@@ -117,7 +125,11 @@ export const OriginResolution = S.Struct({
   styleVariantPaths: S.Array(S.String),
   registryDependencyHints: S.Array(S.String),
   runtimeDependencyHints: S.Array(S.String),
-  confidence: S.Literals(['high', 'medium', 'low']),
+  confidence: S.Union([
+    S.Literal('high'),
+    S.Literal('medium'),
+    S.Literal('low'),
+  ]),
   unresolvedQuestions: S.Array(S.String),
 })
 export type OriginResolution = typeof OriginResolution.Type
@@ -127,7 +139,12 @@ export const ExampleManifest = S.Struct({
   title: S.String,
   description: S.String,
   sourcePath: S.String,
-  kind: S.Literals(['origin-fixture', 'foldkit-fixture', 'demo', 'docs']),
+  kind: S.Union([
+    S.Literal('origin-fixture'),
+    S.Literal('foldkit-fixture'),
+    S.Literal('demo'),
+    S.Literal('docs'),
+  ]),
 })
 export type ExampleManifest = typeof ExampleManifest.Type
 
@@ -152,15 +169,15 @@ export const ParityContract = S.Struct({
   originFixturePath: S.String,
   foldkitFixturePath: S.String,
   requiredComparisons: S.Array(
-    S.Literals([
-      'class-tokens',
-      'attributes',
-      'dom-structure',
-      'computed-style',
-      'colors',
-      'dimensions',
-      'bounding-box',
-      'keyboard-behavior',
+    S.Union([
+      S.Literal('class-tokens'),
+      S.Literal('attributes'),
+      S.Literal('dom-structure'),
+      S.Literal('computed-style'),
+      S.Literal('colors'),
+      S.Literal('dimensions'),
+      S.Literal('bounding-box'),
+      S.Literal('keyboard-behavior'),
     ]),
   ),
   acceptedDeviationIds: S.Array(S.String),
@@ -171,7 +188,12 @@ export const DeviationRecord = S.Struct({
   id: S.String,
   summary: S.String,
   required: S.Boolean,
-  status: S.Literals(['proposed', 'accepted', 'rejected', 'waived']),
+  status: S.Union([
+    S.Literal('proposed'),
+    S.Literal('accepted'),
+    S.Literal('rejected'),
+    S.Literal('waived'),
+  ]),
   rationale: S.String,
 })
 export type DeviationRecord = typeof DeviationRecord.Type
@@ -195,13 +217,13 @@ export const RegistryItemManifest = S.Struct({
 })
 export type RegistryItemManifest = typeof RegistryItemManifest.Type
 
-export const BuildArtifactRole = S.Literals([
-  'index',
-  'manifest',
-  'source',
-  'style',
-  'docs',
-  'example',
+export const BuildArtifactRole = S.Union([
+  S.Literal('index'),
+  S.Literal('manifest'),
+  S.Literal('source'),
+  S.Literal('style'),
+  S.Literal('docs'),
+  S.Literal('example'),
 ])
 export type BuildArtifactRole = typeof BuildArtifactRole.Type
 

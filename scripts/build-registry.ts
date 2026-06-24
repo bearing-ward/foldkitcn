@@ -1,7 +1,13 @@
-import { buildRegistryIndex, writeJson } from './registry-common'
+import {
+  buildRegistryIndex,
+  readRegistryIndex,
+  writeJson,
+} from './registry-common'
 
-const index = buildRegistryIndex()
 const outputPath = 'registry/index.json'
+const index = buildRegistryIndex({
+  previousIndex: readRegistryIndex(outputPath),
+})
 
 writeJson(outputPath, index)
 
