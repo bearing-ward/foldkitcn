@@ -33,6 +33,27 @@ const computedStyleValue = (
   return style.value
 }
 
+type SnapshotDomNode = OriginFixtureSnapshot['domStructure']
+
+const findDomNode = (
+  node: SnapshotDomNode,
+  predicate: (node: SnapshotDomNode) => boolean,
+): SnapshotDomNode | undefined => {
+  if (predicate(node)) {
+    return node
+  }
+
+  return node.children
+    .map(child => findDomNode(child, predicate))
+    .find(candidate => candidate !== undefined)
+}
+
+const attributeValue = (
+  node: SnapshotDomNode,
+  name: string,
+): string | undefined =>
+  node.attributes.find(attribute => attribute.name === name)?.value
+
 describe('shadcn origin fixture runner', () => {
   test('captures a browser snapshot from the pinned button-default source', async () => {
     const snapshot = onlySnapshot(
@@ -100,6 +121,50 @@ describe('shadcn origin fixture runner', () => {
         'bg-secondary',
         'h-7',
         'text-secondary-foreground',
+      ]),
+    )
+  })
+
+  test('captures a browser snapshot from the pinned separator-demo source', async () => {
+    const snapshot = onlySnapshot(
+      await captureShadcnOriginSnapshots({ grep: 'separator-demo' }),
+    )
+
+    expect(snapshot.originFilePath).toBe(
+      'repos/ui/apps/v4/examples/base/separator-demo.tsx',
+    )
+    expect({
+      hasColors: snapshot.colors.length > 0,
+      hasComputedStyle: snapshot.computedStyle.length > 0,
+      hasDimensions: snapshot.dimensions.length > 0,
+      hasHeight: snapshot.boundingBox.height > 0,
+      hasWidth: snapshot.boundingBox.width > 0,
+    }).toStrictEqual({
+      hasColors: true,
+      hasComputedStyle: true,
+      hasDimensions: true,
+      hasHeight: true,
+      hasWidth: true,
+    })
+    const separatorNode = findDomNode(
+      snapshot.domStructure,
+      node => attributeValue(node, 'data-slot') === 'separator',
+    )
+
+    if (separatorNode === undefined) {
+      throw new Error('Expected separator-demo to render a separator node.')
+    }
+
+    expect(attributeValue(separatorNode, 'class')).toStrictEqual(
+      expect.stringContaining('shrink-0'),
+    )
+    expect(attributeValue(separatorNode, 'class')).toStrictEqual(
+      expect.stringContaining('bg-border'),
+    )
+    expect(separatorNode.attributes).toStrictEqual(
+      expect.arrayContaining([
+        { name: 'data-slot', value: 'separator' },
+        { name: 'aria-orientation', value: 'horizontal' },
       ]),
     )
   })

@@ -281,6 +281,26 @@ const shadcnSnapshotById = (
 ): ReadonlyMap<string, OriginFixtureSnapshot> =>
   new Map(snapshots.map(snapshot => [snapshot.caseId, snapshot]))
 
+const shadcnComponentName = (itemId: string): string => {
+  const componentName = itemId.split('/').at(1)
+
+  if (componentName === undefined) {
+    throw new Error(`Invalid shadcn parity slot id: ${itemId}`)
+  }
+
+  return componentName
+}
+
+const shadcnCaseGrep = (itemId: string): string => {
+  const componentName = shadcnComponentName(itemId)
+
+  if (maybeGrep === undefined || maybeGrep.includes('/')) {
+    return componentName
+  }
+
+  return maybeGrep
+}
+
 const compareShadcnSlot = async (
   slot: (typeof paritySlots)[number],
 ): Promise<number> => {
@@ -291,7 +311,7 @@ const compareShadcnSlot = async (
       import('../tests/parity/fixtures/origin/shadcn/runner'),
       import('../tests/parity/fixtures/foldkit/shadcn/runner'),
     ])
-  const caseGrep = maybeGrep?.includes('/') ? undefined : maybeGrep
+  const caseGrep = shadcnCaseGrep(slot.itemId)
   const [originSnapshots, foldkitSnapshots] = await Promise.all([
     captureShadcnOriginSnapshots({ grep: caseGrep }),
     captureShadcnFoldkitSnapshots({ grep: caseGrep }),
@@ -326,7 +346,9 @@ const compareShadcnSlot = async (
 const compareParitySlot = (
   slot: (typeof paritySlots)[number],
 ): Promise<number> =>
-  slot.itemId === 'shadcn/button' ? compareShadcnSlot(slot) : compareSlot(slot)
+  slot.itemId.startsWith('shadcn/')
+    ? compareShadcnSlot(slot)
+    : compareSlot(slot)
 
 const runParity = async (): Promise<void> => {
   if (matchingSlots.length === 0) {

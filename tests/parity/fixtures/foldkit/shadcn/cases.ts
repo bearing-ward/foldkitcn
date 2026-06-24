@@ -16,6 +16,13 @@ import {
   ButtonSpinner,
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
+import {
+  SeparatorDemo,
+  SeparatorList,
+  SeparatorMenu,
+  SeparatorRtl,
+  SeparatorVertical,
+} from '../../../../../src/registry/shadcn/separator/examples'
 import type { ShadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 import { shadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 
@@ -38,7 +45,17 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'separator-demo': SeparatorDemo,
+  'separator-list': SeparatorList,
+  'separator-menu': SeparatorMenu,
+  'separator-vertical': SeparatorVertical,
+  'separator-rtl': SeparatorRtl,
 }
+
+const foldkitSourcePath = (id: string): string =>
+  id.startsWith('separator-')
+    ? 'src/registry/shadcn/separator/examples.ts'
+    : 'src/registry/shadcn/button/examples.ts'
 
 export const shadcnFoldkitCases: ReadonlyArray<ShadcnFoldkitCase> =
   shadcnOriginCaseMetadata.map(metadata => {
@@ -50,7 +67,7 @@ export const shadcnFoldkitCases: ReadonlyArray<ShadcnFoldkitCase> =
 
     return {
       ...metadata,
-      originFilePath: 'src/registry/shadcn/button/examples.ts',
+      originFilePath: foldkitSourcePath(metadata.id),
       view,
     }
   })

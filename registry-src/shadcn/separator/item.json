@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/separator",
+  "namespace": "shadcn",
+  "name": "Separator",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Separator wrapper using local Base UI Separator behavior and cn.",
+  "sourceRoot": "registry-src/shadcn/separator",
+  "installableSourcePaths": [
+    "src/registry/shadcn/separator/index.ts",
+    "src/registry/shadcn/separator/examples.ts"
+  ],
+  "consumedThemeTokens": ["--border"],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Separator",
+      "docsUrl": "https://ui.shadcn.com/docs/components/separator",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/separator.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "65cd557e0d609c74abb2adcb76a999728e6abaff0e23447e5701c713bb3431ef",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/separator.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/separator.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/separator.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/separator-demo.tsx",
+        "repos/ui/apps/v4/examples/base/separator-list.tsx",
+        "repos/ui/apps/v4/examples/base/separator-menu.tsx",
+        "repos/ui/apps/v4/examples/base/separator-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/separator-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/separator",
+        "classification": "registry-local",
+        "target": "base-ui/separator",
+        "reason": "shadcn Separator composes the local Base UI Separator primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Separator uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/separator",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/separator",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local example constants and origin fixture aliases."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/separator-demo",
+      "title": "SeparatorDemo",
+      "description": "Heading, subtitle, separator, and description demo.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-list",
+      "title": "SeparatorList",
+      "description": "Definition-list rows separated by horizontal separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-menu",
+      "title": "SeparatorMenu",
+      "description": "Menu-like labels separated by vertical separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-vertical",
+      "title": "SeparatorVertical",
+      "description": "Compact nav labels separated by vertical separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-rtl",
+      "title": "SeparatorRtl",
+      "description": "RTL Separator layout example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/separator",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": ["shadcn-separator-local-rtl-data"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-separator-local-rtl-data",
+      "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+    }
+  ]
+}

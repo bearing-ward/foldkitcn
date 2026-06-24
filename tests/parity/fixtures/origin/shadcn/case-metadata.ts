@@ -76,4 +76,29 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       title: 'Button RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/button-rtl.tsx',
     },
+    {
+      id: 'separator-demo',
+      title: 'Separator demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/separator-demo.tsx',
+    },
+    {
+      id: 'separator-list',
+      title: 'Separator list',
+      originFilePath: 'repos/ui/apps/v4/examples/base/separator-list.tsx',
+    },
+    {
+      id: 'separator-menu',
+      title: 'Separator menu',
+      originFilePath: 'repos/ui/apps/v4/examples/base/separator-menu.tsx',
+    },
+    {
+      id: 'separator-vertical',
+      title: 'Separator vertical',
+      originFilePath: 'repos/ui/apps/v4/examples/base/separator-vertical.tsx',
+    },
+    {
+      id: 'separator-rtl',
+      title: 'Separator RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/separator-rtl.tsx',
+    },
   ]
