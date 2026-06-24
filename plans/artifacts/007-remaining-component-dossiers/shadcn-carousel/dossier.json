@@ -1,0 +1,117 @@
+{
+  "batch": [
+    "shadcn/carousel"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Carousel",
+      "docsUrl": "https://ui.shadcn.com/docs/components/carousel",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/carousel.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/carousel.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/carousel.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/carousel-api.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-demo.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-orientation.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-plugin.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-size.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-spacing.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/carousel.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/carousel.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/carousel.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/card",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "embla-carousel-autoplay",
+        "embla-carousel-react",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "embla-carousel-autoplay",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "embla-carousel-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

@@ -1,0 +1,83 @@
+{
+  "batch": [
+    "shadcn/label"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Label",
+      "docsUrl": "https://ui.shadcn.com/docs/components/label",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/label.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/label.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/label.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/label-demo.tsx",
+        "repos/ui/apps/v4/examples/base/label-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/label.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/label.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/label.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/label.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/checkbox",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/checkbox",
+      "classification": "registry-local",
+      "target": "shadcn/checkbox",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

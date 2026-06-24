@@ -1,0 +1,91 @@
+{
+  "batch": [
+    "base-ui/meter"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Meter",
+      "docsUrl": "https://base-ui.com/react/components/meter",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/meter/index.parts.ts",
+        "repos/base-ui/packages/react/src/meter/index.ts",
+        "repos/base-ui/packages/react/src/meter/indicator/MeterIndicator.tsx",
+        "repos/base-ui/packages/react/src/meter/label/MeterLabel.tsx",
+        "repos/base-ui/packages/react/src/meter/root/MeterRoot.tsx",
+        "repos/base-ui/packages/react/src/meter/root/MeterRootContext.ts",
+        "repos/base-ui/packages/react/src/meter/track/MeterTrack.tsx",
+        "repos/base-ui/packages/react/src/meter/value/MeterValue.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/meter/indicator/MeterIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/meter/label/MeterLabel.test.tsx",
+        "repos/base-ui/packages/react/src/meter/root/MeterRoot.test.tsx",
+        "repos/base-ui/packages/react/src/meter/track/MeterTrack.test.tsx",
+        "repos/base-ui/packages/react/src/meter/value/MeterValue.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/meter/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": [
+        "@base-ui-components/react/meter"
+      ],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/meter",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/meter/indicator/MeterIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/meter/label/MeterLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/meter/root/MeterRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/meter/track/MeterTrack.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/meter/value/MeterValue.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

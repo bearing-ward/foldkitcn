@@ -1,0 +1,149 @@
+{
+  "batch": [
+    "shadcn/item"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Item",
+      "docsUrl": "https://ui.shadcn.com/docs/components/item",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/item.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/item.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/item.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/item-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/item-demo.tsx",
+        "repos/ui/apps/v4/examples/base/item-dropdown.tsx",
+        "repos/ui/apps/v4/examples/base/item-group.tsx",
+        "repos/ui/apps/v4/examples/base/item-header.tsx",
+        "repos/ui/apps/v4/examples/base/item-icon.tsx",
+        "repos/ui/apps/v4/examples/base/item-image.tsx",
+        "repos/ui/apps/v4/examples/base/item-link.tsx",
+        "repos/ui/apps/v4/examples/base/item-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/item-size.tsx",
+        "repos/ui/apps/v4/examples/base/item-variant.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/item.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/item.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/item.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/item.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/item.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "shadcn/separator",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/merge-props",
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "lucide-react",
+        "next/image",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures.",
+        "Replace CVA variant handling with Effect Schema literals and pure class maps."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui/react/merge-props",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/merge-props",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/use-render",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/use-render",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next/image",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/avatar",
+      "classification": "registry-local",
+      "target": "shadcn/avatar",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/separator",
+      "classification": "registry-local",
+      "target": "shadcn/separator",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

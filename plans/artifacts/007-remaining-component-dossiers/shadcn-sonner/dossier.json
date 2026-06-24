@@ -1,0 +1,85 @@
+{
+  "batch": [
+    "shadcn/sonner"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sonner",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sonner",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/sonner.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sonner.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sonner.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/sonner-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-description.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-position.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-types.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sonner.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sonner.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/sonner.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/sonner.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button"
+      ],
+      "runtimeDependencyHints": [
+        "lucide-react",
+        "next-themes",
+        "sonner"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next-themes",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "sonner",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    }
+  ],
+  "originTestClassification": []
+}

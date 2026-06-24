@@ -1,0 +1,174 @@
+{
+  "batch": [
+    "base-ui/menubar",
+    "shadcn/menubar"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Menubar",
+      "docsUrl": "https://base-ui.com/react/components/menubar",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/menubar/index.ts",
+        "repos/base-ui/packages/react/src/menubar/Menubar.tsx",
+        "repos/base-ui/packages/react/src/menubar/MenubarContext.ts",
+        "repos/base-ui/packages/react/src/menubar/MenubarDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/menubar/Menubar.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": [
+        "@base-ui-components/react/menubar"
+      ],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Menubar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/menubar",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/menubar.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/menubar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/menubar.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/menubar-checkbox.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-icons.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-radio.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-submenu.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/menubar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/menubar.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/menubar.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/menu",
+        "base-ui/menubar",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/menu",
+        "@base-ui/react/menubar",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/menubar",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/menu",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/menu",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/menubar",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/menubar",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/menu",
+      "classification": "registry-local",
+      "target": "base-ui/menu",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "base-ui/menubar",
+      "classification": "registry-local",
+      "target": "base-ui/menubar",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/menubar/Menubar.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

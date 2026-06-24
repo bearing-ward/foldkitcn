@@ -1,0 +1,70 @@
+{
+  "batch": [
+    "base-ui/fieldset"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Fieldset",
+      "docsUrl": "https://base-ui.com/react/components/fieldset",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/fieldset/index.parts.ts",
+        "repos/base-ui/packages/react/src/fieldset/index.ts",
+        "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRootContext.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.test.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": [
+        "@base-ui-components/react/fieldset"
+      ],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/fieldset",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

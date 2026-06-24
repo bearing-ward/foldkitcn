@@ -1,0 +1,201 @@
+{
+  "batch": [
+    "base-ui/toast"
+  ],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toast",
+      "docsUrl": "https://base-ui.com/react/components/toast",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toast/action/ToastAction.tsx",
+        "repos/base-ui/packages/react/src/toast/action/ToastActionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrow.tsx",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/close/ToastClose.tsx",
+        "repos/base-ui/packages/react/src/toast/close/ToastCloseDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/content/ToastContent.tsx",
+        "repos/base-ui/packages/react/src/toast/content/ToastContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/createToastManager.ts",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescription.tsx",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescriptionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/index.parts.ts",
+        "repos/base-ui/packages/react/src/toast/index.ts",
+        "repos/base-ui/packages/react/src/toast/portal/ToastPortal.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositioner.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerContext.ts",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/provider/ToastProvider.tsx",
+        "repos/base-ui/packages/react/src/toast/provider/ToastProviderContext.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRoot.tsx",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootContext.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/store.ts",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitle.tsx",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitleDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/useToastManager.ts",
+        "repos/base-ui/packages/react/src/toast/utils/focusVisible.ts",
+        "repos/base-ui/packages/react/src/toast/utils/resolvePromiseOptions.ts",
+        "repos/base-ui/packages/react/src/toast/utils/test-utils.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewport.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewportDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/index.ts"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/toast/action/ToastAction.test.tsx",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrow.test.tsx",
+        "repos/base-ui/packages/react/src/toast/close/ToastClose.test.tsx",
+        "repos/base-ui/packages/react/src/toast/content/ToastContent.test.tsx",
+        "repos/base-ui/packages/react/src/toast/createToastManager.test.tsx",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescription.test.tsx",
+        "repos/base-ui/packages/react/src/toast/portal/ToastPortal.test.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/toast/root/ToastRoot.test.tsx",
+        "repos/base-ui/packages/react/src/toast/store.test.ts",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitle.test.tsx",
+        "repos/base-ui/packages/react/src/toast/useToastManager.test.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewport.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/toast/createToastManager.spec.tsx",
+        "repos/base-ui/packages/react/src/toast/useToastManager.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": [
+        "@base-ui-components/react/toast"
+      ],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/toast",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/toast/action/ToastAction.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/arrow/ToastArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/close/ToastClose.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/content/ToastContent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/createToastManager.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/description/ToastDescription.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/portal/ToastPortal.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/positioner/ToastPositioner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/root/ToastRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/store.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/title/ToastTitle.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/useToastManager.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/viewport/ToastViewport.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/createToastManager.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toast/useToastManager.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}
