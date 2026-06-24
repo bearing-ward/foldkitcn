@@ -1,0 +1,247 @@
+{
+  "batch": ["base-ui/slider", "shadcn/slider"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Slider",
+      "docsUrl": "https://base-ui.com/react/components/slider",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/slider/control/SliderControl.tsx",
+        "repos/base-ui/packages/react/src/slider/control/SliderControlDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/index.parts.ts",
+        "repos/base-ui/packages/react/src/slider/index.ts",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicator.tsx",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/label/SliderLabel.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRootContext.ts",
+        "repos/base-ui/packages/react/src/slider/root/SliderRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/slider/thumb/prehydrationScript.min.ts",
+        "repos/base-ui/packages/react/src/slider/thumb/prehydrationScript.template.js",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumb.tsx",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumbDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrack.tsx",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrackDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/utils/asc.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getMidpoint.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getPushedThumbValues.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getSliderValue.ts",
+        "repos/base-ui/packages/react/src/slider/utils/replaceArrayItemAtIndex.ts",
+        "repos/base-ui/packages/react/src/slider/utils/resolveThumbCollision.ts",
+        "repos/base-ui/packages/react/src/slider/utils/roundValueToStep.ts",
+        "repos/base-ui/packages/react/src/slider/utils/test-utils.ts",
+        "repos/base-ui/packages/react/src/slider/utils/validateMinimumDistance.ts",
+        "repos/base-ui/packages/react/src/slider/utils/valueArrayToPercentages.ts",
+        "repos/base-ui/packages/react/src/slider/value/SliderValue.tsx",
+        "repos/base-ui/packages/react/src/slider/value/SliderValueDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/edge-alignment/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/edge-alignment/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/edge-alignment/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/edge-alignment/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/range-slider/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/range-slider/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/range-slider/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/range-slider/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/vertical/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/vertical/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/vertical/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/vertical/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/slider/control/SliderControl.test.tsx",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/slider/label/SliderLabel.test.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.test.tsx",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumb.test.tsx",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrack.test.tsx",
+        "repos/base-ui/packages/react/src/slider/utils/getPushedThumbValues.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getSliderValue.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/resolveThumbCollision.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/roundValueToStep.test.ts",
+        "repos/base-ui/packages/react/src/slider/value/SliderValue.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/slider"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Slider",
+      "docsUrl": "https://ui.shadcn.com/docs/components/slider",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/slider.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/slider.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/slider.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/slider-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/slider-demo.tsx",
+        "repos/ui/apps/v4/examples/base/slider-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/slider-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/slider-range.tsx",
+        "repos/ui/apps/v4/examples/base/slider-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/slider-vertical.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/slider.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/slider.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/slider.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/slider.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/slider", "shadcn/label", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/slider",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/slider",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/slider",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/slider",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/slider",
+      "classification": "registry-local",
+      "target": "base-ui/slider",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/slider/control/SliderControl.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/indicator/SliderIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/label/SliderLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/root/SliderRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/thumb/SliderThumb.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/track/SliderTrack.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/utils/getPushedThumbValues.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/utils/getSliderValue.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/utils/resolveThumbCollision.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/utils/roundValueToStep.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/value/SliderValue.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/slider/root/SliderRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

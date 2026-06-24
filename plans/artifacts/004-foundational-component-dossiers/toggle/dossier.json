@@ -1,0 +1,148 @@
+{
+  "batch": ["base-ui/toggle", "shadcn/toggle"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toggle",
+      "docsUrl": "https://base-ui.com/react/components/toggle",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toggle/index.ts",
+        "repos/base-ui/packages/react/src/toggle/Toggle.tsx",
+        "repos/base-ui/packages/react/src/toggle/ToggleDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": ["repos/base-ui/packages/react/src/toggle/Toggle.test.tsx"],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/toggle"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Toggle",
+      "docsUrl": "https://ui.shadcn.com/docs/components/toggle",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toggle.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toggle.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/toggle-demo.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-outline.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-text.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toggle.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toggle.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/toggle.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/toggle", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/toggle",
+        "class-variance-authority",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures.",
+        "Replace CVA variant handling with Effect Schema literals and pure class maps."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/toggle",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/toggle",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/toggle",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/toggle",
+      "classification": "registry-local",
+      "target": "base-ui/toggle",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/toggle/Toggle.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

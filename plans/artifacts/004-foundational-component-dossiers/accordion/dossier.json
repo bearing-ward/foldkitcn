@@ -1,0 +1,200 @@
+{
+  "batch": ["base-ui/accordion", "shadcn/accordion"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Accordion",
+      "docsUrl": "https://base-ui.com/react/components/accordion",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.tsx",
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeaderDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/index.parts.ts",
+        "repos/base-ui/packages/react/src/accordion/index.ts",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItem.tsx",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItemContext.ts",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/item/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.tsx",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelCssVars.ts",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.tsx",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRootContext.ts",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.tsx",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/_index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItem.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/accordion"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Accordion",
+      "docsUrl": "https://ui.shadcn.com/docs/components/accordion",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/accordion.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/accordion.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/accordion.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/accordion-basic.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-borders.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-card.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-demo.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/accordion.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/accordion.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/accordion.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/accordion",
+        "shadcn/card",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/accordion",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/accordion",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/accordion",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/accordion",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/accordion",
+      "classification": "registry-local",
+      "target": "base-ui/accordion",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/item/AccordionItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

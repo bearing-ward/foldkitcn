@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "devtools-mcp": "foldkit-devtools-mcp",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",

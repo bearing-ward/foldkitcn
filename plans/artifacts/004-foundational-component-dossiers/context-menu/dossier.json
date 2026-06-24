@@ -1,0 +1,166 @@
+{
+  "batch": ["base-ui/context-menu", "shadcn/context-menu"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Context Menu",
+      "docsUrl": "https://base-ui.com/react/components/context-menu",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/context-menu/index.parts.ts",
+        "repos/base-ui/packages/react/src/context-menu/index.ts",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.tsx",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRootContext.ts",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.tsx",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.non-mac.test.tsx",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.test.tsx",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/context-menu"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Context Menu",
+      "docsUrl": "https://ui.shadcn.com/docs/components/context-menu",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/context-menu.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/context-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/context-menu.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/context-menu-basic.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-checkboxes.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-demo.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-groups.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-icons.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-radio.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-shortcuts.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-sides.tsx",
+        "repos/ui/apps/v4/examples/base/context-menu-submenu.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/context-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/context-menu.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/context-menu.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/context-menu.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/context-menu", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/context-menu",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/context-menu",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/context-menu",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/context-menu",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/context-menu",
+      "classification": "registry-local",
+      "target": "base-ui/context-menu",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.non-mac.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

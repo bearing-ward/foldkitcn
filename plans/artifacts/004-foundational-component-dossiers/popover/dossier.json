@@ -1,0 +1,282 @@
+{
+  "batch": ["base-ui/popover", "shadcn/popover"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Popover",
+      "docsUrl": "https://base-ui.com/react/components/popover",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/popover/arrow/PopoverArrow.tsx",
+        "repos/base-ui/packages/react/src/popover/arrow/PopoverArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdrop.tsx",
+        "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdropDataAttributes.ts",
+        "repos/base-ui/packages/react/src/popover/close/PopoverClose.tsx",
+        "repos/base-ui/packages/react/src/popover/description/PopoverDescription.tsx",
+        "repos/base-ui/packages/react/src/popover/index.parts.ts",
+        "repos/base-ui/packages/react/src/popover/index.ts",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopup.tsx",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopupCssVars.ts",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/popover/portal/PopoverPortal.tsx",
+        "repos/base-ui/packages/react/src/popover/portal/PopoverPortalContext.ts",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.tsx",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositionerContext.ts",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRootContext.ts",
+        "repos/base-ui/packages/react/src/popover/store/PopoverHandle.ts",
+        "repos/base-ui/packages/react/src/popover/store/PopoverStore.ts",
+        "repos/base-ui/packages/react/src/popover/title/PopoverTitle.tsx",
+        "repos/base-ui/packages/react/src/popover/trigger/PopoverTrigger.tsx",
+        "repos/base-ui/packages/react/src/popover/trigger/PopoverTriggerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/popover/utils/constants.ts",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewport.tsx",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewportDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/_index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-controlled/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-controlled/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-controlled/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-full/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-full/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-full/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-full/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-simple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-simple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/detached-triggers-simple/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/open-on-hover/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/open-on-hover/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/demos/open-on-hover/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/popover/arrow/PopoverArrow.test.tsx",
+        "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/popover/close/PopoverClose.test.tsx",
+        "repos/base-ui/packages/react/src/popover/description/PopoverDescription.test.tsx",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopup.test.tsx",
+        "repos/base-ui/packages/react/src/popover/portal/PopoverPortal.test.tsx",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.detached-triggers.test.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.test.tsx",
+        "repos/base-ui/packages/react/src/popover/title/PopoverTitle.test.tsx",
+        "repos/base-ui/packages/react/src/popover/trigger/PopoverTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewport.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.spec.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/popover"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Popover",
+      "docsUrl": "https://ui.shadcn.com/docs/components/popover",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/popover.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/popover.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/popover.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/popover-alignments.tsx",
+        "repos/ui/apps/v4/examples/base/popover-basic.tsx",
+        "repos/ui/apps/v4/examples/base/popover-demo.tsx",
+        "repos/ui/apps/v4/examples/base/popover-form.tsx",
+        "repos/ui/apps/v4/examples/base/popover-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/popover.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/popover.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/popover.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/popover.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/popover",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/popover",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/popover",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/popover",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/popover",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/popover",
+      "classification": "registry-local",
+      "target": "base-ui/popover",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/popover/arrow/PopoverArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdrop.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/close/PopoverClose.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/description/PopoverDescription.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/popup/PopoverPopup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/portal/PopoverPortal.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/root/PopoverRoot.detached-triggers.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/root/PopoverRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/title/PopoverTitle.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/trigger/PopoverTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/viewport/PopoverViewport.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/popover/root/PopoverRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}
