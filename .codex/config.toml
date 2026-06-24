@@ -1,0 +1,3 @@
+[mcp_servers.foldkit-devtools]
+command = "npx"
+args = ["-y", "@foldkit/devtools-mcp"]
