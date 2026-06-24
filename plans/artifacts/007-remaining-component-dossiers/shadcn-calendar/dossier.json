@@ -1,0 +1,152 @@
+{
+  "batch": ["shadcn/calendar"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Calendar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/calendar",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/calendar.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/calendar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/calendar.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/calendar-basic.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-booked-dates.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-caption.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-custom-days.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-hijri.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-presets.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-range.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-time.tsx",
+        "repos/ui/apps/v4/examples/base/calendar-week-numbers.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/calendar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/calendar.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/calendar.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/calendar.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "date-fns",
+        "lucide-react",
+        "next/font/google",
+        "react",
+        "react-day-picker",
+        "react-day-picker/locale",
+        "react-day-picker/persian"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "date-fns",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next/font/google",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "react-day-picker",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react-day-picker/locale",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react-day-picker/persian",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input-group",
+      "classification": "registry-local",
+      "target": "shadcn/input-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

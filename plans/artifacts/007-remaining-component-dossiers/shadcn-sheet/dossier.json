@@ -1,0 +1,123 @@
+{
+  "batch": ["shadcn/sheet"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sheet",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sheet",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sheet.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sheet.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/sheet-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-no-close-button.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-side.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sheet.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sheet.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/sheet.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/dialog",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/dialog",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui/react/dialog",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/dialog",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/dialog",
+      "classification": "registry-local",
+      "target": "base-ui/dialog",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

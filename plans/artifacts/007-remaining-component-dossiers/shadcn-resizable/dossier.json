@@ -1,0 +1,79 @@
+{
+  "batch": ["shadcn/resizable"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Resizable",
+      "docsUrl": "https://ui.shadcn.com/docs/components/resizable",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/resizable.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/resizable.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/resizable-demo.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-handle.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-vertical.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/resizable.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/resizable.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/resizable.tsx"
+      ],
+      "registryDependencyHints": ["utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "react",
+        "react-resizable-panels"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "react-resizable-panels",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

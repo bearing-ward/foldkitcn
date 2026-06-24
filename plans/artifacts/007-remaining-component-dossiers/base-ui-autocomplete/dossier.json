@@ -1,0 +1,121 @@
+{
+  "batch": ["base-ui/autocomplete"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Autocomplete",
+      "docsUrl": "https://base-ui.com/react/components/autocomplete",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/autocomplete/clear/AutocompleteClearDataAttributes.ts",
+        "repos/base-ui/packages/react/src/autocomplete/index.parts.ts",
+        "repos/base-ui/packages/react/src/autocomplete/index.ts",
+        "repos/base-ui/packages/react/src/autocomplete/input-group/AutocompleteInputGroup.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/input-group/AutocompleteInputGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItem.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/trigger/AutocompleteTrigger.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/trigger/AutocompleteTriggerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/autocomplete/value/AutocompleteValue.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/async/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/async/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/async/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/async/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/auto-highlight/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/auto-highlight/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/auto-highlight/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/auto-highlight/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/command-palette/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/command-palette/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/command-palette/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/command-palette/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/fuzzy-matching/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/fuzzy-matching/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/fuzzy-matching/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/fuzzy-matching/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grid/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grid/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grid/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grid/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grouped/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grouped/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grouped/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/inline/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/inline/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/inline/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/inline/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/limit/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/limit/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/limit/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/limit/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/virtualized/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/virtualized/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/virtualized/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/virtualized/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItem.test.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.test.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/value/AutocompleteValue.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/autocomplete"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/autocomplete",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/autocomplete/value/AutocompleteValue.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

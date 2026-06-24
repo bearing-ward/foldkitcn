@@ -45,6 +45,10 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/button/index.ts')
     }
 
+    if (source === '@base-ui/react/separator') {
+      return repoPath('repos/base-ui/packages/react/src/separator/index.ts')
+    }
+
     if (source === '#formatErrorMessage') {
       return repoPath('repos/base-ui/packages/utils/src/formatErrorMessage.ts')
     }
@@ -90,6 +94,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/separator',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/separator.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui-rtl/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
@@ -99,6 +109,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/spinner',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/separator',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/separator.tsx',
           ),
         },
         {

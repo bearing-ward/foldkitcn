@@ -1,0 +1,214 @@
+{
+  "batch": ["base-ui/otp-field", "shadcn/input-otp"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Otp Field",
+      "docsUrl": "https://base-ui.com/react/components/otp-field",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/otp-field/index.parts.ts",
+        "repos/base-ui/packages/react/src/otp-field/index.ts",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.tsx",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootContext.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/custom-sanitize/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/custom-sanitize/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/custom-sanitize/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/custom-sanitize/useInvalidFeedback.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/focused-placeholder/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/focused-placeholder/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/focused-placeholder/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/focused-placeholder/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.test.ts"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.spec.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/otp-field"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Input Otp",
+      "docsUrl": "https://ui.shadcn.com/docs/components/input-otp",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/input-otp.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/input-otp.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/input-otp.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/input-otp-alphanumeric.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-demo.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-form.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-four-digits.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-pattern.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-separator.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/input-otp.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/input-otp.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/input-otp.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/input-otp.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "input-otp",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/otp-field",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "input-otp",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/otp-field/utils/otp.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

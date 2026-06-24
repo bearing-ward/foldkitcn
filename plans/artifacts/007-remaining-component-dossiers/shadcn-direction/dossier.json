@@ -1,0 +1,52 @@
+{
+  "batch": ["shadcn/direction"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Direction",
+      "docsUrl": "https://ui.shadcn.com/docs/components/direction",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/direction.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/direction.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/direction.mdx"
+      ],
+      "demoPaths": [],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/direction.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/direction.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/direction.tsx"
+      ],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui/react/direction-provider"],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui/react/direction-provider",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/direction-provider",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": []
+}

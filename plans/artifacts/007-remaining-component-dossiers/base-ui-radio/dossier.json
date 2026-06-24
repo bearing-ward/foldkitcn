@@ -1,0 +1,76 @@
+{
+  "batch": ["base-ui/radio"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Radio",
+      "docsUrl": "https://base-ui.com/react/components/radio",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/radio/index.parts.ts",
+        "repos/base-ui/packages/react/src/radio/index.ts",
+        "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.tsx",
+        "repos/base-ui/packages/react/src/radio/indicator/RadioIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/radio/root/RadioRoot.tsx",
+        "repos/base-ui/packages/react/src/radio/root/RadioRootContext.ts",
+        "repos/base-ui/packages/react/src/radio/root/RadioRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/radio/utils/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/radio/root/RadioRoot.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/radio/root/RadioRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/radio"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/radio",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/radio/root/RadioRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/radio/root/RadioRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

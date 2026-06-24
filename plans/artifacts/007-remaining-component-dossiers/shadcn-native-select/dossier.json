@@ -1,0 +1,80 @@
+{
+  "batch": ["shadcn/native-select"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Native Select",
+      "docsUrl": "https://ui.shadcn.com/docs/components/native-select",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/native-select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/native-select.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/native-select-demo.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-groups.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/native-select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/native-select.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/native-select.tsx"
+      ],
+      "registryDependencyHints": ["utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

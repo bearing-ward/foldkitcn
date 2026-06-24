@@ -1,0 +1,72 @@
+{
+  "batch": ["base-ui/checkbox-group"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Checkbox Group",
+      "docsUrl": "https://base-ui.com/react/components/checkbox-group",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.tsx",
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupContext.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/index.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/nested/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/nested/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/nested/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/parent/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/parent/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/parent/index.ts"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.test.tsx",
+        "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/checkbox-group"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/checkbox-group",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

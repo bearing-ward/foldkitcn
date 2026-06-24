@@ -1,0 +1,301 @@
+{
+  "batch": ["base-ui/drawer", "shadcn/drawer"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Drawer",
+      "docsUrl": "https://base-ui.com/react/components/drawer",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/drawer/backdrop/DrawerBackdrop.tsx",
+        "repos/base-ui/packages/react/src/drawer/backdrop/DrawerBackdropCssVars.ts",
+        "repos/base-ui/packages/react/src/drawer/backdrop/DrawerBackdropDataAttributes.ts",
+        "repos/base-ui/packages/react/src/drawer/close/DrawerClose.tsx",
+        "repos/base-ui/packages/react/src/drawer/content/DrawerContent.tsx",
+        "repos/base-ui/packages/react/src/drawer/content/DrawerContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/drawer/description/DrawerDescription.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent-background/DrawerIndentBackground.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent/DrawerIndent.tsx",
+        "repos/base-ui/packages/react/src/drawer/index.parts.ts",
+        "repos/base-ui/packages/react/src/drawer/index.ts",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopup.tsx",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopupCssVars.ts",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/drawer/portal/DrawerPortal.tsx",
+        "repos/base-ui/packages/react/src/drawer/provider/DrawerProvider.tsx",
+        "repos/base-ui/packages/react/src/drawer/provider/DrawerProviderContext.ts",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRootContext.ts",
+        "repos/base-ui/packages/react/src/drawer/root/useDrawerSnapPoints.ts",
+        "repos/base-ui/packages/react/src/drawer/swipe-area/DrawerSwipeArea.tsx",
+        "repos/base-ui/packages/react/src/drawer/swipe-area/DrawerSwipeAreaDataAttributes.ts",
+        "repos/base-ui/packages/react/src/drawer/title/DrawerTitle.tsx",
+        "repos/base-ui/packages/react/src/drawer/trigger/DrawerTrigger.tsx",
+        "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewport.tsx",
+        "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewportContext.tsx",
+        "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewportDataAttributes.ts",
+        "repos/base-ui/packages/react/src/drawer/virtual-keyboard-provider/DrawerVirtualKeyboardContext.tsx",
+        "repos/base-ui/packages/react/src/drawer/virtual-keyboard-provider/DrawerVirtualKeyboardProvider.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/close-confirmation/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/close-confirmation/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/close-confirmation/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/close-confirmation/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/indent-provider/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/indent-provider/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/indent-provider/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/indent-provider/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/mobile-nav/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/mobile-nav/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/mobile-nav/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/mobile-nav/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/nested/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/nested/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/nested/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/nested/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/non-modal/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/non-modal/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/non-modal/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/non-modal/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/position/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/position/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/position/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/position/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/snap-points/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/snap-points/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/snap-points/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/snap-points/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/swipe-area/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/swipe-area/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/swipe-area/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/swipe-area/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/uncontained/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/uncontained/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/uncontained/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/uncontained/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/virtual-keyboard-aware/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/virtual-keyboard-aware/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/virtual-keyboard-aware/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/virtual-keyboard-aware/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/drawer/content/DrawerContent.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent-background/DrawerIndentBackground.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent/DrawerIndent.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopup.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/useDrawerSnapPoints.test.ts",
+        "repos/base-ui/packages/react/src/drawer/swipe-area/DrawerSwipeArea.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewport.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/virtual-keyboard-provider/DrawerVirtualKeyboardProvider.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/drawer"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Drawer",
+      "docsUrl": "https://ui.shadcn.com/docs/components/drawer",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/drawer.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/drawer.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/drawer.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/drawer-demo.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-dialog.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-scrollable-content.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-sides.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/drawer.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/drawer.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/drawer.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@/hooks/use-media-query",
+        "lucide-react",
+        "react",
+        "recharts",
+        "vaul"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/hooks/use-media-query",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/drawer",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "recharts",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dialog",
+      "classification": "registry-local",
+      "target": "shadcn/dialog",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    },
+    {
+      "specifier": "vaul",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/content/DrawerContent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/indent-background/DrawerIndentBackground.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/indent/DrawerIndent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/popup/DrawerPopup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/root/useDrawerSnapPoints.test.ts",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/swipe-area/DrawerSwipeArea.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/viewport/DrawerViewport.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/virtual-keyboard-provider/DrawerVirtualKeyboardProvider.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

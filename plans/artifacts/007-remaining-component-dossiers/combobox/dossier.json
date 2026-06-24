@@ -1,0 +1,405 @@
+{
+  "batch": ["base-ui/combobox", "shadcn/combobox"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Combobox",
+      "docsUrl": "https://base-ui.com/react/components/combobox",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/combobox/arrow/ComboboxArrow.tsx",
+        "repos/base-ui/packages/react/src/combobox/arrow/ComboboxArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/backdrop/ComboboxBackdrop.tsx",
+        "repos/base-ui/packages/react/src/combobox/backdrop/ComboboxBackdropDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/chip-remove/ComboboxChipRemove.tsx",
+        "repos/base-ui/packages/react/src/combobox/chip/ComboboxChip.tsx",
+        "repos/base-ui/packages/react/src/combobox/chip/ComboboxChipContext.ts",
+        "repos/base-ui/packages/react/src/combobox/chips/ComboboxChips.tsx",
+        "repos/base-ui/packages/react/src/combobox/chips/ComboboxChipsContext.ts",
+        "repos/base-ui/packages/react/src/combobox/clear/ComboboxClear.tsx",
+        "repos/base-ui/packages/react/src/combobox/clear/ComboboxClearDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/collection/ComboboxCollection.tsx",
+        "repos/base-ui/packages/react/src/combobox/collection/GroupCollectionContext.tsx",
+        "repos/base-ui/packages/react/src/combobox/empty/ComboboxEmpty.tsx",
+        "repos/base-ui/packages/react/src/combobox/group-label/ComboboxGroupLabel.tsx",
+        "repos/base-ui/packages/react/src/combobox/group/ComboboxGroup.tsx",
+        "repos/base-ui/packages/react/src/combobox/group/ComboboxGroupContext.ts",
+        "repos/base-ui/packages/react/src/combobox/icon/ComboboxIcon.tsx",
+        "repos/base-ui/packages/react/src/combobox/index.parts.ts",
+        "repos/base-ui/packages/react/src/combobox/index.ts",
+        "repos/base-ui/packages/react/src/combobox/input-group/ComboboxInputGroup.tsx",
+        "repos/base-ui/packages/react/src/combobox/input-group/ComboboxInputGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/input/ComboboxInput.tsx",
+        "repos/base-ui/packages/react/src/combobox/input/ComboboxInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/item-indicator/ComboboxItemIndicator.tsx",
+        "repos/base-ui/packages/react/src/combobox/item-indicator/ComboboxItemIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/item/ComboboxItem.tsx",
+        "repos/base-ui/packages/react/src/combobox/item/ComboboxItemContext.ts",
+        "repos/base-ui/packages/react/src/combobox/item/ComboboxItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/label/ComboboxLabel.tsx",
+        "repos/base-ui/packages/react/src/combobox/list/ComboboxList.tsx",
+        "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopup.tsx",
+        "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/portal/ComboboxPortal.tsx",
+        "repos/base-ui/packages/react/src/combobox/portal/ComboboxPortalContext.tsx",
+        "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositioner.tsx",
+        "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositionerContext.tsx",
+        "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/root/AriaCombobox.tsx",
+        "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.tsx",
+        "repos/base-ui/packages/react/src/combobox/root/ComboboxRootContext.tsx",
+        "repos/base-ui/packages/react/src/combobox/root/utils/constants.ts",
+        "repos/base-ui/packages/react/src/combobox/root/utils/index.ts",
+        "repos/base-ui/packages/react/src/combobox/root/utils/useFilter.ts",
+        "repos/base-ui/packages/react/src/combobox/root/utils/useFilteredItems.ts",
+        "repos/base-ui/packages/react/src/combobox/row/ComboboxRow.tsx",
+        "repos/base-ui/packages/react/src/combobox/row/ComboboxRowContext.ts",
+        "repos/base-ui/packages/react/src/combobox/status/ComboboxStatus.tsx",
+        "repos/base-ui/packages/react/src/combobox/store.ts",
+        "repos/base-ui/packages/react/src/combobox/trigger/ComboboxTrigger.tsx",
+        "repos/base-ui/packages/react/src/combobox/trigger/ComboboxTriggerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/combobox/utils/ComboboxInternalDismissButton.tsx",
+        "repos/base-ui/packages/react/src/combobox/utils/handleInputPress.ts",
+        "repos/base-ui/packages/react/src/combobox/utils/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/combobox/utils/useInitialLiveRegionTextMutation.ts",
+        "repos/base-ui/packages/react/src/combobox/value/ComboboxValue.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-multiple/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-multiple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-multiple/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-single/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-single/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-single/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/async-single/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/creatable/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/creatable/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/creatable/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/creatable/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/grouped/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/grouped/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/grouped/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/input-inside-popup/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/input-inside-popup/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/input-inside-popup/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/input-inside-popup/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/multiple/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/multiple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/multiple/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/virtualized/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/virtualized/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/virtualized/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/virtualized/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/combobox/arrow/ComboboxArrow.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/backdrop/ComboboxBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/chip-remove/ComboboxChipRemove.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/chip/ComboboxChip.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/chips/ComboboxChips.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/clear/ComboboxClear.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/collection/ComboboxCollection.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/empty/ComboboxEmpty.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/group-label/ComboboxGroupLabel.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/group/ComboboxGroup.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/icon/ComboboxIcon.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/input-group/ComboboxInputGroup.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/input/ComboboxInput.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/item-indicator/ComboboxItemIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/item/ComboboxItem.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/label/ComboboxLabel.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/list/ComboboxList.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopup.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/portal/ComboboxPortal.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/status/ComboboxStatus.iOS.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/status/ComboboxStatus.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/trigger/ComboboxTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/combobox/value/ComboboxValue.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/combobox"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Combobox",
+      "docsUrl": "https://ui.shadcn.com/docs/components/combobox",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/combobox.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/combobox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/combobox.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/combobox-auto-highlight.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-basic.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-clear.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-custom.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-demo.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-groups.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-input-group.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-popup.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/combobox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/combobox.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/combobox.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input-group",
+        "shadcn/item",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/combobox",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input-group",
+      "classification": "registry-local",
+      "target": "shadcn/input-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/item",
+      "classification": "registry-local",
+      "target": "shadcn/item",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/arrow/ComboboxArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/backdrop/ComboboxBackdrop.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/chip-remove/ComboboxChipRemove.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/chip/ComboboxChip.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/chips/ComboboxChips.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/clear/ComboboxClear.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/collection/ComboboxCollection.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/empty/ComboboxEmpty.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/group-label/ComboboxGroupLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/group/ComboboxGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/icon/ComboboxIcon.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/input-group/ComboboxInputGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/input/ComboboxInput.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/item-indicator/ComboboxItemIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/item/ComboboxItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/label/ComboboxLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/list/ComboboxList.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/portal/ComboboxPortal.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositioner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/status/ComboboxStatus.iOS.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/status/ComboboxStatus.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/trigger/ComboboxTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/value/ComboboxValue.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

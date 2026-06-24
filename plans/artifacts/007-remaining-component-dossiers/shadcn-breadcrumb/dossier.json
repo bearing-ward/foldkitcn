@@ -1,0 +1,119 @@
+{
+  "batch": ["shadcn/breadcrumb"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Breadcrumb",
+      "docsUrl": "https://ui.shadcn.com/docs/components/breadcrumb",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/breadcrumb.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/breadcrumb.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-demo.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-dropdown.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-ellipsis.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-link.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-separator.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/breadcrumb.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/breadcrumb.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/breadcrumb.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/merge-props",
+        "@base-ui/react/use-render",
+        "lucide-react",
+        "next/link",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui/react/merge-props",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/merge-props",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/use-render",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/use-render",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next/link",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

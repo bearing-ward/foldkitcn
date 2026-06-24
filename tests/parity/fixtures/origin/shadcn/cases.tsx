@@ -14,6 +14,11 @@ import ButtonSecondary from '../../../../../repos/ui/apps/v4/examples/base/butto
 import ButtonSize from '../../../../../repos/ui/apps/v4/examples/base/button-size'
 import ButtonSpinner from '../../../../../repos/ui/apps/v4/examples/base/button-spinner'
 import ButtonWithIcon from '../../../../../repos/ui/apps/v4/examples/base/button-with-icon'
+import SeparatorDemo from '../../../../../repos/ui/apps/v4/examples/base/separator-demo'
+import { SeparatorList } from '../../../../../repos/ui/apps/v4/examples/base/separator-list'
+import { SeparatorMenu } from '../../../../../repos/ui/apps/v4/examples/base/separator-menu'
+import { SeparatorRtl } from '../../../../../repos/ui/apps/v4/examples/base/separator-rtl'
+import { SeparatorVertical } from '../../../../../repos/ui/apps/v4/examples/base/separator-vertical'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
@@ -36,6 +41,11 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'separator-demo': SeparatorDemo,
+  'separator-list': SeparatorList,
+  'separator-menu': SeparatorMenu,
+  'separator-vertical': SeparatorVertical,
+  'separator-rtl': SeparatorRtl,
 }
 
 export const shadcnOriginCases: ReadonlyArray<ShadcnOriginCase> =

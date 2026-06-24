@@ -1,0 +1,267 @@
+{
+  "batch": ["base-ui/field", "shadcn/field"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Field",
+      "docsUrl": "https://base-ui.com/react/components/field",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/field/control/FieldControl.tsx",
+        "repos/base-ui/packages/react/src/field/control/FieldControlDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/description/FieldDescription.tsx",
+        "repos/base-ui/packages/react/src/field/description/FieldDescriptionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/error/FieldError.tsx",
+        "repos/base-ui/packages/react/src/field/error/FieldErrorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/index.parts.ts",
+        "repos/base-ui/packages/react/src/field/index.ts",
+        "repos/base-ui/packages/react/src/field/item/FieldItem.tsx",
+        "repos/base-ui/packages/react/src/field/item/FieldItemContext.ts",
+        "repos/base-ui/packages/react/src/field/item/FieldItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/label/FieldLabel.tsx",
+        "repos/base-ui/packages/react/src/field/label/FieldLabelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/root/FieldRoot.tsx",
+        "repos/base-ui/packages/react/src/field/root/FieldRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/root/useFieldValidation.ts",
+        "repos/base-ui/packages/react/src/field/utils/getCombinedFieldValidityData.ts",
+        "repos/base-ui/packages/react/src/field/validity/FieldValidity.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/field/control/FieldControl.test.tsx",
+        "repos/base-ui/packages/react/src/field/description/FieldDescription.test.tsx",
+        "repos/base-ui/packages/react/src/field/error/FieldError.test.tsx",
+        "repos/base-ui/packages/react/src/field/item/FieldItem.test.tsx",
+        "repos/base-ui/packages/react/src/field/label/FieldLabel.test.tsx",
+        "repos/base-ui/packages/react/src/field/root/FieldRoot.test.tsx",
+        "repos/base-ui/packages/react/src/field/validity/FieldValidity.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/field/control/FieldControl.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/field"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Field",
+      "docsUrl": "https://ui.shadcn.com/docs/components/field",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/field.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/field.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/field.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/field-checkbox.tsx",
+        "repos/ui/apps/v4/examples/base/field-choice-card.tsx",
+        "repos/ui/apps/v4/examples/base/field-demo.tsx",
+        "repos/ui/apps/v4/examples/base/field-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/field-group.tsx",
+        "repos/ui/apps/v4/examples/base/field-input.tsx",
+        "repos/ui/apps/v4/examples/base/field-radio.tsx",
+        "repos/ui/apps/v4/examples/base/field-responsive.tsx",
+        "repos/ui/apps/v4/examples/base/field-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/field-select.tsx",
+        "repos/ui/apps/v4/examples/base/field-slider.tsx",
+        "repos/ui/apps/v4/examples/base/field-switch.tsx",
+        "repos/ui/apps/v4/examples/base/field-textarea.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/field.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/field.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/field.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/field.tsx"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/radio-group",
+        "shadcn/select",
+        "shadcn/separator",
+        "shadcn/slider",
+        "shadcn/switch",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "class-variance-authority",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures.",
+        "Replace CVA variant handling with Effect Schema literals and pure class maps."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/field",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/checkbox",
+      "classification": "registry-local",
+      "target": "shadcn/checkbox",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/radio-group",
+      "classification": "registry-local",
+      "target": "shadcn/radio-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/select",
+      "classification": "registry-local",
+      "target": "shadcn/select",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/separator",
+      "classification": "registry-local",
+      "target": "shadcn/separator",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/slider",
+      "classification": "registry-local",
+      "target": "shadcn/slider",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/switch",
+      "classification": "registry-local",
+      "target": "shadcn/switch",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/textarea",
+      "classification": "registry-local",
+      "target": "shadcn/textarea",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/field/control/FieldControl.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/description/FieldDescription.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/error/FieldError.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/item/FieldItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/label/FieldLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/root/FieldRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/validity/FieldValidity.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/field/control/FieldControl.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

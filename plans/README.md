@@ -12,6 +12,9 @@ honor its STOP conditions, and update your row when done.
 | 003 | Add shadcn origin parity fixture bundling | P1 | M | 001 | DONE |
 | 002 | Add the Button proving batch | P1 | L | 001, 003 | DONE |
 | 004 | Generate foundational component dossiers | P1 | M | 002 | DONE |
+| 005 | Implement Base UI Separator primitive | P1 | M | 004 | DONE |
+| 006 | Implement shadcn Separator wrapper and examples | P1 | M | 005 | DONE |
+| 007 | Generate remaining component dossiers from the full queue | P1 | M | 004 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -22,6 +25,9 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 002 is that first proving batch. It intentionally keeps Button Group examples deferred to a later dependency-complete batch instead of widening the Button scope.
 - Plan 003 was split out after the first 002 execution attempt and is now complete. Plan 002 can resume against the fixture-only shadcn origin browser/bundler layer.
 - Plan 004 depends on 002 because Button is the completed exemplar for origin evidence, parity slots, shadcn wrapper dependencies, and style fidelity expectations.
+- Plan 005 uses the separator dossier from plan 004 to add the unstyled Base UI primitive first.
+- Plan 006 depends on 005 because the shadcn Separator must compose the local `base-ui/separator` registry item instead of importing Base UI React.
+- Plan 007 depends on 004 because it builds from the first-wave dossier artifact and only lists origin components not already implemented or queued there.
 
 ## Findings considered and rejected
 
