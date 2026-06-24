@@ -7,7 +7,7 @@
 > in `plans/README.md` - unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 24113a13..HEAD -- AGENTS.md package.json bun.lock src tests scripts registry-src registry docs .agents plans vite.config.ts vitest.config.ts oxlint.config.ts oxfmt.config.ts`
+> **Drift check (run first)**: `git diff --stat 7e655990..HEAD -- AGENTS.md package.json bun.lock src tests scripts registry-src registry docs .agents plans vite.config.ts vitest.config.ts oxlint.config.ts oxfmt.config.ts`
 > If any in-scope file changed since this plan was written, compare the
 > "Current state" excerpts against the live code before proceeding; on a
 > mismatch, treat it as a STOP condition.
@@ -17,18 +17,20 @@
 - **Priority**: P1
 - **Effort**: L
 - **Risk**: HIGH
-- **Depends on**: 001
+- **Depends on**: 001, 003
 - **Category**: feature
-- **Planned at**: commit `24113a13`, 2026-06-24
+- **Planned at**: commit `7e655990`, 2026-06-24
 
 ## Execution note
 
 First execution stopped on 2026-06-24 before Step 7. The executor proved that
 Base UI Button origin-backed parity can run with a fixture-only DOM bootstrap,
 but shadcn Button origin parity could not be rendered from pinned
-`repos/ui` source without a bundler/alias layer. Execute
-`plans/003-add-shadcn-origin-parity-fixture-bundling.md` first, then refresh
-this plan and re-run it.
+`repos/ui` source without a bundler/alias layer.
+
+Plan 003 is now complete. Resume this plan from updated `main`, preserving the
+validated shadcn origin fixture runner instead of rebuilding that layer from
+scratch.
 
 ## Why this matters
 
@@ -54,6 +56,11 @@ the exemplar for the next one or two origin-backed components.
   `add-registry-component` skill.
 - `plans/artifacts/002-button-proving-batch/` contains the generated Button
   dossier preview for this plan. It is planning evidence, not implementation.
+- Plan 003 added fixture-only shadcn origin browser support through
+  `scripts/parity-origin-shadcn.ts`,
+  `tests/parity/fixtures/origin/shadcn/**`, and the
+  `parity:origin:shadcn` package script. Reuse and extend that runner for
+  Step 7.
 - `utils/cn` is already installable and wraps `clsx` plus `tailwind-merge`.
 - Current git state at planning time was dirty before this plan:
   `.gitignore`, `.mcp.json`, `package.json`, and `vitest.config.ts` were
