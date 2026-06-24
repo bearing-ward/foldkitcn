@@ -1,0 +1,83 @@
+{
+  "batch": ["shadcn/textarea"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Textarea",
+      "docsUrl": "https://ui.shadcn.com/docs/components/textarea",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/textarea.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/textarea.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/textarea.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/textarea-button.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-demo.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-field.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/textarea.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/textarea.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/textarea.tsx"
+      ],
+      "registryDependencyHints": ["shadcn/button", "shadcn/field", "utils/cn"],
+      "runtimeDependencyHints": ["@/components/language-selector", "react"],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

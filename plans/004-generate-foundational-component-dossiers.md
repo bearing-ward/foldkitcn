@@ -76,16 +76,16 @@ find repos/ui/apps/v4/styles/base-nova/ui -maxdepth 1 -type f | sed 's#^repos/ui
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Current resolver smoke | `bun run origin:resolve -- https://base-ui.com/react/components/button` | exit 0, Button origin evidence printed |
-| Registry validation | `bun run registry:check` | exit 0, source manifests valid |
-| Registry build | `bun run registry:build` | exit 0, generated registry remains valid |
-| Parity smoke | `bun run parity:check -- --grep button` | exit 0, Button parity still passes |
-| Typecheck | `bun run typecheck` | exit 0 |
-| Ultracite check | `bun run check` | exit 0 |
-| Build | `bun run build` | exit 0 |
-| Git whitespace | `git diff --check` | exit 0 |
+| Purpose                | Command                                                                 | Expected on success                      |
+| ---------------------- | ----------------------------------------------------------------------- | ---------------------------------------- |
+| Current resolver smoke | `bun run origin:resolve -- https://base-ui.com/react/components/button` | exit 0, Button origin evidence printed   |
+| Registry validation    | `bun run registry:check`                                                | exit 0, source manifests valid           |
+| Registry build         | `bun run registry:build`                                                | exit 0, generated registry remains valid |
+| Parity smoke           | `bun run parity:check -- --grep button`                                 | exit 0, Button parity still passes       |
+| Typecheck              | `bun run typecheck`                                                     | exit 0                                   |
+| Ultracite check        | `bun run check`                                                         | exit 0                                   |
+| Build                  | `bun run build`                                                         | exit 0                                   |
+| Git whitespace         | `git diff --check`                                                      | exit 0                                   |
 
 After the generic resolver/dossier work in Step 1, these smoke commands must
 also exit 0:
@@ -317,15 +317,15 @@ Expected result: every command exits 0. Then update the Plan 004 row in
 ## Done criteria
 
 - [ ] `scripts/origin-common.ts` resolves non-Button Base UI and shadcn docs
-  URLs from local pinned origin repos.
+      URLs from local pinned origin repos.
 - [ ] `scripts/draft-registry-component-plan.ts` generates non-Button dossier
-  previews without Button-specific prose or dependencies.
+      previews without Button-specific prose or dependencies.
 - [ ] `plans/artifacts/004-foundational-component-backlog/component-backlog.md`
-  remains the source queue for at least 20 recommended foundational rows.
+      remains the source queue for at least 20 recommended foundational rows.
 - [ ] At least six parallel-safe starter dossiers exist under
-  `plans/artifacts/004-foundational-component-dossiers/**`.
+      `plans/artifacts/004-foundational-component-dossiers/**`.
 - [ ] At least 14 total dossier directories exist, or any missing row has an
-  explicit queue note with the dependency/blocker.
+      explicit queue note with the dependency/blocker.
 - [ ] `bun run registry:check` exits 0.
 - [ ] `bun run registry:build` exits 0.
 - [ ] `bun run parity:check -- --grep button` exits 0.

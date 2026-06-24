@@ -11,7 +11,7 @@ honor its STOP conditions, and update your row when done.
 | 001 | Establish the Foldkit registry foundation and component-planning skill | P1 | L | - | DONE |
 | 003 | Add shadcn origin parity fixture bundling | P1 | M | 001 | DONE |
 | 002 | Add the Button proving batch | P1 | L | 001, 003 | DONE |
-| 004 | Generate foundational component dossiers | P1 | M | 002 | TODO |
+| 004 | Generate foundational component dossiers | P1 | M | 002 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 

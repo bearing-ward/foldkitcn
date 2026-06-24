@@ -1,0 +1,169 @@
+{
+  "batch": ["base-ui/radio-group", "shadcn/radio-group"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Radio Group",
+      "docsUrl": "https://base-ui.com/react/components/radio-group",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/radio-group/index.ts",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.tsx",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroupContext.ts",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroupDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.ts"
+      ],
+      "demoPaths": [],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/radio-group"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Radio Group",
+      "docsUrl": "https://ui.shadcn.com/docs/components/radio-group",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/radio-group.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/radio-group.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/radio-group.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/radio-group-choice-card.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-description.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/radio-group.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/radio-group.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/radio-group.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/radio-group.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/radio",
+        "base-ui/radio-group",
+        "shadcn/field",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/radio",
+        "@base-ui/react/radio-group",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/radio-group",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/radio",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/radio",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/radio-group",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/radio-group",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/radio",
+      "classification": "registry-local",
+      "target": "base-ui/radio",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "base-ui/radio-group",
+      "classification": "registry-local",
+      "target": "base-ui/radio-group",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/radio-group/RadioGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/radio-group/RadioGroup.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "batch": ["base-ui/collapsible", "shadcn/collapsible"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Collapsible",
+      "docsUrl": "https://base-ui.com/react/components/collapsible",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/collapsible/index.parts.ts",
+        "repos/base-ui/packages/react/src/collapsible/index.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.tsx",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/useCollapsiblePanel.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.tsx",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootContext.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/useCollapsibleRoot.ts",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.tsx",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.test.tsx",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.test.tsx",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/collapsible"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Collapsible",
+      "docsUrl": "https://ui.shadcn.com/docs/components/collapsible",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/collapsible.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/collapsible.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/collapsible-basic.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-demo.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-file-tree.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-settings.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/collapsible.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/collapsible.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/collapsible.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/collapsible",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/tabs"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@/registry/icons/__lucide__",
+        "@base-ui/react/collapsible",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/registry/icons/__lucide__",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/collapsible",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/collapsible",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/collapsible",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/collapsible",
+      "classification": "registry-local",
+      "target": "base-ui/collapsible",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/tabs",
+      "classification": "registry-local",
+      "target": "shadcn/tabs",
+      "reason": "Origin examples compose this local shadcn registry item."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

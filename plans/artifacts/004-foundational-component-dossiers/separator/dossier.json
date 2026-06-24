@@ -1,0 +1,134 @@
+{
+  "batch": ["base-ui/separator", "shadcn/separator"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Separator",
+      "docsUrl": "https://base-ui.com/react/components/separator",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/separator/index.ts",
+        "repos/base-ui/packages/react/src/separator/Separator.tsx",
+        "repos/base-ui/packages/react/src/separator/SeparatorDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/separator/Separator.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/separator"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Separator",
+      "docsUrl": "https://ui.shadcn.com/docs/components/separator",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/separator.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/separator.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/separator.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/separator-demo.tsx",
+        "repos/ui/apps/v4/examples/base/separator-list.tsx",
+        "repos/ui/apps/v4/examples/base/separator-menu.tsx",
+        "repos/ui/apps/v4/examples/base/separator-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/separator-vertical.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/separator.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/separator.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/separator.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/separator.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/separator.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/separator", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/separator",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/separator",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/separator",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/separator",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/separator",
+      "classification": "registry-local",
+      "target": "base-ui/separator",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/separator/Separator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

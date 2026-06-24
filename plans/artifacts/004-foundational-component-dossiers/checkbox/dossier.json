@@ -1,0 +1,179 @@
+{
+  "batch": ["base-ui/checkbox", "shadcn/checkbox"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Checkbox",
+      "docsUrl": "https://base-ui.com/react/components/checkbox",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/checkbox/index.parts.ts",
+        "repos/base-ui/packages/react/src/checkbox/index.ts",
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicator.tsx",
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRoot.tsx",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRootContext.ts",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox/utils/useStateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRoot.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/checkbox"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Checkbox",
+      "docsUrl": "https://ui.shadcn.com/docs/components/checkbox",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/checkbox.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/checkbox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/checkbox.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/checkbox-basic.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-demo.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-description.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-group.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-table.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/checkbox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/checkbox.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/checkbox.tsx"
+      ],
+      "registryDependencyHints": [
+        "base-ui/checkbox",
+        "shadcn/field",
+        "shadcn/label",
+        "shadcn/table",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/checkbox",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/checkbox",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/checkbox",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/checkbox",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/checkbox",
+      "classification": "registry-local",
+      "target": "base-ui/checkbox",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/table",
+      "classification": "registry-local",
+      "target": "shadcn/table",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/checkbox/root/CheckboxRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "batch": ["shadcn/aspect-ratio"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Aspect Ratio",
+      "docsUrl": "https://ui.shadcn.com/docs/components/aspect-ratio",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/aspect-ratio.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/aspect-ratio.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx",
+        "repos/ui/apps/v4/examples/base/aspect-ratio-portrait.tsx",
+        "repos/ui/apps/v4/examples/base/aspect-ratio-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/aspect-ratio-square.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/aspect-ratio.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/aspect-ratio.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/aspect-ratio.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/aspect-ratio.tsx"
+      ],
+      "registryDependencyHints": ["utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "next/image",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next/image",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

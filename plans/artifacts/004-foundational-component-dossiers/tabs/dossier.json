@@ -1,0 +1,195 @@
+{
+  "batch": ["base-ui/tabs", "shadcn/tabs"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Tabs",
+      "docsUrl": "https://base-ui.com/react/components/tabs",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/tabs/index.parts.ts",
+        "repos/base-ui/packages/react/src/tabs/index.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/prehydrationScript.min.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/prehydrationScript.template.js",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.tsx",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsListContext.ts",
+        "repos/base-ui/packages/react/src/tabs/list/TabsListDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRootContext.ts",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTabDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/tabs"],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Tabs",
+      "docsUrl": "https://ui.shadcn.com/docs/components/tabs",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/tabs.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/tabs.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/tabs.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/tabs-demo.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-icons.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-line.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-vertical.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/tabs.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/tabs.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/tabs.tsx"
+      ],
+      "registryDependencyHints": ["base-ui/tabs", "shadcn/card", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/tabs",
+        "class-variance-authority",
+        "lucide-react",
+        "react"
+      ],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures.",
+        "Replace CVA variant handling with Effect Schema literals and pure class maps."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/tabs",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/tabs",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/tabs",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/tabs",
+      "classification": "registry-local",
+      "target": "base-ui/tabs",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/tabs/list/TabsList.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/tabs/root/TabsRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/tabs/tab/TabsTab.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}
