@@ -10,12 +10,13 @@
     "format": "oxfmt --write .",
     "test": "vitest run",
     "lint": "oxlint",
-    "check": "ultracite check",
+    "check": "ultracite check --disable-nested-config",
     "fix": "ultracite fix",
     "registry:check": "bun run scripts/check-registry.ts",
     "registry:build": "bun run scripts/build-registry.ts",
     "origin:resolve": "bun run scripts/resolve-origin-url.ts",
-    "parity:check": "bun run scripts/parity-dry-run.ts"
+    "parity:check": "bun run scripts/parity-dry-run.ts",
+    "parity:origin:shadcn": "bun run scripts/parity-origin-shadcn.ts"
   },
   "dependencies": {
     "@effect/platform-browser": "4.0.0-beta.83",
@@ -25,16 +26,25 @@
     "clsx": "^2.1.1",
     "effect": "4.0.0-beta.83",
     "foldkit": "^0.116.0",
-    "tailwindcss": "^4.3.1",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
+    "@floating-ui/utils": "^0.2.11",
     "@foldkit/devtools-mcp": "^0.12.0",
     "@foldkit/oxlint-plugin": "^0.1.0",
     "@foldkit/vite-plugin": "^0.9.1",
+    "@playwright/test": "^1.61.1",
+    "@tabler/icons-react": "^3.31.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "class-variance-authority": "^0.7.1",
     "happy-dom": "^20.10.6",
+    "lucide-react": "0.474.0",
     "oxfmt": "^0.56.0",
     "oxlint": "^1.71.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "typescript": "^6.0.3",
     "ultracite": "7.8.3",
     "vite": "^8.0.16",
