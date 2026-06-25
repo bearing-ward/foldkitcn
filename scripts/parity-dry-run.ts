@@ -195,20 +195,48 @@ const selectedSvgAttributes = (
   return attributes.filter(attribute => retainedNames.includes(attribute.name))
 }
 
+const normalizeSwitchDomAttributes = (
+  attributes: ReadonlyArray<AttributeSummary>,
+): ReadonlyArray<AttributeSummary> =>
+  attributes.filter(attribute => {
+    if (attribute.name === 'aria-labelledby') {
+      return false
+    }
+
+    if (attribute.name === 'id' && attribute.value.startsWith('base-ui-')) {
+      return false
+    }
+
+    if (attribute.name === 'id' && attribute.value.endsWith('-label')) {
+      return false
+    }
+
+    return true
+  })
+
 const normalizeShadcnDomStructure = (
   summary: DomStructureSummary,
+  options: Readonly<{ normalizeSwitchIds?: boolean }> = {},
 ): DomStructureSummary => {
+  const attributes =
+    options.normalizeSwitchIds === true
+      ? normalizeSwitchDomAttributes(summary.attributes)
+      : summary.attributes
+
   if (summary.tagName === 'svg') {
     return {
       ...summary,
-      attributes: selectedSvgAttributes(summary.attributes),
+      attributes: selectedSvgAttributes(attributes),
       children: [],
     }
   }
 
   return {
     ...summary,
-    children: summary.children.map(normalizeShadcnDomStructure),
+    attributes,
+    children: summary.children.map(child =>
+      normalizeShadcnDomStructure(child, options),
+    ),
   }
 }
 
@@ -225,7 +253,9 @@ const shadcnComparisonValue = (
   }
 
   if (comparison === 'dom-structure') {
-    return normalizeShadcnDomStructure(snapshot.domStructure)
+    return normalizeShadcnDomStructure(snapshot.domStructure, {
+      normalizeSwitchIds: snapshot.caseId.startsWith('switch-'),
+    })
   }
 
   if (comparison === 'computed-style') {

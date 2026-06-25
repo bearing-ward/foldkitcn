@@ -115,6 +115,8 @@ describe('parity canonicalizers', () => {
       'base-ui/separator',
       'shadcn/separator',
       'shadcn/progress',
+      'base-ui/switch',
+      'shadcn/switch',
       'shadcn/skeleton',
       'shadcn/textarea',
     ])

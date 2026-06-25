@@ -97,6 +97,15 @@ import {
   SkeletonText,
 } from '../../../../../src/registry/shadcn/skeleton/examples'
 import {
+  SwitchChoiceCard,
+  SwitchDemo,
+  SwitchDescription,
+  SwitchDisabled,
+  SwitchInvalid,
+  SwitchRtl,
+  SwitchSizes,
+} from '../../../../../src/registry/shadcn/switch/examples'
+import {
   TextareaButton,
   TextareaDemo,
 } from '../../../../../src/registry/shadcn/textarea/examples'
@@ -175,6 +184,13 @@ const components: Readonly<Record<string, () => Html>> = {
   'progress-demo': ProgressDemo,
   'progress-label': ProgressWithLabel,
   'progress-rtl': ProgressRtl,
+  'switch-choice-card': SwitchChoiceCard,
+  'switch-demo': SwitchDemo,
+  'switch-description': SwitchDescription,
+  'switch-disabled': SwitchDisabled,
+  'switch-invalid': SwitchInvalid,
+  'switch-rtl': SwitchRtl,
+  'switch-sizes': SwitchSizes,
   'skeleton-avatar': SkeletonAvatar,
   'skeleton-card': SkeletonCard,
   'skeleton-demo': SkeletonDemo,
@@ -209,6 +225,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('progress-')) {
     return 'src/registry/shadcn/progress/examples.ts'
+  }
+
+  if (id.startsWith('switch-')) {
+    return 'src/registry/shadcn/switch/examples.ts'
   }
 
   if (id.startsWith('kbd-')) {

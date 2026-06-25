@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/switch",
+  "namespace": "base-ui",
+  "name": "Switch",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Switch primitive preserving controlled checked state, root and thumb data attributes, disabled/read-only/required/invalid states, keyboard activation, and native checkbox form controls without internal state.",
+  "sourceRoot": "registry-src/base-ui/switch",
+  "installableSourcePaths": ["src/registry/base-ui/switch/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Switch",
+      "docsUrl": "https://base-ui.com/react/components/switch",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/switch",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/switch/index.parts.ts",
+        "repos/base-ui/packages/react/src/switch/index.ts",
+        "repos/base-ui/packages/react/src/switch/root/SwitchRoot.tsx",
+        "repos/base-ui/packages/react/src/switch/root/SwitchRootContext.ts",
+        "repos/base-ui/packages/react/src/switch/root/SwitchRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/switch/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/switch/thumb/SwitchThumb.tsx",
+        "repos/base-ui/packages/react/src/switch/thumb/SwitchThumbDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/switch/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/switch/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/switch/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/switch/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/switch/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/switch/root/SwitchRoot.test.tsx",
+        "repos/base-ui/packages/react/src/switch/thumb/SwitchThumb.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/switch",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/switch",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/switch.fixture.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/switch.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": []
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": []
+}

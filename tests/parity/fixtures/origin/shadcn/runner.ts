@@ -96,6 +96,10 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/progress/index.ts')
     }
 
+    if (source === '@base-ui/react/switch') {
+      return repoPath('repos/base-ui/packages/react/src/switch/index.ts')
+    }
+
     if (source === '@base-ui/react/avatar') {
       return repoPath('repos/base-ui/packages/react/src/avatar/index.ts')
     }
@@ -409,6 +413,24 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/switch',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/switch.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/field',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/field.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/label',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/label.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/skeleton',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/skeleton.tsx',
@@ -478,6 +500,24 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/progress',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/progress.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/switch',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/switch.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/field',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/field.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/label',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/label.tsx',
           ),
         },
         {
