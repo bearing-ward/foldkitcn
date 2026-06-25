@@ -15,7 +15,7 @@ honor its STOP conditions, and update your row when done.
 | 005 | Implement Base UI Separator primitive | P1 | M | 004 | DONE |
 | 006 | Implement shadcn Separator wrapper and examples | P1 | M | 005 | DONE |
 | 007 | Generate remaining component dossiers from the full queue | P1 | M | 004 | DONE |
-| 008 | Plan outstanding held component rows | P1 | M | 007 | TODO |
+| 008 | Plan outstanding held component rows | P1 | M | 007 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
