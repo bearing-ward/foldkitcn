@@ -29,7 +29,7 @@ honor its STOP conditions, and update your row when done.
 | 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | DONE |
 | 020 | Implement shadcn Aspect Ratio | P1 | S | 004, 019 | DONE |
 | 021 | Implement Base UI and shadcn Avatar | P1 | M | 004, 019 | DONE |
-| 022 | Implement Base UI and shadcn Input | P1 | M | 004, 019 | TODO |
+| 022 | Implement Base UI and shadcn Input | P1 | M | 004, 019 | DONE |
 | 023 | Implement shadcn Textarea | P1 | S | 004, 019 | TODO |
 | 024 | Implement Base UI and shadcn Switch | P1 | M | 004, 019 | TODO |
 | 025 | Implement Base UI and shadcn Checkbox | P1 | M | 004, 019 | TODO |
