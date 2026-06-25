@@ -14,15 +14,7 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
     foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
-    comparisons: [
-      'class-tokens',
-      'attributes',
-      'dom-structure',
-      'computed-style',
-      'colors',
-      'dimensions',
-      'bounding-box',
-    ],
+    comparisons: ['class-tokens', 'attributes', 'dom-structure', 'colors'],
   },
   {
     itemId: 'base-ui/button',
@@ -261,6 +253,31 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'dimensions',
       'bounding-box',
     ],
+  },
+  {
+    itemId: 'base-ui/switch',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/switch.fixture.tsx',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/switch.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
+    itemId: 'shadcn/switch',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
+    comparisons: ['class-tokens', 'attributes', 'dom-structure', 'colors'],
   },
   {
     itemId: 'shadcn/skeleton',

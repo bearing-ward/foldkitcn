@@ -68,6 +68,13 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { SwitchChoiceCard } from '../../../../../repos/ui/apps/v4/examples/base/switch-choice-card'
+import { SwitchDemo } from '../../../../../repos/ui/apps/v4/examples/base/switch-demo'
+import { SwitchDescription } from '../../../../../repos/ui/apps/v4/examples/base/switch-description'
+import { SwitchDisabled } from '../../../../../repos/ui/apps/v4/examples/base/switch-disabled'
+import { SwitchInvalid } from '../../../../../repos/ui/apps/v4/examples/base/switch-invalid'
+import { SwitchRtl } from '../../../../../repos/ui/apps/v4/examples/base/switch-rtl'
+import { SwitchSizes } from '../../../../../repos/ui/apps/v4/examples/base/switch-sizes'
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
@@ -183,6 +190,13 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'progress-demo': ProgressDemo,
   'progress-label': ProgressWithLabel,
   'progress-rtl': ProgressRtl,
+  'switch-choice-card': SwitchChoiceCard,
+  'switch-demo': SwitchDemo,
+  'switch-description': SwitchDescription,
+  'switch-disabled': SwitchDisabled,
+  'switch-invalid': SwitchInvalid,
+  'switch-rtl': SwitchRtl,
+  'switch-sizes': SwitchSizes,
   'skeleton-avatar': SkeletonAvatar,
   'skeleton-card': SkeletonCard,
   'skeleton-demo': SkeletonDemo,

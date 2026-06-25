@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 6,
-      remaining: 32,
+      imported: 7,
+      remaining: 31,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 12,
-      remaining: 47,
+      imported: 13,
+      remaining: 46,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -53,6 +53,7 @@ describe('origin component progress', () => {
       'base-ui/meter',
       'base-ui/progress',
       'base-ui/separator',
+      'base-ui/switch',
       'shadcn/alert',
       'shadcn/aspect-ratio',
       'shadcn/avatar',
@@ -64,6 +65,7 @@ describe('origin component progress', () => {
       'shadcn/progress',
       'shadcn/separator',
       'shadcn/skeleton',
+      'shadcn/switch',
       'shadcn/textarea',
     ]
 
@@ -92,11 +94,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/switch')
+    expect(nextRow?.itemId).toBe('base-ui/checkbox')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/switch',
-      'https://ui.shadcn.com/docs/components/switch',
+      'https://base-ui.com/react/components/checkbox',
+      'https://ui.shadcn.com/docs/components/checkbox',
     ])
   })
 

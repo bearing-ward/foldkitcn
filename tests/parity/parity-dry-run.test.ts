@@ -28,6 +28,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/separator',
       'shadcn/progress',
+      'shadcn/switch',
       'shadcn/skeleton',
       'shadcn/textarea',
     ])
@@ -43,6 +44,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/separator',
       'shadcn/progress',
+      'shadcn/switch',
       'shadcn/skeleton',
       'shadcn/textarea',
     ])

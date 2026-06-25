@@ -346,6 +346,41 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/progress-rtl.tsx',
     },
     {
+      id: 'switch-demo',
+      title: 'Switch demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-demo.tsx',
+    },
+    {
+      id: 'switch-description',
+      title: 'Switch description',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-description.tsx',
+    },
+    {
+      id: 'switch-choice-card',
+      title: 'Switch choice card',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-choice-card.tsx',
+    },
+    {
+      id: 'switch-disabled',
+      title: 'Switch disabled',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-disabled.tsx',
+    },
+    {
+      id: 'switch-invalid',
+      title: 'Switch invalid',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-invalid.tsx',
+    },
+    {
+      id: 'switch-sizes',
+      title: 'Switch sizes',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-sizes.tsx',
+    },
+    {
+      id: 'switch-rtl',
+      title: 'Switch RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/switch-rtl.tsx',
+    },
+    {
       id: 'skeleton-avatar',
       title: 'Skeleton avatar',
       originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-avatar.tsx',

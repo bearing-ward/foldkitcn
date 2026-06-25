@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T21:54:34.310Z",
+  "generatedAt": "2026-06-25T22:22:42.511Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -718,6 +718,117 @@
           "path": "src/registry/base-ui/separator/index.ts",
           "sha256": "884fde92a9aaee653081bf244aed1f3d7364a9a337074ab43c1c4be89cf84d26",
           "sizeBytes": 1032,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/switch",
+        "namespace": "base-ui",
+        "name": "Switch",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Switch primitive preserving controlled checked state, root and thumb data attributes, disabled/read-only/required/invalid states, keyboard activation, and native checkbox form controls without internal state.",
+        "sourceRoot": "registry-src/base-ui/switch",
+        "installableSourcePaths": ["src/registry/base-ui/switch/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Switch",
+            "docsUrl": "https://base-ui.com/react/components/switch",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/switch",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/switch/index.parts.ts",
+              "repos/base-ui/packages/react/src/switch/index.ts",
+              "repos/base-ui/packages/react/src/switch/root/SwitchRoot.tsx",
+              "repos/base-ui/packages/react/src/switch/root/SwitchRootContext.ts",
+              "repos/base-ui/packages/react/src/switch/root/SwitchRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/switch/stateAttributesMapping.ts",
+              "repos/base-ui/packages/react/src/switch/thumb/SwitchThumb.tsx",
+              "repos/base-ui/packages/react/src/switch/thumb/SwitchThumbDataAttributes.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/switch/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/switch/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/switch/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/switch/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/switch/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/switch/root/SwitchRoot.test.tsx",
+              "repos/base-ui/packages/react/src/switch/thumb/SwitchThumb.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/switch",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/switch",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/switch.fixture.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/switch.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": []
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": []
+      },
+      "manifestHash": "d90eb7e5f07931eed276165e334072963d5780e32541b58c0ed0392c925cffe1",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/switch/item.json",
+          "sha256": "421669038ddc07411c6cde44bdf61a6684e70bd49c0e29a1d03812aec1684e7e",
+          "sizeBytes": 3765,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/switch/index.ts",
+          "sha256": "e3c7b4d81c8bc1ba8cef6a21ef6aaa55f2adf58e00d1403ff035ddc7884c3440",
+          "sizeBytes": 7822,
           "role": "source"
         }
       ]
@@ -3220,6 +3331,243 @@
           "path": "src/registry/shadcn/skeleton/examples.ts",
           "sha256": "76f0265b51e2be74f7ef1d6b60e600bb4e438f7d3e00f56d162fde982fdb5d88",
           "sizeBytes": 3823,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/switch",
+        "namespace": "shadcn",
+        "name": "Switch",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Switch wrapper composed from the local Base UI Switch primitive, shadcn size styling, root/thumb slots, and local fixture shells for Field and Label example layouts.",
+        "sourceRoot": "registry-src/shadcn/switch",
+        "installableSourcePaths": [
+          "src/registry/shadcn/switch/index.ts",
+          "src/registry/shadcn/switch/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Switch",
+            "docsUrl": "https://ui.shadcn.com/docs/components/switch",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/switch.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/switch.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/switch.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/switch.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/switch.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/switch-choice-card.tsx",
+              "repos/ui/apps/v4/examples/base/switch-demo.tsx",
+              "repos/ui/apps/v4/examples/base/switch-description.tsx",
+              "repos/ui/apps/v4/examples/base/switch-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/switch-invalid.tsx",
+              "repos/ui/apps/v4/examples/base/switch-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/switch-sizes.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/switch",
+              "classification": "registry-local",
+              "target": "base-ui/switch",
+              "reason": "shadcn Switch composes the local Base UI Switch primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Switch uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provided by the local Base UI Switch dependency for Effect Schema options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/switch",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/switch",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Switch implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Switch examples reference Field before that registry item exists; examples use local fixture-only shells instead of importing an installable Field dependency."
+            },
+            {
+              "specifier": "shadcn/label",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Switch examples reference Label before that registry item exists; examples use local fixture-only shells instead of importing an installable Label dependency."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples and a fixture alias for origin capture."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/switch-demo",
+            "title": "SwitchDemo",
+            "description": "Airplane mode switch with a sibling label shell.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-description",
+            "title": "SwitchDescription",
+            "description": "Switch with local Field content and description shells.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-choice-card",
+            "title": "SwitchChoiceCard",
+            "description": "Choice-card Switch layout using local Field and Label shells.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-disabled",
+            "title": "SwitchDisabled",
+            "description": "Disabled Switch example with Field data-disabled shell.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-invalid",
+            "title": "SwitchInvalid",
+            "description": "Invalid Switch example with aria-invalid and Field data-invalid shell.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-sizes",
+            "title": "SwitchSizes",
+            "description": "Small and default Switch size examples.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/switch-rtl",
+            "title": "SwitchRtl",
+            "description": "RTL Switch layout using local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/switch/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/switch",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "colors"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-switch-local-field-label-shells",
+            "shadcn-switch-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-switch-local-field-label-shells",
+            "summary": "Field and Label example layouts use local fixture shells until those registry items land.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The Switch component must be installable before shadcn Field and Label. Local shells preserve rendered slot, class, and example layout parity without introducing unavailable registry dependencies."
+          },
+          {
+            "id": "shadcn-switch-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          }
+        ]
+      },
+      "manifestHash": "1ebce8ccda66c2ff8787b8d08e8ab51261ea74922ec0e57dea4070cbcbddb642",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/switch/item.json",
+          "sha256": "0f0d95671121ba0e26fbf985538cc4566241ee64999e963c8f28c20d244c7c47",
+          "sizeBytes": 7960,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/switch/index.ts",
+          "sha256": "a9bef723472f30ecf58679ebf8e699692a1dc163437a67d9a302a2b187734164",
+          "sizeBytes": 5239,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/switch/examples.ts",
+          "sha256": "9034c44dcbd44e7a2696370fcd990d14831b150749b00ab6cf13c6250df2794a",
+          "sizeBytes": 10938,
           "role": "source"
         }
       ]
