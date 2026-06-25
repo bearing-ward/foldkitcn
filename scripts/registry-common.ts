@@ -98,6 +98,11 @@ export const readRegistryIndex = (
   }
 }
 
+export const registryIndexIsCurrent = (
+  previousIndex: RegistryIndexType,
+  nextIndex: RegistryIndexType,
+): boolean => hashJson(previousIndex) === hashJson(nextIndex)
+
 const readInstallableSource = (sourcePath: string): string => {
   if (!existsSync(sourcePath)) {
     throw new Error(`Installable source path does not exist: ${sourcePath}`)
@@ -215,6 +220,28 @@ export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
       generatedAt,
     }),
   }
+}
+
+export const checkRegistryIndexCurrent = (
+  outputPath: string,
+): RegistryIndexType => {
+  if (!existsSync(outputPath)) {
+    throw new Error(`${outputPath} is missing; run bun run registry:build`)
+  }
+
+  const previousIndex = readRegistryIndex(outputPath)
+
+  if (previousIndex === undefined) {
+    throw new Error(`${outputPath} is invalid; run bun run registry:build`)
+  }
+
+  const nextIndex = buildRegistryIndex({ previousIndex })
+
+  if (!registryIndexIsCurrent(previousIndex, nextIndex)) {
+    throw new Error(`${outputPath} is stale; run bun run registry:build`)
+  }
+
+  return previousIndex
 }
 
 export const writeJson = (outputPath: string, value: unknown): void => {
