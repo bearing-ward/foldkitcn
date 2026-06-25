@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/native-select",
+  "namespace": "shadcn",
+  "name": "Native Select",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Native Select wrapper using native select, option, and optgroup markup.",
+  "sourceRoot": "registry-src/shadcn/native-select",
+  "installableSourcePaths": [
+    "src/registry/shadcn/native-select/index.ts",
+    "src/registry/shadcn/native-select/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--destructive",
+    "--input",
+    "--muted-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--radius-md",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Native Select",
+      "docsUrl": "https://ui.shadcn.com/docs/components/native-select",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/native-select.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/native-select.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/native-select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/native-select.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/native-select-demo.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-groups.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Native Select uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Native Select size and direction options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chevron icon is represented by a local inline SVG helper in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/native-select-demo",
+      "title": "NativeSelectDemo",
+      "description": "Default native select status picker.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-disabled",
+      "title": "NativeSelectDisabled",
+      "description": "Disabled native select example.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-groups",
+      "title": "NativeSelectGroups",
+      "description": "Native select with grouped options.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-invalid",
+      "title": "NativeSelectInvalid",
+      "description": "Invalid native select example.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-rtl",
+      "title": "NativeSelectRtl",
+      "description": "RTL native select example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/native-select",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-native-select-local-icon",
+      "shadcn-native-select-local-rtl-data"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-native-select-local-icon",
+      "summary": "Chevron icon uses a local inline SVG instead of lucide-react.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react. The local SVG preserves the native-select icon slot, geometry, and aria-hidden contract."
+    },
+    {
+      "id": "shadcn-native-select-local-rtl-data",
+      "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+    }
+  ]
+}

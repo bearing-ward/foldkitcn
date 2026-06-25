@@ -1,6 +1,14 @@
 import type { Html } from 'foldkit/html'
 
 import {
+  AlertActionExample,
+  AlertBasic,
+  AlertColors,
+  AlertDemo,
+  AlertDestructive,
+  AlertRtl,
+} from '../../../../../src/registry/shadcn/alert/examples'
+import {
   BadgeColors,
   BadgeDemo,
   BadgeIcon,
@@ -34,6 +42,13 @@ import {
   KbdTooltip,
 } from '../../../../../src/registry/shadcn/kbd/examples'
 import {
+  NativeSelectDemo,
+  NativeSelectDisabled,
+  NativeSelectGroups,
+  NativeSelectInvalid,
+  NativeSelectRtl,
+} from '../../../../../src/registry/shadcn/native-select/examples'
+import {
   ProgressControlled,
   ProgressDemo,
   ProgressRtl,
@@ -63,6 +78,12 @@ export interface ShadcnFoldkitCase extends ShadcnOriginCaseMetadata {
 }
 
 const components: Readonly<Record<string, () => Html>> = {
+  'alert-action': AlertActionExample,
+  'alert-basic': AlertBasic,
+  'alert-colors': AlertColors,
+  'alert-demo': AlertDemo,
+  'alert-destructive': AlertDestructive,
+  'alert-rtl': AlertRtl,
   'badge-colors': BadgeColors,
   'badge-demo': BadgeDemo,
   'badge-icon': BadgeIcon,
@@ -90,6 +111,11 @@ const components: Readonly<Record<string, () => Html>> = {
   'kbd-input-group': KbdInputGroup,
   'kbd-rtl': KbdRtl,
   'kbd-tooltip': KbdTooltip,
+  'native-select-demo': NativeSelectDemo,
+  'native-select-disabled': NativeSelectDisabled,
+  'native-select-groups': NativeSelectGroups,
+  'native-select-invalid': NativeSelectInvalid,
+  'native-select-rtl': NativeSelectRtl,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
@@ -109,6 +135,10 @@ const components: Readonly<Record<string, () => Html>> = {
 }
 
 const foldkitSourcePath = (id: string): string => {
+  if (id.startsWith('alert-')) {
+    return 'src/registry/shadcn/alert/examples.ts'
+  }
+
   if (id.startsWith('badge-')) {
     return 'src/registry/shadcn/badge/examples.ts'
   }
@@ -127,6 +157,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('skeleton-')) {
     return 'src/registry/shadcn/skeleton/examples.ts'
+  }
+
+  if (id.startsWith('native-select-')) {
+    return 'src/registry/shadcn/native-select/examples.ts'
   }
 
   return 'src/registry/shadcn/button/examples.ts'

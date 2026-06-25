@@ -237,6 +237,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
     resolve: {
       alias: [
         {
+          find: '@/styles/base-nova/ui/alert',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/alert.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/badge',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/badge.tsx',
@@ -271,6 +277,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           replacement: repoPath('repos/ui/apps/v4/styles/base-nova/ui/kbd.tsx'),
         },
         {
+          find: '@/styles/base-nova/ui/native-select',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/spinner',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx',
@@ -301,6 +313,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui-rtl/alert',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/alert.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui-rtl/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
@@ -316,6 +334,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/kbd',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/kbd.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/native-select',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/native-select.tsx',
           ),
         },
         {

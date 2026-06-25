@@ -62,6 +62,21 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'shadcn/alert',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
     itemId: 'shadcn/badge',
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
@@ -93,6 +108,21 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
   },
   {
     itemId: 'shadcn/kbd',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
+    itemId: 'shadcn/native-select',
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
     foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',

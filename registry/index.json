@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T09:07:06.922Z",
+  "generatedAt": "2026-06-25T09:31:54.533Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -517,6 +517,231 @@
           "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
           "sizeBytes": 818,
           "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/alert",
+        "namespace": "shadcn",
+        "name": "Alert",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Alert wrapper using Schema-backed variants and pure class maps.",
+        "sourceRoot": "registry-src/shadcn/alert",
+        "installableSourcePaths": [
+          "src/registry/shadcn/alert/index.ts",
+          "src/registry/shadcn/alert/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--card",
+          "--card-foreground",
+          "--destructive",
+          "--foreground",
+          "--muted-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Alert",
+            "docsUrl": "https://ui.shadcn.com/docs/components/alert",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/alert.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/alert.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/alert.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/alert.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/alert.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/alert-action.tsx",
+              "repos/ui/apps/v4/examples/base/alert-basic.tsx",
+              "repos/ui/apps/v4/examples/base/alert-colors.tsx",
+              "repos/ui/apps/v4/examples/base/alert-demo.tsx",
+              "repos/ui/apps/v4/examples/base/alert-destructive.tsx",
+              "repos/ui/apps/v4/examples/base/alert-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Alert uses the local class composition helper instead of CVA."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The Alert action example composes the local shadcn Button registry item."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Alert variant and direction options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/alert-action",
+            "title": "AlertActionExample",
+            "description": "Alert with an action Button.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/alert-basic",
+            "title": "AlertBasic",
+            "description": "Basic Alert with an inline status icon.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/alert-colors",
+            "title": "AlertColors",
+            "description": "Alert with custom amber color classes.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/alert-demo",
+            "title": "AlertDemo",
+            "description": "Stacked Alert demo.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/alert-destructive",
+            "title": "AlertDestructive",
+            "description": "Destructive Alert variant.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/alert-rtl",
+            "title": "AlertRtl",
+            "description": "RTL Alert layout example with local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/alert/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/alert",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-alert-local-icons",
+            "shadcn-alert-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-alert-local-icons",
+            "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Alert examples without adding icon registry items."
+          },
+          {
+            "id": "shadcn-alert-local-rtl-data",
+            "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          }
+        ]
+      },
+      "manifestHash": "b714d5ef24580ceb4c14d1df6056939eeea7cabbc04f93162b869f0e345f59c4",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/alert/item.json",
+          "sha256": "0d6db7d378b518648be510dd09ccbe52f120f8196f645b6e2ca68c47779cbe8c",
+          "sizeBytes": 6930,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/alert/index.ts",
+          "sha256": "726a744d298760cbbd9e0872a15ef24b03b026e093bdd862e2009a02ecc3806a",
+          "sizeBytes": 6636,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/alert/examples.ts",
+          "sha256": "db0e4e3da321ccca0d73e2da7bdcf9e64837dd82ca64d6e898acdcebfe892a22",
+          "sizeBytes": 6622,
+          "role": "source"
         }
       ]
     },
@@ -1301,6 +1526,211 @@
           "path": "src/registry/shadcn/kbd/examples.ts",
           "sha256": "e43dba473584d614207bb9a7af648d5029e91b00fa0da6260cca0db0694c0a8a",
           "sizeBytes": 9402,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/native-select",
+        "namespace": "shadcn",
+        "name": "Native Select",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Native Select wrapper using native select, option, and optgroup markup.",
+        "sourceRoot": "registry-src/shadcn/native-select",
+        "installableSourcePaths": [
+          "src/registry/shadcn/native-select/index.ts",
+          "src/registry/shadcn/native-select/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--destructive",
+          "--input",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius-md",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Native Select",
+            "docsUrl": "https://ui.shadcn.com/docs/components/native-select",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/native-select.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/native-select.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/native-select.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/native-select.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/native-select-demo.tsx",
+              "repos/ui/apps/v4/examples/base/native-select-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/native-select-groups.tsx",
+              "repos/ui/apps/v4/examples/base/native-select-invalid.tsx",
+              "repos/ui/apps/v4/examples/base/native-select-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Native Select uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Native Select size and direction options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin chevron icon is represented by a local inline SVG helper in this batch."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/native-select-demo",
+            "title": "NativeSelectDemo",
+            "description": "Default native select status picker.",
+            "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/native-select-disabled",
+            "title": "NativeSelectDisabled",
+            "description": "Disabled native select example.",
+            "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/native-select-groups",
+            "title": "NativeSelectGroups",
+            "description": "Native select with grouped options.",
+            "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/native-select-invalid",
+            "title": "NativeSelectInvalid",
+            "description": "Invalid native select example.",
+            "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/native-select-rtl",
+            "title": "NativeSelectRtl",
+            "description": "RTL native select example with local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/native-select",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-native-select-local-icon",
+            "shadcn-native-select-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-native-select-local-icon",
+            "summary": "Chevron icon uses a local inline SVG instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. The local SVG preserves the native-select icon slot, geometry, and aria-hidden contract."
+          },
+          {
+            "id": "shadcn-native-select-local-rtl-data",
+            "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          }
+        ]
+      },
+      "manifestHash": "6c86737eb83140dbf046cb638971cf12c13a6e1d8bca9105cdb9b0ec4a482bea",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/native-select/item.json",
+          "sha256": "ff44942bb27dd6af952e1bcab233887fad8276f214ad259e96323cb7003200e6",
+          "sizeBytes": 6463,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/native-select/index.ts",
+          "sha256": "0997c59b3b40534cdcb5ddac9a4af2e6022cb65b7522084efbd4f10e2d1b1478",
+          "sizeBytes": 9112,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/native-select/examples.ts",
+          "sha256": "34653bce29534accd9d2befbe077534a40373de5bf5107a20a97f8ece58bb7f8",
+          "sizeBytes": 3781,
           "role": "source"
         }
       ]

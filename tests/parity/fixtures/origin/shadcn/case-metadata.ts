@@ -7,6 +7,36 @@ export interface ShadcnOriginCaseMetadata {
 export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
   [
     {
+      id: 'alert-action',
+      title: 'Alert action',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-action.tsx',
+    },
+    {
+      id: 'alert-basic',
+      title: 'Alert basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-basic.tsx',
+    },
+    {
+      id: 'alert-colors',
+      title: 'Alert colors',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-colors.tsx',
+    },
+    {
+      id: 'alert-demo',
+      title: 'Alert demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-demo.tsx',
+    },
+    {
+      id: 'alert-destructive',
+      title: 'Alert destructive',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-destructive.tsx',
+    },
+    {
+      id: 'alert-rtl',
+      title: 'Alert RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/alert-rtl.tsx',
+    },
+    {
       id: 'badge-colors',
       title: 'Badge colors',
       originFilePath: 'repos/ui/apps/v4/examples/base/badge-colors.tsx',
@@ -140,6 +170,33 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'kbd-tooltip',
       title: 'Kbd tooltip',
       originFilePath: 'repos/ui/apps/v4/examples/base/kbd-tooltip.tsx',
+    },
+    {
+      id: 'native-select-demo',
+      title: 'Native Select demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/native-select-demo.tsx',
+    },
+    {
+      id: 'native-select-disabled',
+      title: 'Native Select disabled',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/native-select-disabled.tsx',
+    },
+    {
+      id: 'native-select-groups',
+      title: 'Native Select groups',
+      originFilePath: 'repos/ui/apps/v4/examples/base/native-select-groups.tsx',
+    },
+    {
+      id: 'native-select-invalid',
+      title: 'Native Select invalid',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/native-select-invalid.tsx',
+    },
+    {
+      id: 'native-select-rtl',
+      title: 'Native Select RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/native-select-rtl.tsx',
     },
     {
       id: 'separator-demo',
