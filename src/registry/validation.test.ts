@@ -238,10 +238,34 @@ describe('registry validation', () => {
     ])
   })
 
-  test('classifies origin React packages as replace-with-foldkit', () => {
+  test('classifies registry-local dependency hints', () => {
+    expect(classifyDependency('shadcn/table')).toBe('registry-local')
+    expect(classifyDependency('base-ui/toast')).toBe('registry-local')
+    expect(classifyDependency('utils/cn')).toBe('registry-local')
+  })
+
+  test('classifies React packages as dev-or-fixture-only', () => {
+    expect(classifyDependency('react')).toBe('dev-or-fixture-only')
+    expect(classifyDependency('react-dom')).toBe('dev-or-fixture-only')
+  })
+
+  test('classifies unsupported table and chart runtimes as reject-or-defer', () => {
+    expect(classifyDependency('@tanstack/react-table')).toBe('reject-or-defer')
+    expect(classifyDependency('@dnd-kit/core')).toBe('reject-or-defer')
+    expect(classifyDependency('@dnd-kit/sortable')).toBe('reject-or-defer')
+    expect(classifyDependency('recharts')).toBe('reject-or-defer')
+    expect(classifyDependency('sonner')).toBe('reject-or-defer')
+  })
+
+  test('classifies unsupported date runtimes as reject-or-defer', () => {
+    expect(classifyDependency('date-fns')).toBe('reject-or-defer')
+    expect(classifyDependency('chrono-node')).toBe('reject-or-defer')
+    expect(classifyDependency('react-day-picker')).toBe('reject-or-defer')
+  })
+
+  test('classifies origin React primitive packages as replace-with-foldkit', () => {
     expect(classifyDependency('@radix-ui/react-slot')).toBe(
       'replace-with-foldkit',
     )
-    expect(classifyDependency('base-ui/button')).toBe('registry-local')
   })
 })

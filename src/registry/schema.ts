@@ -95,6 +95,13 @@ export const OriginKind = S.Union([
 ])
 export type OriginKind = typeof OriginKind.Type
 
+export const OriginResolutionStatus = S.Union([
+  S.Literal('source-backed'),
+  S.Literal('docs-example-only'),
+  S.Literal('foundation-gated'),
+])
+export type OriginResolutionStatus = typeof OriginResolutionStatus.Type
+
 export const OriginProvenance = S.Struct({
   originKind: OriginKind,
   originName: S.String,
@@ -116,15 +123,19 @@ export const OriginResolution = S.Struct({
   docsUrl: S.String,
   localRepoPath: S.String,
   pinnedRef: S.String,
+  resolutionStatus: OriginResolutionStatus,
   sourcePaths: S.Array(S.String),
+  missingPrimarySourcePath: S.optional(S.String),
   docsPaths: S.Array(S.String),
   demoPaths: S.Array(S.String),
   testPaths: S.Array(S.String),
   specPaths: S.Array(S.String),
   apiReferencePaths: S.Array(S.String),
   styleVariantPaths: S.Array(S.String),
+  publicRegistryPaths: S.Array(S.String),
   registryDependencyHints: S.Array(S.String),
   runtimeDependencyHints: S.Array(S.String),
+  blockers: S.Array(S.String),
   confidence: S.Union([
     S.Literal('high'),
     S.Literal('medium'),
