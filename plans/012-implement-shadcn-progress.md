@@ -8,12 +8,11 @@
 > maintain the index.
 >
 > **Drift check (run first)**:
-> `git diff --stat 7e045720..HEAD -- plans/artifacts/004-foundational-component-dossiers/progress registry-src/base-ui/progress registry-src/shadcn/progress src/registry/base-ui/progress src/registry/shadcn/progress tests/parity/fixtures/origin/shadcn tests/parity/fixtures/foldkit/shadcn tests/parity/slots.ts registry/index.json plans/README.md`
+> `git diff --stat a017e99d..HEAD -- plans/artifacts/004-foundational-component-dossiers/progress registry-src/base-ui/progress registry-src/shadcn/progress src/registry/base-ui/progress src/registry/shadcn/progress tests/parity/fixtures/origin/shadcn tests/parity/fixtures/foldkit/shadcn tests/parity/canonicalize.test.ts tests/parity/slots.ts registry/index.json plans/README.md`
 >
-> Expected drift from plan 011 is allowed only when it is the completed
-> `base-ui/progress` dependency, Base UI Progress parity slot, generated
-> registry index, and plan index status update. Any other in-scope mismatch is
-> a STOP condition.
+> If any in-scope file changed since this plan was refreshed, compare the
+> "Current state" excerpts against the live code before proceeding; on a
+> mismatch, treat it as a STOP condition.
 
 ## Status
 
@@ -22,7 +21,7 @@
 - **Risk**: MED
 - **Depends on**: `plans/011-implement-base-ui-progress.md`
 - **Category**: feature
-- **Planned at**: commit `7e045720`, 2026-06-25
+- **Planned at**: commit `a017e99d`, 2026-06-25
 
 ## Why this matters
 
@@ -36,6 +35,14 @@ including controlled and labeled progress, without importing
 The shadcn Progress dossier is part of
 `plans/artifacts/004-foundational-component-dossiers/progress/dossier.json`.
 It pins shadcn to `95471a0fb95b2b205e1850841e05d93f3fcae659`.
+
+`base-ui/progress` is implemented and accepted. Compose it from
+`src/registry/base-ui/progress/index.ts`; do not import
+`@base-ui/react/progress` in installable source. Shared parity slots already
+include `base-ui/button`, `base-ui/progress`, `base-ui/separator`, and shadcn
+`badge`, `button`, `kbd`, `separator`, and `skeleton`. Preserve those slots,
+the existing shadcn fixture cases, and the generated registry entries while
+adding shadcn Progress.
 
 Origin source:
 
@@ -94,10 +101,16 @@ Origin examples to replicate:
 - `src/registry/shadcn/progress/index.ts` (create)
 - `src/registry/shadcn/progress/examples.ts` (create)
 - `src/registry/shadcn/progress/progress.test.ts` (create)
-- shadcn parity fixture metadata, origin cases, Foldkit cases, origin aliases,
-  and `tests/parity/slots.ts`
+- `tests/parity/fixtures/origin/shadcn/case-metadata.ts`
+- `tests/parity/fixtures/origin/shadcn/cases.tsx`
+- `tests/parity/fixtures/origin/shadcn/runner.ts`
+- `tests/parity/fixtures/origin/shadcn/style.css`
+- `tests/parity/fixtures/foldkit/shadcn/cases.ts`
+- `tests/parity/fixtures/foldkit/shadcn/style.css`
+- `tests/parity/canonicalize.test.ts`
+- `tests/parity/slots.ts`
 - `registry/index.json`
-- `plans/README.md`
+- `plans/README.md` (reviewer-owned; executor should not edit)
 
 **Out of scope**:
 
@@ -188,6 +201,11 @@ source under `repos/base-ui`, not to an installed package.
 
 Add a `shadcn/progress` slot in `tests/parity/slots.ts` using the standard
 shadcn comparison list.
+Add shadcn Progress `@source` entries to the origin and Foldkit shadcn fixture
+CSS files while keeping all existing Button, Badge, Kbd, Separator, and
+Skeleton source entries intact. Update `tests/parity/canonicalize.test.ts` so
+the ready-slot expectation includes `shadcn/progress` in the actual exported
+order.
 
 **Verify**: `bun run parity:check -- --grep shadcn/progress --dry-run` ->
 discovers exactly one slot and four Progress cases.
