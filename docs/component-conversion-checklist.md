@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-25T15:11:11.852Z
+Generated at: 2026-06-25T18:13:23.497Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |        4 |    38 |        34 |
-| shadcn docs  |        8 |    59 |        51 |
+| Base UI docs |        5 |    38 |        33 |
+| shadcn docs  |        9 |    59 |        50 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 80
+- Dossier-ready rows: 78
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
@@ -22,9 +22,9 @@ Generated at: 2026-06-25T15:11:11.852Z
 | Item                  | Readiness     | Parity      | URLs                                                                                                            | Blockers |
 | --------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------- | -------- |
 | `shadcn/aspect-ratio` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/aspect-ratio)                                                    |          |
-| `base-ui/avatar`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar) |          |
 | `base-ui/input`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)   |          |
 | `shadcn/textarea`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/textarea)                                                        |          |
+| `base-ui/switch`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/switch)<br>[origin](https://ui.shadcn.com/docs/components/switch) |          |
 
 ## Imported Items
 
@@ -35,6 +35,8 @@ Generated at: 2026-06-25T15:11:11.852Z
 - `shadcn/separator`
 - `base-ui/progress`
 - `shadcn/progress`
+- `base-ui/avatar`
+- `shadcn/avatar`
 - `base-ui/button`
 - `base-ui/meter`
 - `shadcn/native-select`
@@ -50,8 +52,6 @@ None.
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `shadcn/aspect-ratio`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/aspect-ratio)                                                                      |          |
-| `base-ui/avatar`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar)                   |          |
-| `shadcn/avatar`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar)                   |          |
 | `base-ui/input`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)                     |          |
 | `shadcn/input`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)                     |          |
 | `shadcn/textarea`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/textarea)                                                                          |          |

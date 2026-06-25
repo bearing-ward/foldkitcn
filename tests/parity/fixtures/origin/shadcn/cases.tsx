@@ -6,6 +6,16 @@ import AlertColors from '../../../../../repos/ui/apps/v4/examples/base/alert-col
 import AlertDemo from '../../../../../repos/ui/apps/v4/examples/base/alert-demo'
 import AlertDestructive from '../../../../../repos/ui/apps/v4/examples/base/alert-destructive'
 import { AlertRtl } from '../../../../../repos/ui/apps/v4/examples/base/alert-rtl'
+import { AvatarWithBadge } from '../../../../../repos/ui/apps/v4/examples/base/avatar-badge'
+import { AvatarBadgeIconExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-badge-icon'
+import AvatarBasic from '../../../../../repos/ui/apps/v4/examples/base/avatar-basic'
+import AvatarDemo from '../../../../../repos/ui/apps/v4/examples/base/avatar-demo'
+import { AvatarDropdown } from '../../../../../repos/ui/apps/v4/examples/base/avatar-dropdown'
+import { AvatarGroupExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-group'
+import { AvatarGroupCountExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-group-count'
+import { AvatarGroupCountIconExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-group-count-icon'
+import { AvatarRtl } from '../../../../../repos/ui/apps/v4/examples/base/avatar-rtl'
+import { AvatarSizeExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-size'
 import { BadgeCustomColors } from '../../../../../repos/ui/apps/v4/examples/base/badge-colors'
 import BadgeDemo from '../../../../../repos/ui/apps/v4/examples/base/badge-demo'
 import { BadgeWithIconLeft } from '../../../../../repos/ui/apps/v4/examples/base/badge-icon'
@@ -68,6 +78,16 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'alert-demo': AlertDemo,
   'alert-destructive': AlertDestructive,
   'alert-rtl': AlertRtl,
+  'avatar-badge-icon': AvatarBadgeIconExample,
+  'avatar-badge': AvatarWithBadge,
+  'avatar-basic': AvatarBasic,
+  'avatar-demo': AvatarDemo,
+  'avatar-dropdown': AvatarDropdown,
+  'avatar-group-count-icon': AvatarGroupCountIconExample,
+  'avatar-group-count': AvatarGroupCountExample,
+  'avatar-group': AvatarGroupExample,
+  'avatar-rtl': AvatarRtl,
+  'avatar-size': AvatarSizeExample,
   'badge-colors': BadgeCustomColors,
   'badge-demo': BadgeDemo,
   'badge-icon': BadgeWithIconLeft,

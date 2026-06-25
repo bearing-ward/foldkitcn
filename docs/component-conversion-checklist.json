@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T15:11:11.852Z",
+  "generatedAt": "2026-06-25T18:13:23.497Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 4,
-      "remaining": 34
+      "imported": 5,
+      "remaining": 33
     },
     "shadcn": {
       "total": 59,
-      "imported": 8,
-      "remaining": 51
+      "imported": 9,
+      "remaining": 50
     },
     "shadcnSourceFileCount": 55,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 80,
+    "dossierReadyCount": 78,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -227,24 +227,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/avatar/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/avatar",
-        "https://ui.shadcn.com/docs/components/avatar"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/avatar"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/avatar",
@@ -253,26 +250,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/avatar/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/avatar",
-        "https://ui.shadcn.com/docs/components/avatar"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/avatar"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/input",

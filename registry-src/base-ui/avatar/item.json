@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/avatar",
+  "namespace": "base-ui",
+  "name": "Avatar",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Avatar primitive preserving root, image, fallback, modeled image loading state, status data attributes, native image props, and image load/error message hooks.",
+  "sourceRoot": "registry-src/base-ui/avatar",
+  "installableSourcePaths": ["src/registry/base-ui/avatar/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Avatar",
+      "docsUrl": "https://base-ui.com/react/components/avatar",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/avatar",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImage.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImageDataAttributes.ts",
+        "repos/base-ui/packages/react/src/avatar/image/useImageLoadingStatus.ts",
+        "repos/base-ui/packages/react/src/avatar/index.parts.ts",
+        "repos/base-ui/packages/react/src/avatar/index.ts",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.tsx",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRootContext.ts",
+        "repos/base-ui/packages/react/src/avatar/root/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.test.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImage.test.tsx",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for Avatar options, image loading status, transition status, fallback delay state, and parts."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/avatar",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native and caller-owned state drives image loading."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "base-ui/avatar-hero",
+      "title": "AvatarHero",
+      "description": "Base UI Avatar hero fixture with image, fallback, and text fallback avatar.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "parity": {
+    "itemId": "base-ui/avatar",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/avatar.fixture.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-avatar-modeled-loading-status",
+      "base-ui-avatar-explicit-delay-state"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-avatar-modeled-loading-status",
+      "summary": "Image loading is caller-owned Foldkit model state instead of an internal React Image effect.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit installable source must remain pure and unidirectional. The helper exposes image load/error message hooks and derives rendered parts from the caller's modeled ImageLoadingStatus."
+    },
+    {
+      "id": "base-ui-avatar-explicit-delay-state",
+      "summary": "Fallback delay visibility is represented by explicit delayStatus state instead of an internal timer.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Timers belong in Foldkit commands or subscriptions owned by an app model. The installable helper preserves fallback visibility semantics without hidden lifecycle state."
+    }
+  ]
+}

@@ -9,6 +9,18 @@ import {
   AlertRtl,
 } from '../../../../../src/registry/shadcn/alert/examples'
 import {
+  AvatarBadgeIconExample,
+  AvatarBasic,
+  AvatarDemo,
+  AvatarDropdown,
+  AvatarGroupCountExample,
+  AvatarGroupCountIconExample,
+  AvatarGroupExample,
+  AvatarRtl,
+  AvatarSizeExample,
+  AvatarWithBadge,
+} from '../../../../../src/registry/shadcn/avatar/examples'
+import {
   BadgeColors,
   BadgeDemo,
   BadgeIcon,
@@ -84,6 +96,16 @@ const components: Readonly<Record<string, () => Html>> = {
   'alert-demo': AlertDemo,
   'alert-destructive': AlertDestructive,
   'alert-rtl': AlertRtl,
+  'avatar-badge-icon': AvatarBadgeIconExample,
+  'avatar-badge': AvatarWithBadge,
+  'avatar-basic': AvatarBasic,
+  'avatar-demo': AvatarDemo,
+  'avatar-dropdown': AvatarDropdown,
+  'avatar-group-count-icon': AvatarGroupCountIconExample,
+  'avatar-group-count': AvatarGroupCountExample,
+  'avatar-group': AvatarGroupExample,
+  'avatar-rtl': AvatarRtl,
+  'avatar-size': AvatarSizeExample,
   'badge-colors': BadgeColors,
   'badge-demo': BadgeDemo,
   'badge-icon': BadgeIcon,
@@ -137,6 +159,10 @@ const components: Readonly<Record<string, () => Html>> = {
 const foldkitSourcePath = (id: string): string => {
   if (id.startsWith('alert-')) {
     return 'src/registry/shadcn/alert/examples.ts'
+  }
+
+  if (id.startsWith('avatar-')) {
+    return 'src/registry/shadcn/avatar/examples.ts'
   }
 
   if (id.startsWith('badge-')) {

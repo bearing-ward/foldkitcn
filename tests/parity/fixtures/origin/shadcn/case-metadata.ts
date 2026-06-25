@@ -37,6 +37,57 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/alert-rtl.tsx',
     },
     {
+      id: 'avatar-badge-icon',
+      title: 'Avatar badge icon',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-badge-icon.tsx',
+    },
+    {
+      id: 'avatar-badge',
+      title: 'Avatar badge',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-badge.tsx',
+    },
+    {
+      id: 'avatar-basic',
+      title: 'Avatar basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-basic.tsx',
+    },
+    {
+      id: 'avatar-demo',
+      title: 'Avatar demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-demo.tsx',
+    },
+    {
+      id: 'avatar-dropdown',
+      title: 'Avatar dropdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-dropdown.tsx',
+    },
+    {
+      id: 'avatar-group-count-icon',
+      title: 'Avatar group count icon',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/avatar-group-count-icon.tsx',
+    },
+    {
+      id: 'avatar-group-count',
+      title: 'Avatar group count',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-group-count.tsx',
+    },
+    {
+      id: 'avatar-group',
+      title: 'Avatar group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-group.tsx',
+    },
+    {
+      id: 'avatar-rtl',
+      title: 'Avatar RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-rtl.tsx',
+    },
+    {
+      id: 'avatar-size',
+      title: 'Avatar size',
+      originFilePath: 'repos/ui/apps/v4/examples/base/avatar-size.tsx',
+    },
+    {
       id: 'badge-colors',
       title: 'Badge colors',
       originFilePath: 'repos/ui/apps/v4/examples/base/badge-colors.tsx',

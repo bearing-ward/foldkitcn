@@ -19,6 +19,7 @@ describe('parity dry-run helpers', () => {
   test('matches all shadcn slots with namespace grep', () => {
     expect(matchingItemIds('shadcn')).toStrictEqual([
       'shadcn/alert',
+      'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
@@ -30,6 +31,7 @@ describe('parity dry-run helpers', () => {
 
     expect(matchingItemIds('shadcn/')).toStrictEqual([
       'shadcn/alert',
+      'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
