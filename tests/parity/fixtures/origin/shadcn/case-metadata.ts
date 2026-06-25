@@ -167,6 +167,26 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-rtl.tsx',
     },
     {
+      id: 'progress-controlled',
+      title: 'Progress controlled',
+      originFilePath: 'repos/ui/apps/v4/examples/base/progress-controlled.tsx',
+    },
+    {
+      id: 'progress-demo',
+      title: 'Progress demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/progress-demo.tsx',
+    },
+    {
+      id: 'progress-label',
+      title: 'Progress label',
+      originFilePath: 'repos/ui/apps/v4/examples/base/progress-label.tsx',
+    },
+    {
+      id: 'progress-rtl',
+      title: 'Progress RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/progress-rtl.tsx',
+    },
+    {
       id: 'skeleton-avatar',
       title: 'Skeleton avatar',
       originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-avatar.tsx',

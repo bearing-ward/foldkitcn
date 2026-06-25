@@ -38,6 +38,12 @@
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/button-group.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/tooltip.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/progress-controlled.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/progress-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/progress-label.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/progress-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/progress.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/progress.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-avatar.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-card.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-demo.tsx";

@@ -39,11 +39,16 @@ const baseUiUtilsPath = (specifier: string): string => {
 
 const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
+const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
 
 const originAliasPlugin = (): Plugin => ({
   name: 'foldkitcn-shadcn-origin-aliases',
   enforce: 'pre',
   resolveId(source) {
+    if (source === '@/styles/base-nova/ui/slider') {
+      return sliderShimModuleId
+    }
+
     if (source === '@/styles/base-nova/ui/input-group') {
       return inputGroupShimModuleId
     }
@@ -72,6 +77,10 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/separator/index.ts')
     }
 
+    if (source === '@base-ui/react/progress') {
+      return repoPath('repos/base-ui/packages/react/src/progress/index.ts')
+    }
+
     if (source === '@base-ui/react/tooltip') {
       return repoPath('repos/base-ui/packages/react/src/tooltip/index.ts')
     }
@@ -87,6 +96,14 @@ const originAliasPlugin = (): Plugin => ({
     return null
   },
   load(id) {
+    if (id === sliderShimModuleId) {
+      return `
+        export function Slider() {
+          return null
+        }
+      `
+    }
+
     if (id === inputGroupShimModuleId) {
       return `
         import * as React from 'react'
@@ -266,6 +283,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/progress',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/progress.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/skeleton',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/skeleton.tsx',
@@ -305,6 +328,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/separator',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/separator.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/progress',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/progress.tsx',
           ),
         },
         {

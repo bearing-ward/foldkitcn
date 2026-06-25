@@ -106,6 +106,7 @@ describe('parity canonicalizers', () => {
       'shadcn/kbd',
       'base-ui/separator',
       'shadcn/separator',
+      'shadcn/progress',
       'shadcn/skeleton',
     ])
   })

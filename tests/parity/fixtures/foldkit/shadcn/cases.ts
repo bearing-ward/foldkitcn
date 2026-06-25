@@ -34,6 +34,12 @@ import {
   KbdTooltip,
 } from '../../../../../src/registry/shadcn/kbd/examples'
 import {
+  ProgressControlled,
+  ProgressDemo,
+  ProgressRtl,
+  ProgressWithLabel,
+} from '../../../../../src/registry/shadcn/progress/examples'
+import {
   SeparatorDemo,
   SeparatorList,
   SeparatorMenu,
@@ -89,6 +95,10 @@ const components: Readonly<Record<string, () => Html>> = {
   'separator-menu': SeparatorMenu,
   'separator-vertical': SeparatorVertical,
   'separator-rtl': SeparatorRtl,
+  'progress-controlled': ProgressControlled,
+  'progress-demo': ProgressDemo,
+  'progress-label': ProgressWithLabel,
+  'progress-rtl': ProgressRtl,
   'skeleton-avatar': SkeletonAvatar,
   'skeleton-card': SkeletonCard,
   'skeleton-demo': SkeletonDemo,
@@ -105,6 +115,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('separator-')) {
     return 'src/registry/shadcn/separator/examples.ts'
+  }
+
+  if (id.startsWith('progress-')) {
+    return 'src/registry/shadcn/progress/examples.ts'
   }
 
   if (id.startsWith('kbd-')) {
