@@ -22,7 +22,7 @@ honor its STOP conditions, and update your row when done.
 | 012 | Implement shadcn Progress wrapper and examples | P1 | M | 011 | DONE |
 | 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | DONE |
 | 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | DONE |
-| 015 | Add docs/example-only held-row planning support | P1 | M | 008 | TODO |
+| 015 | Add docs/example-only held-row planning support | P1 | M | 008 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
