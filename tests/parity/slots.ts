@@ -14,7 +14,15 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
     foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
-    comparisons: ['class-tokens', 'attributes', 'dom-structure', 'colors'],
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
   },
   {
     itemId: 'base-ui/button',
