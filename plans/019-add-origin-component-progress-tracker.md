@@ -81,7 +81,7 @@ Current skill contract excerpt:
 Current origin resolver surface:
 
 ```ts
-scripts/origin-common.ts
+// scripts/origin-common.ts
 
 export const resolveOriginUrl = (docsUrl: string) => {
   if (docsUrl.startsWith('https://base-ui.com/react/components/')) {
@@ -126,7 +126,7 @@ export interface HeldShadcnRow {
 Current registry loading helper:
 
 ```ts
-scripts/registry-common.ts
+// scripts/registry-common.ts
 
 export const loadRawManifestEntries = (): ReadonlyArray<RawManifestEntry> =>
   walkManifestPaths(registrySourceRoot)
@@ -214,15 +214,15 @@ Repo conventions that apply:
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Registry validation | `bun run registry:check` | exit 0; prints `Validated 14 source manifest(s).` and `Verified registry/index.json is current.` |
-| Origin resolver focused check | `bun run origin:resolve -- https://ui.shadcn.com/docs/components/typography` | exit 0; JSON includes `"resolutionStatus": "docs-example-only"` |
-| Parity dry-run | `bun run parity:check -- --dry-run` | exit 0; lists planned parity work without browser failures |
-| Unit tests | `bun run test` | exit 0 |
-| Typecheck | `bun run typecheck` | exit 0 |
-| Lint/check | `bun run check` | exit 0 |
-| Build | `bun run build` | exit 0 |
+| Purpose                       | Command                                                                      | Expected on success                                                                              |
+| ----------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Registry validation           | `bun run registry:check`                                                     | exit 0; prints `Validated 14 source manifest(s).` and `Verified registry/index.json is current.` |
+| Origin resolver focused check | `bun run origin:resolve -- https://ui.shadcn.com/docs/components/typography` | exit 0; JSON includes `"resolutionStatus": "docs-example-only"`                                  |
+| Parity dry-run                | `bun run parity:check -- --dry-run`                                          | exit 0; lists planned parity work without browser failures                                       |
+| Unit tests                    | `bun run test`                                                               | exit 0                                                                                           |
+| Typecheck                     | `bun run typecheck`                                                          | exit 0                                                                                           |
+| Lint/check                    | `bun run check`                                                              | exit 0                                                                                           |
+| Build                         | `bun run build`                                                              | exit 0                                                                                           |
 
 ## Scope
 
@@ -275,7 +275,7 @@ Add schemas similar to:
 
 - `OriginComponentProgressNamespace`: `base-ui | shadcn`.
 - `OriginComponentProgressReadiness`: `imported | ready-for-dossier |
-  dossier-ready | blocked`.
+dossier-ready | blocked`.
 - `OriginComponentProgressRow`:
   - `itemId`
   - `namespace`

@@ -26,7 +26,7 @@ honor its STOP conditions, and update your row when done.
 | 016 | Stabilize aggregate shadcn parity execution | P1 | M | - | DONE |
 | 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
 | 018 | Add a read-only registry index drift check | P2 | S | 017 | DONE |
-| 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | TODO |
+| 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
