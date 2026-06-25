@@ -40,11 +40,16 @@ const baseUiUtilsPath = (specifier: string): string => {
 const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
+const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
 
 const originAliasPlugin = (): Plugin => ({
   name: 'foldkitcn-shadcn-origin-aliases',
   enforce: 'pre',
   resolveId(source) {
+    if (source === 'next/image') {
+      return nextImageShimModuleId
+    }
+
     if (source === '@/styles/base-nova/ui/slider') {
       return sliderShimModuleId
     }
@@ -96,6 +101,16 @@ const originAliasPlugin = (): Plugin => ({
     return null
   },
   load(id) {
+    if (id === nextImageShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        export default function Image({ fill, priority, ...props }) {
+          return React.createElement('img', props)
+        }
+      `
+    }
+
     if (id === sliderShimModuleId) {
       return `
         export function Slider() {
@@ -237,6 +252,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
     resolve: {
       alias: [
         {
+          find: '@/styles/base-nova/ui/aspect-ratio',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/alert',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/alert.tsx',
@@ -316,6 +337,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/alert',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/alert.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/aspect-ratio',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/aspect-ratio.tsx',
           ),
         },
         {

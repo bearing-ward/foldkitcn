@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T09:31:54.533Z",
+  "generatedAt": "2026-06-25T17:43:55.521Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -741,6 +741,184 @@
           "path": "src/registry/shadcn/alert/examples.ts",
           "sha256": "db0e4e3da321ccca0d73e2da7bdcf9e64837dd82ca64d6e898acdcebfe892a22",
           "sizeBytes": 6622,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/aspect-ratio",
+        "namespace": "shadcn",
+        "name": "Aspect Ratio",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Aspect Ratio helper using a CSS ratio variable and cn.",
+        "sourceRoot": "registry-src/shadcn/aspect-ratio",
+        "installableSourcePaths": [
+          "src/registry/shadcn/aspect-ratio/index.ts",
+          "src/registry/shadcn/aspect-ratio/examples.ts"
+        ],
+        "consumedThemeTokens": ["--muted", "--muted-foreground", "--radius"],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Aspect Ratio",
+            "docsUrl": "https://ui.shadcn.com/docs/components/aspect-ratio",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/aspect-ratio.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/aspect-ratio.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/aspect-ratio.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx",
+              "repos/ui/apps/v4/examples/base/aspect-ratio-portrait.tsx",
+              "repos/ui/apps/v4/examples/base/aspect-ratio-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/aspect-ratio-square.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Aspect Ratio uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options for the helper."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "next/image",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin examples use Next Image; parity fixtures replace it with a local img shim and installable Foldkit examples render img directly."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/aspect-ratio-demo",
+            "title": "AspectRatioDemo",
+            "description": "Landscape image inside a 16:9 ratio box.",
+            "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/aspect-ratio-portrait",
+            "title": "AspectRatioPortrait",
+            "description": "Portrait image inside a 9:16 ratio box.",
+            "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/aspect-ratio-rtl",
+            "title": "AspectRatioRtl",
+            "description": "RTL figure with a 16:9 ratio box and Arabic caption.",
+            "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/aspect-ratio-square",
+            "title": "AspectRatioSquare",
+            "description": "Square image inside a 1:1 ratio box.",
+            "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/aspect-ratio",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-aspect-ratio-local-image-shim"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-aspect-ratio-local-image-shim",
+            "summary": "Image examples use local img rendering instead of the origin Next Image runtime component.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on Next. The fixture shim and Foldkit examples preserve the rendered img element, classes, source, alt text, ratio box DOM, dimensions, and computed styles relevant to Aspect Ratio parity."
+          }
+        ]
+      },
+      "manifestHash": "e03d0ce10dd88439f7e4664b1bbe99790a4256dc5df560483cc8e3f8b6e3159f",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/aspect-ratio/item.json",
+          "sha256": "40e85c198f473317c792089298441a9b3bc1e613d813fa798a9dc46d09c1153b",
+          "sizeBytes": 5574,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/aspect-ratio/index.ts",
+          "sha256": "a9c1c65c59e852f175acbfd580493c7570dbe38614496d678f29465d56bb18c1",
+          "sizeBytes": 1535,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/aspect-ratio/examples.ts",
+          "sha256": "3005cc34c7def01dba0d689d37c93aeddfa690c318d5f112591ed20b5b8eec14",
+          "sizeBytes": 1472,
           "role": "source"
         }
       ]

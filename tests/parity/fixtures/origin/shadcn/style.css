@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import '../../../../../repos/ui/packages/shadcn/src/tailwind.css';
 
+@source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-portrait.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-square.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/aspect-ratio.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/alert-action.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/alert-basic.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/alert-colors.tsx";

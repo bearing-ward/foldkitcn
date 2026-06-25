@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 8,
-      remaining: 51,
+      imported: 9,
+      remaining: 50,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -52,6 +52,7 @@ describe('origin component progress', () => {
       'base-ui/progress',
       'base-ui/separator',
       'shadcn/alert',
+      'shadcn/aspect-ratio',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
@@ -86,10 +87,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('shadcn/aspect-ratio')
+    expect(nextRow?.itemId).toBe('base-ui/avatar')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://ui.shadcn.com/docs/components/aspect-ratio',
+      'https://base-ui.com/react/components/avatar',
+      'https://ui.shadcn.com/docs/components/avatar',
     ])
   })
 
