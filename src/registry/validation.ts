@@ -190,10 +190,7 @@ const dependencyErrors = (
   const runtimeDependencyErrors =
     manifest.lifecycle.availability === 'installable'
       ? manifest.dependencies.runtime.flatMap(dependency => {
-          if (
-            dependency.classification === 'replace-with-foldkit' ||
-            dependency.classification === 'reject-or-defer'
-          ) {
+          if (dependency.classification !== 'allowed-runtime') {
             return [
               {
                 path: manifestPath,

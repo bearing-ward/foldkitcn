@@ -26,6 +26,12 @@ const makeManifest = ({
       readonly target: string
       readonly reason: string
     }>
+    readonly development?: ReadonlyArray<{
+      readonly specifier: string
+      readonly classification: string
+      readonly target: string
+      readonly reason: string
+    }>
   }
   readonly lifecycle?: {
     readonly implementationStatus: string
@@ -54,7 +60,7 @@ const makeManifest = ({
   dependencies: {
     registry: dependencies?.registry ?? [],
     runtime: dependencies?.runtime ?? [],
-    development: [],
+    development: dependencies?.development ?? [],
   },
   examples: [],
   parity: parity ?? {
@@ -197,6 +203,172 @@ describe('registry validation', () => {
           'Installable item has unresolved runtime dependency "some-runtime-package".',
       },
     ])
+  })
+
+  test('prevents installable items with React runtime dependencies', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        dependencies: {
+          runtime: [
+            {
+              specifier: 'react',
+              classification: 'dev-or-fixture-only',
+              target: '',
+              reason: 'React is only used by origin fixture infrastructure.',
+            },
+          ],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message: 'Installable item has unresolved runtime dependency "react".',
+      },
+    ])
+  })
+
+  test('prevents installable items with React DOM runtime dependencies', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        dependencies: {
+          runtime: [
+            {
+              specifier: 'react-dom',
+              classification: 'dev-or-fixture-only',
+              target: '',
+              reason:
+                'React DOM is only used by origin fixture infrastructure.',
+            },
+          ],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message:
+          'Installable item has unresolved runtime dependency "react-dom".',
+      },
+    ])
+  })
+
+  test('allows preview items to record fixture-only runtime hints', () => {
+    const result = validateFixture(
+      'registry-src/local/preview/item.json',
+      makeManifest({
+        id: 'local/preview',
+        sourceRoot: 'registry-src/local/preview',
+        installableSourcePaths: [],
+        dependencies: {
+          runtime: [
+            {
+              specifier: 'react',
+              classification: 'dev-or-fixture-only',
+              target: '',
+              reason: 'Preview planning captured an origin fixture dependency.',
+            },
+          ],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'partial',
+          driftStatus: 'current',
+          availability: 'preview',
+        },
+      }),
+      new Set(['local/preview']),
+      new Map(),
+    )
+
+    expect(result.errors).toStrictEqual([])
+  })
+
+  test('allows installable items with fixture-only development dependencies', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        dependencies: {
+          development: [
+            {
+              specifier: 'react',
+              classification: 'dev-or-fixture-only',
+              target: '',
+              reason: 'React is only used by origin fixture infrastructure.',
+            },
+          ],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([])
   })
 
   test('requires accepted installable parity fixture paths to exist', () => {
