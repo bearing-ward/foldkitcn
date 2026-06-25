@@ -8,7 +8,7 @@
 > maintain the index.
 >
 > **Drift check (run first)**:
-> `git diff --stat 7e045720..HEAD -- plans/artifacts/007-remaining-component-dossiers/shadcn-alert plans/artifacts/007-remaining-component-dossiers/shadcn-native-select registry-src/shadcn/alert registry-src/shadcn/native-select src/registry/shadcn/alert src/registry/shadcn/native-select tests/parity/fixtures/origin/shadcn tests/parity/fixtures/foldkit/shadcn tests/parity/slots.ts registry/index.json plans/README.md`
+> `git diff --stat d50c4e86..HEAD -- plans/artifacts/007-remaining-component-dossiers/shadcn-alert plans/artifacts/007-remaining-component-dossiers/shadcn-native-select registry-src/shadcn/alert registry-src/shadcn/native-select src/registry/shadcn/alert src/registry/shadcn/native-select tests/parity/fixtures/origin/shadcn tests/parity/fixtures/foldkit/shadcn tests/parity/canonicalize.test.ts tests/parity/slots.ts registry/index.json plans/README.md`
 >
 > If any in-scope file changed since this plan was written, compare the
 > "Current state" excerpts against the live code before proceeding; on a
@@ -21,7 +21,7 @@
 - **Risk**: MED
 - **Depends on**: `plans/007-generate-remaining-component-dossiers.md`
 - **Category**: feature
-- **Planned at**: commit `7e045720`, 2026-06-25
+- **Planned at**: commit `d50c4e86`, 2026-06-25
 
 ## Why this matters
 
@@ -64,6 +64,18 @@ Relevant origin contracts:
   `data-size`, wrapper class, child `<select>`, and chevron icon with
   `data-slot="native-select-icon"`.
 - Native Select option and optgroup both use Canvas system-color classes.
+- Shared shadcn parity fixtures are now metadata-driven. Extend the existing
+  `tests/parity/fixtures/origin/shadcn/case-metadata.ts`,
+  `tests/parity/fixtures/origin/shadcn/cases.tsx`,
+  `tests/parity/fixtures/foldkit/shadcn/cases.ts`, and
+  `tests/parity/fixtures/origin/shadcn/runner.ts` files instead of creating a
+  new shadcn fixture entrypoint. Also extend both shadcn fixture stylesheet
+  source lists so Tailwind generates classes that only appear in the new
+  Alert and Native Select files.
+- Existing ready slots are `base-ui/button`, `base-ui/progress`,
+  `base-ui/meter`, `base-ui/separator`, shadcn `badge`, `button`, `kbd`,
+  `progress`, `separator`, and `skeleton`. Preserve those slots, metadata
+  cases, and generated registry entries while adding Alert and Native Select.
 
 ## Commands you will need
 
@@ -93,10 +105,16 @@ Relevant origin contracts:
 - `src/registry/shadcn/native-select/index.ts` (create)
 - `src/registry/shadcn/native-select/examples.ts` (create)
 - `src/registry/shadcn/native-select/native-select.test.ts` (create)
-- shadcn parity fixture metadata, origin cases, Foldkit cases, origin aliases,
-  and `tests/parity/slots.ts`
+- `tests/parity/fixtures/origin/shadcn/case-metadata.ts`
+- `tests/parity/fixtures/origin/shadcn/cases.tsx`
+- `tests/parity/fixtures/origin/shadcn/runner.ts`
+- `tests/parity/fixtures/origin/shadcn/style.css`
+- `tests/parity/fixtures/foldkit/shadcn/cases.ts`
+- `tests/parity/fixtures/foldkit/shadcn/style.css`
+- `tests/parity/canonicalize.test.ts`
+- `tests/parity/slots.ts`
 - `registry/index.json`
-- `plans/README.md`
+- `plans/README.md` (reviewer-owned; executor should not edit)
 
 **Out of scope**:
 
@@ -193,6 +211,14 @@ Origin runner aliases must include:
   already accepted for fixture-only usage
 
 Add `shadcn/alert` and `shadcn/native-select` slots to `tests/parity/slots.ts`.
+Update `tests/parity/canonicalize.test.ts` so the ready-slot expectation
+includes both new slots in the actual exported order.
+Extend `tests/parity/fixtures/origin/shadcn/style.css` with `@source` entries
+for the origin Alert/Native Select source files, RTL source files, and demo
+files. Extend `tests/parity/fixtures/foldkit/shadcn/style.css` with `@source`
+entries for the Foldkit Alert/Native Select source and example files. Missing
+stylesheet sources are a parity failure because Tailwind may omit classes such
+as Alert's `py-2`.
 
 **Verify**: dry-run parity for both slots discovers exactly one slot each and
 the expected examples.
