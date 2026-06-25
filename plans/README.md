@@ -15,6 +15,7 @@ honor its STOP conditions, and update your row when done.
 | 005 | Implement Base UI Separator primitive | P1 | M | 004 | DONE |
 | 006 | Implement shadcn Separator wrapper and examples | P1 | M | 005 | DONE |
 | 007 | Generate remaining component dossiers from the full queue | P1 | M | 004 | DONE |
+| 008 | Plan outstanding held component rows | P1 | M | 007 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -28,6 +29,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 005 uses the separator dossier from plan 004 to add the unstyled Base UI primitive first.
 - Plan 006 depends on 005 because the shadcn Separator must compose the local `base-ui/separator` registry item instead of importing Base UI React.
 - Plan 007 depends on 004 because it builds from the first-wave dossier artifact and only lists origin components not already implemented or queued there.
+- Plan 008 depends on 007 because it turns the final held rows from the remaining-component queue into explicit blocked dossier evidence before any docs-only, table, date-picker, toast, typography, or chart implementation work begins.
 
 ## Findings considered and rejected
 
