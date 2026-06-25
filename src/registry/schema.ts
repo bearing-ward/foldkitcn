@@ -145,6 +145,90 @@ export const OriginResolution = S.Struct({
 })
 export type OriginResolution = typeof OriginResolution.Type
 
+export const OriginComponentProgressNamespace = S.Union([
+  S.Literal('base-ui'),
+  S.Literal('shadcn'),
+])
+export type OriginComponentProgressNamespace =
+  typeof OriginComponentProgressNamespace.Type
+
+export const OriginComponentProgressReadiness = S.Union([
+  S.Literal('imported'),
+  S.Literal('ready-for-dossier'),
+  S.Literal('dossier-ready'),
+  S.Literal('blocked'),
+])
+export type OriginComponentProgressReadiness =
+  typeof OriginComponentProgressReadiness.Type
+
+export const OriginComponentProgressParitySlotStatus = S.Union([
+  S.Literal('not-started'),
+  S.Literal('planned'),
+  S.Literal('ready'),
+])
+export type OriginComponentProgressParitySlotStatus =
+  typeof OriginComponentProgressParitySlotStatus.Type
+
+export const OriginComponentProgressSourceRefs = S.Struct({
+  baseUiPinnedRef: S.String,
+  shadcnPinnedRef: S.String,
+})
+export type OriginComponentProgressSourceRefs =
+  typeof OriginComponentProgressSourceRefs.Type
+
+export const OriginComponentProgressNamespaceSummary = S.Struct({
+  total: S.Number,
+  imported: S.Number,
+  remaining: S.Number,
+})
+export type OriginComponentProgressNamespaceSummary =
+  typeof OriginComponentProgressNamespaceSummary.Type
+
+export const OriginComponentProgressSummary = S.Struct({
+  baseUi: OriginComponentProgressNamespaceSummary,
+  shadcn: OriginComponentProgressNamespaceSummary,
+  shadcnSourceFileCount: S.Number,
+  shadcnDocsExampleOnlyCount: S.Number,
+  blockedCount: S.Number,
+  readyForDossierCount: S.Number,
+  dossierReadyCount: S.Number,
+  sourceRefs: OriginComponentProgressSourceRefs,
+})
+export type OriginComponentProgressSummary =
+  typeof OriginComponentProgressSummary.Type
+
+export const OriginComponentProgressRow = S.Struct({
+  itemId: S.String,
+  namespace: OriginComponentProgressNamespace,
+  docsUrl: S.String,
+  originResolutionStatus: OriginResolutionStatus,
+  hasOriginDocs: S.Boolean,
+  hasOriginSource: S.Boolean,
+  hasRegistryItem: S.Boolean,
+  hasDossier: S.Boolean,
+  dossierPaths: S.Array(S.String),
+  paritySlotStatus: OriginComponentProgressParitySlotStatus,
+  implementationStatus: ImplementationStatus,
+  parityStatus: ParityStatus,
+  driftStatus: DriftStatus,
+  availability: Availability,
+  blockers: S.Array(S.String),
+  unresolvedQuestions: S.Array(S.String),
+  recommendedUrls: S.Array(S.String),
+  priorityHint: S.optional(S.String),
+  readiness: OriginComponentProgressReadiness,
+})
+export type OriginComponentProgressRow = typeof OriginComponentProgressRow.Type
+
+export const OriginComponentProgressReport = S.Struct({
+  schemaVersion: RegistrySchemaVersion,
+  generatedAt: S.String,
+  summary: OriginComponentProgressSummary,
+  rows: S.Array(OriginComponentProgressRow),
+})
+export type OriginComponentProgressReport =
+  typeof OriginComponentProgressReport.Type
+
 export const ExampleManifest = S.Struct({
   id: S.String,
   title: S.String,

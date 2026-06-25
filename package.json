@@ -16,6 +16,10 @@
     "registry:check": "bun run scripts/check-registry.ts",
     "registry:build": "bun run scripts/build-registry.ts",
     "origin:resolve": "bun run scripts/resolve-origin-url.ts",
+    "origin:components:status": "bun run scripts/registry-component-progress.ts status",
+    "origin:components:next": "bun run scripts/registry-component-progress.ts next",
+    "origin:components:write": "bun run scripts/registry-component-progress.ts write",
+    "origin:components:check": "bun run scripts/registry-component-progress.ts check",
     "parity:check": "bun run scripts/parity-dry-run.ts",
     "parity:origin:shadcn": "bun run scripts/parity-origin-shadcn.ts"
   },

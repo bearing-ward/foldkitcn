@@ -1,0 +1,141 @@
+# Component Conversion Checklist
+
+Generated at: 2026-06-25T15:11:11.852Z
+
+## Summary
+
+| Surface      | Imported | Total | Remaining |
+| ------------ | -------: | ----: | --------: |
+| Base UI docs |        4 |    38 |        34 |
+| shadcn docs  |        8 |    59 |        51 |
+
+- shadcn source-backed files: 55
+- shadcn docs/example-only rows: 4
+- Blocked rows: 5
+- Ready-for-dossier rows: 0
+- Dossier-ready rows: 80
+- Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
+- shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
+
+## Next Candidates
+
+| Item                  | Readiness     | Parity      | URLs                                                                                                            | Blockers |
+| --------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------- | -------- |
+| `shadcn/aspect-ratio` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/aspect-ratio)                                                    |          |
+| `base-ui/avatar`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar) |          |
+| `base-ui/input`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)   |          |
+| `shadcn/textarea`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/textarea)                                                        |          |
+
+## Imported Items
+
+- `shadcn/badge`
+- `shadcn/skeleton`
+- `shadcn/kbd`
+- `base-ui/separator`
+- `shadcn/separator`
+- `base-ui/progress`
+- `shadcn/progress`
+- `base-ui/button`
+- `base-ui/meter`
+- `shadcn/native-select`
+- `shadcn/alert`
+- `shadcn/button`
+
+## Ready For Dossier
+
+None.
+
+## Dossier Ready
+
+| Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
+| ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `shadcn/aspect-ratio`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/aspect-ratio)                                                                      |          |
+| `base-ui/avatar`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar)                   |          |
+| `shadcn/avatar`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/avatar)<br>[origin](https://ui.shadcn.com/docs/components/avatar)                   |          |
+| `base-ui/input`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)                     |          |
+| `shadcn/input`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/input)<br>[origin](https://ui.shadcn.com/docs/components/input)                     |          |
+| `shadcn/textarea`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/textarea)                                                                          |          |
+| `base-ui/switch`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/switch)<br>[origin](https://ui.shadcn.com/docs/components/switch)                   |          |
+| `shadcn/switch`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/switch)<br>[origin](https://ui.shadcn.com/docs/components/switch)                   |          |
+| `base-ui/checkbox`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox)<br>[origin](https://ui.shadcn.com/docs/components/checkbox)               |          |
+| `shadcn/checkbox`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox)<br>[origin](https://ui.shadcn.com/docs/components/checkbox)               |          |
+| `base-ui/radio-group`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio-group)<br>[origin](https://ui.shadcn.com/docs/components/radio-group)         |          |
+| `shadcn/radio-group`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio-group)<br>[origin](https://ui.shadcn.com/docs/components/radio-group)         |          |
+| `base-ui/tabs`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tabs)<br>[origin](https://ui.shadcn.com/docs/components/tabs)                       |          |
+| `shadcn/tabs`             | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tabs)<br>[origin](https://ui.shadcn.com/docs/components/tabs)                       |          |
+| `base-ui/collapsible`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/collapsible)<br>[origin](https://ui.shadcn.com/docs/components/collapsible)         |          |
+| `shadcn/collapsible`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/collapsible)<br>[origin](https://ui.shadcn.com/docs/components/collapsible)         |          |
+| `base-ui/toggle`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle)<br>[origin](https://ui.shadcn.com/docs/components/toggle)                   |          |
+| `shadcn/toggle`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle)<br>[origin](https://ui.shadcn.com/docs/components/toggle)                   |          |
+| `base-ui/toggle-group`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle-group)<br>[origin](https://ui.shadcn.com/docs/components/toggle-group)       |          |
+| `shadcn/toggle-group`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle-group)<br>[origin](https://ui.shadcn.com/docs/components/toggle-group)       |          |
+| `base-ui/slider`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)                   |          |
+| `shadcn/slider`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)                   |          |
+| `base-ui/accordion`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion)             |          |
+| `shadcn/accordion`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion)             |          |
+| `base-ui/dialog`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/dialog)<br>[origin](https://ui.shadcn.com/docs/components/dialog)                   |          |
+| `shadcn/dialog`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/dialog)<br>[origin](https://ui.shadcn.com/docs/components/dialog)                   |          |
+| `base-ui/popover`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover)                 |          |
+| `shadcn/popover`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover)                 |          |
+| `base-ui/fieldset`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/fieldset)                                                                           |          |
+| `base-ui/number-field`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                                       |          |
+| `base-ui/field`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)                     |          |
+| `shadcn/field`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)                     |          |
+| `shadcn/label`            | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/label)                                                                             |          |
+| `base-ui/form`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                                               |          |
+| `base-ui/tooltip`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
+| `shadcn/tooltip`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
+| `base-ui/checkbox-group`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                                     |          |
+| `base-ui/select`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)                   |          |
+| `shadcn/select`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)                   |          |
+| `base-ui/menu`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu)              |          |
+| `base-ui/radio`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio)                                                                              |          |
+| `shadcn/dropdown-menu`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu)              |          |
+| `base-ui/alert-dialog`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
+| `shadcn/alert-dialog`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
+| `base-ui/context-menu`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu)       |          |
+| `shadcn/context-menu`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu)       |          |
+| `base-ui/otp-field`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/otp-field)<br>[origin](https://ui.shadcn.com/docs/components/input-otp)             |          |
+| `base-ui/scroll-area`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/scroll-area)<br>[origin](https://ui.shadcn.com/docs/components/scroll-area)         |          |
+| `shadcn/input-otp`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/otp-field)<br>[origin](https://ui.shadcn.com/docs/components/input-otp)             |          |
+| `shadcn/scroll-area`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/scroll-area)<br>[origin](https://ui.shadcn.com/docs/components/scroll-area)         |          |
+| `base-ui/toolbar`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toolbar)                                                                            |          |
+| `base-ui/preview-card`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/preview-card)<br>[origin](https://ui.shadcn.com/docs/components/hover-card)         |          |
+| `shadcn/hover-card`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/preview-card)<br>[origin](https://ui.shadcn.com/docs/components/hover-card)         |          |
+| `base-ui/menubar`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menubar)<br>[origin](https://ui.shadcn.com/docs/components/menubar)                 |          |
+| `shadcn/menubar`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menubar)<br>[origin](https://ui.shadcn.com/docs/components/menubar)                 |          |
+| `base-ui/navigation-menu` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/navigation-menu)<br>[origin](https://ui.shadcn.com/docs/components/navigation-menu) |          |
+| `shadcn/navigation-menu`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/navigation-menu)<br>[origin](https://ui.shadcn.com/docs/components/navigation-menu) |          |
+| `base-ui/combobox`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/combobox)<br>[origin](https://ui.shadcn.com/docs/components/combobox)               |          |
+| `shadcn/combobox`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/combobox)<br>[origin](https://ui.shadcn.com/docs/components/combobox)               |          |
+| `base-ui/autocomplete`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/autocomplete)                                                                       |          |
+| `base-ui/drawer`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/drawer)<br>[origin](https://ui.shadcn.com/docs/components/drawer)                   |          |
+| `shadcn/drawer`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/drawer)<br>[origin](https://ui.shadcn.com/docs/components/drawer)                   |          |
+| `shadcn/sheet`            | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sheet)                                                                             |          |
+| `shadcn/direction`        | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/direction)                                                                         |          |
+| `shadcn/card`             | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/card)                                                                              |          |
+| `shadcn/breadcrumb`       | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/breadcrumb)                                                                        |          |
+| `shadcn/button-group`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/button-group)                                                                      |          |
+| `shadcn/calendar`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/calendar)                                                                          |          |
+| `shadcn/carousel`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/carousel)                                                                          |          |
+| `shadcn/command`          | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/command)                                                                           |          |
+| `shadcn/empty`            | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/empty)                                                                             |          |
+| `shadcn/input-group`      | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/input-group)                                                                       |          |
+| `shadcn/item`             | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/item)                                                                              |          |
+| `shadcn/pagination`       | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/pagination)                                                                        |          |
+| `shadcn/resizable`        | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/resizable)                                                                         |          |
+| `shadcn/sidebar`          | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sidebar)                                                                           |          |
+| `shadcn/sonner`           | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sonner)                                                                            |          |
+| `shadcn/spinner`          | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/spinner)                                                                           |          |
+| `shadcn/table`            | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/table)                                                                             |          |
+| `base-ui/toast`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toast)                                                                              |          |
+
+## Blocked
+
+| Item                 | Readiness | Parity      | URLs                                                        | Blockers                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------- | --------- | ----------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shadcn/data-table`  | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/data-table)  | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>A local table/query/sorting/filtering/pagination foundation must replace TanStack React Table semantics.<br>Dashboard examples require local chart, drawer, tabs, toast, and drag-and-drop dependency decisions before parity can be accepted.                                   |
+| `shadcn/date-picker` | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/date-picker) | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>Local calendar/date behavior, popover, field, and input foundations must exist before installable source.<br>Range, time, locale, and natural-language parsing decisions must be modeled without React DayPicker runtime source.                                                 |
+| `shadcn/toast`       | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/toast)       | No primary base-nova shadcn component source exists; use docs/example-only and public registry JSON evidence for planning.<br>Notification architecture must be settled across base-ui/toast, shadcn/sonner, shadcn/toast, Foldkit messages, commands, and subscriptions.<br>The React hook-style origin API must be mapped to Foldkit messages, commands, and managed subscriptions. |
+| `shadcn/typography`  | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/typography)  | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>Typography is docs/examples plus local style primitive evidence, not a single installable behavior component yet.<br>@/components/language-selector and react are origin fixture evidence only, not installable runtime dependencies.                                            |
+| `shadcn/chart`       | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/chart)       | ADR 0001 gates charts on an explicit native chart foundation.<br>Recharts and React are origin evidence only unless a later architecture decision accepts a runtime chart dependency.<br>The chart namespace and chart example parity harness must exist before chart items become implementation-ready.                                                                              |

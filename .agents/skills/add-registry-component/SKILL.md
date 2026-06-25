@@ -9,7 +9,7 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 
 ## Contract
 
-- Accept an origin docs or registry URL.
+- Accept `status`, `next [count]`, or one or more origin docs or registry URLs.
 - Resolve origin evidence from pinned local repositories first with `bun run origin:resolve -- <url>`.
 - Treat live docs pages as discovery inputs, not parity oracles.
 - Write an improve-compatible dossier and plan preview, not implementation code.
@@ -18,6 +18,27 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - Create dependency-complete batch plans when missing local dependencies are required.
 - Create no `registry-src/<namespace>/<item>/` folders during planning.
 - Use Effect Schema and Foldkit-native conventions in every generated plan.
+- Treat historical queue artifacts as priority hints only. The live component progress tracker is authoritative because it derives from pinned origins plus `registry-src`.
+
+## Invocation Modes
+
+### `status`
+
+- Run `bun run origin:components:status`.
+- Report the summary and point at `docs/component-conversion-checklist.md`.
+- Do not create dossier artifacts.
+
+### `next [count]`
+
+- Run `bun run origin:components:next -- <count>`.
+- Use the returned rows as the next candidate batch.
+- For a normal planning invocation, generate dossier previews for those rows with `scripts/draft-registry-component-plan.ts`.
+- Keep each generated batch to one row and at most two origin URLs.
+- Do not include blocked rows unless the user explicitly asks for blocked planning evidence.
+
+### `<origin URL> [...origin URL]`
+
+- Preserve the existing behavior: resolve each URL, then write a dossier and plan preview for that explicit origin batch.
 
 ## Evidence To Capture
 
@@ -65,6 +86,10 @@ The batch plan must show the local dependency from `shadcn/button` to `base-ui/b
 
 ```bash
 bun run origin:resolve -- https://base-ui.com/react/components/button
+bun run origin:components:status
+bun run origin:components:next -- 4
+bun run origin:components:write
+bun run origin:components:check
 bun run scripts/draft-registry-component-plan.ts --output plans/artifacts/001-button-dossier-preview https://base-ui.com/react/components/button https://ui.shadcn.com/docs/components/button
 bun run registry:check
 bun run parity:check -- --grep button --dry-run
