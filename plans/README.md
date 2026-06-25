@@ -16,6 +16,12 @@ honor its STOP conditions, and update your row when done.
 | 006 | Implement shadcn Separator wrapper and examples | P1 | M | 005 | DONE |
 | 007 | Generate remaining component dossiers from the full queue | P1 | M | 004 | DONE |
 | 008 | Plan outstanding held component rows | P1 | M | 007 | DONE |
+| 009 | Implement shadcn Badge wrapper and examples | P1 | M | 004 | DONE |
+| 010 | Implement shadcn Skeleton and Kbd primitives | P1 | M | 004 | DONE |
+| 011 | Implement Base UI Progress primitive | P1 | L | 004 | TODO |
+| 012 | Implement shadcn Progress wrapper and examples | P1 | M | 011 | TODO |
+| 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | TODO |
+| 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -30,6 +36,10 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 006 depends on 005 because the shadcn Separator must compose the local `base-ui/separator` registry item instead of importing Base UI React.
 - Plan 007 depends on 004 because it builds from the first-wave dossier artifact and only lists origin components not already implemented or queued there.
 - Plan 008 depends on 007 because it turns the final held rows from the remaining-component queue into explicit blocked dossier evidence before any docs-only, table, date-picker, toast, typography, or chart implementation work begins.
+- Plans 009-014 are the first implementation wave generated from the completed 003-008 planning artifacts. They keep each executor job to one or two components, preserve shadcn-only rows that can run in parallel, and keep Base UI behavior primitives ahead of dependent shadcn wrappers.
+- Plan 012 depends on 011 because shadcn Progress must compose the local `base-ui/progress` primitive instead of importing `@base-ui/react/progress`.
+- Plan 013 depends on 011 because Meter should reuse or deliberately mirror the Progress value-normalization and part-rendering helpers instead of inventing a second incompatible range-value model.
+- The held rows documented by plan 008 remain blocked until their local foundations exist: data table, date picker, toast, typography/docs-only, and chart should not be executed from this wave.
 
 ## Findings considered and rejected
 
