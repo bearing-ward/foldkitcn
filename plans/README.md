@@ -25,7 +25,7 @@ honor its STOP conditions, and update your row when done.
 | 015 | Add docs/example-only held-row planning support | P1 | M | 008 | DONE |
 | 016 | Stabilize aggregate shadcn parity execution | P1 | M | - | DONE |
 | 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
-| 018 | Add a read-only registry index drift check | P2 | S | 017 | TODO |
+| 018 | Add a read-only registry index drift check | P2 | S | 017 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
