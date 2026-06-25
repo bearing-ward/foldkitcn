@@ -8,12 +8,11 @@
 > maintain the index.
 >
 > **Drift check (run first)**:
-> `git diff --stat 7e045720..HEAD -- plans/artifacts/007-remaining-component-dossiers/base-ui-meter registry-src/base-ui/meter src/registry/base-ui/meter src/registry/base-ui/progress tests/parity/fixtures/origin/base-ui tests/parity/fixtures/foldkit/base-ui tests/parity/slots.ts registry/index.json plans/README.md`
+> `git diff --stat a0765ee0..HEAD -- plans/artifacts/007-remaining-component-dossiers/base-ui-meter registry-src/base-ui/meter src/registry/base-ui/meter src/registry/base-ui/progress tests/parity/fixtures/origin/base-ui tests/parity/fixtures/foldkit/base-ui tests/parity/canonicalize.test.ts tests/parity/slots.ts registry/index.json plans/README.md`
 >
-> Expected drift from plan 011 is allowed only when it is the completed
-> `base-ui/progress` dependency and any shared helper files it introduced. Any
-> mismatch between live Progress helper semantics and this plan is a STOP
-> condition.
+> If any in-scope file changed since this plan was refreshed, compare the
+> "Current state" excerpts against the live code before proceeding; on a
+> mismatch, treat it as a STOP condition.
 
 ## Status
 
@@ -23,7 +22,7 @@
 - **Depends on**: `plans/007-generate-remaining-component-dossiers.md`,
   `plans/011-implement-base-ui-progress.md`
 - **Category**: feature
-- **Planned at**: commit `7e045720`, 2026-06-25
+- **Planned at**: commit `a0765ee0`, 2026-06-25
 
 ## Why this matters
 
@@ -52,6 +51,10 @@ Local precedent:
   precedent. Reuse its pure helpers if they are generic enough; otherwise
   extract a small local helper only if doing so reduces duplication without
   changing Progress behavior.
+- Shared parity slots already include `base-ui/button`, `base-ui/progress`,
+  `base-ui/separator`, and shadcn `badge`, `button`, `kbd`, `progress`,
+  `separator`, and `skeleton`. Preserve those slots and generated registry
+  entries while adding Meter.
 
 ## Commands you will need
 
@@ -80,9 +83,10 @@ Local precedent:
   if plan 011 made extraction clearly safe
 - `tests/parity/fixtures/origin/base-ui/meter.fixture.tsx` (create)
 - `tests/parity/fixtures/foldkit/base-ui/meter.fixture.ts` (create)
+- `tests/parity/canonicalize.test.ts`
 - `tests/parity/slots.ts`
 - `registry/index.json`
-- `plans/README.md`
+- `plans/README.md` (reviewer-owned; executor should not edit)
 
 **Out of scope**:
 
@@ -163,6 +167,8 @@ Create origin and Foldkit Meter parity fixtures with at least:
 Add `base-ui/meter` to `tests/parity/slots.ts` with the standard Base UI
 comparison set, excluding keyboard behavior unless an origin keyboard case
 exists.
+Update `tests/parity/canonicalize.test.ts` so the ready-slot expectation
+includes `base-ui/meter` in the actual exported order.
 
 **Verify**: `bun run parity:check -- --grep base-ui/meter --dry-run` ->
 discovers exactly one Meter slot.

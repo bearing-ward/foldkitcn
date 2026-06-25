@@ -20,7 +20,7 @@ honor its STOP conditions, and update your row when done.
 | 010 | Implement shadcn Skeleton and Kbd primitives | P1 | M | 004 | DONE |
 | 011 | Implement Base UI Progress primitive | P1 | L | 004 | DONE |
 | 012 | Implement shadcn Progress wrapper and examples | P1 | M | 011 | DONE |
-| 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | TODO |
+| 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | DONE |
 | 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
