@@ -27,6 +27,26 @@ honor its STOP conditions, and update your row when done.
 | 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
 | 018 | Add a read-only registry index drift check | P2 | S | 017 | DONE |
 | 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | DONE |
+| 020 | Implement shadcn Aspect Ratio | P1 | S | 004, 019 | TODO |
+| 021 | Implement Base UI and shadcn Avatar | P1 | M | 004, 019 | TODO |
+| 022 | Implement Base UI and shadcn Input | P1 | M | 004, 019 | TODO |
+| 023 | Implement shadcn Textarea | P1 | S | 004, 019 | TODO |
+| 024 | Implement Base UI and shadcn Switch | P1 | M | 004, 019 | TODO |
+| 025 | Implement Base UI and shadcn Checkbox | P1 | M | 004, 019 | TODO |
+| 026 | Implement Base UI and shadcn Radio Group | P1 | L | 004, 019 | TODO |
+| 027 | Implement Base UI and shadcn Tabs | P1 | L | 004, 019 | TODO |
+| 028 | Implement Base UI and shadcn Collapsible | P1 | M | 004, 019 | TODO |
+| 029 | Implement Base UI and shadcn Toggle | P1 | M | 004, 019 | TODO |
+| 030 | Implement Base UI and shadcn Toggle Group | P1 | L | 029 | TODO |
+| 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | TODO |
+| 032 | Implement Base UI and shadcn Accordion | P1 | L | 028 | TODO |
+| 033 | Implement Base UI and shadcn Dialog | P1 | L | 004, 019 | TODO |
+| 034 | Implement Base UI and shadcn Popover | P1 | L | 033 | TODO |
+| 035 | Implement Base UI Fieldset | P1 | M | 007, 019 | TODO |
+| 036 | Implement shadcn Label | P1 | S | 007, 019 | TODO |
+| 037 | Implement Base UI Number Field | P1 | L | 022 | TODO |
+| 038 | Implement Base UI and shadcn Field | P1 | L | 022, 035, 036 | TODO |
+| 039 | Implement Base UI Form | P1 | L | 038 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -50,6 +70,13 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 017 can run in parallel with 016 because it tightens the installable manifest gate without touching the parity runner.
 - Plan 018 depends on 017 so `registry:check` becomes the stronger non-mutating gate after installable runtime dependency validation is correct.
 - Plan 019 is independent and should run before the next component intake batch because it turns the stale Plan 004 and Plan 007 queue snapshots into a live, source-derived origin progress checklist plus `add-registry-component status` and `next [count]` workflows.
+- Plans 020-039 were generated from `plans/artifacts/020-next-component-selection/selection.md`, which came from `bun run origin:components:next -- 20` and selected only dossier-ready rows that were neither blocked nor already imported.
+- Plans 020-029 can mostly run as the first wave of component implementation work. Keep each row as its own batch, even when it includes both `base-ui/*` and `shadcn/*`, so shadcn wrappers compose the local Foldkit primitive from the same plan.
+- Plan 030 depends on 029 because Toggle Group should reuse Toggle's pressed-state and button-rendering conventions.
+- Plan 031 depends on 022 because Slider should reuse the form-control and value-normalization direction established by Input where possible.
+- Plan 032 depends on 028 because Accordion should reuse Collapsible conventions for open state, panel mounting, and data attributes.
+- Plan 034 depends on 033 because Popover should reuse Dialog's settled overlay, portal, dismiss, and focus conventions rather than creating a competing implementation.
+- Plans 035-039 are ordered to unblock form composition: Fieldset and Label first, Number Field after Input, Field after Input/Fieldset/Label, and Form after Field.
 
 ## Findings considered and rejected
 
