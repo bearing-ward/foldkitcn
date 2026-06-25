@@ -27,8 +27,8 @@ honor its STOP conditions, and update your row when done.
 | 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
 | 018 | Add a read-only registry index drift check | P2 | S | 017 | DONE |
 | 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | DONE |
-| 020 | Implement shadcn Aspect Ratio | P1 | S | 004, 019 | TODO |
-| 021 | Implement Base UI and shadcn Avatar | P1 | M | 004, 019 | TODO |
+| 020 | Implement shadcn Aspect Ratio | P1 | S | 004, 019 | DONE |
+| 021 | Implement Base UI and shadcn Avatar | P1 | M | 004, 019 | DONE |
 | 022 | Implement Base UI and shadcn Input | P1 | M | 004, 019 | TODO |
 | 023 | Implement shadcn Textarea | P1 | S | 004, 019 | TODO |
 | 024 | Implement Base UI and shadcn Switch | P1 | M | 004, 019 | TODO |
