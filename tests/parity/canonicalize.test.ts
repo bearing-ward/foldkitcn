@@ -99,6 +99,7 @@ describe('parity canonicalizers', () => {
 
   test('discovers ready registry parity slots', () => {
     expect(paritySlots.map(slot => slot.itemId)).toStrictEqual([
+      'shadcn/aspect-ratio',
       'base-ui/button',
       'base-ui/progress',
       'base-ui/meter',

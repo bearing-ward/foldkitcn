@@ -7,6 +7,27 @@ export interface ShadcnOriginCaseMetadata {
 export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
   [
     {
+      id: 'aspect-ratio-demo',
+      title: 'Aspect Ratio demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx',
+    },
+    {
+      id: 'aspect-ratio-portrait',
+      title: 'Aspect Ratio portrait',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/aspect-ratio-portrait.tsx',
+    },
+    {
+      id: 'aspect-ratio-rtl',
+      title: 'Aspect Ratio RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/aspect-ratio-rtl.tsx',
+    },
+    {
+      id: 'aspect-ratio-square',
+      title: 'Aspect Ratio square',
+      originFilePath: 'repos/ui/apps/v4/examples/base/aspect-ratio-square.tsx',
+    },
+    {
       id: 'alert-action',
       title: 'Alert action',
       originFilePath: 'repos/ui/apps/v4/examples/base/alert-action.tsx',

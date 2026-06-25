@@ -9,6 +9,12 @@ import {
   AlertRtl,
 } from '../../../../../src/registry/shadcn/alert/examples'
 import {
+  AspectRatioDemo,
+  AspectRatioPortrait,
+  AspectRatioRtl,
+  AspectRatioSquare,
+} from '../../../../../src/registry/shadcn/aspect-ratio/examples'
+import {
   BadgeColors,
   BadgeDemo,
   BadgeIcon,
@@ -78,6 +84,10 @@ export interface ShadcnFoldkitCase extends ShadcnOriginCaseMetadata {
 }
 
 const components: Readonly<Record<string, () => Html>> = {
+  'aspect-ratio-demo': AspectRatioDemo,
+  'aspect-ratio-portrait': AspectRatioPortrait,
+  'aspect-ratio-rtl': AspectRatioRtl,
+  'aspect-ratio-square': AspectRatioSquare,
   'alert-action': AlertActionExample,
   'alert-basic': AlertBasic,
   'alert-colors': AlertColors,
@@ -135,6 +145,10 @@ const components: Readonly<Record<string, () => Html>> = {
 }
 
 const foldkitSourcePath = (id: string): string => {
+  if (id.startsWith('aspect-ratio-')) {
+    return 'src/registry/shadcn/aspect-ratio/examples.ts'
+  }
+
   if (id.startsWith('alert-')) {
     return 'src/registry/shadcn/alert/examples.ts'
   }

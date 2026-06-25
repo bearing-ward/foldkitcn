@@ -6,6 +6,10 @@ import AlertColors from '../../../../../repos/ui/apps/v4/examples/base/alert-col
 import AlertDemo from '../../../../../repos/ui/apps/v4/examples/base/alert-demo'
 import AlertDestructive from '../../../../../repos/ui/apps/v4/examples/base/alert-destructive'
 import { AlertRtl } from '../../../../../repos/ui/apps/v4/examples/base/alert-rtl'
+import AspectRatioDemo from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-demo'
+import { AspectRatioPortrait } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-portrait'
+import { AspectRatioRtl } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-rtl'
+import { AspectRatioSquare } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-square'
 import { BadgeCustomColors } from '../../../../../repos/ui/apps/v4/examples/base/badge-colors'
 import BadgeDemo from '../../../../../repos/ui/apps/v4/examples/base/badge-demo'
 import { BadgeWithIconLeft } from '../../../../../repos/ui/apps/v4/examples/base/badge-icon'
@@ -62,6 +66,10 @@ export interface ShadcnOriginCase extends ShadcnOriginCaseMetadata {
 }
 
 const components: Readonly<Record<string, () => React.ReactElement>> = {
+  'aspect-ratio-demo': AspectRatioDemo,
+  'aspect-ratio-portrait': AspectRatioPortrait,
+  'aspect-ratio-rtl': AspectRatioRtl,
+  'aspect-ratio-square': AspectRatioSquare,
   'alert-action': AlertActionExample,
   'alert-basic': AlertBasic,
   'alert-colors': AlertColors,
