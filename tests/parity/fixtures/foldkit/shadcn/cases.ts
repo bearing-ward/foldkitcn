@@ -52,6 +52,14 @@ import {
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
 import {
+  InputBasic,
+  InputDemo,
+  InputDisabled,
+  InputFile,
+  InputInvalid,
+  InputRequired,
+} from '../../../../../src/registry/shadcn/input/examples'
+import {
   KbdButton,
   KbdDemo,
   KbdGroupExample,
@@ -143,6 +151,12 @@ const components: Readonly<Record<string, () => Html>> = {
   'kbd-input-group': KbdInputGroup,
   'kbd-rtl': KbdRtl,
   'kbd-tooltip': KbdTooltip,
+  'input-demo': InputDemo,
+  'input-basic': InputBasic,
+  'input-disabled': InputDisabled,
+  'input-invalid': InputInvalid,
+  'input-file': InputFile,
+  'input-required': InputRequired,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,
@@ -193,6 +207,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('kbd-')) {
     return 'src/registry/shadcn/kbd/examples.ts'
+  }
+
+  if (id.startsWith('input-')) {
+    return 'src/registry/shadcn/input/examples.ts'
   }
 
   if (id.startsWith('skeleton-')) {

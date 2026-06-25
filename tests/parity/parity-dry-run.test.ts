@@ -24,6 +24,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
+      'shadcn/input',
       'shadcn/native-select',
       'shadcn/separator',
       'shadcn/progress',
@@ -37,6 +38,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
+      'shadcn/input',
       'shadcn/native-select',
       'shadcn/separator',
       'shadcn/progress',
@@ -50,14 +52,22 @@ describe('parity dry-run helpers', () => {
       'base-ui/button',
       'shadcn/button',
     ])
+    expect(matchingItemIds('input')).toStrictEqual([
+      'base-ui/input',
+      'shadcn/input',
+    ])
     expect(matchingItemIds('button-default')).toStrictEqual([])
   })
 
-  test('derives shadcn case grep from namespace and scoped greps', () => {
+  test('derives shadcn case grep from namespace greps', () => {
     expect(shadcnCaseGrep('shadcn/button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/button', 'shadcn')).toBe('button')
     expect(shadcnCaseGrep('shadcn/button', 'shadcn/')).toBe('button')
+  })
+
+  test('derives shadcn case grep from scoped and component greps', () => {
     expect(shadcnCaseGrep('shadcn/button', 'shadcn/button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/button', 'button')).toBe('button')
+    expect(shadcnCaseGrep('shadcn/input', 'input')).toBe('input-')
   })
 })

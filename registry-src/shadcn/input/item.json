@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/input",
+  "namespace": "shadcn",
+  "name": "Input",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Input wrapper composed from the local Base UI Input primitive and shadcn class tokens.",
+  "sourceRoot": "registry-src/shadcn/input",
+  "installableSourcePaths": [
+    "src/registry/shadcn/input/index.ts",
+    "src/registry/shadcn/input/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--destructive",
+    "--foreground",
+    "--input",
+    "--muted-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Input",
+      "docsUrl": "https://ui.shadcn.com/docs/components/input",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/input.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/input.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/input.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/input.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/input-basic.tsx",
+        "repos/ui/apps/v4/examples/base/input-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/input-file.tsx",
+        "repos/ui/apps/v4/examples/base/input-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/input-required.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/input",
+        "classification": "registry-local",
+        "target": "base-ui/input",
+        "reason": "shadcn Input composes the local Base UI Input primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Input uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provided by the local Base UI Input dependency for Effect Schema options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/input",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/input",
+        "reason": "Origin React primitive is replaced by the local Foldkit Base UI Input implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/input-demo",
+      "title": "InputDemo",
+      "description": "Password API key input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-basic",
+      "title": "InputBasic",
+      "description": "Default text input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-disabled",
+      "title": "InputDisabled",
+      "description": "Disabled email input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-invalid",
+      "title": "InputInvalid",
+      "description": "Invalid input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-file",
+      "title": "InputFile",
+      "description": "File input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-required",
+      "title": "InputRequired",
+      "description": "Required input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/input",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": []
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": []
+}
