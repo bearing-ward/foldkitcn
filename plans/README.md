@@ -24,7 +24,7 @@ honor its STOP conditions, and update your row when done.
 | 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | DONE |
 | 015 | Add docs/example-only held-row planning support | P1 | M | 008 | DONE |
 | 016 | Stabilize aggregate shadcn parity execution | P1 | M | - | DONE |
-| 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | TODO |
+| 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
 | 018 | Add a read-only registry index drift check | P2 | S | 017 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
