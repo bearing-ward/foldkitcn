@@ -101,6 +101,7 @@ describe('parity canonicalizers', () => {
     expect(paritySlots.map(slot => slot.itemId)).toStrictEqual([
       'base-ui/button',
       'base-ui/progress',
+      'base-ui/meter',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',

@@ -45,6 +45,23 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/meter',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/meter.fixture.tsx',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/meter.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
     itemId: 'shadcn/badge',
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
