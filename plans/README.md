@@ -31,7 +31,7 @@ honor its STOP conditions, and update your row when done.
 | 021 | Implement Base UI and shadcn Avatar | P1 | M | 004, 019 | DONE |
 | 022 | Implement Base UI and shadcn Input | P1 | M | 004, 019 | DONE |
 | 023 | Implement shadcn Textarea | P1 | S | 004, 019 | DONE |
-| 024 | Implement Base UI and shadcn Switch | P1 | M | 004, 019 | TODO |
+| 024 | Implement Base UI and shadcn Switch | P1 | M | 004, 019 | DONE |
 | 025 | Implement Base UI and shadcn Checkbox | P1 | M | 004, 019 | TODO |
 | 026 | Implement Base UI and shadcn Radio Group | P1 | L | 004, 019 | TODO |
 | 027 | Implement Base UI and shadcn Tabs | P1 | L | 004, 019 | TODO |
