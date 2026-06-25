@@ -437,6 +437,15 @@ const compareParitySlot = (
     return compareSlot(slot)
   }
 
+  if (
+    slot.originFixtureEntrypoint !==
+      'tests/parity/fixtures/origin/shadcn/entry.tsx' ||
+    slot.foldkitFixtureEntrypoint !==
+      'tests/parity/fixtures/foldkit/shadcn/entry.ts'
+  ) {
+    return compareSlot(slot)
+  }
+
   return compareShadcnSlot(slot, maybeGrep)
 }
 

@@ -110,6 +110,8 @@ describe('parity canonicalizers', () => {
       'shadcn/button',
       'shadcn/kbd',
       'base-ui/input',
+      'base-ui/checkbox',
+      'shadcn/checkbox',
       'shadcn/input',
       'shadcn/native-select',
       'base-ui/separator',

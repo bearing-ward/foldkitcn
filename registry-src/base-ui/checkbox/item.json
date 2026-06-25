@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/checkbox",
+  "namespace": "base-ui",
+  "name": "Checkbox",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Checkbox primitive preserving controlled checked, unchecked, and indeterminate states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyboard activation, and native checkbox form controls without internal state.",
+  "sourceRoot": "registry-src/base-ui/checkbox",
+  "installableSourcePaths": ["src/registry/base-ui/checkbox/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Checkbox",
+      "docsUrl": "https://base-ui.com/react/components/checkbox",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/checkbox",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/checkbox/index.parts.ts",
+        "repos/base-ui/packages/react/src/checkbox/index.ts",
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicator.tsx",
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRoot.tsx",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRootContext.ts",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox/utils/useStateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/checkbox/indicator/CheckboxIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/checkbox/root/CheckboxRoot.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/checkbox",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/checkbox",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/checkbox.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/checkbox.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": ["base-ui-checkbox-indeterminate-input-property"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-checkbox-indeterminate-input-property",
+      "summary": "Indeterminate state is represented through ARIA and data attributes rather than mutating the native input indeterminate property.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit installable source is declarative and stateless. The rendered root exposes aria-checked=\"mixed\" and data-indeterminate, which preserves the public accessible state without DOM mutation."
+    }
+  ]
+}
