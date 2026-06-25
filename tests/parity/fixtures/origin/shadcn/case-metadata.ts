@@ -244,6 +244,36 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/kbd-tooltip.tsx',
     },
     {
+      id: 'input-demo',
+      title: 'Input demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-demo.tsx',
+    },
+    {
+      id: 'input-basic',
+      title: 'Input basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-basic.tsx',
+    },
+    {
+      id: 'input-disabled',
+      title: 'Input disabled',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-disabled.tsx',
+    },
+    {
+      id: 'input-invalid',
+      title: 'Input invalid',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-invalid.tsx',
+    },
+    {
+      id: 'input-file',
+      title: 'Input file',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-file.tsx',
+    },
+    {
+      id: 'input-required',
+      title: 'Input required',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-required.tsx',
+    },
+    {
       id: 'native-select-demo',
       title: 'Native Select demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/native-select-demo.tsx',

@@ -68,12 +68,50 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
 export interface ShadcnOriginCase extends ShadcnOriginCaseMetadata {
   readonly Component: () => React.ReactElement
 }
+
+const InputDemo = (): React.ReactElement => (
+  <InputPrimitive
+    id="input-demo-api-key"
+    type="password"
+    placeholder="sk-..."
+  />
+)
+
+const InputBasic = (): React.ReactElement => (
+  <InputPrimitive id="input-basic" placeholder="Enter text" />
+)
+
+const InputDisabled = (): React.ReactElement => (
+  <InputPrimitive
+    id="input-demo-disabled"
+    type="email"
+    placeholder="Email"
+    disabled
+  />
+)
+
+const InputInvalid = (): React.ReactElement => (
+  <InputPrimitive id="input-invalid" placeholder="Error" aria-invalid />
+)
+
+const InputFile = (): React.ReactElement => (
+  <InputPrimitive id="picture" type="file" />
+)
+
+const InputRequired = (): React.ReactElement => (
+  <InputPrimitive
+    id="input-required"
+    placeholder="This field is required"
+    required
+  />
+)
 
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
@@ -123,6 +161,12 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'kbd-input-group': KbdInputGroup,
   'kbd-rtl': KbdRtl,
   'kbd-tooltip': KbdTooltip,
+  'input-demo': InputDemo,
+  'input-basic': InputBasic,
+  'input-disabled': InputDisabled,
+  'input-invalid': InputInvalid,
+  'input-file': InputFile,
+  'input-required': InputRequired,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,

@@ -320,6 +320,10 @@ export const shadcnCaseGrep = (itemId: string, maybeGrep?: string): string => {
     return normalizedGrep.slice('shadcn/'.length)
   }
 
+  if (componentName === 'input' && normalizedGrep === 'input') {
+    return 'input-'
+  }
+
   return normalizedGrep
 }
 
