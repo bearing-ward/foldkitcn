@@ -23,6 +23,9 @@ honor its STOP conditions, and update your row when done.
 | 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | DONE |
 | 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | DONE |
 | 015 | Add docs/example-only held-row planning support | P1 | M | 008 | DONE |
+| 016 | Stabilize aggregate shadcn parity execution | P1 | M | - | DONE |
+| 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | TODO |
+| 018 | Add a read-only registry index drift check | P2 | S | 017 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -42,6 +45,9 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 013 depends on 011 because Meter should reuse or deliberately mirror the Progress value-normalization and part-rendering helpers instead of inventing a second incompatible range-value model.
 - The held rows documented by plan 008 remain blocked until their local foundations exist: data table, date picker, toast, typography/docs-only, and chart should not be executed from this wave.
 - Plan 015 depends on 008 because it turns the blocked docs/example-only shadcn rows into resolver/dossier evidence without creating installable registry source. It may make typography planning-ready as docs/examples plus local style primitives, but data-table, date-picker, toast, and chart still require their local foundations before implementation plans.
+- Plan 016 is first because full aggregate parity is the sharpest blocker for accepting more component work. It fixes the guardrail itself and does not depend on manifest validation changes.
+- Plan 017 can run in parallel with 016 because it tightens the installable manifest gate without touching the parity runner.
+- Plan 018 depends on 017 so `registry:check` becomes the stronger non-mutating gate after installable runtime dependency validation is correct.
 
 ## Findings considered and rejected
 

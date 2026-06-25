@@ -18,20 +18,36 @@ import type {
 import type { OriginFixtureSnapshot } from '../tests/parity/fixtures/origin/shadcn/snapshot'
 import { paritySlots } from '../tests/parity/slots'
 
+import { execFile } from 'node:child_process'
 import pathModule from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { promisify } from 'node:util'
 
-const args = process.argv.slice(2)
-const grepIndex = args.indexOf('--grep')
-const maybeGrep = grepIndex === -1 ? undefined : args.at(grepIndex + 1)
-const dryRun = args.includes('--dry-run')
-const normalizedGrep = maybeGrep?.toLowerCase()
-const matchingSlots =
-  normalizedGrep === undefined
-    ? paritySlots
-    : paritySlots.filter(slot =>
-        slot.itemId.toLowerCase().includes(normalizedGrep),
-      )
+type ParitySlot = (typeof paritySlots)[number]
+
+const execFileAsync = promisify(execFile)
+
+const shadcnNamespaceGrep = (normalizedGrep: string): boolean =>
+  normalizedGrep === 'shadcn' || normalizedGrep === 'shadcn/'
+
+export const matchingParitySlots = (
+  slots: ReadonlyArray<ParitySlot>,
+  maybeGrep?: string,
+): ReadonlyArray<ParitySlot> => {
+  const normalizedGrep = maybeGrep?.toLowerCase()
+
+  if (normalizedGrep === undefined) {
+    return slots
+  }
+
+  if (shadcnNamespaceGrep(normalizedGrep)) {
+    return slots.filter(slot => slot.itemId.startsWith('shadcn/'))
+  }
+
+  return slots.filter(slot =>
+    slot.itemId.toLowerCase().includes(normalizedGrep),
+  )
+}
 
 const defineGlobal = (name: string, value: unknown): void => {
   Object.defineProperty(globalThis, name, {
@@ -65,7 +81,10 @@ const ensureFixtureDom = async (): Promise<void> => {
   defineGlobal('cancelAnimationFrame', cancelAnimationFrame)
 }
 
-const printDiscoveredSlots = (): void => {
+const printDiscoveredSlots = (
+  matchingSlots: ReadonlyArray<ParitySlot>,
+  maybeGrep: string | undefined,
+): void => {
   if (matchingSlots.length === 0) {
     throw new Error(`No parity slots matched: ${maybeGrep ?? '<none>'}`)
   }
@@ -250,9 +269,7 @@ const compareFixtureCase = (
   )
 }
 
-const compareSlot = async (
-  slot: (typeof paritySlots)[number],
-): Promise<number> => {
+const compareSlot = async (slot: ParitySlot): Promise<number> => {
   await ensureFixtureDom()
 
   const [originFixture, foldkitFixture] = await Promise.all([
@@ -281,7 +298,7 @@ const shadcnSnapshotById = (
 ): ReadonlyMap<string, OriginFixtureSnapshot> =>
   new Map(snapshots.map(snapshot => [snapshot.caseId, snapshot]))
 
-const shadcnComponentName = (itemId: string): string => {
+export const shadcnComponentName = (itemId: string): string => {
   const componentName = itemId.split('/').at(1)
 
   if (componentName === undefined) {
@@ -291,31 +308,66 @@ const shadcnComponentName = (itemId: string): string => {
   return componentName
 }
 
-const shadcnCaseGrep = (itemId: string): string => {
+export const shadcnCaseGrep = (itemId: string, maybeGrep?: string): string => {
   const componentName = shadcnComponentName(itemId)
+  const normalizedGrep = maybeGrep?.toLowerCase()
 
-  if (maybeGrep === undefined || maybeGrep.includes('/')) {
+  if (normalizedGrep === undefined || shadcnNamespaceGrep(normalizedGrep)) {
     return componentName
   }
 
-  return maybeGrep
+  if (normalizedGrep.startsWith('shadcn/')) {
+    return normalizedGrep.slice('shadcn/'.length)
+  }
+
+  return normalizedGrep
+}
+
+const childOutput = async (args: ReadonlyArray<string>): Promise<string> => {
+  const { stdout } = await execFileAsync(process.execPath, [...args], {
+    cwd: process.cwd(),
+    env: process.env,
+    maxBuffer: 10 * 1024 * 1024,
+  })
+
+  return stdout
+}
+
+const captureShadcnSnapshotsInSubprocess = async (
+  fixture: 'origin' | 'foldkit',
+  grep: string,
+): Promise<ReadonlyArray<OriginFixtureSnapshot>> => {
+  const stdout = await childOutput([
+    'run',
+    'scripts/parity-dry-run.ts',
+    `--capture-shadcn-${fixture}`,
+    grep,
+  ])
+
+  try {
+    const snapshots: ReadonlyArray<OriginFixtureSnapshot> = JSON.parse(stdout)
+
+    return snapshots
+  } catch (error: unknown) {
+    throw new Error(`Unable to read ${fixture} shadcn snapshot JSON.`, {
+      cause: error,
+    })
+  }
 }
 
 const compareShadcnSlot = async (
-  slot: (typeof paritySlots)[number],
+  slot: ParitySlot,
+  maybeGrep?: string,
 ): Promise<number> => {
-  await ensureFixtureDom()
-
-  const [{ captureShadcnOriginSnapshots }, { captureShadcnFoldkitSnapshots }] =
-    await Promise.all([
-      import('../tests/parity/fixtures/origin/shadcn/runner'),
-      import('../tests/parity/fixtures/foldkit/shadcn/runner'),
-    ])
-  const caseGrep = shadcnCaseGrep(slot.itemId)
-  const [originSnapshots, foldkitSnapshots] = await Promise.all([
-    captureShadcnOriginSnapshots({ grep: caseGrep }),
-    captureShadcnFoldkitSnapshots({ grep: caseGrep }),
-  ])
+  const caseGrep = shadcnCaseGrep(slot.itemId, maybeGrep)
+  const originSnapshots = await captureShadcnSnapshotsInSubprocess(
+    'origin',
+    caseGrep,
+  )
+  const foldkitSnapshots = await captureShadcnSnapshotsInSubprocess(
+    'foldkit',
+    caseGrep,
+  )
   const foldkitSnapshotsById = shadcnSnapshotById(foldkitSnapshots)
 
   return originSnapshots.reduce((caseCount, originSnapshot) => {
@@ -344,13 +396,20 @@ const compareShadcnSlot = async (
 }
 
 const compareParitySlot = (
-  slot: (typeof paritySlots)[number],
-): Promise<number> =>
-  slot.itemId.startsWith('shadcn/')
-    ? compareShadcnSlot(slot)
-    : compareSlot(slot)
+  slot: ParitySlot,
+  maybeGrep?: string,
+): Promise<number> => {
+  if (!slot.itemId.startsWith('shadcn/')) {
+    return compareSlot(slot)
+  }
 
-const runParity = async (): Promise<void> => {
+  return compareShadcnSlot(slot, maybeGrep)
+}
+
+const runParity = async (
+  matchingSlots: ReadonlyArray<ParitySlot>,
+  maybeGrep?: string,
+): Promise<void> => {
   if (matchingSlots.length === 0) {
     throw new Error(`No parity slots matched: ${maybeGrep ?? '<none>'}`)
   }
@@ -365,12 +424,14 @@ const runParity = async (): Promise<void> => {
     )
   }
 
-  const comparedCaseCounts = await Promise.all(
-    matchingSlots.map(compareParitySlot),
-  )
-  const comparedCaseCount = comparedCaseCounts.reduce(
-    (total, count) => total + count,
-    0,
+  const comparedCaseCount = await matchingSlots.reduce(
+    async (pendingTotal, slot) => {
+      const total = await pendingTotal
+      const caseCount = await compareParitySlot(slot, maybeGrep)
+
+      return total + caseCount
+    },
+    Promise.resolve(0),
   )
 
   console.log(
@@ -378,8 +439,60 @@ const runParity = async (): Promise<void> => {
   )
 }
 
-if (dryRun) {
-  printDiscoveredSlots()
-} else {
-  await runParity()
+const captureShadcnSnapshotsForCli = async (
+  fixture: 'origin' | 'foldkit',
+  grep?: string,
+): Promise<void> => {
+  await ensureFixtureDom()
+
+  if (fixture === 'origin') {
+    const { captureShadcnOriginSnapshots } =
+      await import('../tests/parity/fixtures/origin/shadcn/runner')
+    const snapshots = await captureShadcnOriginSnapshots({ grep })
+
+    process.stdout.write(JSON.stringify(snapshots))
+    return
+  }
+
+  const { captureShadcnFoldkitSnapshots } =
+    await import('../tests/parity/fixtures/foldkit/shadcn/runner')
+  const snapshots = await captureShadcnFoldkitSnapshots({ grep })
+
+  process.stdout.write(JSON.stringify(snapshots))
+}
+
+const runParityCli = async (args: ReadonlyArray<string>): Promise<void> => {
+  const originCaptureIndex = args.indexOf('--capture-shadcn-origin')
+  const foldkitCaptureIndex = args.indexOf('--capture-shadcn-foldkit')
+
+  if (originCaptureIndex !== -1) {
+    await captureShadcnSnapshotsForCli(
+      'origin',
+      args.at(originCaptureIndex + 1),
+    )
+    return
+  }
+
+  if (foldkitCaptureIndex !== -1) {
+    await captureShadcnSnapshotsForCli(
+      'foldkit',
+      args.at(foldkitCaptureIndex + 1),
+    )
+    return
+  }
+
+  const grepIndex = args.indexOf('--grep')
+  const maybeGrep = grepIndex === -1 ? undefined : args.at(grepIndex + 1)
+  const dryRun = args.includes('--dry-run')
+  const matchingSlots = matchingParitySlots(paritySlots, maybeGrep)
+
+  if (dryRun) {
+    printDiscoveredSlots(matchingSlots, maybeGrep)
+  } else {
+    await runParity(matchingSlots, maybeGrep)
+  }
+}
+
+if (import.meta.main) {
+  await runParityCli(process.argv.slice(2))
 }
