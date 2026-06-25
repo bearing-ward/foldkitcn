@@ -8,7 +8,7 @@
 > maintain the index.
 >
 > **Drift check (run first)**:
-> `git diff --stat 7e045720..HEAD -- plans/artifacts/004-foundational-component-dossiers/progress registry-src/base-ui/progress src/registry/base-ui/progress tests/parity/fixtures/origin/base-ui tests/parity/fixtures/foldkit/base-ui tests/parity/slots.ts registry/index.json plans/README.md`
+> `git diff --stat 72aabe87..HEAD -- plans/artifacts/004-foundational-component-dossiers/progress registry-src/base-ui/progress src/registry/base-ui/progress tests/parity/fixtures/origin/base-ui tests/parity/fixtures/foldkit/base-ui tests/parity/slots.ts registry/index.json plans/README.md`
 >
 > If any in-scope file changed since this plan was written, compare the
 > "Current state" excerpts against the live code before proceeding; on a
@@ -21,7 +21,7 @@
 - **Risk**: MED
 - **Depends on**: `plans/004-generate-foundational-component-dossiers.md`
 - **Category**: feature
-- **Planned at**: commit `7e045720`, 2026-06-25
+- **Planned at**: commit `72aabe87`, 2026-06-25
 
 ## Why this matters
 
@@ -40,6 +40,9 @@ behavior foundation.
   `stateAttributesMapping`.
 - Origin tests exist for every part under
   `repos/base-ui/packages/react/src/progress/**`.
+- Shared parity slots already include `base-ui/button`, `base-ui/separator`,
+  and shadcn `badge`, `button`, `kbd`, `separator`, and `skeleton`. Preserve
+  those slots and the generated registry entries while adding Progress.
 
 Relevant origin behavior:
 
@@ -91,7 +94,7 @@ Relevant local patterns:
 - `tests/parity/fixtures/foldkit/base-ui/progress.fixture.ts` (create)
 - `tests/parity/slots.ts`
 - `registry/index.json`
-- `plans/README.md`
+- `plans/README.md` (reviewer-owned; executor should not edit)
 
 **Out of scope**:
 
@@ -204,6 +207,7 @@ Add a `base-ui/progress` slot in `tests/parity/slots.ts` with comparisons:
 class tokens, attributes, DOM structure, computed style, colors, dimensions,
 bounding box, and keyboard behavior only if a keyboard case exists. Progress
 does not need keyboard behavior unless the origin fixture actually exposes it.
+Keep all existing ready slots intact.
 
 **Verify**: `bun run parity:check -- --grep base-ui/progress --dry-run` ->
 discovers exactly one slot.
