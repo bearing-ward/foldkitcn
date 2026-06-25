@@ -18,7 +18,7 @@ honor its STOP conditions, and update your row when done.
 | 008 | Plan outstanding held component rows | P1 | M | 007 | DONE |
 | 009 | Implement shadcn Badge wrapper and examples | P1 | M | 004 | DONE |
 | 010 | Implement shadcn Skeleton and Kbd primitives | P1 | M | 004 | DONE |
-| 011 | Implement Base UI Progress primitive | P1 | L | 004 | TODO |
+| 011 | Implement Base UI Progress primitive | P1 | L | 004 | DONE |
 | 012 | Implement shadcn Progress wrapper and examples | P1 | M | 011 | TODO |
 | 013 | Implement Base UI Meter primitive | P1 | M | 007, 011 | TODO |
 | 014 | Implement shadcn Alert and Native Select wrappers | P1 | M | 007 | TODO |

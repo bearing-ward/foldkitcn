@@ -92,6 +92,7 @@ Relevant local patterns:
 - `src/registry/base-ui/progress/scene.test.ts` (create)
 - `tests/parity/fixtures/origin/base-ui/progress.fixture.tsx` (create)
 - `tests/parity/fixtures/foldkit/base-ui/progress.fixture.ts` (create)
+- `tests/parity/canonicalize.test.ts`
 - `tests/parity/slots.ts`
 - `registry/index.json`
 - `plans/README.md` (reviewer-owned; executor should not edit)
@@ -208,6 +209,8 @@ class tokens, attributes, DOM structure, computed style, colors, dimensions,
 bounding box, and keyboard behavior only if a keyboard case exists. Progress
 does not need keyboard behavior unless the origin fixture actually exposes it.
 Keep all existing ready slots intact.
+Update `tests/parity/canonicalize.test.ts` so the ready-slot expectation
+includes `base-ui/progress` in the actual exported order.
 
 **Verify**: `bun run parity:check -- --grep base-ui/progress --dry-run` ->
 discovers exactly one slot.
