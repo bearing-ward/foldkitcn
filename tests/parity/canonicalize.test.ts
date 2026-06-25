@@ -116,6 +116,7 @@ describe('parity canonicalizers', () => {
       'shadcn/separator',
       'shadcn/progress',
       'shadcn/skeleton',
+      'shadcn/textarea',
     ])
   })
 })

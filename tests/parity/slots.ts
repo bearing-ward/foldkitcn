@@ -277,4 +277,19 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'bounding-box',
     ],
   },
+  {
+    itemId: 'shadcn/textarea',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
 ]
