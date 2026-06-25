@@ -1,8 +1,148 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T17:43:55.521Z",
+  "generatedAt": "2026-06-25T21:07:51.221Z",
   "sourceRoot": "registry-src",
   "items": [
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/avatar",
+        "namespace": "base-ui",
+        "name": "Avatar",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Avatar primitive preserving root, image, fallback, modeled image loading state, status data attributes, native image props, and image load/error message hooks.",
+        "sourceRoot": "registry-src/base-ui/avatar",
+        "installableSourcePaths": ["src/registry/base-ui/avatar/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Avatar",
+            "docsUrl": "https://base-ui.com/react/components/avatar",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/avatar",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.tsx",
+              "repos/base-ui/packages/react/src/avatar/image/AvatarImage.tsx",
+              "repos/base-ui/packages/react/src/avatar/image/AvatarImageDataAttributes.ts",
+              "repos/base-ui/packages/react/src/avatar/image/useImageLoadingStatus.ts",
+              "repos/base-ui/packages/react/src/avatar/index.parts.ts",
+              "repos/base-ui/packages/react/src/avatar/index.ts",
+              "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.tsx",
+              "repos/base-ui/packages/react/src/avatar/root/AvatarRootContext.ts",
+              "repos/base-ui/packages/react/src/avatar/root/stateAttributesMapping.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.test.tsx",
+              "repos/base-ui/packages/react/src/avatar/image/AvatarImage.test.tsx",
+              "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema for Avatar options, image loading status, transition status, fallback delay state, and parts."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/avatar",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native and caller-owned state drives image loading."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "base-ui/avatar-hero",
+            "title": "AvatarHero",
+            "description": "Base UI Avatar hero fixture with image, fallback, and text fallback avatar.",
+            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "base-ui/avatar",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/avatar.fixture.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-avatar-modeled-loading-status",
+            "base-ui-avatar-explicit-delay-state"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-avatar-modeled-loading-status",
+            "summary": "Image loading is caller-owned Foldkit model state instead of an internal React Image effect.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit installable source must remain pure and unidirectional. The helper exposes image load/error message hooks and derives rendered parts from the caller's modeled ImageLoadingStatus."
+          },
+          {
+            "id": "base-ui-avatar-explicit-delay-state",
+            "summary": "Fallback delay visibility is represented by explicit delayStatus state instead of an internal timer.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Timers belong in Foldkit commands or subscriptions owned by an app model. The installable helper preserves fallback visibility semantics without hidden lifecycle state."
+          }
+        ]
+      },
+      "manifestHash": "38b43398f7162b1b2a05b663db4acf4108dd8f5ac917ac2c37392f30d2317851",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/avatar/item.json",
+          "sha256": "9f37041c91b8c88a6fe2f7d54112afb283b0e29e16b5ba589a921b947fe05eca",
+          "sizeBytes": 5364,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/avatar/index.ts",
+          "sha256": "10f3d3bde156dd81e226aa8d0430f6b45f59eebdd27506b0d2234dc0be4cd980",
+          "sizeBytes": 5374,
+          "role": "source"
+        }
+      ]
+    },
     {
       "item": {
         "schemaVersion": 1,
@@ -919,6 +1059,279 @@
           "path": "src/registry/shadcn/aspect-ratio/examples.ts",
           "sha256": "3005cc34c7def01dba0d689d37c93aeddfa690c318d5f112591ed20b5b8eec14",
           "sizeBytes": 1472,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/avatar",
+        "namespace": "shadcn",
+        "name": "Avatar",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Avatar wrapper composing the local Base UI Avatar primitive with Avatar image, fallback, badge, group, and group count styling.",
+        "sourceRoot": "registry-src/shadcn/avatar",
+        "installableSourcePaths": [
+          "src/registry/shadcn/avatar/index.ts",
+          "src/registry/shadcn/avatar/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Avatar",
+            "docsUrl": "https://ui.shadcn.com/docs/components/avatar",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/avatar.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/avatar.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/avatar.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/avatar.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/avatar-badge-icon.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-badge.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-basic.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-demo.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-dropdown.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-group-count-icon.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-group-count.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-group.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/avatar-size.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/avatar",
+              "classification": "registry-local",
+              "target": "base-ui/avatar",
+              "reason": "shadcn Avatar composes the local Base UI Avatar primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Avatar uses the local class composition helper."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The dropdown origin example uses Button; this batch keeps the dropdown as a fixture-local static shell while preserving the dependency classification."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options for the wrapper."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/avatar",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/avatar",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The dropdown example is represented with a fixture-local static shell until shadcn/dropdown-menu exists locally."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin language selector runtime dependency is replaced by local RTL constants and origin fixture aliases."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/avatar-badge-icon",
+            "title": "AvatarBadgeIconExample",
+            "description": "Avatar with fixture-local Plus icon badge.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-badge",
+            "title": "AvatarWithBadge",
+            "description": "Avatar with status badge.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-basic",
+            "title": "AvatarBasic",
+            "description": "Basic Avatar example.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-demo",
+            "title": "AvatarDemo",
+            "description": "Avatar demo with badge and group examples.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-dropdown",
+            "title": "AvatarDropdown",
+            "description": "Dropdown Avatar example represented by a fixture-local static dropdown shell.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-group-count-icon",
+            "title": "AvatarGroupCountIconExample",
+            "description": "Avatar group count with fixture-local Plus icon.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-group-count",
+            "title": "AvatarGroupCountExample",
+            "description": "Avatar group count example.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-group",
+            "title": "AvatarGroupExample",
+            "description": "Avatar group example.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-rtl",
+            "title": "AvatarRtl",
+            "description": "RTL Avatar layout example with local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/avatar-size",
+            "title": "AvatarSizeExample",
+            "description": "Avatar size matrix example.",
+            "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/avatar",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-avatar-static-dropdown-shell",
+            "shadcn-avatar-local-rtl-data",
+            "shadcn-avatar-local-icons"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-avatar-static-dropdown-shell",
+            "summary": "Dropdown example uses a fixture-local static shell instead of an installable shadcn Dropdown Menu component.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "This batch intentionally does not add shadcn/dropdown-menu. The static shell preserves the Avatar trigger and fixture coverage without adding runtime dependencies."
+          },
+          {
+            "id": "shadcn-avatar-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          },
+          {
+            "id": "shadcn-avatar-local-icons",
+            "summary": "Icon examples use local inline SVGs instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot include lucide-react. The inline Plus SVG preserves the visible icon examples as fixture-local markup."
+          }
+        ]
+      },
+      "manifestHash": "2b28b8fd3a7333ffe5dbde9cc927c4d5431d036b7285963ead4eabe551c63684",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/avatar/item.json",
+          "sha256": "4990dc0b0d9b1656832ac3fca2c84431348659603fa8f8ea2ae6a9da10a34fc1",
+          "sizeBytes": 9125,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/avatar/index.ts",
+          "sha256": "1ce941ec755feb8fcf2cb01b8d1052b16443ddcde231796ba87fada4ddf7d0de",
+          "sizeBytes": 9183,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/avatar/examples.ts",
+          "sha256": "d174c6b813cb3403c5f831ac50d38bcc96ad2f717c623e7e7fdead7f4a9ce8d3",
+          "sizeBytes": 5435,
           "role": "source"
         }
       ]

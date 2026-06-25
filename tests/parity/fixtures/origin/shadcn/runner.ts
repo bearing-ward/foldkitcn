@@ -9,6 +9,11 @@ import type { OriginFixtureSnapshot } from './snapshot'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 
+const transparentPixelPng = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
+  'base64',
+)
+
 export interface CaptureShadcnOriginSnapshotsOptions {
   readonly grep?: string
 }
@@ -41,6 +46,7 @@ const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
+const dropdownMenuShimModuleId = '\0foldkitcn-shadcn-origin-dropdown-menu-shim'
 
 const originAliasPlugin = (): Plugin => ({
   name: 'foldkitcn-shadcn-origin-aliases',
@@ -48,6 +54,10 @@ const originAliasPlugin = (): Plugin => ({
   resolveId(source) {
     if (source === 'next/image') {
       return nextImageShimModuleId
+    }
+
+    if (source === '@/styles/base-nova/ui/dropdown-menu') {
+      return dropdownMenuShimModuleId
     }
 
     if (source === '@/styles/base-nova/ui/slider') {
@@ -84,6 +94,10 @@ const originAliasPlugin = (): Plugin => ({
 
     if (source === '@base-ui/react/progress') {
       return repoPath('repos/base-ui/packages/react/src/progress/index.ts')
+    }
+
+    if (source === '@base-ui/react/avatar') {
+      return repoPath('repos/base-ui/packages/react/src/avatar/index.ts')
     }
 
     if (source === '@base-ui/react/tooltip') {
@@ -227,6 +241,73 @@ const originAliasPlugin = (): Plugin => ({
       `
     }
 
+    if (id === dropdownMenuShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const cx = (...classes) => classes.filter(Boolean).join(' ')
+
+        export function DropdownMenu({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function DropdownMenuTrigger({ render, children, ...props }) {
+          if (React.isValidElement(render)) {
+            return React.cloneElement(render, {
+              ...props,
+              'aria-haspopup': 'menu',
+              'aria-expanded': false,
+            }, children)
+          }
+
+          return React.createElement(
+            'button',
+            {
+              ...props,
+              'data-slot': 'dropdown-menu-trigger',
+              'aria-haspopup': 'menu',
+              'aria-expanded': false,
+            },
+            children,
+          )
+        }
+
+        export function DropdownMenuContent({ children, className, ...props }) {
+          return React.createElement(
+            'div',
+            {
+              ...props,
+              'data-slot': 'dropdown-menu-content',
+              className: cx('hidden rounded-lg border border-border bg-background p-1 text-sm shadow-sm', className),
+            },
+            children,
+          )
+        }
+
+        export function DropdownMenuGroup({ children, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-group' }, children)
+        }
+
+        export function DropdownMenuItem({ children, variant, ...props }) {
+          return React.createElement(
+            'div',
+            {
+              ...props,
+              'data-slot': 'dropdown-menu-item',
+              'data-variant': variant,
+              role: 'menuitem',
+              className: variant === 'destructive' ? 'text-destructive' : undefined,
+            },
+            children,
+          )
+        }
+
+        export function DropdownMenuSeparator(props) {
+          return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-separator', role: 'separator' })
+        }
+      `
+    }
+
     return null
   },
 })
@@ -255,6 +336,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui/aspect-ratio',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/aspect-ratio.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/avatar',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/avatar.tsx',
           ),
         },
         {
@@ -343,6 +430,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/aspect-ratio',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/aspect-ratio.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/avatar',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/avatar.tsx',
           ),
         },
         {
@@ -479,6 +572,12 @@ export const captureShadcnOriginSnapshots = async (
         `requestfailed ${request.url()} ${request.failure()?.errorText ?? ''}`,
       )
     })
+    await page.route('https://github.com/*.png', route =>
+      route.fulfill({
+        body: transparentPixelPng,
+        contentType: 'image/png',
+      }),
+    )
     const baseUrl = serverUrl(server)
 
     return await originCases.reduce(async (pendingSnapshots, originCase) => {
@@ -491,6 +590,19 @@ export const captureShadcnOriginSnapshots = async (
         await page.waitForSelector('[data-origin-fixture-root] > *', {
           timeout: 5000,
         })
+        if (originCase.id.startsWith('avatar-')) {
+          await page.waitForSelector('[data-slot="avatar-image"]', {
+            timeout: 5000,
+          })
+          await page.waitForFunction(
+            () =>
+              document.querySelector(
+                '[data-origin-fixture-root] [data-starting-style]',
+              ) === null,
+            undefined,
+            { timeout: 5000 },
+          )
+        }
       } catch (error: unknown) {
         const bodyText = await page.locator('body').textContent()
         const message = error instanceof Error ? error.message : String(error)

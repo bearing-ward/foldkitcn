@@ -105,6 +105,7 @@ export const captureShadcnFoldkitSnapshots = async (
       await page.goto(url.toString(), { waitUntil: 'networkidle' })
       try {
         await page.waitForSelector('[data-foldkit-fixture-root] > *', {
+          state: 'attached',
           timeout: 5000,
         })
       } catch (error: unknown) {

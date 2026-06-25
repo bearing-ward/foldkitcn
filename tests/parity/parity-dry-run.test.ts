@@ -20,6 +20,7 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('shadcn')).toStrictEqual([
       'shadcn/aspect-ratio',
       'shadcn/alert',
+      'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
@@ -32,6 +33,7 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('shadcn/')).toStrictEqual([
       'shadcn/aspect-ratio',
       'shadcn/alert',
+      'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
       'shadcn/kbd',
