@@ -26,6 +26,7 @@ honor its STOP conditions, and update your row when done.
 | 016 | Stabilize aggregate shadcn parity execution | P1 | M | - | DONE |
 | 017 | Reject fixture-only runtime dependencies for installable manifests | P1 | S | - | DONE |
 | 018 | Add a read-only registry index drift check | P2 | S | 017 | DONE |
+| 019 | Add origin component progress tracking to add-registry-component | P1 | M | - | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -48,6 +49,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 016 is first because full aggregate parity is the sharpest blocker for accepting more component work. It fixes the guardrail itself and does not depend on manifest validation changes.
 - Plan 017 can run in parallel with 016 because it tightens the installable manifest gate without touching the parity runner.
 - Plan 018 depends on 017 so `registry:check` becomes the stronger non-mutating gate after installable runtime dependency validation is correct.
+- Plan 019 is independent and should run before the next component intake batch because it turns the stale Plan 004 and Plan 007 queue snapshots into a live, source-derived origin progress checklist plus `add-registry-component status` and `next [count]` workflows.
 
 ## Findings considered and rejected
 
