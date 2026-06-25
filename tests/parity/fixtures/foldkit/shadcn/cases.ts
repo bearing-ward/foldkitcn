@@ -1,6 +1,15 @@
 import type { Html } from 'foldkit/html'
 
 import {
+  BadgeColors,
+  BadgeDemo,
+  BadgeIcon,
+  BadgeLink,
+  BadgeRtl,
+  BadgeSpinner,
+  BadgeVariants,
+} from '../../../../../src/registry/shadcn/badge/examples'
+import {
   ButtonDefault,
   ButtonDemo,
   ButtonDestructive,
@@ -31,6 +40,13 @@ export interface ShadcnFoldkitCase extends ShadcnOriginCaseMetadata {
 }
 
 const components: Readonly<Record<string, () => Html>> = {
+  'badge-colors': BadgeColors,
+  'badge-demo': BadgeDemo,
+  'badge-icon': BadgeIcon,
+  'badge-link': BadgeLink,
+  'badge-rtl': BadgeRtl,
+  'badge-spinner': BadgeSpinner,
+  'badge-variants': BadgeVariants,
   'button-default': ButtonDefault,
   'button-demo': ButtonDemo,
   'button-outline': ButtonOutline,
@@ -52,10 +68,17 @@ const components: Readonly<Record<string, () => Html>> = {
   'separator-rtl': SeparatorRtl,
 }
 
-const foldkitSourcePath = (id: string): string =>
-  id.startsWith('separator-')
-    ? 'src/registry/shadcn/separator/examples.ts'
-    : 'src/registry/shadcn/button/examples.ts'
+const foldkitSourcePath = (id: string): string => {
+  if (id.startsWith('badge-')) {
+    return 'src/registry/shadcn/badge/examples.ts'
+  }
+
+  if (id.startsWith('separator-')) {
+    return 'src/registry/shadcn/separator/examples.ts'
+  }
+
+  return 'src/registry/shadcn/button/examples.ts'
+}
 
 export const shadcnFoldkitCases: ReadonlyArray<ShadcnFoldkitCase> =
   shadcnOriginCaseMetadata.map(metadata => {

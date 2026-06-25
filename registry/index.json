@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-24T21:56:42.891Z",
+  "generatedAt": "2026-06-25T02:03:10.585Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -258,6 +258,258 @@
           "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
           "sizeBytes": 818,
           "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/badge",
+        "namespace": "shadcn",
+        "name": "Badge",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Badge wrapper using pure class maps and cn.",
+        "sourceRoot": "registry-src/shadcn/badge",
+        "installableSourcePaths": [
+          "src/registry/shadcn/badge/index.ts",
+          "src/registry/shadcn/badge/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--muted",
+          "--primary",
+          "--primary-foreground",
+          "--ring",
+          "--secondary",
+          "--secondary-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Badge",
+            "docsUrl": "https://ui.shadcn.com/docs/components/badge",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/badge.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "968b0403af74a785c9408ca69a677235e49d0c80b2c27fb9858ad421a8778c7d",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/badge.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/badge.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/badge.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/badge-colors.tsx",
+              "repos/ui/apps/v4/examples/base/badge-demo.tsx",
+              "repos/ui/apps/v4/examples/base/badge-icon.tsx",
+              "repos/ui/apps/v4/examples/base/badge-link.tsx",
+              "repos/ui/apps/v4/examples/base/badge-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/badge-spinner.tsx",
+              "repos/ui/apps/v4/examples/base/badge-variants.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Badge uses the local class composition helper instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for variant options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "shadcn/spinner",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin spinner examples are represented by an example-local inline SVG helper."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/badge-colors",
+            "title": "BadgeColors",
+            "description": "Custom color Badge examples.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-demo",
+            "title": "BadgeDemo",
+            "description": "Badge variant demo.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-icon",
+            "title": "BadgeIcon",
+            "description": "Inline start and end icon Badge examples.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-link",
+            "title": "BadgeLink",
+            "description": "Anchor Badge example.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-rtl",
+            "title": "BadgeRtl",
+            "description": "RTL Badge layout example with local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-spinner",
+            "title": "BadgeSpinner",
+            "description": "Badge examples using an example-local spinner helper.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/badge-variants",
+            "title": "BadgeVariants",
+            "description": "Badge variant list example.",
+            "sourcePath": "src/registry/shadcn/badge/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/badge",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-badge-local-icons",
+            "shadcn-badge-local-spinner",
+            "shadcn-badge-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-badge-local-icons",
+            "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Badge examples without adding icon registry items."
+          },
+          {
+            "id": "shadcn-badge-local-spinner",
+            "summary": "Spinner example uses a local inline SVG instead of an installable shadcn Spinner component.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "This batch intentionally does not add shadcn/spinner as an installable registry item. The example-local SVG preserves the origin spinner slot, status role, and icon placement."
+          },
+          {
+            "id": "shadcn-badge-local-rtl-data",
+            "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          }
+        ]
+      },
+      "manifestHash": "be117564dd70c9f9dc30f2de24e1b467539422404770ef5725d366f4bdc4334e",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/badge/item.json",
+          "sha256": "1bd85eac2fb64fb4b93202035ad05cbb5d2bc604cd2186c39b3fde07f795ddc8",
+          "sizeBytes": 8071,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/badge/index.ts",
+          "sha256": "7527c4ebeb5f1d4cac8361c8dc84b978d17a26c7bbfaf49a3756165890efbfb2",
+          "sizeBytes": 3565,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/badge/examples.ts",
+          "sha256": "4e3152c613340db4ce8e6b987f575dcb327f17c08bbd4ecd4a7a2a172ea7672e",
+          "sizeBytes": 6919,
+          "role": "source"
         }
       ]
     },
@@ -728,14 +980,14 @@
         },
         {
           "path": "src/registry/shadcn/separator/index.ts",
-          "sha256": "55629ca33b87199180d1d52e5573a9fe85555461132a5ec2da46feedd30f8595",
-          "sizeBytes": 1644,
+          "sha256": "469460a5c3d5a31a4c12c3af3d77b67f3db1370acfc3aa8cac98b0c00787fdd5",
+          "sizeBytes": 1613,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/separator/examples.ts",
-          "sha256": "99baca60f10a25c5b61307950934722b23eb9c75da6416f22c95f0cfc87c3cfd",
-          "sizeBytes": 3773,
+          "sha256": "cbd215af5bcb1a864b57639739c3df3c48525749702e95193d41ae66aab2bd2d",
+          "sizeBytes": 3748,
           "role": "source"
         }
       ]

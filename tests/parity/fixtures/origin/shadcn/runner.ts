@@ -41,6 +41,14 @@ const originAliasPlugin = (): Plugin => ({
   name: 'foldkitcn-shadcn-origin-aliases',
   enforce: 'pre',
   resolveId(source) {
+    if (source === '@base-ui/react/merge-props') {
+      return repoPath('repos/base-ui/packages/react/src/merge-props/index.ts')
+    }
+
+    if (source === '@base-ui/react/use-render') {
+      return repoPath('repos/base-ui/packages/react/src/use-render/index.ts')
+    }
+
     if (source === '@base-ui/react/button') {
       return repoPath('repos/base-ui/packages/react/src/button/index.ts')
     }
@@ -82,6 +90,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
     resolve: {
       alias: [
         {
+          find: '@/styles/base-nova/ui/badge',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/badge.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
@@ -103,6 +117,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/badge',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/badge.tsx',
           ),
         },
         {

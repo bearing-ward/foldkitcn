@@ -100,6 +100,7 @@ describe('parity canonicalizers', () => {
   test('discovers ready registry parity slots', () => {
     expect(paritySlots.map(slot => slot.itemId)).toStrictEqual([
       'base-ui/button',
+      'shadcn/badge',
       'shadcn/button',
       'base-ui/separator',
       'shadcn/separator',

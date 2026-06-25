@@ -1,5 +1,12 @@
 import type * as React from 'react'
 
+import { BadgeCustomColors } from '../../../../../repos/ui/apps/v4/examples/base/badge-colors'
+import BadgeDemo from '../../../../../repos/ui/apps/v4/examples/base/badge-demo'
+import { BadgeWithIconLeft } from '../../../../../repos/ui/apps/v4/examples/base/badge-icon'
+import { BadgeAsLink } from '../../../../../repos/ui/apps/v4/examples/base/badge-link'
+import { BadgeRtl } from '../../../../../repos/ui/apps/v4/examples/base/badge-rtl'
+import { BadgeWithSpinner } from '../../../../../repos/ui/apps/v4/examples/base/badge-spinner'
+import { BadgeVariants } from '../../../../../repos/ui/apps/v4/examples/base/badge-variants'
 import ButtonDefault from '../../../../../repos/ui/apps/v4/examples/base/button-default'
 import ButtonDemo from '../../../../../repos/ui/apps/v4/examples/base/button-demo'
 import ButtonDestructive from '../../../../../repos/ui/apps/v4/examples/base/button-destructive'
@@ -27,6 +34,13 @@ export interface ShadcnOriginCase extends ShadcnOriginCaseMetadata {
 }
 
 const components: Readonly<Record<string, () => React.ReactElement>> = {
+  'badge-colors': BadgeCustomColors,
+  'badge-demo': BadgeDemo,
+  'badge-icon': BadgeWithIconLeft,
+  'badge-link': BadgeAsLink,
+  'badge-rtl': BadgeRtl,
+  'badge-spinner': BadgeWithSpinner,
+  'badge-variants': BadgeVariants,
   'button-default': ButtonDefault,
   'button-demo': ButtonDemo,
   'button-outline': ButtonOutline,

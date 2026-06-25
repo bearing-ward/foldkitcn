@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 @import '../../../../../repos/ui/packages/shadcn/src/tailwind.css';
 
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-colors.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-icon.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-link.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-spinner.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/badge-variants.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/badge.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/badge.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/button-default.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/button-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/button-outline.tsx";

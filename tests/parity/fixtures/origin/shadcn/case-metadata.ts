@@ -7,6 +7,41 @@ export interface ShadcnOriginCaseMetadata {
 export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
   [
     {
+      id: 'badge-colors',
+      title: 'Badge colors',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-colors.tsx',
+    },
+    {
+      id: 'badge-demo',
+      title: 'Badge demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-demo.tsx',
+    },
+    {
+      id: 'badge-icon',
+      title: 'Badge icon',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-icon.tsx',
+    },
+    {
+      id: 'badge-link',
+      title: 'Badge link',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-link.tsx',
+    },
+    {
+      id: 'badge-rtl',
+      title: 'Badge RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-rtl.tsx',
+    },
+    {
+      id: 'badge-spinner',
+      title: 'Badge spinner',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-spinner.tsx',
+    },
+    {
+      id: 'badge-variants',
+      title: 'Badge variants',
+      originFilePath: 'repos/ui/apps/v4/examples/base/badge-variants.tsx',
+    },
+    {
       id: 'button-default',
       title: 'Button default',
       originFilePath: 'repos/ui/apps/v4/examples/base/button-default.tsx',
