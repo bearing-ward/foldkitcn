@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/kbd",
+  "namespace": "shadcn",
+  "name": "Kbd",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Kbd and KbdGroup helpers using cn.",
+  "sourceRoot": "registry-src/shadcn/kbd",
+  "installableSourcePaths": [
+    "src/registry/shadcn/kbd/index.ts",
+    "src/registry/shadcn/kbd/examples.ts"
+  ],
+  "consumedThemeTokens": ["--background", "--muted", "--muted-foreground"],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Kbd",
+      "docsUrl": "https://ui.shadcn.com/docs/components/kbd",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/kbd.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/kbd.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/kbd.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/kbd.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/kbd-button.tsx",
+        "repos/ui/apps/v4/examples/base/kbd-demo.tsx",
+        "repos/ui/apps/v4/examples/base/kbd-group.tsx",
+        "repos/ui/apps/v4/examples/base/kbd-input-group.tsx",
+        "repos/ui/apps/v4/examples/base/kbd-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/kbd-tooltip.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Kbd uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the helpers."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/button",
+        "reason": "Only Kbd examples compose the existing local shadcn Button; the core Kbd helper does not require it."
+      },
+      {
+        "specifier": "shadcn/button-group",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Tooltip examples are represented by fixture-local static ButtonGroup shell classes until shadcn/button-group is implemented."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Input Group examples are represented by fixture-local static InputGroup shell classes until shadcn/input-group is implemented."
+      },
+      {
+        "specifier": "shadcn/tooltip",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Tooltip examples are represented by fixture-local static Tooltip shell classes until shadcn/tooltip is implemented."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/kbd-button",
+      "title": "KbdButton",
+      "description": "Outline Button with inline end Kbd.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-demo",
+      "title": "KbdDemo",
+      "description": "Grouped modifier and shortcut Kbd examples.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-group",
+      "title": "KbdGroup",
+      "description": "Inline KbdGroup in muted text.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-input-group",
+      "title": "KbdInputGroup",
+      "description": "Static Input Group shell with search icon and Kbd shortcut.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-rtl",
+      "title": "KbdRtl",
+      "description": "RTL grouped Kbd layout example with local direction constants.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-tooltip",
+      "title": "KbdTooltip",
+      "description": "Static Tooltip shell examples with inline Kbd shortcuts.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/kbd",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-kbd-local-icons",
+      "shadcn-kbd-local-input-group-shell",
+      "shadcn-kbd-local-tooltip-shell",
+      "shadcn-kbd-local-rtl-data"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-kbd-local-icons",
+      "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon DOM role and visual footprint for Kbd examples without adding icon registry items."
+    },
+    {
+      "id": "shadcn-kbd-local-input-group-shell",
+      "summary": "Input Group example uses fixture-local static Input Group shell classes instead of an installable shadcn Input Group component.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "This batch intentionally does not add shadcn/input-group as an installable registry item. The static shell preserves the origin DOM slots and base-nova classes needed for the Kbd example snapshot."
+    },
+    {
+      "id": "shadcn-kbd-local-tooltip-shell",
+      "summary": "Tooltip example uses fixture-local static ButtonGroup and Tooltip shell classes instead of installable sibling components.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "This batch intentionally does not add shadcn/button-group or shadcn/tooltip as installable registry items. Static shells preserve the origin DOM slots and visual classes without adding tooltip behavior."
+    },
+    {
+      "id": "shadcn-kbd-local-rtl-data",
+      "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
+    }
+  ]
+}

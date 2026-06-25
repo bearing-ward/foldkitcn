@@ -102,8 +102,10 @@ describe('parity canonicalizers', () => {
       'base-ui/button',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/kbd',
       'base-ui/separator',
       'shadcn/separator',
+      'shadcn/skeleton',
     ])
   })
 })

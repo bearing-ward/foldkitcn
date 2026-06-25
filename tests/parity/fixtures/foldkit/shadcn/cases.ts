@@ -26,12 +26,29 @@ import {
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
 import {
+  KbdButton,
+  KbdDemo,
+  KbdGroupExample,
+  KbdInputGroup,
+  KbdRtl,
+  KbdTooltip,
+} from '../../../../../src/registry/shadcn/kbd/examples'
+import {
   SeparatorDemo,
   SeparatorList,
   SeparatorMenu,
   SeparatorRtl,
   SeparatorVertical,
 } from '../../../../../src/registry/shadcn/separator/examples'
+import {
+  SkeletonAvatar,
+  SkeletonCard,
+  SkeletonDemo,
+  SkeletonForm,
+  SkeletonRtl,
+  SkeletonTable,
+  SkeletonText,
+} from '../../../../../src/registry/shadcn/skeleton/examples'
 import type { ShadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 import { shadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 
@@ -61,11 +78,24 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'kbd-button': KbdButton,
+  'kbd-demo': KbdDemo,
+  'kbd-group': KbdGroupExample,
+  'kbd-input-group': KbdInputGroup,
+  'kbd-rtl': KbdRtl,
+  'kbd-tooltip': KbdTooltip,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
   'separator-vertical': SeparatorVertical,
   'separator-rtl': SeparatorRtl,
+  'skeleton-avatar': SkeletonAvatar,
+  'skeleton-card': SkeletonCard,
+  'skeleton-demo': SkeletonDemo,
+  'skeleton-form': SkeletonForm,
+  'skeleton-rtl': SkeletonRtl,
+  'skeleton-table': SkeletonTable,
+  'skeleton-text': SkeletonText,
 }
 
 const foldkitSourcePath = (id: string): string => {
@@ -75,6 +105,14 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('separator-')) {
     return 'src/registry/shadcn/separator/examples.ts'
+  }
+
+  if (id.startsWith('kbd-')) {
+    return 'src/registry/shadcn/kbd/examples.ts'
+  }
+
+  if (id.startsWith('skeleton-')) {
+    return 'src/registry/shadcn/skeleton/examples.ts'
   }
 
   return 'src/registry/shadcn/button/examples.ts'

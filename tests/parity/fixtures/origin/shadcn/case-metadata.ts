@@ -112,6 +112,36 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/button-rtl.tsx',
     },
     {
+      id: 'kbd-button',
+      title: 'Kbd button',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-button.tsx',
+    },
+    {
+      id: 'kbd-demo',
+      title: 'Kbd demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-demo.tsx',
+    },
+    {
+      id: 'kbd-group',
+      title: 'Kbd group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-group.tsx',
+    },
+    {
+      id: 'kbd-input-group',
+      title: 'Kbd input group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-input-group.tsx',
+    },
+    {
+      id: 'kbd-rtl',
+      title: 'Kbd RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-rtl.tsx',
+    },
+    {
+      id: 'kbd-tooltip',
+      title: 'Kbd tooltip',
+      originFilePath: 'repos/ui/apps/v4/examples/base/kbd-tooltip.tsx',
+    },
+    {
       id: 'separator-demo',
       title: 'Separator demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-demo.tsx',
@@ -135,5 +165,40 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'separator-rtl',
       title: 'Separator RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-rtl.tsx',
+    },
+    {
+      id: 'skeleton-avatar',
+      title: 'Skeleton avatar',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-avatar.tsx',
+    },
+    {
+      id: 'skeleton-card',
+      title: 'Skeleton card',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-card.tsx',
+    },
+    {
+      id: 'skeleton-demo',
+      title: 'Skeleton demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-demo.tsx',
+    },
+    {
+      id: 'skeleton-form',
+      title: 'Skeleton form',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-form.tsx',
+    },
+    {
+      id: 'skeleton-rtl',
+      title: 'Skeleton RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-rtl.tsx',
+    },
+    {
+      id: 'skeleton-table',
+      title: 'Skeleton table',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-table.tsx',
+    },
+    {
+      id: 'skeleton-text',
+      title: 'Skeleton text',
+      originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-text.tsx',
     },
   ]

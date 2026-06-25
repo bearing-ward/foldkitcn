@@ -5,6 +5,10 @@
 @source "../../../../../src/registry/shadcn/badge/examples.ts";
 @source "../../../../../src/registry/shadcn/button/index.ts";
 @source "../../../../../src/registry/shadcn/button/examples.ts";
+@source "../../../../../src/registry/shadcn/kbd/index.ts";
+@source "../../../../../src/registry/shadcn/kbd/examples.ts";
+@source "../../../../../src/registry/shadcn/skeleton/index.ts";
+@source "../../../../../src/registry/shadcn/skeleton/examples.ts";
 
 @custom-variant dark (&:is(.dark *));
 

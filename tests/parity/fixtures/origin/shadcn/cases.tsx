@@ -21,11 +21,24 @@ import ButtonSecondary from '../../../../../repos/ui/apps/v4/examples/base/butto
 import ButtonSize from '../../../../../repos/ui/apps/v4/examples/base/button-size'
 import ButtonSpinner from '../../../../../repos/ui/apps/v4/examples/base/button-spinner'
 import ButtonWithIcon from '../../../../../repos/ui/apps/v4/examples/base/button-with-icon'
+import KbdButton from '../../../../../repos/ui/apps/v4/examples/base/kbd-button'
+import KbdDemo from '../../../../../repos/ui/apps/v4/examples/base/kbd-demo'
+import KbdGroupExample from '../../../../../repos/ui/apps/v4/examples/base/kbd-group'
+import KbdInputGroup from '../../../../../repos/ui/apps/v4/examples/base/kbd-input-group'
+import { KbdRtl } from '../../../../../repos/ui/apps/v4/examples/base/kbd-rtl'
+import KbdTooltip from '../../../../../repos/ui/apps/v4/examples/base/kbd-tooltip'
 import SeparatorDemo from '../../../../../repos/ui/apps/v4/examples/base/separator-demo'
 import { SeparatorList } from '../../../../../repos/ui/apps/v4/examples/base/separator-list'
 import { SeparatorMenu } from '../../../../../repos/ui/apps/v4/examples/base/separator-menu'
 import { SeparatorRtl } from '../../../../../repos/ui/apps/v4/examples/base/separator-rtl'
 import { SeparatorVertical } from '../../../../../repos/ui/apps/v4/examples/base/separator-vertical'
+import { SkeletonAvatar } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-avatar'
+import { SkeletonCard } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-card'
+import { SkeletonDemo } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-demo'
+import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-form'
+import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
+import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
+import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
@@ -55,11 +68,24 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'kbd-button': KbdButton,
+  'kbd-demo': KbdDemo,
+  'kbd-group': KbdGroupExample,
+  'kbd-input-group': KbdInputGroup,
+  'kbd-rtl': KbdRtl,
+  'kbd-tooltip': KbdTooltip,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
   'separator-vertical': SeparatorVertical,
   'separator-rtl': SeparatorRtl,
+  'skeleton-avatar': SkeletonAvatar,
+  'skeleton-card': SkeletonCard,
+  'skeleton-demo': SkeletonDemo,
+  'skeleton-form': SkeletonForm,
+  'skeleton-rtl': SkeletonRtl,
+  'skeleton-table': SkeletonTable,
+  'skeleton-text': SkeletonText,
 }
 
 export const shadcnOriginCases: ReadonlyArray<ShadcnOriginCase> =

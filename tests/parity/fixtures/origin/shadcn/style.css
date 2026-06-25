@@ -26,6 +26,28 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/button-rtl.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/button.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-button.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-group.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-input-group.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/kbd-tooltip.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/kbd.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/kbd.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/input.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/button-group.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/tooltip.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-avatar.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-card.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-form.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-table.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/skeleton-text.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/skeleton.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/skeleton.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/card.tsx";
 
 @custom-variant dark (&:is(.dark *));
 
