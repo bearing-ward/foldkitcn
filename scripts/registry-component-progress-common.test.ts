@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 11,
-      remaining: 48,
+      imported: 12,
+      remaining: 47,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -64,6 +64,7 @@ describe('origin component progress', () => {
       'shadcn/progress',
       'shadcn/separator',
       'shadcn/skeleton',
+      'shadcn/textarea',
     ]
 
     expect(
@@ -91,10 +92,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('shadcn/textarea')
+    expect(nextRow?.itemId).toBe('base-ui/switch')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://ui.shadcn.com/docs/components/textarea',
+      'https://base-ui.com/react/components/switch',
+      'https://ui.shadcn.com/docs/components/switch',
     ])
   })
 

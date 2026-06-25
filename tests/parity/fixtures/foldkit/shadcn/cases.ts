@@ -96,6 +96,10 @@ import {
   SkeletonTable,
   SkeletonText,
 } from '../../../../../src/registry/shadcn/skeleton/examples'
+import {
+  TextareaButton,
+  TextareaDemo,
+} from '../../../../../src/registry/shadcn/textarea/examples'
 import type { ShadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 import { shadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 
@@ -178,6 +182,8 @@ const components: Readonly<Record<string, () => Html>> = {
   'skeleton-rtl': SkeletonRtl,
   'skeleton-table': SkeletonTable,
   'skeleton-text': SkeletonText,
+  'textarea-button': TextareaButton,
+  'textarea-demo': TextareaDemo,
 }
 
 const foldkitSourcePath = (id: string): string => {
@@ -219,6 +225,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('native-select-')) {
     return 'src/registry/shadcn/native-select/examples.ts'
+  }
+
+  if (id.startsWith('textarea-')) {
+    return 'src/registry/shadcn/textarea/examples.ts'
   }
 
   return 'src/registry/shadcn/button/examples.ts'

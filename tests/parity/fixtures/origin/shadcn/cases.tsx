@@ -68,6 +68,8 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
+import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
@@ -188,6 +190,8 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'skeleton-rtl': SkeletonRtl,
   'skeleton-table': SkeletonTable,
   'skeleton-text': SkeletonText,
+  'textarea-button': TextareaButton,
+  'textarea-demo': TextareaDemo,
 }
 
 export const shadcnOriginCases: ReadonlyArray<ShadcnOriginCase> =

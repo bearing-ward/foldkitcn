@@ -380,4 +380,14 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       title: 'Skeleton text',
       originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-text.tsx',
     },
+    {
+      id: 'textarea-button',
+      title: 'Textarea button',
+      originFilePath: 'repos/ui/apps/v4/examples/base/textarea-button.tsx',
+    },
+    {
+      id: 'textarea-demo',
+      title: 'Textarea demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/textarea-demo.tsx',
+    },
   ]
