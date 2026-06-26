@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T16:48:46.182Z",
+  "generatedAt": "2026-06-26T17:08:30.306Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -855,6 +855,168 @@
           "path": "src/registry/base-ui/dialog/index.ts",
           "sha256": "5326236f8c3bcc263d5e9d872b85d215b2682fac3383dab2764015fe73614c3e",
           "sizeBytes": 11072,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/fieldset",
+        "namespace": "base-ui",
+        "name": "Fieldset",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Fieldset primitive preserving native fieldset disabled behavior, explicit legend association, parent-disabled propagation, and root/legend data attributes without hidden runtime state.",
+        "sourceRoot": "registry-src/base-ui/fieldset",
+        "installableSourcePaths": ["src/registry/base-ui/fieldset/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Fieldset",
+            "docsUrl": "https://base-ui.com/react/components/fieldset",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/fieldset",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/fieldset/index.parts.ts",
+              "repos/base-ui/packages/react/src/fieldset/index.ts",
+              "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.tsx",
+              "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.tsx",
+              "repos/base-ui/packages/react/src/fieldset/root/FieldsetRootContext.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.test.tsx",
+              "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema and predicate helpers for serializable options and explicit disabled/legend state."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/fieldset",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/fieldset",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/fieldset",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/fieldset",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "base-ui/fieldset-origin-fixture",
+            "title": "FieldsetOriginFixture",
+            "description": "Static origin-evidence fixture derived from Base UI Fieldset Root and Legend output because the worktree origin checkout is a placeholder.",
+            "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
+            "kind": "origin-fixture"
+          },
+          {
+            "id": "base-ui/fieldset-foldkit-fixture",
+            "title": "FieldsetFoldkitFixture",
+            "description": "Foldkit parity fixture exercising root, legend, disabled, and explicit legend id behavior.",
+            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "base-ui/fieldset",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-fieldset-explicit-legend-id",
+            "base-ui-fieldset-root-legend-only",
+            "base-ui-fieldset-static-origin-fixture"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-fieldset-explicit-legend-id",
+            "summary": "Legend association uses an explicit or root-derived legendId option instead of React context registration.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit render helpers are stateless and do not use hidden mutable context. Root aria-labelledby and legend id are derived from config or supplied by the consumer."
+          },
+          {
+            "id": "base-ui-fieldset-root-legend-only",
+            "summary": "Only Root and Legend parts are implemented; description, error, invalid, and required Fieldset parts or states are omitted.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The pinned Base UI Fieldset source and docs expose Root and Legend only, with disabled as the only Fieldset state. Additional form field states belong to later Field/Form primitives."
+          },
+          {
+            "id": "base-ui-fieldset-static-origin-fixture",
+            "summary": "Parity origin fixture uses static source-derived markup rather than importing the placeholder worktree's Base UI checkout.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "This worktree has an empty repos/base-ui placeholder, so the fixture records source-derived Root and Legend output as evidence while installable source remains Foldkit-native."
+          }
+        ]
+      },
+      "manifestHash": "f0f0c8b232223c480630f9061bb1180d76247d9aa46ec6de0d7fed339fe458a9",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/fieldset/item.json",
+          "sha256": "27304675caf6b5b708e3dc428919451c61958fb92697ad5523008dc3c07edb5e",
+          "sizeBytes": 6402,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/fieldset/index.ts",
+          "sha256": "a19fc4c07aabca0530b840f355e8ebfeb319a0ea63077a2991cf7713014a55af",
+          "sizeBytes": 3475,
           "role": "source"
         }
       ]

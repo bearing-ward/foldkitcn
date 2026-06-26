@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 17,
-      remaining: 21,
+      imported: 18,
+      remaining: 20,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
@@ -53,6 +53,7 @@ describe('origin component progress', () => {
       'base-ui/checkbox',
       'base-ui/collapsible',
       'base-ui/dialog',
+      'base-ui/fieldset',
       'base-ui/input',
       'base-ui/meter',
       'base-ui/popover',
@@ -114,10 +115,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/fieldset')
+    expect(nextRow?.itemId).toBe('base-ui/number-field')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/fieldset',
+      'https://base-ui.com/react/components/number-field',
     ])
   })
 
