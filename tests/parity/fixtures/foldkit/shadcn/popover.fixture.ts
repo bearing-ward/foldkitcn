@@ -17,6 +17,7 @@ const shadcnPopoverRoot = (
     align?: ShadcnPopover.PopoverAlign
     contentClassName?: string
     dir?: string
+    modal?: ShadcnPopover.PopoverModalMode
     side?: ShadcnPopover.PopoverSide
   }>,
 ) =>
@@ -26,6 +27,7 @@ const shadcnPopoverRoot = (
     align: options.align,
     contentClassName: options.contentClassName,
     dir: options.dir,
+    modal: options.modal,
     side: options.side,
   })
 
@@ -39,6 +41,10 @@ export const cases: ReadonlyArray<FixtureCase> = [
     snapshot: snapshot(
       shadcnPopoverRoot({ open: true, contentClassName: 'w-80' }),
     ),
+  },
+  {
+    id: 'popover-modal',
+    snapshot: snapshot(shadcnPopoverRoot({ open: true, modal: true })),
   },
   {
     id: 'popover-rtl',

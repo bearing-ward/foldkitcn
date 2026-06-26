@@ -32,12 +32,14 @@ const snapshotPopover = (
     align?: string
     contentClassName?: string
     dir?: string
+    modal?: boolean | 'trap-focus'
     side?: string
   }>,
 ) => {
   const side = options.side ?? 'bottom'
   const align = options.align ?? 'center'
   const root = document.createElement('div')
+  root.dataset.modal = String(options.modal ?? false)
   root.dataset.side = side
   root.dataset.align = align
   root.dataset.slot = 'popover'
@@ -80,6 +82,7 @@ const snapshotPopover = (
   content.setAttribute('popover', 'manual')
   content.setAttribute('role', 'dialog')
   content.setAttribute('tabindex', '-1')
+  content.setAttribute('aria-modal', String((options.modal ?? false) !== false))
   content.setAttribute('aria-labelledby', 'profile-popover-title')
   content.setAttribute('aria-describedby', 'profile-popover-description')
   content.dataset.open = ''
@@ -146,6 +149,10 @@ export const cases: ReadonlyArray<FixtureCase> = [
   {
     id: 'popover-demo',
     snapshot: snapshotPopover({ open: true, contentClassName: 'w-80' }),
+  },
+  {
+    id: 'popover-modal',
+    snapshot: snapshotPopover({ open: true, modal: true }),
   },
   {
     id: 'popover-rtl',

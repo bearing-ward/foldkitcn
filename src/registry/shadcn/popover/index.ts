@@ -9,6 +9,7 @@ import * as BasePopover from '../../base-ui/popover'
 
 export type PopoverAlign = BasePopover.PopoverAlign
 export type PopoverChangeReason = BasePopover.PopoverChangeReason
+export type PopoverModalMode = BasePopover.PopoverModalMode
 export type PopoverOpenChange = BasePopover.PopoverOpenChange
 export type PopoverSide = BasePopover.PopoverSide
 export type PopoverTransitionStatus = BasePopover.PopoverTransitionStatus
@@ -41,6 +42,7 @@ export const {
   popupId,
   positionerId,
   titleId,
+  triggerId,
   triggerOpenChange,
   triggerSelector,
 } = BasePopover

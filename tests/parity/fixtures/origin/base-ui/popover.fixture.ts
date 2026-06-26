@@ -25,6 +25,7 @@ const appendPopoverParts = (
     align?: string
     alignOffset?: number
     forceMount?: boolean
+    modal?: boolean | 'trap-focus'
     side?: string
     sideOffset?: number
   }>,
@@ -65,6 +66,7 @@ const appendPopoverParts = (
   popup.setAttribute('popover', 'manual')
   popup.setAttribute('role', 'dialog')
   popup.setAttribute('tabindex', '-1')
+  popup.setAttribute('aria-modal', String((options.modal ?? false) !== false))
   popup.setAttribute('aria-labelledby', 'settings-title')
   popup.setAttribute('aria-describedby', 'settings-description')
   popup.setAttribute(options.open ? 'data-open' : 'data-closed', '')
@@ -120,11 +122,13 @@ const popoverRoot = (
     alignOffset?: number
     forceMount?: boolean
     keyboard?: FixtureSnapshot['keyboardBehavior']
+    modal?: boolean | 'trap-focus'
     side?: string
     sideOffset?: number
   }>,
 ): FixtureSnapshot => {
   const root = document.createElement('div')
+  root.dataset.modal = String(options.modal ?? false)
   root.dataset.side = options.side ?? 'bottom'
   root.dataset.align = options.align ?? 'center'
 
@@ -179,6 +183,10 @@ export const cases: ReadonlyArray<FixtureCase> = [
   {
     id: 'popover-force-mounted',
     snapshot: popoverRoot({ open: false, forceMount: true, alignOffset: 2 }),
+  },
+  {
+    id: 'popover-modal',
+    snapshot: popoverRoot({ open: true, modal: true }),
   },
   {
     id: 'popover-disabled',

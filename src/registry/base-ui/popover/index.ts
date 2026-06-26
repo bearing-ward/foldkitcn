@@ -24,6 +24,9 @@ export const PopoverAlign = S.Union([
 ])
 export type PopoverAlign = typeof PopoverAlign.Type
 
+export const PopoverModalMode = S.Union([S.Boolean, S.Literal('trap-focus')])
+export type PopoverModalMode = typeof PopoverModalMode.Type
+
 export const PopoverTransitionStatus = S.Union([
   S.Literal('idle'),
   S.Literal('starting'),
@@ -49,12 +52,14 @@ export type PopoverOpenChange = typeof PopoverOpenChange.Type
 export const PopoverOptions = S.Struct({
   id: S.String,
   open: S.Boolean,
+  modal: S.optional(PopoverModalMode),
   isDisabled: S.optional(S.Boolean),
   forceMount: S.optional(S.Boolean),
   transitionStatus: S.optional(PopoverTransitionStatus),
   titleId: S.optional(S.String),
   descriptionId: S.optional(S.String),
   focusSelector: S.optional(S.String),
+  triggerId: S.optional(S.String),
   triggerSelector: S.optional(S.String),
   disableOutsidePress: S.optional(S.Boolean),
   side: S.optional(PopoverSide),
@@ -83,6 +88,7 @@ export type CommandMessage = typeof CommandMessage.Type
 
 const defaultSide: PopoverSide = 'bottom'
 const defaultAlign: PopoverAlign = 'center'
+const defaultModal: PopoverModalMode = false
 const defaultSideOffset = 0
 const defaultAlignOffset = 0
 const defaultCollisionAvoidance = true
@@ -111,9 +117,13 @@ export const descriptionId = (
 
 export const popoverSelector = (id: string): string => `#${popupId({ id })}`
 
+export const triggerId = (
+  config: Pick<PopoverOptions, 'id' | 'triggerId'>,
+): string => config.triggerId ?? `${config.id}-trigger`
+
 export const triggerSelector = (
-  config: Pick<PopoverOptions, 'id' | 'triggerSelector'>,
-): string => config.triggerSelector ?? `#${config.id}-trigger`
+  config: Pick<PopoverOptions, 'id' | 'triggerId' | 'triggerSelector'>,
+): string => config.triggerSelector ?? `#${triggerId(config)}`
 
 export const openChange = (
   open: boolean,
@@ -139,43 +149,62 @@ export const FocusPopover = Command.define(
   'FocusPopover',
   {
     id: S.String,
+    modal: PopoverModalMode,
     maybeFocusSelector: maybeFocusSelectorSchema,
   },
   CompletedFocusPopover,
-)(({ id, maybeFocusSelector }) => {
+)(({ id, modal, maybeFocusSelector }) => {
   const selector = Option.getOrElse(maybeFocusSelector, () =>
     popoverSelector(id),
   )
-
-  return Dom.focus(selector, { makeFocusable: true }).pipe(
+  const focus = Dom.focus(selector, { makeFocusable: true }).pipe(
     Effect.ignore,
     Effect.catchCause(() => Effect.void),
     Effect.as(CompletedFocusPopover()),
   )
+
+  return modal === true
+    ? Dom.lockScroll.pipe(Effect.andThen(() => focus))
+    : focus
 })
 
 export const RestorePopoverFocus = Command.define(
   'RestorePopoverFocus',
-  { selector: S.String },
+  { modal: PopoverModalMode, selector: S.String },
   CompletedRestorePopoverFocus,
-)(({ selector }) =>
-  Dom.focus(selector).pipe(
+)(({ modal, selector }) => {
+  const restoreFocus = Dom.focus(selector).pipe(
     Effect.ignore,
     Effect.catchCause(() => Effect.void),
-    Effect.as(CompletedRestorePopoverFocus()),
-  ),
-)
+  )
+
+  if (modal === true) {
+    return restoreFocus.pipe(
+      Effect.andThen(() => Dom.unlockScroll),
+      Effect.as(CompletedRestorePopoverFocus()),
+    )
+  }
+
+  return restoreFocus.pipe(Effect.as(CompletedRestorePopoverFocus()))
+})
 
 export const commandForOpenChange = (
-  config: Pick<PopoverOptions, 'focusSelector' | 'id' | 'triggerSelector'>,
+  config: Pick<
+    PopoverOptions,
+    'focusSelector' | 'id' | 'modal' | 'triggerId' | 'triggerSelector'
+  >,
   change: PopoverOpenChange,
 ): Command.Command<CommandMessage> =>
   change.open
     ? FocusPopover({
         id: config.id,
+        modal: config.modal ?? defaultModal,
         maybeFocusSelector: Option.fromNullishOr(config.focusSelector),
       })
-    : RestorePopoverFocus({ selector: triggerSelector(config) })
+    : RestorePopoverFocus({
+        modal: config.modal ?? defaultModal,
+        selector: triggerSelector(config),
+      })
 
 // VIEW
 
@@ -211,6 +240,10 @@ const resolvedSide = (config: Pick<PopoverOptions, 'side'>): PopoverSide =>
 
 const resolvedAlign = (config: Pick<PopoverOptions, 'align'>): PopoverAlign =>
   config.align ?? defaultAlign
+
+const resolvedModal = (
+  config: Pick<PopoverOptions, 'modal'>,
+): PopoverModalMode => config.modal ?? defaultModal
 
 const mounted = (
   config: Pick<PopoverOptions, 'forceMount' | 'open' | 'transitionStatus'>,
@@ -274,6 +307,7 @@ const rootAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => [
+  h.DataAttribute('modal', String(resolvedModal(config))),
   h.DataAttribute('side', resolvedSide(config)),
   h.DataAttribute('align', resolvedAlign(config)),
   ...booleanDataAttribute(h, 'disabled', config.isDisabled),
@@ -283,7 +317,7 @@ const triggerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => [
-  h.Id(triggerSelector(config).slice(1)),
+  h.Id(triggerId(config)),
   h.Type('button'),
   h.AriaHasPopup('dialog'),
   h.AriaExpanded(config.open),
@@ -383,6 +417,7 @@ const popupAttributes = <Message>(
         h.Role('dialog'),
         h.Tabindex(-1),
         ...(config.open ? [] : [h.Hidden(true)]),
+        h.AriaModal(resolvedModal(config) !== false),
         h.AriaLabelledBy(titleId(config)),
         h.Attribute('aria-describedby', descriptionId(config)),
         ...openStateDataAttributes(h, config.open),

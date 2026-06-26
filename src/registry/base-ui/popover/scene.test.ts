@@ -118,6 +118,9 @@ describe('base-ui/popover', () => {
         ).toHaveAttr('aria-haspopup', 'dialog'),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
+        ).toHaveAttr('id', 'settings-popover-trigger'),
+        Scene.expect(
+          Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('aria-expanded', 'true'),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
@@ -138,6 +141,14 @@ describe('base-ui/popover', () => {
           'role',
           'dialog',
         ),
+        Scene.expect(Scene.selector('div[data-modal]')).toHaveAttr(
+          'data-modal',
+          'false',
+        ),
+        Scene.expect(Scene.selector('#settings-popover-popup')).toHaveAttr(
+          'aria-modal',
+          'false',
+        ),
         Scene.expect(Scene.selector('#settings-popover-popup')).toHaveAttr(
           'data-open',
         ),
@@ -149,6 +160,53 @@ describe('base-ui/popover', () => {
         Scene.expect(Scene.selector('#settings-description')).toHaveText(
           'Manage settings.',
         ),
+      )
+    }).not.toThrow()
+  })
+
+  test('renders modal true and trap-focus modes as deterministic attributes', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewPopover({ modal: true }) },
+        Scene.with({ ...initialModel, open: true }),
+        Scene.expect(Scene.selector('div[data-modal]')).toHaveAttr(
+          'data-modal',
+          'true',
+        ),
+        Scene.expect(Scene.selector('#settings-popover-popup')).toHaveAttr(
+          'aria-modal',
+          'true',
+        ),
+      )
+      Scene.scene(
+        { update, view: viewPopover({ modal: 'trap-focus' }) },
+        Scene.with({ ...initialModel, open: true }),
+        Scene.expect(Scene.selector('div[data-modal]')).toHaveAttr(
+          'data-modal',
+          'trap-focus',
+        ),
+        Scene.expect(Scene.selector('#settings-popover-popup')).toHaveAttr(
+          'aria-modal',
+          'true',
+        ),
+      )
+    }).not.toThrow()
+  })
+
+  test('keeps trigger id separate from custom focus restore selector', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update,
+          view: viewPopover({
+            triggerId: 'explicit-trigger',
+            triggerSelector: '.restore-target',
+          }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.role('button', { name: 'Open settings' }),
+        ).toHaveAttr('id', 'explicit-trigger'),
       )
     }).not.toThrow()
   })
@@ -226,5 +284,48 @@ describe('base-ui/popover', () => {
         ),
       )
     }).not.toThrow()
+  })
+
+  test('commandForOpenChange preserves modal and selector information', () => {
+    const openCommand = Popover.commandForOpenChange(
+      { id: 'settings-popover', modal: true },
+      Popover.triggerOpenChange(),
+    )
+    const closeCommand = Popover.commandForOpenChange(
+      {
+        id: 'settings-popover',
+        modal: true,
+        triggerSelector: '.restore-target',
+      },
+      Popover.closeOpenChange(),
+    )
+
+    expect(openCommand.name).toBe('FocusPopover')
+    expect(openCommand.args).toMatchObject({
+      id: 'settings-popover',
+      modal: true,
+    })
+    expect(closeCommand.name).toBe('RestorePopoverFocus')
+    expect(closeCommand.args).toStrictEqual({
+      modal: true,
+      selector: '.restore-target',
+    })
+  })
+
+  test('commandForOpenChange forwards trap-focus without scroll-locking claims', () => {
+    const openCommand = Popover.commandForOpenChange(
+      { id: 'settings-popover', modal: 'trap-focus' },
+      Popover.triggerOpenChange(),
+    )
+    const closeCommand = Popover.commandForOpenChange(
+      { id: 'settings-popover', modal: 'trap-focus' },
+      Popover.closeOpenChange(),
+    )
+
+    expect(openCommand.args).toMatchObject({ modal: 'trap-focus' })
+    expect(closeCommand.args).toMatchObject({
+      modal: 'trap-focus',
+      selector: '#settings-popover-trigger',
+    })
   })
 })

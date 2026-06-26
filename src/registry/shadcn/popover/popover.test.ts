@@ -205,6 +205,25 @@ describe('shadcn/popover view', () => {
     }).not.toThrow()
   })
 
+  test('passes Base UI modal attributes through', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update,
+          view: viewPopover({ modal: true }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="popover"]')).toHaveAttr(
+          'data-modal',
+          'true',
+        ),
+        Scene.expect(
+          Scene.selector('[data-slot="popover-content"]'),
+        ).toHaveAttr('aria-modal', 'true'),
+      )
+    }).not.toThrow()
+  })
+
   test('passes dir and closed force-mounted state through', () => {
     expect(() => {
       Scene.scene(

@@ -94,6 +94,10 @@ export const cases: ReadonlyArray<FixtureCase> = [
     ),
   },
   {
+    id: 'popover-modal',
+    snapshot: snapshot(() => popoverRoot({ open: true, modal: true })),
+  },
+  {
     id: 'popover-disabled',
     snapshot: snapshot(
       () => popoverRoot({ open: false, isDisabled: true, forceMount: true }),

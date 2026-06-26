@@ -4,7 +4,7 @@
   "namespace": "shadcn",
   "name": "Popover",
   "kind": "component",
-  "description": "Foldkit-native shadcn base-nova Popover wrapper composed from the local Base UI Popover primitive, shadcn slot classes, local class canonicalization, deterministic placement attributes, and local static examples.",
+  "description": "Foldkit-native shadcn base-nova Popover wrapper composed from the local Base UI Popover primitive, shadcn slot classes, local class canonicalization, deterministic modal and placement attributes, and local static examples.",
   "sourceRoot": "registry-src/shadcn/popover",
   "installableSourcePaths": [
     "src/registry/shadcn/popover/index.ts",
@@ -186,7 +186,8 @@
     "acceptedDeviationIds": [
       "shadcn-popover-local-base-ui",
       "shadcn-popover-local-example-shells",
-      "shadcn-popover-deterministic-placement-attributes"
+      "shadcn-popover-deterministic-placement-attributes",
+      "shadcn-popover-partial-modal-trap-focus"
     ]
   },
   "lifecycle": {
@@ -216,6 +217,13 @@
       "required": true,
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+    },
+    {
+      "id": "shadcn-popover-partial-modal-trap-focus",
+      "summary": "The wrapper passes through the local Base UI modal surface, including data and ARIA attributes, but inherits the partial non-dialog trap-focus and pointer-isolation support.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The local Base UI Popover exposes modal as structured Foldkit data and commands without claiming full upstream modal parity where Foldkit has no reusable non-dialog focus-trap or pointer-isolation primitive."
     }
   ]
 }

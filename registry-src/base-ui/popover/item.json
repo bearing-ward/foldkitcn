@@ -4,7 +4,7 @@
   "namespace": "base-ui",
   "name": "Popover",
   "kind": "component",
-  "description": "Foldkit-native Base UI Popover primitive preserving model-owned open state, trigger/open/close facts, deterministic side and align placement attributes, popup ARIA relationships, command-facing focus helpers, backdrop, arrow, and title/description wiring.",
+  "description": "Foldkit-native Base UI Popover primitive preserving model-owned open state, trigger/open/close facts, deterministic modal and placement attributes, popup ARIA relationships, command-facing focus and scroll-lock helpers, backdrop, arrow, and title/description wiring.",
   "sourceRoot": "registry-src/base-ui/popover",
   "installableSourcePaths": ["src/registry/base-ui/popover/index.ts"],
   "consumedThemeTokens": [],
@@ -108,7 +108,8 @@
     "acceptedDeviationIds": [
       "base-ui-popover-model-owned-open-state",
       "base-ui-popover-command-facing-focus-effects",
-      "base-ui-popover-deterministic-placement-attributes"
+      "base-ui-popover-deterministic-placement-attributes",
+      "base-ui-popover-partial-modal-trap-focus"
     ]
   },
   "lifecycle": {
@@ -138,6 +139,13 @@
       "required": true,
       "status": "accepted",
       "rationale": "Real collision handling depends on measured geometry and should be added through a shared measurement service, not an ad hoc render helper side effect."
+    },
+    {
+      "id": "base-ui-popover-partial-modal-trap-focus",
+      "summary": "The modal surface is exposed with data and ARIA attributes, and modal=true locks scroll through commands, but pointer isolation and non-dialog trap-focus are not fully implemented.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit currently provides scroll lock, focus, and dialog-specific modal helpers, but this registry item does not have a shared non-dialog focus-trap or pointer-isolation command primitive. The 'trap-focus' mode is therefore command-facing and explicit rather than hidden inside render helpers."
     }
   ]
 }
