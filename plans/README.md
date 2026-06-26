@@ -38,7 +38,7 @@ honor its STOP conditions, and update your row when done.
 | 028 | Implement Base UI and shadcn Collapsible | P1 | M | 004, 019 | DONE |
 | 029 | Implement Base UI and shadcn Toggle | P1 | M | 004, 019 | DONE |
 | 030 | Implement Base UI and shadcn Toggle Group | P1 | L | 029 | DONE |
-| 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | TODO |
+| 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | DONE |
 | 032 | Implement Base UI and shadcn Accordion | P1 | L | 028 | TODO |
 | 033 | Implement Base UI and shadcn Dialog | P1 | L | 004, 019 | TODO |
 | 034 | Implement Base UI and shadcn Popover | P1 | L | 033 | TODO |
