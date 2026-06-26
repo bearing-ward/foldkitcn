@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T14:08:38.167Z
+Generated at: 2026-06-26T15:02:14.204Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       13 |    38 |        25 |
-| shadcn docs  |       19 |    59 |        40 |
+| Base UI docs |       14 |    38 |        24 |
+| shadcn docs  |       20 |    59 |        39 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 60
+- Dossier-ready rows: 58
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-26T14:08:38.167Z
 
 | Item                | Readiness     | Parity      | URLs                                                                                                                  | Blockers |
 | ------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/slider`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)       |          |
 | `base-ui/accordion` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion) |          |
 | `base-ui/dialog`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/dialog)<br>[origin](https://ui.shadcn.com/docs/components/dialog)       |          |
 | `base-ui/popover`   | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover)     |          |
+| `base-ui/fieldset`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/fieldset)                                                               |          |
 
 ## Imported Items
 
@@ -56,6 +56,8 @@ Generated at: 2026-06-26T14:08:38.167Z
 - `shadcn/toggle`
 - `base-ui/toggle-group`
 - `shadcn/toggle-group`
+- `base-ui/slider`
+- `shadcn/slider`
 - `base-ui/meter`
 - `shadcn/native-select`
 - `shadcn/alert`
@@ -69,8 +71,6 @@ None.
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/slider`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)                   |          |
-| `shadcn/slider`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)                   |          |
 | `base-ui/accordion`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion)             |          |
 | `shadcn/accordion`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion)             |          |
 | `base-ui/dialog`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/dialog)<br>[origin](https://ui.shadcn.com/docs/components/dialog)                   |          |
