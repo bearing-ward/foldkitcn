@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-25T23:24:36.056Z",
+  "generatedAt": "2026-06-26T01:57:07.564Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -735,6 +735,147 @@
           "path": "src/registry/base-ui/progress/index.ts",
           "sha256": "a62c344cad98ba817a4c8511edf4dfd359b9d1244103cad975b7a28b6269666b",
           "sizeBytes": 5850,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/radio-group",
+        "namespace": "base-ui",
+        "name": "Radio Group",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Radio Group primitive preserving controlled group value semantics, item checked state, disabled/read-only/required/invalid states, arrow-key roving selection payloads, Space keyup activation, and native radio form inputs without internal state.",
+        "sourceRoot": "registry-src/base-ui/radio-group",
+        "installableSourcePaths": ["src/registry/base-ui/radio-group/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Radio Group",
+            "docsUrl": "https://base-ui.com/react/components/radio-group",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/radio-group",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/radio-group/index.ts",
+              "repos/base-ui/packages/react/src/radio-group/RadioGroup.tsx",
+              "repos/base-ui/packages/react/src/radio-group/RadioGroupContext.ts",
+              "repos/base-ui/packages/react/src/radio-group/RadioGroupDataAttributes.ts",
+              "repos/base-ui/packages/react/src/radio/root/RadioRoot.tsx",
+              "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.tsx"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.ts"
+            ],
+            "examplePaths": [],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/radio-group/RadioGroup.test.tsx",
+              "repos/base-ui/packages/react/src/radio-group/RadioGroup.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/radio-group",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/radio-group",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/radio-group",
+              "reason": "Origin Base UI React group primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/radio",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/radio-group",
+              "reason": "Radio item and indicator public semantics are included in this grouped Foldkit primitive for this implementation slice."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/radio-group",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/radio-group.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/radio-group.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-radio-group-focus-selector-payload",
+            "base-ui-radio-group-radio-parts-colocated"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-radio-group-focus-selector-payload",
+            "summary": "Arrow-key roving selection emits a focus selector payload instead of mutating focus internally.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit installable source is stateless and pure. The consuming update owns model changes and can run focus commands from the emitted selector without hidden component state."
+          },
+          {
+            "id": "base-ui-radio-group-radio-parts-colocated",
+            "summary": "Radio root, indicator, and input semantics are exposed through the Radio Group item descriptors instead of a separate base-ui/radio registry item.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "This implementation slice is scoped to base-ui/radio-group and shadcn/radio-group. Colocating item attributes preserves the public grouped radio behavior without introducing an out-of-scope registry item."
+          }
+        ]
+      },
+      "manifestHash": "c9c2fe3e433a5a264a89b6fe9ad5a9292cb5a262afed71bdb2f99cf871125790",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/radio-group/item.json",
+          "sha256": "bdbfa9c4016aad4519f88a55c360242966ba87cc7ec6331eca6c9a1c21324517",
+          "sizeBytes": 5250,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/radio-group/index.ts",
+          "sha256": "9d90133aed663af8e1bec7af163247e3ad6af0f15dca268b7bbb1a9cc1b4f21e",
+          "sizeBytes": 13977,
           "role": "source"
         }
       ]
@@ -3318,6 +3459,180 @@
           "path": "src/registry/shadcn/progress/examples.ts",
           "sha256": "8c50345d3cd152a8a1335ec1d68a34f6302b6b7d0196cecac4a40ef5cbad4fb3",
           "sizeBytes": 1481,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/radio-group",
+        "namespace": "shadcn",
+        "name": "Radio Group",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
+        "sourceRoot": "registry-src/shadcn/radio-group",
+        "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+        "consumedThemeTokens": [
+          "--destructive",
+          "--input",
+          "--primary",
+          "--primary-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Radio Group",
+            "docsUrl": "https://ui.shadcn.com/docs/components/radio-group",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/radio-group.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/radio-group.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/radio-group.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/radio-group.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/radio-group-choice-card.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-demo.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-description.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-fieldset.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-invalid.tsx",
+              "repos/ui/apps/v4/examples/base/radio-group-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/radio-group",
+              "classification": "registry-local",
+              "target": "base-ui/radio-group",
+              "reason": "shadcn Radio Group composes the local Base UI Radio Group primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Radio Group uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema through the wrapper style options and local Base UI dependency."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/radio",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/radio-group",
+              "reason": "Origin Base UI React radio primitive is replaced by local Foldkit Radio Group item attributes."
+            },
+            {
+              "specifier": "@base-ui/react/radio-group",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/radio-group",
+              "reason": "Origin Base UI React group primitive is replaced by the local Foldkit Base UI Radio Group implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin examples reference Field before that registry item exists; installable source only ships the radio group wrapper."
+            },
+            {
+              "specifier": "shadcn/label",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin examples reference Label before that registry item exists; installable source only ships the radio group wrapper."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is fixture evidence only and is not required by installable source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "shadcn/radio-group",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/radio-group.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/radio-group.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": ["shadcn-radio-group-local-base-ui-items"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-radio-group-local-base-ui-items",
+            "summary": "The shadcn wrapper composes local Radio Group item attributes instead of importing separate upstream Radio and RadioGroup React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, and indicator rendering over the local Foldkit primitive."
+          }
+        ]
+      },
+      "manifestHash": "4559f7409a6a689d2106a12f587fa36bdd09023f7e650c749b13d8fcf3d3907a",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/radio-group/item.json",
+          "sha256": "c37d62c5b818c4b5f45a10667b320a7efebee3699998851160b7ddb9d29edaab",
+          "sizeBytes": 6034,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/radio-group/index.ts",
+          "sha256": "fefb62985aff034c160bdc6f7c62206354876d448271c509f63083c7a8d16178",
+          "sizeBytes": 5372,
           "role": "source"
         }
       ]

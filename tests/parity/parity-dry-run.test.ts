@@ -32,6 +32,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/switch',
       'shadcn/skeleton',
       'shadcn/textarea',
+      'shadcn/radio-group',
     ])
 
     expect(matchingItemIds('shadcn/')).toStrictEqual([
@@ -49,6 +50,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/switch',
       'shadcn/skeleton',
       'shadcn/textarea',
+      'shadcn/radio-group',
     ])
   })
 
