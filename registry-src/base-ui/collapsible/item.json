@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/collapsible",
+  "namespace": "base-ui",
+  "name": "Collapsible",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Collapsible primitive preserving model-owned open state, trigger activation, ARIA expanded and controls relationships, root/trigger/panel state data attributes, disabled trigger behavior, and panel mounting policy.",
+  "sourceRoot": "registry-src/base-ui/collapsible",
+  "installableSourcePaths": ["src/registry/base-ui/collapsible/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Collapsible",
+      "docsUrl": "https://base-ui.com/react/components/collapsible",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/collapsible",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/collapsible/index.parts.ts",
+        "repos/base-ui/packages/react/src/collapsible/index.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.tsx",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/collapsible/panel/useCollapsiblePanel.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.tsx",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootContext.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/collapsible/root/useCollapsibleRoot.ts",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.tsx",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.test.tsx",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.test.tsx",
+        "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.spec.tsx",
+        "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/collapsible",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/collapsible",
+        "reason": "Origin Base UI React Collapsible primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/collapsible",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/collapsible",
+        "reason": "Origin Base UI React Collapsible primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/collapsible",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/collapsible.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/collapsible.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-collapsible-model-owned-open-state",
+      "base-ui-collapsible-consumer-provided-panel-id",
+      "base-ui-collapsible-transition-measurement-input"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-collapsible-model-owned-open-state",
+      "summary": "Open state is a model-owned input and trigger presses emit open-change facts instead of mutating internal component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model in response to CollapsibleOpenChange payloads."
+    },
+    {
+      "id": "base-ui-collapsible-consumer-provided-panel-id",
+      "summary": "ARIA controls relationships use caller-provided ids instead of generated React ids.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable render helpers are pure and deterministic. Consumers provide stable root or panel ids when they need aria-controls wiring."
+    },
+    {
+      "id": "base-ui-collapsible-transition-measurement-input",
+      "summary": "Transition status and panel dimensions are explicit inputs rather than DOM-measured internal state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Base UI measures scroll dimensions for animated panels. Foldkit registry primitives stay pure; shared animation measurement belongs in a future runtime policy or consumer command."
+    }
+  ]
+}

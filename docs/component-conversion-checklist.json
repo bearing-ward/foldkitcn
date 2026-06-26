@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T02:22:21.629Z",
+  "generatedAt": "2026-06-26T02:50:15.404Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 10,
-      "remaining": 28
+      "imported": 11,
+      "remaining": 27
     },
     "shadcn": {
       "total": 59,
-      "imported": 16,
-      "remaining": 43
+      "imported": 17,
+      "remaining": 42
     },
     "shadcnSourceFileCount": 55,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 66,
+    "dossierReadyCount": 64,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -541,24 +541,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/collapsible/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/collapsible",
-        "https://ui.shadcn.com/docs/components/collapsible"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/collapsible"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/collapsible",
@@ -567,26 +564,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/collapsible/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/collapsible",
-        "https://ui.shadcn.com/docs/components/collapsible"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/collapsible"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/button",
