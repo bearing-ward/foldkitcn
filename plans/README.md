@@ -35,7 +35,7 @@ honor its STOP conditions, and update your row when done.
 | 025 | Implement Base UI and shadcn Checkbox | P1 | M | 004, 019 | DONE |
 | 026 | Implement Base UI and shadcn Radio Group | P1 | L | 004, 019 | DONE |
 | 027 | Implement Base UI and shadcn Tabs | P1 | L | 004, 019 | DONE |
-| 028 | Implement Base UI and shadcn Collapsible | P1 | M | 004, 019 | TODO |
+| 028 | Implement Base UI and shadcn Collapsible | P1 | M | 004, 019 | DONE |
 | 029 | Implement Base UI and shadcn Toggle | P1 | M | 004, 019 | TODO |
 | 030 | Implement Base UI and shadcn Toggle Group | P1 | L | 029 | TODO |
 | 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | TODO |
