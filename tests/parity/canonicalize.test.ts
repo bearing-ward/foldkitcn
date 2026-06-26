@@ -129,6 +129,8 @@ describe('parity canonicalizers', () => {
       'shadcn/textarea',
       'base-ui/dialog',
       'shadcn/dialog',
+      'base-ui/popover',
+      'shadcn/popover',
       'base-ui/radio-group',
       'shadcn/radio-group',
       'base-ui/tabs',
