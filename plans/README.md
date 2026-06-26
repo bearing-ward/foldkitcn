@@ -40,7 +40,7 @@ honor its STOP conditions, and update your row when done.
 | 030 | Implement Base UI and shadcn Toggle Group | P1 | L | 029 | DONE |
 | 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | DONE |
 | 032 | Implement Base UI and shadcn Accordion | P1 | L | 028 | DONE |
-| 033 | Implement Base UI and shadcn Dialog | P1 | L | 004, 019 | TODO |
+| 033 | Implement Base UI and shadcn Dialog | P1 | L | 004, 019 | DONE |
 | 034 | Implement Base UI and shadcn Popover | P1 | L | 033 | TODO |
 | 035 | Implement Base UI Fieldset | P1 | M | 007, 019 | TODO |
 | 036 | Implement shadcn Label | P1 | S | 007, 019 | TODO |
