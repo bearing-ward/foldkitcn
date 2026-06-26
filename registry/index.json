@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T01:57:07.564Z",
+  "generatedAt": "2026-06-26T02:04:54.419Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -874,8 +874,8 @@
         },
         {
           "path": "src/registry/base-ui/radio-group/index.ts",
-          "sha256": "9d90133aed663af8e1bec7af163247e3ad6af0f15dca268b7bbb1a9cc1b4f21e",
-          "sizeBytes": 13977,
+          "sha256": "c6c2f913c58a201ce276eb04efa3df69c15a9116cd4bc1a11133b96a38b9acb8",
+          "sizeBytes": 14126,
           "role": "source"
         }
       ]

@@ -237,6 +237,19 @@ describe('base-ui/radio-group', () => {
     }).not.toThrow()
   })
 
+  test('shift arrow keys pass through without changing selection', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewRadioGroup({}) },
+        Scene.with(initialModel),
+        Scene.keydown(Scene.selector('[data-testid="radio-a"]'), 'ArrowDown', {
+          shiftKey: true,
+        }),
+        Scene.expect(Scene.text('Value a')).toExist(),
+      )
+    }).not.toThrow()
+  })
+
   test('disabled and read-only groups suppress item activation', () => {
     expect(() => {
       Scene.scene(

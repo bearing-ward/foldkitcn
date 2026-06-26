@@ -1,5 +1,5 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 // MODEL
@@ -290,7 +290,12 @@ const rovingMessage = <Message>(
   config: ViewConfig<Message>,
   item: RadioGroupItemDescriptor,
   key: string,
+  modifiers: KeyboardModifiers,
 ): Option.Option<Message> => {
+  if (modifiers.shiftKey) {
+    return Option.none()
+  }
+
   const direction = arrowDirection(key, config)
 
   if (
@@ -324,7 +329,9 @@ const eventAttributes = <Message>(
       h.OnKeyUpPreventDefault(key =>
         key === ' ' ? Option.some(message) : Option.none(),
       ),
-      h.OnKeyDownPreventDefault(key => rovingMessage(config, item, key)),
+      h.OnKeyDownPreventDefault((key, modifiers) =>
+        rovingMessage(config, item, key, modifiers),
+      ),
     ],
   })
 
