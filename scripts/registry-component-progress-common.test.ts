@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 19,
-      remaining: 19,
+      imported: 20,
+      remaining: 18,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 24,
-      remaining: 35,
+      imported: 25,
+      remaining: 34,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -54,6 +54,7 @@ describe('origin component progress', () => {
       'base-ui/collapsible',
       'base-ui/dialog',
       'base-ui/fieldset',
+      'base-ui/field',
       'base-ui/input',
       'base-ui/meter',
       'base-ui/number-field',
@@ -78,6 +79,7 @@ describe('origin component progress', () => {
       'shadcn/kbd',
       'shadcn/label',
       'shadcn/input',
+      'shadcn/field',
       'shadcn/native-select',
       'shadcn/popover',
       'shadcn/progress',
@@ -117,11 +119,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/field')
+    expect(nextRow?.itemId).toBe('base-ui/form')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/field',
-      'https://ui.shadcn.com/docs/components/field',
+      'https://base-ui.com/react/components/form',
     ])
   })
 
