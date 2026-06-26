@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T02:04:54.419Z",
+  "generatedAt": "2026-06-26T02:29:20.060Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1093,6 +1093,156 @@
           "path": "src/registry/base-ui/switch/index.ts",
           "sha256": "e3c7b4d81c8bc1ba8cef6a21ef6aaa55f2adf58e00d1403ff035ddc7884c3440",
           "sizeBytes": 7822,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/tabs",
+        "namespace": "base-ui",
+        "name": "Tabs",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Tabs primitive preserving model-owned selected and highlighted values, root/list/tab/panel/indicator attributes, manual and automatic activation, orientation, disabled tabs, keyboard navigation, and panel mounting policy.",
+        "sourceRoot": "registry-src/base-ui/tabs",
+        "installableSourcePaths": ["src/registry/base-ui/tabs/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Tabs",
+            "docsUrl": "https://base-ui.com/react/components/tabs",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/tabs",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/tabs/index.parts.ts",
+              "repos/base-ui/packages/react/src/tabs/index.ts",
+              "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.tsx",
+              "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts",
+              "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorDataAttributes.ts",
+              "repos/base-ui/packages/react/src/tabs/list/TabsList.tsx",
+              "repos/base-ui/packages/react/src/tabs/list/TabsListDataAttributes.ts",
+              "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.tsx",
+              "repos/base-ui/packages/react/src/tabs/panel/TabsPanelDataAttributes.ts",
+              "repos/base-ui/packages/react/src/tabs/root/TabsRoot.tsx",
+              "repos/base-ui/packages/react/src/tabs/root/TabsRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/tabs/root/stateAttributesMapping.ts",
+              "repos/base-ui/packages/react/src/tabs/tab/TabsTab.tsx",
+              "repos/base-ui/packages/react/src/tabs/tab/TabsTabDataAttributes.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/tabs/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.test.tsx",
+              "repos/base-ui/packages/react/src/tabs/list/TabsList.test.tsx",
+              "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.test.tsx",
+              "repos/base-ui/packages/react/src/tabs/root/TabsRoot.test.tsx",
+              "repos/base-ui/packages/react/src/tabs/tab/TabsTab.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/tabs",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/tabs",
+              "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/tabs",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/tabs",
+              "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/tabs",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/tabs.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/tabs.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-tabs-model-owned-selection",
+            "base-ui-tabs-indicator-geometry-input"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-tabs-model-owned-selection",
+            "summary": "Selected and highlighted tab values are model-owned inputs instead of hidden component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit components preserve unidirectional data flow. The primitive emits value and highlight change payloads so consumers can update the model and run focus commands explicitly."
+          },
+          {
+            "id": "base-ui-tabs-indicator-geometry-input",
+            "summary": "Indicator CSS variable geometry is accepted as data instead of measured inside the render helper.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit render helpers are pure. DOM measurement belongs in a consumer command or runtime boundary, while the primitive still exposes the origin indicator attributes and CSS variable names."
+          }
+        ]
+      },
+      "manifestHash": "0d5c92c8a2493afe595533a0f9d94f123dcdeba61fa126268e24257bbfea11b3",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/tabs/item.json",
+          "sha256": "365ac065e247ef13d8afe0064e19606cefad95f75d6deb7c6681bf6d55923c4a",
+          "sizeBytes": 5861,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/tabs/index.ts",
+          "sha256": "e2ece7e7698e48bcf84dc1a524de6e01e1a99e886a149ccf1b4156aef106b257",
+          "sizeBytes": 15541,
           "role": "source"
         }
       ]
@@ -4274,6 +4424,245 @@
           "path": "src/registry/shadcn/switch/examples.ts",
           "sha256": "9034c44dcbd44e7a2696370fcd990d14831b150749b00ab6cf13c6250df2794a",
           "sizeBytes": 10938,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/tabs",
+        "namespace": "shadcn",
+        "name": "Tabs",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Tabs wrapper composed from the local Base UI Tabs primitive, shadcn root/list/trigger/content slots, local class canonicalization, and pure list variant classes.",
+        "sourceRoot": "registry-src/shadcn/tabs",
+        "installableSourcePaths": [
+          "src/registry/shadcn/tabs/index.ts",
+          "src/registry/shadcn/tabs/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--card",
+          "--card-foreground",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Tabs",
+            "docsUrl": "https://ui.shadcn.com/docs/components/tabs",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/tabs.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/tabs.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/tabs.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/tabs.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/tabs.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/tabs-demo.tsx",
+              "repos/ui/apps/v4/examples/base/tabs-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/tabs-icons.tsx",
+              "repos/ui/apps/v4/examples/base/tabs-line.tsx",
+              "repos/ui/apps/v4/examples/base/tabs-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/tabs-vertical.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/tabs",
+              "classification": "registry-local",
+              "target": "base-ui/tabs",
+              "reason": "shadcn Tabs composes the local Base UI Tabs primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Tabs uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options for the wrapper."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/tabs",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/tabs",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Tabs implementation."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "CVA variant handling is replaced with a local Effect Schema literal and pure class helper."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are rendered as fixture-only evidence; installable source does not import React icon packages."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is fixture evidence only and replaced by local deterministic RTL example data."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Card is not present in this registry yet; Tabs examples use local static card markup instead of declaring an unavailable registry dependency."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/tabs-demo",
+            "title": "TabsDemo",
+            "description": "Default Tabs demo with local static card markup.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/tabs-disabled",
+            "title": "TabsDisabled",
+            "description": "Tabs list with a disabled trigger.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/tabs-icons",
+            "title": "TabsIcons",
+            "description": "Tabs triggers with inline icon slots.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/tabs-line",
+            "title": "TabsLine",
+            "description": "Tabs list rendered with the line variant.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/tabs-rtl",
+            "title": "TabsRtl",
+            "description": "RTL Tabs demo with local translated labels.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/tabs-vertical",
+            "title": "TabsVertical",
+            "description": "Vertical Tabs list example.",
+            "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/tabs",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/tabs.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/tabs.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-tabs-local-base-ui",
+            "shadcn-tabs-local-examples"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-tabs-local-base-ui",
+            "summary": "The shadcn wrapper composes local Tabs attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, and variants over the local Foldkit primitive."
+          },
+          {
+            "id": "shadcn-tabs-local-examples",
+            "summary": "Examples use local static card, icon, and RTL data instead of unavailable origin app dependencies.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Card and language selector are outside this component slice. Static local markup preserves the relevant Tabs DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+          }
+        ]
+      },
+      "manifestHash": "13e740b541368f9ea7991649beea7876da032fe2c3d8b194497a9368eb04ed88",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/tabs/item.json",
+          "sha256": "b7e64718b68f9c82d8f78f0c3c6ae4ea3388a600215b32614d720b08325bb49e",
+          "sizeBytes": 7640,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/tabs/index.ts",
+          "sha256": "0776c4f3328d7c81344ef184e5d9a6bcaf127988067c6c969deff51e36fbdbad",
+          "sizeBytes": 8662,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/tabs/examples.ts",
+          "sha256": "bef4bb23afc1cb7c96950715bc01f615d93d9a6ffa42c67ea85893af1dfabcff",
+          "sizeBytes": 5087,
           "role": "source"
         }
       ]

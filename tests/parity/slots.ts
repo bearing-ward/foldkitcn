@@ -389,4 +389,40 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'keyboard-behavior',
     ],
   },
+  {
+    itemId: 'base-ui/tabs',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/tabs.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/tabs.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
+    itemId: 'shadcn/tabs',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/tabs.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/tabs.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
 ]

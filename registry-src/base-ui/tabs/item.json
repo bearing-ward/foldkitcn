@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/tabs",
+  "namespace": "base-ui",
+  "name": "Tabs",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Tabs primitive preserving model-owned selected and highlighted values, root/list/tab/panel/indicator attributes, manual and automatic activation, orientation, disabled tabs, keyboard navigation, and panel mounting policy.",
+  "sourceRoot": "registry-src/base-ui/tabs",
+  "installableSourcePaths": ["src/registry/base-ui/tabs/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Tabs",
+      "docsUrl": "https://base-ui.com/react/components/tabs",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/tabs",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/tabs/index.parts.ts",
+        "repos/base-ui/packages/react/src/tabs/index.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.tsx",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsListDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTabDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/tabs",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tabs",
+        "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/tabs",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tabs",
+        "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/tabs",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/tabs.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/tabs.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-tabs-model-owned-selection",
+      "base-ui-tabs-indicator-geometry-input"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-tabs-model-owned-selection",
+      "summary": "Selected and highlighted tab values are model-owned inputs instead of hidden component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit components preserve unidirectional data flow. The primitive emits value and highlight change payloads so consumers can update the model and run focus commands explicitly."
+    },
+    {
+      "id": "base-ui-tabs-indicator-geometry-input",
+      "summary": "Indicator CSS variable geometry is accepted as data instead of measured inside the render helper.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit render helpers are pure. DOM measurement belongs in a consumer command or runtime boundary, while the primitive still exposes the origin indicator attributes and CSS variable names."
+    }
+  ]
+}
