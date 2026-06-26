@@ -45,7 +45,7 @@ honor its STOP conditions, and update your row when done.
 | 035 | Implement Base UI Fieldset | P1 | M | 007, 019 | DONE |
 | 036 | Implement shadcn Label | P1 | S | 007, 019 | DONE |
 | 037 | Implement Base UI Number Field | P1 | L | 022 | DONE |
-| 038 | Implement Base UI and shadcn Field | P1 | L | 022, 035, 036 | TODO |
+| 038 | Implement Base UI and shadcn Field | P1 | L | 022, 035, 036 | DONE |
 | 039 | Implement Base UI Form | P1 | L | 038 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
