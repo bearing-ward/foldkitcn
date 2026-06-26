@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 23,
-      remaining: 36,
+      imported: 24,
+      remaining: 35,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -75,6 +75,7 @@ describe('origin component progress', () => {
       'shadcn/collapsible',
       'shadcn/dialog',
       'shadcn/kbd',
+      'shadcn/label',
       'shadcn/input',
       'shadcn/native-select',
       'shadcn/popover',

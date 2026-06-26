@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T17:13:47.091Z",
+  "generatedAt": "2026-06-26T18:02:57.351Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -5156,6 +5156,175 @@
           "path": "src/registry/shadcn/kbd/examples.ts",
           "sha256": "e43dba473584d614207bb9a7af648d5029e91b00fa0da6260cca0db0694c0a8a",
           "sizeBytes": 9402,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/label",
+        "namespace": "shadcn",
+        "name": "Label",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Label helper using a native label element, shadcn label slot classes, and cn.",
+        "sourceRoot": "registry-src/shadcn/label",
+        "installableSourcePaths": [
+          "src/registry/shadcn/label/index.ts",
+          "src/registry/shadcn/label/examples.ts"
+        ],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Label",
+            "docsUrl": "https://ui.shadcn.com/docs/components/label",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/label.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/label.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/label.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/label.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/label.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/label-demo.tsx",
+              "repos/ui/apps/v4/examples/base/label-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/checkbox",
+              "classification": "registry-local",
+              "target": "shadcn/checkbox",
+              "reason": "Label examples compose the existing local shadcn Checkbox item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Label uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options for Label props."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@radix-ui/react-label",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React Label semantics are replaced with a native Foldkit-rendered label element."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/label-demo",
+            "title": "LabelDemo",
+            "description": "Checkbox and Label composition using native label association.",
+            "sourcePath": "src/registry/shadcn/label/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/label-rtl",
+            "title": "LabelRtl",
+            "description": "RTL Label and Checkbox composition using local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/label/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/label",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/label.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/label.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-label-local-rtl-data"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-label-local-rtl-data",
+            "summary": "RTL example uses local static strings instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local RTL strings preserve the rendered direction and label semantics without adding an app-only dependency."
+          }
+        ]
+      },
+      "manifestHash": "cb4a3f7b430a9ceb6918ec20e6f3206ac0f3dfe1b4c0cb971f4fc0ce508a3268",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/label/item.json",
+          "sha256": "aa579e2f01cc279d3d83bcbffd2e4382826dac5e722e403338d44a543be8b834",
+          "sizeBytes": 5017,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/label/index.ts",
+          "sha256": "9368bed41c65ecf91d62f571c2d079d03c7156373c11218b8acb11263770a4cc",
+          "sizeBytes": 2555,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/label/examples.ts",
+          "sha256": "47486350fd279b2600ed1a57c984c6e3e8d6470eb7d7ef8e59b302d869eab4c3",
+          "sizeBytes": 1635,
           "role": "source"
         }
       ]
