@@ -110,6 +110,7 @@ describe('parity canonicalizers', () => {
       'base-ui/slider',
       'base-ui/number-field',
       'base-ui/field',
+      'base-ui/form',
       'shadcn/alert',
       'shadcn/avatar',
       'shadcn/badge',

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T19:48:19.770Z",
+  "generatedAt": "2026-06-26T20:39:13.764Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1197,6 +1197,180 @@
           "path": "src/registry/base-ui/fieldset/index.ts",
           "sha256": "a19fc4c07aabca0530b840f355e8ebfeb319a0ea63077a2991cf7713014a55af",
           "sizeBytes": 3475,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/form",
+        "namespace": "base-ui",
+        "name": "Form",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+        "sourceRoot": "registry-src/base-ui/form",
+        "installableSourcePaths": ["src/registry/base-ui/form/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Form",
+            "docsUrl": "https://base-ui.com/react/components/form",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/form",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/form/Form.tsx",
+              "repos/base-ui/packages/react/src/form/index.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/form/Form.test.tsx",
+              "repos/base-ui/packages/react/src/form/Form.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/field",
+              "classification": "registry-local",
+              "target": "base-ui/field",
+              "reason": "Base UI Form composes Field validation facts; the Foldkit port reuses the local Field validation state helpers instead of creating competing semantics."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Predicate, and Array helpers for typed form states, payloads, and validation reporting."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/form",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/form",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/form",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/form",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "base-ui/form-origin-fixture",
+            "title": "FormOriginFixture",
+            "description": "Static origin-evidence fixture derived from deterministic Base UI Form root, Field composition, validation state, and data attributes.",
+            "sourcePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
+            "kind": "origin-fixture"
+          },
+          {
+            "id": "base-ui/form-foldkit-fixture",
+            "title": "FormFoldkitFixture",
+            "description": "Foldkit parity fixture exercising root, Field composition, valid/invalid/disabled states, noValidate behavior, and submit/reset handlers.",
+            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "base-ui/form",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-form-model-owned-validation",
+            "base-ui-form-no-imperative-actions-ref",
+            "base-ui-form-static-origin-fixture"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-form-model-owned-validation",
+            "summary": "Validation and submission state are represented by explicit model-owned fields and typed payloads instead of Base UI React's internal Form context.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit keeps validation facts and side effects in update/commands. The Form helper reports submit/reset payloads and invalid field names without mutating application state."
+          },
+          {
+            "id": "base-ui-form-no-imperative-actions-ref",
+            "summary": "The React actionsRef validate API is not implemented as an imperative Form method.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Imperative validation conflicts with Foldkit's Elm-style architecture. Consumers trigger validation through messages and update transitions."
+          },
+          {
+            "id": "base-ui-form-static-origin-fixture",
+            "summary": "Parity origin fixture uses static source-derived markup for deterministic Form and Field output.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned form root, noValidate default, Field structure, and state attributes while the origin source remains checked in under repos/base-ui."
+          }
+        ]
+      },
+      "manifestHash": "124b9fe3954b99f8fca1e2220b06332b895d5033b90ee67a8889f94e80f3d7b4",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/form/item.json",
+          "sha256": "436ec60e2e2399ab043a8e65e07ee889d90cda80b2c48bbaf51f4eb1a424fc6d",
+          "sizeBytes": 7218,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/form/index.ts",
+          "sha256": "24ab5f719fa09688fe78eef1f1a50a23871f24e6a3d69a96beb45720daf0fdf6",
+          "sizeBytes": 7381,
           "role": "source"
         }
       ]

@@ -1,30 +1,30 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T19:35:59.275Z
+Generated at: 2026-06-26T20:39:56.450Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       20 |    38 |        18 |
+| Base UI docs |       21 |    38 |        17 |
 | shadcn docs  |       25 |    59 |        34 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 47
+- Dossier-ready rows: 46
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
 ## Next Candidates
 
-| Item                     | Readiness     | Parity      | URLs                                                                                                              | Blockers |
-| ------------------------ | ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/form`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                               |          |
-| `base-ui/tooltip`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip) |          |
-| `base-ui/checkbox-group` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                     |          |
-| `base-ui/select`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)   |          |
+| Item                     | Readiness     | Parity      | URLs                                                                                                                 | Blockers |
+| ------------------------ | ------------- | ----------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| `base-ui/tooltip`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)    |          |
+| `base-ui/checkbox-group` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                        |          |
+| `base-ui/select`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)      |          |
+| `base-ui/menu`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu) |          |
 
 ## Imported Items
 
@@ -72,6 +72,7 @@ Generated at: 2026-06-26T19:35:59.275Z
 - `base-ui/field`
 - `shadcn/field`
 - `shadcn/label`
+- `base-ui/form`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -82,7 +83,6 @@ None.
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/form`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                                               |          |
 | `base-ui/tooltip`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
 | `shadcn/tooltip`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
 | `base-ui/checkbox-group`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                                     |          |

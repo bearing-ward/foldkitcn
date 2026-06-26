@@ -99,6 +99,10 @@ describe('parity dry-run helpers', () => {
     ])
   })
 
+  test('matches form by component grep', () => {
+    expect(matchingItemIds('form')).toStrictEqual(['base-ui/form'])
+  })
+
   test('matches popover slots with component grep', () => {
     expect(matchingItemIds('popover')).toStrictEqual([
       'base-ui/popover',
