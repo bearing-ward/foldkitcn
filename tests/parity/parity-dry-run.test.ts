@@ -23,6 +23,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/toggle',
       'shadcn/kbd',
       'shadcn/checkbox',
       'shadcn/input',
@@ -43,6 +44,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/toggle',
       'shadcn/kbd',
       'shadcn/checkbox',
       'shadcn/input',
@@ -63,6 +65,10 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('button')).toStrictEqual([
       'base-ui/button',
       'shadcn/button',
+    ])
+    expect(matchingItemIds('toggle')).toStrictEqual([
+      'base-ui/toggle',
+      'shadcn/toggle',
     ])
     expect(matchingItemIds('input')).toStrictEqual([
       'base-ui/input',
