@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 9,
-      remaining: 29,
+      imported: 10,
+      remaining: 28,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 15,
-      remaining: 44,
+      imported: 16,
+      remaining: 43,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -56,6 +56,7 @@ describe('origin component progress', () => {
       'base-ui/radio-group',
       'base-ui/separator',
       'base-ui/switch',
+      'base-ui/tabs',
       'shadcn/alert',
       'shadcn/aspect-ratio',
       'shadcn/avatar',
@@ -70,6 +71,7 @@ describe('origin component progress', () => {
       'shadcn/separator',
       'shadcn/skeleton',
       'shadcn/switch',
+      'shadcn/tabs',
       'shadcn/textarea',
     ]
 
@@ -98,11 +100,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/tabs')
+    expect(nextRow?.itemId).toBe('base-ui/collapsible')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/tabs',
-      'https://ui.shadcn.com/docs/components/tabs',
+      'https://base-ui.com/react/components/collapsible',
+      'https://ui.shadcn.com/docs/components/collapsible',
     ])
   })
 
