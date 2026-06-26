@@ -1,30 +1,30 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T16:04:03.144Z
+Generated at: 2026-06-26T16:37:11.562Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       16 |    38 |        22 |
-| shadcn docs  |       22 |    59 |        37 |
+| Base UI docs |       17 |    38 |        21 |
+| shadcn docs  |       23 |    59 |        36 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 54
+- Dossier-ready rows: 52
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
 ## Next Candidates
 
-| Item                   | Readiness     | Parity      | URLs                                                                                                              | Blockers |
-| ---------------------- | ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/popover`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover) |          |
-| `base-ui/fieldset`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/fieldset)                                                           |          |
-| `base-ui/number-field` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                       |          |
-| `base-ui/field`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)     |          |
+| Item                   | Readiness     | Parity      | URLs                                                                                                          | Blockers |
+| ---------------------- | ------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | -------- |
+| `base-ui/fieldset`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/fieldset)                                                       |          |
+| `base-ui/number-field` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                   |          |
+| `base-ui/field`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field) |          |
+| `shadcn/label`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/label)                                                         |          |
 
 ## Imported Items
 
@@ -62,6 +62,8 @@ Generated at: 2026-06-26T16:04:03.144Z
 - `shadcn/accordion`
 - `base-ui/dialog`
 - `shadcn/dialog`
+- `base-ui/popover`
+- `shadcn/popover`
 - `base-ui/meter`
 - `shadcn/native-select`
 - `shadcn/alert`
@@ -75,8 +77,6 @@ None.
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/popover`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover)                 |          |
-| `shadcn/popover`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/popover)<br>[origin](https://ui.shadcn.com/docs/components/popover)                 |          |
 | `base-ui/fieldset`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/fieldset)                                                                           |          |
 | `base-ui/number-field`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                                       |          |
 | `base-ui/field`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)                     |          |

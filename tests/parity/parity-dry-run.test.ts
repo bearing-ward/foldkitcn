@@ -36,6 +36,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/skeleton',
       'shadcn/textarea',
       'shadcn/dialog',
+      'shadcn/popover',
       'shadcn/radio-group',
       'shadcn/tabs',
       'shadcn/accordion',
@@ -61,6 +62,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/skeleton',
       'shadcn/textarea',
       'shadcn/dialog',
+      'shadcn/popover',
       'shadcn/radio-group',
       'shadcn/tabs',
       'shadcn/accordion',
@@ -85,6 +87,13 @@ describe('parity dry-run helpers', () => {
       'shadcn/input',
     ])
     expect(matchingItemIds('button-default')).toStrictEqual([])
+  })
+
+  test('matches popover slots with component grep', () => {
+    expect(matchingItemIds('popover')).toStrictEqual([
+      'base-ui/popover',
+      'shadcn/popover',
+    ])
   })
 
   test('derives shadcn case grep from namespace greps', () => {
