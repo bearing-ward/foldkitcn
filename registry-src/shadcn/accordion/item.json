@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/accordion",
+  "namespace": "shadcn",
+  "name": "Accordion",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Accordion wrapper composed from the local Base UI Accordion primitive, shadcn accordion slots, local class canonicalization, and deterministic local examples.",
+  "sourceRoot": "registry-src/shadcn/accordion",
+  "installableSourcePaths": [
+    "src/registry/shadcn/accordion/index.ts",
+    "src/registry/shadcn/accordion/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--card",
+    "--card-foreground",
+    "--foreground",
+    "--muted-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Accordion",
+      "docsUrl": "https://ui.shadcn.com/docs/components/accordion",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/accordion.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/accordion.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/accordion.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/accordion.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/accordion.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/accordion-basic.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-borders.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-card.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-demo.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/accordion-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/accordion",
+        "classification": "registry-local",
+        "target": "base-ui/accordion",
+        "reason": "shadcn Accordion composes the local Base UI Accordion primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Accordion uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options and is provided through the local Base UI Accordion dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/accordion",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/accordion",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Accordion implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chevron icons are rendered with local static span shells in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The card example uses a local static card shell instead of introducing a Card component in this plan."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/accordion-basic",
+      "title": "AccordionBasic",
+      "description": "FAQ accordion with one item open.",
+      "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/accordion-multiple",
+      "title": "AccordionMultiple",
+      "description": "Settings accordion with multiple open items.",
+      "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/accordion-disabled",
+      "title": "AccordionDisabled",
+      "description": "FAQ accordion with a disabled item.",
+      "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/accordion-rtl",
+      "title": "AccordionRtl",
+      "description": "RTL accordion layout with local static labels.",
+      "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/accordion-card",
+      "title": "AccordionCard",
+      "description": "Accordion inside a local static card shell.",
+      "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/accordion",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/accordion.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/accordion.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-accordion-local-base-ui",
+      "shadcn-accordion-local-example-shells"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-accordion-local-base-ui",
+      "summary": "The shadcn wrapper composes local Accordion attributes instead of importing upstream Base UI React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots and classes over the local Foldkit primitive."
+    },
+    {
+      "id": "shadcn-accordion-local-example-shells",
+      "summary": "Examples use local static Card, icon, and RTL shells instead of origin app dependencies.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Accordion DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+    }
+  ]
+}

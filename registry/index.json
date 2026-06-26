@@ -1,8 +1,174 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T15:09:58.080Z",
+  "generatedAt": "2026-06-26T15:37:38.540Z",
   "sourceRoot": "registry-src",
   "items": [
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/accordion",
+        "namespace": "base-ui",
+        "name": "Accordion",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, keyboard focus messages, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+        "sourceRoot": "registry-src/base-ui/accordion",
+        "installableSourcePaths": ["src/registry/base-ui/accordion/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Accordion",
+            "docsUrl": "https://base-ui.com/react/components/accordion",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/accordion",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.tsx",
+              "repos/base-ui/packages/react/src/accordion/header/AccordionHeaderDataAttributes.ts",
+              "repos/base-ui/packages/react/src/accordion/index.parts.ts",
+              "repos/base-ui/packages/react/src/accordion/index.ts",
+              "repos/base-ui/packages/react/src/accordion/item/AccordionItem.tsx",
+              "repos/base-ui/packages/react/src/accordion/item/AccordionItemContext.ts",
+              "repos/base-ui/packages/react/src/accordion/item/AccordionItemDataAttributes.ts",
+              "repos/base-ui/packages/react/src/accordion/item/stateAttributesMapping.ts",
+              "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.tsx",
+              "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelCssVars.ts",
+              "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelDataAttributes.ts",
+              "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.tsx",
+              "repos/base-ui/packages/react/src/accordion/root/AccordionRootContext.ts",
+              "repos/base-ui/packages/react/src/accordion/root/AccordionRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.tsx",
+              "repos/base-ui/packages/react/src/accordion/trigger/AccordionTriggerDataAttributes.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/_index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.test.tsx",
+              "repos/base-ui/packages/react/src/accordion/item/AccordionItem.test.tsx",
+              "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.test.tsx",
+              "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.test.tsx",
+              "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.spec.tsx",
+              "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, keyboard modifier, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/accordion",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/accordion",
+              "reason": "Origin Base UI React Accordion primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/accordion",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/accordion",
+              "reason": "Origin Base UI React Accordion primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/accordion",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/accordion.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/accordion.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-accordion-model-owned-value-state",
+            "base-ui-accordion-explicit-transition-measurement",
+            "base-ui-accordion-focus-as-message"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-accordion-model-owned-value-state",
+            "summary": "Open item value state is a model-owned input and trigger presses emit value-change facts instead of mutating internal component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model in response to AccordionValueChange payloads."
+          },
+          {
+            "id": "base-ui-accordion-explicit-transition-measurement",
+            "summary": "Transition status and panel dimensions are explicit inputs rather than DOM-measured internal state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Base UI measures panel dimensions for animated panels. Foldkit registry primitives stay pure and reuse the plan 028 explicit measurement convention."
+          },
+          {
+            "id": "base-ui-accordion-focus-as-message",
+            "summary": "Keyboard roving emits focus-change facts rather than imperatively focusing DOM nodes inside the helper.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Focus side effects belong in the consuming Foldkit update/command boundary; the helper exposes deterministic focus selectors."
+          }
+        ]
+      },
+      "manifestHash": "68064ebd7e496b277e0653f3633c6597c11f45864e8746e355c268e49891201e",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/accordion/item.json",
+          "sha256": "ed0391293ffa3776cd102cd9285da86d8173bae122586f91ce404c3b57879b70",
+          "sizeBytes": 7312,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/accordion/index.ts",
+          "sha256": "aeb7d846682ad1d49f1d9fd61036ead74c4960a642ed3a32b2f140d92b7ff393",
+          "sizeBytes": 16172,
+          "role": "source"
+        }
+      ]
+    },
     {
       "item": {
         "schemaVersion": 1,
@@ -1851,6 +2017,232 @@
           "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
           "sizeBytes": 818,
           "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/accordion",
+        "namespace": "shadcn",
+        "name": "Accordion",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Accordion wrapper composed from the local Base UI Accordion primitive, shadcn accordion slots, local class canonicalization, and deterministic local examples.",
+        "sourceRoot": "registry-src/shadcn/accordion",
+        "installableSourcePaths": [
+          "src/registry/shadcn/accordion/index.ts",
+          "src/registry/shadcn/accordion/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--card",
+          "--card-foreground",
+          "--foreground",
+          "--muted-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Accordion",
+            "docsUrl": "https://ui.shadcn.com/docs/components/accordion",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/accordion.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/accordion.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/accordion.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/accordion.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/accordion.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/accordion-basic.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-borders.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-card.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-demo.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-multiple.tsx",
+              "repos/ui/apps/v4/examples/base/accordion-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/accordion",
+              "classification": "registry-local",
+              "target": "base-ui/accordion",
+              "reason": "shadcn Accordion composes the local Base UI Accordion primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Accordion uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options and is provided through the local Base UI Accordion dependency."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/accordion",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/accordion",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Accordion implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin chevron icons are rendered with local static span shells in installable Foldkit source."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The card example uses a local static card shell instead of introducing a Card component in this plan."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/accordion-basic",
+            "title": "AccordionBasic",
+            "description": "FAQ accordion with one item open.",
+            "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/accordion-multiple",
+            "title": "AccordionMultiple",
+            "description": "Settings accordion with multiple open items.",
+            "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/accordion-disabled",
+            "title": "AccordionDisabled",
+            "description": "FAQ accordion with a disabled item.",
+            "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/accordion-rtl",
+            "title": "AccordionRtl",
+            "description": "RTL accordion layout with local static labels.",
+            "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/accordion-card",
+            "title": "AccordionCard",
+            "description": "Accordion inside a local static card shell.",
+            "sourcePath": "src/registry/shadcn/accordion/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/accordion",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/accordion.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/accordion.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-accordion-local-base-ui",
+            "shadcn-accordion-local-example-shells"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-accordion-local-base-ui",
+            "summary": "The shadcn wrapper composes local Accordion attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots and classes over the local Foldkit primitive."
+          },
+          {
+            "id": "shadcn-accordion-local-example-shells",
+            "summary": "Examples use local static Card, icon, and RTL shells instead of origin app dependencies.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Accordion DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+          }
+        ]
+      },
+      "manifestHash": "f8bf778533e9048a8fedaf2c06ca669bd38e2b1d33ef06d271d488ef56c444ca",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/accordion/item.json",
+          "sha256": "49f428f04f6ccb7a76cdc1c2e149e1dbfa5c0966295fdd8b9de798d8729e20ef",
+          "sizeBytes": 7431,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/accordion/index.ts",
+          "sha256": "b1bd817917922ae11e2837506c78c39f131a4acf542bb1d8d9983e7a3259f97a",
+          "sizeBytes": 9170,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/accordion/examples.ts",
+          "sha256": "01166a17cfb33852435917e6237cfeed61aa59852dc939587510663c478c363e",
+          "sizeBytes": 3885,
+          "role": "source"
         }
       ]
     },
