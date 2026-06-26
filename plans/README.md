@@ -41,7 +41,7 @@ honor its STOP conditions, and update your row when done.
 | 031 | Implement Base UI and shadcn Slider | P1 | L | 004, 019, 022 | DONE |
 | 032 | Implement Base UI and shadcn Accordion | P1 | L | 028 | DONE |
 | 033 | Implement Base UI and shadcn Dialog | P1 | L | 004, 019 | DONE |
-| 034 | Implement Base UI and shadcn Popover | P1 | L | 033 | TODO |
+| 034 | Implement Base UI and shadcn Popover | P1 | L | 033 | DONE |
 | 035 | Implement Base UI Fieldset | P1 | M | 007, 019 | TODO |
 | 036 | Implement shadcn Label | P1 | S | 007, 019 | TODO |
 | 037 | Implement Base UI Number Field | P1 | L | 022 | TODO |
