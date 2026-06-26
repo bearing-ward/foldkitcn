@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/slider",
+  "namespace": "base-ui",
+  "name": "Slider",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Slider primitive preserving controlled value arrays, deterministic normalization, clamping, step rounding, keyboard increments, pointer geometry helpers, orientation, direction, multi-thumb ordering, data attributes, and native range input form semantics.",
+  "sourceRoot": "registry-src/base-ui/slider",
+  "installableSourcePaths": ["src/registry/base-ui/slider/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Slider",
+      "docsUrl": "https://base-ui.com/react/components/slider",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/slider",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/slider/control/SliderControl.tsx",
+        "repos/base-ui/packages/react/src/slider/control/SliderControlDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/index.parts.ts",
+        "repos/base-ui/packages/react/src/slider/index.ts",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicator.tsx",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/label/SliderLabel.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRootContext.ts",
+        "repos/base-ui/packages/react/src/slider/root/SliderRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumb.tsx",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumbDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrack.tsx",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrackDataAttributes.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getPushedThumbValues.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getSliderValue.ts",
+        "repos/base-ui/packages/react/src/slider/utils/resolveThumbCollision.ts",
+        "repos/base-ui/packages/react/src/slider/utils/roundValueToStep.ts",
+        "repos/base-ui/packages/react/src/slider/utils/valueArrayToPercentages.ts",
+        "repos/base-ui/packages/react/src/slider/value/SliderValue.tsx",
+        "repos/base-ui/packages/react/src/slider/value/SliderValueDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/range-slider/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/slider/demos/vertical/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/slider/control/SliderControl.test.tsx",
+        "repos/base-ui/packages/react/src/slider/indicator/SliderIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/slider/label/SliderLabel.test.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.test.tsx",
+        "repos/base-ui/packages/react/src/slider/thumb/SliderThumb.test.tsx",
+        "repos/base-ui/packages/react/src/slider/track/SliderTrack.test.tsx",
+        "repos/base-ui/packages/react/src/slider/utils/getPushedThumbValues.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/getSliderValue.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/resolveThumbCollision.test.ts",
+        "repos/base-ui/packages/react/src/slider/utils/roundValueToStep.test.ts",
+        "repos/base-ui/packages/react/src/slider/value/SliderValue.test.tsx",
+        "repos/base-ui/packages/react/src/slider/root/SliderRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Match, Option, and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/slider",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/slider",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/slider",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/slider",
+        "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/slider",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/slider.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/slider.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-slider-controlled-model-owned-value",
+      "base-ui-slider-pointer-rect-helper"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-slider-controlled-model-owned-value",
+      "summary": "Slider values are supplied by the consuming Foldkit model rather than stored in hidden component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit render helpers are stateless. Keyboard, input, and pointer handlers emit value-change facts so the application update function owns the canonical value."
+    },
+    {
+      "id": "base-ui-slider-pointer-rect-helper",
+      "summary": "Pointer geometry is exposed as deterministic helpers that accept measured control rectangles.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The installable source avoids shared DOM measurement infrastructure. Consumers can measure in commands and feed the rect into the pure helper while parity fixtures can test geometry deterministically."
+    }
+  ]
+}
