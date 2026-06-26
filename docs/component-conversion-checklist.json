@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T18:08:49.647Z",
+  "generatedAt": "2026-06-26T18:34:38.150Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 18,
-      "remaining": 20
+      "imported": 19,
+      "remaining": 19
     },
     "shadcn": {
       "total": 59,
@@ -16,7 +16,7 @@
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 50,
+    "dossierReadyCount": 49,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -949,21 +949,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/base-ui-number-field/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/number-field"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 47",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/native-select",

@@ -91,6 +91,12 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('button-default')).toStrictEqual([])
   })
 
+  test('matches number field by component grep', () => {
+    expect(matchingItemIds('number-field')).toStrictEqual([
+      'base-ui/number-field',
+    ])
+  })
+
   test('matches popover slots with component grep', () => {
     expect(matchingItemIds('popover')).toStrictEqual([
       'base-ui/popover',

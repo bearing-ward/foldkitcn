@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T18:02:57.351Z",
+  "generatedAt": "2026-06-26T18:38:44.218Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1252,6 +1252,201 @@
           "path": "src/registry/base-ui/meter/index.ts",
           "sha256": "8c84a47e317e8ad7cc4069ddfdc9f698b3aec5f021c62dc3f731e02dfda1a911",
           "sizeBytes": 4564,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/number-field",
+        "namespace": "base-ui",
+        "name": "Number Field",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Number Field primitive preserving model-owned numeric/text state, deterministic parsing and formatting, clamping, stepping, keyboard increments, form value semantics, grouped controls, scrub parts, and origin data attributes.",
+        "sourceRoot": "registry-src/base-ui/number-field",
+        "installableSourcePaths": [
+          "src/registry/base-ui/number-field/index.ts"
+        ],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Number Field",
+            "docsUrl": "https://base-ui.com/react/components/number-field",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/number-field",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/number-field/decrement/NumberFieldDecrement.tsx",
+              "repos/base-ui/packages/react/src/number-field/decrement/NumberFieldDecrementDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/group/NumberFieldGroup.tsx",
+              "repos/base-ui/packages/react/src/number-field/group/NumberFieldGroupDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/increment/NumberFieldIncrement.tsx",
+              "repos/base-ui/packages/react/src/number-field/increment/NumberFieldIncrementDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/index.parts.ts",
+              "repos/base-ui/packages/react/src/number-field/index.ts",
+              "repos/base-ui/packages/react/src/number-field/input/NumberFieldInput.tsx",
+              "repos/base-ui/packages/react/src/number-field/input/NumberFieldInputDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/root/NumberFieldRoot.tsx",
+              "repos/base-ui/packages/react/src/number-field/root/NumberFieldRootContext.ts",
+              "repos/base-ui/packages/react/src/number-field/root/NumberFieldRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/root/useNumberFieldButton.ts",
+              "repos/base-ui/packages/react/src/number-field/root/useNumberFieldStepperButton.ts",
+              "repos/base-ui/packages/react/src/number-field/scrub-area-cursor/NumberFieldScrubAreaCursor.tsx",
+              "repos/base-ui/packages/react/src/number-field/scrub-area-cursor/NumberFieldScrubAreaCursorDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/scrub-area/NumberFieldScrubArea.tsx",
+              "repos/base-ui/packages/react/src/number-field/scrub-area/NumberFieldScrubAreaContext.ts",
+              "repos/base-ui/packages/react/src/number-field/scrub-area/NumberFieldScrubAreaDataAttributes.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/constants.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/getViewportRect.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/parse.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/stateAttributesMapping.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/subscribeToVisualViewportResize.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/types.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/validate.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/number-field/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/number-field/decrement/NumberFieldDecrement.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/group/NumberFieldGroup.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/increment/NumberFieldIncrement.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/input/NumberFieldInput.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/root/NumberFieldRoot.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/scrub-area-cursor/NumberFieldScrubAreaCursor.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/scrub-area/NumberFieldScrubArea.test.tsx",
+              "repos/base-ui/packages/react/src/number-field/utils/parse.test.ts",
+              "repos/base-ui/packages/react/src/number-field/utils/validate.test.ts",
+              "repos/base-ui/packages/react/src/number-field/root/NumberFieldRoot.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, keyboard modifier, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options, value states, constraints, and event payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/number-field",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/number-field",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/number-field",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/number-field",
+              "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "base-ui/number-field-origin-fixture",
+            "title": "NumberFieldOriginFixture",
+            "description": "Static source-derived origin fixture preserving Number Field parts, grouped-control dimensions, form value, and data attributes.",
+            "sourcePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
+            "kind": "origin-fixture"
+          },
+          {
+            "id": "base-ui/number-field-foldkit-fixture",
+            "title": "NumberFieldFoldkitFixture",
+            "description": "Foldkit parity fixture exercising root, scrub area, group, input, steppers, hidden input, disabled/read-only/invalid states, and bounded step configuration.",
+            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/number-field.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "base-ui/number-field",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/number-field.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-number-field-model-owned-state",
+            "base-ui-number-field-static-origin-fixture",
+            "base-ui-number-field-scrub-dom-side-effects"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-number-field-model-owned-state",
+            "summary": "Numeric value and visible text are supplied by the consuming Foldkit model instead of hidden component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit render helpers are stateless. Text entry, keyboard, and stepper handlers emit value-change facts so the application update function owns the canonical value and text."
+          },
+          {
+            "id": "base-ui-number-field-static-origin-fixture",
+            "summary": "Parity origin fixture uses static source-derived markup and docs-demo dimensions.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, form input, keyboard behavior, and exact grouped-control dimensions while the origin source remains checked in under repos/base-ui."
+          },
+          {
+            "id": "base-ui-number-field-scrub-dom-side-effects",
+            "summary": "Scrub area and cursor attributes are exposed, while pointer-lock and virtual-cursor side effects are left to consumers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit side effects belong in Commands, not render helpers. The primitive preserves scrub parts and data attributes, and exposes pure step helpers for scrub-driven value changes."
+          }
+        ]
+      },
+      "manifestHash": "0b3dc5b8eba51fcd36126a317fe12726fc718ec6aaca7da73280c0d28de75eb6",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/number-field/item.json",
+          "sha256": "837bebdcdc531fc0fdd3a32f2c31d5f6d2eb0e7d2d73b556b81a48ce44a0fc9c",
+          "sizeBytes": 9550,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/number-field/index.ts",
+          "sha256": "5381d8424c055c4997a27620e042e1f3b6445424796b9db9fdc1bb2401fb44eb",
+          "sizeBytes": 33074,
           "role": "source"
         }
       ]
