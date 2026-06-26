@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 8,
-      remaining: 30,
+      imported: 9,
+      remaining: 29,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 14,
-      remaining: 45,
+      imported: 15,
+      remaining: 44,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -53,6 +53,7 @@ describe('origin component progress', () => {
       'base-ui/input',
       'base-ui/meter',
       'base-ui/progress',
+      'base-ui/radio-group',
       'base-ui/separator',
       'base-ui/switch',
       'shadcn/alert',
@@ -65,6 +66,7 @@ describe('origin component progress', () => {
       'shadcn/input',
       'shadcn/native-select',
       'shadcn/progress',
+      'shadcn/radio-group',
       'shadcn/separator',
       'shadcn/skeleton',
       'shadcn/switch',
@@ -96,11 +98,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/radio-group')
+    expect(nextRow?.itemId).toBe('base-ui/tabs')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/radio-group',
-      'https://ui.shadcn.com/docs/components/radio-group',
+      'https://base-ui.com/react/components/tabs',
+      'https://ui.shadcn.com/docs/components/tabs',
     ])
   })
 

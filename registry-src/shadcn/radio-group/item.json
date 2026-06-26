@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/radio-group",
+  "namespace": "shadcn",
+  "name": "Radio Group",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
+  "sourceRoot": "registry-src/shadcn/radio-group",
+  "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+  "consumedThemeTokens": [
+    "--destructive",
+    "--input",
+    "--primary",
+    "--primary-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Radio Group",
+      "docsUrl": "https://ui.shadcn.com/docs/components/radio-group",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/radio-group.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/radio-group.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/radio-group.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/radio-group.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/radio-group-choice-card.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-description.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/radio-group",
+        "classification": "registry-local",
+        "target": "base-ui/radio-group",
+        "reason": "shadcn Radio Group composes the local Base UI Radio Group primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Radio Group uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema through the wrapper style options and local Base UI dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/radio",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Origin Base UI React radio primitive is replaced by local Foldkit Radio Group item attributes."
+      },
+      {
+        "specifier": "@base-ui/react/radio-group",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Origin Base UI React group primitive is replaced by the local Foldkit Base UI Radio Group implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin examples reference Field before that registry item exists; installable source only ships the radio group wrapper."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin examples reference Label before that registry item exists; installable source only ships the radio group wrapper."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is fixture evidence only and is not required by installable source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "shadcn/radio-group",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/radio-group.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/radio-group.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": ["shadcn-radio-group-local-base-ui-items"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-radio-group-local-base-ui-items",
+      "summary": "The shadcn wrapper composes local Radio Group item attributes instead of importing separate upstream Radio and RadioGroup React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, and indicator rendering over the local Foldkit primitive."
+    }
+  ]
+}
