@@ -43,6 +43,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/toggle',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/toggle.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/toggle.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'base-ui/avatar',
     status: 'ready',
     originFixtureEntrypoint:
@@ -151,6 +169,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'colors',
       'dimensions',
       'bounding-box',
+    ],
+  },
+  {
+    itemId: 'shadcn/toggle',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/toggle.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/toggle.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
     ],
   },
   {

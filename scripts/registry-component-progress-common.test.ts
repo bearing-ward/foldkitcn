@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 11,
-      remaining: 27,
+      imported: 12,
+      remaining: 26,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 17,
-      remaining: 42,
+      imported: 18,
+      remaining: 41,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -58,6 +58,7 @@ describe('origin component progress', () => {
       'base-ui/separator',
       'base-ui/switch',
       'base-ui/tabs',
+      'base-ui/toggle',
       'shadcn/alert',
       'shadcn/aspect-ratio',
       'shadcn/avatar',
@@ -75,6 +76,7 @@ describe('origin component progress', () => {
       'shadcn/switch',
       'shadcn/tabs',
       'shadcn/textarea',
+      'shadcn/toggle',
     ]
 
     expect(
@@ -102,11 +104,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/toggle')
+    expect(nextRow?.itemId).toBe('base-ui/toggle-group')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/toggle',
-      'https://ui.shadcn.com/docs/components/toggle',
+      'https://base-ui.com/react/components/toggle-group',
+      'https://ui.shadcn.com/docs/components/toggle-group',
     ])
   })
 
