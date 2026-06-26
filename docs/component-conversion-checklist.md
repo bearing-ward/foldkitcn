@@ -1,21 +1,21 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T20:39:56.450Z
+Generated at: 2026-06-26T21:43:52.285Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
 | Base UI docs |       21 |    38 |        17 |
-| shadcn docs  |       25 |    59 |        34 |
+| shadcn docs  |       25 |    64 |        39 |
 
-- shadcn source-backed files: 55
+- shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
-- Ready-for-dossier rows: 0
+- Ready-for-dossier rows: 5
 - Dossier-ready rows: 46
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
-- shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
+- shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
 ## Next Candidates
 
@@ -77,7 +77,13 @@ Generated at: 2026-06-26T20:39:56.450Z
 
 ## Ready For Dossier
 
-None.
+| Item                      | Readiness         | Parity      | URLs                                                             | Blockers |
+| ------------------------- | ----------------- | ----------- | ---------------------------------------------------------------- | -------- |
+| `shadcn/attachment`       | ready-for-dossier | not-started | [origin](https://ui.shadcn.com/docs/components/attachment)       |          |
+| `shadcn/bubble`           | ready-for-dossier | not-started | [origin](https://ui.shadcn.com/docs/components/bubble)           |          |
+| `shadcn/marker`           | ready-for-dossier | not-started | [origin](https://ui.shadcn.com/docs/components/marker)           |          |
+| `shadcn/message`          | ready-for-dossier | not-started | [origin](https://ui.shadcn.com/docs/components/message)          |          |
+| `shadcn/message-scroller` | ready-for-dossier | not-started | [origin](https://ui.shadcn.com/docs/components/message-scroller) |          |
 
 ## Dossier Ready
 

@@ -1,0 +1,55 @@
+{
+  "batch": ["shadcn/direction"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Direction",
+      "docsUrl": "https://ui.shadcn.com/docs/components/direction",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/direction.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/direction.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/direction.mdx"
+      ],
+      "demoPaths": [],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/direction.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/direction.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/direction.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui/react/direction-provider"],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui/react/direction-provider",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/direction-provider",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": []
+}

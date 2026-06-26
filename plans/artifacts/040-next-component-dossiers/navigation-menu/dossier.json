@@ -1,0 +1,285 @@
+{
+  "batch": ["base-ui/navigation-menu", "shadcn/navigation-menu"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Navigation Menu",
+      "docsUrl": "https://base-ui.com/react/components/navigation-menu",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdropDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIconDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/index.parts.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/index.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItemContext.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLinkDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuDismissContext.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopupCssVars.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortalContext.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositionerContext.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRootContext.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTriggerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/utils/constants.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/utils/isOutsideMenuEvent.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/utils/setSharedFixedSize.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/data.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.webkit.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/navigation-menu"],
+      "blockers": [],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Navigation Menu",
+      "docsUrl": "https://ui.shadcn.com/docs/components/navigation-menu",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/navigation-menu.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/navigation-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/navigation-menu.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/navigation-menu-demo.tsx",
+        "repos/ui/apps/v4/examples/base/navigation-menu-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/navigation-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/navigation-menu.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/navigation-menu.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/navigation-menu.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": ["base-ui/navigation-menu", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/navigation-menu",
+        "class-variance-authority",
+        "lucide-react",
+        "next/link",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/navigation-menu",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/navigation-menu",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/navigation-menu",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/navigation-menu",
+      "classification": "registry-local",
+      "target": "base-ui/navigation-menu",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "next/link",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.webkit.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "batch": ["base-ui/scroll-area", "shadcn/scroll-area"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Scroll Area",
+      "docsUrl": "https://base-ui.com/react/components/scroll-area",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/scroll-area/constants.ts",
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContent.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/corner/ScrollAreaCorner.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/index.parts.ts",
+        "repos/base-ui/packages/react/src/scroll-area/index.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRoot.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/stateAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbar.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumb.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumbDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/utils/getOffset.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewport.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/both/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/both/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/both/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/both/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/scroll-fade/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/scroll-fade/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/scroll-fade/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/scroll-fade/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContent.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/corner/ScrollAreaCorner.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRoot.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbar.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumb.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewport.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/scroll-area"],
+      "blockers": [],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Scroll Area",
+      "docsUrl": "https://ui.shadcn.com/docs/components/scroll-area",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/scroll-area.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/scroll-area.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/scroll-area.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/scroll-area-demo.tsx",
+        "repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo.tsx",
+        "repos/ui/apps/v4/examples/base/scroll-area-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/scroll-area.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/scroll-area.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/scroll-area.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "base-ui/scroll-area",
+        "shadcn/separator",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/scroll-area",
+        "next/image",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/scroll-area",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/scroll-area",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/scroll-area",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/scroll-area",
+      "classification": "registry-local",
+      "target": "base-ui/scroll-area",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "next/image",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/separator",
+      "classification": "registry-local",
+      "target": "shadcn/separator",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContent.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/corner/ScrollAreaCorner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbar.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumb.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewport.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

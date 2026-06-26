@@ -1,0 +1,98 @@
+{
+  "batch": ["base-ui/toolbar"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toolbar",
+      "docsUrl": "https://base-ui.com/react/components/toolbar",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButton.tsx",
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButtonDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroup.tsx",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroupContext.ts",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/index.parts.ts",
+        "repos/base-ui/packages/react/src/toolbar/index.ts",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInput.tsx",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLink.tsx",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLinkDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRoot.tsx",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRootContext.ts",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/separator/ToolbarSeparator.tsx",
+        "repos/base-ui/packages/react/src/toolbar/separator/ToolbarSeparatorDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButton.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroup.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInput.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLink.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRoot.test.tsx"
+      ],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/toolbar"],
+      "blockers": [],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui-components/react/toolbar",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/toolbar/button/ToolbarButton.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toolbar/input/ToolbarInput.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toolbar/link/ToolbarLink.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/toolbar/root/ToolbarRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    }
+  ]
+}

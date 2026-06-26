@@ -1,0 +1,337 @@
+{
+  "batch": ["base-ui/select", "shadcn/select"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Select",
+      "docsUrl": "https://base-ui.com/react/components/select",
+      "localRepoPath": "repos/base-ui",
+      "pinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/select/arrow/SelectArrow.tsx",
+        "repos/base-ui/packages/react/src/select/arrow/SelectArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/backdrop/SelectBackdrop.tsx",
+        "repos/base-ui/packages/react/src/select/backdrop/SelectBackdropDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/group-label/SelectGroupLabel.tsx",
+        "repos/base-ui/packages/react/src/select/group/SelectGroup.tsx",
+        "repos/base-ui/packages/react/src/select/group/SelectGroupContext.ts",
+        "repos/base-ui/packages/react/src/select/icon/SelectIcon.tsx",
+        "repos/base-ui/packages/react/src/select/icon/SelectIconDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/index.parts.ts",
+        "repos/base-ui/packages/react/src/select/index.ts",
+        "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicator.tsx",
+        "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/item-text/SelectItemText.tsx",
+        "repos/base-ui/packages/react/src/select/item/SelectItem.tsx",
+        "repos/base-ui/packages/react/src/select/item/SelectItemContext.ts",
+        "repos/base-ui/packages/react/src/select/item/SelectItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/label/SelectLabel.tsx",
+        "repos/base-ui/packages/react/src/select/list/SelectList.tsx",
+        "repos/base-ui/packages/react/src/select/popup/SelectPopup.tsx",
+        "repos/base-ui/packages/react/src/select/popup/SelectPopupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/popup/utils.ts",
+        "repos/base-ui/packages/react/src/select/portal/SelectPortal.tsx",
+        "repos/base-ui/packages/react/src/select/portal/SelectPortalContext.ts",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.tsx",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositionerContext.ts",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/root/SelectRoot.tsx",
+        "repos/base-ui/packages/react/src/select/root/SelectRootContext.ts",
+        "repos/base-ui/packages/react/src/select/scroll-arrow/SelectScrollArrow.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrow.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrow.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/store.ts",
+        "repos/base-ui/packages/react/src/select/trigger/SelectTrigger.tsx",
+        "repos/base-ui/packages/react/src/select/trigger/SelectTriggerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/select/value/SelectValue.tsx",
+        "repos/base-ui/packages/react/src/select/value/SelectValueDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.ts"
+      ],
+      "demoPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/grouped/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/grouped/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/grouped/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/multiple/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/multiple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/multiple/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/object-values/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/object-values/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/object-values/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/object-values/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/select/arrow/SelectArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/backdrop/SelectBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/select/group-label/SelectGroupLabel.test.tsx",
+        "repos/base-ui/packages/react/src/select/group/SelectGroup.test.tsx",
+        "repos/base-ui/packages/react/src/select/icon/SelectIcon.test.tsx",
+        "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/select/item-text/SelectItemText.test.tsx",
+        "repos/base-ui/packages/react/src/select/item/SelectItem.test.tsx",
+        "repos/base-ui/packages/react/src/select/label/SelectLabel.test.tsx",
+        "repos/base-ui/packages/react/src/select/list/SelectList.test.tsx",
+        "repos/base-ui/packages/react/src/select/popup/SelectPopup.test.tsx",
+        "repos/base-ui/packages/react/src/select/portal/SelectPortal.test.tsx",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/select/root/SelectRoot.test.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/trigger/SelectTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/select/value/SelectValue.test.tsx"
+      ],
+      "specPaths": [
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.spec.tsx",
+        "repos/base-ui/packages/react/src/select/root/SelectRoot.spec.tsx"
+      ],
+      "apiReferencePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.ts"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@base-ui-components/react/select"],
+      "blockers": [],
+      "confidence": "high",
+      "unresolvedQuestions": []
+    },
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Select",
+      "docsUrl": "https://ui.shadcn.com/docs/components/select",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/select.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/select.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/select-align-item.tsx",
+        "repos/ui/apps/v4/examples/base/select-demo.tsx",
+        "repos/ui/apps/v4/examples/base/select-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/select-groups.tsx",
+        "repos/ui/apps/v4/examples/base/select-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/select-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/select-scrollable.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/select.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/select.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "base-ui/select",
+        "shadcn/field",
+        "shadcn/label",
+        "shadcn/switch",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@base-ui/react/select",
+        "lucide-react",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui-components/react/select",
+      "classification": "replace-with-foldkit",
+      "target": "",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/select",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/select",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "base-ui/select",
+      "classification": "registry-local",
+      "target": "base-ui/select",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/switch",
+      "classification": "registry-local",
+      "target": "shadcn/switch",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": [
+    {
+      "path": "repos/base-ui/packages/react/src/select/arrow/SelectArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/backdrop/SelectBackdrop.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/group-label/SelectGroupLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/group/SelectGroup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/icon/SelectIcon.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicator.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/item-text/SelectItemText.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/item/SelectItem.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/label/SelectLabel.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/list/SelectList.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/popup/SelectPopup.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/portal/SelectPortal.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/root/SelectRoot.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrow.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/trigger/SelectTrigger.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/value/SelectValue.test.tsx",
+      "classification": "port-semantically",
+      "reason": "Foldkit Story and Scene tests should preserve behavior without React internals."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    },
+    {
+      "path": "repos/base-ui/packages/react/src/select/root/SelectRoot.spec.tsx",
+      "classification": "covered-by-parity",
+      "reason": "DOM attributes and browser behavior belong in origin parity fixtures."
+    }
+  ]
+}

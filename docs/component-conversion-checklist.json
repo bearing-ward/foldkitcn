@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T20:39:56.450Z",
+  "generatedAt": "2026-06-26T21:43:52.285Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -8,18 +8,18 @@
       "remaining": 17
     },
     "shadcn": {
-      "total": 59,
+      "total": 64,
       "imported": 25,
-      "remaining": 34
+      "remaining": 39
     },
-    "shadcnSourceFileCount": 55,
+    "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
-    "readyForDossierCount": 0,
+    "readyForDossierCount": 5,
     "dossierReadyCount": 46,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
-      "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
+      "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
     }
   },
   "rows": [
@@ -1125,7 +1125,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1151,7 +1152,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1179,7 +1181,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-checkbox-group/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-checkbox-group/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/checkbox-group/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1204,7 +1207,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/select/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/select/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/select/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1230,7 +1234,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/select/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/select/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/select/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1258,7 +1263,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/menu-dropdown-menu/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/menu-dropdown-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/menu-dropdown-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1284,7 +1290,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-radio/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-radio/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/radio/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1307,7 +1314,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/menu-dropdown-menu/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/menu-dropdown-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/menu-dropdown-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1335,7 +1343,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1361,7 +1370,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1389,7 +1399,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1415,7 +1426,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1443,7 +1455,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1469,7 +1482,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1495,7 +1509,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1523,7 +1538,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json"
+        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1551,7 +1567,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-toolbar/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-toolbar/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/toolbar/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1574,7 +1591,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1600,7 +1618,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1628,7 +1647,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/menubar/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1654,7 +1674,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/menubar/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1682,7 +1703,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/navigation-menu/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/navigation-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/navigation-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1708,7 +1730,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/navigation-menu/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/navigation-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/navigation-menu/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1737,7 +1760,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/combobox/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1763,7 +1787,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/combobox/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1791,7 +1816,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-autocomplete/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-autocomplete/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/autocomplete/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1814,7 +1840,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/drawer/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/drawer/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/drawer/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1840,7 +1867,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/drawer/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/drawer/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/drawer/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1868,7 +1896,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-sheet/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-sheet/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/sheet/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1893,7 +1922,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-direction/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-direction/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/direction/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1918,7 +1948,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-card/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-card/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/card/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1943,7 +1974,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-breadcrumb/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-breadcrumb/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/breadcrumb/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2467,6 +2499,52 @@
       "readiness": "blocked"
     },
     {
+      "itemId": "shadcn/attachment",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/attachment",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": false,
+      "hasDossier": false,
+      "dossierPaths": [],
+      "paritySlotStatus": "not-started",
+      "implementationStatus": "planned",
+      "parityStatus": "not-started",
+      "driftStatus": "current",
+      "availability": "private",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/attachment"],
+      "readiness": "ready-for-dossier"
+    },
+    {
+      "itemId": "shadcn/bubble",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/bubble",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": false,
+      "hasDossier": false,
+      "dossierPaths": [],
+      "paritySlotStatus": "not-started",
+      "implementationStatus": "planned",
+      "parityStatus": "not-started",
+      "driftStatus": "current",
+      "availability": "private",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/bubble"],
+      "readiness": "ready-for-dossier"
+    },
+    {
       "itemId": "shadcn/button",
       "namespace": "shadcn",
       "docsUrl": "https://ui.shadcn.com/docs/components/button",
@@ -2491,6 +2569,75 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/button"],
       "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/marker",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/marker",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": false,
+      "hasDossier": false,
+      "dossierPaths": [],
+      "paritySlotStatus": "not-started",
+      "implementationStatus": "planned",
+      "parityStatus": "not-started",
+      "driftStatus": "current",
+      "availability": "private",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/marker"],
+      "readiness": "ready-for-dossier"
+    },
+    {
+      "itemId": "shadcn/message",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": false,
+      "hasDossier": false,
+      "dossierPaths": [],
+      "paritySlotStatus": "not-started",
+      "implementationStatus": "planned",
+      "parityStatus": "not-started",
+      "driftStatus": "current",
+      "availability": "private",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/message"],
+      "readiness": "ready-for-dossier"
+    },
+    {
+      "itemId": "shadcn/message-scroller",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message-scroller",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": false,
+      "hasDossier": false,
+      "dossierPaths": [],
+      "paritySlotStatus": "not-started",
+      "implementationStatus": "planned",
+      "parityStatus": "not-started",
+      "driftStatus": "current",
+      "availability": "private",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": [
+        "https://ui.shadcn.com/docs/components/message-scroller"
+      ],
+      "readiness": "ready-for-dossier"
     }
   ]
 }
