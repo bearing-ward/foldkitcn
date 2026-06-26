@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/field",
+  "namespace": "shadcn",
+  "name": "Field",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Field composition helpers layered over local Base UI Field semantics with base-nova Field, FieldSet, FieldLegend, FieldGroup, FieldContent, FieldLabel, FieldDescription, FieldSeparator, FieldTitle, and FieldError classes.",
+  "sourceRoot": "registry-src/shadcn/field",
+  "installableSourcePaths": [
+    "src/registry/shadcn/field/index.ts",
+    "src/registry/shadcn/field/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--destructive",
+    "--input",
+    "--muted-foreground",
+    "--primary",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Field",
+      "docsUrl": "https://ui.shadcn.com/docs/components/field",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/field.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/field.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/field.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/field.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/field-checkbox.tsx",
+        "repos/ui/apps/v4/examples/base/field-demo.tsx",
+        "repos/ui/apps/v4/examples/base/field-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/field-input.tsx",
+        "repos/ui/apps/v4/examples/base/field-responsive.tsx",
+        "repos/ui/apps/v4/examples/base/field-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/field-textarea.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/field",
+        "classification": "registry-local",
+        "target": "base-ui/field",
+        "reason": "shadcn Field composes the local Base UI Field primitive for root semantics and validity data attributes."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Dependency-complete Field examples compose the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/checkbox",
+        "classification": "registry-local",
+        "target": "shadcn/checkbox",
+        "reason": "Dependency-complete Field examples compose the local shadcn Checkbox item."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Field examples compose the local shadcn Input item."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "FieldLabel composes the local shadcn Label item."
+      },
+      {
+        "specifier": "shadcn/separator",
+        "classification": "registry-local",
+        "target": "shadcn/separator",
+        "reason": "FieldSeparator composes the local shadcn Separator item."
+      },
+      {
+        "specifier": "shadcn/textarea",
+        "classification": "registry-local",
+        "target": "shadcn/textarea",
+        "reason": "Dependency-complete Field examples compose the local shadcn Textarea item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Field uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Child, customElement, and html factory APIs for Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals and array helpers for pure variant maps and render decisions."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/field",
+        "reason": "Origin React Field primitive is replaced with the local Foldkit Base UI Field implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "CVA orientation variants are replaced by Effect Schema literals and pure class maps."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/field-input",
+      "title": "FieldInput",
+      "description": "FieldSet, FieldGroup, Field, FieldLabel, Input, and FieldDescription composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-checkbox",
+      "title": "FieldCheckbox",
+      "description": "Checkbox, horizontal Field, FieldContent, and FieldSeparator composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-responsive",
+      "title": "FieldResponsive",
+      "description": "Responsive orientation Field with Input and Button composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-rtl",
+      "title": "FieldRtl",
+      "description": "RTL Field composition using local static strings instead of the origin language selector.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-textarea",
+      "title": "FieldTextarea",
+      "description": "Field and Textarea composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-origin-fixture",
+      "title": "FieldOriginFixture",
+      "description": "Static origin-evidence fixture derived from base-nova Field source.",
+      "sourcePath": "tests/parity/fixtures/origin/shadcn/field.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "shadcn/field-foldkit-fixture",
+      "title": "FieldFoldkitFixture",
+      "description": "Foldkit parity fixture for dependency-complete shadcn Field composition.",
+      "sourcePath": "tests/parity/fixtures/foldkit/shadcn/field.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/field",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/field.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/field.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-field-cva-replaced",
+      "shadcn-field-local-rtl-data",
+      "shadcn-field-deferred-missing-component-examples",
+      "shadcn-field-static-origin-fixture"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-field-cva-replaced",
+      "summary": "CVA orientation variants are represented by Effect Schema literals and pure class maps.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source avoids CVA while preserving the pinned base-nova class strings."
+    },
+    {
+      "id": "shadcn-field-local-rtl-data",
+      "summary": "RTL example uses local static strings instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local RTL strings preserve direction and field semantics without adding an app-only dependency."
+    },
+    {
+      "id": "shadcn-field-deferred-missing-component-examples",
+      "summary": "Origin examples requiring missing Select or app-only dependencies are not installable examples.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The plan forbids adding runtime dependencies for components that are not dependency-complete. Those examples remain origin evidence until their dependencies are available."
+    },
+    {
+      "id": "shadcn-field-static-origin-fixture",
+      "summary": "Parity origin fixture uses static source-derived markup for dependency-complete Field composition.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The fixture proves the base-nova slots and class tokens without pulling React, CVA, or app-only dependencies into installable source."
+    }
+  ]
+}

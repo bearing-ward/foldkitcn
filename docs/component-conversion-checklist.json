@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T18:34:38.150Z",
+  "generatedAt": "2026-06-26T19:35:59.275Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 19,
-      "remaining": 19
+      "imported": 20,
+      "remaining": 18
     },
     "shadcn": {
       "total": 59,
-      "imported": 24,
-      "remaining": 35
+      "imported": 25,
+      "remaining": 34
     },
     "shadcnSourceFileCount": 55,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 49,
+    "dossierReadyCount": 47,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -1025,24 +1025,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/field/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/field",
-        "https://ui.shadcn.com/docs/components/field"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/field"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 50",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/field",
@@ -1051,27 +1048,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/field/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/field",
-        "https://ui.shadcn.com/docs/components/field"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/field"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 50",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/label",
