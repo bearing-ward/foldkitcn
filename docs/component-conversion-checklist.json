@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T19:35:59.275Z",
+  "generatedAt": "2026-06-26T20:39:56.450Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 20,
-      "remaining": 18
+      "imported": 21,
+      "remaining": 17
     },
     "shadcn": {
       "total": 59,
@@ -16,7 +16,7 @@
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 47,
+    "dossierReadyCount": 46,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -1099,21 +1099,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/base-ui-form/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/form"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 64",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/tooltip",
