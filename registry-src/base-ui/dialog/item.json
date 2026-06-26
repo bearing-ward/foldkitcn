@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/dialog",
+  "namespace": "base-ui",
+  "name": "Dialog",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Dialog primitive preserving model-owned open state, trigger/open/close facts, native dialog ARIA relationships, modal command helpers, backdrop and popup state data attributes, and title/description wiring.",
+  "sourceRoot": "registry-src/base-ui/dialog",
+  "installableSourcePaths": ["src/registry/base-ui/dialog/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Dialog",
+      "docsUrl": "https://base-ui.com/react/components/dialog",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/dialog",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/dialog/backdrop/DialogBackdrop.tsx",
+        "repos/base-ui/packages/react/src/dialog/close/DialogClose.tsx",
+        "repos/base-ui/packages/react/src/dialog/description/DialogDescription.tsx",
+        "repos/base-ui/packages/react/src/dialog/index.parts.ts",
+        "repos/base-ui/packages/react/src/dialog/index.ts",
+        "repos/base-ui/packages/react/src/dialog/popup/DialogPopup.tsx",
+        "repos/base-ui/packages/react/src/dialog/portal/DialogPortal.tsx",
+        "repos/base-ui/packages/react/src/dialog/root/DialogRoot.tsx",
+        "repos/base-ui/packages/react/src/dialog/root/useDialogRoot.ts",
+        "repos/base-ui/packages/react/src/dialog/root/useRenderDialogRoot.tsx",
+        "repos/base-ui/packages/react/src/dialog/title/DialogTitle.tsx",
+        "repos/base-ui/packages/react/src/dialog/trigger/DialogTrigger.tsx",
+        "repos/base-ui/packages/react/src/dialog/viewport/DialogViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/dialog/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/dialog/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/dialog/types.ts"
+      ],
+      "examplePaths": [],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/dialog/backdrop/DialogBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/close/DialogClose.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/description/DialogDescription.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/popup/DialogPopup.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/portal/DialogPortal.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/root/DialogRoot.detached-triggers.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/root/DialogRoot.spec.tsx",
+        "repos/base-ui/packages/react/src/dialog/root/DialogRoot.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/title/DialogTitle.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/trigger/DialogTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/dialog/viewport/DialogViewport.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, and message helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/dialog",
+        "reason": "Origin Base UI React Dialog primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/dialog",
+        "reason": "Origin Base UI React Dialog primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/dialog",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/dialog.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/dialog.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-dialog-model-owned-open-state",
+      "base-ui-dialog-command-facing-modal-effects",
+      "base-ui-dialog-non-modal-render-only"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-dialog-model-owned-open-state",
+      "summary": "Open state is a model-owned input and user interactions emit open-change facts instead of mutating internal component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model and return command helpers in response to DialogOpenChange payloads."
+    },
+    {
+      "id": "base-ui-dialog-command-facing-modal-effects",
+      "summary": "Focus trap, Escape routing, scroll lock, and focus restoration are exposed as explicit Command helpers rather than hidden inside render helpers.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Dialog side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+    },
+    {
+      "id": "base-ui-dialog-non-modal-render-only",
+      "summary": "Non-modal state renders ARIA and open attributes without installing modal focus trapping or scroll locking commands.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit's current Dom.showModal helper intentionally traps focus. Non-modal behavior is represented without pretending modal side effects are absent."
+    }
+  ]
+}

@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T15:33:54.242Z",
+  "generatedAt": "2026-06-26T16:04:03.144Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 15,
-      "remaining": 23
+      "imported": 16,
+      "remaining": 22
     },
     "shadcn": {
       "total": 59,
-      "imported": 21,
-      "remaining": 38
+      "imported": 22,
+      "remaining": 37
     },
     "shadcnSourceFileCount": 55,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 56,
+    "dossierReadyCount": 54,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "95471a0fb95b2b205e1850841e05d93f3fcae659"
@@ -807,24 +807,21 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/dialog/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/dialog",
-        "https://ui.shadcn.com/docs/components/dialog"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/dialog"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 40",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/dialog",
@@ -833,26 +830,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/dialog/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/dialog",
-        "https://ui.shadcn.com/docs/components/dialog"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/dialog"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 40",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/popover",

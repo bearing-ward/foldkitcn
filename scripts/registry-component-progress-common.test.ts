@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 15,
-      remaining: 23,
+      imported: 16,
+      remaining: 22,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 21,
-      remaining: 38,
+      imported: 22,
+      remaining: 37,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -52,6 +52,7 @@ describe('origin component progress', () => {
       'base-ui/button',
       'base-ui/checkbox',
       'base-ui/collapsible',
+      'base-ui/dialog',
       'base-ui/input',
       'base-ui/meter',
       'base-ui/progress',
@@ -70,6 +71,7 @@ describe('origin component progress', () => {
       'shadcn/button',
       'shadcn/checkbox',
       'shadcn/collapsible',
+      'shadcn/dialog',
       'shadcn/kbd',
       'shadcn/input',
       'shadcn/native-select',
@@ -110,11 +112,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/dialog')
+    expect(nextRow?.itemId).toBe('base-ui/popover')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/dialog',
-      'https://ui.shadcn.com/docs/components/dialog',
+      'https://base-ui.com/react/components/popover',
+      'https://ui.shadcn.com/docs/components/popover',
     ])
   })
 
