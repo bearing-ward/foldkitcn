@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/toggle-group",
+  "namespace": "shadcn",
+  "name": "Toggle Group",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Toggle Group wrapper composed from the local Base UI Toggle Group primitive, shadcn Toggle variants, spacing options, slots, and pure class maps.",
+  "sourceRoot": "registry-src/shadcn/toggle-group",
+  "installableSourcePaths": [
+    "src/registry/shadcn/toggle-group/index.ts",
+    "src/registry/shadcn/toggle-group/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--foreground",
+    "--input",
+    "--muted",
+    "--radius-md",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Toggle Group",
+      "docsUrl": "https://ui.shadcn.com/docs/components/toggle-group",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/toggle-group.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/toggle-group.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/toggle-group.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toggle-group.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toggle-group.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/toggle-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-font-weight-selector.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-outline.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-spacing.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-group-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/toggle-group",
+        "classification": "registry-local",
+        "target": "base-ui/toggle-group",
+        "reason": "shadcn Toggle Group composes the local Foldkit Base UI Toggle Group primitive."
+      },
+      {
+        "specifier": "shadcn/toggle",
+        "classification": "registry-local",
+        "target": "shadcn/toggle",
+        "reason": "shadcn Toggle Group items reuse local shadcn Toggle variant and size class helpers."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Toggle Group uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for spacing options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/toggle",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/toggle",
+        "reason": "Origin Base UI React Toggle primitive is replaced by local Foldkit Toggle semantics."
+      },
+      {
+        "specifier": "@base-ui/react/toggle-group",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/toggle-group",
+        "reason": "Origin Base UI React Toggle Group primitive is replaced by the local Foldkit Base UI Toggle Group implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "Origin docs include field-composed examples; this Toggle Group item keeps those as external registry composition rather than importing field source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/toggle-group-demo",
+      "title": "ToggleGroupDemo",
+      "description": "Default outline alignment Toggle Group demo with local icons.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-disabled",
+      "title": "ToggleGroupDisabled",
+      "description": "Toggle Group with a disabled item.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-font-weight-selector",
+      "title": "ToggleGroupFontWeightSelector",
+      "description": "Multiple-selection font formatting Toggle Group with local icons.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-outline",
+      "title": "ToggleGroupOutline",
+      "description": "Outline Toggle Group with zero spacing.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-rtl",
+      "title": "ToggleGroupRtl",
+      "description": "RTL Toggle Group with local translated label.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-sizes",
+      "title": "ToggleGroupSizes",
+      "description": "Small, default, and large Toggle Group examples.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-spacing",
+      "title": "ToggleGroupSpacing",
+      "description": "Toggle Group spacing example.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-vertical",
+      "title": "ToggleGroupVertical",
+      "description": "Vertical Toggle Group example.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/toggle-group",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/toggle-group.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/toggle-group.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-toggle-group-local-base-ui",
+      "shadcn-toggle-group-local-icons",
+      "shadcn-toggle-group-local-rtl-data"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-toggle-group-local-base-ui",
+      "summary": "The shadcn wrapper composes local Toggle Group attributes instead of importing upstream Base UI React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, spacing, and variants over the local Foldkit primitive."
+    },
+    {
+      "id": "shadcn-toggle-group-local-icons",
+      "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Toggle Group examples without adding icon registry items."
+    },
+    {
+      "id": "shadcn-toggle-group-local-rtl-data",
+      "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+    }
+  ]
+}
