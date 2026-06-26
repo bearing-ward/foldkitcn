@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 14,
-      remaining: 24,
+      imported: 15,
+      remaining: 23,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 20,
-      remaining: 39,
+      imported: 21,
+      remaining: 38,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -47,6 +47,7 @@ describe('origin component progress', () => {
 
   test('marks current imported items from registry source manifests', () => {
     const importedItemIds = [
+      'base-ui/accordion',
       'base-ui/avatar',
       'base-ui/button',
       'base-ui/checkbox',
@@ -62,6 +63,7 @@ describe('origin component progress', () => {
       'base-ui/toggle',
       'base-ui/toggle-group',
       'shadcn/alert',
+      'shadcn/accordion',
       'shadcn/aspect-ratio',
       'shadcn/avatar',
       'shadcn/badge',
@@ -108,11 +110,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/accordion')
+    expect(nextRow?.itemId).toBe('base-ui/dialog')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/accordion',
-      'https://ui.shadcn.com/docs/components/accordion',
+      'https://base-ui.com/react/components/dialog',
+      'https://ui.shadcn.com/docs/components/dialog',
     ])
   })
 

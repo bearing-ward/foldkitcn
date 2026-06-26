@@ -37,6 +37,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/textarea',
       'shadcn/radio-group',
       'shadcn/tabs',
+      'shadcn/accordion',
       'shadcn/collapsible',
     ])
 
@@ -60,6 +61,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/textarea',
       'shadcn/radio-group',
       'shadcn/tabs',
+      'shadcn/accordion',
       'shadcn/collapsible',
     ])
   })
