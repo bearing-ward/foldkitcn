@@ -1,30 +1,30 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T17:06:07.774Z
+Generated at: 2026-06-26T18:08:49.647Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
 | Base UI docs |       18 |    38 |        20 |
-| shadcn docs  |       23 |    59 |        36 |
+| shadcn docs  |       24 |    59 |        35 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 51
+- Dossier-ready rows: 50
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
 ## Next Candidates
 
-| Item                   | Readiness     | Parity      | URLs                                                                                                          | Blockers |
-| ---------------------- | ------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/number-field` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                   |          |
-| `base-ui/field`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field) |          |
-| `shadcn/label`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/label)                                                         |          |
-| `base-ui/form`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                           |          |
+| Item                   | Readiness     | Parity      | URLs                                                                                                              | Blockers |
+| ---------------------- | ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
+| `base-ui/number-field` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                       |          |
+| `base-ui/field`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)     |          |
+| `base-ui/form`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                               |          |
+| `base-ui/tooltip`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip) |          |
 
 ## Imported Items
 
@@ -68,6 +68,7 @@ Generated at: 2026-06-26T17:06:07.774Z
 - `base-ui/fieldset`
 - `shadcn/native-select`
 - `shadcn/alert`
+- `shadcn/label`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -81,7 +82,6 @@ None.
 | `base-ui/number-field`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/number-field)                                                                       |          |
 | `base-ui/field`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)                     |          |
 | `shadcn/field`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/field)<br>[origin](https://ui.shadcn.com/docs/components/field)                     |          |
-| `shadcn/label`            | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/label)                                                                             |          |
 | `base-ui/form`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/form)                                                                               |          |
 | `base-ui/tooltip`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
 | `shadcn/tooltip`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
