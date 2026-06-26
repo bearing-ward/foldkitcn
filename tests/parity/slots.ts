@@ -425,4 +425,40 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'keyboard-behavior',
     ],
   },
+  {
+    itemId: 'base-ui/collapsible',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/collapsible.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/collapsible.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
+    itemId: 'shadcn/collapsible',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/collapsible.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/collapsible.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
 ]

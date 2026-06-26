@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T02:29:20.060Z",
+  "generatedAt": "2026-06-26T02:52:21.451Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -371,6 +371,164 @@
           "path": "src/registry/base-ui/checkbox/index.ts",
           "sha256": "54aeb3ca14d97cb1ce23d949d6b954a47d2e03384df54d821afac17776a86689",
           "sizeBytes": 8993,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/collapsible",
+        "namespace": "base-ui",
+        "name": "Collapsible",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Collapsible primitive preserving model-owned open state, trigger activation, ARIA expanded and controls relationships, root/trigger/panel state data attributes, disabled trigger behavior, and panel mounting policy.",
+        "sourceRoot": "registry-src/base-ui/collapsible",
+        "installableSourcePaths": ["src/registry/base-ui/collapsible/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Collapsible",
+            "docsUrl": "https://base-ui.com/react/components/collapsible",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/collapsible",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/collapsible/index.parts.ts",
+              "repos/base-ui/packages/react/src/collapsible/index.ts",
+              "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.tsx",
+              "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts",
+              "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanelDataAttributes.ts",
+              "repos/base-ui/packages/react/src/collapsible/panel/useCollapsiblePanel.ts",
+              "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.tsx",
+              "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootContext.ts",
+              "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/collapsible/root/stateAttributesMapping.ts",
+              "repos/base-ui/packages/react/src/collapsible/root/useCollapsibleRoot.ts",
+              "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.tsx",
+              "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTriggerDataAttributes.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/collapsible/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/collapsible/panel/CollapsiblePanel.test.tsx",
+              "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.test.tsx",
+              "repos/base-ui/packages/react/src/collapsible/root/CollapsibleRoot.spec.tsx",
+              "repos/base-ui/packages/react/src/collapsible/trigger/CollapsibleTrigger.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/collapsible",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/collapsible",
+              "reason": "Origin Base UI React Collapsible primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/collapsible",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/collapsible",
+              "reason": "Origin Base UI React Collapsible primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/collapsible",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/collapsible.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/collapsible.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-collapsible-model-owned-open-state",
+            "base-ui-collapsible-consumer-provided-panel-id",
+            "base-ui-collapsible-transition-measurement-input"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-collapsible-model-owned-open-state",
+            "summary": "Open state is a model-owned input and trigger presses emit open-change facts instead of mutating internal component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model in response to CollapsibleOpenChange payloads."
+          },
+          {
+            "id": "base-ui-collapsible-consumer-provided-panel-id",
+            "summary": "ARIA controls relationships use caller-provided ids instead of generated React ids.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable render helpers are pure and deterministic. Consumers provide stable root or panel ids when they need aria-controls wiring."
+          },
+          {
+            "id": "base-ui-collapsible-transition-measurement-input",
+            "summary": "Transition status and panel dimensions are explicit inputs rather than DOM-measured internal state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Base UI measures scroll dimensions for animated panels. Foldkit registry primitives stay pure; shared animation measurement belongs in a future runtime policy or consumer command."
+          }
+        ]
+      },
+      "manifestHash": "c93a03ed823ef30ea0729a76d3552d6fa3f5a78d634822c4b8070ee747e650a8",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/collapsible/item.json",
+          "sha256": "0c4f0ae7c3434fa7bafc5fc5bb917b6f4e4e5e56a197bac0a8be3a448c358a50",
+          "sizeBytes": 6690,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/collapsible/index.ts",
+          "sha256": "a1ace76da0024fa6a624956609dce56f2d0260b568b2ea23b9726015b68d149c",
+          "sizeBytes": 7040,
           "role": "source"
         }
       ]
@@ -2769,6 +2927,252 @@
           "path": "src/registry/shadcn/checkbox/examples.ts",
           "sha256": "14cbf0357a54444c43e37d2319acb35b3e34449d6404beeff4f6d9a2a6b84c25",
           "sizeBytes": 18999,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/collapsible",
+        "namespace": "shadcn",
+        "name": "Collapsible",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Collapsible wrapper composed from the local Base UI Collapsible primitive, shadcn root/trigger/content slots, local class canonicalization, and deterministic local examples.",
+        "sourceRoot": "registry-src/shadcn/collapsible",
+        "installableSourcePaths": [
+          "src/registry/shadcn/collapsible/index.ts",
+          "src/registry/shadcn/collapsible/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--accent",
+          "--accent-foreground",
+          "--background",
+          "--border",
+          "--card",
+          "--card-foreground",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Collapsible",
+            "docsUrl": "https://ui.shadcn.com/docs/components/collapsible",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/collapsible.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/collapsible.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/collapsible.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/collapsible-basic.tsx",
+              "repos/ui/apps/v4/examples/base/collapsible-demo.tsx",
+              "repos/ui/apps/v4/examples/base/collapsible-file-tree.tsx",
+              "repos/ui/apps/v4/examples/base/collapsible-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/collapsible-settings.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/collapsible",
+              "classification": "registry-local",
+              "target": "base-ui/collapsible",
+              "reason": "shadcn Collapsible composes the local Base UI Collapsible primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Collapsible uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options and is provided through the local Base UI Collapsible dependency."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/collapsible",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/collapsible",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Collapsible implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are rendered with local inline SVGs in installable Foldkit source."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            },
+            {
+              "specifier": "@/registry/icons/__lucide__",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin registry icon imports are replaced by local inline SVGs in Foldkit examples."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Examples use local static button class shells instead of importing an installable Button dependency."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Examples use local static card shells instead of importing an installable Card dependency."
+            },
+            {
+              "specifier": "shadcn/tabs",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The file-tree example uses local static tab shell markup instead of importing a second registry component."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/collapsible-demo",
+            "title": "CollapsibleDemo",
+            "description": "Order details collapsible with status row and icon trigger shell.",
+            "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/collapsible-basic",
+            "title": "CollapsibleBasic",
+            "description": "Product details card with local Button and Card shells.",
+            "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/collapsible-settings",
+            "title": "CollapsibleSettings",
+            "description": "Settings panel with radius inputs revealed by a trigger.",
+            "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/collapsible-file-tree",
+            "title": "CollapsibleFileTree",
+            "description": "Nested collapsibles for a file-tree shell.",
+            "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/collapsible-rtl",
+            "title": "CollapsibleRtl",
+            "description": "RTL order details layout with local static labels.",
+            "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/collapsible",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/collapsible.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/collapsible.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-collapsible-local-base-ui",
+            "shadcn-collapsible-local-example-shells"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-collapsible-local-base-ui",
+            "summary": "The shadcn wrapper composes local Collapsible attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots and classes over the local Foldkit primitive."
+          },
+          {
+            "id": "shadcn-collapsible-local-example-shells",
+            "summary": "Examples use local static Button, Card, icon, Tab, and RTL shells instead of origin app dependencies.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Collapsible DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+          }
+        ]
+      },
+      "manifestHash": "394fa0c33af81672d7ae34c53e6240a64a92b3aad20e585eea58455d07004870",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/collapsible/item.json",
+          "sha256": "7dd44d593c2c1d149cf50a4f6a0f9a9dd15c4baaf8c45762e0ce02cdd6280dd4",
+          "sizeBytes": 8300,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/collapsible/index.ts",
+          "sha256": "a66d6489a586f108e88eab8da4aa2f58872aa799b4b4509d6a0b69bb0b3cff7f",
+          "sizeBytes": 4650,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/collapsible/examples.ts",
+          "sha256": "c015abe6e8b0c21e7109ca8db44390ab373c49ae8f955968fb888baa3d13fd58",
+          "sizeBytes": 13746,
           "role": "source"
         }
       ]

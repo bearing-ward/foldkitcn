@@ -125,6 +125,8 @@ describe('parity canonicalizers', () => {
       'shadcn/radio-group',
       'base-ui/tabs',
       'shadcn/tabs',
+      'base-ui/collapsible',
+      'shadcn/collapsible',
     ])
   })
 })

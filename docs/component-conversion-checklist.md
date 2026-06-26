@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T02:22:21.629Z
+Generated at: 2026-06-26T02:50:15.404Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       10 |    38 |        28 |
-| shadcn docs  |       16 |    59 |        43 |
+| Base UI docs |       11 |    38 |        27 |
+| shadcn docs  |       17 |    59 |        42 |
 
 - shadcn source-backed files: 55
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 66
+- Dossier-ready rows: 64
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `95471a0fb95b2b205e1850841e05d93f3fcae659`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-26T02:22:21.629Z
 
 | Item                   | Readiness     | Parity      | URLs                                                                                                                        | Blockers |
 | ---------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/collapsible`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/collapsible)<br>[origin](https://ui.shadcn.com/docs/components/collapsible)   |          |
 | `base-ui/toggle`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle)<br>[origin](https://ui.shadcn.com/docs/components/toggle)             |          |
 | `base-ui/toggle-group` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle-group)<br>[origin](https://ui.shadcn.com/docs/components/toggle-group) |          |
 | `base-ui/slider`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/slider)<br>[origin](https://ui.shadcn.com/docs/components/slider)             |          |
+| `base-ui/accordion`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/accordion)<br>[origin](https://ui.shadcn.com/docs/components/accordion)       |          |
 
 ## Imported Items
 
@@ -49,6 +49,8 @@ Generated at: 2026-06-26T02:22:21.629Z
 - `shadcn/radio-group`
 - `base-ui/tabs`
 - `shadcn/tabs`
+- `base-ui/collapsible`
+- `shadcn/collapsible`
 - `base-ui/button`
 - `base-ui/meter`
 - `shadcn/native-select`
@@ -63,8 +65,6 @@ None.
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/collapsible`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/collapsible)<br>[origin](https://ui.shadcn.com/docs/components/collapsible)         |          |
-| `shadcn/collapsible`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/collapsible)<br>[origin](https://ui.shadcn.com/docs/components/collapsible)         |          |
 | `base-ui/toggle`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle)<br>[origin](https://ui.shadcn.com/docs/components/toggle)                   |          |
 | `shadcn/toggle`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle)<br>[origin](https://ui.shadcn.com/docs/components/toggle)                   |          |
 | `base-ui/toggle-group`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toggle-group)<br>[origin](https://ui.shadcn.com/docs/components/toggle-group)       |          |
