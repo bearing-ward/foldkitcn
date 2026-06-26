@@ -106,6 +106,7 @@ describe('parity canonicalizers', () => {
       'base-ui/avatar',
       'base-ui/progress',
       'base-ui/meter',
+      'base-ui/fieldset',
       'base-ui/slider',
       'shadcn/alert',
       'shadcn/avatar',
