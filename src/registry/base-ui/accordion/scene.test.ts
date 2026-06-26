@@ -14,17 +14,13 @@ import type { ViewConfig } from './index'
 
 const Model = S.Struct({
   value: S.Array(S.String),
-  focusedValue: S.String,
   lastReason: Accordion.AccordionChangeReason,
-  lastFocusSelector: S.String,
 })
 type Model = typeof Model.Type
 
 const initialModel: Model = {
   value: ['shipping'],
-  focusedValue: 'shipping',
   lastReason: 'none',
-  lastFocusSelector: '',
 }
 
 // MESSAGE
@@ -32,14 +28,9 @@ const initialModel: Model = {
 const ChangedAccordion = m('ChangedAccordion', {
   value: S.Array(S.String),
   reason: Accordion.AccordionChangeReason,
-  focusSelector: S.optional(S.String),
-})
-const FocusedAccordion = m('FocusedAccordion', {
-  value: S.String,
-  focusSelector: S.optional(S.String),
 })
 
-const Message = S.Union([ChangedAccordion, FocusedAccordion])
+const Message = S.Union([ChangedAccordion])
 type Message = typeof Message.Type
 
 // UPDATE
@@ -51,19 +42,10 @@ const update = (model: Model, message: Message): UpdateReturn =>
   M.value(message).pipe(
     withUpdateReturn,
     M.tagsExhaustive({
-      ChangedAccordion: ({ value, reason, focusSelector }) => [
+      ChangedAccordion: ({ value, reason }) => [
         evo(model, {
           value: () => value,
-          focusedValue: () => value[0] ?? '',
           lastReason: () => reason,
-          lastFocusSelector: () => focusSelector ?? '',
-        }),
-        [],
-      ],
-      FocusedAccordion: ({ value, focusSelector }) => [
-        evo(model, {
-          focusedValue: () => value,
-          lastFocusSelector: () => focusSelector ?? '',
         }),
         [],
       ],
@@ -106,7 +88,7 @@ const viewAccordion =
   (
     config: Omit<
       ViewConfig<Message>,
-      'items' | 'onFocusChange' | 'onValueChange' | 'toView' | 'value'
+      'items' | 'onValueChange' | 'toView' | 'value'
     > &
       Readonly<{ items?: ReadonlyArray<Accordion.AccordionItemDescriptor> }>,
   ) =>
@@ -121,7 +103,6 @@ const viewAccordion =
           items,
           ...config,
           onValueChange: change => ChangedAccordion(change),
-          onFocusChange: change => FocusedAccordion(change),
           toView: attributes =>
             h.div(
               [...attributes.root],
@@ -151,9 +132,7 @@ const viewAccordion =
             ),
         }),
         h.p([], [`Value ${model.value.join(',')}`]),
-        h.p([], [`Focused ${model.focusedValue}`]),
         h.p([], [`Reason ${model.lastReason}`]),
-        h.p([], [`Focus ${model.lastFocusSelector}`]),
       ],
     )
   }
@@ -203,7 +182,6 @@ describe('base-ui/accordion', () => {
         Scene.click(Scene.role('button', { name: 'Billing' })),
         Scene.expect(Scene.text('Value billing')).toExist(),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
-        Scene.expect(Scene.text('Focus #billing-trigger')).toExist(),
         Scene.click(Scene.role('button', { name: 'Billing' })),
         Scene.expect(Scene.text('Value ')).toExist(),
       )
@@ -257,16 +235,15 @@ describe('base-ui/accordion', () => {
     }).not.toThrow()
   })
 
-  test('keyboard activation and roving focus emit explicit messages', () => {
+  test('keyboard activation uses Enter and Space without roving focus', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({}) },
         Scene.with(initialModel),
         Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'ArrowDown'),
-        Scene.expect(Scene.text('Focused billing')).toExist(),
-        Scene.expect(Scene.text('Focus #billing-trigger')).toExist(),
-        Scene.keydown(Scene.role('button', { name: 'Billing' }), 'End'),
-        Scene.expect(Scene.text('Focused refunds')).toExist(),
+        Scene.expect(Scene.text('Value shipping')).toExist(),
+        Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'Home'),
+        Scene.expect(Scene.text('Value shipping')).toExist(),
         Scene.keydown(Scene.role('button', { name: 'Refunds' }), 'Enter'),
         Scene.expect(Scene.text('Value refunds')).toExist(),
         Scene.keydown(Scene.role('button', { name: 'Refunds' }), ' '),
@@ -275,7 +252,7 @@ describe('base-ui/accordion', () => {
     }).not.toThrow()
   })
 
-  test('horizontal rtl orientation reverses arrow-key focus direction', () => {
+  test('orientation is a data attribute and does not drive arrow-key focus', () => {
     expect(() => {
       Scene.scene(
         {
@@ -283,10 +260,12 @@ describe('base-ui/accordion', () => {
           view: viewAccordion({ orientation: 'horizontal', dir: 'rtl' }),
         },
         Scene.with(initialModel),
+        Scene.expect(Scene.selector('div[data-orientation]')).toHaveAttr(
+          'data-orientation',
+          'horizontal',
+        ),
         Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'ArrowLeft'),
-        Scene.expect(Scene.text('Focused billing')).toExist(),
-        Scene.keydown(Scene.role('button', { name: 'Billing' }), 'ArrowRight'),
-        Scene.expect(Scene.text('Focused shipping')).toExist(),
+        Scene.expect(Scene.text('Value shipping')).toExist(),
       )
     }).not.toThrow()
   })

@@ -1,5 +1,5 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 // MODEL
@@ -26,15 +26,8 @@ export type AccordionChangeReason = typeof AccordionChangeReason.Type
 export const AccordionValueChange = S.Struct({
   value: S.Array(S.String),
   reason: AccordionChangeReason,
-  focusSelector: S.optional(S.String),
 })
 export type AccordionValueChange = typeof AccordionValueChange.Type
-
-export const AccordionFocusChange = S.Struct({
-  value: S.String,
-  focusSelector: S.optional(S.String),
-})
-export type AccordionFocusChange = typeof AccordionFocusChange.Type
 
 export const AccordionPanelGeometry = S.Struct({
   height: S.optional(S.Number),
@@ -92,10 +85,6 @@ export const panelId = (
   item: Pick<AccordionItemDescriptor, 'id' | 'panel' | 'value'>,
 ): string => item.panel?.id ?? `${item.id ?? item.value}-panel`
 
-export const triggerFocusSelector = (
-  item: Pick<AccordionItemDescriptor, 'id' | 'triggerId' | 'value'>,
-): string => `#${triggerId(item)}`
-
 export const toggleValue = (
   value: ReadonlyArray<string>,
   item: Pick<AccordionItemDescriptor, 'value'>,
@@ -113,19 +102,9 @@ export const toggleValue = (
 export const valueChange = (
   value: ReadonlyArray<string>,
   reason: AccordionChangeReason,
-  focusSelector?: string,
 ): AccordionValueChange => ({
   value: [...value],
   reason,
-  ...(focusSelector === undefined ? {} : { focusSelector }),
-})
-
-export const focusChange = (
-  value: string,
-  focusSelector?: string,
-): AccordionFocusChange => ({
-  value,
-  ...(focusSelector === undefined ? {} : { focusSelector }),
 })
 
 // VIEW
@@ -156,7 +135,6 @@ export type ViewConfig<Message> = AccordionOptions &
   Readonly<{
     toView: (attributes: AccordionAttributes<Message>) => Html
     onValueChange?: (change: AccordionValueChange) => Message
-    onFocusChange?: (change: AccordionFocusChange) => Message
   }>
 
 const defaultOrientation = 'vertical'
@@ -196,107 +174,6 @@ const openStateDataAttributes = <Message>(
 ): ReadonlyArray<Attribute<Message>> =>
   open ? [h.DataAttribute('open', '')] : [h.DataAttribute('closed', '')]
 
-const enabledItems = (
-  config: Pick<AccordionOptions, 'isDisabled' | 'items'>,
-): ReadonlyArray<AccordionItemDescriptor> =>
-  config.isDisabled === true
-    ? []
-    : config.items.filter(item => item.isDisabled !== true)
-
-const activeIndex = (
-  items: ReadonlyArray<AccordionItemDescriptor>,
-  item: Pick<AccordionItemDescriptor, 'value'>,
-): number => items.findIndex(entry => entry.value === item.value)
-
-const nextIndex = (
-  currentIndex: number,
-  items: ReadonlyArray<AccordionItemDescriptor>,
-  direction: 'next' | 'previous',
-  loopFocus: boolean,
-): number | undefined => {
-  const offset = direction === 'next' ? 1 : -1
-  const candidateIndex = currentIndex + offset
-
-  if (candidateIndex >= 0 && candidateIndex < items.length) {
-    return candidateIndex
-  }
-
-  if (!loopFocus) {
-    return undefined
-  }
-
-  return direction === 'next' ? 0 : items.length - 1
-}
-
-const horizontalDirection = (
-  key: string,
-  dir: string | undefined,
-): 'next' | 'previous' | undefined => {
-  if (key === 'ArrowRight') {
-    return dir === 'rtl' ? 'previous' : 'next'
-  }
-
-  if (key === 'ArrowLeft') {
-    return dir === 'rtl' ? 'next' : 'previous'
-  }
-
-  return undefined
-}
-
-const verticalDirection = (key: string): 'next' | 'previous' | undefined => {
-  if (key === 'ArrowDown') {
-    return 'next'
-  }
-
-  if (key === 'ArrowUp') {
-    return 'previous'
-  }
-
-  return undefined
-}
-
-const arrowDirection = (
-  key: string,
-  config: Pick<AccordionOptions, 'dir' | 'orientation'>,
-): 'next' | 'previous' | undefined =>
-  (config.orientation ?? defaultOrientation) === 'vertical'
-    ? verticalDirection(key)
-    : horizontalDirection(key, config.dir)
-
-const rovingItem = (
-  config: Pick<
-    AccordionOptions,
-    'dir' | 'isDisabled' | 'items' | 'loopFocus' | 'orientation'
-  >,
-  item: AccordionItemDescriptor,
-  key: string,
-): AccordionItemDescriptor | undefined => {
-  const candidates = enabledItems(config)
-
-  if (key === 'Home') {
-    return candidates[0]
-  }
-
-  if (key === 'End') {
-    return candidates.at(-1)
-  }
-
-  const currentIndex = activeIndex(candidates, item)
-  const direction = arrowDirection(key, config)
-  const targetIndex =
-    direction === undefined || currentIndex === -1
-      ? undefined
-      : nextIndex(currentIndex, candidates, direction, config.loopFocus ?? true)
-
-  return targetIndex === undefined ? undefined : candidates[targetIndex]
-}
-
-const hasKeyboardModifier = (modifiers: KeyboardModifiers): boolean =>
-  modifiers.altKey ||
-  modifiers.ctrlKey ||
-  modifiers.metaKey ||
-  modifiers.shiftKey
-
 const canActivateItem = (
   config: Pick<ViewConfig<unknown>, 'isDisabled' | 'onValueChange'>,
   item: Pick<AccordionItemDescriptor, 'isDisabled'>,
@@ -315,40 +192,10 @@ const selectionMessage = <Message>(
           valueChange(
             toggleValue(config.value, item, config.multiple),
             'trigger-press',
-            triggerFocusSelector(item),
           ),
         ),
       )
     : Option.none()
-
-const focusMessage = <Message>(
-  config: ViewConfig<Message>,
-  item: AccordionItemDescriptor,
-): Option.Option<Message> =>
-  Predicate.isNotUndefined(config.onFocusChange)
-    ? Option.some(
-        config.onFocusChange(
-          focusChange(item.value, triggerFocusSelector(item)),
-        ),
-      )
-    : Option.none()
-
-const rovingMessage = <Message>(
-  config: ViewConfig<Message>,
-  item: AccordionItemDescriptor,
-  key: string,
-  modifiers: KeyboardModifiers,
-): Option.Option<Message> => {
-  if (hasKeyboardModifier(modifiers) || config.isDisabled === true) {
-    return Option.none()
-  }
-
-  const targetItem = rovingItem(config, item, key)
-
-  return targetItem === undefined
-    ? Option.none()
-    : focusMessage(config, targetItem)
-}
 
 const keyActivationMessage = <Message>(
   config: ViewConfig<Message>,
@@ -379,11 +226,7 @@ const keyboardAttributes = <Message>(
   }
 
   return [
-    h.OnKeyDownPreventDefault((key, modifiers) =>
-      keyActivationMessage(config, item, key).pipe(
-        Option.orElse(() => rovingMessage(config, item, key, modifiers)),
-      ),
-    ),
+    h.OnKeyDownPreventDefault(key => keyActivationMessage(config, item, key)),
   ]
 }
 

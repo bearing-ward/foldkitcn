@@ -5,8 +5,8 @@ const enabledKeyboard = {
   click: 'activates',
   Enter: 'activates',
   Space: 'activates',
-  ArrowDown: 'moves-focus',
-  ArrowUp: 'moves-focus',
+  ArrowDown: 'passes-through',
+  ArrowUp: 'passes-through',
   mousedown: 'passes-through',
   pointerdown: 'passes-through',
 }
@@ -15,8 +15,8 @@ const suppressedKeyboard = {
   click: 'suppressed',
   Enter: 'suppressed',
   Space: 'suppressed',
-  ArrowDown: 'suppressed',
-  ArrowUp: 'suppressed',
+  ArrowDown: 'passes-through',
+  ArrowUp: 'passes-through',
   mousedown: 'suppressed',
   pointerdown: 'suppressed',
 }

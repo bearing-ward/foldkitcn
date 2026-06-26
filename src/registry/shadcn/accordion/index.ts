@@ -8,7 +8,6 @@ import * as BaseAccordion from '../../base-ui/accordion'
 // MODEL
 
 export type AccordionChangeReason = BaseAccordion.AccordionChangeReason
-export type AccordionFocusChange = BaseAccordion.AccordionFocusChange
 export type AccordionItemDescriptor = BaseAccordion.AccordionItemDescriptor
 export type AccordionOrientation = BaseAccordion.AccordionOrientation
 export type AccordionPanelDescriptor = BaseAccordion.AccordionPanelDescriptor
@@ -29,15 +28,8 @@ export type AccordionStyleOptions = typeof AccordionStyleOptions.Type
 
 // UPDATE
 
-export const {
-  focusChange,
-  isOpen,
-  panelId,
-  toggleValue,
-  triggerFocusSelector,
-  triggerId,
-  valueChange,
-} = BaseAccordion
+export const { isOpen, panelId, toggleValue, triggerId, valueChange } =
+  BaseAccordion
 
 // VIEW
 

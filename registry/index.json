@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T15:37:38.540Z",
+  "generatedAt": "2026-06-26T15:46:09.742Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -10,7 +10,7 @@
         "namespace": "base-ui",
         "name": "Accordion",
         "kind": "component",
-        "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, keyboard focus messages, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+        "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, Enter and Space keyboard activation, deprecated orientation data attributes, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
         "sourceRoot": "registry-src/base-ui/accordion",
         "installableSourcePaths": ["src/registry/base-ui/accordion/index.ts"],
         "consumedThemeTokens": [],
@@ -72,7 +72,7 @@
               "specifier": "foldkit",
               "classification": "allowed-runtime",
               "target": "npm:foldkit",
-              "reason": "Provides Html, Attribute, keyboard modifier, and html factory APIs for the Foldkit-native render helper."
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
             },
             {
               "specifier": "effect",
@@ -120,7 +120,7 @@
           "acceptedDeviationIds": [
             "base-ui-accordion-model-owned-value-state",
             "base-ui-accordion-explicit-transition-measurement",
-            "base-ui-accordion-focus-as-message"
+            "base-ui-accordion-loop-focus-no-op"
           ]
         },
         "lifecycle": {
@@ -145,26 +145,26 @@
             "rationale": "Base UI measures panel dimensions for animated panels. Foldkit registry primitives stay pure and reuse the plan 028 explicit measurement convention."
           },
           {
-            "id": "base-ui-accordion-focus-as-message",
-            "summary": "Keyboard roving emits focus-change facts rather than imperatively focusing DOM nodes inside the helper.",
+            "id": "base-ui-accordion-loop-focus-no-op",
+            "summary": "The deprecated loopFocus option is accepted as source-evidence API shape but intentionally has no keyboard behavior.",
             "required": true,
             "status": "accepted",
-            "rationale": "Focus side effects belong in the consuming Foldkit update/command boundary; the helper exposes deterministic focus selectors."
+            "rationale": "Pinned Base UI Accordion deprecates loopFocus and orientation-driven roving focus after the APG update. The Foldkit helper preserves orientation data attributes but does not implement arrow-key focus movement."
           }
         ]
       },
-      "manifestHash": "68064ebd7e496b277e0653f3633c6597c11f45864e8746e355c268e49891201e",
+      "manifestHash": "c724314214f178483d595c63ed4db335c276bb25deb21bb623a3c27bc15185c5",
       "artifacts": [
         {
           "path": "registry-src/base-ui/accordion/item.json",
-          "sha256": "ed0391293ffa3776cd102cd9285da86d8173bae122586f91ce404c3b57879b70",
-          "sizeBytes": 7312,
+          "sha256": "805811e189e2b0ee5f53bec966293f1a85fee5f0425797fa4984f64c9021c9de",
+          "sizeBytes": 7442,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/accordion/index.ts",
-          "sha256": "aeb7d846682ad1d49f1d9fd61036ead74c4960a642ed3a32b2f140d92b7ff393",
-          "sizeBytes": 16172,
+          "sha256": "7e4a438f8fe2a13a8c65525c785bf311cf1204f0d9ae6965ad3f75402ec1b3e0",
+          "sizeBytes": 12033,
           "role": "source"
         }
       ]
@@ -2234,8 +2234,8 @@
         },
         {
           "path": "src/registry/shadcn/accordion/index.ts",
-          "sha256": "b1bd817917922ae11e2837506c78c39f131a4acf542bb1d8d9983e7a3259f97a",
-          "sizeBytes": 9170,
+          "sha256": "6ceff6765b744ba57a07d4e3bd70cb7e17d2cf97eb26d5c0f9e213e94409ad7b",
+          "sizeBytes": 9052,
           "role": "source"
         },
         {

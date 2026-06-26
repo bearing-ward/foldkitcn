@@ -4,7 +4,7 @@
   "namespace": "base-ui",
   "name": "Accordion",
   "kind": "component",
-  "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, keyboard focus messages, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+  "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, Enter and Space keyboard activation, deprecated orientation data attributes, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
   "sourceRoot": "registry-src/base-ui/accordion",
   "installableSourcePaths": ["src/registry/base-ui/accordion/index.ts"],
   "consumedThemeTokens": [],
@@ -66,7 +66,7 @@
         "specifier": "foldkit",
         "classification": "allowed-runtime",
         "target": "npm:foldkit",
-        "reason": "Provides Html, Attribute, keyboard modifier, and html factory APIs for the Foldkit-native render helper."
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
       },
       {
         "specifier": "effect",
@@ -114,7 +114,7 @@
     "acceptedDeviationIds": [
       "base-ui-accordion-model-owned-value-state",
       "base-ui-accordion-explicit-transition-measurement",
-      "base-ui-accordion-focus-as-message"
+      "base-ui-accordion-loop-focus-no-op"
     ]
   },
   "lifecycle": {
@@ -139,11 +139,11 @@
       "rationale": "Base UI measures panel dimensions for animated panels. Foldkit registry primitives stay pure and reuse the plan 028 explicit measurement convention."
     },
     {
-      "id": "base-ui-accordion-focus-as-message",
-      "summary": "Keyboard roving emits focus-change facts rather than imperatively focusing DOM nodes inside the helper.",
+      "id": "base-ui-accordion-loop-focus-no-op",
+      "summary": "The deprecated loopFocus option is accepted as source-evidence API shape but intentionally has no keyboard behavior.",
       "required": true,
       "status": "accepted",
-      "rationale": "Focus side effects belong in the consuming Foldkit update/command boundary; the helper exposes deterministic focus selectors."
+      "rationale": "Pinned Base UI Accordion deprecates loopFocus and orientation-driven roving focus after the APG update. The Foldkit helper preserves orientation data attributes but does not implement arrow-key focus movement."
     }
   ]
 }
