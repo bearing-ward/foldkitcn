@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 7,
-      remaining: 31,
+      imported: 8,
+      remaining: 30,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 59,
-      imported: 13,
-      remaining: 46,
+      imported: 14,
+      remaining: 45,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(55)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -49,6 +49,7 @@ describe('origin component progress', () => {
     const importedItemIds = [
       'base-ui/avatar',
       'base-ui/button',
+      'base-ui/checkbox',
       'base-ui/input',
       'base-ui/meter',
       'base-ui/progress',
@@ -59,6 +60,7 @@ describe('origin component progress', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/checkbox',
       'shadcn/kbd',
       'shadcn/input',
       'shadcn/native-select',
@@ -94,11 +96,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/checkbox')
+    expect(nextRow?.itemId).toBe('base-ui/radio-group')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/checkbox',
-      'https://ui.shadcn.com/docs/components/checkbox',
+      'https://base-ui.com/react/components/radio-group',
+      'https://ui.shadcn.com/docs/components/radio-group',
     ])
   })
 

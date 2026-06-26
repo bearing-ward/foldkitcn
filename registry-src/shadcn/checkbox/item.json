@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/checkbox",
+  "namespace": "shadcn",
+  "name": "Checkbox",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Checkbox wrapper composed from the local Base UI Checkbox primitive, shadcn root and indicator slots, local inline check SVG, and local fixture shells for Field, Label, and Table example layouts.",
+  "sourceRoot": "registry-src/shadcn/checkbox",
+  "installableSourcePaths": [
+    "src/registry/shadcn/checkbox/index.ts",
+    "src/registry/shadcn/checkbox/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--destructive",
+    "--input",
+    "--muted",
+    "--muted-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Checkbox",
+      "docsUrl": "https://ui.shadcn.com/docs/components/checkbox",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/checkbox.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/checkbox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/checkbox.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/checkbox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/checkbox.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/checkbox-basic.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-demo.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-description.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-group.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/checkbox-table.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/checkbox",
+        "classification": "registry-local",
+        "target": "base-ui/checkbox",
+        "reason": "shadcn Checkbox composes the local Base UI Checkbox primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Checkbox uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect helpers and is provided through the local Base UI Checkbox dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/checkbox",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/checkbox",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Checkbox implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin check icon package is replaced by a local inline SVG in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Checkbox examples reference Field before that registry item exists; examples use local fixture-only shells instead of importing an installable Field dependency."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Checkbox examples reference Label before that registry item exists; examples use local fixture-only shells instead of importing an installable Label dependency."
+      },
+      {
+        "specifier": "shadcn/table",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Checkbox table example references Table before that registry item exists; examples use local fixture-only table shells instead of importing an installable Table dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/checkbox-demo",
+      "title": "CheckboxDemo",
+      "description": "Mixed Checkbox field group with labels, description, disabled state, and choice-card shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-basic",
+      "title": "CheckboxBasic",
+      "description": "Basic Checkbox and FieldLabel layout.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-description",
+      "title": "CheckboxDescription",
+      "description": "Checked Checkbox with FieldContent and FieldDescription shells.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-disabled",
+      "title": "CheckboxDisabled",
+      "description": "Disabled Checkbox example with Field data-disabled shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-invalid",
+      "title": "CheckboxInvalid",
+      "description": "Invalid Checkbox example with aria-invalid and Field data-invalid shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-group",
+      "title": "CheckboxGroup",
+      "description": "Checkbox group layout using local FieldSet and FieldLegend shells.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-table",
+      "title": "CheckboxInTable",
+      "description": "Checkbox table selection layout using local Table shells and an indeterminate select-all checkbox.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-rtl",
+      "title": "CheckboxRtl",
+      "description": "RTL Checkbox layout using local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/checkbox",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/checkbox.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/checkbox.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-checkbox-inline-check-icon",
+      "shadcn-checkbox-local-field-label-table-shells",
+      "shadcn-checkbox-local-rtl-data"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-checkbox-inline-check-icon",
+      "summary": "The lucide CheckIcon import is replaced by a local inline SVG.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not add lucide-react as a runtime dependency. The local SVG preserves the rendered check shape without React."
+    },
+    {
+      "id": "shadcn-checkbox-local-field-label-table-shells",
+      "summary": "Field, Label, and Table example layouts use local fixture shells until those registry items land.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The Checkbox component must be installable before shadcn Field, Label, and Table. Local shells preserve rendered slot, class, and example layout parity without introducing unavailable registry dependencies."
+    },
+    {
+      "id": "shadcn-checkbox-local-rtl-data",
+      "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+    }
+  ]
+}
