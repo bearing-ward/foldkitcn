@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T21:43:52.285Z",
+  "generatedAt": "2026-06-26T22:46:17.521Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 21,
-      "remaining": 17
+      "imported": 22,
+      "remaining": 16
     },
     "shadcn": {
       "total": 64,
-      "imported": 25,
-      "remaining": 39
+      "imported": 26,
+      "remaining": 38
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 46,
+    "dossierReadyCount": 44,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1122,25 +1122,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
         "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/tooltip",
-        "https://ui.shadcn.com/docs/components/tooltip"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/tooltip"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 64",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/tooltip",
@@ -1149,27 +1146,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
         "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/tooltip",
-        "https://ui.shadcn.com/docs/components/tooltip"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/tooltip"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 64",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/checkbox-group",

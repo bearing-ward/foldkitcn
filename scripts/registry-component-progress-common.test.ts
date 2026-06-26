@@ -33,15 +33,15 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 21,
-      remaining: 17,
+      imported: 22,
+      remaining: 16,
     })
     expect(report.summary.shadcn).toStrictEqual({
-      total: 59,
-      imported: 25,
-      remaining: 34,
+      total: 64,
+      imported: 26,
+      remaining: 38,
     })
-    expect(report.summary.shadcnSourceFileCount).toBe(55)
+    expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
   })
 
@@ -66,6 +66,7 @@ describe('origin component progress', () => {
       'base-ui/slider',
       'base-ui/switch',
       'base-ui/tabs',
+      'base-ui/tooltip',
       'base-ui/toggle',
       'base-ui/toggle-group',
       'shadcn/alert',
@@ -91,6 +92,7 @@ describe('origin component progress', () => {
       'shadcn/switch',
       'shadcn/tabs',
       'shadcn/textarea',
+      'shadcn/tooltip',
       'shadcn/toggle',
       'shadcn/toggle-group',
     ]
@@ -120,11 +122,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/tooltip')
+    expect(nextRow?.itemId).toBe('base-ui/checkbox-group')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/tooltip',
-      'https://ui.shadcn.com/docs/components/tooltip',
+      'https://base-ui.com/react/components/checkbox-group',
     ])
   })
 

@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-26T21:43:52.285Z
+Generated at: 2026-06-26T22:46:17.521Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       21 |    38 |        17 |
-| shadcn docs  |       25 |    64 |        39 |
+| Base UI docs |       22 |    38 |        16 |
+| shadcn docs  |       26 |    64 |        38 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 5
-- Dossier-ready rows: 46
+- Dossier-ready rows: 44
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-26T21:43:52.285Z
 
 | Item                     | Readiness     | Parity      | URLs                                                                                                                 | Blockers |
 | ------------------------ | ------------- | ----------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/tooltip`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)    |          |
 | `base-ui/checkbox-group` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                        |          |
 | `base-ui/select`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)      |          |
 | `base-ui/menu`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu) |          |
+| `base-ui/radio`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio)                                                                 |          |
 
 ## Imported Items
 
@@ -73,6 +73,8 @@ Generated at: 2026-06-26T21:43:52.285Z
 - `shadcn/field`
 - `shadcn/label`
 - `base-ui/form`
+- `base-ui/tooltip`
+- `shadcn/tooltip`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -89,8 +91,6 @@ Generated at: 2026-06-26T21:43:52.285Z
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/tooltip`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
-| `shadcn/tooltip`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/tooltip)<br>[origin](https://ui.shadcn.com/docs/components/tooltip)                 |          |
 | `base-ui/checkbox-group`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/checkbox-group)                                                                     |          |
 | `base-ui/select`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)                   |          |
 | `shadcn/select`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/select)<br>[origin](https://ui.shadcn.com/docs/components/select)                   |          |
