@@ -82,7 +82,7 @@
     {
       "id": "base-ui/fieldset-origin-fixture",
       "title": "FieldsetOriginFixture",
-      "description": "Static origin-evidence fixture derived from Base UI Fieldset Root and Legend output because the worktree origin checkout is a placeholder.",
+      "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
       "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
       "kind": "origin-fixture"
     },
@@ -136,10 +136,10 @@
     },
     {
       "id": "base-ui-fieldset-static-origin-fixture",
-      "summary": "Parity origin fixture uses static source-derived markup rather than importing the placeholder worktree's Base UI checkout.",
+      "summary": "Parity origin fixture uses static source-derived markup for deterministic Root and Legend output.",
       "required": true,
       "status": "accepted",
-      "rationale": "This worktree has an empty repos/base-ui placeholder, so the fixture records source-derived Root and Legend output as evidence while installable source remains Foldkit-native."
+      "rationale": "Root and Legend render deterministic markup, and this matches the existing static-fixture pattern for behavior primitives while pinned origin source remains available in repos/base-ui."
     }
   ]
 }

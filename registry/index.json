@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T17:08:30.306Z",
+  "generatedAt": "2026-06-26T17:13:47.091Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -944,7 +944,7 @@
           {
             "id": "base-ui/fieldset-origin-fixture",
             "title": "FieldsetOriginFixture",
-            "description": "Static origin-evidence fixture derived from Base UI Fieldset Root and Legend output because the worktree origin checkout is a placeholder.",
+            "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
             "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
             "kind": "origin-fixture"
           },
@@ -998,19 +998,19 @@
           },
           {
             "id": "base-ui-fieldset-static-origin-fixture",
-            "summary": "Parity origin fixture uses static source-derived markup rather than importing the placeholder worktree's Base UI checkout.",
+            "summary": "Parity origin fixture uses static source-derived markup for deterministic Root and Legend output.",
             "required": true,
             "status": "accepted",
-            "rationale": "This worktree has an empty repos/base-ui placeholder, so the fixture records source-derived Root and Legend output as evidence while installable source remains Foldkit-native."
+            "rationale": "Root and Legend render deterministic markup, and this matches the existing static-fixture pattern for behavior primitives while pinned origin source remains available in repos/base-ui."
           }
         ]
       },
-      "manifestHash": "f0f0c8b232223c480630f9061bb1180d76247d9aa46ec6de0d7fed339fe458a9",
+      "manifestHash": "a7e8d3b54784daba6d45c7cf5e2434f98affed9792dde280fbbf227fd9fe621a",
       "artifacts": [
         {
           "path": "registry-src/base-ui/fieldset/item.json",
-          "sha256": "27304675caf6b5b708e3dc428919451c61958fb92697ad5523008dc3c07edb5e",
-          "sizeBytes": 6402,
+          "sha256": "6fb3cac989c7f8dbc782188e55498dd13eeac118bdfbc5f5e0e1c3f2bd0b9e73",
+          "sizeBytes": 6346,
           "role": "manifest"
         },
         {
