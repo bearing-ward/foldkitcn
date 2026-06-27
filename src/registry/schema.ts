@@ -361,6 +361,10 @@ export const ComponentDocsArtifact = S.Struct({
   installCommand: S.OptionFromNullOr(S.String),
   localInstallPath: S.String,
   defaultImportPath: S.String,
+  sourceRoot: S.optional(S.String),
+  installableSourcePaths: S.optional(S.Array(S.String)),
+  originProvenance: S.optional(S.Array(OriginProvenance)),
+  dependencies: S.optional(DependencyGraph),
   examples: S.Array(ExampleDocsArtifact),
   quality: S.Struct({
     availability: Availability,

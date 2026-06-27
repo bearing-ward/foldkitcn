@@ -275,7 +275,7 @@ const slugifyHeading = (text: string): string =>
 const extractMarkdownHeadings = (
   markdown: string,
 ): ComponentDocsArtifactType['headings'] =>
-  Array.fromIterable(
+  globalThis.Array.from(
     markdown.matchAll(/^(?<marks>#{1,6})\s+(?<text>.+)$/gmu),
   ).flatMap(match => {
     const { marks, text } = match.groups ?? {}
@@ -316,6 +316,15 @@ export const buildComponentDocsArtifacts = (
     const hasMarkdown = existsSync(docsMarkdownPath)
     const markdown = hasMarkdown ? readFileSync(docsMarkdownPath, 'utf-8') : ''
     const route = componentDocsRouteForItem(item)
+    const exemplarMetadata =
+      item.id === 'shadcn/button'
+        ? {
+            sourceRoot: item.sourceRoot,
+            installableSourcePaths: item.installableSourcePaths,
+            originProvenance: item.originProvenance,
+            dependencies: item.dependencies,
+          }
+        : {}
     const artifact = {
       schemaVersion: 1,
       itemId: item.id,
@@ -329,6 +338,7 @@ export const buildComponentDocsArtifacts = (
       installCommand: null,
       localInstallPath: localInstallPathForItem(item),
       defaultImportPath: item.id,
+      ...exemplarMetadata,
       examples: item.examples,
       quality: {
         availability: item.lifecycle.availability,

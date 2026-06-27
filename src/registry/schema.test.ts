@@ -108,6 +108,14 @@ describe('generated docs artifact schemas', () => {
       installCommand: null,
       localInstallPath: 'src/registry/shadcn/button',
       defaultImportPath: 'shadcn/button',
+      sourceRoot: 'registry-src/shadcn/button',
+      installableSourcePaths: ['src/registry/shadcn/button/index.ts'],
+      originProvenance: [],
+      dependencies: {
+        registry: [],
+        runtime: [],
+        development: [],
+      },
       examples: [
         {
           id: 'shadcn/button-default',

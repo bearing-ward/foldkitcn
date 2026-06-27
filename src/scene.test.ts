@@ -81,7 +81,7 @@ describe(view, () => {
     )
   })
 
-  test('Component detail renders a generated artifact placeholder', () => {
+  test('Component detail renders the shadcn Button docs sections', () => {
     Scene.scene(
       { update, view },
       Scene.with(
@@ -90,8 +90,41 @@ describe(view, () => {
         ),
       ),
       Scene.expect(Scene.role('heading', { name: 'Button' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Overview' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Installation' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Usage' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Examples' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'API' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Accessibility' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Quality' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Source' })).toExist(),
       Scene.expect(
-        Scene.text('registry/docs/shadcn/button.json', { exact: false }),
+        Scene.role('heading', { name: 'Foldkit Differences' }),
+      ).toExist(),
+    )
+  })
+
+  test('Component detail renders Button relationships and quality data', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Composes' })).toExist(),
+      Scene.expect(Scene.text('base-ui/button')).toExist(),
+      Scene.expect(Scene.text('utils/cn')).toExist(),
+      Scene.expect(Scene.text('installable')).toExist(),
+      Scene.expect(Scene.text('implemented')).toExist(),
+      Scene.expect(Scene.text('accepted')).toExist(),
+      Scene.expect(Scene.text('current')).toExist(),
+      Scene.expect(Scene.text('registry/docs/shadcn/button.json')).toExist(),
+      Scene.expect(
+        Scene.text(
+          'Icon examples use local inline SVGs instead of origin icon packages.',
+          { exact: false },
+        ),
       ).toExist(),
     )
   })

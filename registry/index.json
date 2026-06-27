@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T21:24:36.884Z",
+  "generatedAt": "2026-06-27T21:51:31.264Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -5719,7 +5719,7 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "complete"
         },
         "deviations": [
           {
@@ -5731,12 +5731,12 @@
           }
         ]
       },
-      "manifestHash": "fae0a83227311755ee2b8398f8bfc94de8d42b7f89e9d6b07ce1f8b3d441a1be",
+      "manifestHash": "e38ed21978d1ba5013f95e1412cbe6c0a83ff9a23561931b5801b6440d3de6f4",
       "artifacts": [
         {
           "path": "registry-src/shadcn/button/item.json",
-          "sha256": "14aeafbbd9a4c6353bb2228edb580893bbce321bfa077ff6f10679363faf8fa2",
-          "sizeBytes": 8939,
+          "sha256": "93c6957e0a6fdb22084b716f5895b8aa4d92efb36d1a0ccb6744582e915df33b",
+          "sizeBytes": 8940,
           "role": "manifest"
         },
         {

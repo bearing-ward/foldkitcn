@@ -471,7 +471,7 @@ describe('registry validation', () => {
     ])
   })
 
-  test('rejects complete docs with missing required headings', () => {
+  test('rejects complete docs with missing required sidecar headings', () => {
     const docsPath = 'registry-src/local/complete/docs.md'
     const result = validateFixture(
       'registry-src/local/complete/item.json',
@@ -494,11 +494,56 @@ describe('registry validation', () => {
     expect(result.errors).toStrictEqual([
       {
         path: docsPath,
-        message: 'Complete docs require a "API" heading.',
+        message: 'Complete docs require a "Button" heading.',
       },
       {
         path: docsPath,
-        message: 'Complete docs require a "Quality" heading.',
+        message: 'Complete docs require a "Overview" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Foldkit Model" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Accessibility" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Foldkit Differences" heading.',
+      },
+    ])
+  })
+
+  test('rejects complete docs with raw HTML', () => {
+    const docsPath = 'registry-src/local/complete/docs.md'
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map([
+        [
+          docsPath,
+          '# Button\n\n## Overview\n\n## Foldkit Model\n\n## Usage\n\n## Examples\n\n## Accessibility\n\n## Foldkit Differences\n\n<div>nope</div>\n',
+        ],
+      ]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: docsPath,
+        message: 'Complete docs must not include raw HTML.',
       },
     ])
   })

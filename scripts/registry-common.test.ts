@@ -33,7 +33,14 @@ const registryIndexWithShadcnButton = (): RegistryIndex => ({
         consumedThemeTokens: [],
         originProvenance: [],
         dependencies: {
-          registry: [],
+          registry: [
+            {
+              specifier: 'base-ui/button',
+              classification: 'registry-local',
+              target: 'base-ui/button',
+              reason: 'Button composes Base UI Button.',
+            },
+          ],
           runtime: [],
           development: [],
         },
@@ -130,5 +137,17 @@ describe('registry build helpers', () => {
     expect(docs.index.routes).toStrictEqual([route])
     expect(docs.artifacts[0]?.routePath).toBe('/components/shadcn/button')
     expect(docs.artifacts[0]?.docsStatus).toBe('missing')
+  })
+
+  test('includes dependency and source references in component docs artifacts', () => {
+    const index = registryIndexWithShadcnButton()
+    const docs = buildComponentDocsArtifacts(index)
+
+    expect(docs.artifacts[0]?.dependencies.registry[0]?.target).toBe(
+      'base-ui/button',
+    )
+    expect(docs.artifacts[0]?.installableSourcePaths).toStrictEqual([
+      'src/registry/shadcn/button/index.ts',
+    ])
   })
 })

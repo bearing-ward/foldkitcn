@@ -274,7 +274,14 @@ const tableOfContentsView = (): Html => {
   return h.aside([h.Class('docs-toc'), h.AriaLabel('On this page')], [
     h.p([h.Class('toc-heading')], ['On this page']),
     h.a([h.Href('#overview')], ['Overview']),
-    h.a([h.Href('#status')], ['Status']),
+    h.a([h.Href('#installation')], ['Installation']),
+    h.a([h.Href('#usage')], ['Usage']),
+    h.a([h.Href('#examples')], ['Examples']),
+    h.a([h.Href('#api')], ['API']),
+    h.a([h.Href('#accessibility')], ['Accessibility']),
+    h.a([h.Href('#quality')], ['Quality']),
+    h.a([h.Href('#source')], ['Source']),
+    h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
   ])
 }
 
@@ -481,6 +488,261 @@ const componentsNamespacePageView = (
   })
 }
 
+const statusText = (value: string): string => value.replaceAll('-', ' ')
+
+const dependenciesPanelView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return Option.match(component.maybeDocsArtifact, {
+    onNone: () => h.empty,
+    onSome: artifact => {
+      const registryDependencies =
+        artifact.dependencies?.registry ?? component.entry.item.dependencies.registry
+
+      return Array.match(registryDependencies, {
+        onEmpty: () => h.empty,
+        onNonEmpty: dependencies =>
+          h.aside([h.Class('relationship-panel'), h.AriaLabel('Composes')], [
+            h.h2([], ['Composes']),
+            h.ul(
+              [h.Class('compact-list')],
+              dependencies.map(dependency =>
+                h.li([], [h.code([], [dependency.target])]),
+              ),
+            ),
+          ]),
+      })
+    },
+  })
+}
+
+const installationSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('installation'), h.Class('content-section')], [
+    h.h2([], ['Installation']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], [
+          `The generated docs artifact is ${component.docsRoute.docsArtifactPath}.`,
+        ]),
+      onSome: artifact =>
+        Option.match(artifact.installCommand, {
+          onNone: () =>
+            h.p([], [
+              'The installer CLI is pending. Use the generated source path and registry dependencies while the install command contract is reserved in the artifact.',
+            ]),
+          onSome: command =>
+            h.pre([h.Class('code-block')], [h.code([], [command])]),
+        }),
+    }),
+  ])
+}
+
+const usageSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('usage'), h.Class('content-section')], [
+    h.h2([], ['Usage']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], ['Usage guidance is waiting for the generated docs artifact.']),
+      onSome: artifact =>
+        h.div([], [
+          h.p([], [
+            'Import the helper from the local registry source and call it from a Foldkit view after binding the Html factory.',
+          ]),
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Default import']),
+              h.dd([], [artifact.defaultImportPath]),
+            ]),
+            h.div([], [
+              h.dt([], ['Local source']),
+              h.dd([], [artifact.localInstallPath]),
+            ]),
+          ]),
+        ]),
+    }),
+  ])
+}
+
+const examplesSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('examples'), h.Class('content-section')], [
+    h.h2([], ['Examples']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () => h.p([], ['Example metadata is not loaded.']),
+      onSome: artifact =>
+        h.ul(
+          [h.Class('example-list')],
+          artifact.examples.map(example =>
+            h.li([], [
+              h.strong([], [example.title]),
+              h.span([], [` - ${example.description}`]),
+            ]),
+          ),
+        ),
+    }),
+  ])
+}
+
+const apiSectionView = (): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('api'), h.Class('content-section')], [
+    h.h2([], ['API']),
+    h.p([], [
+      'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
+    ]),
+  ])
+}
+
+const accessibilitySectionView = (): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('accessibility'), h.Class('content-section')], [
+    h.h2([], ['Accessibility']),
+    h.p([], [
+      'Use Button for actions, provide clear visible text or an accessible label for icon-only buttons, and keep navigation or side effects in Foldkit messages and commands.',
+    ]),
+  ])
+}
+
+const qualitySectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('quality'), h.Class('content-section')], [
+    h.h2([], ['Quality']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], ['Quality metadata is waiting for the generated docs artifact.']),
+      onSome: artifact =>
+        h.div([], [
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Availability']),
+              h.dd([], [statusText(artifact.quality.availability)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Implementation']),
+              h.dd([], [statusText(artifact.quality.implementationStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Parity']),
+              h.dd([], [statusText(artifact.quality.parityStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Drift']),
+              h.dd([], [statusText(artifact.quality.driftStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Origin']),
+              h.dd([], [
+                Option.match(
+                  Array.head(
+                    artifact.originProvenance ??
+                      component.entry.item.originProvenance,
+                  ),
+                  {
+                  onNone: () => 'local registry source',
+                  onSome: origin => origin.originName,
+                  },
+                ),
+              ]),
+            ]),
+          ]),
+          h.h3([], ['Accepted deviations']),
+          h.ul(
+            [h.Class('compact-list')],
+            artifact.quality.deviations.map(deviation =>
+              h.li([], [
+                h.strong([], [statusText(deviation.status)]),
+                ` - ${deviation.summary}`,
+              ]),
+            ),
+          ),
+        ]),
+    }),
+  ])
+}
+
+const sourceSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('source'), h.Class('content-section')], [
+    h.h2([], ['Source']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], [`Generated artifact: ${component.docsRoute.docsArtifactPath}`]),
+      onSome: artifact =>
+        h.div([], [
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Docs artifact']),
+              h.dd([], [component.docsRoute.docsArtifactPath]),
+            ]),
+            h.div([], [
+              h.dt([], ['Sidecar']),
+              h.dd(
+                [],
+                [
+                  Option.match(artifact.markdownPath, {
+                    onNone: () => 'missing',
+                    onSome: path => path,
+                  }),
+                ],
+              ),
+            ]),
+            h.div([], [
+              h.dt([], ['Source root']),
+              h.dd([], [artifact.sourceRoot ?? component.entry.item.sourceRoot]),
+            ]),
+          ]),
+          h.ul(
+            [h.Class('compact-list')],
+            (artifact.installableSourcePaths ??
+              component.entry.item.installableSourcePaths
+            ).map(sourcePath => h.li([], [h.code([], [sourcePath])])),
+          ),
+        ]),
+    }),
+  ])
+}
+
+const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section(
+    [h.Id('foldkit-differences'), h.Class('content-section')],
+    [
+      h.h2([], ['Foldkit Differences']),
+      h.p([], [
+        'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
+      ]),
+      Option.match(component.maybeDocsArtifact, {
+        onNone: () => h.empty,
+        onSome: artifact => {
+          const developmentDependencies =
+            artifact.dependencies?.development ??
+            component.entry.item.dependencies.development
+
+          return h.ul(
+            [h.Class('compact-list')],
+            developmentDependencies.map(dependency =>
+              h.li([], [
+                h.code([], [dependency.specifier]),
+                `: ${dependency.reason}`,
+              ]),
+            ),
+          )
+        },
+      }),
+    ],
+  )
+}
+
 const componentDetailPageView = (
   model: Model,
   namespace: string,
@@ -501,30 +763,19 @@ const componentDetailPageView = (
           component.entry.item.name,
           component.entry.item.description,
         ),
-        h.section([h.Id('status'), h.Class('content-section')], [
-          h.h2([], ['Generated docs artifact']),
-          h.p([], [
-            `This placeholder is backed by ${component.docsRoute.docsArtifactPath}. Detailed usage, examples, API, and copy actions will land in later documentation passes.`,
-          ]),
-          h.dl([h.Class('meta-list wide')], [
-            h.div([], [
-              h.dt([], ['Default import']),
-              h.dd([], [component.entry.item.id]),
-            ]),
-            h.div([], [
-              h.dt([], ['Implementation']),
-              h.dd([], [component.entry.item.lifecycle.implementationStatus]),
-            ]),
-            h.div([], [
-              h.dt([], ['Parity']),
-              h.dd([], [component.entry.item.lifecycle.parityStatus]),
-            ]),
-            h.div([], [
-              h.dt([], ['Drift']),
-              h.dd([], [component.entry.item.lifecycle.driftStatus]),
-            ]),
-          ]),
+        h.section([h.Id('overview'), h.Class('content-section')], [
+          h.h2([], ['Overview']),
+          h.p([], [component.entry.item.description]),
+          dependenciesPanelView(component),
         ]),
+        installationSectionView(component),
+        usageSectionView(component),
+        examplesSectionView(component),
+        apiSectionView(),
+        accessibilitySectionView(),
+        qualitySectionView(component),
+        sourceSectionView(component),
+        foldkitDifferencesSectionView(component),
       ]),
   })
 }

@@ -2,9 +2,15 @@ import { Array, Match as M, Option, Schema as S, pipe } from 'effect'
 import { ts } from 'foldkit/schema'
 
 import docsIndexJson from '../registry/docs/index.json'
+import shadcnButtonDocsJson from '../registry/docs/shadcn/button.json'
 import registryIndexJson from '../registry/index.json'
-import { ComponentDocsIndex, RegistryIndex } from './registry/schema'
+import {
+  ComponentDocsArtifact,
+  ComponentDocsIndex,
+  RegistryIndex,
+} from './registry/schema'
 import type {
+  ComponentDocsArtifact as ComponentDocsArtifactType,
   ComponentDocsRoute,
   RegistryIndexEntry,
   RegistryNamespace,
@@ -13,6 +19,7 @@ import type {
 export const LoadedDocsData = ts('LoadedDocsData', {
   registry: RegistryIndex,
   docsIndex: ComponentDocsIndex,
+  shadcnButtonDocs: ComponentDocsArtifact,
 })
 export const FailedDocsData = ts('FailedDocsData', {
   message: S.String,
@@ -23,6 +30,7 @@ export type DocsData = typeof DocsData.Type
 export type PublicComponent = Readonly<{
   entry: RegistryIndexEntry
   docsRoute: ComponentDocsRoute
+  maybeDocsArtifact: Option.Option<ComponentDocsArtifactType>
 }>
 
 export type NamespaceGroup = Readonly<{
@@ -56,6 +64,9 @@ const decodeDocsData = (): DocsData => {
     return LoadedDocsData({
       registry: S.decodeUnknownSync(RegistryIndex)(registryIndexJson),
       docsIndex: S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson),
+      shadcnButtonDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
+        shadcnButtonDocsJson,
+      ),
     })
   } catch (error: unknown) {
     return FailedDocsData({
@@ -83,6 +94,12 @@ const docsRouteFor = (
 ): Option.Option<ComponentDocsRoute> =>
   Array.findFirst(docsIndex.routes, route => route.itemId === itemId)
 
+const docsArtifactFor = (
+  shadcnButtonDocs: ComponentDocsArtifactType,
+  itemId: string,
+): Option.Option<ComponentDocsArtifactType> =>
+  itemId === 'shadcn/button' ? Option.some(shadcnButtonDocs) : Option.none()
+
 export const publicComponents = (
   data: DocsData,
 ): ReadonlyArray<PublicComponent> =>
@@ -90,7 +107,7 @@ export const publicComponents = (
     M.withReturnType<ReadonlyArray<PublicComponent>>(),
     M.tagsExhaustive({
       FailedDocsData: () => [],
-      LoadedDocsData: ({ registry, docsIndex }) => {
+      LoadedDocsData: ({ registry, docsIndex, shadcnButtonDocs }) => {
         const initialComponents: Array<PublicComponent> = []
 
         return Array.reduce(registry.items, initialComponents, (acc, entry) => {
@@ -100,7 +117,17 @@ export const publicComponents = (
 
           return Option.match(docsRouteFor(docsIndex, entry.item.id), {
             onNone: () => acc,
-            onSome: docsRoute => [...acc, { entry, docsRoute }],
+            onSome: docsRoute => [
+              ...acc,
+              {
+                entry,
+                docsRoute,
+                maybeDocsArtifact: docsArtifactFor(
+                  shadcnButtonDocs,
+                  entry.item.id,
+                ),
+              },
+            ],
           })
         })
       },

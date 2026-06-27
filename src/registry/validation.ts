@@ -30,10 +30,13 @@ export interface ManifestValidationResult {
 }
 
 export const requiredCompleteDocsHeadings = [
+  'Button',
+  'Overview',
+  'Foldkit Model',
   'Usage',
   'Examples',
-  'API',
-  'Quality',
+  'Accessibility',
+  'Foldkit Differences',
 ]
 
 const generatedManifestFields = [
@@ -317,13 +320,15 @@ export const docsMarkdownPathFromManifest = (
 export const extractMarkdownHeadingTexts = (
   markdown: string,
 ): ReadonlyArray<string> =>
-  Array.fromIterable(markdown.matchAll(/^#{1,6}\s+(?<text>.+)$/gmu)).flatMap(
+  globalThis.Array.from(markdown.matchAll(/^#{1,6}\s+(?<text>.+)$/gmu)).flatMap(
     match => {
       const { text } = match.groups ?? {}
 
       return typeof text === 'string' ? [text.trim()] : []
     },
   )
+
+const rawHtmlPattern = /^\s*<(?<tag>[a-z][a-z0-9-]*)(?:\s|>|\/>)/imu
 
 const docsReadinessErrors = (
   manifestPath: string,
@@ -346,17 +351,27 @@ const docsReadinessErrors = (
     ]
   }
 
-  const headingTexts = new Set(
-    extractMarkdownHeadingTexts(readText(docsMarkdownPath)),
-  )
+  const markdown = readText(docsMarkdownPath)
+  const headingTexts = new Set(extractMarkdownHeadingTexts(markdown))
   const missingHeadings = requiredCompleteDocsHeadings.filter(
     heading => !headingTexts.has(heading),
   )
+  const rawHtmlErrors = rawHtmlPattern.test(markdown)
+    ? [
+        {
+          path: docsMarkdownPath,
+          message: 'Complete docs must not include raw HTML.',
+        },
+      ]
+    : []
 
-  return missingHeadings.map(heading => ({
-    path: docsMarkdownPath,
-    message: `Complete docs require a "${heading}" heading.`,
-  }))
+  return [
+    ...missingHeadings.map(heading => ({
+      path: docsMarkdownPath,
+      message: `Complete docs require a "${heading}" heading.`,
+    })),
+    ...rawHtmlErrors,
+  ]
 }
 
 export const validateRegistryItemManifest = ({

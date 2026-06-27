@@ -249,7 +249,7 @@
     "parityStatus": "accepted",
     "driftStatus": "current",
     "availability": "installable",
-    "docsStatus": "missing"
+    "docsStatus": "complete"
   },
   "deviations": [
     {
