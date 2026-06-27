@@ -1,90 +1,143 @@
-import { Listbox } from '@foldkit/ui'
-import { Option } from 'effect'
 import { Scene } from 'foldkit'
 import { describe, test } from 'vitest'
 
-import { BrowseRoute, NotFoundRoute, Unsorted, update, view } from './main'
+import { docsData } from './data'
+import {
+  ComponentDetailRoute,
+  ComponentsIndexRoute,
+  ComponentsNamespaceRoute,
+  DocsRoute,
+  HomeRoute,
+  MobileNavigation,
+  NotFoundRoute,
+  RegistryLifecycleRoute,
+  RegistryRoute,
+  RegistrySchemaRoute,
+  RoadmapRoute,
+  update,
+  view,
+} from './main'
 import type { Model } from './main'
 
-const browseModel: Model = {
-  route: BrowseRoute({
-    search: Option.none(),
-    sorting: Unsorted(),
-    diet: Option.none(),
-    period: Option.none(),
-  }),
-  dietListbox: Listbox.init({ id: 'diet-filter', selectedItem: '' }),
-  periodListbox: Listbox.init({ id: 'period-filter', selectedItem: '' }),
-}
+const modelWithRoute = (route: Model['route']): Model => ({
+  route,
+  data: docsData,
+  mobileNavigation: MobileNavigation({ isOpen: false }),
+})
 
 describe(view, () => {
-  test('the Browse route renders the heading and search input', () => {
+  test('the shell renders primary navigation and component namespace groups', () => {
     Scene.scene(
       { update, view },
-      Scene.with(browseModel),
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.expect(Scene.role('navigation', { name: 'Primary' })).toExist(),
+      Scene.expect(Scene.role('link', { name: 'Components' })).toExist(),
+      Scene.expect(Scene.role('link', { name: 'Registry' })).toExist(),
+      Scene.expect(Scene.role('link', { name: 'Roadmap' })).toExist(),
       Scene.expect(
-        Scene.role('heading', { name: 'Dinosaur Explorer' }),
+        Scene.role('navigation', { name: 'Component navigation' }),
       ).toExist(),
-      Scene.expect(Scene.placeholder('Search by name…')).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Base UI' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'shadcn' })).toExist(),
     )
   })
 
-  test('rendering shows the total dinosaur count', () => {
+  test('Home renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(browseModel),
-      Scene.expect(Scene.text('Showing', { exact: false })).toContainText(
-        'dinosaurs',
+      Scene.with(modelWithRoute(HomeRoute({}))),
+      Scene.expect(Scene.role('heading', { name: 'Foldkit CN' })).toExist(),
+    )
+  })
+
+  test('Docs renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(DocsRoute({}))),
+      Scene.expect(
+        Scene.role('heading', { name: 'Documentation overview' }),
+      ).toExist(),
+    )
+  })
+
+  test('Components renders its page heading and filters private rows out', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.expect(Scene.role('heading', { name: 'Components' })).toExist(),
+      Scene.expect(Scene.text('Example Preview')).not.toExist(),
+    )
+  })
+
+  test('Component namespace renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(ComponentsNamespaceRoute({ namespace: 'base-ui' })),
       ),
-    )
-  })
-
-  test('typing in the search input updates its rendered value', () => {
-    Scene.scene(
-      { update, view },
-      Scene.with({
-        ...browseModel,
-        route: BrowseRoute({
-          search: Option.some('Tyranno'),
-          sorting: Unsorted(),
-          diet: Option.none(),
-          period: Option.none(),
-        }),
-      }),
-      Scene.expect(Scene.placeholder('Search by name…')).toHaveValue('Tyranno'),
-    )
-  })
-
-  test('a search with no matches shows the empty-state copy', () => {
-    Scene.scene(
-      { update, view },
-      Scene.with({
-        ...browseModel,
-        route: BrowseRoute({
-          search: Option.some('zzzNoMatch'),
-          sorting: Unsorted(),
-          diet: Option.none(),
-          period: Option.none(),
-        }),
-      }),
-      Scene.expect(Scene.text('No dinosaurs match your filters.')).toExist(),
-    )
-  })
-
-  test('NotFound shows a friendly 404 and a back link', () => {
-    Scene.scene(
-      { update, view },
-      Scene.with({
-        ...browseModel,
-        route: NotFoundRoute({ path: '/oops' }),
-      }),
       Scene.expect(
-        Scene.role('heading', { name: '404 — Page Not Found' }),
+        Scene.role('heading', { name: 'Base UI components' }),
       ).toExist(),
-      Scene.expect(Scene.text('The path "/oops" was not found.')).toExist(),
+    )
+  })
+
+  test('Component detail renders a generated artifact placeholder', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Button' })).toExist(),
       Scene.expect(
-        Scene.role('link', { name: '← Back to Dinosaur Explorer' }),
+        Scene.text('registry/docs/shadcn/button.json', { exact: false }),
       ).toExist(),
+    )
+  })
+
+  test('Registry renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(RegistryRoute({}))),
+      Scene.expect(Scene.role('heading', { name: 'Registry' })).toExist(),
+    )
+  })
+
+  test('Registry Schema renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(RegistrySchemaRoute({}))),
+      Scene.expect(
+        Scene.role('heading', { name: 'Registry Schema' }),
+      ).toExist(),
+    )
+  })
+
+  test('Registry Lifecycle renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(RegistryLifecycleRoute({}))),
+      Scene.expect(
+        Scene.role('heading', { name: 'Registry Lifecycle' }),
+      ).toExist(),
+    )
+  })
+
+  test('Roadmap renders its page heading', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(RoadmapRoute({}))),
+      Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
+    )
+  })
+
+  test('Not Found renders its page heading and path', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(NotFoundRoute({ path: '/oops' }))),
+      Scene.expect(Scene.role('heading', { name: 'Page Not Found' })).toExist(),
+      Scene.expect(Scene.text('The path "/oops"', { exact: false })).toExist(),
     )
   })
 })

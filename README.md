@@ -1,15 +1,27 @@
-# My Foldkit App
+# Foldkit CN
 
-A Foldkit application built with Effect.
+Foldkit CN is a Foldkit-native component registry and documentation shell for installable UI primitives, shadcn-style wrappers, utilities, and future component packs.
 
-## Getting Started
+## Commands
 
 ```bash
-pnpm install
-pnpm dev
+bun run dev
+bun run build
+bun run typecheck
+bun run test
+bun run check
 ```
 
-## Learn More
+Registry artifacts are regenerated with:
 
-- [Foldkit Documentation](https://github.com/foldkit/foldkit)
-- [Effect Documentation](https://effect.website)
+```bash
+bun run registry:build
+```
+
+## Project Map
+
+- Implementation plans live in `plans/README.md`.
+- Registry source lives under `registry-src`.
+- Generated registry catalog data lives in `registry/index.json`.
+- Generated component docs route artifacts live under `registry/docs`.
+- The docs site reads generated registry artifacts; it does not read `registry-src` at runtime.
