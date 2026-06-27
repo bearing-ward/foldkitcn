@@ -11,6 +11,114 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/alert-dialog",
   "defaultImportPath": "shadcn/alert-dialog",
+  "sourceRoot": "registry-src/shadcn/alert-dialog",
+  "installableSourcePaths": [
+    "src/registry/shadcn/alert-dialog/index.ts",
+    "src/registry/shadcn/alert-dialog/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Alert Dialog",
+      "docsUrl": "https://ui.shadcn.com/docs/components/alert-dialog",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/alert-dialog.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/alert-dialog.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/alert-dialog.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/alert-dialog.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/alert-dialog.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/alert-dialog-basic.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-demo.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-media.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-small-media.tsx",
+        "repos/ui/apps/v4/examples/base/alert-dialog-small.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/alert-dialog",
+        "classification": "registry-local",
+        "target": "base-ui/alert-dialog",
+        "reason": "shadcn Alert Dialog composes the local Base UI Alert Dialog primitive."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "shadcn Alert Dialog composes local Button variants for trigger, cancel, and action surfaces."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Alert Dialog uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options and literals used by local view config."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/alert-dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/alert-dialog",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Alert Dialog implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVG markup in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/alert-dialog-demo",

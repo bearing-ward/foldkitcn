@@ -11,6 +11,90 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/form",
   "defaultImportPath": "base-ui/form",
+  "sourceRoot": "registry-src/base-ui/form",
+  "installableSourcePaths": ["src/registry/base-ui/form/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Form",
+      "docsUrl": "https://base-ui.com/react/components/form",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/form",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/form/Form.tsx",
+        "repos/base-ui/packages/react/src/form/index.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/form/Form.test.tsx",
+        "repos/base-ui/packages/react/src/form/Form.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/field",
+        "classification": "registry-local",
+        "target": "base-ui/field",
+        "reason": "Base UI Form composes Field validation facts; the Foldkit port reuses the local Field validation state helpers instead of creating competing semantics."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Predicate, and Array helpers for typed form states, payloads, and validation reporting."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/form",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/form",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/form",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/form",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "base-ui/form-origin-fixture",

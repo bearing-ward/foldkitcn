@@ -11,6 +11,126 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/select",
   "defaultImportPath": "shadcn/select",
+  "sourceRoot": "registry-src/shadcn/select",
+  "installableSourcePaths": [
+    "src/registry/shadcn/select/index.ts",
+    "src/registry/shadcn/select/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Select",
+      "docsUrl": "https://ui.shadcn.com/docs/components/select",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/select.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/select.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/select.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/select-align-item.tsx",
+        "repos/ui/apps/v4/examples/base/select-demo.tsx",
+        "repos/ui/apps/v4/examples/base/select-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/select-groups.tsx",
+        "repos/ui/apps/v4/examples/base/select-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/select-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/select-scrollable.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/select",
+        "classification": "registry-local",
+        "target": "base-ui/select",
+        "reason": "shadcn Select composes the local Base UI Select primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Select uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Select size options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/select",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/select",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Select implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chevron and check icons are represented by local inline SVG helpers in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/field",
+        "reason": "Examples use local static Field shells to preserve Select demo output without adding composition scope."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/label",
+        "reason": "Examples use local static label markup to preserve Select demo output without adding composition scope."
+      },
+      {
+        "specifier": "shadcn/switch",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/switch",
+        "reason": "The align-item example uses a local static switch shell instead of importing another installable component."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/select-demo",

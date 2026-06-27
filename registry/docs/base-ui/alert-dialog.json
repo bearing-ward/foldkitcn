@@ -11,6 +11,85 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/alert-dialog",
   "defaultImportPath": "base-ui/alert-dialog",
+  "sourceRoot": "registry-src/base-ui/alert-dialog",
+  "installableSourcePaths": ["src/registry/base-ui/alert-dialog/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Alert Dialog",
+      "docsUrl": "https://base-ui.com/react/components/alert-dialog",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/alert-dialog",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/alert-dialog/handle.ts",
+        "repos/base-ui/packages/react/src/alert-dialog/index.parts.ts",
+        "repos/base-ui/packages/react/src/alert-dialog/index.ts",
+        "repos/base-ui/packages/react/src/alert-dialog/root/AlertDialogRoot.tsx",
+        "repos/base-ui/packages/react/src/alert-dialog/trigger/AlertDialogTrigger.tsx",
+        "repos/base-ui/packages/react/src/alert-dialog/trigger/AlertDialogTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/demos/detached-triggers-controlled/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/demos/detached-triggers-simple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/alert-dialog/demos/hero/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/alert-dialog/root/AlertDialogRoot.test.tsx",
+        "repos/base-ui/packages/react/src/alert-dialog/root/AlertDialogRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/dialog",
+        "classification": "registry-local",
+        "target": "base-ui/dialog",
+        "reason": "Alert Dialog reuses the local Dialog primitive for portal, modal command, focus, Escape, scroll-lock, and open-change conventions."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, and message helpers through the reused Dialog primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema and Option values used by serializable options and command helper arguments."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/alert-dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/alert-dialog",
+        "reason": "Origin Base UI React Alert Dialog primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/alert-dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/alert-dialog",
+        "reason": "Origin Base UI React Alert Dialog primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

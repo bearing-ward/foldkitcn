@@ -11,6 +11,94 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/native-select",
   "defaultImportPath": "shadcn/native-select",
+  "sourceRoot": "registry-src/shadcn/native-select",
+  "installableSourcePaths": [
+    "src/registry/shadcn/native-select/index.ts",
+    "src/registry/shadcn/native-select/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Native Select",
+      "docsUrl": "https://ui.shadcn.com/docs/components/native-select",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/native-select.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/native-select.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/native-select.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/native-select.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/native-select-demo.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-groups.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/native-select-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Native Select uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Native Select size and direction options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chevron icon is represented by a local inline SVG helper in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/native-select-demo",

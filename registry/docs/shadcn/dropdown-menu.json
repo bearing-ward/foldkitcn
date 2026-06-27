@@ -11,6 +11,114 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/dropdown-menu",
   "defaultImportPath": "shadcn/dropdown-menu",
+  "sourceRoot": "registry-src/shadcn/dropdown-menu",
+  "installableSourcePaths": [
+    "src/registry/shadcn/dropdown-menu/index.ts",
+    "src/registry/shadcn/dropdown-menu/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Dropdown Menu",
+      "docsUrl": "https://ui.shadcn.com/docs/components/dropdown-menu",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/dropdown-menu.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/dropdown-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/dropdown-menu.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/dropdown-menu-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-basic.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-complex.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-demo.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-radio-group.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-radio-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-shortcuts.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/menu",
+        "classification": "registry-local",
+        "target": "base-ui/menu",
+        "reason": "shadcn Dropdown Menu composes the local Base UI Menu primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Dropdown Menu uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Dropdown Menu style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Menu implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin check and chevron icons are represented by local inline SVG helpers in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/dropdown-menu-avatar",

@@ -11,6 +11,113 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/toggle",
   "defaultImportPath": "shadcn/toggle",
+  "sourceRoot": "registry-src/shadcn/toggle",
+  "installableSourcePaths": [
+    "src/registry/shadcn/toggle/index.ts",
+    "src/registry/shadcn/toggle/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Toggle",
+      "docsUrl": "https://ui.shadcn.com/docs/components/toggle",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/toggle.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/toggle.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toggle.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toggle.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/toggle-demo.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-outline.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-text.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/toggle",
+        "classification": "registry-local",
+        "target": "base-ui/toggle",
+        "reason": "shadcn Toggle composes the local Base UI Toggle primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Toggle uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant and size options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/toggle",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/toggle",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Toggle implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/toggle-demo",

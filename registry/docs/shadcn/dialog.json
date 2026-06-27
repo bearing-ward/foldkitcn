@@ -11,6 +11,128 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/dialog",
   "defaultImportPath": "shadcn/dialog",
+  "sourceRoot": "registry-src/shadcn/dialog",
+  "installableSourcePaths": [
+    "src/registry/shadcn/dialog/index.ts",
+    "src/registry/shadcn/dialog/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Dialog",
+      "docsUrl": "https://ui.shadcn.com/docs/components/dialog",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/dialog.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/dialog.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/dialog.tsx"
+      ],
+      "docsPaths": ["repos/ui/apps/v4/content/docs/components/base/dialog.mdx"],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/dialog-close-button.tsx",
+        "repos/ui/apps/v4/examples/base/dialog-demo.tsx",
+        "repos/ui/apps/v4/examples/base/dialog-no-close-button.tsx",
+        "repos/ui/apps/v4/examples/base/dialog-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/dialog-scrollable-content.tsx",
+        "repos/ui/apps/v4/examples/base/dialog-sticky-footer.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/dialog",
+        "classification": "registry-local",
+        "target": "base-ui/dialog",
+        "reason": "shadcn Dialog composes the local Base UI Dialog primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Dialog uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options and Array helpers used by local examples."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/dialog",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Dialog implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin close icon is represented with local static SVG markup in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static button class shells instead of importing an installable Button dependency."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Field does not exist locally in this plan; examples use static form grouping markup."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static input class shells to preserve demo output without adding composition scope."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Label does not exist locally in this plan; examples use static label markup."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/dialog-demo",

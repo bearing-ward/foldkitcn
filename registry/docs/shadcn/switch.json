@@ -11,6 +11,114 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/switch",
   "defaultImportPath": "shadcn/switch",
+  "sourceRoot": "registry-src/shadcn/switch",
+  "installableSourcePaths": [
+    "src/registry/shadcn/switch/index.ts",
+    "src/registry/shadcn/switch/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Switch",
+      "docsUrl": "https://ui.shadcn.com/docs/components/switch",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/switch.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/switch.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/switch.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/switch.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/switch.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/switch-choice-card.tsx",
+        "repos/ui/apps/v4/examples/base/switch-demo.tsx",
+        "repos/ui/apps/v4/examples/base/switch-description.tsx",
+        "repos/ui/apps/v4/examples/base/switch-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/switch-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/switch-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/switch-sizes.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/switch",
+        "classification": "registry-local",
+        "target": "base-ui/switch",
+        "reason": "shadcn Switch composes the local Base UI Switch primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Switch uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provided by the local Base UI Switch dependency for Effect Schema options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/switch",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/switch",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Switch implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Switch examples reference Field before that registry item exists; examples use local fixture-only shells instead of importing an installable Field dependency."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Switch examples reference Label before that registry item exists; examples use local fixture-only shells instead of importing an installable Label dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples and a fixture alias for origin capture."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/switch-demo",

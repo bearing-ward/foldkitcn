@@ -11,6 +11,117 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/badge",
   "defaultImportPath": "shadcn/badge",
+  "sourceRoot": "registry-src/shadcn/badge",
+  "installableSourcePaths": [
+    "src/registry/shadcn/badge/index.ts",
+    "src/registry/shadcn/badge/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Badge",
+      "docsUrl": "https://ui.shadcn.com/docs/components/badge",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/badge.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "968b0403af74a785c9408ca69a677235e49d0c80b2c27fb9858ad421a8778c7d",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/badge.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/badge.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/badge.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/badge-colors.tsx",
+        "repos/ui/apps/v4/examples/base/badge-demo.tsx",
+        "repos/ui/apps/v4/examples/base/badge-icon.tsx",
+        "repos/ui/apps/v4/examples/base/badge-link.tsx",
+        "repos/ui/apps/v4/examples/base/badge-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/badge-spinner.tsx",
+        "repos/ui/apps/v4/examples/base/badge-variants.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Badge uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin spinner examples are represented by an example-local inline SVG helper."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/badge-colors",

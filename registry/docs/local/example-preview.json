@@ -11,6 +11,14 @@
   "installCommand": null,
   "localInstallPath": "registry-src/local/example-preview",
   "defaultImportPath": "local/example-preview",
+  "sourceRoot": "registry-src/local/example-preview",
+  "installableSourcePaths": [],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [],
+    "development": []
+  },
   "examples": [],
   "quality": {
     "availability": "private",

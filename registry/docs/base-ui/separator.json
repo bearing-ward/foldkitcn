@@ -11,6 +11,63 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/separator",
   "defaultImportPath": "base-ui/separator",
+  "sourceRoot": "registry-src/base-ui/separator",
+  "installableSourcePaths": ["src/registry/base-ui/separator/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Separator",
+      "docsUrl": "https://base-ui.com/react/components/separator",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/separator",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "5054849524308cdf6f13573f80deaeb2cb8352e5ab8f23218c108144bee5273b",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/separator/index.ts",
+        "repos/base-ui/packages/react/src/separator/Separator.tsx",
+        "repos/base-ui/packages/react/src/separator/SeparatorDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/separator/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/separator/Separator.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for the serializable orientation and options."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/separator",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

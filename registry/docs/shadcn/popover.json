@@ -11,6 +11,124 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/popover",
   "defaultImportPath": "shadcn/popover",
+  "sourceRoot": "registry-src/shadcn/popover",
+  "installableSourcePaths": [
+    "src/registry/shadcn/popover/index.ts",
+    "src/registry/shadcn/popover/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Popover",
+      "docsUrl": "https://ui.shadcn.com/docs/components/popover",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/popover.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/popover.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/popover.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/popover.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/popover.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/popover-alignments.tsx",
+        "repos/ui/apps/v4/examples/base/popover-basic.tsx",
+        "repos/ui/apps/v4/examples/base/popover-demo.tsx",
+        "repos/ui/apps/v4/examples/base/popover-form.tsx",
+        "repos/ui/apps/v4/examples/base/popover-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/popover",
+        "classification": "registry-local",
+        "target": "base-ui/popover",
+        "reason": "shadcn Popover composes the local Base UI Popover primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Popover uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options used by the local wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/popover",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/popover",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Popover implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static button class shells instead of importing an installable Button dependency."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Field does not exist locally in this plan; examples use static form grouping markup."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static input class shells to preserve demo output without adding composition scope."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Label does not exist locally in this plan; examples use static label markup."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/popover-basic",

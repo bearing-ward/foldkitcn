@@ -11,6 +11,120 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/avatar",
   "defaultImportPath": "shadcn/avatar",
+  "sourceRoot": "registry-src/shadcn/avatar",
+  "installableSourcePaths": [
+    "src/registry/shadcn/avatar/index.ts",
+    "src/registry/shadcn/avatar/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Avatar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/avatar",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/avatar.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/avatar.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/avatar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/avatar.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/avatar-badge-icon.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-badge.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-basic.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-dropdown.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group-count-icon.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group-count.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-size.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/avatar",
+        "classification": "registry-local",
+        "target": "base-ui/avatar",
+        "reason": "shadcn Avatar composes the local Base UI Avatar primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Avatar uses the local class composition helper."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The dropdown origin example uses Button; this batch keeps the dropdown as a fixture-local static shell while preserving the dependency classification."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/avatar",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/avatar",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The dropdown example is represented with a fixture-local static shell until shadcn/dropdown-menu exists locally."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL constants and origin fixture aliases."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/avatar-badge-icon",

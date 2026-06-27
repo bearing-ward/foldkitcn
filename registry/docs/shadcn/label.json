@@ -11,6 +11,97 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/label",
   "defaultImportPath": "shadcn/label",
+  "sourceRoot": "registry-src/shadcn/label",
+  "installableSourcePaths": [
+    "src/registry/shadcn/label/index.ts",
+    "src/registry/shadcn/label/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Label",
+      "docsUrl": "https://ui.shadcn.com/docs/components/label",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/label.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/label.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/label.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/label.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/label.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/label-demo.tsx",
+        "repos/ui/apps/v4/examples/base/label-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/checkbox",
+        "classification": "registry-local",
+        "target": "shadcn/checkbox",
+        "reason": "Label examples compose the existing local shadcn Checkbox item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Label uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for Label props."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@radix-ui/react-label",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React Label semantics are replaced with a native Foldkit-rendered label element."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/label-demo",

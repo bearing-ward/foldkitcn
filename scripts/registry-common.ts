@@ -316,15 +316,6 @@ export const buildComponentDocsArtifacts = (
     const hasMarkdown = existsSync(docsMarkdownPath)
     const markdown = hasMarkdown ? readFileSync(docsMarkdownPath, 'utf-8') : ''
     const route = componentDocsRouteForItem(item)
-    const exemplarMetadata =
-      item.id === 'shadcn/button'
-        ? {
-            sourceRoot: item.sourceRoot,
-            installableSourcePaths: item.installableSourcePaths,
-            originProvenance: item.originProvenance,
-            dependencies: item.dependencies,
-          }
-        : {}
     const artifact = {
       schemaVersion: 1,
       itemId: item.id,
@@ -338,7 +329,10 @@ export const buildComponentDocsArtifacts = (
       installCommand: null,
       localInstallPath: localInstallPathForItem(item),
       defaultImportPath: item.id,
-      ...exemplarMetadata,
+      sourceRoot: item.sourceRoot,
+      installableSourcePaths: item.installableSourcePaths,
+      originProvenance: item.originProvenance,
+      dependencies: item.dependencies,
       examples: item.examples,
       quality: {
         availability: item.lifecycle.availability,

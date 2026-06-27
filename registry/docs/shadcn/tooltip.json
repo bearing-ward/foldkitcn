@@ -11,6 +11,118 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/tooltip",
   "defaultImportPath": "shadcn/tooltip",
+  "sourceRoot": "registry-src/shadcn/tooltip",
+  "installableSourcePaths": [
+    "src/registry/shadcn/tooltip/index.ts",
+    "src/registry/shadcn/tooltip/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Tooltip",
+      "docsUrl": "https://ui.shadcn.com/docs/components/tooltip",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/tooltip.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/tooltip.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/tooltip.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/tooltip.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/tooltip.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/tooltip-demo.tsx",
+        "repos/ui/apps/v4/examples/base/tooltip-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/tooltip-keyboard.tsx",
+        "repos/ui/apps/v4/examples/base/tooltip-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/tooltip-sides.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/tooltip",
+        "classification": "registry-local",
+        "target": "base-ui/tooltip",
+        "reason": "shadcn Tooltip composes the local Base UI Tooltip primitive."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "shadcn Tooltip examples compose local Button markup for trigger demos."
+      },
+      {
+        "specifier": "shadcn/kbd",
+        "classification": "registry-local",
+        "target": "shadcn/kbd",
+        "reason": "shadcn Tooltip keyboard example composes the local Kbd item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Tooltip uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options used by the local wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/tooltip",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tooltip",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Tooltip implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL labels in installable examples."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon dependency is replaced by local deterministic text/icon markup in installable examples."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/tooltip-demo",

@@ -11,6 +11,97 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/separator",
   "defaultImportPath": "shadcn/separator",
+  "sourceRoot": "registry-src/shadcn/separator",
+  "installableSourcePaths": [
+    "src/registry/shadcn/separator/index.ts",
+    "src/registry/shadcn/separator/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Separator",
+      "docsUrl": "https://ui.shadcn.com/docs/components/separator",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/separator.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "65cd557e0d609c74abb2adcb76a999728e6abaff0e23447e5701c713bb3431ef",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/separator.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/separator.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/separator.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/separator-demo.tsx",
+        "repos/ui/apps/v4/examples/base/separator-list.tsx",
+        "repos/ui/apps/v4/examples/base/separator-menu.tsx",
+        "repos/ui/apps/v4/examples/base/separator-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/separator-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/separator",
+        "classification": "registry-local",
+        "target": "base-ui/separator",
+        "reason": "shadcn Separator composes the local Base UI Separator primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Separator uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/separator",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/separator",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local example constants and origin fixture aliases."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/separator-demo",

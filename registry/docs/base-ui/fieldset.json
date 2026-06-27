@@ -11,6 +11,78 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/fieldset",
   "defaultImportPath": "base-ui/fieldset",
+  "sourceRoot": "registry-src/base-ui/fieldset",
+  "installableSourcePaths": ["src/registry/base-ui/fieldset/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Fieldset",
+      "docsUrl": "https://base-ui.com/react/components/fieldset",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/fieldset",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/fieldset/index.parts.ts",
+        "repos/base-ui/packages/react/src/fieldset/index.ts",
+        "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRootContext.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/fieldset/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/fieldset/legend/FieldsetLegend.test.tsx",
+        "repos/base-ui/packages/react/src/fieldset/root/FieldsetRoot.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema and predicate helpers for serializable options and explicit disabled/legend state."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/fieldset",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/fieldset",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/fieldset",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/fieldset",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "base-ui/fieldset-origin-fixture",

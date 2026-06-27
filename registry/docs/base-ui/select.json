@@ -11,6 +11,115 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/select",
   "defaultImportPath": "base-ui/select",
+  "sourceRoot": "registry-src/base-ui/select",
+  "installableSourcePaths": ["src/registry/base-ui/select/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Select",
+      "docsUrl": "https://base-ui.com/react/components/select",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/select",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/select/arrow/SelectArrow.tsx",
+        "repos/base-ui/packages/react/src/select/backdrop/SelectBackdrop.tsx",
+        "repos/base-ui/packages/react/src/select/group-label/SelectGroupLabel.tsx",
+        "repos/base-ui/packages/react/src/select/group/SelectGroup.tsx",
+        "repos/base-ui/packages/react/src/select/icon/SelectIcon.tsx",
+        "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicator.tsx",
+        "repos/base-ui/packages/react/src/select/item-text/SelectItemText.tsx",
+        "repos/base-ui/packages/react/src/select/item/SelectItem.tsx",
+        "repos/base-ui/packages/react/src/select/label/SelectLabel.tsx",
+        "repos/base-ui/packages/react/src/select/list/SelectList.tsx",
+        "repos/base-ui/packages/react/src/select/popup/SelectPopup.tsx",
+        "repos/base-ui/packages/react/src/select/portal/SelectPortal.tsx",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.tsx",
+        "repos/base-ui/packages/react/src/select/root/SelectRoot.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrow.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrow.tsx",
+        "repos/base-ui/packages/react/src/select/store.ts",
+        "repos/base-ui/packages/react/src/select/trigger/SelectTrigger.tsx",
+        "repos/base-ui/packages/react/src/select/value/SelectValue.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/grouped/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/select/demos/object-values/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/select/arrow/SelectArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/backdrop/SelectBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/select/group-label/SelectGroupLabel.test.tsx",
+        "repos/base-ui/packages/react/src/select/group/SelectGroup.test.tsx",
+        "repos/base-ui/packages/react/src/select/icon/SelectIcon.test.tsx",
+        "repos/base-ui/packages/react/src/select/item-indicator/SelectItemIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/select/item-text/SelectItemText.test.tsx",
+        "repos/base-ui/packages/react/src/select/item/SelectItem.test.tsx",
+        "repos/base-ui/packages/react/src/select/label/SelectLabel.test.tsx",
+        "repos/base-ui/packages/react/src/select/list/SelectList.test.tsx",
+        "repos/base-ui/packages/react/src/select/popup/SelectPopup.test.tsx",
+        "repos/base-ui/packages/react/src/select/portal/SelectPortal.test.tsx",
+        "repos/base-ui/packages/react/src/select/positioner/SelectPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/select/root/SelectRoot.test.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-down-arrow/SelectScrollDownArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/scroll-up-arrow/SelectScrollUpArrow.test.tsx",
+        "repos/base-ui/packages/react/src/select/trigger/SelectTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/select/value/SelectValue.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/popover",
+        "classification": "registry-local",
+        "target": "base-ui/popover",
+        "reason": "Select reuses the local Popover placement and focus command conventions without introducing a competing positioning or dismiss system."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, and keyboard event helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/select",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/select",
+        "reason": "Origin Base UI React Select primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/select",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/select",
+        "reason": "Origin Base UI React Select primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

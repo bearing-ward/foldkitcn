@@ -642,8 +642,7 @@ const qualitySectionView = (component: PublicComponent): Html => {
               h.dd([], [
                 Option.match(
                   Array.head(
-                    artifact.originProvenance ??
-                      component.entry.item.originProvenance,
+                    artifact.originProvenance,
                   ),
                   {
                   onNone: () => 'local registry source',
@@ -697,14 +696,14 @@ const sourceSectionView = (component: PublicComponent): Html => {
             ]),
             h.div([], [
               h.dt([], ['Source root']),
-              h.dd([], [artifact.sourceRoot ?? component.entry.item.sourceRoot]),
+              h.dd([], [artifact.sourceRoot]),
             ]),
           ]),
           h.ul(
             [h.Class('compact-list')],
-            (artifact.installableSourcePaths ??
-              component.entry.item.installableSourcePaths
-            ).map(sourcePath => h.li([], [h.code([], [sourcePath])])),
+            artifact.installableSourcePaths.map(sourcePath =>
+              h.li([], [h.code([], [sourcePath])]),
+            ),
           ),
         ]),
     }),
@@ -725,8 +724,7 @@ const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
         onNone: () => h.empty,
         onSome: artifact => {
           const developmentDependencies =
-            artifact.dependencies?.development ??
-            component.entry.item.dependencies.development
+            artifact.dependencies.development
 
           return h.ul(
             [h.Class('compact-list')],

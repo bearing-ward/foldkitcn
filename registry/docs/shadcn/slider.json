@@ -11,6 +11,108 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/slider",
   "defaultImportPath": "shadcn/slider",
+  "sourceRoot": "registry-src/shadcn/slider",
+  "installableSourcePaths": [
+    "src/registry/shadcn/slider/index.ts",
+    "src/registry/shadcn/slider/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Slider",
+      "docsUrl": "https://ui.shadcn.com/docs/components/slider",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/slider.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/slider.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/slider.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/slider.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/slider.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/slider-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/slider-demo.tsx",
+        "repos/ui/apps/v4/examples/base/slider-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/slider-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/slider-range.tsx",
+        "repos/ui/apps/v4/examples/base/slider-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/slider-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/slider",
+        "classification": "registry-local",
+        "target": "base-ui/slider",
+        "reason": "shadcn Slider composes the local Base UI Slider primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Slider uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema through the wrapper style options and local Base UI dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/slider",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/slider",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React state and effects are origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin controlled example composes Label before that registry item is available; installable source keeps the example local/static instead of adding a missing registry runtime dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is fixture evidence only and is replaced by local static RTL data."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/slider-controlled",

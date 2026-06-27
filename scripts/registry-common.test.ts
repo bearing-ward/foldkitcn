@@ -15,7 +15,7 @@ const emptyIndex = (generatedAt: string): RegistryIndex => ({
   items: [],
 })
 
-const registryIndexWithShadcnButton = (): RegistryIndex => ({
+const registryIndexWithDocsItems = (): RegistryIndex => ({
   schemaVersion: 1,
   generatedAt: '2026-06-24T18:00:00.000Z',
   sourceRoot: 'registry-src',
@@ -62,6 +62,50 @@ const registryIndexWithShadcnButton = (): RegistryIndex => ({
         deviations: [],
       },
       manifestHash: 'button-hash',
+      artifacts: [],
+    },
+    {
+      item: {
+        schemaVersion: 1,
+        id: 'local/example-preview',
+        namespace: 'local',
+        name: 'Example preview',
+        kind: 'example',
+        description: 'Private preview fixture.',
+        sourceRoot: 'registry-src/local/example-preview',
+        installableSourcePaths: [],
+        consumedThemeTokens: [],
+        originProvenance: [],
+        dependencies: {
+          registry: [],
+          runtime: [
+            {
+              specifier: 'foldkit',
+              classification: 'allowed-runtime',
+              target: 'npm:foldkit',
+              reason: 'Provides Foldkit Html types.',
+            },
+          ],
+          development: [],
+        },
+        examples: [],
+        parity: {
+          itemId: 'local/example-preview',
+          originFixturePath: '',
+          foldkitFixturePath: '',
+          requiredComparisons: [],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'missing',
+        },
+        deviations: [],
+      },
+      manifestHash: 'example-preview-hash',
       artifacts: [],
     },
   ],
@@ -129,18 +173,18 @@ describe('registry build helpers', () => {
   })
 
   test('builds the generated docs artifact route for shadcn button', () => {
-    const index = registryIndexWithShadcnButton()
+    const index = registryIndexWithDocsItems()
     const route = componentDocsRouteForItem(index.items[0].item)
     const docs = buildComponentDocsArtifacts(index)
 
     expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
-    expect(docs.index.routes).toStrictEqual([route])
+    expect(docs.index.routes).toContainEqual(route)
     expect(docs.artifacts[0]?.routePath).toBe('/components/shadcn/button')
     expect(docs.artifacts[0]?.docsStatus).toBe('missing')
   })
 
-  test('includes dependency and source references in component docs artifacts', () => {
-    const index = registryIndexWithShadcnButton()
+  test('includes dependency and source references in every component docs artifact', () => {
+    const index = registryIndexWithDocsItems()
     const docs = buildComponentDocsArtifacts(index)
 
     expect(docs.artifacts[0]?.dependencies.registry[0]?.target).toBe(
@@ -149,5 +193,11 @@ describe('registry build helpers', () => {
     expect(docs.artifacts[0]?.installableSourcePaths).toStrictEqual([
       'src/registry/shadcn/button/index.ts',
     ])
+    expect(docs.artifacts[1]?.sourceRoot).toBe(
+      'registry-src/local/example-preview',
+    )
+    expect(docs.artifacts[1]?.dependencies.runtime[0]?.specifier).toBe(
+      'foldkit',
+    )
   })
 })

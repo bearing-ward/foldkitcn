@@ -11,6 +11,78 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/progress",
   "defaultImportPath": "base-ui/progress",
+  "sourceRoot": "registry-src/base-ui/progress",
+  "installableSourcePaths": ["src/registry/base-ui/progress/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Progress",
+      "docsUrl": "https://base-ui.com/react/components/progress",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/progress",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "2f30363e9125e390fdb9ee4641c0a1d9a4755097a251f667999f40f2f0048a33",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/progress/index.parts.ts",
+        "repos/base-ui/packages/react/src/progress/index.ts",
+        "repos/base-ui/packages/react/src/progress/indicator/ProgressIndicator.tsx",
+        "repos/base-ui/packages/react/src/progress/indicator/ProgressIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/progress/label/ProgressLabel.tsx",
+        "repos/base-ui/packages/react/src/progress/label/ProgressLabelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/progress/root/ProgressRoot.tsx",
+        "repos/base-ui/packages/react/src/progress/root/ProgressRootContext.tsx",
+        "repos/base-ui/packages/react/src/progress/root/ProgressRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/progress/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/progress/track/ProgressTrack.tsx",
+        "repos/base-ui/packages/react/src/progress/track/ProgressTrackDataAttributes.ts",
+        "repos/base-ui/packages/react/src/progress/value/ProgressValue.tsx",
+        "repos/base-ui/packages/react/src/progress/value/ProgressValueDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/progress/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/progress/indicator/ProgressIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/progress/label/ProgressLabel.test.tsx",
+        "repos/base-ui/packages/react/src/progress/root/ProgressRoot.test.tsx",
+        "repos/base-ui/packages/react/src/progress/track/ProgressTrack.test.tsx",
+        "repos/base-ui/packages/react/src/progress/value/ProgressValue.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for the serializable Progress options, parts, and status values."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/progress",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

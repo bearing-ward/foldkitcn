@@ -11,6 +11,90 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/popover",
   "defaultImportPath": "base-ui/popover",
+  "sourceRoot": "registry-src/base-ui/popover",
+  "installableSourcePaths": ["src/registry/base-ui/popover/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Popover",
+      "docsUrl": "https://base-ui.com/react/components/popover",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/popover",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/popover/arrow/PopoverArrow.tsx",
+        "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdrop.tsx",
+        "repos/base-ui/packages/react/src/popover/close/PopoverClose.tsx",
+        "repos/base-ui/packages/react/src/popover/description/PopoverDescription.tsx",
+        "repos/base-ui/packages/react/src/popover/index.ts",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopup.tsx",
+        "repos/base-ui/packages/react/src/popover/portal/PopoverPortal.tsx",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.tsx",
+        "repos/base-ui/packages/react/src/popover/title/PopoverTitle.tsx",
+        "repos/base-ui/packages/react/src/popover/trigger/PopoverTrigger.tsx",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/popover/types.ts"
+      ],
+      "examplePaths": [],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/popover/arrow/PopoverArrow.test.tsx",
+        "repos/base-ui/packages/react/src/popover/backdrop/PopoverBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/popover/close/PopoverClose.test.tsx",
+        "repos/base-ui/packages/react/src/popover/description/PopoverDescription.test.tsx",
+        "repos/base-ui/packages/react/src/popover/popup/PopoverPopup.test.tsx",
+        "repos/base-ui/packages/react/src/popover/portal/PopoverPortal.test.tsx",
+        "repos/base-ui/packages/react/src/popover/positioner/PopoverPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.detached-triggers.test.tsx",
+        "repos/base-ui/packages/react/src/popover/root/PopoverRoot.test.tsx",
+        "repos/base-ui/packages/react/src/popover/title/PopoverTitle.test.tsx",
+        "repos/base-ui/packages/react/src/popover/trigger/PopoverTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/popover/viewport/PopoverViewport.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, and message helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/popover",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/popover",
+        "reason": "Origin Base UI React Popover primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/popover",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/popover",
+        "reason": "Origin Base UI React Popover primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

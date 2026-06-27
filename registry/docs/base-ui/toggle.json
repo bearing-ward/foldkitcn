@@ -11,6 +11,68 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/toggle",
   "defaultImportPath": "base-ui/toggle",
+  "sourceRoot": "registry-src/base-ui/toggle",
+  "installableSourcePaths": ["src/registry/base-ui/toggle/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toggle",
+      "docsUrl": "https://base-ui.com/react/components/toggle",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/toggle",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toggle/index.ts",
+        "repos/base-ui/packages/react/src/toggle/Toggle.tsx",
+        "repos/base-ui/packages/react/src/toggle/ToggleDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toggle/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": ["repos/base-ui/packages/react/src/toggle/Toggle.test.tsx"]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/button",
+        "classification": "registry-local",
+        "target": "base-ui/button",
+        "reason": "Base UI Toggle reuses the local Base UI Button primitive for button, disabled, render, and keyboard semantics."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema and Predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/toggle",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

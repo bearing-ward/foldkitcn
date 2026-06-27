@@ -11,6 +11,27 @@
   "installCommand": null,
   "localInstallPath": "src/utils",
   "defaultImportPath": "utils/cn",
+  "sourceRoot": "registry-src/utils/cn",
+  "installableSourcePaths": ["src/utils/cn.ts"],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Combines conditional class values before Tailwind conflict resolution."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Canonicalizes Tailwind utility conflicts behind the local cn wrapper."
+      }
+    ],
+    "development": []
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

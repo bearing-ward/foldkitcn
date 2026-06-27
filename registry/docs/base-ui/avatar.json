@@ -11,6 +11,71 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/avatar",
   "defaultImportPath": "base-ui/avatar",
+  "sourceRoot": "registry-src/base-ui/avatar",
+  "installableSourcePaths": ["src/registry/base-ui/avatar/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Avatar",
+      "docsUrl": "https://base-ui.com/react/components/avatar",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/avatar",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImage.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImageDataAttributes.ts",
+        "repos/base-ui/packages/react/src/avatar/image/useImageLoadingStatus.ts",
+        "repos/base-ui/packages/react/src/avatar/index.parts.ts",
+        "repos/base-ui/packages/react/src/avatar/index.ts",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.tsx",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRootContext.ts",
+        "repos/base-ui/packages/react/src/avatar/root/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/avatar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/avatar/fallback/AvatarFallback.test.tsx",
+        "repos/base-ui/packages/react/src/avatar/image/AvatarImage.test.tsx",
+        "repos/base-ui/packages/react/src/avatar/root/AvatarRoot.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for Avatar options, image loading status, transition status, fallback delay state, and parts."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/avatar",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native and caller-owned state drives image loading."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "base-ui/avatar-hero",

@@ -11,6 +11,101 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/textarea",
   "defaultImportPath": "shadcn/textarea",
+  "sourceRoot": "registry-src/shadcn/textarea",
+  "installableSourcePaths": [
+    "src/registry/shadcn/textarea/index.ts",
+    "src/registry/shadcn/textarea/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Textarea",
+      "docsUrl": "https://ui.shadcn.com/docs/components/textarea",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/textarea.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/textarea.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/textarea.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/textarea.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/textarea-button.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-demo.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-field.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "TextareaButton composes the local shadcn Button example."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Textarea uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for Textarea props and value-change payloads."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "shadcn/field",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin field examples compose shadcn Field, which is not implemented in this registry slice; local examples preserve the rendered field semantics without adding an installable dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example runtime dependency is represented by local example constants and fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/textarea-demo",

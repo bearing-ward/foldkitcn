@@ -11,6 +11,88 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/tabs",
   "defaultImportPath": "base-ui/tabs",
+  "sourceRoot": "registry-src/base-ui/tabs",
+  "installableSourcePaths": ["src/registry/base-ui/tabs/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Tabs",
+      "docsUrl": "https://base-ui.com/react/components/tabs",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/tabs",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/tabs/index.parts.ts",
+        "repos/base-ui/packages/react/src/tabs/index.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.tsx",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts",
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicatorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsListDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/tabs/root/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTabDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tabs/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/tabs/indicator/TabsIndicator.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/list/TabsList.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/panel/TabsPanel.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/root/TabsRoot.test.tsx",
+        "repos/base-ui/packages/react/src/tabs/tab/TabsTab.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/tabs",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tabs",
+        "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/tabs",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tabs",
+        "reason": "Origin Base UI React Tabs primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

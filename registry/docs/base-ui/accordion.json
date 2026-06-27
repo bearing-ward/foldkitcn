@@ -11,6 +11,96 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/accordion",
   "defaultImportPath": "base-ui/accordion",
+  "sourceRoot": "registry-src/base-ui/accordion",
+  "installableSourcePaths": ["src/registry/base-ui/accordion/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Accordion",
+      "docsUrl": "https://base-ui.com/react/components/accordion",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/accordion",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.tsx",
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeaderDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/index.parts.ts",
+        "repos/base-ui/packages/react/src/accordion/index.ts",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItem.tsx",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItemContext.ts",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/item/stateAttributesMapping.ts",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.tsx",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelCssVars.ts",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.tsx",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRootContext.ts",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.tsx",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/_index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/accordion/demos/multiple/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/accordion/header/AccordionHeader.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/item/AccordionItem.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/panel/AccordionPanel.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.test.tsx",
+        "repos/base-ui/packages/react/src/accordion/root/AccordionRoot.spec.tsx",
+        "repos/base-ui/packages/react/src/accordion/trigger/AccordionTrigger.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/accordion",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/accordion",
+        "reason": "Origin Base UI React Accordion primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/accordion",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/accordion",
+        "reason": "Origin Base UI React Accordion primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

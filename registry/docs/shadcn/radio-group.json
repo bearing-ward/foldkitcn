@@ -11,6 +11,114 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/radio-group",
   "defaultImportPath": "shadcn/radio-group",
+  "sourceRoot": "registry-src/shadcn/radio-group",
+  "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Radio Group",
+      "docsUrl": "https://ui.shadcn.com/docs/components/radio-group",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/radio-group.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/radio-group.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/radio-group.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/radio-group.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/radio-group-choice-card.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-description.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/radio-group-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/radio-group",
+        "classification": "registry-local",
+        "target": "base-ui/radio-group",
+        "reason": "shadcn Radio Group composes the local Base UI Radio Group primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Radio Group uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema through the wrapper style options and local Base UI dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/radio",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Origin Base UI React radio primitive is replaced by local Foldkit Radio Group item attributes."
+      },
+      {
+        "specifier": "@base-ui/react/radio-group",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Origin Base UI React group primitive is replaced by the local Foldkit Base UI Radio Group implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin examples reference Field before that registry item exists; installable source only ships the radio group wrapper."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin examples reference Label before that registry item exists; installable source only ships the radio group wrapper."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is fixture evidence only and is not required by installable source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

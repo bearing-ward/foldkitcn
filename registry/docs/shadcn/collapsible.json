@@ -11,6 +11,130 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/collapsible",
   "defaultImportPath": "shadcn/collapsible",
+  "sourceRoot": "registry-src/shadcn/collapsible",
+  "installableSourcePaths": [
+    "src/registry/shadcn/collapsible/index.ts",
+    "src/registry/shadcn/collapsible/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Collapsible",
+      "docsUrl": "https://ui.shadcn.com/docs/components/collapsible",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/collapsible.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/collapsible.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/collapsible.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/collapsible-basic.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-demo.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-file-tree.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/collapsible-settings.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/collapsible",
+        "classification": "registry-local",
+        "target": "base-ui/collapsible",
+        "reason": "shadcn Collapsible composes the local Base UI Collapsible primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Collapsible uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options and is provided through the local Base UI Collapsible dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/collapsible",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/collapsible",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Collapsible implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are rendered with local inline SVGs in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "@/registry/icons/__lucide__",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin registry icon imports are replaced by local inline SVGs in Foldkit examples."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static button class shells instead of importing an installable Button dependency."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static card shells instead of importing an installable Card dependency."
+      },
+      {
+        "specifier": "shadcn/tabs",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The file-tree example uses local static tab shell markup instead of importing a second registry component."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/collapsible-demo",

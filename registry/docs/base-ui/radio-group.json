@@ -11,6 +11,79 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/radio-group",
   "defaultImportPath": "base-ui/radio-group",
+  "sourceRoot": "registry-src/base-ui/radio-group",
+  "installableSourcePaths": ["src/registry/base-ui/radio-group/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Radio Group",
+      "docsUrl": "https://base-ui.com/react/components/radio-group",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/radio-group",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/radio-group/index.ts",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.tsx",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroupContext.ts",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/radio/root/RadioRoot.tsx",
+        "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/radio-group/types.ts"
+      ],
+      "examplePaths": [],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.test.tsx",
+        "repos/base-ui/packages/react/src/radio-group/RadioGroup.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/radio-group",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/radio-group",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Origin Base UI React group primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/radio",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/radio-group",
+        "reason": "Radio item and indicator public semantics are included in this grouped Foldkit primitive for this implementation slice."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

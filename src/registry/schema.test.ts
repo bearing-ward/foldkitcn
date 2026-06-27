@@ -140,4 +140,31 @@ describe('generated docs artifact schemas', () => {
       ),
     ).toStrictEqual(artifact)
   })
+
+  test('requires source and dependency metadata on component docs artifacts', () => {
+    expect(() =>
+      S.decodeUnknownSync(ComponentDocsArtifact)({
+        schemaVersion: 1,
+        itemId: 'local/example-preview',
+        routePath: '/components/local/example-preview',
+        title: 'Example preview',
+        description: 'Private preview fixture.',
+        docsStatus: 'missing',
+        markdownPath: null,
+        markdown: null,
+        headings: [],
+        installCommand: null,
+        localInstallPath: 'registry-src/local/example-preview',
+        defaultImportPath: 'local/example-preview',
+        examples: [],
+        quality: {
+          availability: 'private',
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          deviations: [],
+        },
+      }),
+    ).toThrow(/sourceRoot/u)
+  })
 })

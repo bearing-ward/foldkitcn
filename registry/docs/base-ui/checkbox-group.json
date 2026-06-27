@@ -11,6 +11,90 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/checkbox-group",
   "defaultImportPath": "base-ui/checkbox-group",
+  "sourceRoot": "registry-src/base-ui/checkbox-group",
+  "installableSourcePaths": ["src/registry/base-ui/checkbox-group/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Checkbox Group",
+      "docsUrl": "https://base-ui.com/react/components/checkbox-group",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/checkbox-group",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.tsx",
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupContext.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/index.ts",
+        "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/nested/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/parent/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.test.tsx",
+        "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/checkbox",
+        "classification": "registry-local",
+        "target": "base-ui/checkbox",
+        "reason": "Checkbox Group preserves the local Base UI Checkbox checked, unchecked, indeterminate, ARIA, and data-attribute conventions for grouped items and parent controls."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/checkbox-group",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/checkbox-group",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/checkbox-group",
+        "reason": "Origin Base UI React group primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/checkbox",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/checkbox",
+        "reason": "Origin checkbox parts are represented by the existing local checkbox state conventions and the grouped Foldkit attributes."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [],
   "quality": {
     "availability": "installable",

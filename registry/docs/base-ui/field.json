@@ -11,6 +11,96 @@
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/field",
   "defaultImportPath": "base-ui/field",
+  "sourceRoot": "registry-src/base-ui/field",
+  "installableSourcePaths": ["src/registry/base-ui/field/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Field",
+      "docsUrl": "https://base-ui.com/react/components/field",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/field",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/field/control/FieldControl.tsx",
+        "repos/base-ui/packages/react/src/field/control/FieldControlDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/description/FieldDescription.tsx",
+        "repos/base-ui/packages/react/src/field/description/FieldDescriptionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/error/FieldError.tsx",
+        "repos/base-ui/packages/react/src/field/error/FieldErrorDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/index.parts.ts",
+        "repos/base-ui/packages/react/src/field/index.ts",
+        "repos/base-ui/packages/react/src/field/item/FieldItem.tsx",
+        "repos/base-ui/packages/react/src/field/item/FieldItemContext.ts",
+        "repos/base-ui/packages/react/src/field/item/FieldItemDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/label/FieldLabel.tsx",
+        "repos/base-ui/packages/react/src/field/label/FieldLabelDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/root/FieldRoot.tsx",
+        "repos/base-ui/packages/react/src/field/root/FieldRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/field/root/useFieldValidation.ts",
+        "repos/base-ui/packages/react/src/field/utils/getCombinedFieldValidityData.ts",
+        "repos/base-ui/packages/react/src/field/validity/FieldValidity.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/field/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/field/control/FieldControl.test.tsx",
+        "repos/base-ui/packages/react/src/field/description/FieldDescription.test.tsx",
+        "repos/base-ui/packages/react/src/field/error/FieldError.test.tsx",
+        "repos/base-ui/packages/react/src/field/item/FieldItem.test.tsx",
+        "repos/base-ui/packages/react/src/field/label/FieldLabel.test.tsx",
+        "repos/base-ui/packages/react/src/field/root/FieldRoot.test.tsx",
+        "repos/base-ui/packages/react/src/field/validity/FieldValidity.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, html factory APIs, and Schema tagged struct helpers for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, predicate helpers, and array helpers for validation facts and attribute derivation."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/field",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/field",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "base-ui/field-origin-fixture",

@@ -11,6 +11,144 @@
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/field",
   "defaultImportPath": "shadcn/field",
+  "sourceRoot": "registry-src/shadcn/field",
+  "installableSourcePaths": [
+    "src/registry/shadcn/field/index.ts",
+    "src/registry/shadcn/field/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Field",
+      "docsUrl": "https://ui.shadcn.com/docs/components/field",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/field.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/field.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/field.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/field.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/field.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/field-checkbox.tsx",
+        "repos/ui/apps/v4/examples/base/field-demo.tsx",
+        "repos/ui/apps/v4/examples/base/field-fieldset.tsx",
+        "repos/ui/apps/v4/examples/base/field-input.tsx",
+        "repos/ui/apps/v4/examples/base/field-responsive.tsx",
+        "repos/ui/apps/v4/examples/base/field-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/field-textarea.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/field",
+        "classification": "registry-local",
+        "target": "base-ui/field",
+        "reason": "shadcn Field composes the local Base UI Field primitive for root semantics and validity data attributes."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Dependency-complete Field examples compose the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/checkbox",
+        "classification": "registry-local",
+        "target": "shadcn/checkbox",
+        "reason": "Dependency-complete Field examples compose the local shadcn Checkbox item."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Field examples compose the local shadcn Input item."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "FieldLabel composes the local shadcn Label item."
+      },
+      {
+        "specifier": "shadcn/separator",
+        "classification": "registry-local",
+        "target": "shadcn/separator",
+        "reason": "FieldSeparator composes the local shadcn Separator item."
+      },
+      {
+        "specifier": "shadcn/textarea",
+        "classification": "registry-local",
+        "target": "shadcn/textarea",
+        "reason": "Dependency-complete Field examples compose the local shadcn Textarea item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Field uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Child, customElement, and html factory APIs for Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals and array helpers for pure variant maps and render decisions."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/field",
+        "reason": "Origin React Field primitive is replaced with the local Foldkit Base UI Field implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "CVA orientation variants are replaced by Effect Schema literals and pure class maps."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
   "examples": [
     {
       "id": "shadcn/field-input",
