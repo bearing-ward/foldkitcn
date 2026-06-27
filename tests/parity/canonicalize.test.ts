@@ -126,6 +126,8 @@ describe('parity canonicalizers', () => {
       'shadcn/input',
       'shadcn/field',
       'shadcn/native-select',
+      'base-ui/select',
+      'shadcn/select',
       'base-ui/separator',
       'shadcn/separator',
       'shadcn/progress',
