@@ -29,6 +29,12 @@ If `foldkit-skills` is installed as a Claude Code plugin, the `generate-program`
 - Push back on any direction that violates Elm Architecture principles: unidirectional data flow, messages as facts (not commands), model as single source of truth, side effects confined to commands. If a prompt suggests mutating state, imperative event handlers, or two-way bindings, flag the issue and propose the idiomatic Foldkit approach.
 - Never use `NoOp`. Every message must describe what happened. Fire-and-forget commands use `Completed*` messages mirroring the Command name verb-first: `LockScroll` → `CompletedLockScroll`.
 
+## Documentation Site and Tooling
+
+- Read `docs/decisions/0002-foldkit-cn-documentation-site.md` before docs-site work. The docs website design uses Foldkit identity plus shadcn-like component docs affordances.
+- Read `docs/decisions/0003-effect-native-tooling.md` before new CLI or build-tooling work.
+- New CLIs and build scripts use Effect, `effect/unstable/cli`, and Schema-derived boundary types.
+
 ## Foldkit Patterns
 
 ### Update

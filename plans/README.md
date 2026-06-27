@@ -47,6 +47,36 @@ honor its STOP conditions, and update your row when done.
 | 037 | Implement Base UI Number Field | P1 | L | 022 | DONE |
 | 038 | Implement Base UI and shadcn Field | P1 | L | 022, 035, 036 | DONE |
 | 039 | Implement Base UI Form | P1 | L | 038 | DONE |
+| 040 | Implement Base UI and shadcn Tooltip | P1 | L | 034 | DONE |
+| 041 | Implement Base UI Checkbox Group | P1 | M | 025 | DONE |
+| 042 | Implement Base UI and shadcn Select | P1 | L | 022, 034 | DONE |
+| 043 | Implement Base UI Menu and shadcn Dropdown Menu | P1 | L | 029, 034 | DONE |
+| 044 | Implement Base UI Radio | P1 | M | 026 | DONE |
+| 045 | Implement Base UI and shadcn Alert Dialog | P1 | M | 033 | DONE |
+| 046 | Implement Base UI and shadcn Context Menu | P1 | L | 043 | TODO |
+| 047 | Implement Base UI OTP Field and shadcn Input OTP | P1 | M | 022 | TODO |
+| 048 | Implement Base UI and shadcn Scroll Area | P1 | M | 019 | TODO |
+| 049 | Implement Base UI Toolbar | P1 | M | 022, 029, 030 | TODO |
+| 050 | Implement Base UI Preview Card and shadcn Hover Card | P1 | L | 034, 040 | TODO |
+| 051 | Implement Base UI and shadcn Menubar | P1 | L | 043 | TODO |
+| 052 | Implement Base UI and shadcn Navigation Menu | P1 | L | 043, 050 | TODO |
+| 053 | Implement Base UI and shadcn Combobox | P1 | L | 034, 042 | TODO |
+| 054 | Implement Base UI Autocomplete | P1 | L | 053 | TODO |
+| 055 | Implement Base UI and shadcn Drawer | P1 | L | 033 | TODO |
+| 056 | Implement shadcn Sheet | P1 | M | 033 | TODO |
+| 057 | Implement shadcn Direction | P2 | S | 019 | TODO |
+| 058 | Implement shadcn Card | P1 | S | 019 | TODO |
+| 059 | Implement shadcn Breadcrumb | P1 | S | 019 | TODO |
+| 060 | Record documentation-site and Effect-native tooling decisions | P1 | S | - | DONE |
+| 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | TODO |
+| 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | TODO |
+| 063 | Add component docs sidecars and the shadcn Button page | P1 | M | 061, 062 | TODO |
+| 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | TODO |
+| 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | TODO |
+| 066 | Add static prerender and Pagefind search | P2 | L | 065 | TODO |
+| 067 | Add structured example docs artifacts | P2 | M | 063 | TODO |
+| 068 | Add live component example runtime | P2 | L | 067 | TODO |
+| 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -77,6 +107,34 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 032 depends on 028 because Accordion should reuse Collapsible conventions for open state, panel mounting, and data attributes.
 - Plan 034 depends on 033 because Popover should reuse Dialog's settled overlay, portal, dismiss, and focus conventions rather than creating a competing implementation.
 - Plans 035-039 are ordered to unblock form composition: Fieldset and Label first, Number Field after Input, Field after Input/Fieldset/Label, and Form after Field.
+- Plans 040-059 were generated from `plans/artifacts/040-next-component-selection/selection.md`, after refreshing the local shadcn evidence repo to `40c7064532185f5556f6cbff7dca3544987c0fe1`.
+- Plan 040 depends on 034 because Tooltip should reuse Popover's portal, positioning, dismiss, and focus conventions where applicable.
+- Plan 041 depends on 025 because Checkbox Group should reuse the local Checkbox checked/unchecked/indeterminate state model.
+- Plan 042 depends on 022 and 034 because Select combines form-control/value conventions with Popover-style popup positioning and dismiss behavior.
+- Plan 043 depends on 029 and 034 because Menu needs existing pressed/toggle conventions plus Popover's popup foundation; Context Menu and Menubar should wait for this local Menu foundation.
+- Plan 044 depends on 026 because standalone Radio should match the landed Radio Group conventions.
+- Plan 045 and Plan 056 depend on 033 because Alert Dialog and Sheet must compose the local Dialog foundation instead of forking modal behavior.
+- Plan 046 depends on 043 because Context Menu should add context-trigger positioning on top of Menu item, submenu, checked item, and roving-focus behavior.
+- Plan 047 depends on 022 because OTP Field should reuse Input's local form-control conventions.
+- Plan 049 depends on 022, 029, and 030 because Toolbar composes input, toggle, and toggle-group behavior.
+- Plan 050 depends on 034 and 040 because Preview Card/Hover Card should reuse Popover positioning plus Tooltip-style hover/delay behavior.
+- Plan 051 depends on 043 because Menubar should reuse Menu item and submenu behavior.
+- Plan 052 depends on 043 and 050 because Navigation Menu combines collection/menu navigation with preview-card-style positioned content.
+- Plan 053 depends on 034 and 042 because Combobox should reuse Popover positioning and Select's collection/value conventions.
+- Plan 054 depends on 053 because Autocomplete should reuse Combobox's input, filtering, collection, and highlighted-item model.
+- Plan 055 depends on 033 because Drawer should reuse Dialog's modal lifecycle, portal, focus, dismiss, and scroll-lock conventions.
+- Plans 057-059 are small shadcn-only rows that can execute when an agent needs a lower-risk parallel task, subject to their own STOP conditions for newly discovered dependencies.
+- Plans 060-069 were generated from the documentation-site planning session on 2026-06-27. They intentionally treat the docs website as a registry consumer with shadcn-like component-doc affordances, Foldkit visual identity, generated docs artifacts, and Effect-native tooling.
+- Plan 060 comes first because it records the docs-site ADR and the repo-wide "always Effect" tooling rule before any executor writes scripts or docs shell code.
+- Plan 061 depends on 060 because generated docs artifacts and `docsStatus` must follow the documented registry/docs data architecture.
+- Plan 062 depends on 061 because the docs shell should consume generated registry/docs artifacts rather than scanning `registry-src` at runtime.
+- Plan 063 depends on 061 and 062 because the shadcn Button page needs both generated docs artifacts and a real docs shell route to render into.
+- Plan 064 depends on 062 and 063 because install panels and copy buttons need a component detail page and shell-level Message/Command wiring.
+- Plan 065 depends on 062 and 064 because component navigation, Roadmap, and local search should sit inside the docs shell and reuse lifecycle-aware availability display.
+- Plan 066 depends on 065 because prerender and Pagefind need a stable route inventory, metadata, and searchable docs surface first.
+- Plan 067 depends on 063 because example docs artifacts should be proven against the existing shadcn Button page before live rendering is attempted.
+- Plan 068 depends on 067 because live previews need the structured example artifact contract and preview status gate.
+- Plan 069 depends on 064 because the installer CLI implements the command contract displayed by docs, but remains a separate product surface with filesystem safety concerns.
 
 ## Findings considered and rejected
 
