@@ -2,6 +2,7 @@ import { Array, Match as M, Option, Schema as S, pipe } from 'effect'
 import { ts } from 'foldkit/schema'
 
 import docsIndexJson from '../registry/docs/index.json'
+import localExamplePreviewDocsJson from '../registry/docs/local/example-preview.json'
 import shadcnButtonDocsJson from '../registry/docs/shadcn/button.json'
 import registryIndexJson from '../registry/index.json'
 import {
@@ -19,6 +20,7 @@ import type {
 export const LoadedDocsData = ts('LoadedDocsData', {
   registry: RegistryIndex,
   docsIndex: ComponentDocsIndex,
+  localExamplePreviewDocs: ComponentDocsArtifact,
   shadcnButtonDocs: ComponentDocsArtifact,
 })
 export const FailedDocsData = ts('FailedDocsData', {
@@ -64,6 +66,9 @@ const decodeDocsData = (): DocsData => {
     return LoadedDocsData({
       registry: S.decodeUnknownSync(RegistryIndex)(registryIndexJson),
       docsIndex: S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson),
+      localExamplePreviewDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
+        localExamplePreviewDocsJson,
+      ),
       shadcnButtonDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
         shadcnButtonDocsJson,
       ),
@@ -95,10 +100,16 @@ const docsRouteFor = (
   Array.findFirst(docsIndex.routes, route => route.itemId === itemId)
 
 const docsArtifactFor = (
+  localExamplePreviewDocs: ComponentDocsArtifactType,
   shadcnButtonDocs: ComponentDocsArtifactType,
   itemId: string,
 ): Option.Option<ComponentDocsArtifactType> =>
-  itemId === 'shadcn/button' ? Option.some(shadcnButtonDocs) : Option.none()
+  M.value(itemId).pipe(
+    M.withReturnType<Option.Option<ComponentDocsArtifactType>>(),
+    M.when('local/example-preview', () => Option.some(localExamplePreviewDocs)),
+    M.when('shadcn/button', () => Option.some(shadcnButtonDocs)),
+    M.orElse(() => Option.none()),
+  )
 
 export const publicComponents = (
   data: DocsData,
@@ -107,7 +118,12 @@ export const publicComponents = (
     M.withReturnType<ReadonlyArray<PublicComponent>>(),
     M.tagsExhaustive({
       FailedDocsData: () => [],
-      LoadedDocsData: ({ registry, docsIndex, shadcnButtonDocs }) => {
+      LoadedDocsData: ({
+        registry,
+        docsIndex,
+        localExamplePreviewDocs,
+        shadcnButtonDocs,
+      }) => {
         const initialComponents: Array<PublicComponent> = []
 
         return Array.reduce(registry.items, initialComponents, (acc, entry) => {
@@ -123,6 +139,7 @@ export const publicComponents = (
                 entry,
                 docsRoute,
                 maybeDocsArtifact: docsArtifactFor(
+                  localExamplePreviewDocs,
                   shadcnButtonDocs,
                   entry.item.id,
                 ),
@@ -170,6 +187,40 @@ export const findPublicComponent = (
     Array.findFirst(
       component => component.entry.item.id === `${namespace}/${slug}`,
     ),
+  )
+
+export const findRoutedComponent = (
+  data: DocsData,
+  namespace: string,
+  slug: string,
+): Option.Option<PublicComponent> =>
+  M.value(data).pipe(
+    M.withReturnType<Option.Option<PublicComponent>>(),
+    M.tagsExhaustive({
+      FailedDocsData: () => Option.none(),
+      LoadedDocsData: ({
+        registry,
+        docsIndex,
+        localExamplePreviewDocs,
+        shadcnButtonDocs,
+      }) => {
+        const itemId = `${namespace}/${slug}`
+
+        return Option.flatMap(
+          Array.findFirst(registry.items, entry => entry.item.id === itemId),
+          entry =>
+            Option.map(docsRouteFor(docsIndex, itemId), docsRoute => ({
+              entry,
+              docsRoute,
+              maybeDocsArtifact: docsArtifactFor(
+                localExamplePreviewDocs,
+                shadcnButtonDocs,
+                itemId,
+              ),
+            })),
+        )
+      },
+    }),
   )
 
 export const generatedComponentCount = (data: DocsData): number =>

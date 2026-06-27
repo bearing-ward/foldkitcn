@@ -1,4 +1,12 @@
-import { Array, Effect, Match as M, Option, Schema as S, pipe } from 'effect'
+import {
+  Array,
+  Effect,
+  HashSet,
+  Match as M,
+  Option,
+  Schema as S,
+  pipe,
+} from 'effect'
 import type { Runtime } from 'foldkit'
 import { Command } from 'foldkit'
 import type { Document, Html } from 'foldkit/html'
@@ -15,7 +23,7 @@ import {
   type NamespaceGroup,
   type PublicComponent,
   docsData,
-  findPublicComponent,
+  findRoutedComponent,
   generatedComponentCount,
   LoadedDocsData,
   namespaceGroups,
@@ -76,6 +84,7 @@ export const Model = S.Struct({
   route: AppRoute,
   data: DocsData,
   mobileNavigation: MobileNavigation,
+  copiedSnippets: S.HashSet(S.String),
 })
 export type Model = typeof Model.Type
 
@@ -86,6 +95,12 @@ export const CompletedLoadExternal = m('CompletedLoadExternal')
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
+export const ClickedCopySnippet = m('ClickedCopySnippet', { text: S.String })
+export const SucceededCopySnippet = m('SucceededCopySnippet', {
+  text: S.String,
+})
+export const FailedCopySnippet = m('FailedCopySnippet')
+export const HidCopiedIndicator = m('HidCopiedIndicator', { text: S.String })
 
 export const Message = S.Union([
   CompletedNavigateInternal,
@@ -93,6 +108,10 @@ export const Message = S.Union([
   ClickedLink,
   ChangedUrl,
   ClickedToggleMobileNavigation,
+  ClickedCopySnippet,
+  SucceededCopySnippet,
+  FailedCopySnippet,
+  HidCopiedIndicator,
 ])
 export type Message = typeof Message.Type
 
@@ -105,6 +124,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
     route: urlToAppRoute(url),
     data: docsData,
     mobileNavigation: MobileNavigation({ isOpen: false }),
+    copiedSnippets: HashSet.empty(),
   },
   [],
 ]
@@ -122,6 +142,33 @@ const LoadExternal = Command.define(
   { href: S.String },
   CompletedLoadExternal,
 )(({ href }) => load(href).pipe(Effect.as(CompletedLoadExternal())))
+
+export const CopySnippet = Command.define(
+  'CopySnippet',
+  { text: S.String },
+  SucceededCopySnippet,
+  FailedCopySnippet,
+)(({ text }) =>
+  Effect.tryPromise({
+    try: () => navigator.clipboard.writeText(text),
+    catch: () => new Error('Failed to copy to clipboard'),
+  }).pipe(
+    Effect.as(SucceededCopySnippet({ text })),
+    Effect.catch(() => Effect.succeed(FailedCopySnippet())),
+  ),
+)
+
+const COPY_INDICATOR_DURATION = '2 seconds'
+
+export const HideCopiedIndicator = Command.define(
+  'HideCopiedIndicator',
+  { text: S.String },
+  HidCopiedIndicator,
+)(({ text }) =>
+  Effect.sleep(COPY_INDICATOR_DURATION).pipe(
+    Effect.as(HidCopiedIndicator({ text })),
+  ),
+)
 
 type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 const withUpdateReturn = M.withReturnType<UpdateReturn>()
@@ -154,6 +201,23 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         evo(model, {
           mobileNavigation: ({ isOpen }) =>
             MobileNavigation({ isOpen: !isOpen }),
+        }),
+        [],
+      ],
+      ClickedCopySnippet: ({ text }) => [model, [CopySnippet({ text })]],
+      SucceededCopySnippet: ({ text }) =>
+        HashSet.has(model.copiedSnippets, text)
+          ? [model, []]
+          : [
+              evo(model, {
+                copiedSnippets: HashSet.add(text),
+              }),
+              [HideCopiedIndicator({ text })],
+            ],
+      FailedCopySnippet: () => [model, []],
+      HidCopiedIndicator: ({ text }) => [
+        evo(model, {
+          copiedSnippets: HashSet.remove(text),
         }),
         [],
       ],
@@ -490,6 +554,46 @@ const componentsNamespacePageView = (
 
 const statusText = (value: string): string => value.replaceAll('-', ' ')
 
+const installCommandFor = (itemId: string): string =>
+  `bunx foldkitcn add ${itemId}`
+
+const physicalInstallPathFor = (itemId: string): string =>
+  `src/components/foldkitcn/${itemId}.ts`
+
+const aliasImportPathFor = (itemId: string): string =>
+  `@/components/foldkitcn/${itemId}`
+
+const importSnippetFor = (component: PublicComponent): string =>
+  `import { ${component.entry.item.name} } from '${aliasImportPathFor(
+    component.entry.item.id,
+  )}'`
+
+const snippetBlockView = (
+  text: string,
+  ariaLabel: string,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
+  const h = html<Message>()
+  const isCopied = HashSet.has(copiedSnippets, text)
+
+  return h.div([h.Class('snippet-block')], [
+    h.pre([h.Class('code-block')], [h.code([], [text])]),
+    h.button(
+      [
+        h.Type('button'),
+        h.Class('copy-button'),
+        h.AriaLabel(ariaLabel),
+        h.OnClick(ClickedCopySnippet({ text })),
+      ],
+      [h.span([h.AriaHidden(true)], ['Copy'])],
+    ),
+    h.span(
+      [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
+      [isCopied ? 'Copied to clipboard' : ''],
+    ),
+  ])
+}
+
 const dependenciesPanelView = (component: PublicComponent): Html => {
   const h = html<Message>()
 
@@ -516,30 +620,52 @@ const dependenciesPanelView = (component: PublicComponent): Html => {
   })
 }
 
-const installationSectionView = (component: PublicComponent): Html => {
+const installationSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
   const h = html<Message>()
+  const availability = component.entry.item.lifecycle.availability
 
   return h.section([h.Id('installation'), h.Class('content-section')], [
     h.h2([], ['Installation']),
-    Option.match(component.maybeDocsArtifact, {
-      onNone: () =>
-        h.p([], [
-          `The generated docs artifact is ${component.docsRoute.docsArtifactPath}.`,
+    M.value(availability).pipe(
+      M.withReturnType<Html>(),
+      M.when('installable', () =>
+        h.div([], [
+          h.p([], [
+            'Install the component into your app, then import it from the generated local namespace.',
+          ]),
+          snippetBlockView(
+            installCommandFor(component.entry.item.id),
+            `Copy ${component.entry.item.name} install command`,
+            copiedSnippets,
+          ),
         ]),
-      onSome: artifact =>
-        Option.match(artifact.installCommand, {
-          onNone: () =>
-            h.p([], [
-              'The installer CLI is pending. Use the generated source path and registry dependencies while the install command contract is reserved in the artifact.',
-            ]),
-          onSome: command =>
-            h.pre([h.Class('code-block')], [h.code([], [command])]),
-        }),
-    }),
+      ),
+      M.when('preview', () =>
+        h.p([], [
+          'This component is in preview. The public install command is not enabled for this row yet.',
+        ]),
+      ),
+      M.when('private', () =>
+        h.p([], [
+          'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
+        ]),
+      ),
+      M.orElse(() =>
+        h.p([], [
+          'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
+        ]),
+      ),
+    ),
   ])
 }
 
-const usageSectionView = (component: PublicComponent): Html => {
+const usageSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
   const h = html<Message>()
 
   return h.section([h.Id('usage'), h.Class('content-section')], [
@@ -550,16 +676,21 @@ const usageSectionView = (component: PublicComponent): Html => {
       onSome: artifact =>
         h.div([], [
           h.p([], [
-            'Import the helper from the local registry source and call it from a Foldkit view after binding the Html factory.',
+            'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
           ]),
+          snippetBlockView(
+            importSnippetFor(component),
+            `Copy ${component.entry.item.name} import snippet`,
+            copiedSnippets,
+          ),
           h.dl([h.Class('meta-list wide')], [
             h.div([], [
-              h.dt([], ['Default import']),
-              h.dd([], [artifact.defaultImportPath]),
+              h.dt([], ['Default physical path']),
+              h.dd([], [physicalInstallPathFor(artifact.itemId)]),
             ]),
             h.div([], [
-              h.dt([], ['Local source']),
-              h.dd([], [artifact.localInstallPath]),
+              h.dt([], ['Default alias']),
+              h.dd([], [aliasImportPathFor(artifact.itemId)]),
             ]),
           ]),
         ]),
@@ -747,7 +878,7 @@ const componentDetailPageView = (
   slug: string,
 ): Html => {
   const h = html<Message>()
-  const maybeComponent = findPublicComponent(model.data, namespace, slug)
+  const maybeComponent = findRoutedComponent(model.data, namespace, slug)
 
   return Option.match(maybeComponent, {
     onNone: () =>
@@ -766,8 +897,8 @@ const componentDetailPageView = (
           h.p([], [component.entry.item.description]),
           dependenciesPanelView(component),
         ]),
-        installationSectionView(component),
-        usageSectionView(component),
+        installationSectionView(component, model.copiedSnippets),
+        usageSectionView(component, model.copiedSnippets),
         examplesSectionView(component),
         apiSectionView(),
         accessibilitySectionView(),

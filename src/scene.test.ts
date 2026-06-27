@@ -1,12 +1,16 @@
+import { HashSet } from 'effect'
 import { Scene } from 'foldkit'
 import { describe, test } from 'vitest'
 
 import { docsData } from './data'
 import {
   ComponentDetailRoute,
+  CopySnippet,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
   DocsRoute,
+  HidCopiedIndicator,
+  HideCopiedIndicator,
   HomeRoute,
   MobileNavigation,
   NotFoundRoute,
@@ -14,6 +18,7 @@ import {
   RegistryRoute,
   RegistrySchemaRoute,
   RoadmapRoute,
+  SucceededCopySnippet,
   update,
   view,
 } from './main'
@@ -23,6 +28,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
+  copiedSnippets: HashSet.empty(),
 })
 
 describe(view, () => {
@@ -126,6 +132,88 @@ describe(view, () => {
           { exact: false },
         ),
       ).toExist(),
+    )
+  })
+
+  test('Button detail renders install and import snippets from the public contract', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.text('bunx foldkitcn add shadcn/button')).toExist(),
+      Scene.expect(
+        Scene.text(
+          "import { Button } from '@/components/foldkitcn/shadcn/button'",
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('src/components/foldkitcn/shadcn/button.ts'),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#usage'),
+          Scene.text('src/registry/shadcn/button', { exact: false }),
+        ),
+      ).not.toExist(),
+    )
+  })
+
+  test('Private component detail explains availability without an install command', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({
+            namespace: 'local',
+            slug: 'example-preview',
+          }),
+        ),
+      ),
+      Scene.expect(
+        Scene.role('heading', { name: 'Example preview' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('This component is private.', { exact: false }),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('bunx foldkitcn add local/example-preview'),
+      ).not.toExist(),
+    )
+  })
+
+  test('Copy controls are accessible and announce copied status', () => {
+    const text = 'bunx foldkitcn add shadcn/button'
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.role('button', { name: 'Copy Button install command' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.role('button', { name: 'Copy Button import snippet' }),
+      ).toExist(),
+      Scene.click(
+        Scene.role('button', { name: 'Copy Button install command' }),
+      ),
+      Scene.Command.expectExact(CopySnippet({ text })),
+      Scene.Command.resolve(
+        CopySnippet({ text }),
+        SucceededCopySnippet({ text }),
+      ),
+      Scene.expect(Scene.role('status')).toContainText('Copied to clipboard'),
+      Scene.Command.expectExact(HideCopiedIndicator({ text })),
+      Scene.Command.resolve(
+        HideCopiedIndicator({ text }),
+        HidCopiedIndicator({ text }),
+      ),
     )
   })
 

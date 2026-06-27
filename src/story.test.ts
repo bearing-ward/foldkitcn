@@ -1,4 +1,4 @@
-import { Option } from 'effect'
+import { HashSet, Option } from 'effect'
 import { Story } from 'foldkit'
 import { fromString } from 'foldkit/url'
 import { describe, expect, test } from 'vitest'
@@ -6,16 +6,22 @@ import { describe, expect, test } from 'vitest'
 import { docsData } from './data'
 import {
   ChangedUrl,
+  ClickedCopySnippet,
   ComponentDetailRoute,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
+  CopySnippet,
   DocsRoute,
+  FailedCopySnippet,
+  HidCopiedIndicator,
+  HideCopiedIndicator,
   HomeRoute,
   MobileNavigation,
   RegistryLifecycleRoute,
   RegistryRoute,
   RegistrySchemaRoute,
   RoadmapRoute,
+  SucceededCopySnippet,
   componentDetailRouter,
   componentsIndexRouter,
   componentsNamespaceRouter,
@@ -34,6 +40,7 @@ const model: Model = {
   route: HomeRoute({}),
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
+  copiedSnippets: HashSet.empty(),
 }
 
 const urlOrThrow = (raw: string) =>
@@ -121,6 +128,82 @@ describe(update, () => {
         Story.model(nextModel => {
           expect(nextModel.route._tag).toBe('NotFound')
         }),
+      )
+    })
+  })
+
+  describe(ClickedCopySnippet, () => {
+    test('dispatches a copy command for the selected snippet', () => {
+      const text = 'bunx foldkitcn add shadcn/button'
+
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(ClickedCopySnippet({ text })),
+        Story.Command.expectExact(CopySnippet({ text })),
+        Story.Command.resolve(
+          CopySnippet({ text }),
+          SucceededCopySnippet({ text }),
+        ),
+        Story.Command.expectExact(HideCopiedIndicator({ text })),
+        Story.Command.resolve(
+          HideCopiedIndicator({ text }),
+          HidCopiedIndicator({ text }),
+        ),
+        Story.Command.expectNone(),
+      )
+    })
+
+    test('stores copied snippets after a successful copy and hides them later', () => {
+      const text =
+        "import { Button } from '@/components/foldkitcn/shadcn/button'"
+
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(SucceededCopySnippet({ text })),
+        Story.model(nextModel => {
+          expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
+        }),
+        Story.Command.expectExact(HideCopiedIndicator({ text })),
+        Story.Command.resolve(
+          HideCopiedIndicator({ text }),
+          HidCopiedIndicator({ text }),
+        ),
+        Story.model(nextModel => {
+          expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(false)
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+
+    test('does not change copied state after a failed copy', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(FailedCopySnippet()),
+        Story.model(nextModel => {
+          expect(HashSet.size(nextModel.copiedSnippets)).toBe(0)
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+
+    test('does not schedule another hide command for an already copied snippet', () => {
+      const text = 'bunx foldkitcn add shadcn/button'
+      const copiedModel: Model = {
+        ...model,
+        copiedSnippets: HashSet.fromIterable([text]),
+      }
+
+      Story.story(
+        update,
+        Story.with(copiedModel),
+        Story.message(SucceededCopySnippet({ text })),
+        Story.model(nextModel => {
+          expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
+        }),
+        Story.Command.expectNone(),
       )
     })
   })
