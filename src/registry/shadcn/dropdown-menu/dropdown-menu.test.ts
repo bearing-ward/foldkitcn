@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="node" />
 
 import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
@@ -7,17 +8,23 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
 
-import {
-  DropdownMenuCheckboxes,
-  DropdownMenuDemo,
-  DropdownMenuDestructive,
-  DropdownMenuRadioGroup,
-  DropdownMenuRtl,
-  DropdownMenuShortcuts,
-  DropdownMenuSubmenu,
-} from './examples'
+import { DropdownMenuBasic, dropdownMenuExampleViews } from './examples'
 import * as DropdownMenu from './index'
 import type { MenuItemDescriptor, ViewConfig } from './index'
+
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+
+type Manifest = Readonly<{
+  examples: ReadonlyArray<
+    Readonly<{
+      id: string
+      title: string
+    }>
+  >
+}>
+
+type ExampleView = () => Html
 
 // MODEL
 
@@ -53,6 +60,26 @@ type Message = never
 type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 
 const update = (model: Model, _message: Message): UpdateReturn => [model, []]
+
+const manifest: Manifest = JSON.parse(
+  readFileSync(
+    path.join(process.cwd(), 'registry-src/shadcn/dropdown-menu/item.json'),
+    'utf-8',
+  ),
+)
+
+const requireExampleView = (
+  views: ReadonlyMap<string, ExampleView>,
+  id: string,
+): ExampleView => {
+  const view = views.get(id)
+
+  if (view === undefined) {
+    throw new Error(`Missing dropdown menu example view: ${id}`)
+  }
+
+  return view
+}
 
 // VIEW
 
@@ -276,45 +303,101 @@ describe('shadcn/dropdown-menu view', () => {
     }).not.toThrow()
   })
 
-  test('renders all static examples without throwing', () => {
+  test('keeps manifest examples aligned with exported examples', () => {
+    expect(manifest.examples.map(example => example.id)).toStrictEqual(
+      dropdownMenuExampleViews.map(example => example.id),
+    )
+    expect(manifest.examples.map(example => example.title)).toStrictEqual(
+      dropdownMenuExampleViews.map(example => example.title),
+    )
+  })
+
+  test('renders every exported registry example without throwing', () => {
+    expect(() => {
+      for (const example of dropdownMenuExampleViews) {
+        Scene.scene(
+          { update, view: example.view },
+          Scene.with(initialModel),
+          Scene.expect(
+            Scene.selector('[data-slot="dropdown-menu"]'),
+          ).toBeVisible(),
+        )
+      }
+    }).not.toThrow()
+  })
+
+  test('renders the basic and newly covered dossier examples with expected slots', () => {
     expect(() => {
       Scene.scene(
-        { update, view: () => DropdownMenuDemo() },
+        { update, view: () => DropdownMenuBasic() },
         Scene.with(initialModel),
         Scene.expect(
-          Scene.selector('[data-slot="dropdown-menu"]'),
+          Scene.selector('[data-slot="dropdown-menu-item"]'),
         ).toBeVisible(),
-      )
-      Scene.scene(
-        { update, view: () => DropdownMenuCheckboxes() },
-        Scene.with(initialModel),
         Scene.expect(
-          Scene.selector('[data-slot="dropdown-menu-checkbox-item"]'),
+          Scene.selector('[data-slot="dropdown-menu-separator"]'),
         ).toBeVisible(),
       )
+
+      const newlyCoveredExampleIds = new Set([
+        'shadcn/dropdown-menu-avatar',
+        'shadcn/dropdown-menu-checkboxes-icons',
+        'shadcn/dropdown-menu-complex',
+        'shadcn/dropdown-menu-icons',
+        'shadcn/dropdown-menu-radio-icons',
+      ])
+
+      for (const example of dropdownMenuExampleViews.filter(candidate =>
+        newlyCoveredExampleIds.has(candidate.id),
+      )) {
+        Scene.scene(
+          { update, view: example.view },
+          Scene.with(initialModel),
+          Scene.expect(
+            Scene.selector('[data-slot="dropdown-menu"]'),
+          ).toBeVisible(),
+        )
+      }
+    }).not.toThrow()
+  })
+
+  test('preserves specific example surfaces for submenu, destructive, RTL, and shortcut variants', () => {
+    const viewById = new Map(
+      dropdownMenuExampleViews.map(example => [example.id, example.view]),
+    )
+
+    expect(() => {
+      for (const id of [
+        'shadcn/dropdown-menu-submenu',
+        'shadcn/dropdown-menu-complex',
+      ]) {
+        Scene.scene(
+          { update, view: requireExampleView(viewById, id) },
+          Scene.with(initialModel),
+          Scene.expect(
+            Scene.selector('[data-slot="dropdown-menu-sub-content"]'),
+          ).toBeVisible(),
+        )
+      }
+
       Scene.scene(
-        { update, view: () => DropdownMenuRadioGroup() },
-        Scene.with(initialModel),
-        Scene.expect(
-          Scene.selector('[data-slot="dropdown-menu-radio-item"]'),
-        ).toBeVisible(),
-      )
-      Scene.scene(
-        { update, view: () => DropdownMenuSubmenu() },
-        Scene.with(initialModel),
-        Scene.expect(
-          Scene.selector('[data-slot="dropdown-menu-sub-content"]'),
-        ).toBeVisible(),
-      )
-      Scene.scene(
-        { update, view: () => DropdownMenuDestructive() },
+        {
+          update,
+          view: requireExampleView(
+            viewById,
+            'shadcn/dropdown-menu-destructive',
+          ),
+        },
         Scene.with(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-item"]'),
         ).toHaveAttr('data-variant', 'destructive'),
       )
       Scene.scene(
-        { update, view: () => DropdownMenuRtl() },
+        {
+          update,
+          view: requireExampleView(viewById, 'shadcn/dropdown-menu-rtl'),
+        },
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-slot="dropdown-menu"]')).toHaveAttr(
           'dir',
@@ -322,7 +405,10 @@ describe('shadcn/dropdown-menu view', () => {
         ),
       )
       Scene.scene(
-        { update, view: () => DropdownMenuShortcuts() },
+        {
+          update,
+          view: requireExampleView(viewById, 'shadcn/dropdown-menu-shortcuts'),
+        },
         Scene.with(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-shortcut"]'),

@@ -394,12 +394,12 @@ describe('base-ui/menu helpers', () => {
       onRadioValueChange: change => ChangedMenuRadioValue(change),
       onOpenChange: change => ChangedMenuOpen(change),
       toView: attributes => {
-        attributes.popup.items.forEach(itemAttributes => {
+        for (const itemAttributes of attributes.popup.items) {
           itemAttributeTags.set(
             itemAttributes.item.value,
             itemAttributes.root.map(attribute => attribute._tag),
           )
-        })
+        }
 
         return h.div([], [])
       },

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T02:23:52.364Z",
+  "generatedAt": "2026-06-27T02:40:03.236Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -5937,7 +5937,7 @@
         "namespace": "shadcn",
         "name": "Dropdown Menu",
         "kind": "component",
-        "description": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for basic, checkbox, radio, submenu, destructive, shortcuts, and RTL variants.",
+        "description": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Dropdown Menu demo.",
         "sourceRoot": "registry-src/shadcn/dropdown-menu",
         "installableSourcePaths": [
           "src/registry/shadcn/dropdown-menu/index.ts",
@@ -5972,11 +5972,16 @@
               "repos/ui/apps/v4/content/docs/components/radix/dropdown-menu.mdx"
             ],
             "examplePaths": [
+              "repos/ui/apps/v4/examples/base/dropdown-menu-avatar.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-basic.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes-icons.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-complex.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-demo.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-destructive.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-icons.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-radio-group.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-radio-icons.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-rtl.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-shortcuts.tsx",
               "repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx"
@@ -6054,9 +6059,23 @@
         },
         "examples": [
           {
-            "id": "shadcn/dropdown-menu-demo",
-            "title": "DropdownMenuDemo",
-            "description": "Default account dropdown menu.",
+            "id": "shadcn/dropdown-menu-avatar",
+            "title": "DropdownMenuAvatar",
+            "description": "Avatar-triggered dropdown menu with account actions.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-basic",
+            "title": "DropdownMenuBasic",
+            "description": "Basic account dropdown menu with disabled API item.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-checkboxes-icons",
+            "title": "DropdownMenuCheckboxesIcons",
+            "description": "Checkbox menu items with local icon slots.",
             "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
             "kind": "demo"
           },
@@ -6068,16 +6087,16 @@
             "kind": "demo"
           },
           {
-            "id": "shadcn/dropdown-menu-radio-group",
-            "title": "DropdownMenuRadioGroup",
-            "description": "Radio menu items with model-owned selected value.",
+            "id": "shadcn/dropdown-menu-complex",
+            "title": "DropdownMenuComplex",
+            "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
             "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
             "kind": "demo"
           },
           {
-            "id": "shadcn/dropdown-menu-submenu",
-            "title": "DropdownMenuSubmenu",
-            "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+            "id": "shadcn/dropdown-menu-demo",
+            "title": "DropdownMenuDemo",
+            "description": "Default account dropdown menu.",
             "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
             "kind": "demo"
           },
@@ -6085,6 +6104,27 @@
             "id": "shadcn/dropdown-menu-destructive",
             "title": "DropdownMenuDestructive",
             "description": "Destructive menu variant.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-icons",
+            "title": "DropdownMenuIcons",
+            "description": "Dropdown menu items with local icon slots.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-radio-group",
+            "title": "DropdownMenuRadioGroup",
+            "description": "Radio menu items with model-owned selected value.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-radio-icons",
+            "title": "DropdownMenuRadioIcons",
+            "description": "Radio menu items with local payment icon slots.",
             "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
             "kind": "demo"
           },
@@ -6099,6 +6139,13 @@
             "id": "shadcn/dropdown-menu-shortcuts",
             "title": "DropdownMenuShortcuts",
             "description": "Dropdown menu with keyboard shortcut slots.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-submenu",
+            "title": "DropdownMenuSubmenu",
+            "description": "Nested submenu rendered with deterministic submenu placement attributes.",
             "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
             "kind": "demo"
           }
@@ -6160,12 +6207,12 @@
           }
         ]
       },
-      "manifestHash": "cd6c00f368048d3beb53ca5a189ddd6c61753e81252c3e610a5b526263496beb",
+      "manifestHash": "6a9e442f3d0658986b0606f3f323b66b9a1d5f53e7dfc51777e24e0e6361a045",
       "artifacts": [
         {
           "path": "registry-src/shadcn/dropdown-menu/item.json",
-          "sha256": "2c6c5d74165a48d8f243f7614bbb07d0da2db58296ebcbdc029b8c3454774209",
-          "sizeBytes": 8708,
+          "sha256": "d5dfe9a6d6d065414c2d641276f3dff77e6a66be5d92db15eb0cb8f840c161d6",
+          "sizeBytes": 10611,
           "role": "manifest"
         },
         {
@@ -6176,8 +6223,8 @@
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/examples.ts",
-          "sha256": "a146cf1b80819c4bbe365006a49095788863aa7cd1f519c6e0f218fdc17d06d9",
-          "sizeBytes": 6759,
+          "sha256": "8c7cb0302621ac6b886106508c38f1a8e1e6a59b8cff81bafdd9f5b36331be7b",
+          "sizeBytes": 15239,
           "role": "source"
         }
       ]
