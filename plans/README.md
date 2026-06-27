@@ -74,7 +74,7 @@ honor its STOP conditions, and update your row when done.
 | 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | DONE |
 | 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | TODO |
 | 066 | Add static prerender and Pagefind search | P2 | L | 065 | TODO |
-| 067 | Add structured example docs artifacts | P2 | M | 063 | TODO |
+| 067 | Add structured example docs artifacts | P2 | M | 063 | DONE |
 | 068 | Add live component example runtime | P2 | L | 067 | TODO |
 | 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | TODO |
 
