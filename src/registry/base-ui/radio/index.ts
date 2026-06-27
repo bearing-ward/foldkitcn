@@ -196,7 +196,8 @@ const formOwnerAttributes = <Message>(
 
 const resolvedInputId = (
   config: Pick<RadioOptions, 'id' | 'inputId'>,
-): string | undefined => config.inputId ?? config.id
+): string | undefined =>
+  config.inputId ?? (config.id === undefined ? undefined : `${config.id}-input`)
 
 const inputAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,

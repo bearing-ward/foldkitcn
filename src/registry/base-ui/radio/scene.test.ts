@@ -1,7 +1,7 @@
-import { Match as M, Schema as S } from 'effect'
+import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
-import type { Html } from 'foldkit/html'
+import type { Html, KeyboardModifiers } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
@@ -38,6 +38,13 @@ const BlurredRadio = m('BlurredRadio')
 
 const Message = S.Union([ChangedRadio, FocusedRadio, BlurredRadio])
 type Message = typeof Message.Type
+
+const defaultKeyboardModifiers: KeyboardModifiers = {
+  altKey: false,
+  ctrlKey: false,
+  metaKey: false,
+  shiftKey: false,
+}
 
 // UPDATE
 
@@ -99,6 +106,58 @@ const viewRadio =
     )
   }
 
+const rootAttributes = (
+  config: Omit<ViewConfig<Message>, 'toView'>,
+): Radio.RadioAttributes<Message> => {
+  const h = html<Message>()
+  let capturedAttributes: Radio.RadioAttributes<Message> | undefined
+
+  Radio.view<Message>({
+    ...config,
+    toView: attributes => {
+      capturedAttributes = attributes
+
+      return h.span([], [])
+    },
+  })
+
+  if (capturedAttributes === undefined) {
+    throw new Error('Radio view did not provide attributes.')
+  }
+
+  return capturedAttributes
+}
+
+const keyupMessage = (
+  attributes: Radio.RadioAttributes<Message>,
+  key: string,
+): Option.Option<Message> => {
+  const maybeHandler = attributes.root.find(
+    attribute => attribute._tag === 'OnKeyUpPreventDefault',
+  )
+
+  if (maybeHandler?._tag !== 'OnKeyUpPreventDefault') {
+    return Option.none()
+  }
+
+  return maybeHandler.f(key, defaultKeyboardModifiers)
+}
+
+const keydownMessage = (
+  attributes: Radio.RadioAttributes<Message>,
+  key: string,
+): Option.Option<Message> => {
+  const maybeHandler = attributes.root.find(
+    attribute => attribute._tag === 'OnKeyDownPreventDefault',
+  )
+
+  if (maybeHandler?._tag !== 'OnKeyDownPreventDefault') {
+    return Option.none()
+  }
+
+  return maybeHandler.f(key, defaultKeyboardModifiers)
+}
+
 describe('base-ui/radio', () => {
   test('root and indicator expose checked and unchecked state attributes', () => {
     const [checkedModel] = update(
@@ -144,6 +203,20 @@ describe('base-ui/radio', () => {
   })
 
   test('clicking and Space select while Enter does not activate', () => {
+    const attributes = rootAttributes({
+      checkedState: 'unchecked',
+      onCheckedChange: change => ChangedRadio(change),
+    })
+    const maybeSpaceMessage = keyupMessage(attributes, ' ')
+
+    if (Option.isNone(maybeSpaceMessage)) {
+      throw new Error('Space keyup did not produce a radio change message.')
+    }
+
+    const [spaceModel] = update(initialModel, maybeSpaceMessage.value)
+
+    expect(spaceModel.checkedState).toBe('checked')
+    expect(Option.isNone(keydownMessage(attributes, 'Enter'))).toBe(true)
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({}) },
@@ -181,6 +254,13 @@ describe('base-ui/radio', () => {
   })
 
   test('disabled radio suppresses activation and marks root and input', () => {
+    const attributes = rootAttributes({
+      checkedState: 'unchecked',
+      isDisabled: true,
+      onCheckedChange: change => ChangedRadio(change),
+    })
+
+    expect(Option.isNone(keyupMessage(attributes, ' '))).toBe(true)
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isDisabled: true }) },
@@ -198,6 +278,13 @@ describe('base-ui/radio', () => {
   })
 
   test('read-only radio suppresses activation while preserving readonly attributes', () => {
+    const attributes = rootAttributes({
+      checkedState: 'unchecked',
+      isReadOnly: true,
+      onCheckedChange: change => ChangedRadio(change),
+    })
+
+    expect(Option.isNone(keyupMessage(attributes, ' '))).toBe(true)
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isReadOnly: true }) },
@@ -247,7 +334,39 @@ describe('base-ui/radio', () => {
     }).not.toThrow()
   })
 
-  test('radio input preserves native form value semantics', () => {
+  test('radio input id derives from root id without duplicating ids', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update,
+          view: viewRadio({
+            id: 'density-radio',
+            name: 'density',
+            value: 'comfortable',
+          }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('#density-radio')).toHaveAttr(
+          'role',
+          'radio',
+        ),
+        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+          'type',
+          'radio',
+        ),
+        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+          'name',
+          'density',
+        ),
+        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+          'value',
+          'comfortable',
+        ),
+      )
+    }).not.toThrow()
+  })
+
+  test('explicit radio input id overrides the derived input id', () => {
     const [checkedModel] = update(
       initialModel,
       ChangedRadio({ checkedState: 'checked', reason: 'none' }),
@@ -259,7 +378,7 @@ describe('base-ui/radio', () => {
           update,
           view: viewRadio({
             id: 'density-radio',
-            inputId: 'density-radio-input',
+            inputId: 'density-native-control',
             name: 'density',
             form: 'settings',
             value: 'comfortable',
@@ -271,23 +390,24 @@ describe('base-ui/radio', () => {
           'role',
           'radio',
         ),
-        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+        Scene.expect(Scene.selector('#density-radio-input')).toBeAbsent(),
+        Scene.expect(Scene.selector('#density-native-control')).toHaveAttr(
           'name',
           'density',
         ),
-        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+        Scene.expect(Scene.selector('#density-native-control')).toHaveAttr(
           'form',
           'settings',
         ),
-        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+        Scene.expect(Scene.selector('#density-native-control')).toHaveAttr(
           'value',
           'comfortable',
         ),
-        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+        Scene.expect(Scene.selector('#density-native-control')).toHaveAttr(
           'checked',
           'true',
         ),
-        Scene.expect(Scene.selector('#density-radio-input')).toHaveAttr(
+        Scene.expect(Scene.selector('#density-native-control')).toHaveAttr(
           'required',
           'true',
         ),
