@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 22,
-      remaining: 16,
+      imported: 23,
+      remaining: 15,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
@@ -51,6 +51,7 @@ describe('origin component progress', () => {
       'base-ui/avatar',
       'base-ui/button',
       'base-ui/checkbox',
+      'base-ui/checkbox-group',
       'base-ui/collapsible',
       'base-ui/dialog',
       'base-ui/fieldset',
@@ -122,10 +123,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/checkbox-group')
+    expect(nextRow?.itemId).toBe('base-ui/select')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/checkbox-group',
+      'https://base-ui.com/react/components/select',
+      'https://ui.shadcn.com/docs/components/select',
     ])
   })
 

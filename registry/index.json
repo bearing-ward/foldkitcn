@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-26T22:57:54.149Z",
+  "generatedAt": "2026-06-27T00:12:56.563Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -414,6 +414,152 @@
           "path": "src/registry/base-ui/button/index.ts",
           "sha256": "2cec0e800c23c8b6de929933f5d37c4e4f1cc16111d76c2257c02d9af4454ad5",
           "sizeBytes": 4773,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/checkbox-group",
+        "namespace": "base-ui",
+        "name": "Checkbox Group",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Checkbox Group primitive preserving controlled multi-value group semantics, parent checkbox coordination, disabled/read-only/required/invalid states, root and checkbox data attributes, Space keyboard activation, and native checkbox form inputs without internal state.",
+        "sourceRoot": "registry-src/base-ui/checkbox-group",
+        "installableSourcePaths": [
+          "src/registry/base-ui/checkbox-group/index.ts"
+        ],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Checkbox Group",
+            "docsUrl": "https://base-ui.com/react/components/checkbox-group",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/checkbox-group",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.tsx",
+              "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupContext.ts",
+              "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroupDataAttributes.ts",
+              "repos/base-ui/packages/react/src/checkbox-group/index.ts",
+              "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/nested/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/checkbox-group/demos/parent/css-modules/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/checkbox-group/CheckboxGroup.test.tsx",
+              "repos/base-ui/packages/react/src/checkbox-group/useCheckboxGroupParent.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/checkbox",
+              "classification": "registry-local",
+              "target": "base-ui/checkbox",
+              "reason": "Checkbox Group preserves the local Base UI Checkbox checked, unchecked, indeterminate, ARIA, and data-attribute conventions for grouped items and parent controls."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/checkbox-group",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/checkbox-group",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/checkbox-group",
+              "reason": "Origin Base UI React group primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/checkbox",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/checkbox",
+              "reason": "Origin checkbox parts are represented by the existing local checkbox state conventions and the grouped Foldkit attributes."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/checkbox-group",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/checkbox-group.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/checkbox-group.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-checkbox-group-parent-id-generation"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-checkbox-group-parent-id-generation",
+            "summary": "Parent aria-controls uses caller-provided or group-derived stable IDs instead of runtime-generated React IDs.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit installable source is stateless and serializable. Stable caller-provided IDs preserve the public ARIA relationship without hidden runtime identity state."
+          }
+        ]
+      },
+      "manifestHash": "3731850433aaf80d658a36a6ff2c021267319126f8ae93b23682f2800396fdff",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/checkbox-group/item.json",
+          "sha256": "ffa9fb06173ae05a1edc91248120a526cfe19c5c9b0dfd907c95a2d0fa09d0eb",
+          "sizeBytes": 5478,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/checkbox-group/index.ts",
+          "sha256": "ebcc340ffb595e6d645d62e3fdc71dbe87f3fcd467cba8e31c8cc70c1e73bf56",
+          "sizeBytes": 20150,
           "role": "source"
         }
       ]

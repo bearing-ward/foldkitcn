@@ -120,6 +120,7 @@ describe('parity canonicalizers', () => {
       'shadcn/kbd',
       'base-ui/input',
       'base-ui/checkbox',
+      'base-ui/checkbox-group',
       'shadcn/checkbox',
       'shadcn/label',
       'shadcn/input',
