@@ -496,7 +496,11 @@ const triggerKeyboardMessage = <Message>(
   key: string,
   modifiers: KeyboardModifiers,
 ): Option.Option<Message> => {
-  if (modifiers.shiftKey || config.isDisabled === true) {
+  if (
+    modifiers.shiftKey ||
+    config.isDisabled === true ||
+    config.isReadOnly === true
+  ) {
     return Option.none()
   }
 
@@ -525,14 +529,18 @@ const triggerAttributes = <Message>(
         ),
       ]),
   ...booleanDataAttribute(h, 'disabled', config.isDisabled),
+  ...booleanDataAttribute(h, 'readonly', config.isReadOnly),
   ...(config.open ? [h.DataAttribute('popup-open', '')] : []),
   ...(hasSelectedValue(config) ? [] : [h.DataAttribute('placeholder', '')]),
   ...optionalBooleanAttribute<Message>(config.isDisabled, value =>
     h.AriaDisabled(value),
   ),
+  ...optionalBooleanAttribute<Message>(config.isReadOnly, value =>
+    h.AriaReadonly(value),
+  ),
   ...(config.isInvalid === true ? [h.AriaInvalid(true)] : []),
   ...optionalMessageAttribute(
-    config.isDisabled === true
+    config.isDisabled === true || config.isReadOnly === true
       ? Option.none()
       : openMessage(config, openChange(!config.open, 'trigger-press')),
     message => h.OnClick(message),

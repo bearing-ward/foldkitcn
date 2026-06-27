@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T01:38:38.163Z",
+  "generatedAt": "2026-06-27T01:48:45.399Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -2568,8 +2568,8 @@
         },
         {
           "path": "src/registry/base-ui/select/index.ts",
-          "sha256": "9e73ede82fddc77e175f16d0c1515fceb8feaacf3cb2a96e3e4353d889139274",
-          "sizeBytes": 24487,
+          "sha256": "1f1efd07444da397c85483d93b52ffc8f86b81c3f10704ffa1de1846b4054749",
+          "sizeBytes": 24723,
           "role": "source"
         }
       ]

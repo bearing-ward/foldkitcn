@@ -301,6 +301,25 @@ describe('shadcn/select view', () => {
       )
     }).not.toThrow()
   })
+
+  test('forwards Base UI read-only locked state to the trigger', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewSelect({ isReadOnly: true }) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
+          'aria-readonly',
+          'true',
+        ),
+        Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
+          'data-readonly',
+        ),
+        Scene.expect(
+          Scene.selector('[data-slot="select-trigger"]'),
+        ).not.toHaveHandler('click'),
+      )
+    }).not.toThrow()
+  })
 })
 
 describe('shadcn/select examples', () => {

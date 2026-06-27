@@ -399,6 +399,55 @@ describe('base-ui/select view', () => {
     }).not.toThrow()
   })
 
+  test('read-only trigger exposes readonly state and does not open from click or keyboard', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewSelect({ isReadOnly: true }) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
+          'aria-readonly',
+          'true',
+        ),
+        Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
+          'data-readonly',
+        ),
+        Scene.expect(
+          Scene.role('button', { name: 'Select a fruit' }),
+        ).not.toHaveHandler('click'),
+        Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
+          'aria-expanded',
+          'false',
+        ),
+      )
+      Scene.scene(
+        { update, view: viewSelect({ isReadOnly: true }) },
+        Scene.with(initialModel),
+        Scene.keydown(Scene.selector('#fruit-select-trigger'), 'Enter'),
+        Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
+          'aria-expanded',
+          'false',
+        ),
+        Scene.expect(Scene.text('Open none')).toExist(),
+      )
+    }).not.toThrow()
+  })
+
+  test('read-only forced-open items do not emit value changes', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewSelect({ isReadOnly: true }) },
+        Scene.with({ ...initialModel, open: true, highlightedValue: 'banana' }),
+        Scene.expect(
+          Scene.role('option', { name: 'Banana' }),
+        ).not.toHaveHandler('click'),
+        Scene.expect(
+          Scene.role('option', { name: 'Banana' }),
+        ).not.toHaveHandler('keydown'),
+        Scene.expect(Scene.text('Value none')).toExist(),
+      )
+    }).not.toThrow()
+  })
+
   test('outside press, Escape, hover, item keyboard select, disabled root, and command helpers preserve public behavior', () => {
     expect(() => {
       Scene.scene(
