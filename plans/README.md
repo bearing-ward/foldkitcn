@@ -69,7 +69,7 @@ honor its STOP conditions, and update your row when done.
 | 059 | Implement shadcn Breadcrumb | P1 | S | 019 | TODO |
 | 060 | Record documentation-site and Effect-native tooling decisions | P1 | S | - | DONE |
 | 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | DONE |
-| 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | TODO |
+| 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | DONE |
 | 063 | Add component docs sidecars and the shadcn Button page | P1 | M | 061, 062 | TODO |
 | 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | TODO |
 | 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | TODO |
