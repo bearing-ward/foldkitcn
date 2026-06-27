@@ -196,6 +196,12 @@ export const enabledItems = (
         item => item.isDisabled !== true,
       )
 
+export const navigableItems = (
+  config: Pick<MenuOptions, 'isDisabled' | 'items'>,
+  parentValue?: string | undefined,
+): ReadonlyArray<MenuItemDescriptor> =>
+  config.isDisabled === true ? [] : itemsForParent(config, parentValue)
+
 export const highlightedItem = (
   config: Pick<MenuOptions, 'highlightedValue' | 'items'>,
 ): MenuItemDescriptor | undefined =>
@@ -266,27 +272,27 @@ export const nextHighlightedItem = (
   direction: 'first' | 'last' | 'next' | 'previous',
   parentValue?: string | undefined,
 ): MenuItemDescriptor | undefined => {
-  const enabled = enabledItems(config, parentValue)
+  const items = navigableItems(config, parentValue)
 
   if (direction === 'first') {
-    return enabled[0]
+    return items[0]
   }
 
   if (direction === 'last') {
-    return enabled.at(-1)
+    return items.at(-1)
   }
 
-  const currentIndex = enabled.findIndex(
+  const currentIndex = items.findIndex(
     item => item.value === config.highlightedValue,
   )
   const resolvedCurrentIndex = currentIndex === -1 ? 0 : currentIndex
   const candidateIndex = indexOffset(resolvedCurrentIndex, direction)
 
-  if (candidateIndex >= 0 && candidateIndex < enabled.length) {
-    return enabled[candidateIndex]
+  if (candidateIndex >= 0 && candidateIndex < items.length) {
+    return items[candidateIndex]
   }
 
-  return enabled[resolvedCurrentIndex]
+  return items[resolvedCurrentIndex]
 }
 
 export const typeaheadItem = (
@@ -294,18 +300,15 @@ export const typeaheadItem = (
   search: string,
   parentValue?: string | undefined,
 ): MenuItemDescriptor | undefined => {
-  const enabled = enabledItems(config, parentValue)
+  const items = navigableItems(config, parentValue)
   const normalizedSearch = search.toLocaleLowerCase()
-  const currentIndex = enabled.findIndex(
+  const currentIndex = items.findIndex(
     item => item.value === config.highlightedValue,
   )
   const orderedItems =
     currentIndex === -1
-      ? enabled
-      : [
-          ...enabled.slice(currentIndex + 1),
-          ...enabled.slice(0, currentIndex + 1),
-        ]
+      ? items
+      : [...items.slice(currentIndex + 1), ...items.slice(0, currentIndex + 1)]
 
   return orderedItems.find(item =>
     (item.textValue ?? item.label)
@@ -463,7 +466,7 @@ const highlightMessage = <Message>(
 ): Option.Option<Message> =>
   Predicate.isNotUndefined(config.onHighlightChange) &&
   config.isDisabled !== true &&
-  item.isDisabled !== true
+  (item.isDisabled !== true || reason !== 'item-hover')
     ? Option.some(
         config.onHighlightChange(highlightChange(config, item, reason)),
       )
@@ -787,6 +790,10 @@ const itemClickMessage = <Message>(
   config: ViewConfig<Message>,
   item: MenuItemDescriptor,
 ): Option.Option<Message> => {
+  if (config.isDisabled === true || item.isDisabled === true) {
+    return Option.none()
+  }
+
   if (itemKind(item) === 'checkbox') {
     return checkedMessage(config, item)
   }

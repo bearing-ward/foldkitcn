@@ -20,6 +20,7 @@ const Model = S.Struct({
   panelPosition: S.String,
   lastOpenReason: Menu.MenuOpenChangeReason,
   lastHighlightReason: Menu.MenuHighlightChangeReason,
+  lastFocusSelector: S.optional(S.String),
   lastPressedValue: S.optional(S.String),
 })
 type Model = typeof Model.Type
@@ -32,6 +33,7 @@ const initialModel: Model = {
   panelPosition: 'bottom',
   lastOpenReason: 'none',
   lastHighlightReason: 'none',
+  lastFocusSelector: undefined,
   lastPressedValue: undefined,
 }
 
@@ -58,6 +60,13 @@ const menuItems = (model: Model): ReadonlyArray<MenuItemDescriptor> => [
     isChecked: model.panelPosition === 'bottom',
   },
   { value: 'more', label: 'More', kind: 'submenu-trigger' },
+  {
+    value: 'left',
+    label: 'Left',
+    kind: 'radio',
+    radioGroupValue: 'position',
+    isDisabled: true,
+  },
   { value: 'email', label: 'Email', parentValue: 'more' },
   { value: 'message', label: 'Message', parentValue: 'more' },
   { value: 'disabled', label: 'Disabled', isDisabled: true },
@@ -126,10 +135,11 @@ const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
-      ChangedMenuHighlight: ({ value, reason }) => [
+      ChangedMenuHighlight: ({ focusSelector, value, reason }) => [
         evo(model, {
           highlightedValue: () => value,
           lastHighlightReason: () => reason,
+          lastFocusSelector: () => focusSelector,
         }),
         [],
       ],
@@ -251,6 +261,7 @@ const viewMenu =
             ),
             h.p([], [`Open ${model.lastOpenReason}`]),
             h.p([], [`Highlight ${model.lastHighlightReason}`]),
+            h.p([], [`Focus ${model.lastFocusSelector ?? 'none'}`]),
             h.p([], [`Pressed ${model.lastPressedValue ?? 'none'}`]),
           ],
         ),
@@ -258,10 +269,10 @@ const viewMenu =
   }
 
 describe('base-ui/menu helpers', () => {
-  test('filters parent-owned items and navigates enabled items', () => {
+  test('filters parent-owned items and includes disabled items in roving navigation', () => {
     expect(
       Menu.itemsForParent({ items: menuItems(initialModel) }),
-    ).toHaveLength(6)
+    ).toHaveLength(7)
     expect(
       Menu.itemsForParent({ items: menuItems(initialModel) }, 'more'),
     ).toHaveLength(2)
@@ -274,12 +285,24 @@ describe('base-ui/menu helpers', () => {
         'next',
       )?.value,
     ).toBe('top')
+    expect(
+      Menu.nextHighlightedItem(
+        {
+          highlightedValue: 'more',
+          items: menuItems(initialModel),
+        },
+        'next',
+      )?.value,
+    ).toBe('left')
   })
 
-  test('supports typeahead helpers and checked/radio change payloads', () => {
+  test('supports typeahead over disabled items and checked/radio change payloads', () => {
     expect(
       Menu.typeaheadItem({ items: menuItems(initialModel) }, 's')?.value,
     ).toBe('status-bar')
+    expect(
+      Menu.typeaheadItem({ items: menuItems(initialModel) }, 'd')?.value,
+    ).toBe('disabled')
     expect(
       Menu.checkedChange({
         value: 'status-bar',
@@ -296,6 +319,97 @@ describe('base-ui/menu helpers', () => {
         radioGroupValue: 'position',
       }),
     ).toStrictEqual({ groupValue: 'position', value: 'top' })
+  })
+
+  test('keyboard navigation reaches disabled items without enabling activation handlers', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewMenu({}) },
+        Scene.with({
+          ...initialModel,
+          open: true,
+          highlightedValue: 'more',
+        }),
+        Scene.keydown(Scene.role('menu'), 'ArrowDown'),
+        Scene.expect(Scene.selector('#actions-menu-item-left')).toHaveAttr(
+          'data-highlighted',
+          '',
+        ),
+        Scene.expect(Scene.text('Focus #actions-menu-item-left')).toBeVisible(),
+        Scene.expect(Scene.text('Pressed none')).toBeVisible(),
+        Scene.expect(Scene.selector('#actions-menu-item-left')).toHaveAttr(
+          'aria-checked',
+          'false',
+        ),
+        Scene.with({
+          ...initialModel,
+          open: true,
+          highlightedValue: 'left',
+        }),
+        Scene.keydown(Scene.role('menu'), 'ArrowDown'),
+        Scene.expect(Scene.selector('#actions-menu-item-disabled')).toHaveAttr(
+          'data-highlighted',
+          '',
+        ),
+        Scene.expect(
+          Scene.text('Focus #actions-menu-item-disabled'),
+        ).toBeVisible(),
+        Scene.expect(Scene.text('Pressed none')).toBeVisible(),
+      )
+    }).not.toThrow()
+  })
+
+  test('disabled items omit click and activation key handlers for every item kind', () => {
+    const h = html<Message>()
+    const disabledItems: ReadonlyArray<MenuItemDescriptor> = [
+      { value: 'regular', label: 'Regular', isDisabled: true },
+      {
+        value: 'checkbox',
+        label: 'Checkbox',
+        kind: 'checkbox',
+        isDisabled: true,
+      },
+      {
+        value: 'radio',
+        label: 'Radio',
+        kind: 'radio',
+        radioGroupValue: 'position',
+        isDisabled: true,
+      },
+      {
+        value: 'submenu',
+        label: 'Submenu',
+        kind: 'submenu-trigger',
+        isDisabled: true,
+      },
+    ]
+    const itemAttributeTags = new Map<string, ReadonlyArray<string>>()
+
+    Menu.view<Message>({
+      id: 'disabled-menu',
+      items: disabledItems,
+      open: true,
+      onItemPress: press => PressedMenuItem(press),
+      onCheckedChange: change => ChangedMenuChecked(change),
+      onRadioValueChange: change => ChangedMenuRadioValue(change),
+      onOpenChange: change => ChangedMenuOpen(change),
+      toView: attributes => {
+        attributes.popup.items.forEach(itemAttributes => {
+          itemAttributeTags.set(
+            itemAttributes.item.value,
+            itemAttributes.root.map(attribute => attribute._tag),
+          )
+        })
+
+        return h.div([], [])
+      },
+    })
+
+    expect([...itemAttributeTags.values()]).toStrictEqual(
+      disabledItems.map(() =>
+        expect.not.arrayContaining(['OnClick', 'OnKeyDownPreventDefault']),
+      ),
+    )
   })
 })
 
