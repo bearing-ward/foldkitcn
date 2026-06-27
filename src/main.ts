@@ -698,7 +698,18 @@ const usageSectionView = (
   ])
 }
 
-const examplesSectionView = (component: PublicComponent): Html => {
+const examplePreviewStatusView = (status: string): Html => {
+  const h = html<Message>()
+
+  return h.span([h.Class(`status-badge status-${status}`)], [
+    statusText(status),
+  ])
+}
+
+const examplesSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
   const h = html<Message>()
 
   return h.section([h.Id('examples'), h.Class('content-section')], [
@@ -706,12 +717,22 @@ const examplesSectionView = (component: PublicComponent): Html => {
     Option.match(component.maybeDocsArtifact, {
       onNone: () => h.p([], ['Example metadata is not loaded.']),
       onSome: artifact =>
-        h.ul(
+        h.div(
           [h.Class('example-list')],
           artifact.examples.map(example =>
-            h.li([], [
-              h.strong([], [example.title]),
-              h.span([], [` - ${example.description}`]),
+            h.article([h.Class('example-card')], [
+              h.div([h.Class('example-card-header')], [
+                h.div([], [
+                  h.h3([], [example.title]),
+                  h.p([], [example.description]),
+                ]),
+                examplePreviewStatusView(example.previewStatus),
+              ]),
+              snippetBlockView(
+                example.snippet,
+                `Copy ${example.title} example snippet`,
+                copiedSnippets,
+              ),
             ]),
           ),
         ),
@@ -899,7 +920,7 @@ const componentDetailPageView = (
         ]),
         installationSectionView(component, model.copiedSnippets),
         usageSectionView(component, model.copiedSnippets),
-        examplesSectionView(component),
+        examplesSectionView(component, model.copiedSnippets),
         apiSectionView(),
         accessibilitySectionView(),
         qualitySectionView(component),

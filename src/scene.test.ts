@@ -161,6 +161,27 @@ describe(view, () => {
     )
   })
 
+  test('Button detail renders static example snippets', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'ButtonDefault' })).toExist(),
+      Scene.expect(
+        Scene.text('export const ButtonDefault = (): Html => {', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('static')).toExist(),
+      Scene.expect(
+        Scene.role('button', { name: 'Copy ButtonDefault example snippet' }),
+      ).toExist(),
+    )
+  })
+
   test('Private component detail explains availability without an install command', () => {
     Scene.scene(
       { update, view },

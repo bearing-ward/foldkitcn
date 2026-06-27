@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import { describe, expect, test } from 'vitest'
 
 import type { RegistryIndex } from '../src/registry/schema'
@@ -181,6 +182,55 @@ describe('registry build helpers', () => {
     expect(docs.index.routes).toContainEqual(route)
     expect(docs.artifacts[0]?.routePath).toBe('/components/shadcn/button')
     expect(docs.artifacts[0]?.docsStatus).toBe('missing')
+  })
+
+  test('generates example docs artifacts with snippets and dependencies', () => {
+    const index = registryIndexWithDocsItems()
+    const docs = buildComponentDocsArtifacts({
+      ...index,
+      items: [
+        {
+          ...index.items[0],
+          item: {
+            ...index.items[0].item,
+            examples: [
+              {
+                id: 'shadcn/button-default',
+                title: 'ButtonDefault',
+                description: 'Default shadcn Button example.',
+                sourcePath: 'src/registry/shadcn/button/examples.ts',
+                kind: 'demo',
+              },
+            ],
+          },
+        },
+      ],
+    })
+    const example = docs.artifacts[0]?.examples[0]
+
+    expect({
+      componentItemId: example?.componentItemId,
+      hasDefaultSnippet: example?.snippet.includes(
+        'export const ButtonDefault',
+      ),
+      hasDemoSnippet: example?.snippet.includes('export const ButtonDemo'),
+      previewStatus: example?.previewStatus,
+      requiredRegistryItems: example?.requiredRegistryItems,
+    }).toStrictEqual({
+      componentItemId: 'shadcn/button',
+      hasDefaultSnippet: true,
+      hasDemoSnippet: false,
+      previewStatus: 'static',
+      requiredRegistryItems: ['base-ui/button'],
+    })
+    expect(
+      example === undefined
+        ? ''
+        : Option.match(example.previewExportName, {
+            onNone: () => '',
+            onSome: value => value,
+          }),
+    ).toBe('ButtonDefault')
   })
 
   test('includes dependency and source references in every component docs artifact', () => {

@@ -100,29 +100,49 @@
       "id": "shadcn/aspect-ratio-demo",
       "title": "AspectRatioDemo",
       "description": "Landscape image inside a 16:9 ratio box.",
+      "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AspectRatioDemo = (): Html =>\n  aspectRatio(16 / 9, 'w-full max-w-sm rounded-lg bg-muted')",
+      "previewStatus": "static",
+      "previewExportName": "AspectRatioDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/aspect-ratio-portrait",
       "title": "AspectRatioPortrait",
       "description": "Portrait image inside a 9:16 ratio box.",
+      "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AspectRatioPortrait = (): Html =>\n  aspectRatio(9 / 16, 'w-full max-w-[10rem] rounded-lg bg-muted')",
+      "previewStatus": "static",
+      "previewExportName": "AspectRatioPortrait",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/aspect-ratio-rtl",
       "title": "AspectRatioRtl",
       "description": "RTL figure with a 16:9 ratio box and Arabic caption.",
+      "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AspectRatioRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAspectRatioRtl\n\n  return h.figure(\n    [h.Class('w-full max-w-sm'), h.Dir(dir)],\n    [\n      aspectRatio(16 / 9, 'rounded-lg bg-muted'),\n      h.figcaption(\n        [h.Class('mt-2 text-center text-sm text-muted-foreground')],\n        [values.caption],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AspectRatioRtl",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/aspect-ratio-square",
       "title": "AspectRatioSquare",
       "description": "Square image inside a 1:1 ratio box.",
+      "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AspectRatioSquare = (): Html =>\n  aspectRatio(1 / 1, 'w-full max-w-[12rem] rounded-lg bg-muted')",
+      "previewStatus": "static",
+      "previewExportName": "AspectRatioSquare",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

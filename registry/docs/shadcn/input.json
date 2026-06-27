@@ -101,43 +101,73 @@
       "id": "shadcn/input-demo",
       "title": "InputDemo",
       "description": "Password API key input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputDemo = (): Html =>\n  input({\n    id: 'input-demo-api-key',\n    type: 'password',\n    placeholder: 'sk-...',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputDemo",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/input-basic",
       "title": "InputBasic",
       "description": "Default text input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputBasic = (): Html =>\n  input({\n    id: 'input-basic',\n    placeholder: 'Enter text',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputBasic",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/input-disabled",
       "title": "InputDisabled",
       "description": "Disabled email input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputDisabled = (): Html =>\n  input({\n    id: 'input-demo-disabled',\n    disabled: true,\n    type: 'email',\n    placeholder: 'Email',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputDisabled",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/input-invalid",
       "title": "InputInvalid",
       "description": "Invalid input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputInvalid = (): Html =>\n  input({\n    id: 'input-invalid',\n    invalid: true,\n    placeholder: 'Error',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputInvalid",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/input-file",
       "title": "InputFile",
       "description": "File input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputFile = (): Html =>\n  input({\n    id: 'picture',\n    type: 'file',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputFile",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/input-required",
       "title": "InputRequired",
       "description": "Required input example.",
+      "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "snippet": "export const InputRequired = (): Html =>\n  input({\n    id: 'input-required',\n    required: true,\n    placeholder: 'This field is required',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputRequired",
+      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

@@ -251,17 +251,24 @@ export const ExampleManifest = S.Struct({
 })
 export type ExampleManifest = typeof ExampleManifest.Type
 
+export const ExamplePreviewStatus = S.Union([
+  S.Literal('static'),
+  S.Literal('live-ready'),
+  S.Literal('blocked'),
+])
+export type ExamplePreviewStatus = typeof ExamplePreviewStatus.Type
+
 export const ExampleDocsArtifact = S.Struct({
   id: S.String,
   title: S.String,
   description: S.String,
+  componentItemId: S.String,
   sourcePath: S.String,
-  kind: S.Union([
-    S.Literal('origin-fixture'),
-    S.Literal('foldkit-fixture'),
-    S.Literal('demo'),
-    S.Literal('docs'),
-  ]),
+  snippet: S.String,
+  previewStatus: ExamplePreviewStatus,
+  previewExportName: S.OptionFromNullOr(S.String),
+  requiredRegistryItems: S.Array(S.String),
+  notes: S.Array(S.String),
 })
 export type ExampleDocsArtifact = typeof ExampleDocsArtifact.Type
 

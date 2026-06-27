@@ -123,43 +123,73 @@
       "id": "shadcn/toggle-demo",
       "title": "ToggleDemo",
       "description": "Bookmark Toggle demo with outline styling and a local icon.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleDemo = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle bookmark',\n    size: 'sm',\n    variant: 'outline',\n    children: [icon('bookmark'), 'Bookmark'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleDemo",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-disabled",
       "title": "ToggleDisabled",
       "description": "Disabled default and outline Toggle examples.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleDisabled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle disabled',\n        isDisabled: true,\n        children: ['Disabled'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle disabled outline',\n        isDisabled: true,\n        variant: 'outline',\n        children: ['Disabled'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleDisabled",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-outline",
       "title": "ToggleOutline",
       "description": "Outline Toggle examples with local formatting icons.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleOutline = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle italic',\n        variant: 'outline',\n        children: [icon('italic'), 'Italic'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle bold',\n        variant: 'outline',\n        children: [icon('bold'), 'Bold'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleOutline",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-rtl",
       "title": "ToggleRtl",
       "description": "RTL Toggle layout using local Arabic text.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleRtl = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle bookmark',\n    dir: 'rtl',\n    size: 'sm',\n    variant: 'outline',\n    children: [icon('bookmark'), 'إشارة مرجعية'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleRtl",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-sizes",
       "title": "ToggleSizes",
       "description": "Small, default, and large outline Toggle examples.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleSizes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle small',\n        size: 'sm',\n        variant: 'outline',\n        children: ['Small'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle default',\n        size: 'default',\n        variant: 'outline',\n        children: ['Default'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle large',\n        size: 'lg',\n        variant: 'outline',\n        children: ['Large'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleSizes",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-text",
       "title": "ToggleText",
       "description": "Default text Toggle example with a local icon.",
+      "componentItemId": "shadcn/toggle",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleText = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle italic',\n    children: [icon('italic'), 'Italic'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleText",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

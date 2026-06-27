@@ -3,6 +3,7 @@ import { Array, Schema as S } from 'effect'
 import { RegistryItemManifest } from './schema'
 import type {
   DependencyRecord,
+  ExampleManifest,
   RegistryItemManifest as RegistryItemManifestType,
 } from './schema'
 
@@ -150,6 +151,50 @@ export const extractImportSpecifiers = (
 
     return typeof specifier === 'string' ? [specifier] : []
   })
+}
+
+export const exportedExampleNameFromSource = (
+  source: string,
+  example: ExampleManifest,
+): string | undefined => {
+  const escapedTitle = example.title.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
+  const exportPattern = new RegExp(
+    `(?:^|\\n)export\\s+const\\s+(${escapedTitle})\\b`,
+    'u',
+  )
+
+  return exportPattern.test(source) ? example.title : undefined
+}
+
+export const extractExampleSnippet = (
+  source: string,
+  example: ExampleManifest,
+): string => {
+  const escapedTitle = example.title.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
+  const exportPattern = new RegExp(
+    `(?:^|\\n)export\\s+const\\s+${escapedTitle}\\b`,
+    'u',
+  )
+  const exportMatch = exportPattern.exec(source)
+
+  if (exportMatch === null) {
+    return source.trim()
+  }
+
+  const startIndex =
+    exportMatch[0].startsWith('\n') && exportMatch.index < source.length
+      ? exportMatch.index + 1
+      : exportMatch.index
+  const remainingSource = source.slice(startIndex)
+  const nextExportMatch = /\nexport\s+const\s+\w+\b/u.exec(
+    remainingSource.slice(1),
+  )
+  const endIndex =
+    nextExportMatch === null
+      ? remainingSource.length
+      : nextExportMatch.index + 1
+
+  return remainingSource.slice(0, endIndex).trim()
 }
 
 const generatedFieldErrors = (
@@ -374,6 +419,42 @@ const docsReadinessErrors = (
   ]
 }
 
+const exampleSourceErrors = (
+  manifestPath: string,
+  manifest: RegistryItemManifestType,
+  readText: SourceFileReader,
+  pathExists: PathExists,
+): ReadonlyArray<ValidationError> => {
+  if (
+    manifest.lifecycle.availability !== 'installable' &&
+    manifest.lifecycle.availability !== 'preview'
+  ) {
+    return []
+  }
+
+  return manifest.examples.flatMap(example => {
+    if (!pathExists(example.sourcePath)) {
+      return [
+        {
+          path: manifestPath,
+          message: `Example source path does not exist: ${example.sourcePath}`,
+        },
+      ]
+    }
+
+    const snippet = extractExampleSnippet(readText(example.sourcePath), example)
+
+    return snippet.trim() === ''
+      ? [
+          {
+            path: manifestPath,
+            message: `Example source generated an empty snippet: ${example.sourcePath}`,
+          },
+        ]
+      : []
+  })
+}
+
 export const validateRegistryItemManifest = ({
   manifestPath,
   rawManifest,
@@ -424,6 +505,12 @@ export const validateRegistryItemManifest = ({
       ...parityFixturePathErrors(manifestPath, manifest, pathExists),
       ...importErrors(manifestPath, manifest, readInstallableSource),
       ...docsReadinessErrors(
+        manifestPath,
+        manifest,
+        readInstallableSource,
+        pathExists,
+      ),
+      ...exampleSourceErrors(
         manifestPath,
         manifest,
         readInstallableSource,

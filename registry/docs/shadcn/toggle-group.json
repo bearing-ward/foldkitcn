@@ -143,57 +143,129 @@
       "id": "shadcn/toggle-group-demo",
       "title": "ToggleGroupDemo",
       "description": "Default outline alignment Toggle Group demo with local icons.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupDemo = (): Html =>\n  group({\n    ariaLabel: 'Text alignment',\n    variant: 'outline',\n    children: alignmentChildren,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupDemo",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-disabled",
       "title": "ToggleGroupDisabled",
       "description": "Toggle Group with a disabled item.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupDisabled = (): Html =>\n  ToggleGroup<never>({\n    value: ['bold'],\n    selectionMode: 'multiple',\n    variant: 'outline',\n    items: [\n      { id: 'format-bold', value: 'bold', label: 'Bold' },\n      { id: 'format-italic', value: 'italic', label: 'Italic' },\n      {\n        id: 'format-strikethrough',\n        value: 'strikethrough',\n        label: 'Disabled',\n        isDisabled: true,\n      },\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupDisabled",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-font-weight-selector",
       "title": "ToggleGroupFontWeightSelector",
       "description": "Multiple-selection font formatting Toggle Group with local icons.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupFontWeightSelector = (): Html => {\n  const h = html<never>()\n\n  return ToggleGroup<never>({\n    value: ['bold'],\n    selectionMode: 'multiple',\n    variant: 'outline',\n    items: formattingItems,\n    toView: attributes =>\n      h.div(\n        [...attributes.root, h.AriaLabel('Font weight')],\n        [\n          h.button([...(attributes.items[0]?.root ?? [])], [icon('bold')]),\n          h.button([...(attributes.items[1]?.root ?? [])], [icon('italic')]),\n        ],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupFontWeightSelector",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-outline",
       "title": "ToggleGroupOutline",
       "description": "Outline Toggle Group with zero spacing.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupOutline = (): Html =>\n  group({\n    ariaLabel: 'Text alignment outline',\n    variant: 'outline',\n    spacing: 0,\n    children: alignmentChildren,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupOutline",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-rtl",
       "title": "ToggleGroupRtl",
       "description": "RTL Toggle Group with local translated label.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupRtl = (): Html =>\n  group({\n    ariaLabel: 'محاذاة النص',\n    dir: 'rtl',\n    variant: 'outline',\n    children: h => [\n      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignRight')]),\n      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignCenter')]),\n      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignLeft')]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupRtl",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-sizes",
       "title": "ToggleGroupSizes",
       "description": "Small, default, and large Toggle Group examples.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupSizes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      group({\n        ariaLabel: 'Small alignment',\n        size: 'sm',\n        variant: 'outline',\n        children: alignmentChildren,\n      }),\n      group({\n        ariaLabel: 'Default alignment',\n        size: 'default',\n        variant: 'outline',\n        children: alignmentChildren,\n      }),\n      group({\n        ariaLabel: 'Large alignment',\n        size: 'lg',\n        variant: 'outline',\n        children: alignmentChildren,\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupSizes",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-spacing",
       "title": "ToggleGroupSpacing",
       "description": "Toggle Group spacing example.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupSpacing = (): Html =>\n  group({\n    ariaLabel: 'Spaced alignment',\n    spacing: 4,\n    variant: 'outline',\n    children: alignmentChildren,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupSpacing",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/toggle-group-vertical",
       "title": "ToggleGroupVertical",
       "description": "Vertical Toggle Group example.",
+      "componentItemId": "shadcn/toggle-group",
       "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ToggleGroupVertical = (): Html =>\n  group({\n    ariaLabel: 'Vertical text alignment',\n    orientation: 'vertical',\n    variant: 'outline',\n    children: alignmentChildren,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ToggleGroupVertical",
+      "requiredRegistryItems": [
+        "base-ui/toggle-group",
+        "shadcn/toggle",
+        "utils/cn"
+      ],
+      "notes": []
     }
   ],
   "quality": {

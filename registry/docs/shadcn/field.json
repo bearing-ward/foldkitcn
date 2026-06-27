@@ -154,50 +154,148 @@
       "id": "shadcn/field-input",
       "title": "FieldInput",
       "description": "FieldSet, FieldGroup, Field, FieldLabel, Input, and FieldDescription composition.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "snippet": "export const FieldInput = (): Html =>\n  FieldSet<never>({\n    className: 'w-full max-w-xs',\n    children: [\n      FieldGroup<never>({\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'username',\n                children: ['Username'],\n              }),\n              input({\n                id: 'username',\n                type: 'text',\n                placeholder: 'Max Leiter',\n              }),\n              FieldDescription<never>({\n                children: ['Choose a unique username for your account.'],\n              }),\n            ],\n          }),\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'password',\n                children: ['Password'],\n              }),\n              FieldDescription<never>({\n                children: ['Must be at least 8 characters long.'],\n              }),\n              input({\n                id: 'password',\n                type: 'password',\n                placeholder: '********',\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "FieldInput",
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-checkbox",
       "title": "FieldCheckbox",
       "description": "Checkbox, horizontal Field, FieldContent, and FieldSeparator composition.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "snippet": "export const FieldCheckbox = (): Html =>\n  FieldGroup<never>({\n    className: 'w-full max-w-xs',\n    children: [\n      FieldSet<never>({\n        children: [\n          FieldLegend<never>({\n            variant: 'label',\n            children: ['Show these items on the desktop'],\n          }),\n          FieldDescription<never>({\n            children: ['Select the items you want to show on the desktop.'],\n          }),\n          FieldGroup<never>({\n            className: 'gap-3',\n            children: [\n              Field<never>({\n                orientation: 'horizontal',\n                children: [\n                  checkbox('finder-pref-hard-disks'),\n                  FieldLabel<never>({\n                    htmlFor: 'finder-pref-hard-disks',\n                    className: 'font-normal',\n                    children: ['Hard disks'],\n                  }),\n                ],\n              }),\n              Field<never>({\n                orientation: 'horizontal',\n                children: [\n                  checkbox('finder-pref-external-disks'),\n                  FieldLabel<never>({\n                    htmlFor: 'finder-pref-external-disks',\n                    className: 'font-normal',\n                    children: ['External disks'],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n      FieldSeparator<never>(),\n      Field<never>({\n        orientation: 'horizontal',\n        children: [\n          checkbox('finder-pref-sync-folders', 'checked'),\n          FieldContent<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'finder-pref-sync-folders',\n                children: ['Sync Desktop & Documents folders'],\n              }),\n              FieldDescription<never>({\n                children: [\n                  'Your Desktop & Documents folders are being synced with iCloud Drive.',\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "FieldCheckbox",
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-responsive",
       "title": "FieldResponsive",
       "description": "Responsive orientation Field with Input and Button composition.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "snippet": "export const FieldResponsive = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('w-full max-w-lg')],\n    [\n      h.form(\n        [],\n        [\n          FieldSet<never>({\n            children: [\n              FieldLegend<never>({ children: ['Profile'] }),\n              FieldDescription<never>({\n                children: ['Fill in your profile information.'],\n              }),\n              FieldGroup<never>({\n                children: [\n                  Field<never>({\n                    orientation: 'responsive',\n                    children: [\n                      FieldContent<never>({\n                        children: [\n                          FieldLabel<never>({\n                            htmlFor: 'name',\n                            children: ['Name'],\n                          }),\n                          FieldDescription<never>({\n                            children: [\n                              'Provide your full name for identification',\n                            ],\n                          }),\n                        ],\n                      }),\n                      input({\n                        id: 'name',\n                        placeholder: 'Evil Rabbit',\n                        required: true,\n                      }),\n                    ],\n                  }),\n                  Field<never>({\n                    orientation: 'responsive',\n                    children: [button('Submit'), button('Cancel', 'outline')],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "FieldResponsive",
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-rtl",
       "title": "FieldRtl",
       "description": "RTL Field composition using local static strings instead of the origin language selector.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "snippet": "export const FieldRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('w-full max-w-xs py-6'), h.Dir('rtl')],\n    [\n      FieldGroup<never>({\n        dir: 'rtl',\n        children: [\n          FieldSet<never>({\n            dir: 'rtl',\n            children: [\n              FieldLegend<never>({ dir: 'rtl', children: ['طريقة الدفع'] }),\n              FieldDescription<never>({\n                dir: 'rtl',\n                children: ['جميع المعاملات آمنة ومشفرة'],\n              }),\n              FieldGroup<never>({\n                dir: 'rtl',\n                children: [\n                  Field<never>({\n                    children: [\n                      FieldLabel<never>({\n                        htmlFor: 'checkout-card-name-rtl',\n                        dir: 'rtl',\n                        children: ['الاسم على البطاقة'],\n                      }),\n                      input({\n                        id: 'checkout-card-name-rtl',\n                        placeholder: 'Evil Rabbit',\n                        required: true,\n                      }),\n                    ],\n                  }),\n                  Field<never>({\n                    orientation: 'horizontal',\n                    children: [\n                      checkbox('checkout-same-as-shipping-rtl', 'checked'),\n                      FieldLabel<never>({\n                        htmlFor: 'checkout-same-as-shipping-rtl',\n                        className: 'font-normal',\n                        dir: 'rtl',\n                        children: ['نفس عنوان الشحن'],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "FieldRtl",
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-textarea",
       "title": "FieldTextarea",
       "description": "Field and Textarea composition.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "snippet": "export const FieldTextarea = (): Html =>\n  FieldSet<never>({\n    className: 'w-full max-w-xs',\n    children: [\n      FieldGroup<never>({\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'feedback',\n                children: ['Feedback'],\n              }),\n              Textarea<never>({\n                id: 'feedback',\n                placeholder: 'Your feedback helps us improve...',\n                rows: 4,\n                toView: attributes => {\n                  const h = html<never>()\n\n                  return h.textarea([...attributes.textarea], [])\n                },\n              }),\n              FieldDescription<never>({\n                children: ['Share your thoughts about our service.'],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "FieldTextarea",
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-origin-fixture",
       "title": "FieldOriginFixture",
       "description": "Static origin-evidence fixture derived from base-nova Field source.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "tests/parity/fixtures/origin/shadcn/field.fixture.ts",
-      "kind": "origin-fixture"
+      "snippet": "import type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotElement } from '../../dom'\n\nconst inputBaseClassName =\n  'h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40'\nconst fieldSetBaseClassName =\n  'flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 w-full max-w-xs'\nconst fieldLegendBaseClassName =\n  'mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base'\nconst fieldGroupBaseClassName =\n  'group/field-group @container/field-group flex w-full flex-col gap-5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4'\nconst fieldBaseClassName =\n  'group/field flex w-full gap-2 data-[invalid=true]:text-destructive flex-col *:w-full [&>.sr-only]:w-auto'\nconst fieldContentBaseClassName =\n  'group/field-content flex flex-1 flex-col gap-0.5 leading-snug'\nconst fieldLabelBaseClassName =\n  'items-center text-sm font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col'\nconst fieldDescriptionBaseClassName =\n  'text-left text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5 last:mt-0 nth-last-2:-mt-1 [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary'\nconst fieldSeparatorBaseClassName =\n  'relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2'\nconst separatorBaseClassName =\n  'shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch absolute inset-0 top-1/2'\nconst fieldSeparatorContentBaseClassName =\n  'relative mx-auto block w-fit bg-background px-2 text-muted-foreground'\nconst fieldErrorBaseClassName = 'text-sm font-normal text-destructive'\n\nconst setAttrs = (\n  element: HTMLElement,\n  attributes: Readonly<Record<string, string>>,\n): HTMLElement => {\n  Object.entries(attributes).map(([name, value]) =>\n    element.setAttribute(name, value),\n  )\n\n  return element\n}\n\nconst input = (id: string): HTMLInputElement => {\n  const element = document.createElement('input')\n  element.id = id\n  element.placeholder = 'Max Leiter'\n  element.dataset.slot = 'input'\n  element.setAttribute('class', inputBaseClassName)\n\n  return element\n}\n\nconst label = (forId: string, text: string): HTMLLabelElement => {\n  const element = document.createElement('label')\n  element.dataset.slot = 'field-label'\n  element.setAttribute('class', fieldLabelBaseClassName)\n  element.setAttribute('for', forId)\n  element.textContent = text\n\n  return element\n}\n\nconst description = (text: string): HTMLParagraphElement => {\n  const element = document.createElement('p')\n  element.dataset.slot = 'field-description'\n  element.setAttribute('class', fieldDescriptionBaseClassName)\n  element.textContent = text\n\n  return element\n}\n\nconst field = (id: string, invalid = false): HTMLDivElement => {\n  const element = document.createElement('div')\n  setAttrs(element, {\n    id,\n    role: 'group',\n    'data-slot': 'field',\n    'data-orientation': 'vertical',\n    class: fieldBaseClassName,\n  })\n  if (invalid) {\n    element.dataset.invalid = ''\n  }\n\n  return element\n}\n\nconst renderOriginField = (): FixtureSnapshot => {\n  const fieldset = document.createElement('fieldset')\n  const legend = document.createElement('legend')\n  const topDescription = description('Fill in your profile information.')\n  const group = document.createElement('div')\n  const nameField = field('name-field')\n  const nameContent = document.createElement('div')\n  const emailField = field('email-field', true)\n  const error = document.createElement('div')\n  const separator = document.createElement('div')\n  const separatorLine = document.createElement('div')\n  const separatorContent = document.createElement('span')\n\n  fieldset.dataset.slot = 'field-set'\n  fieldset.setAttribute('class', fieldSetBaseClassName)\n\n  legend.dataset.slot = 'field-legend'\n  legend.setAttribute('class', fieldLegendBaseClassName)\n  legend.dataset.variant = 'legend'\n  legend.textContent = 'Profile'\n\n  group.dataset.slot = 'field-group'\n  group.setAttribute('class', fieldGroupBaseClassName)\n\n  nameContent.dataset.slot = 'field-content'\n  nameContent.setAttribute('class', fieldContentBaseClassName)\n  nameContent.append(input('name'), description('Choose a unique username.'))\n  nameField.append(label('name', 'Name'), nameContent)\n\n  error.dataset.slot = 'field-error'\n  error.setAttribute('class', fieldErrorBaseClassName)\n  error.setAttribute('role', 'alert')\n  error.textContent = 'Email is required'\n  emailField.append(label('email', 'Email'), input('email'), error)\n\n  separator.dataset.slot = 'field-separator'\n  separator.setAttribute('class', fieldSeparatorBaseClassName)\n  separator.dataset.content = 'true'\n  separatorLine.setAttribute('role', 'separator')\n  separatorLine.setAttribute('aria-orientation', 'horizontal')\n  separatorLine.dataset.slot = 'separator'\n  separatorLine.dataset.orientation = 'horizontal'\n  separatorLine.setAttribute('class', separatorBaseClassName)\n  separatorContent.dataset.slot = 'field-separator-content'\n  separatorContent.setAttribute('class', fieldSeparatorContentBaseClassName)\n  separatorContent.textContent = 'Optional'\n  separator.append(separatorLine, separatorContent)\n\n  group.append(nameField, emailField)\n  fieldset.append(legend, topDescription, group, separator)\n\n  document.body.append(fieldset)\n  const snapshot = snapshotElement(fieldset, {})\n  fieldset.remove()\n\n  return snapshot\n}\n\nexport const cases: ReadonlyArray<FixtureCase> = [\n  {\n    id: 'field-composition',\n    snapshot: renderOriginField(),\n  },\n]",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     },
     {
       "id": "shadcn/field-foldkit-fixture",
       "title": "FieldFoldkitFixture",
       "description": "Foldkit parity fixture for dependency-complete shadcn Field composition.",
+      "componentItemId": "shadcn/field",
       "sourcePath": "tests/parity/fixtures/foldkit/shadcn/field.fixture.ts",
-      "kind": "foldkit-fixture"
+      "snippet": "import { html } from 'foldkit/html'\n\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError as fieldError,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n  InvalidFieldValidation,\n} from '../../../../../src/registry/shadcn/field'\nimport { view as Input } from '../../../../../src/registry/shadcn/input'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\nconst input = (id: string): ReturnType<typeof Input<never>> => {\n  const h = html<never>()\n\n  return Input<never>({\n    id,\n    placeholder: 'Max Leiter',\n    toView: attributes => h.input([...attributes.input]),\n  })\n}\n\nconst renderFoldkitField = (): FixtureSnapshot =>\n  snapshotHtml(\n    FieldSet<never>({\n      className: 'w-full max-w-xs',\n      children: [\n        FieldLegend<never>({ children: ['Profile'] }),\n        FieldDescription<never>({\n          children: ['Fill in your profile information.'],\n        }),\n        FieldGroup<never>({\n          children: [\n            Field<never>({\n              id: 'name-field',\n              children: [\n                FieldLabel<never>({\n                  htmlFor: 'name',\n                  children: ['Name'],\n                }),\n                FieldContent<never>({\n                  children: [\n                    input('name'),\n                    FieldDescription<never>({\n                      children: ['Choose a unique username.'],\n                    }),\n                  ],\n                }),\n              ],\n            }),\n            Field<never>({\n              id: 'email-field',\n              validation: InvalidFieldValidation({\n                error: 'Email is required',\n                errors: ['Email is required'],\n                issues: ['valueMissing'],\n              }),\n              children: [\n                FieldLabel<never>({\n                  htmlFor: 'email',\n                  children: ['Email'],\n                }),\n                input('email'),\n                fieldError({ children: ['Email is required'] }),\n              ],\n            }),\n          ],\n        }),\n        FieldSeparator<never>({ children: ['Optional'] }),\n      ],\n    }),\n    {},\n  )\n\nexport const cases: ReadonlyArray<FixtureCase> = [\n  {\n    id: 'field-composition',\n    snapshot: renderFoldkitField(),\n  },\n]",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [
+        "base-ui/field",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/separator",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
     }
   ],
   "quality": {

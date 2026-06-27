@@ -127,50 +127,85 @@
       "id": "shadcn/badge-colors",
       "title": "BadgeColors",
       "description": "Custom color Badge examples.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeColors = (): Html => {\n  const h = html<never>()\n  const customColorBadge = (className: string, label: string): Html =>\n    Badge<never>({\n      className,\n      toView: attributes => h.span([...attributes.badge], [label]),\n    })\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      customColorBadge(\n        'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300',\n        'Blue',\n      ),\n      customColorBadge(\n        'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300',\n        'Green',\n      ),\n      customColorBadge(\n        'bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300',\n        'Sky',\n      ),\n      customColorBadge(\n        'bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300',\n        'Purple',\n      ),\n      customColorBadge(\n        'bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300',\n        'Red',\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeColors",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-demo",
       "title": "BadgeDemo",
       "description": "Badge variant demo.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full flex-wrap justify-center gap-2')],\n    [\n      Badge<never>({\n        toView: attributes => h.span([...attributes.badge], ['Badge']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes => h.span([...attributes.badge], ['Secondary']),\n      }),\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes => h.span([...attributes.badge], ['Destructive']),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes => h.span([...attributes.badge], ['Outline']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-icon",
       "title": "BadgeIcon",
       "description": "Inline start and end icon Badge examples.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeIcon = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes =>\n          h.span(\n            [...attributes.badge],\n            [badgeCheckIcon('inline-start'), 'Verified'],\n          ),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.span(\n            [...attributes.badge],\n            ['Bookmark', bookmarkIcon('inline-end')],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeIcon",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-link",
       "title": "BadgeLink",
       "description": "Anchor Badge example.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeLink = (): Html => {\n  const h = html<never>()\n\n  return Badge<never>({\n    toView: attributes =>\n      h.a(\n        [...attributes.badge, h.Href('#link')],\n        ['Open Link ', arrowUpRightIcon('inline-end')],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeLink",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-rtl",
       "title": "BadgeRtl",
       "description": "RTL Badge layout example with local Arabic strings.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicBadgeRtl\n\n  return h.div(\n    [h.Class('flex w-full flex-wrap justify-center gap-2'), h.Dir(dir)],\n    [\n      RtlBadge('default', [values.badge]),\n      RtlBadge('secondary', [values.secondary]),\n      RtlBadge('destructive', [values.destructive]),\n      RtlBadge('outline', [values.outline]),\n      RtlBadge('secondary', [badgeCheckIcon('inline-start'), values.verified]),\n      RtlBadge('outline', [values.bookmark, bookmarkIcon('inline-end')]),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeRtl",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-spinner",
       "title": "BadgeSpinner",
       "description": "Badge examples using an example-local spinner helper.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeSpinner = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes =>\n          h.span([...attributes.badge], [spinner('inline-start'), 'Deleting']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes =>\n          h.span([...attributes.badge], ['Generating', spinner('inline-end')]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeSpinner",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/badge-variants",
       "title": "BadgeVariants",
       "description": "Badge variant list example.",
+      "componentItemId": "shadcn/badge",
       "sourcePath": "src/registry/shadcn/badge/examples.ts",
-      "kind": "demo"
+      "snippet": "export const BadgeVariants = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        toView: attributes => h.span([...attributes.badge], ['Default']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes => h.span([...attributes.badge], ['Secondary']),\n      }),\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes => h.span([...attributes.badge], ['Destructive']),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes => h.span([...attributes.badge], ['Outline']),\n      }),\n      Badge<never>({\n        variant: 'ghost',\n        toView: attributes => h.span([...attributes.badge], ['Ghost']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeVariants",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

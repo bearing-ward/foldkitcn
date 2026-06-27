@@ -129,43 +129,73 @@
       "id": "shadcn/tabs-demo",
       "title": "TabsDemo",
       "description": "Default Tabs demo with local static card markup.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsDemo = (): Html => tabsWithCards()",
+      "previewStatus": "static",
+      "previewExportName": "TabsDemo",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/tabs-disabled",
       "title": "TabsDisabled",
       "description": "Tabs list with a disabled trigger.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsDisabled = (): Html =>\n  Tabs<never>({\n    value: 'home',\n    tabs: [\n      { id: 'home-tab', value: 'home', label: 'Home' },\n      {\n        id: 'settings-tab',\n        value: 'settings',\n        label: 'Disabled',\n        isDisabled: true,\n      },\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsDisabled",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/tabs-icons",
       "title": "TabsIcons",
       "description": "Tabs triggers with inline icon slots.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsIcons = (): Html => {\n  const h = html<never>()\n\n  return Tabs<never>({\n    value: 'preview',\n    tabs: [\n      { id: 'preview-tab', value: 'preview', label: 'Preview' },\n      { id: 'code-tab', value: 'code', label: 'Code' },\n    ],\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.div(\n            [...attributes.list],\n            [\n              h.button(\n                [...(attributes.tabs[0]?.root ?? [])],\n                [\n                  h.span([h.DataAttribute('icon', 'inline-start')], []),\n                  'Preview',\n                ],\n              ),\n              h.button(\n                [...(attributes.tabs[1]?.root ?? [])],\n                [h.span([h.DataAttribute('icon', 'inline-start')], []), 'Code'],\n              ),\n            ],\n          ),\n        ],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "TabsIcons",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/tabs-line",
       "title": "TabsLine",
       "description": "Tabs list rendered with the line variant.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsLine = (): Html =>\n  Tabs<never>({\n    value: 'overview',\n    listVariant: 'line',\n    tabs: analyticsTabs.slice(0, 3),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsLine",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/tabs-rtl",
       "title": "TabsRtl",
       "description": "RTL Tabs demo with local translated labels.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsRtl = (): Html =>\n  tabsWithCards('rtl', {\n    overview: 'نظرة عامة',\n    analytics: 'التحليلات',\n    reports: 'التقارير',\n    settings: 'الإعدادات',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsRtl",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/tabs-vertical",
       "title": "TabsVertical",
       "description": "Vertical Tabs list example.",
+      "componentItemId": "shadcn/tabs",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TabsVertical = (): Html =>\n  Tabs<never>({\n    value: 'account',\n    orientation: 'vertical',\n    tabs: [\n      { id: 'account-tab', value: 'account', label: 'Account' },\n      { id: 'password-tab', value: 'password', label: 'Password' },\n      {\n        id: 'notifications-tab',\n        value: 'notifications',\n        label: 'Notifications',\n      },\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsVertical",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

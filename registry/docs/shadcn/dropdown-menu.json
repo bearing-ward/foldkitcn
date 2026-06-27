@@ -124,92 +124,157 @@
       "id": "shadcn/dropdown-menu-avatar",
       "title": "DropdownMenuAvatar",
       "description": "Avatar-triggered dropdown menu with account actions.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuAvatar = (): Html =>\n  menuExample('dropdown-menu-avatar', avatarItems, {\n    align: 'end',\n    trigger: [avatar()],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuAvatar",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-basic",
       "title": "DropdownMenuBasic",
       "description": "Basic account dropdown menu with disabled API item.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuBasic = (): Html =>\n  menuExample('dropdown-menu-basic', basicItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuBasic",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-checkboxes-icons",
       "title": "DropdownMenuCheckboxesIcons",
       "description": "Checkbox menu items with local icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuCheckboxesIcons = (): Html =>\n  menuExample('dropdown-menu-checkboxes-icons', checkboxIconItems, {\n    contentClassName: 'w-48',\n    trigger: ['Notifications'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuCheckboxesIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-checkboxes",
       "title": "DropdownMenuCheckboxes",
       "description": "Checkbox menu items with model-owned checked state.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuCheckboxes = (): Html =>\n  menuExample('dropdown-menu-checkboxes', checkboxItems, {\n    contentClassName: 'w-40',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuCheckboxes",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-complex",
       "title": "DropdownMenuComplex",
       "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuComplex = (): Html =>\n  menuExample('dropdown-menu-complex', complexItems, {\n    contentClassName: 'w-44',\n    highlightedValue: 'open-recent',\n    openSubmenuValues: ['open-recent', 'more-projects', 'theme', 'settings'],\n    trigger: ['Complex Menu'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuComplex",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-demo",
       "title": "DropdownMenuDemo",
       "description": "Default account dropdown menu.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuDemo = (): Html =>\n  menuExample('dropdown-menu-demo', demoItems, {\n    contentClassName: 'w-40',\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuDemo",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-destructive",
       "title": "DropdownMenuDestructive",
       "description": "Destructive menu variant.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuDestructive = (): Html =>\n  menuExample('dropdown-menu-destructive', iconItems, {\n    variant: 'destructive',\n    trigger: ['Actions'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuDestructive",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-icons",
       "title": "DropdownMenuIcons",
       "description": "Dropdown menu items with local icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuIcons = (): Html =>\n  menuExample('dropdown-menu-icons', iconItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-radio-group",
       "title": "DropdownMenuRadioGroup",
       "description": "Radio menu items with model-owned selected value.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuRadioGroup = (): Html =>\n  menuExample('dropdown-menu-radio-group', radioItems, {\n    contentClassName: 'w-32',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRadioGroup",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-radio-icons",
       "title": "DropdownMenuRadioIcons",
       "description": "Radio menu items with local payment icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuRadioIcons = (): Html =>\n  menuExample('dropdown-menu-radio-icons', radioIconItems, {\n    contentClassName: 'min-w-56',\n    trigger: ['Payment Method'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRadioIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-rtl",
       "title": "DropdownMenuRtl",
       "description": "RTL dropdown menu.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuRtl = (): Html =>\n  menuExample('dropdown-menu-rtl', demoItems, {\n    dir: 'rtl',\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRtl",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-shortcuts",
       "title": "DropdownMenuShortcuts",
       "description": "Dropdown menu with keyboard shortcut slots.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuShortcuts = (): Html =>\n  menuExample('dropdown-menu-shortcuts', demoItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuShortcuts",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/dropdown-menu-submenu",
       "title": "DropdownMenuSubmenu",
       "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+      "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "snippet": "export const DropdownMenuSubmenu = (): Html =>\n  menuExample('dropdown-menu-submenu', submenuItems, {\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite', 'more-options'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuSubmenu",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

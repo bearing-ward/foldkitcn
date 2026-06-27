@@ -346,6 +346,46 @@ dt {
   color: var(--shell-accent-strong);
 }
 
+.example-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.example-card {
+  border: 1px solid var(--shell-border);
+  background: var(--shell-surface);
+  padding: 1rem;
+}
+
+.example-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.example-card h3 {
+  margin: 0;
+}
+
+.example-card p {
+  margin: 0.35rem 0 0;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  border: 1px solid var(--shell-border);
+  background: var(--shell-code);
+  padding: 0.25rem 0.5rem;
+  color: var(--shell-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

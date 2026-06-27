@@ -9,11 +9,14 @@ import type {
   ComponentDocsArtifact as ComponentDocsArtifactType,
   ComponentDocsIndex as ComponentDocsIndexType,
   ComponentDocsRoute,
+  ExampleManifest,
   RegistryIndex as RegistryIndexType,
   RegistryItemManifest,
 } from '../src/registry/schema'
 import {
   docsMarkdownPathFromManifest,
+  exportedExampleNameFromSource,
+  extractExampleSnippet,
   registrySourceRoot,
   validateRegistryItemManifest,
 } from '../src/registry/validation'
@@ -50,6 +53,19 @@ interface BuildRegistryIndexOptions {
 interface ComponentDocsBuildResult {
   readonly index: ComponentDocsIndexType
   readonly artifacts: ReadonlyArray<ComponentDocsArtifactType>
+}
+
+interface RawExampleDocsArtifact {
+  readonly id: string
+  readonly title: string
+  readonly description: string
+  readonly componentItemId: string
+  readonly sourcePath: string
+  readonly snippet: string
+  readonly previewStatus: 'static'
+  readonly previewExportName: string | null
+  readonly requiredRegistryItems: ReadonlyArray<string>
+  readonly notes: ReadonlyArray<string>
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -299,6 +315,33 @@ const localInstallPathForItem = (item: RegistryItemManifest): string => {
     : normalizePath(pathModule.dirname(firstSourcePath))
 }
 
+const requiredRegistryItemsForItem = (
+  item: RegistryItemManifest,
+): ReadonlyArray<string> =>
+  item.dependencies.registry.map(dependency => dependency.target)
+
+const buildExampleDocsArtifact = (
+  item: RegistryItemManifest,
+  example: ExampleManifest,
+): RawExampleDocsArtifact => {
+  const source = readFileSync(example.sourcePath, 'utf-8')
+  const exportName = exportedExampleNameFromSource(source, example)
+  const artifact = {
+    id: example.id,
+    title: example.title,
+    description: example.description,
+    componentItemId: item.id,
+    sourcePath: example.sourcePath,
+    snippet: extractExampleSnippet(source, example),
+    previewStatus: 'static',
+    previewExportName: exportName ?? null,
+    requiredRegistryItems: requiredRegistryItemsForItem(item),
+    notes: [],
+  }
+
+  return artifact
+}
+
 export const writeJson = (outputPath: string, value: unknown): void => {
   mkdirSync(pathModule.dirname(outputPath), { recursive: true })
   writeFileSync(outputPath, `${JSON.stringify(value, null, 2)}\n`)
@@ -333,7 +376,9 @@ export const buildComponentDocsArtifacts = (
       installableSourcePaths: item.installableSourcePaths,
       originProvenance: item.originProvenance,
       dependencies: item.dependencies,
-      examples: item.examples,
+      examples: item.examples.map(example =>
+        buildExampleDocsArtifact(item, example),
+      ),
       quality: {
         availability: item.lifecycle.availability,
         implementationStatus: item.lifecycle.implementationStatus,

@@ -117,43 +117,73 @@
       "id": "shadcn/alert-action",
       "title": "AlertActionExample",
       "description": "Alert with an action Button.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertActionExample = (): Html => {\n  const h = html<never>()\n\n  return alert({\n    className: 'max-w-md',\n    children: [\n      alertTitle(['Dark mode is now available']),\n      alertDescription([\n        'Enable it under your profile settings to get started.',\n      ]),\n      alertAction([\n        Button<never>({\n          size: 'xs',\n          variant: 'default',\n          toView: attributes => h.button([...attributes.button], ['Enable']),\n        }),\n      ]),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertActionExample",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/alert-basic",
       "title": "AlertBasic",
       "description": "Basic Alert with an inline status icon.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertBasic = (): Html =>\n  alert({\n    className: 'max-w-md',\n    children: [\n      checkCircle2Icon(),\n      alertTitle(['Account updated successfully']),\n      alertDescription([\n        'Your profile information has been saved. Changes will be reflected immediately.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertBasic",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/alert-colors",
       "title": "AlertColors",
       "description": "Alert with custom amber color classes.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertColors = (): Html =>\n  alert({\n    className:\n      'max-w-md border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50',\n    children: [\n      alertTriangleIcon(),\n      alertTitle(['Your subscription will expire in 3 days.']),\n      alertDescription([\n        'Renew now to avoid service interruption or upgrade to a paid plan to continue using the service.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertColors",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/alert-demo",
       "title": "AlertDemo",
       "description": "Stacked Alert demo.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full max-w-md items-start gap-4')],\n    [\n      alert({\n        children: [\n          checkCircle2Icon(),\n          alertTitle(['Payment successful']),\n          alertDescription([\n            'Your payment of $29.99 has been processed. A receipt has been sent to your email address.',\n          ]),\n        ],\n      }),\n      alert({\n        children: [\n          infoIcon(),\n          alertTitle(['New feature available']),\n          alertDescription([\n            \"We've added dark mode support. You can enable it in your account settings.\",\n          ]),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertDemo",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/alert-destructive",
       "title": "AlertDestructive",
       "description": "Destructive Alert variant.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertDestructive = (): Html =>\n  alert({\n    variant: 'destructive',\n    className: 'max-w-md',\n    children: [\n      alertCircleIcon(),\n      alertTitle(['Payment failed']),\n      alertDescription([\n        'Your payment could not be processed. Please check your payment method and try again.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertDestructive",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/alert-rtl",
       "title": "AlertRtl",
       "description": "RTL Alert layout example with local Arabic strings.",
+      "componentItemId": "shadcn/alert",
       "sourcePath": "src/registry/shadcn/alert/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AlertRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAlertRtl\n\n  return h.div(\n    [h.Class('grid w-full max-w-md items-start gap-4'), h.Dir(dir)],\n    [\n      alert({\n        direction: 'rtl',\n        children: [\n          checkCircle2Icon(),\n          alertTitle([values.paymentTitle]),\n          alertDescription([values.paymentDescription]),\n        ],\n      }),\n      alert({\n        direction: 'rtl',\n        children: [\n          infoIcon(),\n          alertTitle([values.featureTitle]),\n          alertDescription([values.featureDescription]),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertRtl",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
     }
   ],
   "quality": {

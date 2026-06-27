@@ -118,50 +118,85 @@
       "id": "shadcn/slider-controlled",
       "title": "SliderControlled",
       "description": "Controlled range slider rendered with deterministic static state and local label text.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto grid w-full max-w-xs gap-3')],\n    [\n      h.div(\n        [h.Class('flex items-center justify-between gap-2')],\n        [\n          h.span([h.Id('slider-demo-temperature')], ['Temperature']),\n          h.span([h.Class('text-sm text-muted-foreground')], ['0.3, 0.7']),\n        ],\n      ),\n      Slider<never>({\n        id: 'slider-demo-temperature',\n        values: [0.3, 0.7],\n        min: 0,\n        max: 1,\n        step: 0.1,\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SliderControlled",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-demo",
       "title": "SliderDemo",
       "description": "Default one-thumb Slider demo.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderDemo = (): Html =>\n  slider({\n    values: [75],\n    max: 100,\n    step: 1,\n    className: 'mx-auto w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SliderDemo",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-disabled",
       "title": "SliderDisabled",
       "description": "Disabled Slider demo.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderDisabled = (): Html =>\n  slider({\n    values: [50],\n    max: 100,\n    step: 1,\n    isDisabled: true,\n    className: 'mx-auto w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SliderDisabled",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-multiple",
       "title": "SliderMultiple",
       "description": "Three-thumb Slider demo.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderMultiple = (): Html =>\n  slider({\n    values: [10, 20, 70],\n    max: 100,\n    step: 10,\n    className: 'mx-auto w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SliderMultiple",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-range",
       "title": "SliderRange",
       "description": "Two-thumb range Slider demo.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderRange = (): Html =>\n  slider({\n    values: [25, 50],\n    max: 100,\n    step: 5,\n    className: 'mx-auto w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SliderRange",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-rtl",
       "title": "SliderRtl",
       "description": "RTL Slider layout example with local static direction data.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderRtl = (): Html =>\n  slider({\n    values: [75],\n    max: 100,\n    step: 1,\n    dir: 'rtl',\n    className: 'mx-auto w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SliderRtl",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/slider-vertical",
       "title": "SliderVertical",
       "description": "Vertical Slider demo pair.",
+      "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "snippet": "export const SliderVertical = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto flex w-full max-w-xs items-center justify-center gap-6')],\n    [\n      slider({\n        values: [50],\n        max: 100,\n        step: 1,\n        orientation: 'vertical',\n        className: 'h-40',\n      }),\n      slider({\n        values: [25],\n        max: 100,\n        step: 1,\n        orientation: 'vertical',\n        className: 'h-40',\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SliderVertical",
+      "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

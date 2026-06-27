@@ -130,71 +130,121 @@
       "id": "shadcn/avatar-badge-icon",
       "title": "AvatarBadgeIconExample",
       "description": "Avatar with fixture-local Plus icon badge.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarBadgeIconExample = (): Html =>\n  avatar(pranathiProfile, {\n    className: 'grayscale',\n    children: [badge(undefined, [plusIcon()])],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarBadgeIconExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-badge",
       "title": "AvatarWithBadge",
       "description": "Avatar with status badge.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarWithBadge = (): Html =>\n  avatar(shadcnProfile, {\n    children: [badge('bg-green-600 dark:bg-green-800')],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarWithBadge",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-basic",
       "title": "AvatarBasic",
       "description": "Basic Avatar example.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarBasic = (): Html =>\n  avatar(shadcnProfile, { imageClassName: 'grayscale' })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarBasic",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-demo",
       "title": "AvatarDemo",
       "description": "Avatar demo with badge and group examples.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-row flex-wrap items-center gap-6 md:gap-12')],\n    [\n      avatar(shadcnProfile, { imageClassName: 'grayscale' }),\n      avatar(evilRabbitProfile, {\n        children: [badge('bg-green-600 dark:bg-green-800')],\n      }),\n      avatarGroup('+3'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarDemo",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-dropdown",
       "title": "AvatarDropdown",
       "description": "Dropdown Avatar example represented by a fixture-local static dropdown shell.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarDropdown = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'ghost',\n    size: 'icon',\n    className: 'rounded-full',\n    toView: attributes =>\n      h.button(\n        [\n          ...attributes.button,\n          h.Attribute('aria-haspopup', 'menu'),\n          h.AriaExpanded(false),\n        ],\n        [avatar({ ...shadcnProfile, alt: 'shadcn' })],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarDropdown",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-group-count-icon",
       "title": "AvatarGroupCountIconExample",
       "description": "Avatar group count with fixture-local Plus icon.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarGroupCountIconExample = (): Html => avatarGroup(plusIcon())",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupCountIconExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-group-count",
       "title": "AvatarGroupCountExample",
       "description": "Avatar group count example.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarGroupCountExample = (): Html => avatarGroup('+3')",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupCountExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-group",
       "title": "AvatarGroupExample",
       "description": "Avatar group example.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarGroupExample = (): Html => avatarGroup()",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-rtl",
       "title": "AvatarRtl",
       "description": "RTL Avatar layout example with local Arabic strings.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAvatarRtl\n\n  return h.div(\n    [\n      h.Class('flex flex-row flex-wrap items-center gap-6 md:gap-12'),\n      h.Dir(dir),\n    ],\n    [\n      avatar(shadcnProfile, { imageClassName: 'grayscale' }),\n      avatar(evilRabbitProfile, {\n        children: [badge('bg-green-600 dark:bg-green-800', [], 'inline-end')],\n      }),\n      avatarGroup(values.moreUsers),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarRtl",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     },
     {
       "id": "shadcn/avatar-size",
       "title": "AvatarSizeExample",
       "description": "Avatar size matrix example.",
+      "componentItemId": "shadcn/avatar",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "snippet": "export const AvatarSizeExample = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 grayscale')],\n    [\n      avatar(shadcnProfile, { size: 'sm' }),\n      avatar(shadcnProfile),\n      avatar(shadcnProfile, { size: 'lg' }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarSizeExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
     }
   ],
   "quality": {

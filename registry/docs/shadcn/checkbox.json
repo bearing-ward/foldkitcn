@@ -137,57 +137,97 @@
       "id": "shadcn/checkbox-demo",
       "title": "CheckboxDemo",
       "description": "Mixed Checkbox field group with labels, description, disabled state, and choice-card shell.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'max-w-sm')],\n    [\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...checkboxControl(h, { id: 'terms-checkbox' }),\n          h.label(\n            [...labelAttributes(h, { htmlFor: 'terms-checkbox' })],\n            ['Accept terms and conditions'],\n          ),\n        ],\n      ),\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...checkboxControl(h, {\n            id: 'terms-checkbox-2',\n            checkedState: 'checked',\n          }),\n          h.div(\n            [...fieldContentAttributes(h)],\n            [\n              h.label(\n                [\n                  ...labelAttributes(h, {\n                    htmlFor: 'terms-checkbox-2',\n                    field: true,\n                  }),\n                ],\n                ['Accept terms and conditions'],\n              ),\n              h.p(\n                [...fieldDescriptionAttributes(h)],\n                ['By clicking this checkbox, you agree to the terms.'],\n              ),\n            ],\n          ),\n        ],\n      ),\n      h.div(\n        [...fieldAttributes(h, { isDisabled: true })],\n        [\n          ...checkboxControl(h, {\n            id: 'toggle-checkbox',\n            isDisabled: true,\n          }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'toggle-checkbox',\n                field: true,\n              }),\n            ],\n            ['Enable notifications'],\n          ),\n        ],\n      ),\n      h.label(\n        [...labelAttributes(h, { field: true })],\n        [\n          h.div(\n            [...fieldAttributes(h)],\n            [\n              ...checkboxControl(h, { id: 'toggle-checkbox-2' }),\n              h.div(\n                [...fieldContentAttributes(h)],\n                [\n                  h.div([...fieldTitleAttributes(h)], ['Enable notifications']),\n                  h.p(\n                    [...fieldDescriptionAttributes(h)],\n                    ['You can enable or disable notifications at any time.'],\n                  ),\n                ],\n              ),\n            ],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxDemo",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-basic",
       "title": "CheckboxBasic",
       "description": "Basic Checkbox and FieldLabel layout.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxBasic = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'mx-auto w-56')],\n    [\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...checkboxControl(h, { id: 'terms-checkbox-basic' }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'terms-checkbox-basic',\n                field: true,\n              }),\n            ],\n            ['Accept terms and conditions'],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxBasic",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-description",
       "title": "CheckboxDescription",
       "description": "Checked Checkbox with FieldContent and FieldDescription shells.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxDescription = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'mx-auto w-72')],\n    [\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...checkboxControl(h, {\n            id: 'terms-checkbox-desc',\n            checkedState: 'checked',\n          }),\n          h.div(\n            [...fieldContentAttributes(h)],\n            [\n              h.label(\n                [\n                  ...labelAttributes(h, {\n                    htmlFor: 'terms-checkbox-desc',\n                    field: true,\n                  }),\n                ],\n                ['Accept terms and conditions'],\n              ),\n              h.p(\n                [...fieldDescriptionAttributes(h)],\n                [\n                  'By clicking this checkbox, you agree to the terms and conditions.',\n                ],\n              ),\n            ],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxDescription",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-disabled",
       "title": "CheckboxDisabled",
       "description": "Disabled Checkbox example with Field data-disabled shell.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxDisabled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'mx-auto w-56')],\n    [\n      h.div(\n        [...fieldAttributes(h, { isDisabled: true })],\n        [\n          ...checkboxControl(h, {\n            id: 'toggle-checkbox-disabled',\n            isDisabled: true,\n          }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'toggle-checkbox-disabled',\n                field: true,\n              }),\n            ],\n            ['Enable notifications'],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxDisabled",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-invalid",
       "title": "CheckboxInvalid",
       "description": "Invalid Checkbox example with aria-invalid and Field data-invalid shell.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxInvalid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'mx-auto w-56')],\n    [\n      h.div(\n        [...fieldAttributes(h, { isInvalid: true })],\n        [\n          ...checkboxControl(h, {\n            id: 'terms-checkbox-invalid',\n            isInvalid: true,\n          }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'terms-checkbox-invalid',\n                field: true,\n              }),\n            ],\n            ['Accept terms and conditions'],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxInvalid",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-group",
       "title": "CheckboxGroup",
       "description": "Checkbox group layout using local FieldSet and FieldLegend shells.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxGroup = (): Html => {\n  const h = html<never>()\n  const options = [\n    {\n      id: 'finder-pref-9k2-hard-disks-ljj-checkbox',\n      label: 'Hard disks',\n      checkedState: 'checked' as const,\n    },\n    {\n      id: 'finder-pref-9k2-external-disks-1yg-checkbox',\n      label: 'External disks',\n      checkedState: 'checked' as const,\n    },\n    {\n      id: 'finder-pref-9k2-cds-dvds-fzt-checkbox',\n      label: 'CDs, DVDs, and iPods',\n      checkedState: 'unchecked' as const,\n    },\n    {\n      id: 'finder-pref-9k2-connected-servers-6l2-checkbox',\n      label: 'Connected servers',\n      checkedState: 'unchecked' as const,\n    },\n  ]\n\n  return h.fieldset(\n    [...fieldSetAttributes(h)],\n    [\n      h.legend(\n        [...fieldLegendAttributes(h)],\n        ['Show these items on the desktop:'],\n      ),\n      h.p(\n        [...fieldDescriptionAttributes(h)],\n        ['Select the items you want to show on the desktop.'],\n      ),\n      h.div(\n        [...fieldGroupAttributes(h, 'gap-3')],\n        options.map(option =>\n          h.div(\n            [...fieldAttributes(h)],\n            [\n              ...checkboxControl(h, {\n                id: option.id,\n                checkedState: option.checkedState,\n              }),\n              h.label(\n                [\n                  ...labelAttributes(h, {\n                    htmlFor: option.id,\n                    className: 'font-normal',\n                    field: true,\n                  }),\n                ],\n                [option.label],\n              ),\n            ],\n          ),\n        ),\n      ),\n    ],\n  )\n}\n\nconst tableData = [\n  {\n    id: '1',\n    name: 'Sarah Chen',\n    email: 'sarah.chen@example.com',\n    role: 'Admin',\n  },\n  {\n    id: '2',\n    name: 'Marcus Rodriguez',\n    email: 'marcus.rodriguez@example.com',\n    role: 'User',\n  },\n  {\n    id: '3',\n    name: 'Priya Patel',\n    email: 'priya.patel@example.com',\n    role: 'User',\n  },\n  {\n    id: '4',\n    name: 'David Kim',\n    email: 'david.kim@example.com',\n    role: 'Editor',\n  },\n]",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxGroup",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-table",
       "title": "CheckboxInTable",
       "description": "Checkbox table selection layout using local Table shells and an indeterminate select-all checkbox.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxInTable = (): Html => {\n  const h = html<never>()\n  const selectedRowIds = new Set(['1'])\n\n  return h.table(\n    [...tableAttributes(h)],\n    [\n      h.thead(\n        [...tableHeaderAttributes(h)],\n        [\n          h.tr(\n            [...tableRowAttributes(h)],\n            [\n              h.th(\n                [...tableHeadAttributes(h, 'w-8')],\n                [\n                  ...checkboxControl(h, {\n                    id: 'select-all-checkbox',\n                    checkedState: 'indeterminate',\n                  }),\n                ],\n              ),\n              h.th([...tableHeadAttributes(h)], ['Name']),\n              h.th([...tableHeadAttributes(h)], ['Email']),\n              h.th([...tableHeadAttributes(h)], ['Role']),\n            ],\n          ),\n        ],\n      ),\n      h.tbody(\n        [...tableBodyAttributes(h)],\n        tableData.map(row =>\n          h.tr(\n            [\n              ...tableRowAttributes(\n                h,\n                selectedRowIds.has(row.id) ? 'selected' : undefined,\n              ),\n            ],\n            [\n              h.td(\n                [...tableCellAttributes(h)],\n                [\n                  ...checkboxControl(h, {\n                    id: `row-${row.id}-checkbox`,\n                    checkedState: selectedRowIds.has(row.id)\n                      ? 'checked'\n                      : 'unchecked',\n                  }),\n                ],\n              ),\n              h.td([...tableCellAttributes(h, 'font-medium')], [row.name]),\n              h.td([...tableCellAttributes(h)], [row.email]),\n              h.td([...tableCellAttributes(h)], [row.role]),\n            ],\n          ),\n        ),\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxInTable",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/checkbox-rtl",
       "title": "CheckboxRtl",
       "description": "RTL Checkbox layout using local Arabic strings.",
+      "componentItemId": "shadcn/checkbox",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "snippet": "export const CheckboxRtl = (): Html => {\n  const h = html<never>()\n  const dir = 'rtl'\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'max-w-sm'), h.Dir(dir)],\n    [\n      h.div(\n        [...fieldAttributes(h, { dir })],\n        [\n          ...checkboxControl(h, { id: 'terms-checkbox-rtl', dir }),\n          h.label(\n            [...labelAttributes(h, { htmlFor: 'terms-checkbox-rtl', dir })],\n            ['قبول الشروط والأحكام'],\n          ),\n        ],\n      ),\n      h.div(\n        [...fieldAttributes(h, { dir })],\n        [\n          ...checkboxControl(h, {\n            id: 'terms-checkbox-2-rtl',\n            checkedState: 'checked',\n            dir,\n          }),\n          h.div(\n            [...fieldContentAttributes(h)],\n            [\n              h.label(\n                [\n                  ...labelAttributes(h, {\n                    htmlFor: 'terms-checkbox-2-rtl',\n                    field: true,\n                    dir,\n                  }),\n                ],\n                ['قبول الشروط والأحكام'],\n              ),\n              h.p(\n                [...fieldDescriptionAttributes(h, dir)],\n                ['بالنقر على هذا المربع، فإنك توافق على الشروط.'],\n              ),\n            ],\n          ),\n        ],\n      ),\n      h.div(\n        [...fieldAttributes(h, { isDisabled: true, dir })],\n        [\n          ...checkboxControl(h, {\n            id: 'toggle-checkbox-rtl',\n            isDisabled: true,\n            dir,\n          }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'toggle-checkbox-rtl',\n                field: true,\n                dir,\n              }),\n            ],\n            ['تفعيل الإشعارات'],\n          ),\n        ],\n      ),\n      h.label(\n        [...labelAttributes(h, { field: true, dir })],\n        [\n          h.div(\n            [...fieldAttributes(h, { dir })],\n            [\n              ...checkboxControl(h, { id: 'toggle-checkbox-2', dir }),\n              h.div(\n                [...fieldContentAttributes(h)],\n                [\n                  h.div([...fieldTitleAttributes(h)], ['تفعيل الإشعارات']),\n                  h.p(\n                    [...fieldDescriptionAttributes(h, dir)],\n                    ['يمكنك تفعيل أو إلغاء تفعيل الإشعارات في أي وقت.'],\n                  ),\n                ],\n              ),\n            ],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CheckboxRtl",
+      "requiredRegistryItems": ["base-ui/checkbox", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

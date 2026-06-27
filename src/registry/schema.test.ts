@@ -8,6 +8,20 @@ import {
   ExampleDocsArtifact,
   RegistryItemManifest,
 } from './schema'
+import type { ExamplePreviewStatus } from './schema'
+
+const exampleDocsArtifact = (previewStatus: ExamplePreviewStatus) => ({
+  id: `shadcn/button-${previewStatus}`,
+  title: `Button ${previewStatus}`,
+  description: `Button ${previewStatus} example.`,
+  componentItemId: 'shadcn/button',
+  sourcePath: 'src/registry/shadcn/button/examples.ts',
+  snippet: 'export const ButtonDefault = (): Html => {}',
+  previewStatus,
+  previewExportName: 'ButtonDefault',
+  requiredRegistryItems: ['base-ui/button', 'utils/cn'],
+  notes: [],
+})
 
 const validManifest = {
   schemaVersion: 1,
@@ -82,17 +96,20 @@ describe('generated docs artifact schemas', () => {
     expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
   })
 
-  test('decodes example docs artifacts', () => {
-    const example = S.decodeUnknownSync(ExampleDocsArtifact)({
-      id: 'shadcn/button-default',
-      title: 'ButtonDefault',
-      description: 'Default shadcn Button example.',
-      sourcePath: 'src/registry/shadcn/button/examples.ts',
-      kind: 'demo',
-    })
+  test.each(['static', 'live-ready', 'blocked'] as const)(
+    'encodes and decodes %s example docs artifacts',
+    previewStatus => {
+      const example = S.decodeUnknownSync(ExampleDocsArtifact)(
+        exampleDocsArtifact(previewStatus),
+      )
 
-    expect(example.kind).toBe('demo')
-  })
+      expect(
+        S.decodeUnknownSync(ExampleDocsArtifact)(
+          S.encodeSync(ExampleDocsArtifact)(example),
+        ),
+      ).toStrictEqual(example)
+    },
+  )
 
   test('encodes and decodes component docs artifacts', () => {
     const artifact = S.decodeUnknownSync(ComponentDocsArtifact)({
@@ -116,15 +133,7 @@ describe('generated docs artifact schemas', () => {
         runtime: [],
         development: [],
       },
-      examples: [
-        {
-          id: 'shadcn/button-default',
-          title: 'ButtonDefault',
-          description: 'Default shadcn Button example.',
-          sourcePath: 'src/registry/shadcn/button/examples.ts',
-          kind: 'demo',
-        },
-      ],
+      examples: [exampleDocsArtifact('static')],
       quality: {
         availability: 'installable',
         implementationStatus: 'implemented',

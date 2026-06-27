@@ -111,43 +111,73 @@
       "id": "shadcn/textarea-demo",
       "title": "TextareaDemo",
       "description": "Default message textarea example.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaDemo = (): Html =>\n  textarea({\n    placeholder: 'Type your message here.',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaDemo",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/textarea-button",
       "title": "TextareaButton",
       "description": "Textarea paired with a send button.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaButton = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full gap-2')],\n    [\n      textarea({\n        placeholder: 'Type your message here.',\n      }),\n      Button<never>({\n        toView: attributes =>\n          h.button([...attributes.button], ['Send message']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "TextareaButton",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/textarea-disabled",
       "title": "TextareaDisabled",
       "description": "Disabled textarea field example.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaDisabled = (): Html =>\n  field({\n    disabled: true,\n    children: [\n      fieldLabel({\n        forId: 'textarea-disabled',\n        children: ['Message'],\n      }),\n      textarea({\n        id: 'textarea-disabled',\n        placeholder: 'Type your message here.',\n        disabled: true,\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaDisabled",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/textarea-field",
       "title": "TextareaField",
       "description": "Textarea field with description.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaField = (): Html =>\n  field({\n    children: [\n      fieldLabel({\n        forId: 'textarea-message',\n        children: ['Message'],\n      }),\n      fieldDescription({\n        children: ['Enter your message below.'],\n      }),\n      textarea({\n        id: 'textarea-message',\n        placeholder: 'Type your message here.',\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaField",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/textarea-invalid",
       "title": "TextareaInvalid",
       "description": "Invalid textarea field example.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaInvalid = (): Html =>\n  field({\n    invalid: true,\n    children: [\n      fieldLabel({\n        forId: 'textarea-invalid',\n        children: ['Message'],\n      }),\n      textarea({\n        id: 'textarea-invalid',\n        placeholder: 'Type your message here.',\n        invalid: true,\n      }),\n      fieldDescription({\n        children: ['Please enter a valid message.'],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaInvalid",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/textarea-rtl",
       "title": "TextareaRtl",
       "description": "RTL textarea field example with local Arabic strings.",
+      "componentItemId": "shadcn/textarea",
       "sourcePath": "src/registry/shadcn/textarea/examples.ts",
-      "kind": "demo"
+      "snippet": "export const TextareaRtl = (): Html =>\n  field({\n    className: 'w-full max-w-xs',\n    dir: 'rtl',\n    children: [\n      fieldLabel({\n        forId: 'feedback',\n        dir: 'rtl',\n        children: ['التعليقات'],\n      }),\n      textarea({\n        id: 'feedback',\n        placeholder: 'تعليقاتك تساعدنا على التحسين...',\n        dir: 'rtl',\n        rows: 4,\n      }),\n      fieldDescription({\n        dir: 'rtl',\n        children: ['شاركنا أفكارك حول خدمتنا.'],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaRtl",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

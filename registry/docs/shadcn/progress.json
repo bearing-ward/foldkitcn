@@ -114,29 +114,49 @@
       "id": "shadcn/progress-controlled",
       "title": "ProgressControlled",
       "description": "Controlled progress rendered with deterministic static state.",
+      "componentItemId": "shadcn/progress",
       "sourcePath": "src/registry/shadcn/progress/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ProgressControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full max-w-sm flex-col gap-4')],\n    [\n      Progress<never>({\n        value: 50,\n        className: 'w-full',\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressControlled",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/progress-demo",
       "title": "ProgressDemo",
       "description": "Default Progress demo at the captured initial value.",
+      "componentItemId": "shadcn/progress",
       "sourcePath": "src/registry/shadcn/progress/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ProgressDemo = (): Html =>\n  Progress<never>({\n    value: 13,\n    className: 'w-[60%]',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ProgressDemo",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/progress-label",
       "title": "ProgressWithLabel",
       "description": "Progress with visible label and formatted value.",
+      "componentItemId": "shadcn/progress",
       "sourcePath": "src/registry/shadcn/progress/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ProgressWithLabel = (): Html => {\n  const h = html<never>()\n\n  return Progress<never>({\n    value: 56,\n    className: 'w-full max-w-sm',\n    labelId: 'base-ui-_r_0_',\n    children: attributes => [\n      h.span([...attributes.label], ['Upload progress']),\n      h.span([...attributes.value], [progressValue(56)]),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressWithLabel",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/progress-rtl",
       "title": "ProgressRtl",
       "description": "RTL Progress layout example with local Arabic strings.",
+      "componentItemId": "shadcn/progress",
       "sourcePath": "src/registry/shadcn/progress/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ProgressRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicProgressRtl\n\n  return Progress<never>({\n    value: 56,\n    className: 'w-full max-w-sm',\n    dir,\n    labelId: 'base-ui-_r_0_',\n    children: attributes => [\n      h.span([...attributes.label], [values.label]),\n      h.span(\n        [...attributes.value],\n        [h.span([h.Class('ms-auto')], [values.value])],\n      ),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressRtl",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

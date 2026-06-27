@@ -161,99 +161,169 @@
       "id": "shadcn/button-default",
       "title": "ButtonDefault",
       "description": "Default shadcn Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonDefault = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    toView: attributes => h.button([...attributes.button], ['Button']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonDefault",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-demo",
       "title": "ButtonDemo",
       "description": "Outline Button and icon Button demo.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 md:flex-row')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes => h.button([...attributes.button], ['Button']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        toView: attributes =>\n          h.button(\n            [...attributes.button, h.AriaLabel('Submit')],\n            [arrowUpIcon()],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonDemo",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-outline",
       "title": "ButtonOutline",
       "description": "Outline variant Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonOutline = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    toView: attributes => h.button([...attributes.button], ['Outline']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonOutline",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-secondary",
       "title": "ButtonSecondary",
       "description": "Secondary variant Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonSecondary = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'secondary',\n    toView: attributes => h.button([...attributes.button], ['Secondary']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonSecondary",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-ghost",
       "title": "ButtonGhost",
       "description": "Ghost variant Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonGhost = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'ghost',\n    toView: attributes => h.button([...attributes.button], ['Ghost']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonGhost",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-destructive",
       "title": "ButtonDestructive",
       "description": "Destructive variant Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonDestructive = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'destructive',\n    toView: attributes => h.button([...attributes.button], ['Destructive']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonDestructive",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-link",
       "title": "ButtonLink",
       "description": "Link variant Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonLink = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'link',\n    toView: attributes => h.button([...attributes.button], ['Link']),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonLink",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-icon",
       "title": "ButtonIcon",
       "description": "Icon-sized Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonIcon = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    size: 'icon',\n    toView: attributes =>\n      h.button([...attributes.button], [circleFadingArrowUpIcon()]),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonIcon",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-with-icon",
       "title": "ButtonWithIcon",
       "description": "Inline start and end icon Button examples.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonWithIcon = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [branchIcon('inline-start'), ' New Branch'],\n          ),\n      }),\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button([...attributes.button], ['Fork ', forkIcon('inline-end')]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonWithIcon",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-size",
       "title": "ButtonSize",
       "description": "Button size matrix example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonSize = (): Html => {\n  const h = html<never>()\n  const sizePair = (\n    label: string,\n    size: 'xs' | 'sm' | 'default' | 'lg',\n    iconSize: 'icon-xs' | 'icon-sm' | 'icon' | 'icon-lg',\n  ): Html =>\n    h.div(\n      [h.Class('flex items-start gap-2')],\n      [\n        Button<never>({\n          variant: 'outline',\n          size,\n          toView: attributes => h.button([...attributes.button], [label]),\n        }),\n        Button<never>({\n          variant: 'outline',\n          size: iconSize,\n          toView: attributes =>\n            h.button(\n              [...attributes.button, h.AriaLabel('Submit')],\n              [arrowUpRightIcon()],\n            ),\n        }),\n      ],\n    )\n\n  return h.div(\n    [h.Class('flex flex-col items-start gap-8 sm:flex-row')],\n    [\n      sizePair('Extra Small', 'xs', 'icon-xs'),\n      sizePair('Small', 'sm', 'icon-sm'),\n      sizePair('Default', 'default', 'icon'),\n      sizePair('Large', 'lg', 'icon-lg'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonSize",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-rounded",
       "title": "ButtonRounded",
       "description": "Rounded Button example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonRounded = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        className: 'rounded-full',\n        toView: attributes => h.button([...attributes.button], ['Get Started']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        className: 'rounded-full',\n        toView: attributes => h.button([...attributes.button], [arrowUpIcon()]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonRounded",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-spinner",
       "title": "ButtonSpinner",
       "description": "Disabled Button examples using an example-local spinner helper.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonSpinner = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        variant: 'outline',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [spinner('inline-start'), ' Generating'],\n          ),\n      }),\n      Button<never>({\n        variant: 'secondary',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            ['Downloading ', spinner('inline-start')],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonSpinner",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-render",
       "title": "ButtonRender",
       "description": "Plain anchor using the shadcn Button class helper.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonRender = (): Html => {\n  const h = html<never>()\n\n  return h.a(\n    [\n      h.Href('#'),\n      h.Class(buttonVariants({ variant: 'secondary', size: 'sm' })),\n    ],\n    ['Login'],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonRender",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     },
     {
       "id": "shadcn/button-rtl",
       "title": "ButtonRtl",
       "description": "RTL Button layout example.",
+      "componentItemId": "shadcn/button",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "snippet": "export const ButtonRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 md:flex-row'), h.Dir('rtl')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes => h.button([...attributes.button], ['زر']),\n      }),\n      Button<never>({\n        variant: 'destructive',\n        toView: attributes => h.button([...attributes.button], ['حذف']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            ['إرسال ', arrowRightIcon('inline-end')],\n          ),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        toView: attributes =>\n          h.button([...attributes.button, h.AriaLabel('Add')], [plusIcon()]),\n      }),\n      Button<never>({\n        variant: 'secondary',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [spinner('inline-start'), ' جاري التحميل'],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ButtonRtl",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
     }
   ],
   "quality": {

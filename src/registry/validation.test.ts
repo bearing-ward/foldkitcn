@@ -9,6 +9,7 @@ const makeManifest = ({
   dependencies,
   lifecycle,
   parity,
+  examples,
 }: {
   readonly id: string
   readonly sourceRoot: string
@@ -47,6 +48,13 @@ const makeManifest = ({
     readonly requiredComparisons: ReadonlyArray<string>
     readonly acceptedDeviationIds: ReadonlyArray<string>
   }
+  readonly examples?: ReadonlyArray<{
+    readonly id: string
+    readonly title: string
+    readonly description: string
+    readonly sourcePath: string
+    readonly kind: string
+  }>
 }) => ({
   schemaVersion: 1,
   id,
@@ -63,7 +71,7 @@ const makeManifest = ({
     runtime: dependencies?.runtime ?? [],
     development: dependencies?.development ?? [],
   },
-  examples: [],
+  examples: examples ?? [],
   parity: parity ?? {
     itemId: id,
     originFixturePath: '',
@@ -568,6 +576,99 @@ describe('registry validation', () => {
     )
 
     expect(result.errors).toStrictEqual([])
+  })
+
+  test('rejects installable examples with missing source paths', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+        examples: [
+          {
+            id: 'local/installable-default',
+            title: 'InstallableDefault',
+            description: 'Missing example source.',
+            sourcePath: 'src/registry/local/installable/examples.ts',
+            kind: 'demo',
+          },
+        ],
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message:
+          'Example source path does not exist: src/registry/local/installable/examples.ts',
+      },
+    ])
+  })
+
+  test('rejects installable examples with empty generated snippets', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const sourcePath = 'src/registry/local/installable/examples.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+        examples: [
+          {
+            id: 'local/installable-default',
+            title: 'InstallableDefault',
+            description: 'Empty example source.',
+            sourcePath,
+            kind: 'demo',
+          },
+        ],
+      }),
+      new Set(['local/installable']),
+      new Map([[sourcePath, '']]),
+      new Set([originFixturePath, foldkitFixturePath, sourcePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message:
+          'Example source generated an empty snippet: src/registry/local/installable/examples.ts',
+      },
+    ])
   })
 
   test('classifies registry-local dependency hints', () => {
