@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 26,
-      remaining: 12,
+      imported: 27,
+      remaining: 11,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 28,
-      remaining: 36,
+      imported: 29,
+      remaining: 35,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -48,6 +48,7 @@ describe('origin component progress', () => {
   test('marks current imported items from registry source manifests', () => {
     const importedItemIds = [
       'base-ui/accordion',
+      'base-ui/alert-dialog',
       'base-ui/avatar',
       'base-ui/button',
       'base-ui/checkbox',
@@ -75,6 +76,7 @@ describe('origin component progress', () => {
       'base-ui/toggle-group',
       'shadcn/alert',
       'shadcn/accordion',
+      'shadcn/alert-dialog',
       'shadcn/aspect-ratio',
       'shadcn/avatar',
       'shadcn/badge',
@@ -128,11 +130,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/alert-dialog')
+    expect(nextRow?.itemId).toBe('base-ui/context-menu')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/alert-dialog',
-      'https://ui.shadcn.com/docs/components/alert-dialog',
+      'https://base-ui.com/react/components/context-menu',
+      'https://ui.shadcn.com/docs/components/context-menu',
     ])
   })
 

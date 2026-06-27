@@ -40,6 +40,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/skeleton',
       'shadcn/textarea',
       'shadcn/dialog',
+      'shadcn/alert-dialog',
       'shadcn/popover',
       'shadcn/tooltip',
       'shadcn/radio-group',
@@ -71,6 +72,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/skeleton',
       'shadcn/textarea',
       'shadcn/dialog',
+      'shadcn/alert-dialog',
       'shadcn/popover',
       'shadcn/tooltip',
       'shadcn/radio-group',
@@ -113,6 +115,13 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('popover')).toStrictEqual([
       'base-ui/popover',
       'shadcn/popover',
+    ])
+  })
+
+  test('matches alert dialog slots with component grep', () => {
+    expect(matchingItemIds('alert-dialog')).toStrictEqual([
+      'base-ui/alert-dialog',
+      'shadcn/alert-dialog',
     ])
   })
 

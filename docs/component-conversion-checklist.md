@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-27T02:58:48.749Z
+Generated at: 2026-06-27T10:34:14.849Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       26 |    38 |        12 |
-| shadcn docs  |       28 |    64 |        36 |
+| Base UI docs |       27 |    38 |        11 |
+| shadcn docs  |       29 |    64 |        35 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 5
-- Dossier-ready rows: 38
+- Dossier-ready rows: 36
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-27T02:58:48.749Z
 
 | Item                   | Readiness     | Parity      | URLs                                                                                                                        | Blockers |
 | ---------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/alert-dialog` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog) |          |
 | `base-ui/context-menu` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu) |          |
 | `base-ui/otp-field`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/otp-field)<br>[origin](https://ui.shadcn.com/docs/components/input-otp)       |          |
 | `base-ui/scroll-area`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/scroll-area)<br>[origin](https://ui.shadcn.com/docs/components/scroll-area)   |          |
+| `base-ui/toolbar`      | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toolbar)                                                                      |          |
 
 ## Imported Items
 
@@ -81,6 +81,8 @@ Generated at: 2026-06-27T02:58:48.749Z
 - `base-ui/menu`
 - `base-ui/radio`
 - `shadcn/dropdown-menu`
+- `base-ui/alert-dialog`
+- `shadcn/alert-dialog`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -97,8 +99,6 @@ Generated at: 2026-06-27T02:58:48.749Z
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/alert-dialog`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
-| `shadcn/alert-dialog`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
 | `base-ui/context-menu`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu)       |          |
 | `shadcn/context-menu`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu)       |          |
 | `base-ui/otp-field`       | dossier-ready | not-started | [origin](https://base-ui.com/react/components/otp-field)<br>[origin](https://ui.shadcn.com/docs/components/input-otp)             |          |

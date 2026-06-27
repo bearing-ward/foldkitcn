@@ -685,6 +685,41 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/alert-dialog',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/alert-dialog.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/alert-dialog.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
+    itemId: 'shadcn/alert-dialog',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/alert-dialog.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/alert-dialog.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
     itemId: 'base-ui/popover',
     status: 'ready',
     originFixtureEntrypoint:
