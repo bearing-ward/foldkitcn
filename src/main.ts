@@ -63,6 +63,10 @@ import {
   componentSearchBadges,
   searchPublicComponents,
 } from './search/component-search'
+import {
+  fallbackRouteMetadata,
+  routeMetadataForRoute,
+} from './route-inventory'
 
 export {
   ComponentDetailRoute,
@@ -92,12 +96,35 @@ export {
 export const MobileNavigation = ts('MobileNavigation', { isOpen: S.Boolean })
 type MobileNavigation = typeof MobileNavigation.Type
 
+export const PagefindSearchResult = S.Struct({
+  url: S.String,
+  title: S.String,
+  excerpt: S.String,
+  section: S.String,
+})
+export type PagefindSearchResult = typeof PagefindSearchResult.Type
+
+export const IdlePagefindSearch = ts('IdlePagefindSearch')
+export const LoadingPagefindSearch = ts('LoadingPagefindSearch', {
+  results: S.Array(PagefindSearchResult),
+})
+export const LoadedPagefindSearch = ts('LoadedPagefindSearch', {
+  results: S.Array(PagefindSearchResult),
+})
+export const PagefindSearch = S.Union([
+  IdlePagefindSearch,
+  LoadingPagefindSearch,
+  LoadedPagefindSearch,
+])
+export type PagefindSearch = typeof PagefindSearch.Type
+
 export const Model = S.Struct({
   route: AppRoute,
   data: DocsData,
   mobileNavigation: MobileNavigation,
   copiedSnippets: S.HashSet(S.String),
   searchQuery: S.String,
+  pagefindSearch: PagefindSearch,
 })
 export type Model = typeof Model.Type
 
@@ -115,6 +142,10 @@ export const SucceededCopySnippet = m('SucceededCopySnippet', {
 export const FailedCopySnippet = m('FailedCopySnippet')
 export const HidCopiedIndicator = m('HidCopiedIndicator', { text: S.String })
 export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
+export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', {
+  results: S.Array(PagefindSearchResult),
+  query: S.String,
+})
 export const ClickedClearSearch = m('ClickedClearSearch')
 
 export const Message = S.Union([
@@ -128,6 +159,7 @@ export const Message = S.Union([
   FailedCopySnippet,
   HidCopiedIndicator,
   UpdatedSearchQuery,
+  ReceivedPagefindSearchResults,
   ClickedClearSearch,
 ])
 export type Message = typeof Message.Type
@@ -143,6 +175,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
     mobileNavigation: MobileNavigation({ isOpen: false }),
     copiedSnippets: HashSet.empty(),
     searchQuery: '',
+    pagefindSearch: IdlePagefindSearch(),
   },
   [],
 ]
@@ -160,6 +193,73 @@ const LoadExternal = Command.define(
   { href: S.String },
   CompletedLoadExternal,
 )(({ href }) => load(href).pipe(Effect.as(CompletedLoadExternal())))
+
+const MAX_PAGEFIND_RESULTS = 6
+const PAGEFIND_PATH = '/pagefind/pagefind.js'
+
+type PagefindResultData = Readonly<{
+  url: string
+  excerpt: string
+  meta?: Readonly<{ title?: string; section?: string }>
+}>
+
+type PagefindResult = Readonly<{
+  data: () => Promise<PagefindResultData>
+}>
+
+type PagefindResponse = Readonly<{
+  results: ReadonlyArray<PagefindResult>
+}>
+
+type PagefindModule = Readonly<{
+  search: (query: string) => Promise<PagefindResponse>
+}>
+
+const pagefindSearchResult = (
+  result: PagefindSearchResult,
+): PagefindSearchResult => result
+
+const importPagefind = (): Promise<PagefindModule> =>
+  import(/* @vite-ignore */ PAGEFIND_PATH)
+
+export const SearchPagefind = Command.define(
+  'SearchPagefind',
+  { query: S.String },
+  ReceivedPagefindSearchResults,
+)(({ query }) =>
+  Effect.gen(function* searchPagefindProgram() {
+    const pagefind = yield* Effect.tryPromise({
+      try: () => importPagefind(),
+      catch: () => new Error('Pagefind is not available.'),
+    })
+
+    const response = yield* Effect.tryPromise({
+      try: () => pagefind.search(query),
+      catch: () => new Error('Pagefind search failed.'),
+    })
+
+    const topResults = Array.take(response.results, MAX_PAGEFIND_RESULTS)
+    const loadedResults = yield* Effect.tryPromise({
+      try: () => Promise.all(topResults.map(result => result.data())),
+      catch: () => new Error('Pagefind result loading failed.'),
+    })
+
+    const results = Array.map(loadedResults, result =>
+      pagefindSearchResult({
+        url: result.url,
+        title: result.meta?.title ?? 'Untitled',
+        excerpt: result.excerpt,
+        section: result.meta?.section ?? 'Docs',
+      }),
+    )
+
+    return ReceivedPagefindSearchResults({ results, query })
+  }).pipe(
+    Effect.catch(() =>
+      Effect.succeed(ReceivedPagefindSearchResults({ results: [], query })),
+    ),
+  ),
+)
 
 export const CopySnippet = Command.define(
   'CopySnippet',
@@ -190,6 +290,18 @@ export const HideCopiedIndicator = Command.define(
 
 type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 const withUpdateReturn = M.withReturnType<UpdateReturn>()
+
+const pagefindResultsFromState = (
+  state: PagefindSearch,
+): ReadonlyArray<PagefindSearchResult> =>
+  M.value(state).pipe(
+    M.withReturnType<ReadonlyArray<PagefindSearchResult>>(),
+    M.tagsExhaustive({
+      IdlePagefindSearch: () => [],
+      LoadingPagefindSearch: ({ results }) => results,
+      LoadedPagefindSearch: ({ results }) => results,
+    }),
+  )
 
 export const update = (model: Model, message: Message): UpdateReturn =>
   M.value(message).pipe(
@@ -239,15 +351,45 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
-      UpdatedSearchQuery: ({ value }) => [
-        evo(model, {
-          searchQuery: () => value,
-        }),
-        [],
-      ],
+      UpdatedSearchQuery: ({ value }) => {
+        if (value === model.searchQuery) {
+          return [model, []]
+        }
+
+        if (EffectString.isEmpty(EffectString.trim(value))) {
+          return [
+            evo(model, {
+              searchQuery: () => value,
+              pagefindSearch: () => IdlePagefindSearch(),
+            }),
+            [],
+          ]
+        }
+
+        return [
+          evo(model, {
+            searchQuery: () => value,
+            pagefindSearch: () =>
+              LoadingPagefindSearch({
+                results: pagefindResultsFromState(model.pagefindSearch),
+              }),
+          }),
+          [SearchPagefind({ query: value })],
+        ]
+      },
+      ReceivedPagefindSearchResults: ({ results, query }) =>
+        query === model.searchQuery
+          ? [
+              evo(model, {
+                pagefindSearch: () => LoadedPagefindSearch({ results }),
+              }),
+              [],
+            ]
+          : [model, []],
       ClickedClearSearch: () => [
         evo(model, {
           searchQuery: () => '',
+          pagefindSearch: () => IdlePagefindSearch(),
         }),
         [],
       ],
@@ -331,7 +473,7 @@ const headerView = (model: Model): Html => {
   const activeSection = primaryNavSection(model.route)
 
   return h.header(
-    [h.Class('site-header')],
+    [h.Class('site-header'), h.DataAttribute('pagefind-ignore', '')],
     [
       h.a([h.Class('brand-link'), h.Href(homeRouter({}))], [
         h.span([h.Class('brand-mark'), h.AriaHidden(true)], ['F']),
@@ -374,6 +516,7 @@ const mobileNavigationView = (model: Model): Html => {
           : 'mobile-nav',
       ),
       h.AriaLabel('Mobile'),
+      h.DataAttribute('pagefind-ignore', ''),
     ],
     navLinks.map(link =>
       navLinkView(link.label, link.href, link.section === activeSection),
@@ -463,26 +606,131 @@ const searchResultView = (component: PublicComponent): Html => {
   ])
 }
 
-const searchResultsView = (
-  query: string,
+const htmlTagPattern = /<[^>]+>/gu
+
+const pagefindExcerptText = (excerpt: string): string =>
+  excerpt.replaceAll(htmlTagPattern, '')
+
+const pagefindSearchResultView = (result: PagefindSearchResult): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('search-result')], [
+    h.a([h.Href(result.url)], [
+      h.span([h.Class('search-result-title')], [result.title]),
+      h.code([], [result.url]),
+    ]),
+    h.p([h.Class('search-excerpt')], [pagefindExcerptText(result.excerpt)]),
+  ])
+}
+
+const searchResultsGroupView = (
+  label: string,
+  results: Html,
+): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Class('search-results-group')], [
+    h.h3([h.Class('search-results-heading')], [label]),
+    results,
+  ])
+}
+
+const componentSearchResultsView = (
   results: ReadonlyArray<PublicComponent>,
 ): Html => {
   const h = html<Message>()
+
+  return Array.match(results, {
+    onEmpty: () => h.empty,
+    onNonEmpty: matches =>
+      searchResultsGroupView(
+        'Components',
+        h.ul([h.Class('search-results'), h.AriaLabel('Component search results')], [
+          ...matches.map(searchResultView),
+        ]),
+      ),
+  })
+}
+
+const pagefindSearchResultsView = (state: PagefindSearch): Html => {
+  const h = html<Message>()
+
+  return M.value(state).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      IdlePagefindSearch: () => h.empty,
+      LoadingPagefindSearch: ({ results }) =>
+        Array.match(results, {
+          onEmpty: () =>
+            h.p([h.Class('search-empty'), h.Role('status')], [
+              'Searching documentation...',
+            ]),
+          onNonEmpty: matches =>
+            searchResultsGroupView(
+              'Documentation',
+              h.ul(
+                [
+                  h.Class('search-results'),
+                  h.AriaLabel('Full-text search results'),
+                ],
+                [...matches.map(pagefindSearchResultView)],
+              ),
+            ),
+        }),
+      LoadedPagefindSearch: ({ results }) =>
+        Array.match(results, {
+          onEmpty: () => h.empty,
+          onNonEmpty: matches =>
+            searchResultsGroupView(
+              'Documentation',
+              h.ul(
+                [
+                  h.Class('search-results'),
+                  h.AriaLabel('Full-text search results'),
+                ],
+                [...matches.map(pagefindSearchResultView)],
+              ),
+            ),
+        }),
+    }),
+  )
+}
+
+const searchResultsView = (
+  query: string,
+  componentResults: ReadonlyArray<PublicComponent>,
+  pagefindSearch: PagefindSearch,
+): Html => {
+  const h = html<Message>()
+  const fullTextResults = pagefindResultsFromState(pagefindSearch)
+  const isLoading = pagefindSearch._tag === 'LoadingPagefindSearch'
+  const hasNoComponentResults = Array.match(componentResults, {
+    onEmpty: () => true,
+    onNonEmpty: () => false,
+  })
+  const hasNoFullTextResults = Array.match(fullTextResults, {
+    onEmpty: () => true,
+    onNonEmpty: () => false,
+  })
 
   if (EffectString.isEmpty(EffectString.trim(query))) {
     return h.empty
   }
 
-  return Array.match(results, {
-    onEmpty: () =>
-      h.p([h.Class('search-empty'), h.Role('status')], [
-        'No public components match that search.',
-      ]),
-    onNonEmpty: matches =>
-      h.ul([h.Class('search-results'), h.AriaLabel('Search results')], [
-        ...matches.map(searchResultView),
-      ]),
-  })
+  if (
+    hasNoComponentResults &&
+    hasNoFullTextResults &&
+    !isLoading
+  ) {
+    return h.p([h.Class('search-empty'), h.Role('status')], [
+      'No public docs match that search.',
+    ])
+  }
+
+  return h.div([h.Class('search-results-stack')], [
+    componentSearchResultsView(componentResults),
+    pagefindSearchResultsView(pagefindSearch),
+  ])
 }
 
 const componentSearchView = (model: Model): Html => {
@@ -496,16 +744,20 @@ const componentSearchView = (model: Model): Html => {
   )
 
   return h.div(
-    [h.Class('component-search'), h.Role('search'), h.AriaLabel('Component search')],
+    [
+      h.Class('component-search'),
+      h.Role('search'),
+      h.AriaLabel('Documentation search'),
+    ],
     [
       h.label([h.For('component-search-input'), h.Class('search-label')], [
-        'Search components',
+        'Search documentation',
       ]),
       h.div([h.Class('search-control')], [
         h.input([
           h.Id('component-search-input'),
           h.Type('search'),
-          h.Placeholder('Search name, id, namespace, status'),
+          h.Placeholder('Search components and docs'),
           h.Value(model.searchQuery),
           h.OnInput(value => UpdatedSearchQuery({ value })),
         ]),
@@ -520,7 +772,7 @@ const componentSearchView = (model: Model): Html => {
           ['Clear'],
         ),
       ]),
-      searchResultsView(model.searchQuery, results),
+      searchResultsView(model.searchQuery, results, model.pagefindSearch),
     ],
   )
 }
@@ -532,7 +784,7 @@ const sidebarView = (
   const h = html<Message>()
 
   return h.aside(
-    [h.Class('docs-sidebar')],
+    [h.Class('docs-sidebar'), h.DataAttribute('pagefind-ignore', '')],
     [
       componentSearchView(model),
       h.nav([h.AriaLabel('Component navigation')], [
@@ -603,18 +855,25 @@ const sidebarView = (
 const tableOfContentsView = (): Html => {
   const h = html<Message>()
 
-  return h.aside([h.Class('docs-toc'), h.AriaLabel('On this page')], [
-    h.p([h.Class('toc-heading')], ['On this page']),
-    h.a([h.Href('#overview')], ['Overview']),
-    h.a([h.Href('#installation')], ['Installation']),
-    h.a([h.Href('#usage')], ['Usage']),
-    h.a([h.Href('#examples')], ['Examples']),
-    h.a([h.Href('#api')], ['API']),
-    h.a([h.Href('#accessibility')], ['Accessibility']),
-    h.a([h.Href('#quality')], ['Quality']),
-    h.a([h.Href('#source')], ['Source']),
-    h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
-  ])
+  return h.aside(
+    [
+      h.Class('docs-toc'),
+      h.AriaLabel('On this page'),
+      h.DataAttribute('pagefind-ignore', ''),
+    ],
+    [
+      h.p([h.Class('toc-heading')], ['On this page']),
+      h.a([h.Href('#overview')], ['Overview']),
+      h.a([h.Href('#installation')], ['Installation']),
+      h.a([h.Href('#usage')], ['Usage']),
+      h.a([h.Href('#examples')], ['Examples']),
+      h.a([h.Href('#api')], ['API']),
+      h.a([h.Href('#accessibility')], ['Accessibility']),
+      h.a([h.Href('#quality')], ['Quality']),
+      h.a([h.Href('#source')], ['Source']),
+      h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
+    ],
+  )
 }
 
 const shellView = (model: Model, content: Html): Html => {
@@ -626,9 +885,20 @@ const shellView = (model: Model, content: Html): Html => {
     mobileNavigationView(model),
     h.div([h.Class('docs-layout')], [
       sidebarView(model, groups),
-      h.main([h.Id('main-content'), h.Class('docs-main')], [
-        h.keyed('div')(model.route._tag, [h.Class('route-frame')], [content]),
-      ]),
+      h.main(
+        [
+          h.Id('main-content'),
+          h.Class('docs-main'),
+          h.DataAttribute('pagefind-body', ''),
+        ],
+        [
+          h.keyed('div')(
+            model.route._tag,
+            [h.Class('route-frame')],
+            [content],
+          ),
+        ],
+      ),
       tableOfContentsView(),
     ]),
   ])
@@ -660,7 +930,10 @@ const pageHeaderView = (
   const h = html<Message>()
 
   return h.header([h.Class('page-header')], [
-    h.p([h.Class('eyebrow')], [eyebrow]),
+    h.p(
+      [h.Class('eyebrow'), h.DataAttribute('pagefind-meta', 'section')],
+      [eyebrow],
+    ),
     h.h1([h.Id('overview')], [title]),
     h.p([h.Class('lede')], [summary]),
   ])
@@ -843,7 +1116,10 @@ const snippetBlockView = (
   const isCopied = HashSet.has(copiedSnippets, text)
 
   return h.div([h.Class('snippet-block')], [
-    h.pre([h.Class('code-block')], [h.code([], [text])]),
+    h.pre(
+      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
+      [h.code([], [text])],
+    ),
     h.button(
       [
         h.Type('button'),
@@ -1409,25 +1685,16 @@ const routeContentView = (model: Model): Html =>
     }),
   )
 
-const routeTitle = (route: AppRoute): string =>
-  M.value(route).pipe(
-    M.withReturnType<string>(),
-    M.tagsExhaustive({
-      Home: () => 'Foldkit CN',
-      Docs: () => 'Documentation overview | Foldkit CN',
-      ComponentsIndex: () => 'Components | Foldkit CN',
-      ComponentsNamespace: ({ namespace }) => `${namespace} | Foldkit CN`,
-      ComponentDetail: ({ namespace, slug }) =>
-        `${namespace}/${slug} | Foldkit CN`,
-      Registry: () => 'Registry | Foldkit CN',
-      RegistrySchema: () => 'Registry Schema | Foldkit CN',
-      RegistryLifecycle: () => 'Registry Lifecycle | Foldkit CN',
-      Roadmap: () => 'Roadmap | Foldkit CN',
-      NotFound: () => 'Page Not Found | Foldkit CN',
-    }),
+const routeMetadata = (data: DocsData, route: AppRoute) =>
+  pipe(
+    routeMetadataForRoute(data, route),
+    Option.getOrElse(() => fallbackRouteMetadata(route)),
   )
 
+const routeTitle = (data: DocsData, route: AppRoute): string =>
+  routeMetadata(data, route).title
+
 export const view = (model: Model): Document => ({
-  title: routeTitle(model.route),
+  title: routeTitle(model.data, model.route),
   body: shellView(model, routeContentView(model)),
 })

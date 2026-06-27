@@ -17,11 +17,14 @@ import {
   HidCopiedIndicator,
   HideCopiedIndicator,
   HomeRoute,
+  IdlePagefindSearch,
   MobileNavigation,
+  ReceivedPagefindSearchResults,
   RegistryLifecycleRoute,
   RegistryRoute,
   RegistrySchemaRoute,
   RoadmapRoute,
+  SearchPagefind,
   SucceededCopySnippet,
   UpdatedSearchQuery,
   componentDetailRouter,
@@ -37,6 +40,7 @@ import {
   urlToAppRoute,
 } from './main'
 import type { Model } from './main'
+import { routeInventory } from './route-inventory'
 
 const model: Model = {
   route: HomeRoute({}),
@@ -44,6 +48,7 @@ const model: Model = {
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
   searchQuery: '',
+  pagefindSearch: IdlePagefindSearch(),
 }
 
 const urlOrThrow = (raw: string) =>
@@ -99,6 +104,16 @@ describe('docs routes', () => {
     expect(urlToAppRoute(urlOrThrow('http://localhost/roadmap'))).toStrictEqual(
       RoadmapRoute({}),
     )
+  })
+
+  test('builds prerender route inventory from generated docs data', () => {
+    const paths = routeInventory(docsData).map(entry => entry.path)
+
+    expect(paths).toContain('/')
+    expect(paths).toContain('/components/base-ui')
+    expect(paths).toContain('/components/shadcn/button')
+    expect(paths).toContain('/registry/lifecycle')
+    expect(paths).toContain('/roadmap')
   })
 })
 
@@ -212,15 +227,33 @@ describe(update, () => {
   })
 
   describe(UpdatedSearchQuery, () => {
-    test('stores component search input in the model', () => {
+    test('stores component search input and starts Pagefind search', () => {
       Story.story(
         update,
         Story.with(model),
         Story.message(UpdatedSearchQuery({ value: 'button' })),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('button')
+          expect(nextModel.pagefindSearch._tag).toBe('LoadingPagefindSearch')
         }),
-        Story.Command.expectNone(),
+        Story.Command.expectExact(SearchPagefind({ query: 'button' })),
+        Story.Command.resolve(
+          SearchPagefind({ query: 'button' }),
+          ReceivedPagefindSearchResults({
+            query: 'button',
+            results: [
+              {
+                url: '/components/shadcn/button',
+                title: 'Button',
+                excerpt: 'Button component docs',
+                section: 'shadcn',
+              },
+            ],
+          }),
+        ),
+        Story.model(nextModel => {
+          expect(nextModel.pagefindSearch._tag).toBe('LoadedPagefindSearch')
+        }),
       )
     })
 
@@ -231,6 +264,7 @@ describe(update, () => {
         Story.message(UpdatedSearchQuery({ value: '' })),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('')
+          expect(nextModel.pagefindSearch._tag).toBe('IdlePagefindSearch')
         }),
         Story.Command.expectNone(),
       )
@@ -245,6 +279,7 @@ describe(update, () => {
         Story.message(ClickedClearSearch()),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('')
+          expect(nextModel.pagefindSearch._tag).toBe('IdlePagefindSearch')
         }),
         Story.Command.expectNone(),
       )

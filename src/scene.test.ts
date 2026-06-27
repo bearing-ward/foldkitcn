@@ -12,12 +12,15 @@ import {
   HidCopiedIndicator,
   HideCopiedIndicator,
   HomeRoute,
+  IdlePagefindSearch,
   MobileNavigation,
   NotFoundRoute,
+  ReceivedPagefindSearchResults,
   RegistryLifecycleRoute,
   RegistryRoute,
   RegistrySchemaRoute,
   RoadmapRoute,
+  SearchPagefind,
   SucceededCopySnippet,
   update,
   view,
@@ -30,6 +33,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
   searchQuery: '',
+  pagefindSearch: IdlePagefindSearch(),
 })
 
 describe(view, () => {
@@ -75,12 +79,16 @@ describe(view, () => {
     )
   })
 
-  test('component search filters public generated records and clears', () => {
+  test('documentation search filters public generated records and clears', () => {
     Scene.scene(
       { update, view },
       Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
-      Scene.type(Scene.label('Search components'), 'button'),
-      Scene.expect(Scene.label('Search components')).toHaveValue('button'),
+      Scene.type(Scene.label('Search documentation'), 'button'),
+      Scene.Command.resolve(
+        SearchPagefind({ query: 'button' }),
+        ReceivedPagefindSearchResults({ query: 'button', results: [] }),
+      ),
+      Scene.expect(Scene.label('Search documentation')).toHaveValue('button'),
       Scene.expect(
         Scene.within(
           Scene.selector('.search-results'),
@@ -100,7 +108,7 @@ describe(view, () => {
         ),
       ).not.toExist(),
       Scene.click(Scene.role('button', { name: 'Clear component search' })),
-      Scene.expect(Scene.label('Search components')).toHaveValue(''),
+      Scene.expect(Scene.label('Search documentation')).toHaveValue(''),
       Scene.expect(Scene.selector('.search-results')).not.toExist(),
     )
   })
