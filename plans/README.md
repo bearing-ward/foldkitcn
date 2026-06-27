@@ -71,7 +71,7 @@ honor its STOP conditions, and update your row when done.
 | 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | DONE |
 | 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | DONE |
 | 063 | Add component docs sidecars and the shadcn Button page | P1 | M | 061, 062 | DONE |
-| 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | TODO |
+| 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | DONE |
 | 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | TODO |
 | 066 | Add static prerender and Pagefind search | P2 | L | 065 | TODO |
 | 067 | Add structured example docs artifacts | P2 | M | 063 | TODO |
