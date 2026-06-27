@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T02:40:03.236Z",
+  "generatedAt": "2026-06-27T02:58:35.938Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -2549,6 +2549,140 @@
           "path": "src/registry/base-ui/radio-group/index.ts",
           "sha256": "c6c2f913c58a201ce276eb04efa3df69c15a9116cd4bc1a11133b96a38b9acb8",
           "sizeBytes": 14126,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/radio",
+        "namespace": "base-ui",
+        "name": "Radio",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Radio primitive preserving controlled checked and unchecked states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyup activation, Enter suppression, and native radio form controls without internal state.",
+        "sourceRoot": "registry-src/base-ui/radio",
+        "installableSourcePaths": ["src/registry/base-ui/radio/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Radio",
+            "docsUrl": "https://base-ui.com/react/components/radio",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/radio",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/radio/index.parts.ts",
+              "repos/base-ui/packages/react/src/radio/index.ts",
+              "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.tsx",
+              "repos/base-ui/packages/react/src/radio/indicator/RadioIndicatorDataAttributes.ts",
+              "repos/base-ui/packages/react/src/radio/root/RadioRoot.tsx",
+              "repos/base-ui/packages/react/src/radio/root/RadioRootContext.ts",
+              "repos/base-ui/packages/react/src/radio/root/RadioRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/radio/utils/stateAttributesMapping.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/css-modules/index.module.css",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/index.ts",
+              "repos/base-ui/docs/src/app/(docs)/react/components/radio/demos/hero/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/radio/indicator/RadioIndicator.test.tsx",
+              "repos/base-ui/packages/react/src/radio/root/RadioRoot.test.tsx",
+              "repos/base-ui/packages/react/src/radio/root/RadioRoot.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and activation payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/radio",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/radio",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/radio",
+              "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/radio",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/radio.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/radio.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": ["base-ui-radio-model-owned-checked-state"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-radio-model-owned-checked-state",
+            "summary": "Checked state is controlled by the consuming Foldkit model instead of Base UI group context or hidden native input mutation.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit installable source is stateless and pure. User interaction emits a typed checked-change fact, and the consuming update owns whether the radio is selected."
+          }
+        ]
+      },
+      "manifestHash": "55e592f4975d1e849a09e400b6f4318061d3b1554d2351dfd502f1214593754b",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/radio/item.json",
+          "sha256": "104787bf5aeaaad632ed3dc0e07a4718dfc0d38f96efd0adb7a30669bfbf2965",
+          "sizeBytes": 5011,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/radio/index.ts",
+          "sha256": "38f3ceff52e951ba54ea3efffc38d03ff60197632e4dcdbb7fc2b8d5c8fc4b7e",
+          "sizeBytes": 7869,
           "role": "source"
         }
       ]

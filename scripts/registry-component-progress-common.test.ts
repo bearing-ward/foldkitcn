@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 25,
-      remaining: 13,
+      imported: 26,
+      remaining: 12,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
@@ -63,6 +63,7 @@ describe('origin component progress', () => {
       'base-ui/number-field',
       'base-ui/popover',
       'base-ui/progress',
+      'base-ui/radio',
       'base-ui/radio-group',
       'base-ui/separator',
       'base-ui/select',
@@ -127,10 +128,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/radio')
+    expect(nextRow?.itemId).toBe('base-ui/alert-dialog')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/radio',
+      'https://base-ui.com/react/components/alert-dialog',
+      'https://ui.shadcn.com/docs/components/alert-dialog',
     ])
   })
 

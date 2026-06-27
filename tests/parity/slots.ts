@@ -755,6 +755,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/radio',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/radio.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/radio.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'base-ui/radio-group',
     status: 'ready',
     originFixtureEntrypoint:

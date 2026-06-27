@@ -144,6 +144,7 @@ describe('parity canonicalizers', () => {
       'base-ui/tooltip',
       'shadcn/popover',
       'shadcn/tooltip',
+      'base-ui/radio',
       'base-ui/radio-group',
       'shadcn/radio-group',
       'base-ui/tabs',
