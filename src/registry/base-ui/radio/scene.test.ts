@@ -216,7 +216,7 @@ describe('base-ui/radio', () => {
     const [spaceModel] = update(initialModel, maybeSpaceMessage.value)
 
     expect(spaceModel.checkedState).toBe('checked')
-    expect(Option.isNone(keydownMessage(attributes, 'Enter'))).toBe(true)
+    expect(Option.isNone(keydownMessage(attributes, 'Enter'))).toBeTruthy()
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({}) },
@@ -260,7 +260,7 @@ describe('base-ui/radio', () => {
       onCheckedChange: change => ChangedRadio(change),
     })
 
-    expect(Option.isNone(keyupMessage(attributes, ' '))).toBe(true)
+    expect(Option.isNone(keyupMessage(attributes, ' '))).toBeTruthy()
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isDisabled: true }) },
@@ -284,7 +284,7 @@ describe('base-ui/radio', () => {
       onCheckedChange: change => ChangedRadio(change),
     })
 
-    expect(Option.isNone(keyupMessage(attributes, ' '))).toBe(true)
+    expect(Option.isNone(keyupMessage(attributes, ' '))).toBeTruthy()
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isReadOnly: true }) },
