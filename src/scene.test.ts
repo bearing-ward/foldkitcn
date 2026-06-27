@@ -29,6 +29,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
+  searchQuery: '',
 })
 
 describe(view, () => {
@@ -45,6 +46,62 @@ describe(view, () => {
       ).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Base UI' })).toExist(),
       Scene.expect(Scene.role('heading', { name: 'shadcn' })).toExist(),
+      Scene.expect(
+        Scene.role('link', { name: 'Button (base-ui/button)' }),
+      ).toHaveAttr('href', '/components/base-ui/button'),
+      Scene.expect(
+        Scene.role('link', { name: 'Button (shadcn/button)' }),
+      ).toHaveAttr('href', '/components/shadcn/button'),
+    )
+  })
+
+  test('the shell marks the active top nav and component route', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.role('navigation', { name: 'Primary' }),
+          Scene.role('link', { name: 'Components' }),
+        ),
+      ).toHaveAttr('aria-current', 'page'),
+      Scene.expect(
+        Scene.role('link', { name: 'Button (shadcn/button)' }),
+      ).toHaveAttr('aria-current', 'page'),
+    )
+  })
+
+  test('component search filters public generated records and clears', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.type(Scene.label('Search components'), 'button'),
+      Scene.expect(Scene.label('Search components')).toHaveValue('button'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.search-results'),
+          Scene.text('base-ui/button'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.search-results'),
+          Scene.text('shadcn/button'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.search-results'),
+          Scene.text('local/example-preview'),
+        ),
+      ).not.toExist(),
+      Scene.click(Scene.role('button', { name: 'Clear component search' })),
+      Scene.expect(Scene.label('Search components')).toHaveValue(''),
+      Scene.expect(Scene.selector('.search-results')).not.toExist(),
     )
   })
 
@@ -266,11 +323,31 @@ describe(view, () => {
     )
   })
 
-  test('Roadmap renders its page heading', () => {
+  test('Roadmap renders structured counts, candidates, and blockers', () => {
     Scene.scene(
       { update, view },
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
+      Scene.expect(Scene.text('27 of 38')).toExist(),
+      Scene.expect(Scene.text('29 of 64')).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Next candidates' }),
+      ).toExist(),
+      Scene.expect(Scene.text('shadcn/attachment')).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Blocked categories' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Foundation-gated rows' }),
+      ).toExist(),
+      Scene.expect(Scene.text('shadcn/chart')).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Docs/example-only rows' }),
+      ).toExist(),
+      Scene.expect(Scene.text('shadcn/data-table')).toExist(),
+      Scene.expect(
+        Scene.text('plans/artifacts', { exact: false }),
+      ).not.toExist(),
     )
   })
 

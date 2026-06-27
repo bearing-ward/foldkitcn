@@ -1,6 +1,7 @@
-import { Array, Match as M, Option, Schema as S, pipe } from 'effect'
+import { Array, Match as M, Option, Order, Schema as S, pipe } from 'effect'
 import { ts } from 'foldkit/schema'
 
+import progressReportJson from '../docs/component-conversion-checklist.json'
 import docsIndexJson from '../registry/docs/index.json'
 import localExamplePreviewDocsJson from '../registry/docs/local/example-preview.json'
 import shadcnButtonDocsJson from '../registry/docs/shadcn/button.json'
@@ -8,11 +9,13 @@ import registryIndexJson from '../registry/index.json'
 import {
   ComponentDocsArtifact,
   ComponentDocsIndex,
+  OriginComponentProgressReport,
   RegistryIndex,
 } from './registry/schema'
 import type {
   ComponentDocsArtifact as ComponentDocsArtifactType,
   ComponentDocsRoute,
+  OriginComponentProgressReport as OriginComponentProgressReportType,
   RegistryIndexEntry,
   RegistryNamespace,
 } from './registry/schema'
@@ -22,6 +25,7 @@ export const LoadedDocsData = ts('LoadedDocsData', {
   docsIndex: ComponentDocsIndex,
   localExamplePreviewDocs: ComponentDocsArtifact,
   shadcnButtonDocs: ComponentDocsArtifact,
+  progressReport: OriginComponentProgressReport,
 })
 export const FailedDocsData = ts('FailedDocsData', {
   message: S.String,
@@ -39,6 +43,14 @@ export type NamespaceGroup = Readonly<{
   namespace: RegistryNamespace
   label: string
   components: ReadonlyArray<PublicComponent>
+}>
+
+export type LoadedDocsDataValue = Readonly<{
+  registry: typeof RegistryIndex.Type
+  docsIndex: typeof ComponentDocsIndex.Type
+  localExamplePreviewDocs: ComponentDocsArtifactType
+  shadcnButtonDocs: ComponentDocsArtifactType
+  progressReport: OriginComponentProgressReportType
 }>
 
 const namespaceLabels: Readonly<Record<RegistryNamespace, string>> = {
@@ -71,6 +83,9 @@ const decodeDocsData = (): DocsData => {
       ),
       shadcnButtonDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
         shadcnButtonDocsJson,
+      ),
+      progressReport: S.decodeUnknownSync(OriginComponentProgressReport)(
+        progressReportJson,
       ),
     })
   } catch (error: unknown) {
@@ -161,6 +176,7 @@ export const namespaceGroups = (
     const namespaceComponents = pipe(
       components,
       Array.filter(component => component.entry.item.namespace === namespace),
+      Array.sortWith(component => component.entry.item.name, Order.String),
     )
 
     return Array.match(namespaceComponents, {

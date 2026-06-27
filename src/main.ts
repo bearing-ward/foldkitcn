@@ -5,6 +5,7 @@ import {
   Match as M,
   Option,
   Schema as S,
+  String as EffectString,
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
@@ -27,7 +28,14 @@ import {
   generatedComponentCount,
   LoadedDocsData,
   namespaceGroups,
+  publicComponents,
 } from './data'
+import { roadmapSnapshot } from './roadmap'
+import type { RoadmapBlockedGroup } from './roadmap'
+import type {
+  OriginComponentProgressReport,
+  OriginComponentProgressRow,
+} from './registry/schema'
 import {
   AppRoute,
   ComponentDetailRoute,
@@ -51,6 +59,10 @@ import {
   roadmapRouter,
   urlToAppRoute,
 } from './route'
+import {
+  componentSearchBadges,
+  searchPublicComponents,
+} from './search/component-search'
 
 export {
   ComponentDetailRoute,
@@ -85,6 +97,7 @@ export const Model = S.Struct({
   data: DocsData,
   mobileNavigation: MobileNavigation,
   copiedSnippets: S.HashSet(S.String),
+  searchQuery: S.String,
 })
 export type Model = typeof Model.Type
 
@@ -101,6 +114,8 @@ export const SucceededCopySnippet = m('SucceededCopySnippet', {
 })
 export const FailedCopySnippet = m('FailedCopySnippet')
 export const HidCopiedIndicator = m('HidCopiedIndicator', { text: S.String })
+export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
+export const ClickedClearSearch = m('ClickedClearSearch')
 
 export const Message = S.Union([
   CompletedNavigateInternal,
@@ -112,6 +127,8 @@ export const Message = S.Union([
   SucceededCopySnippet,
   FailedCopySnippet,
   HidCopiedIndicator,
+  UpdatedSearchQuery,
+  ClickedClearSearch,
 ])
 export type Message = typeof Message.Type
 
@@ -125,6 +142,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
     data: docsData,
     mobileNavigation: MobileNavigation({ isOpen: false }),
     copiedSnippets: HashSet.empty(),
+    searchQuery: '',
   },
   [],
 ]
@@ -221,32 +239,96 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      UpdatedSearchQuery: ({ value }) => [
+        evo(model, {
+          searchQuery: () => value,
+        }),
+        [],
+      ],
+      ClickedClearSearch: () => [
+        evo(model, {
+          searchQuery: () => '',
+        }),
+        [],
+      ],
     }),
   )
 
 // VIEW
 
-const navLinks = [
-  { label: 'Home', href: homeRouter({}) },
-  { label: 'Docs', href: docsRouter({}) },
-  { label: 'Components', href: componentsIndexRouter({}) },
-  { label: 'Registry', href: registryRouter({}) },
-  { label: 'Roadmap', href: roadmapRouter({}) },
+type PrimaryNavSection =
+  | 'home'
+  | 'docs'
+  | 'components'
+  | 'registry'
+  | 'roadmap'
+  | 'not-found'
+
+const navLinks: ReadonlyArray<
+  Readonly<{
+    label: string
+    href: string
+    section: PrimaryNavSection
+  }>
+> = [
+  { label: 'Home', href: homeRouter({}), section: 'home' },
+  { label: 'Docs', href: docsRouter({}), section: 'docs' },
+  {
+    label: 'Components',
+    href: componentsIndexRouter({}),
+    section: 'components',
+  },
+  { label: 'Registry', href: registryRouter({}), section: 'registry' },
+  { label: 'Roadmap', href: roadmapRouter({}), section: 'roadmap' },
 ]
 
-const pageLinks = [
-  { label: 'Registry Schema', href: registrySchemaRouter({}) },
-  { label: 'Registry Lifecycle', href: registryLifecycleRouter({}) },
-]
+const primaryNavSection = (route: AppRoute): PrimaryNavSection =>
+  M.value(route).pipe(
+    M.withReturnType<PrimaryNavSection>(),
+    M.tagsExhaustive({
+      Home: () => 'home',
+      Docs: () => 'docs',
+      ComponentsIndex: () => 'components',
+      ComponentsNamespace: () => 'components',
+      ComponentDetail: () => 'components',
+      Registry: () => 'registry',
+      RegistrySchema: () => 'registry',
+      RegistryLifecycle: () => 'registry',
+      Roadmap: () => 'roadmap',
+      NotFound: () => 'not-found',
+    }),
+  )
 
-const navLinkView = (label: string, href: string): Html => {
+const statusText = (value: string): string => value.replaceAll('-', ' ')
+
+const statusBadgeView = (value: string): Html => {
   const h = html<Message>()
 
-  return h.a([h.Class('docs-nav-link'), h.Href(href)], [label])
+  return h.span([h.Class(`status-badge status-${value}`)], [
+    statusText(value),
+  ])
+}
+
+const navLinkView = (
+  label: string,
+  href: string,
+  isActive: boolean,
+): Html => {
+  const h = html<Message>()
+
+  return h.a(
+    [
+      h.Class(isActive ? 'docs-nav-link active' : 'docs-nav-link'),
+      h.Href(href),
+      ...(isActive ? [h.AriaCurrent('page')] : []),
+    ],
+    [label],
+  )
 }
 
 const headerView = (model: Model): Html => {
   const h = html<Message>()
+  const activeSection = primaryNavSection(model.route)
 
   return h.header(
     [h.Class('site-header')],
@@ -257,7 +339,13 @@ const headerView = (model: Model): Html => {
         h.span([h.Class('brand-cn')], ['CN']),
       ]),
       h.nav([h.Class('desktop-nav'), h.AriaLabel('Primary')], [
-        ...navLinks.map(link => navLinkView(link.label, link.href)),
+        ...navLinks.map(link =>
+          navLinkView(
+            link.label,
+            link.href,
+            link.section === activeSection,
+          ),
+        ),
       ]),
       h.button(
         [
@@ -275,6 +363,7 @@ const headerView = (model: Model): Html => {
 
 const mobileNavigationView = (model: Model): Html => {
   const h = html<Message>()
+  const activeSection = primaryNavSection(model.route)
 
   return h.keyed('nav')(
     model.mobileNavigation.isOpen ? 'mobile-open' : 'mobile-closed',
@@ -286,23 +375,196 @@ const mobileNavigationView = (model: Model): Html => {
       ),
       h.AriaLabel('Mobile'),
     ],
-    navLinks.map(link => navLinkView(link.label, link.href)),
+    navLinks.map(link =>
+      navLinkView(link.label, link.href, link.section === activeSection),
+    ),
   )
 }
 
-const sidebarView = (groups: ReadonlyArray<NamespaceGroup>): Html => {
+const componentSlug = (component: PublicComponent): string =>
+  component.entry.item.id.split('/')[1] ?? ''
+
+const componentHref = (component: PublicComponent): string =>
+  componentDetailRouter({
+    namespace: component.entry.item.namespace,
+    slug: componentSlug(component),
+  })
+
+const isComponentsIndexRoute = (route: AppRoute): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => true,
+      ComponentsNamespace: () => false,
+      ComponentDetail: () => false,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const isComponentNamespaceActive = (
+  route: AppRoute,
+  namespace: string,
+): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => false,
+      ComponentsNamespace: route => route.namespace === namespace,
+      ComponentDetail: route => route.namespace === namespace,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const isComponentLinkActive = (
+  route: AppRoute,
+  component: PublicComponent,
+): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => false,
+      ComponentsNamespace: () => false,
+      ComponentDetail: ({ namespace, slug }) =>
+        component.entry.item.id === `${namespace}/${slug}`,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const searchResultView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('search-result')], [
+    h.a([h.Href(componentHref(component))], [
+      h.span([h.Class('search-result-title')], [component.entry.item.name]),
+      h.code([], [component.entry.item.id]),
+    ]),
+    h.div(
+      [h.Class('badge-row')],
+      componentSearchBadges(component).map(statusBadgeView),
+    ),
+  ])
+}
+
+const searchResultsView = (
+  query: string,
+  results: ReadonlyArray<PublicComponent>,
+): Html => {
+  const h = html<Message>()
+
+  if (EffectString.isEmpty(EffectString.trim(query))) {
+    return h.empty
+  }
+
+  return Array.match(results, {
+    onEmpty: () =>
+      h.p([h.Class('search-empty'), h.Role('status')], [
+        'No public components match that search.',
+      ]),
+    onNonEmpty: matches =>
+      h.ul([h.Class('search-results'), h.AriaLabel('Search results')], [
+        ...matches.map(searchResultView),
+      ]),
+  })
+}
+
+const componentSearchView = (model: Model): Html => {
+  const h = html<Message>()
+  const results = searchPublicComponents(
+    publicComponents(model.data),
+    model.searchQuery,
+  )
+  const isClearDisabled = EffectString.isEmpty(
+    EffectString.trim(model.searchQuery),
+  )
+
+  return h.div(
+    [h.Class('component-search'), h.Role('search'), h.AriaLabel('Component search')],
+    [
+      h.label([h.For('component-search-input'), h.Class('search-label')], [
+        'Search components',
+      ]),
+      h.div([h.Class('search-control')], [
+        h.input([
+          h.Id('component-search-input'),
+          h.Type('search'),
+          h.Placeholder('Search name, id, namespace, status'),
+          h.Value(model.searchQuery),
+          h.OnInput(value => UpdatedSearchQuery({ value })),
+        ]),
+        h.button(
+          [
+            h.Type('button'),
+            h.Class('search-clear-button'),
+            h.AriaLabel('Clear component search'),
+            h.Disabled(isClearDisabled),
+            h.OnClick(ClickedClearSearch()),
+          ],
+          ['Clear'],
+        ),
+      ]),
+      searchResultsView(model.searchQuery, results),
+    ],
+  )
+}
+
+const sidebarView = (
+  model: Model,
+  groups: ReadonlyArray<NamespaceGroup>,
+): Html => {
   const h = html<Message>()
 
   return h.aside(
     [h.Class('docs-sidebar')],
     [
+      componentSearchView(model),
       h.nav([h.AriaLabel('Component navigation')], [
-        h.a([h.Class('sidebar-root-link'), h.Href(componentsIndexRouter({}))], [
-          'All components',
-        ]),
+        h.a(
+          [
+            h.Class(
+              isComponentsIndexRoute(model.route)
+                ? 'sidebar-root-link active'
+                : 'sidebar-root-link',
+            ),
+            h.Href(componentsIndexRouter({})),
+            ...(isComponentsIndexRoute(model.route)
+              ? [h.AriaCurrent('page')]
+              : []),
+          ],
+          ['All components'],
+        ),
         ...groups.map(group =>
           h.section([h.Class('sidebar-group')], [
-            h.h2([h.Class('sidebar-heading')], [group.label]),
+            h.h2([h.Class('sidebar-heading')], [
+              h.a(
+                [
+                  h.Href(
+                    componentsNamespaceRouter({ namespace: group.namespace }),
+                  ),
+                  ...(isComponentNamespaceActive(model.route, group.namespace)
+                    ? [h.Class('active')]
+                    : []),
+                ],
+                [group.label],
+              ),
+            ]),
             h.ul(
               [h.Class('sidebar-list')],
               group.components.map(component =>
@@ -312,14 +574,20 @@ const sidebarView = (groups: ReadonlyArray<NamespaceGroup>): Html => {
                   [
                     h.a(
                       [
-                        h.Href(
-                          componentDetailRouter({
-                            namespace: component.entry.item.namespace,
-                            slug: component.entry.item.id.split('/')[1] ?? '',
-                          }),
+                        h.Href(componentHref(component)),
+                        h.AriaLabel(
+                          `${component.entry.item.name} (${component.entry.item.id})`,
                         ),
+                        ...(isComponentLinkActive(model.route, component)
+                          ? [h.Class('active'), h.AriaCurrent('page')]
+                          : []),
                       ],
-                      [component.entry.item.name],
+                      [
+                        h.span([], [component.entry.item.name]),
+                        component.entry.item.lifecycle.availability === 'preview'
+                          ? statusBadgeView('preview')
+                          : h.empty,
+                      ],
                     ),
                   ],
                 ),
@@ -357,7 +625,7 @@ const shellView = (model: Model, content: Html): Html => {
     headerView(model),
     mobileNavigationView(model),
     h.div([h.Class('docs-layout')], [
-      sidebarView(groups),
+      sidebarView(model, groups),
       h.main([h.Id('main-content'), h.Class('docs-main')], [
         h.keyed('div')(model.route._tag, [h.Class('route-frame')], [content]),
       ]),
@@ -552,8 +820,6 @@ const componentsNamespacePageView = (
   })
 }
 
-const statusText = (value: string): string => value.replaceAll('-', ' ')
-
 const installCommandFor = (itemId: string): string =>
   `bunx foldkitcn add ${itemId}`
 
@@ -698,14 +964,6 @@ const usageSectionView = (
   ])
 }
 
-const examplePreviewStatusView = (status: string): Html => {
-  const h = html<Message>()
-
-  return h.span([h.Class(`status-badge status-${status}`)], [
-    statusText(status),
-  ])
-}
-
 const examplesSectionView = (
   component: PublicComponent,
   copiedSnippets: HashSet.HashSet<string>,
@@ -726,7 +984,7 @@ const examplesSectionView = (
                   h.h3([], [example.title]),
                   h.p([], [example.description]),
                 ]),
-                examplePreviewStatusView(example.previewStatus),
+                statusBadgeView(example.previewStatus),
               ]),
               snippetBlockView(
                 example.snippet,
@@ -993,22 +1251,126 @@ const registryLifecyclePageView = (): Html => {
   ])
 }
 
-const roadmapPageView = (): Html => {
+const roadmapStatView = (
+  label: string,
+  value: string,
+  detail: string,
+): Html => {
   const h = html<Message>()
+
+  return h.div([h.Class('roadmap-stat')], [
+    h.dt([], [label]),
+    h.dd([], [value]),
+    h.p([], [detail]),
+  ])
+}
+
+const roadmapRowView = (row: OriginComponentProgressRow): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('roadmap-row')], [
+    h.div([h.Class('roadmap-row-header')], [
+      h.strong([], [row.itemId]),
+      statusBadgeView(row.readiness),
+    ]),
+    h.p([], [
+      row.readiness === 'blocked'
+        ? `${row.blockers.length} roadmap blocker${
+            row.blockers.length === 1 ? '' : 's'
+          } tracked in the progress report.`
+        : 'Origin evidence is available; the next step is a focused dossier.',
+    ]),
+    h.a([h.Class('source-link'), h.Href(row.docsUrl)], ['Origin docs']),
+  ])
+}
+
+const roadmapBlockedGroupView = (group: RoadmapBlockedGroup): Html => {
+  const h = html<Message>()
+
+  return h.article([h.Class('roadmap-group')], [
+    h.h3([], [group.label]),
+    h.p([], [group.summary]),
+    h.ul([h.Class('roadmap-list')], group.rows.map(roadmapRowView)),
+  ])
+}
+
+const roadmapLoadedPageView = (
+  progressReport: OriginComponentProgressReport,
+): Html => {
+  const h = html<Message>()
+  const snapshot = roadmapSnapshot(progressReport)
 
   return h.article([], [
     pageHeaderView(
       'Roadmap',
       'Roadmap',
-      'Planned, blocked, private, and docs-readiness work belongs here instead of public component navigation.',
+      'A product view of component availability, next candidates, and blocked work from the structured progress report.',
     ),
     h.section([h.Id('status'), h.Class('content-section')], [
-      h.h2([], ['Next data pass']),
-      h.p([], [
-        'Later plans can drive this page from generated progress data without changing the docs shell route contract.',
+      h.h2([], ['Available now']),
+      h.dl([h.Class('roadmap-stats')], [
+        roadmapStatView(
+          'Base UI',
+          `${snapshot.report.summary.baseUi.imported} of ${snapshot.report.summary.baseUi.total}`,
+          `${snapshot.report.summary.baseUi.remaining} remaining origin rows`,
+        ),
+        roadmapStatView(
+          'shadcn',
+          `${snapshot.report.summary.shadcn.imported} of ${snapshot.report.summary.shadcn.total}`,
+          `${snapshot.report.summary.shadcn.remaining} remaining origin rows`,
+        ),
+        roadmapStatView(
+          'Blocked',
+          String(snapshot.report.summary.blockedCount),
+          'Rows waiting on product or foundation decisions',
+        ),
+        roadmapStatView(
+          'Ready for dossier',
+          String(snapshot.report.summary.readyForDossierCount),
+          'Rows with enough source evidence for the next planning pass',
+        ),
       ]),
     ]),
+    h.section([h.Id('next-candidates'), h.Class('content-section')], [
+      h.h2([], ['Next candidates']),
+      h.p([], [
+        'These rows have enough public source evidence to start the next focused dossier without broad registry rewrites.',
+      ]),
+      h.ul([h.Class('roadmap-list')], snapshot.nextCandidates.map(roadmapRowView)),
+    ]),
+    h.section([h.Id('blocked'), h.Class('content-section')], [
+      h.h2([], ['Blocked categories']),
+      ...snapshot.blockedGroups.map(roadmapBlockedGroupView),
+    ]),
+    h.section([h.Id('next'), h.Class('content-section')], [
+      h.h2([], ['What is next']),
+      h.ul(
+        [h.Class('link-list')],
+        snapshot.nextSteps.map(step => h.li([], [step])),
+      ),
+    ]),
   ])
+}
+
+const roadmapPageView = (model: Model): Html => {
+  const h = html<Message>()
+
+  return M.value(model.data).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      LoadedDocsData: ({ progressReport }) =>
+        roadmapLoadedPageView(progressReport),
+      FailedDocsData: ({ message }) =>
+        h.article([], [
+          pageHeaderView(
+            'Roadmap',
+            'Roadmap',
+            'Progress data could not be loaded from the generated artifacts.',
+          ),
+          h.p([h.Class('data-error'), h.Role('status')], [message]),
+        ]),
+    }),
+  )
 }
 
 const notFoundPageView = (route: typeof NotFoundRoute.Type): Html => {
@@ -1042,7 +1404,7 @@ const routeContentView = (model: Model): Html =>
       Registry: () => registryPageView(),
       RegistrySchema: () => registrySchemaPageView(),
       RegistryLifecycle: () => registryLifecyclePageView(),
-      Roadmap: () => roadmapPageView(),
+      Roadmap: () => roadmapPageView(model),
       NotFound: route => notFoundPageView(route),
     }),
   )

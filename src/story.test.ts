@@ -6,6 +6,7 @@ import { describe, expect, test } from 'vitest'
 import { docsData } from './data'
 import {
   ChangedUrl,
+  ClickedClearSearch,
   ClickedCopySnippet,
   ComponentDetailRoute,
   ComponentsIndexRoute,
@@ -22,6 +23,7 @@ import {
   RegistrySchemaRoute,
   RoadmapRoute,
   SucceededCopySnippet,
+  UpdatedSearchQuery,
   componentDetailRouter,
   componentsIndexRouter,
   componentsNamespaceRouter,
@@ -41,6 +43,7 @@ const model: Model = {
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
+  searchQuery: '',
 }
 
 const urlOrThrow = (raw: string) =>
@@ -202,6 +205,46 @@ describe(update, () => {
         Story.message(SucceededCopySnippet({ text })),
         Story.model(nextModel => {
           expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+  })
+
+  describe(UpdatedSearchQuery, () => {
+    test('stores component search input in the model', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(UpdatedSearchQuery({ value: 'button' })),
+        Story.model(nextModel => {
+          expect(nextModel.searchQuery).toBe('button')
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+
+    test('clearing the search input empties the query', () => {
+      Story.story(
+        update,
+        Story.with({ ...model, searchQuery: 'button' }),
+        Story.message(UpdatedSearchQuery({ value: '' })),
+        Story.model(nextModel => {
+          expect(nextModel.searchQuery).toBe('')
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+  })
+
+  describe(ClickedClearSearch, () => {
+    test('clears the stored component search query', () => {
+      Story.story(
+        update,
+        Story.with({ ...model, searchQuery: 'button' }),
+        Story.message(ClickedClearSearch()),
+        Story.model(nextModel => {
+          expect(nextModel.searchQuery).toBe('')
         }),
         Story.Command.expectNone(),
       )
