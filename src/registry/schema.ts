@@ -430,3 +430,80 @@ export const RegistryIndex = S.Struct({
   items: S.Array(RegistryIndexEntry),
 })
 export type RegistryIndex = typeof RegistryIndex.Type
+
+export const InstallerItemId = S.String.check(
+  S.isPattern(
+    /^(?<namespace>base-ui|shadcn|utils|themes|blocks|charts|local)\/[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/u,
+  ),
+)
+export type InstallerItemId = typeof InstallerItemId.Type
+
+export const InstallTargetPath = S.String.check(
+  S.isPattern(
+    /^src\/components\/foldkitcn\/(?<namespace>base-ui|shadcn|utils|themes|blocks|charts|local)\/[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*\.ts$/u,
+  ),
+)
+export type InstallTargetPath = typeof InstallTargetPath.Type
+
+export const InstallerConflictPolicy = S.Union([
+  S.Literal('preserve'),
+  S.Literal('overwrite'),
+])
+export type InstallerConflictPolicy = typeof InstallerConflictPolicy.Type
+
+export const InstallerConfig = S.Struct({
+  itemId: InstallerItemId,
+  cwd: S.String,
+  registryIndexPath: S.String,
+  dryRun: S.Boolean,
+  conflictPolicy: InstallerConflictPolicy,
+})
+export type InstallerConfig = typeof InstallerConfig.Type
+
+export const InstallerWriteStatus = S.Union([
+  S.Literal('create'),
+  S.Literal('overwrite'),
+  S.Literal('skip-identical'),
+  S.Literal('conflict'),
+])
+export type InstallerWriteStatus = typeof InstallerWriteStatus.Type
+
+export const InstallerWriteOperation = S.Struct({
+  itemId: InstallerItemId,
+  sourcePath: S.String,
+  targetPath: InstallTargetPath,
+  targetAbsolutePath: S.String,
+  sha256: S.String,
+  content: S.String,
+  status: InstallerWriteStatus,
+})
+export type InstallerWriteOperation = typeof InstallerWriteOperation.Type
+
+export const InstallerWritePlan = S.Struct({
+  itemId: InstallerItemId,
+  cwd: S.String,
+  registryIndexPath: S.String,
+  conflictPolicy: InstallerConflictPolicy,
+  dependencies: S.Array(InstallerItemId),
+  operations: S.Array(InstallerWriteOperation),
+  hasConflicts: S.Boolean,
+})
+export type InstallerWritePlan = typeof InstallerWritePlan.Type
+
+export class InstallerError extends S.TaggedErrorClass<InstallerError>()(
+  'InstallerError',
+  {
+    reason: S.Union([
+      S.Literal('InvalidConfig'),
+      S.Literal('RegistryReadFailed'),
+      S.Literal('RegistryItemNotFound'),
+      S.Literal('RegistryItemNotInstallable'),
+      S.Literal('SourceReadFailed'),
+      S.Literal('UnsafeTargetPath'),
+      S.Literal('WriteConflict'),
+      S.Literal('WriteFailed'),
+    ]),
+    message: S.String,
+    path: S.OptionFromNullOr(S.String),
+  },
+) {}

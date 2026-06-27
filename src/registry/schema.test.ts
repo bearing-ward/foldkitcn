@@ -6,6 +6,10 @@ import {
   ComponentDocsRoute,
   DocsStatus,
   ExampleDocsArtifact,
+  InstallerConfig,
+  InstallerItemId,
+  InstallerWritePlan,
+  InstallTargetPath,
   RegistryItemManifest,
 } from './schema'
 import type { ExamplePreviewStatus } from './schema'
@@ -21,6 +25,55 @@ const exampleDocsArtifact = (previewStatus: ExamplePreviewStatus) => ({
   previewExportName: 'ButtonDefault',
   requiredRegistryItems: ['base-ui/button', 'utils/cn'],
   notes: [],
+})
+
+describe('installer schemas', () => {
+  test('decodes valid installer config and write plan boundaries', () => {
+    const config = S.decodeUnknownSync(InstallerConfig)({
+      itemId: 'shadcn/button',
+      cwd: '/tmp/foldkitcn-fixture',
+      registryIndexPath: 'registry/index.json',
+      dryRun: true,
+      conflictPolicy: 'preserve',
+    })
+    const plan = S.decodeUnknownSync(InstallerWritePlan)({
+      itemId: 'shadcn/button',
+      cwd: '/tmp/foldkitcn-fixture',
+      registryIndexPath: 'registry/index.json',
+      conflictPolicy: 'preserve',
+      dependencies: ['base-ui/button', 'utils/cn'],
+      operations: [
+        {
+          itemId: 'shadcn/button',
+          sourcePath: 'src/registry/shadcn/button/index.ts',
+          targetPath: 'src/components/foldkitcn/shadcn/button.ts',
+          targetAbsolutePath:
+            '/tmp/foldkitcn-fixture/src/components/foldkitcn/shadcn/button.ts',
+          sha256:
+            'f899e5b745c3d75ece719a5d3d0f2ef1a470812f7ace09cb1be642641f75e714',
+          content: 'export const Button = {}',
+          status: 'create',
+        },
+      ],
+      hasConflicts: false,
+    })
+
+    expect(config.itemId).toBe('shadcn/button')
+    expect(plan.operations[0]?.targetPath).toBe(
+      'src/components/foldkitcn/shadcn/button.ts',
+    )
+  })
+
+  test('rejects invalid installer item ids and target paths', () => {
+    expect(() => S.decodeUnknownSync(InstallerItemId)('../button')).toThrow(
+      /\.\.\/button/u,
+    )
+    expect(() =>
+      S.decodeUnknownSync(InstallTargetPath)(
+        'src/components/ui/shadcn/button.ts',
+      ),
+    ).toThrow(/src\/components\/ui\/shadcn\/button\.ts/u)
+  })
 })
 
 const validManifest = {

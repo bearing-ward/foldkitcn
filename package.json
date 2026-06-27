@@ -13,6 +13,7 @@
     "lint": "oxlint",
     "check": "ultracite check --disable-nested-config",
     "fix": "ultracite fix",
+    "foldkitcn": "bun run src/installer/entry.ts",
     "registry:check": "bun run scripts/check-registry.ts",
     "registry:build": "bun run scripts/build-registry.ts",
     "origin:resolve": "bun run scripts/resolve-origin-url.ts",
