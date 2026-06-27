@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T01:48:45.399Z",
+  "generatedAt": "2026-06-27T02:12:53.766Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1622,6 +1622,170 @@
           "path": "src/registry/base-ui/input/index.ts",
           "sha256": "a834d5b53d569036fb173567bb8c39518658f34eaff812bb8e042cb3b39fb13d",
           "sizeBytes": 4888,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/menu",
+        "namespace": "base-ui",
+        "name": "Menu",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Menu primitive preserving model-owned open, submenu, highlighted, checked, and radio state, popup/menu ARIA, local keyboard navigation, typeahead, disabled items, grouping, separators, arrows, deterministic placement attributes, and dismiss events.",
+        "sourceRoot": "registry-src/base-ui/menu",
+        "installableSourcePaths": ["src/registry/base-ui/menu/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Menu",
+            "docsUrl": "https://base-ui.com/react/components/menu",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/menu",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/menu/index.ts",
+              "repos/base-ui/packages/react/src/menu/root/MenuRoot.tsx",
+              "repos/base-ui/packages/react/src/menu/trigger/MenuTrigger.tsx",
+              "repos/base-ui/packages/react/src/menu/popup/MenuPopup.tsx",
+              "repos/base-ui/packages/react/src/menu/positioner/MenuPositioner.tsx",
+              "repos/base-ui/packages/react/src/menu/item/MenuItem.tsx",
+              "repos/base-ui/packages/react/src/menu/checkbox-item/MenuCheckboxItem.tsx",
+              "repos/base-ui/packages/react/src/menu/radio-item/MenuRadioItem.tsx",
+              "repos/base-ui/packages/react/src/menu/submenu-root/MenuSubmenuRoot.tsx",
+              "repos/base-ui/packages/react/src/menu/submenu-trigger/MenuSubmenuTrigger.tsx"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/checkbox-items/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/radio-items/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/submenu/css-modules/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/menu/root/MenuRoot.test.tsx",
+              "repos/base-ui/packages/react/src/menu/item/MenuItem.test.tsx",
+              "repos/base-ui/packages/react/src/menu/checkbox-item/MenuCheckboxItem.test.tsx",
+              "repos/base-ui/packages/react/src/menu/radio-item/MenuRadioItem.test.tsx",
+              "repos/base-ui/packages/react/src/menu/submenu-trigger/MenuSubmenuTrigger.test.tsx",
+              "repos/base-ui/packages/react/src/menu/positioner/MenuPositioner.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/popover",
+              "classification": "registry-local",
+              "target": "base-ui/popover",
+              "reason": "Menu reuses the local Popover focus command and deterministic placement conventions without creating another overlay stack."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, Command, and keyboard event helpers for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/menu",
+              "reason": "Origin Base UI React Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/menu",
+              "reason": "Origin Base UI React Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/menu",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/menu.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/menu.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-menu-model-owned-state",
+            "base-ui-menu-command-facing-focus-effects",
+            "base-ui-menu-deterministic-placement-attributes"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-menu-model-owned-state",
+            "summary": "Open, highlighted, submenu, checkbox, and radio state are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow and keeps menu state in the consuming model."
+          },
+          {
+            "id": "base-ui-menu-command-facing-focus-effects",
+            "summary": "Focus handoff and restoration reuse the Popover command-facing helpers instead of hiding side effects inside render helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Menu side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+          },
+          {
+            "id": "base-ui-menu-deterministic-placement-attributes",
+            "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, popup, and submenu attributes without DOM measurement or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Menu render helper side effect."
+          }
+        ]
+      },
+      "manifestHash": "0385f9ed59172778b1634448eab83c34854649f6107b277c38bbabb52f11581f",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/menu/item.json",
+          "sha256": "50c9d3899487f0c9dce6c7ba3e24efcc1cd2c486e3a7f0c3abb7284ba74136ee",
+          "sizeBytes": 6652,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/menu/index.ts",
+          "sha256": "572595e03a7f7b05bf6b7de53998c98152367a03af9f13e1b1a0195a7a20d848",
+          "sizeBytes": 27228,
           "role": "source"
         }
       ]
@@ -5762,6 +5926,258 @@
           "path": "src/registry/shadcn/dialog/examples.ts",
           "sha256": "b3a8904a6126a5b9b2fe0340f5cfd913cd5665db0ab2e1e06919fface025283a",
           "sizeBytes": 8526,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/dropdown-menu",
+        "namespace": "shadcn",
+        "name": "Dropdown Menu",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for basic, checkbox, radio, submenu, destructive, shortcuts, and RTL variants.",
+        "sourceRoot": "registry-src/shadcn/dropdown-menu",
+        "installableSourcePaths": [
+          "src/registry/shadcn/dropdown-menu/index.ts",
+          "src/registry/shadcn/dropdown-menu/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--accent",
+          "--accent-foreground",
+          "--background",
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Dropdown Menu",
+            "docsUrl": "https://ui.shadcn.com/docs/components/dropdown-menu",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/dropdown-menu.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/dropdown-menu.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/dropdown-menu.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/dropdown-menu-basic.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-demo.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-destructive.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-radio-group.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-shortcuts.tsx",
+              "repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/menu",
+              "classification": "registry-local",
+              "target": "base-ui/menu",
+              "reason": "shadcn Dropdown Menu composes the local Base UI Menu primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Dropdown Menu uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Dropdown Menu style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/menu",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Menu implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin check and chevron icons are represented by local inline SVG helpers in this batch."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/dropdown-menu-demo",
+            "title": "DropdownMenuDemo",
+            "description": "Default account dropdown menu.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-checkboxes",
+            "title": "DropdownMenuCheckboxes",
+            "description": "Checkbox menu items with model-owned checked state.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-radio-group",
+            "title": "DropdownMenuRadioGroup",
+            "description": "Radio menu items with model-owned selected value.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-submenu",
+            "title": "DropdownMenuSubmenu",
+            "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-destructive",
+            "title": "DropdownMenuDestructive",
+            "description": "Destructive menu variant.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-rtl",
+            "title": "DropdownMenuRtl",
+            "description": "RTL dropdown menu.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/dropdown-menu-shortcuts",
+            "title": "DropdownMenuShortcuts",
+            "description": "Dropdown menu with keyboard shortcut slots.",
+            "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/dropdown-menu",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-dropdown-menu-local-base-ui",
+            "shadcn-dropdown-menu-local-icons",
+            "shadcn-dropdown-menu-local-rtl-data",
+            "shadcn-dropdown-menu-deterministic-placement-attributes"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-dropdown-menu-local-base-ui",
+            "summary": "The shadcn wrapper composes local Menu attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+          },
+          {
+            "id": "shadcn-dropdown-menu-local-icons",
+            "summary": "Check and chevron icons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+          },
+          {
+            "id": "shadcn-dropdown-menu-local-rtl-data",
+            "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector."
+          },
+          {
+            "id": "shadcn-dropdown-menu-deterministic-placement-attributes",
+            "summary": "Positioner, content, and submenu content expose side, align, offset, and collision attributes without runtime DOM measurement or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+          }
+        ]
+      },
+      "manifestHash": "cd6c00f368048d3beb53ca5a189ddd6c61753e81252c3e610a5b526263496beb",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/dropdown-menu/item.json",
+          "sha256": "2c6c5d74165a48d8f243f7614bbb07d0da2db58296ebcbdc029b8c3454774209",
+          "sizeBytes": 8708,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/dropdown-menu/index.ts",
+          "sha256": "044031ef070eab1407dc795ef144a2edaa659d183c54eb297ba037a415e00116",
+          "sizeBytes": 16976,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/dropdown-menu/examples.ts",
+          "sha256": "946a185beecf1fdf1d1ece9ff2b06b013bdc506014f57a74e29052c8c3b790b1",
+          "sizeBytes": 6562,
           "role": "source"
         }
       ]

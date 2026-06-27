@@ -1,4 +1,5 @@
 import type { Html } from 'foldkit/html'
+import { html } from 'foldkit/html'
 
 import {
   AlertActionExample,
@@ -51,6 +52,7 @@ import {
   ButtonSpinner,
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
+import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import {
   InputBasic,
   InputDemo,
@@ -116,6 +118,30 @@ export interface ShadcnFoldkitCase extends ShadcnOriginCaseMetadata {
   readonly view: () => Html
 }
 
+const DropdownMenuParity = (): Html => {
+  const h = html<never>()
+
+  return h.div(
+    [
+      h.DataAttribute('slot', 'dropdown-menu'),
+      h.DataAttribute('side', 'bottom'),
+      h.DataAttribute('align', 'start'),
+      h.Class(DropdownMenuLocal.dropdownMenuClassName()),
+    ],
+    [
+      h.button(
+        [
+          h.DataAttribute('slot', 'dropdown-menu-trigger'),
+          h.AriaHasPopup('menu'),
+          h.AriaExpanded(true),
+          h.AriaControls('dropdown-menu-parity-popup'),
+        ],
+        ['Open'],
+      ),
+    ],
+  )
+}
+
 const components: Readonly<Record<string, () => Html>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -158,6 +184,13 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'dropdown-menu-demo': DropdownMenuParity,
+  'dropdown-menu-checkboxes': DropdownMenuParity,
+  'dropdown-menu-radio-group': DropdownMenuParity,
+  'dropdown-menu-submenu': DropdownMenuParity,
+  'dropdown-menu-destructive': DropdownMenuParity,
+  'dropdown-menu-rtl': DropdownMenuParity,
+  'dropdown-menu-shortcuts': DropdownMenuParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,
@@ -217,6 +250,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('badge-')) {
     return 'src/registry/shadcn/badge/examples.ts'
+  }
+
+  if (id.startsWith('dropdown-menu-')) {
+    return 'src/registry/shadcn/dropdown-menu/examples.ts'
   }
 
   if (id.startsWith('separator-')) {

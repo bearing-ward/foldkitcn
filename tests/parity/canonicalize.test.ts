@@ -128,6 +128,8 @@ describe('parity canonicalizers', () => {
       'shadcn/native-select',
       'base-ui/select',
       'shadcn/select',
+      'base-ui/menu',
+      'shadcn/dropdown-menu',
       'base-ui/separator',
       'shadcn/separator',
       'shadcn/progress',

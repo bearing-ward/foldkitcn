@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-27T01:26:39.987Z
+Generated at: 2026-06-27T02:12:55.120Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       24 |    38 |        14 |
-| shadcn docs  |       27 |    64 |        37 |
+| Base UI docs |       25 |    38 |        13 |
+| shadcn docs  |       28 |    64 |        36 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 5
-- Dossier-ready rows: 41
+- Dossier-ready rows: 39
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-27T01:26:39.987Z
 
 | Item                   | Readiness     | Parity      | URLs                                                                                                                        | Blockers |
 | ---------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/menu`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu)        |          |
 | `base-ui/radio`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio)                                                                        |          |
 | `base-ui/alert-dialog` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog) |          |
 | `base-ui/context-menu` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu) |          |
+| `base-ui/otp-field`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/otp-field)<br>[origin](https://ui.shadcn.com/docs/components/input-otp)       |          |
 
 ## Imported Items
 
@@ -78,6 +78,8 @@ Generated at: 2026-06-27T01:26:39.987Z
 - `base-ui/checkbox-group`
 - `base-ui/select`
 - `shadcn/select`
+- `base-ui/menu`
+- `shadcn/dropdown-menu`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -94,9 +96,7 @@ Generated at: 2026-06-27T01:26:39.987Z
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/menu`            | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu)              |          |
 | `base-ui/radio`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/radio)                                                                              |          |
-| `shadcn/dropdown-menu`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menu)<br>[origin](https://ui.shadcn.com/docs/components/dropdown-menu)              |          |
 | `base-ui/alert-dialog`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
 | `shadcn/alert-dialog`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/alert-dialog)<br>[origin](https://ui.shadcn.com/docs/components/alert-dialog)       |          |
 | `base-ui/context-menu`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/context-menu)<br>[origin](https://ui.shadcn.com/docs/components/context-menu)       |          |

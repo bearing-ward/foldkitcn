@@ -311,6 +311,46 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-list.tsx',
     },
     {
+      id: 'dropdown-menu-demo',
+      title: 'Dropdown Menu demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/dropdown-menu-demo.tsx',
+    },
+    {
+      id: 'dropdown-menu-checkboxes',
+      title: 'Dropdown Menu checkboxes',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes.tsx',
+    },
+    {
+      id: 'dropdown-menu-radio-group',
+      title: 'Dropdown Menu radio group',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/dropdown-menu-radio-group.tsx',
+    },
+    {
+      id: 'dropdown-menu-submenu',
+      title: 'Dropdown Menu submenu',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx',
+    },
+    {
+      id: 'dropdown-menu-destructive',
+      title: 'Dropdown Menu destructive',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/dropdown-menu-destructive.tsx',
+    },
+    {
+      id: 'dropdown-menu-rtl',
+      title: 'Dropdown Menu RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/dropdown-menu-rtl.tsx',
+    },
+    {
+      id: 'dropdown-menu-shortcuts',
+      title: 'Dropdown Menu shortcuts',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/dropdown-menu-shortcuts.tsx',
+    },
+    {
       id: 'separator-menu',
       title: 'Separator menu',
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-menu.tsx',

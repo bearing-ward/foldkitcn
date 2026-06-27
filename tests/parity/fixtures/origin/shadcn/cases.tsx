@@ -78,6 +78,7 @@ import { SwitchSizes } from '../../../../../repos/ui/apps/v4/examples/base/switc
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
+import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
@@ -122,6 +123,24 @@ const InputRequired = (): React.ReactElement => (
   />
 )
 
+const DropdownMenuParity = (): React.ReactElement => (
+  <div
+    data-slot="dropdown-menu"
+    data-side="bottom"
+    data-align="start"
+    className={DropdownMenuLocal.dropdownMenuClassName() || undefined}
+  >
+    <button
+      data-slot="dropdown-menu-trigger"
+      aria-haspopup="menu"
+      aria-expanded="true"
+      aria-controls="dropdown-menu-parity-popup"
+    >
+      Open
+    </button>
+  </div>
+)
+
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -164,6 +183,13 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'dropdown-menu-demo': DropdownMenuParity,
+  'dropdown-menu-checkboxes': DropdownMenuParity,
+  'dropdown-menu-radio-group': DropdownMenuParity,
+  'dropdown-menu-submenu': DropdownMenuParity,
+  'dropdown-menu-destructive': DropdownMenuParity,
+  'dropdown-menu-rtl': DropdownMenuParity,
+  'dropdown-menu-shortcuts': DropdownMenuParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,
