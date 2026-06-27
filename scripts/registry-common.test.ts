@@ -2,6 +2,8 @@ import { describe, expect, test } from 'vitest'
 
 import type { RegistryIndex } from '../src/registry/schema'
 import {
+  buildComponentDocsArtifacts,
+  componentDocsRouteForItem,
   registryIndexIsCurrent,
   selectRegistryGeneratedAt,
 } from './registry-common'
@@ -11,6 +13,51 @@ const emptyIndex = (generatedAt: string): RegistryIndex => ({
   generatedAt,
   sourceRoot: 'registry-src',
   items: [],
+})
+
+const registryIndexWithShadcnButton = (): RegistryIndex => ({
+  schemaVersion: 1,
+  generatedAt: '2026-06-24T18:00:00.000Z',
+  sourceRoot: 'registry-src',
+  items: [
+    {
+      item: {
+        schemaVersion: 1,
+        id: 'shadcn/button',
+        namespace: 'shadcn',
+        name: 'Button',
+        kind: 'component',
+        description: 'Foldkit-native shadcn Button wrapper.',
+        sourceRoot: 'registry-src/shadcn/button',
+        installableSourcePaths: ['src/registry/shadcn/button/index.ts'],
+        consumedThemeTokens: [],
+        originProvenance: [],
+        dependencies: {
+          registry: [],
+          runtime: [],
+          development: [],
+        },
+        examples: [],
+        parity: {
+          itemId: 'shadcn/button',
+          originFixturePath: '',
+          foldkitFixturePath: '',
+          requiredComparisons: [],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+          docsStatus: 'missing',
+        },
+        deviations: [],
+      },
+      manifestHash: 'button-hash',
+      artifacts: [],
+    },
+  ],
 })
 
 describe('registry build helpers', () => {
@@ -72,5 +119,16 @@ describe('registry build helpers', () => {
     expect(
       registryIndexIsCurrent(previousIndex, nextIndexWithPreservedGeneratedAt),
     ).toBeTruthy()
+  })
+
+  test('builds the generated docs artifact route for shadcn button', () => {
+    const index = registryIndexWithShadcnButton()
+    const route = componentDocsRouteForItem(index.items[0].item)
+    const docs = buildComponentDocsArtifacts(index)
+
+    expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
+    expect(docs.index.routes).toStrictEqual([route])
+    expect(docs.artifacts[0]?.routePath).toBe('/components/shadcn/button')
+    expect(docs.artifacts[0]?.docsStatus).toBe('missing')
   })
 })

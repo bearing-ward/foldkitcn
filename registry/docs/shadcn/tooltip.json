@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/tooltip",
+  "routePath": "/components/shadcn/tooltip",
+  "title": "Tooltip",
+  "description": "Foldkit-native shadcn base-nova Tooltip wrapper composed from the local Base UI Tooltip primitive, shadcn slot classes, local class canonicalization, deterministic delay and placement attributes, arrow styling, and local static examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/tooltip",
+  "defaultImportPath": "shadcn/tooltip",
+  "examples": [
+    {
+      "id": "shadcn/tooltip-demo",
+      "title": "TooltipDemo",
+      "description": "Basic Tooltip with local Button trigger and default top content placement.",
+      "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/tooltip-disabled",
+      "title": "TooltipDisabled",
+      "description": "Tooltip over a disabled local Button trigger shell.",
+      "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/tooltip-keyboard",
+      "title": "TooltipKeyboard",
+      "description": "Tooltip with a local icon shell and local Kbd composition.",
+      "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/tooltip-rtl",
+      "title": "TooltipRtl",
+      "description": "RTL Tooltip examples with physical and logical side attributes.",
+      "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/tooltip-sides",
+      "title": "TooltipSides",
+      "description": "Tooltip examples rendered across the supported physical sides.",
+      "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-tooltip-local-base-ui",
+        "summary": "The shadcn wrapper composes local Tooltip attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-tooltip-local-example-shells",
+        "summary": "Examples use local Button, Kbd, deterministic RTL labels, and local icon shells instead of unavailable origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Tooltip slice preserves the relevant DOM, class, ARIA, and visual contracts without adding React, lucide-react, or app-local language selector runtime dependencies."
+      },
+      {
+        "id": "shadcn-tooltip-delay-as-model-facing-facts",
+        "summary": "Delay and provider grouping are exposed as deterministic attributes and consumer-owned open-change facts.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Tooltip remains a pure Foldkit render helper and does not hide timers in installable view code."
+      },
+      {
+        "id": "shadcn-tooltip-deterministic-placement-attributes",
+        "summary": "Positioner and content expose side, align, offset, collision, viewport, and arrow attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/switch",
+  "routePath": "/components/base-ui/switch",
+  "title": "Switch",
+  "description": "Foldkit-native Base UI Switch primitive preserving controlled checked state, root and thumb data attributes, disabled/read-only/required/invalid states, keyboard activation, and native checkbox form controls without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/switch",
+  "defaultImportPath": "base-ui/switch",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

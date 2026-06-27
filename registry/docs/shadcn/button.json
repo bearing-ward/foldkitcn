@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/button",
+  "routePath": "/components/shadcn/button",
+  "title": "Button",
+  "description": "Foldkit-native shadcn base-nova Button wrapper using local Base UI Button behavior and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/button",
+  "defaultImportPath": "shadcn/button",
+  "examples": [
+    {
+      "id": "shadcn/button-default",
+      "title": "ButtonDefault",
+      "description": "Default shadcn Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-demo",
+      "title": "ButtonDemo",
+      "description": "Outline Button and icon Button demo.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-outline",
+      "title": "ButtonOutline",
+      "description": "Outline variant Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-secondary",
+      "title": "ButtonSecondary",
+      "description": "Secondary variant Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-ghost",
+      "title": "ButtonGhost",
+      "description": "Ghost variant Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-destructive",
+      "title": "ButtonDestructive",
+      "description": "Destructive variant Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-link",
+      "title": "ButtonLink",
+      "description": "Link variant Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-icon",
+      "title": "ButtonIcon",
+      "description": "Icon-sized Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-with-icon",
+      "title": "ButtonWithIcon",
+      "description": "Inline start and end icon Button examples.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-size",
+      "title": "ButtonSize",
+      "description": "Button size matrix example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-rounded",
+      "title": "ButtonRounded",
+      "description": "Rounded Button example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-spinner",
+      "title": "ButtonSpinner",
+      "description": "Disabled Button examples using an example-local spinner helper.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-render",
+      "title": "ButtonRender",
+      "description": "Plain anchor using the shadcn Button class helper.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/button-rtl",
+      "title": "ButtonRtl",
+      "description": "RTL Button layout example.",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-button-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react or @tabler/icons-react. Local SVGs preserve the inline icon DOM role and visual footprint for Button examples without adding icon registry items."
+      }
+    ]
+  }
+}

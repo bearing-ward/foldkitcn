@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/field",
+  "routePath": "/components/shadcn/field",
+  "title": "Field",
+  "description": "Foldkit-native shadcn base-nova Field composition helpers layered over local Base UI Field semantics with base-nova Field, FieldSet, FieldLegend, FieldGroup, FieldContent, FieldLabel, FieldDescription, FieldSeparator, FieldTitle, and FieldError classes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/field",
+  "defaultImportPath": "shadcn/field",
+  "examples": [
+    {
+      "id": "shadcn/field-input",
+      "title": "FieldInput",
+      "description": "FieldSet, FieldGroup, Field, FieldLabel, Input, and FieldDescription composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-checkbox",
+      "title": "FieldCheckbox",
+      "description": "Checkbox, horizontal Field, FieldContent, and FieldSeparator composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-responsive",
+      "title": "FieldResponsive",
+      "description": "Responsive orientation Field with Input and Button composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-rtl",
+      "title": "FieldRtl",
+      "description": "RTL Field composition using local static strings instead of the origin language selector.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-textarea",
+      "title": "FieldTextarea",
+      "description": "Field and Textarea composition.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/field-origin-fixture",
+      "title": "FieldOriginFixture",
+      "description": "Static origin-evidence fixture derived from base-nova Field source.",
+      "sourcePath": "tests/parity/fixtures/origin/shadcn/field.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "shadcn/field-foldkit-fixture",
+      "title": "FieldFoldkitFixture",
+      "description": "Foldkit parity fixture for dependency-complete shadcn Field composition.",
+      "sourcePath": "tests/parity/fixtures/foldkit/shadcn/field.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-field-cva-replaced",
+        "summary": "CVA orientation variants are represented by Effect Schema literals and pure class maps.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source avoids CVA while preserving the pinned base-nova class strings."
+      },
+      {
+        "id": "shadcn-field-local-rtl-data",
+        "summary": "RTL example uses local static strings instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local RTL strings preserve direction and field semantics without adding an app-only dependency."
+      },
+      {
+        "id": "shadcn-field-deferred-missing-component-examples",
+        "summary": "Origin examples requiring missing Select or app-only dependencies are not installable examples.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The plan forbids adding runtime dependencies for components that are not dependency-complete. Those examples remain origin evidence until their dependencies are available."
+      },
+      {
+        "id": "shadcn-field-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for dependency-complete Field composition.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The fixture proves the base-nova slots and class tokens without pulling React, CVA, or app-only dependencies into installable source."
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/radio-group",
+  "routePath": "/components/base-ui/radio-group",
+  "title": "Radio Group",
+  "description": "Foldkit-native Base UI Radio Group primitive preserving controlled group value semantics, item checked state, disabled/read-only/required/invalid states, arrow-key roving selection payloads, Space keyup activation, and native radio form inputs without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/radio-group",
+  "defaultImportPath": "base-ui/radio-group",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-radio-group-focus-selector-payload",
+        "summary": "Arrow-key roving selection emits a focus selector payload instead of mutating focus internally.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit installable source is stateless and pure. The consuming update owns model changes and can run focus commands from the emitted selector without hidden component state."
+      },
+      {
+        "id": "base-ui-radio-group-radio-parts-colocated",
+        "summary": "Radio root, indicator, and input semantics are exposed through the Radio Group item descriptors instead of a separate base-ui/radio registry item.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This implementation slice is scoped to base-ui/radio-group and shadcn/radio-group. Colocating item attributes preserves the public grouped radio behavior without introducing an out-of-scope registry item."
+      }
+    ]
+  }
+}

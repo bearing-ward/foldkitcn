@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/checkbox",
+  "routePath": "/components/shadcn/checkbox",
+  "title": "Checkbox",
+  "description": "Foldkit-native shadcn base-nova Checkbox wrapper composed from the local Base UI Checkbox primitive, shadcn root and indicator slots, local inline check SVG, and local fixture shells for Field, Label, and Table example layouts.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/checkbox",
+  "defaultImportPath": "shadcn/checkbox",
+  "examples": [
+    {
+      "id": "shadcn/checkbox-demo",
+      "title": "CheckboxDemo",
+      "description": "Mixed Checkbox field group with labels, description, disabled state, and choice-card shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-basic",
+      "title": "CheckboxBasic",
+      "description": "Basic Checkbox and FieldLabel layout.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-description",
+      "title": "CheckboxDescription",
+      "description": "Checked Checkbox with FieldContent and FieldDescription shells.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-disabled",
+      "title": "CheckboxDisabled",
+      "description": "Disabled Checkbox example with Field data-disabled shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-invalid",
+      "title": "CheckboxInvalid",
+      "description": "Invalid Checkbox example with aria-invalid and Field data-invalid shell.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-group",
+      "title": "CheckboxGroup",
+      "description": "Checkbox group layout using local FieldSet and FieldLegend shells.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-table",
+      "title": "CheckboxInTable",
+      "description": "Checkbox table selection layout using local Table shells and an indeterminate select-all checkbox.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/checkbox-rtl",
+      "title": "CheckboxRtl",
+      "description": "RTL Checkbox layout using local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-checkbox-inline-check-icon",
+        "summary": "The lucide CheckIcon import is replaced by a local inline SVG.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not add lucide-react as a runtime dependency. The local SVG preserves the rendered check shape without React."
+      },
+      {
+        "id": "shadcn-checkbox-local-field-label-table-shells",
+        "summary": "Field, Label, and Table example layouts use local fixture shells until those registry items land.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Checkbox component must be installable before shadcn Field, Label, and Table. Local shells preserve rendered slot, class, and example layout parity without introducing unavailable registry dependencies."
+      },
+      {
+        "id": "shadcn-checkbox-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+      }
+    ]
+  }
+}

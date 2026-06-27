@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/toggle",
+  "routePath": "/components/shadcn/toggle",
+  "title": "Toggle",
+  "description": "Foldkit-native shadcn base-nova Toggle wrapper using the local Base UI Toggle primitive, Effect Schema variant and size literals, and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/toggle",
+  "defaultImportPath": "shadcn/toggle",
+  "examples": [
+    {
+      "id": "shadcn/toggle-demo",
+      "title": "ToggleDemo",
+      "description": "Bookmark Toggle demo with outline styling and a local icon.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-disabled",
+      "title": "ToggleDisabled",
+      "description": "Disabled default and outline Toggle examples.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-outline",
+      "title": "ToggleOutline",
+      "description": "Outline Toggle examples with local formatting icons.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-rtl",
+      "title": "ToggleRtl",
+      "description": "RTL Toggle layout using local Arabic text.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-sizes",
+      "title": "ToggleSizes",
+      "description": "Small, default, and large outline Toggle examples.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-text",
+      "title": "ToggleText",
+      "description": "Default text Toggle example with a local icon.",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-toggle-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Toggle examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-toggle-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+      }
+    ]
+  }
+}

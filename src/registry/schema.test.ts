@@ -1,7 +1,13 @@
 import { Schema as S } from 'effect'
 import { describe, expect, test } from 'vitest'
 
-import { RegistryItemManifest } from './schema'
+import {
+  ComponentDocsArtifact,
+  ComponentDocsRoute,
+  DocsStatus,
+  ExampleDocsArtifact,
+  RegistryItemManifest,
+} from './schema'
 
 const validManifest = {
   schemaVersion: 1,
@@ -32,6 +38,7 @@ const validManifest = {
     parityStatus: 'not-started',
     driftStatus: 'unknown',
     availability: 'private',
+    docsStatus: 'missing',
   },
   deviations: [],
 }
@@ -56,5 +63,73 @@ describe('registry item manifest schema', () => {
     expect(() =>
       S.decodeUnknownSync(RegistryItemManifest)(invalidManifest),
     ).toThrow(/public/u)
+  })
+})
+
+describe('generated docs artifact schemas', () => {
+  test('decodes docs status values', () => {
+    expect(S.decodeUnknownSync(DocsStatus)('missing')).toBe('missing')
+    expect(() => S.decodeUnknownSync(DocsStatus)('draft')).toThrow(/draft/u)
+  })
+
+  test('decodes component docs routes', () => {
+    const route = S.decodeUnknownSync(ComponentDocsRoute)({
+      itemId: 'shadcn/button',
+      routePath: '/components/shadcn/button',
+      docsArtifactPath: 'registry/docs/shadcn/button.json',
+    })
+
+    expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
+  })
+
+  test('decodes example docs artifacts', () => {
+    const example = S.decodeUnknownSync(ExampleDocsArtifact)({
+      id: 'shadcn/button-default',
+      title: 'ButtonDefault',
+      description: 'Default shadcn Button example.',
+      sourcePath: 'src/registry/shadcn/button/examples.ts',
+      kind: 'demo',
+    })
+
+    expect(example.kind).toBe('demo')
+  })
+
+  test('encodes and decodes component docs artifacts', () => {
+    const artifact = S.decodeUnknownSync(ComponentDocsArtifact)({
+      schemaVersion: 1,
+      itemId: 'shadcn/button',
+      routePath: '/components/shadcn/button',
+      title: 'Button',
+      description: 'Foldkit-native shadcn button wrapper.',
+      docsStatus: 'complete',
+      markdownPath: 'registry-src/shadcn/button/docs.md',
+      markdown: '# Usage\n',
+      headings: [{ id: 'usage', text: 'Usage', level: 1 }],
+      installCommand: null,
+      localInstallPath: 'src/registry/shadcn/button',
+      defaultImportPath: 'shadcn/button',
+      examples: [
+        {
+          id: 'shadcn/button-default',
+          title: 'ButtonDefault',
+          description: 'Default shadcn Button example.',
+          sourcePath: 'src/registry/shadcn/button/examples.ts',
+          kind: 'demo',
+        },
+      ],
+      quality: {
+        availability: 'installable',
+        implementationStatus: 'implemented',
+        parityStatus: 'accepted',
+        driftStatus: 'current',
+        deviations: [],
+      },
+    })
+
+    expect(
+      S.decodeUnknownSync(ComponentDocsArtifact)(
+        S.encodeSync(ComponentDocsArtifact)(artifact),
+      ),
+    ).toStrictEqual(artifact)
   })
 })

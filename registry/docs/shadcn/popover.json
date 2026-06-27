@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/popover",
+  "routePath": "/components/shadcn/popover",
+  "title": "Popover",
+  "description": "Foldkit-native shadcn base-nova Popover wrapper composed from the local Base UI Popover primitive, shadcn slot classes, local class canonicalization, deterministic modal and placement attributes, and local static examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/popover",
+  "defaultImportPath": "shadcn/popover",
+  "examples": [
+    {
+      "id": "shadcn/popover-basic",
+      "title": "PopoverBasic",
+      "description": "Popover with header, title, description, and start alignment.",
+      "sourcePath": "src/registry/shadcn/popover/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/popover-demo",
+      "title": "PopoverDemo",
+      "description": "Dimensions popover with local static field and input markup.",
+      "sourcePath": "src/registry/shadcn/popover/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/popover-form",
+      "title": "PopoverForm",
+      "description": "Compact form popover using local static Field and Label shells.",
+      "sourcePath": "src/registry/shadcn/popover/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/popover-alignments",
+      "title": "PopoverAlignments",
+      "description": "Three deterministic alignments rendered from the local Popover wrapper.",
+      "sourcePath": "src/registry/shadcn/popover/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/popover-rtl",
+      "title": "PopoverRtl",
+      "description": "RTL popover examples with physical and logical side attributes.",
+      "sourcePath": "src/registry/shadcn/popover/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-popover-local-base-ui",
+        "summary": "The shadcn wrapper composes local Popover attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-popover-local-example-shells",
+        "summary": "Examples use local static Button, Field, Label, Input, and RTL shells instead of unavailable origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Field and Label are outside this component slice. Static local markup preserves the relevant Popover DOM, class, ARIA, and visual contracts."
+      },
+      {
+        "id": "shadcn-popover-deterministic-placement-attributes",
+        "summary": "Positioner and content expose side, align, offset, and collision attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      },
+      {
+        "id": "shadcn-popover-partial-modal-trap-focus",
+        "summary": "The wrapper passes through the local Base UI modal surface, including data and ARIA attributes, but inherits the partial non-dialog trap-focus and pointer-isolation support.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The local Base UI Popover exposes modal as structured Foldkit data and commands without claiming full upstream modal parity where Foldkit has no reusable non-dialog focus-trap or pointer-isolation primitive."
+      }
+    ]
+  }
+}

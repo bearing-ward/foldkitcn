@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T11:25:04.041Z",
+  "generatedAt": "2026-06-27T21:24:36.884Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -127,7 +127,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -153,12 +154,12 @@
           }
         ]
       },
-      "manifestHash": "c724314214f178483d595c63ed4db335c276bb25deb21bb623a3c27bc15185c5",
+      "manifestHash": "98565433d89bacee93e6fae109172a440dfacf922e51ff0ace342dce072cc495",
       "artifacts": [
         {
           "path": "registry-src/base-ui/accordion/item.json",
-          "sha256": "805811e189e2b0ee5f53bec966293f1a85fee5f0425797fa4984f64c9021c9de",
-          "sizeBytes": 7442,
+          "sha256": "89042881147e14019f1b7495ef2e6ae1177ba42ac15da24be45e066839ea2782",
+          "sizeBytes": 7471,
           "role": "manifest"
         },
         {
@@ -285,7 +286,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -318,12 +320,12 @@
           }
         ]
       },
-      "manifestHash": "a6a8a0039ce6d777dd7e68930dc520ad5757b72ed2d8cab0aa1fd32c250ba71b",
+      "manifestHash": "b3745c163e1121f407db46e25a9fe9cb20a5d0e9a958659469b0716ee8987c18",
       "artifacts": [
         {
           "path": "registry-src/base-ui/alert-dialog/item.json",
-          "sha256": "37166ff80c374e82dcb9727d98bc88444a31fee6b6ed8650a28b81ffa29353ed",
-          "sizeBytes": 6651,
+          "sha256": "7ab1fde2afc3d8180b38b5a53f5ee81d88329412a9ab294d894c64283d117a81",
+          "sizeBytes": 6680,
           "role": "manifest"
         },
         {
@@ -439,7 +441,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -458,12 +461,12 @@
           }
         ]
       },
-      "manifestHash": "38b43398f7162b1b2a05b663db4acf4108dd8f5ac917ac2c37392f30d2317851",
+      "manifestHash": "bac8ae96d505ad72572b65d3459df1ef35fc70430be915892a1cd34e11ea847f",
       "artifacts": [
         {
           "path": "registry-src/base-ui/avatar/item.json",
-          "sha256": "9f37041c91b8c88a6fe2f7d54112afb283b0e29e16b5ba589a921b947fe05eca",
-          "sizeBytes": 5364,
+          "sha256": "fe5f8cf4869f4086bc5172ec1e20dbad28090aaea21296199fed6b9aad4d373b",
+          "sizeBytes": 5393,
           "role": "manifest"
         },
         {
@@ -563,16 +566,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "1922249e50599383ee422a81e8047be68ac19c3d6e0c0fa17ff007aa6a571f7b",
+      "manifestHash": "e8cd881c528ec2656431dd47acdd7be57f90c9b29dbfbb890150be881a8d58f3",
       "artifacts": [
         {
           "path": "registry-src/base-ui/button/item.json",
-          "sha256": "e69c6502dbd9c6bd7afa85c06e986d5046a4f8b4731bf984d580167ac1fa7d24",
-          "sizeBytes": 3544,
+          "sha256": "13de2157260f03856801cfbb32b1bc68b87e76a084cfff584683722c22749e0f",
+          "sizeBytes": 3573,
           "role": "manifest"
         },
         {
@@ -701,7 +705,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -713,12 +718,12 @@
           }
         ]
       },
-      "manifestHash": "3731850433aaf80d658a36a6ff2c021267319126f8ae93b23682f2800396fdff",
+      "manifestHash": "ce51b425f184f7642a853c2e931d9c7d567c17063ceabaf73efa61b2b753af7a",
       "artifacts": [
         {
           "path": "registry-src/base-ui/checkbox-group/item.json",
-          "sha256": "ffa9fb06173ae05a1edc91248120a526cfe19c5c9b0dfd907c95a2d0fa09d0eb",
-          "sizeBytes": 5478,
+          "sha256": "002abd675883a8558668b408e45abc02c95b52d140069867f5e5d84aeec9dddc",
+          "sizeBytes": 5507,
           "role": "manifest"
         },
         {
@@ -824,7 +829,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -836,12 +842,12 @@
           }
         ]
       },
-      "manifestHash": "f8fa53b5e7c61acac7c157c4abfea6bd94a95ad3a907378151628d72e5fa6b77",
+      "manifestHash": "6967f00212c89d08a5d7e697c10e925193fa30331685e97b4679c90dcdf1b215",
       "artifacts": [
         {
           "path": "registry-src/base-ui/checkbox/item.json",
-          "sha256": "1dbf51af9070b4b9488ad41a974bb3e82ae7d6966db247b13babc94ccb3fa92d",
-          "sizeBytes": 4650,
+          "sha256": "0f46f7dc63afafd43c7bc4afc5833af3106145477c9d2dcc45b5b662f6e86773",
+          "sizeBytes": 4679,
           "role": "manifest"
         },
         {
@@ -968,7 +974,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -994,12 +1001,12 @@
           }
         ]
       },
-      "manifestHash": "c93a03ed823ef30ea0729a76d3552d6fa3f5a78d634822c4b8070ee747e650a8",
+      "manifestHash": "d8129576c1b2a04a175942cfda1f05fbce07f4e8a36903e2bbadd68df2ceed91",
       "artifacts": [
         {
           "path": "registry-src/base-ui/collapsible/item.json",
-          "sha256": "0c4f0ae7c3434fa7bafc5fc5bb917b6f4e4e5e56a197bac0a8be3a448c358a50",
-          "sizeBytes": 6690,
+          "sha256": "b810c55ba9135cef0ccdd0627caea0ef0bdabebc7cbb570ecd720f9d313ff230",
+          "sizeBytes": 6719,
           "role": "manifest"
         },
         {
@@ -1128,7 +1135,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -1154,12 +1162,12 @@
           }
         ]
       },
-      "manifestHash": "d3805c01bc3f4fab4963fd0eb572b06c286ab37e744e1d1a79f4c5f8482748e6",
+      "manifestHash": "cdc00e075a3d9f5b95966a498168b841911ce0570391458433c5c008560f40e5",
       "artifacts": [
         {
           "path": "registry-src/base-ui/dialog/item.json",
-          "sha256": "4fdc65f0b16a17dfee39a6307b07bc8c558db6554285e2b1c50f51190880e665",
-          "sizeBytes": 6593,
+          "sha256": "599d5cce4e402f1a23542341de1f741799ccc6a1995e4253d1e40bf344523331",
+          "sizeBytes": 6622,
           "role": "manifest"
         },
         {
@@ -1308,7 +1316,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -1334,12 +1343,12 @@
           }
         ]
       },
-      "manifestHash": "d321b61868e0c2feaeb14d12d3d0e66024234d0c1b57485abfb0a4599e63f15a",
+      "manifestHash": "53510c8ce52704a5af6d5dd63873860b8b0a8dbc2f3063e610ad833790da17f9",
       "artifacts": [
         {
           "path": "registry-src/base-ui/field/item.json",
-          "sha256": "ca26000a2f560d7e1ea58d3a7da7fb6ae682f9ca1b05a68fd015b0e51dc01740",
-          "sizeBytes": 7678,
+          "sha256": "040ff28af41ee079a1413a87c880a0f3b13f5d20dafb65991ec3ebf139693627",
+          "sizeBytes": 7707,
           "role": "manifest"
         },
         {
@@ -1470,7 +1479,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -1496,12 +1506,12 @@
           }
         ]
       },
-      "manifestHash": "a7e8d3b54784daba6d45c7cf5e2434f98affed9792dde280fbbf227fd9fe621a",
+      "manifestHash": "5f34e9edf808cf07b1e37ecbe5f6cc36c986f08d2615dac678e132dbddb57cb9",
       "artifacts": [
         {
           "path": "registry-src/base-ui/fieldset/item.json",
-          "sha256": "6fb3cac989c7f8dbc782188e55498dd13eeac118bdfbc5f5e0e1c3f2bd0b9e73",
-          "sizeBytes": 6346,
+          "sha256": "36e744119be7a151c67c60325280e40bae8f2602b553a14260f4a4cdeb3ea13f",
+          "sizeBytes": 6375,
           "role": "manifest"
         },
         {
@@ -1644,7 +1654,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -1670,12 +1681,12 @@
           }
         ]
       },
-      "manifestHash": "124b9fe3954b99f8fca1e2220b06332b895d5033b90ee67a8889f94e80f3d7b4",
+      "manifestHash": "1836722f4b38b8ca5c564ff3381887cb69b539b4975b8ad96ce134882363e70c",
       "artifacts": [
         {
           "path": "registry-src/base-ui/form/item.json",
-          "sha256": "436ec60e2e2399ab043a8e65e07ee889d90cda80b2c48bbaf51f4eb1a424fc6d",
-          "sizeBytes": 7218,
+          "sha256": "ea47dd8dd385cb6b3bb701289f916c78b29a5f1c4020dccd5999197090fdc6f0",
+          "sizeBytes": 7247,
           "role": "manifest"
         },
         {
@@ -1771,16 +1782,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "d8fc6e75ba31c26adeceee0f012bfc798cd618ef20e80e8c2dcf441a2ff5403d",
+      "manifestHash": "a5b9f2958a098ea0e5ba5ebac756df9f6f4f40d78ebbdfd0a53c3630e26b8ee5",
       "artifacts": [
         {
           "path": "registry-src/base-ui/input/item.json",
-          "sha256": "41977e6046ce0b26d8665de832687e420a809cad5bae33eb3b62dafaf62f4196",
-          "sizeBytes": 3208,
+          "sha256": "9f0b42772af6072675473d106dd6301f923ff712a749916f28affe5a92180d82",
+          "sizeBytes": 3237,
           "role": "manifest"
         },
         {
@@ -1913,7 +1925,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -1939,12 +1952,12 @@
           }
         ]
       },
-      "manifestHash": "0385f9ed59172778b1634448eab83c34854649f6107b277c38bbabb52f11581f",
+      "manifestHash": "d1232bbdbda7fefc9bec2a9a4fe383e2e11896d2aeb74aaecb23991a13c47ec5",
       "artifacts": [
         {
           "path": "registry-src/base-ui/menu/item.json",
-          "sha256": "50c9d3899487f0c9dce6c7ba3e24efcc1cd2c486e3a7f0c3abb7284ba74136ee",
-          "sizeBytes": 6652,
+          "sha256": "de3f652eb1c6f727c878fa254f3532416c44607283f421b0ea7ee0c7825d5e83",
+          "sizeBytes": 6681,
           "role": "manifest"
         },
         {
@@ -2050,7 +2063,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2069,12 +2083,12 @@
           }
         ]
       },
-      "manifestHash": "82202fa650984535eae2beee0848e79dceb81add946bb0bba11ffe98942eaeb5",
+      "manifestHash": "08f3cdd337cfe80322da24e9bf171ea109e6632b41ecd89be0053267f93eff74",
       "artifacts": [
         {
           "path": "registry-src/base-ui/meter/item.json",
-          "sha256": "1de7d96f02fc857fe401f0ba34e0745868cbd727175c2b4e7be70ba5a65ef805",
-          "sizeBytes": 4917,
+          "sha256": "9d007b27d721171c2d8fffc7c3f9eef0b65ca8ee1cb3dd0d6a8d8c8c451fc2c8",
+          "sizeBytes": 4946,
           "role": "manifest"
         },
         {
@@ -2238,7 +2252,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2264,12 +2279,12 @@
           }
         ]
       },
-      "manifestHash": "0b3dc5b8eba51fcd36126a317fe12726fc718ec6aaca7da73280c0d28de75eb6",
+      "manifestHash": "9fdc4a691bcedbc34865234a6c3930a3ddc565609e980b5983633c6a67b9e42c",
       "artifacts": [
         {
           "path": "registry-src/base-ui/number-field/item.json",
-          "sha256": "837bebdcdc531fc0fdd3a32f2c31d5f6d2eb0e7d2d73b556b81a48ce44a0fc9c",
-          "sizeBytes": 9550,
+          "sha256": "f3770e3b1f2bd47f16d3613324bc97350c75fbe601f532d851a3ac22a3ee0ce7",
+          "sizeBytes": 9579,
           "role": "manifest"
         },
         {
@@ -2399,7 +2414,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2432,12 +2448,12 @@
           }
         ]
       },
-      "manifestHash": "ec27c4b7ecb6df45a5295241ab03fff94d874803542aaa179067df92b87cd124",
+      "manifestHash": "72e22f0bc9923e8a708721acdea25211817a8fe8e27b43be92bf43304816d3bf",
       "artifacts": [
         {
           "path": "registry-src/base-ui/popover/item.json",
-          "sha256": "ec0da63c32dae4695de6da9f7b563455f752f8b5fceb8ca48bc4830bbbcb9f45",
-          "sizeBytes": 7473,
+          "sha256": "3b1f54390a4b6372343f1f6b5e69292d2337fa07b6f2f161a0b1740ed6982d34",
+          "sizeBytes": 7502,
           "role": "manifest"
         },
         {
@@ -2549,7 +2565,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2561,12 +2578,12 @@
           }
         ]
       },
-      "manifestHash": "ab2df821ed04b998e04e79613b04b8159279f0eff1ec12ca5ed455f54c85205b",
+      "manifestHash": "5c85951b4ec44cd51068e87389bea0e7cf1c034ccead22f91660d6ee86929c6c",
       "artifacts": [
         {
           "path": "registry-src/base-ui/progress/item.json",
-          "sha256": "3a9512ce845e5e2b0e2d1ffb992f04687e4195be97b0b854584541545512bbbd",
-          "sizeBytes": 5170,
+          "sha256": "84169140591deec2395481714f2cf7eae8d6db5a1be49925cbaab9ec62841b8f",
+          "sizeBytes": 5199,
           "role": "manifest"
         },
         {
@@ -2683,7 +2700,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2702,12 +2720,12 @@
           }
         ]
       },
-      "manifestHash": "c9c2fe3e433a5a264a89b6fe9ad5a9292cb5a262afed71bdb2f99cf871125790",
+      "manifestHash": "b32561fc4b2ebae0f81a53b5838bedb25cbc2b2e47135f3832b98fe998355026",
       "artifacts": [
         {
           "path": "registry-src/base-ui/radio-group/item.json",
-          "sha256": "bdbfa9c4016aad4519f88a55c360242966ba87cc7ec6331eca6c9a1c21324517",
-          "sizeBytes": 5250,
+          "sha256": "117ef708297d1b13f27f74d2e0b6d53cceafa2b315daad2e62f1ac91f8cf089a",
+          "sizeBytes": 5279,
           "role": "manifest"
         },
         {
@@ -2824,7 +2842,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -2836,12 +2855,12 @@
           }
         ]
       },
-      "manifestHash": "55e592f4975d1e849a09e400b6f4318061d3b1554d2351dfd502f1214593754b",
+      "manifestHash": "d621316cb30a23103b9895d874ad8940af3f67bc02e2b27dab20f7828a4aff2f",
       "artifacts": [
         {
           "path": "registry-src/base-ui/radio/item.json",
-          "sha256": "104787bf5aeaaad632ed3dc0e07a4718dfc0d38f96efd0adb7a30669bfbf2965",
-          "sizeBytes": 5011,
+          "sha256": "9f597bfc6f52f70ee6dfe2a6cc7c57f3e8b296de0a5aaa5fd93bd2a9b5fc4ef1",
+          "sizeBytes": 5040,
           "role": "manifest"
         },
         {
@@ -2995,7 +3014,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -3021,12 +3041,12 @@
           }
         ]
       },
-      "manifestHash": "783ccce7a9e339dec7e037306e5860a3a192c77d3bbb34f6c20e6be1533e06ce",
+      "manifestHash": "032b3944926556115637404673cb78d2787001b42824b6db575dd58ac5a7f0cb",
       "artifacts": [
         {
           "path": "registry-src/base-ui/select/item.json",
-          "sha256": "a4a9d12ac8c361cd8953f6ac276edcd3efbbc3cf450337bb7b26031cd03e6521",
-          "sizeBytes": 8465,
+          "sha256": "f76d92de312344a838634ee2e0b95791ed093555fb5217170be99238788bbd58",
+          "sizeBytes": 8494,
           "role": "manifest"
         },
         {
@@ -3123,16 +3143,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "e775cc2df58e1314f10cf20201f0b5c72b55754ec392f0b8a38f949742ce3cd0",
+      "manifestHash": "b294a7164c21348e4d88b32021fe0c320d29b92600481c8cc07c9f264f895761",
       "artifacts": [
         {
           "path": "registry-src/base-ui/separator/item.json",
-          "sha256": "d350e07bb5785228849ab8280b73fbb03b321bdd66f2a6e11c852913e399e0db",
-          "sizeBytes": 3384,
+          "sha256": "5b30bd7a0d9e172830b7472eeced64a19e1598be4378f0324dfd042db50bfb9e",
+          "sizeBytes": 3413,
           "role": "manifest"
         },
         {
@@ -3274,7 +3295,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -3293,12 +3315,12 @@
           }
         ]
       },
-      "manifestHash": "98599627eb874d0759d6b266420f403ca893c6d96be7311eec1c4f54f01b5a35",
+      "manifestHash": "a35ccd3cf4d14f0f6e338b3ae4d367ce6f3a282833ba3b73316e3873b4af45e1",
       "artifacts": [
         {
           "path": "registry-src/base-ui/slider/item.json",
-          "sha256": "642c5a9d334c1be00b62109281f54d06b5a22564d555f6cc5c7f8ff4feff3d93",
-          "sizeBytes": 7322,
+          "sha256": "8c3f7e12e2e48c88211ce5d2214b07de6b5e2bf73dccb4eb1baf448e673c40da",
+          "sizeBytes": 7351,
           "role": "manifest"
         },
         {
@@ -3400,16 +3422,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "d90eb7e5f07931eed276165e334072963d5780e32541b58c0ed0392c925cffe1",
+      "manifestHash": "49786e885ac206b4a5ff56ec43ccc1a1ee893eeb7a367af1d2f9f0124d4ddb25",
       "artifacts": [
         {
           "path": "registry-src/base-ui/switch/item.json",
-          "sha256": "421669038ddc07411c6cde44bdf61a6684e70bd49c0e29a1d03812aec1684e7e",
-          "sizeBytes": 3765,
+          "sha256": "8aef23e8c7a14137b3b809672cff0bdf729f8ea8f11cc59add03f578be7a0433",
+          "sizeBytes": 3794,
           "role": "manifest"
         },
         {
@@ -3535,7 +3558,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -3554,12 +3578,12 @@
           }
         ]
       },
-      "manifestHash": "0d5c92c8a2493afe595533a0f9d94f123dcdeba61fa126268e24257bbfea11b3",
+      "manifestHash": "448b7cf47c92f7aeba81cd0a1863f928ea7112ad803b5aac45a94b85e557db56",
       "artifacts": [
         {
           "path": "registry-src/base-ui/tabs/item.json",
-          "sha256": "365ac065e247ef13d8afe0064e19606cefad95f75d6deb7c6681bf6d55923c4a",
-          "sizeBytes": 5861,
+          "sha256": "2af0247c05919213af6f77504869a458205220a47b81491658fad17bd46ff5e6",
+          "sizeBytes": 5890,
           "role": "manifest"
         },
         {
@@ -3668,7 +3692,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -3680,12 +3705,12 @@
           }
         ]
       },
-      "manifestHash": "36a256baa16a0bb0ee5d999e96acae5a695f0aa9e9a947d885e13b9c77404d9d",
+      "manifestHash": "3745bec4046c69376c39e50f6a5d3ed0fdac71662b7bcef11083b17877d887b0",
       "artifacts": [
         {
           "path": "registry-src/base-ui/toggle-group/item.json",
-          "sha256": "545a285744e39ba99af2965acaae74fc7e92472e12baaa284b2001df26983116",
-          "sizeBytes": 4560,
+          "sha256": "025dcefc7c964120639b0970adb60a533ff022f7f04520fcad1e85c598365c1c",
+          "sizeBytes": 4589,
           "role": "manifest"
         },
         {
@@ -3790,16 +3815,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "52509c47413e2a35c69385d84f919050d01822c203b97c2f8b55c4d2bbb5487b",
+      "manifestHash": "0f6ade41837fe728fe4f86965408b86716c308766559d7fef1fdd68182cbc963",
       "artifacts": [
         {
           "path": "registry-src/base-ui/toggle/item.json",
-          "sha256": "adf3ee6ac1450847f3223ee41215c2a9e2645b12a6242bdc20bed7855e8fc96b",
-          "sizeBytes": 3678,
+          "sha256": "b091ec3d43f7f11ce20cd6eb396b6542a987fbb4fd1dece85e1472bbc915be4e",
+          "sizeBytes": 3707,
           "role": "manifest"
         },
         {
@@ -3929,7 +3955,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -3955,12 +3982,12 @@
           }
         ]
       },
-      "manifestHash": "f75a5ed559395a0e80ad430a282c07bc47070244dcef73593239471208c68708",
+      "manifestHash": "1e9cf092ebb3c8287a22ea8ae796c7459d23c2178de522f9ca9e4256551e4722",
       "artifacts": [
         {
           "path": "registry-src/base-ui/tooltip/item.json",
-          "sha256": "cb53792827ba65a672334bf3ab611e1610c1ed9b5c249eb374f657a72b69b102",
-          "sizeBytes": 7031,
+          "sha256": "186a38ff250bf296b4ba9b1a43def449507d75e66e7a27324f7743dec8714ed2",
+          "sizeBytes": 7060,
           "role": "manifest"
         },
         {
@@ -4000,16 +4027,17 @@
           "implementationStatus": "planned",
           "parityStatus": "not-started",
           "driftStatus": "unknown",
-          "availability": "private"
+          "availability": "private",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "0b6a39ce4525682a84ebd38ca69e8a6578ea11c358c3ddf9fb7b3ef76ae02820",
+      "manifestHash": "ba632df7d7e2124050d98bf3e3ab3ecc42137be2138084ddf87f9b67039c87e7",
       "artifacts": [
         {
           "path": "registry-src/local/example-preview/item.json",
-          "sha256": "fe51a2c58389f9ac7ef08785c96b62771471aa69f1358a3d9b16fa80290258df",
-          "sizeBytes": 818,
+          "sha256": "d34ecc85376c6edde541de848bf9b63f3ec0b364145b2a0cea212e983f0e321c",
+          "sizeBytes": 847,
           "role": "manifest"
         }
       ]
@@ -4199,7 +4227,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -4218,12 +4247,12 @@
           }
         ]
       },
-      "manifestHash": "f8bf778533e9048a8fedaf2c06ca669bd38e2b1d33ef06d271d488ef56c444ca",
+      "manifestHash": "36a5245d58782fe105549d370614424e3e69db4f08d45e116d649a2597fbee29",
       "artifacts": [
         {
           "path": "registry-src/shadcn/accordion/item.json",
-          "sha256": "49f428f04f6ccb7a76cdc1c2e149e1dbfa5c0966295fdd8b9de798d8729e20ef",
-          "sizeBytes": 7431,
+          "sha256": "4987fe9b50811f4c7a9627f1dfdbdf4db55473f772ddc1cc94fd177a567463d5",
+          "sizeBytes": 7460,
           "role": "manifest"
         },
         {
@@ -4448,7 +4477,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -4481,12 +4511,12 @@
           }
         ]
       },
-      "manifestHash": "2455a5d2b46e2648969f751602e36666b1e964c7c379cfb9405d24f98132ea31",
+      "manifestHash": "541281a2fff35f821459ca9363b4cd013ebb8aa487936bb84fea5b563f04b3bd",
       "artifacts": [
         {
           "path": "registry-src/shadcn/alert-dialog/item.json",
-          "sha256": "5030274bfb3b2397504181de2f4f68abcc9f9485aaa68555fe59be09203c889f",
-          "sizeBytes": 8989,
+          "sha256": "c936494f5be67bfe485c3e004f2817ae075671b2b5737c77ddc9dd7201095fb0",
+          "sizeBytes": 9018,
           "role": "manifest"
         },
         {
@@ -4687,7 +4717,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -4706,12 +4737,12 @@
           }
         ]
       },
-      "manifestHash": "b714d5ef24580ceb4c14d1df6056939eeea7cabbc04f93162b869f0e345f59c4",
+      "manifestHash": "ae14b67a2e31617ea4d054cf380b1391983c6e4cc7e621ebaca4b9f080d701e1",
       "artifacts": [
         {
           "path": "registry-src/shadcn/alert/item.json",
-          "sha256": "0d6db7d378b518648be510dd09ccbe52f120f8196f645b6e2ca68c47779cbe8c",
-          "sizeBytes": 6930,
+          "sha256": "49971f03266c8825df102d07cd4949bcbb58528575bf76fd5b3c903cd936e854",
+          "sizeBytes": 6959,
           "role": "manifest"
         },
         {
@@ -4872,7 +4903,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -4884,12 +4916,12 @@
           }
         ]
       },
-      "manifestHash": "e03d0ce10dd88439f7e4664b1bbe99790a4256dc5df560483cc8e3f8b6e3159f",
+      "manifestHash": "c0703fb58d3c97dfddb615233fb69351610ed15fc586de759bae6511931ae9be",
       "artifacts": [
         {
           "path": "registry-src/shadcn/aspect-ratio/item.json",
-          "sha256": "40e85c198f473317c792089298441a9b3bc1e613d813fa798a9dc46d09c1153b",
-          "sizeBytes": 5574,
+          "sha256": "5e6e7b9c208cbd85d9a12c32587d24f55d48337ee9fc6de1e74d7e9fb4766bd9",
+          "sizeBytes": 5603,
           "role": "manifest"
         },
         {
@@ -5131,7 +5163,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -5157,12 +5190,12 @@
           }
         ]
       },
-      "manifestHash": "2b28b8fd3a7333ffe5dbde9cc927c4d5431d036b7285963ead4eabe551c63684",
+      "manifestHash": "9469400af9b07a869ff46dd41b14222d0978cc93be3792eb0aceebd335b56101",
       "artifacts": [
         {
           "path": "registry-src/shadcn/avatar/item.json",
-          "sha256": "4990dc0b0d9b1656832ac3fca2c84431348659603fa8f8ea2ae6a9da10a34fc1",
-          "sizeBytes": 9125,
+          "sha256": "5a57ca77142d73ee420e283fbe1388e2c08303741737cb0010ffa80bae6be12a",
+          "sizeBytes": 9154,
           "role": "manifest"
         },
         {
@@ -5383,7 +5416,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -5409,12 +5443,12 @@
           }
         ]
       },
-      "manifestHash": "be117564dd70c9f9dc30f2de24e1b467539422404770ef5725d366f4bdc4334e",
+      "manifestHash": "5ef198af8d22bde22480e66e630cdebcffa72da1a4b1179ba76d31f30187d8fd",
       "artifacts": [
         {
           "path": "registry-src/shadcn/badge/item.json",
-          "sha256": "1bd85eac2fb64fb4b93202035ad05cbb5d2bc604cd2186c39b3fde07f795ddc8",
-          "sizeBytes": 8071,
+          "sha256": "3f43dfa46732c2355f33bcc15a1a8e257d1de806fd9a72ffe3fef7183a5b2e67",
+          "sizeBytes": 8100,
           "role": "manifest"
         },
         {
@@ -5684,7 +5718,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -5696,12 +5731,12 @@
           }
         ]
       },
-      "manifestHash": "ada700d7dd5f57436fe18d15c409eb150467e5c0e9499fcaeb1acafc3445082a",
+      "manifestHash": "fae0a83227311755ee2b8398f8bfc94de8d42b7f89e9d6b07ce1f8b3d441a1be",
       "artifacts": [
         {
           "path": "registry-src/shadcn/button/item.json",
-          "sha256": "e1dc2f6c6fa49544cd79191e58a925e9640586dcbf04ba52a1582b6f980fca05",
-          "sizeBytes": 8910,
+          "sha256": "14aeafbbd9a4c6353bb2228edb580893bbce321bfa077ff6f10679363faf8fa2",
+          "sizeBytes": 8939,
           "role": "manifest"
         },
         {
@@ -5938,7 +5973,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -5964,12 +6000,12 @@
           }
         ]
       },
-      "manifestHash": "4da71df56ce944d4a44a9677348e80b3f10ade848473b374d33215f991dd9cac",
+      "manifestHash": "b36542528bf4a9e99b1a9a2e4c0af30c697a2c55a1500c6ac19e3134716a884c",
       "artifacts": [
         {
           "path": "registry-src/shadcn/checkbox/item.json",
-          "sha256": "3831fba1bd3003d839575760cfc5ef4543874d7de18e9e8f31721d00db201988",
-          "sizeBytes": 9487,
+          "sha256": "d441209871d4ea6158ca8b378ea8041e422f1f8e4bb2275b2a9e417d8b2a3a85",
+          "sizeBytes": 9516,
           "role": "manifest"
         },
         {
@@ -6191,7 +6227,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -6210,12 +6247,12 @@
           }
         ]
       },
-      "manifestHash": "394fa0c33af81672d7ae34c53e6240a64a92b3aad20e585eea58455d07004870",
+      "manifestHash": "0ae681c7e145221b9a600260ff14f685e3ef079355aceb0b2be87c8e81edd17f",
       "artifacts": [
         {
           "path": "registry-src/shadcn/collapsible/item.json",
-          "sha256": "7dd44d593c2c1d149cf50a4f6a0f9a9dd15c4baaf8c45762e0ce02cdd6280dd4",
-          "sizeBytes": 8300,
+          "sha256": "be524c1f7b8a027a3c3a6cd7ef2f8d659636662eefdb1945124d9f30c71bbe66",
+          "sizeBytes": 8329,
           "role": "manifest"
         },
         {
@@ -6444,7 +6481,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -6470,12 +6508,12 @@
           }
         ]
       },
-      "manifestHash": "3296d61f05808c4360feccd74eb426f0a4f36d60f5740f2a0699c4f38a911c21",
+      "manifestHash": "bbacf172b3b304127c4e5a5110b1985d37efe111e5ff34f704f4b8ccc0a2d27a",
       "artifacts": [
         {
           "path": "registry-src/shadcn/dialog/item.json",
-          "sha256": "fd29084e0ecd97dbbe8b6e4e6bce14ecadf4fa0101e72dc1baccf6eb66d9941f",
-          "sizeBytes": 8499,
+          "sha256": "66b2555fdc02b07b29323c3140df1f50fbab96e14ce9e7d15b1c2a97ffb63d4e",
+          "sizeBytes": 8528,
           "role": "manifest"
         },
         {
@@ -6736,7 +6774,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -6769,12 +6808,12 @@
           }
         ]
       },
-      "manifestHash": "6a9e442f3d0658986b0606f3f323b66b9a1d5f53e7dfc51777e24e0e6361a045",
+      "manifestHash": "180a146bce816bd80e7953f070fb44cd65183bf50ef9bf30d81581db4baa7faf",
       "artifacts": [
         {
           "path": "registry-src/shadcn/dropdown-menu/item.json",
-          "sha256": "d5dfe9a6d6d065414c2d641276f3dff77e6a66be5d92db15eb0cb8f840c161d6",
-          "sizeBytes": 10611,
+          "sha256": "d5b6647ff01ecb8afe306ed4b61c6ff009a1b320b496a6ea48b844c7df23a5e7",
+          "sizeBytes": 10640,
           "role": "manifest"
         },
         {
@@ -7021,7 +7060,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -7054,12 +7094,12 @@
           }
         ]
       },
-      "manifestHash": "d5c4af50d4ae7717f80b4686bb4dde4f4ed8e85a9e3b028dc9a64289b47ce0a6",
+      "manifestHash": "87847a7dae30e35ea90aef3c1052a23344b9286d02fe32a96c704013d7638232",
       "artifacts": [
         {
           "path": "registry-src/shadcn/field/item.json",
-          "sha256": "6f942799bc72a271584073f81cc790d86bd336c85778929d47d8acbaf8848223",
-          "sizeBytes": 9965,
+          "sha256": "dc657ab728068380dcf20aa175697ca51755df25accdc7867873c472c59fcb04",
+          "sizeBytes": 9994,
           "role": "manifest"
         },
         {
@@ -7239,16 +7279,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "5872c8af6f4d8ef643a187964c085e937a0135db985d49394e2eccfab3571c0d",
+      "manifestHash": "ceb2ee233a9aa5a3bf71f0dea3e23322f6da00a68049c859f551484194236d6b",
       "artifacts": [
         {
           "path": "registry-src/shadcn/input/item.json",
-          "sha256": "ea79726de03d0174d7eaac1e52bea2f5f8df0e82c8b9b1c1bc0f99790c382e01",
-          "sizeBytes": 5310,
+          "sha256": "3924581823376d322a5eac70d81ef7f2f8fd543bf8f4b39c05e7db95851937bf",
+          "sizeBytes": 5339,
           "role": "manifest"
         },
         {
@@ -7456,7 +7497,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -7489,12 +7531,12 @@
           }
         ]
       },
-      "manifestHash": "d6d2c94927dba1d20d3b7d2ac8f50ae6cd4dfd542ac44c391325eed133e5b72d",
+      "manifestHash": "a5d9412cd3cd95c301102ac78444b7c5f13ea352aea1e16efc59ee70abcbe942",
       "artifacts": [
         {
           "path": "registry-src/shadcn/kbd/item.json",
-          "sha256": "7bca5d1fd804433e00876d1eedbe7f1bb0dc06ee8f64fa28760bde287487d20b",
-          "sizeBytes": 8327,
+          "sha256": "e15752b650b319ee85c61057e401cc3c3a03a5e01625e2cac70ee62df21f990b",
+          "sizeBytes": 8356,
           "role": "manifest"
         },
         {
@@ -7646,7 +7688,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -7658,12 +7701,12 @@
           }
         ]
       },
-      "manifestHash": "cb4a3f7b430a9ceb6918ec20e6f3206ac0f3dfe1b4c0cb971f4fc0ce508a3268",
+      "manifestHash": "59a7cec2678524b42a64968557e4eb18dd8fe197a7d9e66e74e7b10f848c002a",
       "artifacts": [
         {
           "path": "registry-src/shadcn/label/item.json",
-          "sha256": "aa579e2f01cc279d3d83bcbffd2e4382826dac5e722e403338d44a543be8b834",
-          "sizeBytes": 5017,
+          "sha256": "eceb9c968c7a510d0c28d914e5a556b691451b706b62d9784c3188f12d511bab",
+          "sizeBytes": 5046,
           "role": "manifest"
         },
         {
@@ -7844,7 +7887,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -7863,12 +7907,12 @@
           }
         ]
       },
-      "manifestHash": "6c86737eb83140dbf046cb638971cf12c13a6e1d8bca9105cdb9b0ec4a482bea",
+      "manifestHash": "dfdb6881df9355603d7c90d57c4b1362c5f7ea464cf88439713edf7ad7cae8cc",
       "artifacts": [
         {
           "path": "registry-src/shadcn/native-select/item.json",
-          "sha256": "ff44942bb27dd6af952e1bcab233887fad8276f214ad259e96323cb7003200e6",
-          "sizeBytes": 6463,
+          "sha256": "7dfdc5d3be9525782832f97350edd9d1387766a69d0af61011f4cb2fa18c6113",
+          "sizeBytes": 6492,
           "role": "manifest"
         },
         {
@@ -8082,7 +8126,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -8115,12 +8160,12 @@
           }
         ]
       },
-      "manifestHash": "e94c0f7051071fe3e6f70673b25372956f9128bdbeaacfcdb52f932aa661c05a",
+      "manifestHash": "5de8cad15554e9f5db2dd3f3c0bf2f8398b28928220620b25a64384d40c32452",
       "artifacts": [
         {
           "path": "registry-src/shadcn/popover/item.json",
-          "sha256": "d5630a52b6836a09984cf317a76ccead19a47145202dde5d128eb0ea326d8a75",
-          "sizeBytes": 8722,
+          "sha256": "7722184469fb1773f90fe7d91aabb2931d644e251406ab7b9b52688498cdef1b",
+          "sizeBytes": 8751,
           "role": "manifest"
         },
         {
@@ -8296,7 +8341,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -8315,12 +8361,12 @@
           }
         ]
       },
-      "manifestHash": "2c1523c571786dcb3c2e4b43d50f728d209d9cd13a4782b14dcbd61a47bb88cd",
+      "manifestHash": "2e76bc0a0880337033097ab0ca916e0fa8b674bcf95dd48a0635326a5555a922",
       "artifacts": [
         {
           "path": "registry-src/shadcn/progress/item.json",
-          "sha256": "ac333dabd1d5a6a63c97c3831e946da574389de5cd4c67106fa6680088bbff4a",
-          "sizeBytes": 6527,
+          "sha256": "42ded63528ddab2d0d443f29bcbb8d837b7158de5cb2f084c4bdfcd63ea2cf11",
+          "sizeBytes": 6556,
           "role": "manifest"
         },
         {
@@ -8483,7 +8529,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -8495,12 +8542,12 @@
           }
         ]
       },
-      "manifestHash": "4559f7409a6a689d2106a12f587fa36bdd09023f7e650c749b13d8fcf3d3907a",
+      "manifestHash": "57cda157e4671c34cc6d3401ad1e5b7ff4a68bdbcfaaaf600d042360b0ed0173",
       "artifacts": [
         {
           "path": "registry-src/shadcn/radio-group/item.json",
-          "sha256": "c37d62c5b818c4b5f45a10667b320a7efebee3699998851160b7ddb9d29edaab",
-          "sizeBytes": 6034,
+          "sha256": "abe3b370ee869b0d8c4659b2db07f13c26c473e0dcdd1f593ff6cbc45a46ca35",
+          "sizeBytes": 6063,
           "role": "manifest"
         },
         {
@@ -8729,7 +8776,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -8769,12 +8817,12 @@
           }
         ]
       },
-      "manifestHash": "9f50aa502f1d27ae3c80be4625a73fb21ab0e3db0cc006c927e13a7e8c571535",
+      "manifestHash": "f19927134a3ef5268627d13e8ac350aa31bc2d79b2836d502f719f7044220c00",
       "artifacts": [
         {
           "path": "registry-src/shadcn/select/item.json",
-          "sha256": "99fec94cca4e917f28acf295639052d484da75378b7db00b85f3114ac7074318",
-          "sizeBytes": 9694,
+          "sha256": "8b9fc3f020338e1fe1fd9ffd5fb25e70a6f89af42a8e8d9a2296b7b43cb2f2ec",
+          "sizeBytes": 9723,
           "role": "manifest"
         },
         {
@@ -8949,7 +8997,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -8961,12 +9010,12 @@
           }
         ]
       },
-      "manifestHash": "1755c90bd2060d30d7a1a6c74b3ce1bc1228362ab4f8c123c8237f9fcaa02f68",
+      "manifestHash": "5e36ec8696ef109fd086ec7978f9def7e235f2407be6782f419d4ab1decabab4",
       "artifacts": [
         {
           "path": "registry-src/shadcn/separator/item.json",
-          "sha256": "3735a5676fcfcec29dbc42f91b8f68e3e8f3445dd80a35022878953056998be7",
-          "sizeBytes": 6001,
+          "sha256": "8cc93f5b0f1a8bd02f85a3ee132d2f89935aa1ec6829cc9cae67f0ef66a1bd90",
+          "sizeBytes": 6030,
           "role": "manifest"
         },
         {
@@ -9154,7 +9203,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -9173,12 +9223,12 @@
           }
         ]
       },
-      "manifestHash": "c75f020b4fa8b6d0e66b4ae0785e74cbc955118931dd4aa34ebfbd865ae76243",
+      "manifestHash": "146b656874fc0fc78d743c673a7d5078b87fa10291a322b919153945be48e260",
       "artifacts": [
         {
           "path": "registry-src/shadcn/skeleton/item.json",
-          "sha256": "ce80b71d157e8719633a0fb26ffd084c5a6841c935f804d7bfbabc40f18da377",
-          "sizeBytes": 6701,
+          "sha256": "0e83fa78ae4e25540529748e1f60cc192787a460671b1208d77610f4ec8fb9e8",
+          "sizeBytes": 6730,
           "role": "manifest"
         },
         {
@@ -9380,7 +9430,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -9399,12 +9450,12 @@
           }
         ]
       },
-      "manifestHash": "05cf8e423287b3f346c6ecaacc439abeac00f2c7dc6958b37b2c3529ac199bae",
+      "manifestHash": "5b4bad78b13f37f6eb0277637dba9836693a7c580dcdb4c7e5225fbdff5b1eab",
       "artifacts": [
         {
           "path": "registry-src/shadcn/slider/item.json",
-          "sha256": "1e771098952c70b64726464033b0c72cbd47405b87323d0530be7bf8eedc337c",
-          "sizeBytes": 7456,
+          "sha256": "71e5a1b438beb06141075f0b08b7a39869f1c7ffc67dc3f0e3409798abbaf4ca",
+          "sizeBytes": 7485,
           "role": "manifest"
         },
         {
@@ -9617,7 +9668,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -9636,12 +9688,12 @@
           }
         ]
       },
-      "manifestHash": "1ebce8ccda66c2ff8787b8d08e8ab51261ea74922ec0e57dea4070cbcbddb642",
+      "manifestHash": "ddf29e63b45a7519954bff522a53456a24092c8e4c7076adcb00d7fc66427be3",
       "artifacts": [
         {
           "path": "registry-src/shadcn/switch/item.json",
-          "sha256": "0f0d95671121ba0e26fbf985538cc4566241ee64999e963c8f28c20d244c7c47",
-          "sizeBytes": 7960,
+          "sha256": "978d5f0c6fe3339219d92f10f627401444ea17a625a17b01d573a3b168adbfe2",
+          "sizeBytes": 7989,
           "role": "manifest"
         },
         {
@@ -9856,7 +9908,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -9875,12 +9928,12 @@
           }
         ]
       },
-      "manifestHash": "13e740b541368f9ea7991649beea7876da032fe2c3d8b194497a9368eb04ed88",
+      "manifestHash": "5a0cda7ec6c84038c6efe90d26f276ed6e8057fea28a769141d7d0f2a58e96d4",
       "artifacts": [
         {
           "path": "registry-src/shadcn/tabs/item.json",
-          "sha256": "b7e64718b68f9c82d8f78f0c3c6ae4ea3388a600215b32614d720b08325bb49e",
-          "sizeBytes": 7640,
+          "sha256": "4fa914754bf9a2d25ab99fe3cf27996865ffc8bcb860a2edb8d72a55bb9b5c30",
+          "sizeBytes": 7669,
           "role": "manifest"
         },
         {
@@ -10072,7 +10125,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -10091,12 +10145,12 @@
           }
         ]
       },
-      "manifestHash": "6fd1a1eacef800f12c3562ba0a637648d3cd4308cb2f6e96ceb2e2fe48328c01",
+      "manifestHash": "1f7826fa2b2121b677771dc7d0ec3d9b9ac26729999fd3aa1469d2c48b6fffa3",
       "artifacts": [
         {
           "path": "registry-src/shadcn/textarea/item.json",
-          "sha256": "26c2d445e77507b0f2f44f9052fbe292bbf976f60310e58879e00041cb2755ac",
-          "sizeBytes": 6892,
+          "sha256": "a00ffc061b3ed58f91e7ad40a56064dd4a3f5bf7dfcb00f51dd8868eab20ddd8",
+          "sizeBytes": 6921,
           "role": "manifest"
         },
         {
@@ -10337,7 +10391,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -10363,12 +10418,12 @@
           }
         ]
       },
-      "manifestHash": "dd032ac6bf589b6973ec605608f5c144b2508e12668a152470d21ae9daa496e9",
+      "manifestHash": "2ca62c37b246fbcf0b6f9fed2007b9d3ea403dbd9e4bcc79c4b19e819eb1b697",
       "artifacts": [
         {
           "path": "registry-src/shadcn/toggle-group/item.json",
-          "sha256": "92f6c2abc83cdebe38c176ed00dcc66c7ab2adbd3e624bd738c72e0b93369c77",
-          "sizeBytes": 9553,
+          "sha256": "e690eb131421a9dc6a80d827fc79b280d672213d1190c3b241670065be4fcb83",
+          "sizeBytes": 9582,
           "role": "manifest"
         },
         {
@@ -10575,7 +10630,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -10594,12 +10650,12 @@
           }
         ]
       },
-      "manifestHash": "14f21b60256bd9c7d3c0927d4a7e97f3b579ea26beebbcd1222cd342b7a1cd65",
+      "manifestHash": "7d3bf28a0864008c544cfada771d9ba5c1b92705dcc7527e87c26ab0cc28e3a4",
       "artifacts": [
         {
           "path": "registry-src/shadcn/toggle/item.json",
-          "sha256": "8a47fa378ff801e6c964714f736c98ed051975a7b5fec2bdda2b64b611a3dc54",
-          "sizeBytes": 7282,
+          "sha256": "7ef1eea4159bf2fdb62ca744d6488baa585c2aa893027008882bd783499d82de",
+          "sizeBytes": 7311,
           "role": "manifest"
         },
         {
@@ -10798,7 +10854,8 @@
           "implementationStatus": "implemented",
           "parityStatus": "accepted",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": [
           {
@@ -10831,12 +10888,12 @@
           }
         ]
       },
-      "manifestHash": "b23582ec8855c4a7acd5d25745f4744c3d2aee34626fbaae9e5e269accfe75b3",
+      "manifestHash": "5e58bf5b3610b9785a4a492b99f73e7d468b6c9752041e8e79f01567cdb8229b",
       "artifacts": [
         {
           "path": "registry-src/shadcn/tooltip/item.json",
-          "sha256": "ad799345735655fc479ab670c2fc3f343dcd777b5504907acc9ba9ffd4180936",
-          "sizeBytes": 8248,
+          "sha256": "683d6b1a74a63c7b047828b2826031527d064c6b3b10044c8687f303b9e13c21",
+          "sizeBytes": 8277,
           "role": "manifest"
         },
         {
@@ -10895,16 +10952,17 @@
           "implementationStatus": "implemented",
           "parityStatus": "waived",
           "driftStatus": "current",
-          "availability": "installable"
+          "availability": "installable",
+          "docsStatus": "missing"
         },
         "deviations": []
       },
-      "manifestHash": "b9737978ae397a332b3800835d2a69e6f62b06f76266cb28d88dab5916f6399a",
+      "manifestHash": "30a915d7e174b54df9853c14b9db9c214262aba906e677499b16bb6bb7906585",
       "artifacts": [
         {
           "path": "registry-src/utils/cn/item.json",
-          "sha256": "6813185825800f5e8c6b86fae235a5b7c5c559d63b802a14281745416750bc6e",
-          "sizeBytes": 1241,
+          "sha256": "5a854ca4aca04b51e438b5244dea1088ed86360a831ad6c0f1f3c2f3adc5649b",
+          "sizeBytes": 1270,
           "role": "manifest"
         },
         {

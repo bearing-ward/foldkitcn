@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/toggle-group",
+  "routePath": "/components/shadcn/toggle-group",
+  "title": "Toggle Group",
+  "description": "Foldkit-native shadcn base-nova Toggle Group wrapper composed from the local Base UI Toggle Group primitive, shadcn Toggle variants, spacing options, slots, and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/toggle-group",
+  "defaultImportPath": "shadcn/toggle-group",
+  "examples": [
+    {
+      "id": "shadcn/toggle-group-demo",
+      "title": "ToggleGroupDemo",
+      "description": "Default outline alignment Toggle Group demo with local icons.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-disabled",
+      "title": "ToggleGroupDisabled",
+      "description": "Toggle Group with a disabled item.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-font-weight-selector",
+      "title": "ToggleGroupFontWeightSelector",
+      "description": "Multiple-selection font formatting Toggle Group with local icons.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-outline",
+      "title": "ToggleGroupOutline",
+      "description": "Outline Toggle Group with zero spacing.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-rtl",
+      "title": "ToggleGroupRtl",
+      "description": "RTL Toggle Group with local translated label.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-sizes",
+      "title": "ToggleGroupSizes",
+      "description": "Small, default, and large Toggle Group examples.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-spacing",
+      "title": "ToggleGroupSpacing",
+      "description": "Toggle Group spacing example.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/toggle-group-vertical",
+      "title": "ToggleGroupVertical",
+      "description": "Vertical Toggle Group example.",
+      "sourcePath": "src/registry/shadcn/toggle-group/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-toggle-group-local-base-ui",
+        "summary": "The shadcn wrapper composes local Toggle Group attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, spacing, and variants over the local Foldkit primitive."
+      },
+      {
+        "id": "shadcn-toggle-group-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Toggle Group examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-toggle-group-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+      }
+    ]
+  }
+}

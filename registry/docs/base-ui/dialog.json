@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/dialog",
+  "routePath": "/components/base-ui/dialog",
+  "title": "Dialog",
+  "description": "Foldkit-native Base UI Dialog primitive preserving model-owned open state, trigger/open/close facts, native dialog ARIA relationships, modal command helpers, backdrop and popup state data attributes, and title/description wiring.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/dialog",
+  "defaultImportPath": "base-ui/dialog",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-dialog-model-owned-open-state",
+        "summary": "Open state is a model-owned input and user interactions emit open-change facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model and return command helpers in response to DialogOpenChange payloads."
+      },
+      {
+        "id": "base-ui-dialog-command-facing-modal-effects",
+        "summary": "Focus trap, Escape routing, scroll lock, and focus restoration are exposed as explicit Command helpers rather than hidden inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Dialog side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-dialog-non-modal-render-only",
+        "summary": "Non-modal state renders ARIA and open attributes without installing modal focus trapping or scroll locking commands.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit's current Dom.showModal helper intentionally traps focus. Non-modal behavior is represented without pretending modal side effects are absent."
+      }
+    ]
+  }
+}

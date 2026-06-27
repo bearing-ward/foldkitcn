@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/alert-dialog",
+  "routePath": "/components/base-ui/alert-dialog",
+  "title": "Alert Dialog",
+  "description": "Foldkit-native Base UI Alert Dialog primitive composed from the local Dialog foundation with forced modality, alertdialog popup semantics, model-owned open state, disabled outside dismissal, cancel/close facts, and consumer-owned action facts.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/alert-dialog",
+  "defaultImportPath": "base-ui/alert-dialog",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-alert-dialog-model-owned-open-state",
+        "summary": "Open state is a model-owned input and user interactions emit open-change facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model and return command helpers in response to AlertDialogOpenChange payloads."
+      },
+      {
+        "id": "base-ui-alert-dialog-command-facing-modal-effects",
+        "summary": "Focus trap, Escape routing, scroll lock, and focus restoration are exposed through the reused Dialog Command helpers rather than hidden inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Dialog side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-alert-dialog-forced-modality",
+        "summary": "Alert Dialog always renders as modal and suppresses backdrop/outside click dismissal.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Base UI origin omits the modal and pointer-dismissal controls for Alert Dialog and fixes them to blocking confirmation behavior."
+      },
+      {
+        "id": "base-ui-alert-dialog-consumer-owned-action",
+        "summary": "The action part is a typed activation surface that emits an optional consumer fact but does not close or perform destructive work by itself.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Alert Dialog should present a confirmation surface; destructive and success behavior belongs in the consuming Foldkit model and update."
+      }
+    ]
+  }
+}

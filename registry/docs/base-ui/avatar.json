@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/avatar",
+  "routePath": "/components/base-ui/avatar",
+  "title": "Avatar",
+  "description": "Foldkit-native Base UI Avatar primitive preserving root, image, fallback, modeled image loading state, status data attributes, native image props, and image load/error message hooks.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/avatar",
+  "defaultImportPath": "base-ui/avatar",
+  "examples": [
+    {
+      "id": "base-ui/avatar-hero",
+      "title": "AvatarHero",
+      "description": "Base UI Avatar hero fixture with image, fallback, and text fallback avatar.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-avatar-modeled-loading-status",
+        "summary": "Image loading is caller-owned Foldkit model state instead of an internal React Image effect.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit installable source must remain pure and unidirectional. The helper exposes image load/error message hooks and derives rendered parts from the caller's modeled ImageLoadingStatus."
+      },
+      {
+        "id": "base-ui-avatar-explicit-delay-state",
+        "summary": "Fallback delay visibility is represented by explicit delayStatus state instead of an internal timer.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Timers belong in Foldkit commands or subscriptions owned by an app model. The installable helper preserves fallback visibility semantics without hidden lifecycle state."
+      }
+    ]
+  }
+}

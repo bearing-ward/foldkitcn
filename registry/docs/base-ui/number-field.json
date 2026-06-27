@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/number-field",
+  "routePath": "/components/base-ui/number-field",
+  "title": "Number Field",
+  "description": "Foldkit-native Base UI Number Field primitive preserving model-owned numeric/text state, deterministic parsing and formatting, clamping, stepping, keyboard increments, form value semantics, grouped controls, scrub parts, and origin data attributes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/number-field",
+  "defaultImportPath": "base-ui/number-field",
+  "examples": [
+    {
+      "id": "base-ui/number-field-origin-fixture",
+      "title": "NumberFieldOriginFixture",
+      "description": "Static source-derived origin fixture preserving Number Field parts, grouped-control dimensions, form value, and data attributes.",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "base-ui/number-field-foldkit-fixture",
+      "title": "NumberFieldFoldkitFixture",
+      "description": "Foldkit parity fixture exercising root, scrub area, group, input, steppers, hidden input, disabled/read-only/invalid states, and bounded step configuration.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/number-field.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-number-field-model-owned-state",
+        "summary": "Numeric value and visible text are supplied by the consuming Foldkit model instead of hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless. Text entry, keyboard, and stepper handlers emit value-change facts so the application update function owns the canonical value and text."
+      },
+      {
+        "id": "base-ui-number-field-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup and docs-demo dimensions.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, form input, keyboard behavior, and exact grouped-control dimensions while the origin source remains checked in under repos/base-ui."
+      },
+      {
+        "id": "base-ui-number-field-scrub-dom-side-effects",
+        "summary": "Scrub area and cursor attributes are exposed, while pointer-lock and virtual-cursor side effects are left to consumers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit side effects belong in Commands, not render helpers. The primitive preserves scrub parts and data attributes, and exposes pure step helpers for scrub-driven value changes."
+      }
+    ]
+  }
+}

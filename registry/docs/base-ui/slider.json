@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/slider",
+  "routePath": "/components/base-ui/slider",
+  "title": "Slider",
+  "description": "Foldkit-native Base UI Slider primitive preserving controlled value arrays, deterministic normalization, clamping, step rounding, keyboard increments, pointer geometry helpers, orientation, direction, multi-thumb ordering, data attributes, and native range input form semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/slider",
+  "defaultImportPath": "base-ui/slider",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-slider-controlled-model-owned-value",
+        "summary": "Slider values are supplied by the consuming Foldkit model rather than stored in hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless. Keyboard, input, and pointer handlers emit value-change facts so the application update function owns the canonical value."
+      },
+      {
+        "id": "base-ui-slider-pointer-rect-helper",
+        "summary": "Pointer geometry is exposed as deterministic helpers that accept measured control rectangles.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable source avoids shared DOM measurement infrastructure. Consumers can measure in commands and feed the rect into the pure helper while parity fixtures can test geometry deterministically."
+      }
+    ]
+  }
+}

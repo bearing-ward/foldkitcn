@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/checkbox",
+  "routePath": "/components/base-ui/checkbox",
+  "title": "Checkbox",
+  "description": "Foldkit-native Base UI Checkbox primitive preserving controlled checked, unchecked, and indeterminate states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyboard activation, and native checkbox form controls without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/checkbox",
+  "defaultImportPath": "base-ui/checkbox",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-checkbox-indeterminate-input-property",
+        "summary": "Indeterminate state is represented through ARIA and data attributes rather than mutating the native input indeterminate property.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit installable source is declarative and stateless. The rendered root exposes aria-checked=\"mixed\" and data-indeterminate, which preserves the public accessible state without DOM mutation."
+      }
+    ]
+  }
+}

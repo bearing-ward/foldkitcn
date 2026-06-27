@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/menu",
+  "routePath": "/components/base-ui/menu",
+  "title": "Menu",
+  "description": "Foldkit-native Base UI Menu primitive preserving model-owned open, submenu, highlighted, checked, and radio state, popup/menu ARIA, local keyboard navigation, typeahead, disabled items, grouping, separators, arrows, deterministic placement attributes, and dismiss events.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/menu",
+  "defaultImportPath": "base-ui/menu",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-menu-model-owned-state",
+        "summary": "Open, highlighted, submenu, checkbox, and radio state are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow and keeps menu state in the consuming model."
+      },
+      {
+        "id": "base-ui-menu-command-facing-focus-effects",
+        "summary": "Focus handoff and restoration reuse the Popover command-facing helpers instead of hiding side effects inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Menu side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-menu-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, popup, and submenu attributes without DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Menu render helper side effect."
+      }
+    ]
+  }
+}

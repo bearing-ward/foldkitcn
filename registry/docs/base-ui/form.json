@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/form",
+  "routePath": "/components/base-ui/form",
+  "title": "Form",
+  "description": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/form",
+  "defaultImportPath": "base-ui/form",
+  "examples": [
+    {
+      "id": "base-ui/form-origin-fixture",
+      "title": "FormOriginFixture",
+      "description": "Static origin-evidence fixture derived from deterministic Base UI Form root, Field composition, validation state, and data attributes.",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "base-ui/form-foldkit-fixture",
+      "title": "FormFoldkitFixture",
+      "description": "Foldkit parity fixture exercising root, Field composition, valid/invalid/disabled states, noValidate behavior, and submit/reset handlers.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-form-model-owned-validation",
+        "summary": "Validation and submission state are represented by explicit model-owned fields and typed payloads instead of Base UI React's internal Form context.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit keeps validation facts and side effects in update/commands. The Form helper reports submit/reset payloads and invalid field names without mutating application state."
+      },
+      {
+        "id": "base-ui-form-no-imperative-actions-ref",
+        "summary": "The React actionsRef validate API is not implemented as an imperative Form method.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Imperative validation conflicts with Foldkit's Elm-style architecture. Consumers trigger validation through messages and update transitions."
+      },
+      {
+        "id": "base-ui-form-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for deterministic Form and Field output.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned form root, noValidate default, Field structure, and state attributes while the origin source remains checked in under repos/base-ui."
+      }
+    ]
+  }
+}

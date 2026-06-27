@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/collapsible",
+  "routePath": "/components/base-ui/collapsible",
+  "title": "Collapsible",
+  "description": "Foldkit-native Base UI Collapsible primitive preserving model-owned open state, trigger activation, ARIA expanded and controls relationships, root/trigger/panel state data attributes, disabled trigger behavior, and panel mounting policy.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/collapsible",
+  "defaultImportPath": "base-ui/collapsible",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-collapsible-model-owned-open-state",
+        "summary": "Open state is a model-owned input and trigger presses emit open-change facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model in response to CollapsibleOpenChange payloads."
+      },
+      {
+        "id": "base-ui-collapsible-consumer-provided-panel-id",
+        "summary": "ARIA controls relationships use caller-provided ids instead of generated React ids.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable render helpers are pure and deterministic. Consumers provide stable root or panel ids when they need aria-controls wiring."
+      },
+      {
+        "id": "base-ui-collapsible-transition-measurement-input",
+        "summary": "Transition status and panel dimensions are explicit inputs rather than DOM-measured internal state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Base UI measures scroll dimensions for animated panels. Foldkit registry primitives stay pure; shared animation measurement belongs in a future runtime policy or consumer command."
+      }
+    ]
+  }
+}

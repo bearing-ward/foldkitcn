@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "utils/cn",
+  "routePath": "/components/utils/cn",
+  "title": "cn",
+  "description": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/utils",
+  "defaultImportPath": "utils/cn",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

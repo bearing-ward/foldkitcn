@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/popover",
+  "routePath": "/components/base-ui/popover",
+  "title": "Popover",
+  "description": "Foldkit-native Base UI Popover primitive preserving model-owned open state, trigger/open/close facts, deterministic modal and placement attributes, popup ARIA relationships, command-facing focus and scroll-lock helpers, backdrop, arrow, and title/description wiring.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/popover",
+  "defaultImportPath": "base-ui/popover",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-popover-model-owned-open-state",
+        "summary": "Open state is a model-owned input and user interactions emit open-change facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model and return command helpers in response to PopoverOpenChange payloads."
+      },
+      {
+        "id": "base-ui-popover-command-facing-focus-effects",
+        "summary": "Focus handoff and focus restoration are exposed as explicit Command helpers rather than hidden inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Popover side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-popover-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, and arrow attributes without performing DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Real collision handling depends on measured geometry and should be added through a shared measurement service, not an ad hoc render helper side effect."
+      },
+      {
+        "id": "base-ui-popover-partial-modal-trap-focus",
+        "summary": "The modal surface is exposed with data and ARIA attributes, and modal=true locks scroll through commands, but pointer isolation and non-dialog trap-focus are not fully implemented.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit currently provides scroll lock, focus, and dialog-specific modal helpers, but this registry item does not have a shared non-dialog focus-trap or pointer-isolation command primitive. The 'trap-focus' mode is therefore command-facing and explicit rather than hidden inside render helpers."
+      }
+    ]
+  }
+}

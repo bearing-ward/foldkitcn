@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/label",
+  "routePath": "/components/shadcn/label",
+  "title": "Label",
+  "description": "Foldkit-native shadcn base-nova Label helper using a native label element, shadcn label slot classes, and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/label",
+  "defaultImportPath": "shadcn/label",
+  "examples": [
+    {
+      "id": "shadcn/label-demo",
+      "title": "LabelDemo",
+      "description": "Checkbox and Label composition using native label association.",
+      "sourcePath": "src/registry/shadcn/label/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/label-rtl",
+      "title": "LabelRtl",
+      "description": "RTL Label and Checkbox composition using local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/label/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-label-local-rtl-data",
+        "summary": "RTL example uses local static strings instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local RTL strings preserve the rendered direction and label semantics without adding an app-only dependency."
+      }
+    ]
+  }
+}

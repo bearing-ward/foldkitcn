@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/radio-group",
+  "routePath": "/components/shadcn/radio-group",
+  "title": "Radio Group",
+  "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/radio-group",
+  "defaultImportPath": "shadcn/radio-group",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-radio-group-local-base-ui-items",
+        "summary": "The shadcn wrapper composes local Radio Group item attributes instead of importing separate upstream Radio and RadioGroup React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, and indicator rendering over the local Foldkit primitive."
+      }
+    ]
+  }
+}

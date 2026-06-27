@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/input",
+  "routePath": "/components/base-ui/input",
+  "title": "Input",
+  "description": "Foldkit-native Base UI Input primitive preserving native form attributes, controlled value changes, and Field control data attributes without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/input",
+  "defaultImportPath": "base-ui/input",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

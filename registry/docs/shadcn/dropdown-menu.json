@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/dropdown-menu",
+  "routePath": "/components/shadcn/dropdown-menu",
+  "title": "Dropdown Menu",
+  "description": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Dropdown Menu demo.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/dropdown-menu",
+  "defaultImportPath": "shadcn/dropdown-menu",
+  "examples": [
+    {
+      "id": "shadcn/dropdown-menu-avatar",
+      "title": "DropdownMenuAvatar",
+      "description": "Avatar-triggered dropdown menu with account actions.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-basic",
+      "title": "DropdownMenuBasic",
+      "description": "Basic account dropdown menu with disabled API item.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-checkboxes-icons",
+      "title": "DropdownMenuCheckboxesIcons",
+      "description": "Checkbox menu items with local icon slots.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-checkboxes",
+      "title": "DropdownMenuCheckboxes",
+      "description": "Checkbox menu items with model-owned checked state.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-complex",
+      "title": "DropdownMenuComplex",
+      "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-demo",
+      "title": "DropdownMenuDemo",
+      "description": "Default account dropdown menu.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-destructive",
+      "title": "DropdownMenuDestructive",
+      "description": "Destructive menu variant.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-icons",
+      "title": "DropdownMenuIcons",
+      "description": "Dropdown menu items with local icon slots.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-radio-group",
+      "title": "DropdownMenuRadioGroup",
+      "description": "Radio menu items with model-owned selected value.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-radio-icons",
+      "title": "DropdownMenuRadioIcons",
+      "description": "Radio menu items with local payment icon slots.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-rtl",
+      "title": "DropdownMenuRtl",
+      "description": "RTL dropdown menu.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-shortcuts",
+      "title": "DropdownMenuShortcuts",
+      "description": "Dropdown menu with keyboard shortcut slots.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dropdown-menu-submenu",
+      "title": "DropdownMenuSubmenu",
+      "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-dropdown-menu-local-base-ui",
+        "summary": "The shadcn wrapper composes local Menu attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-dropdown-menu-local-icons",
+        "summary": "Check and chevron icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-dropdown-menu-local-rtl-data",
+        "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector."
+      },
+      {
+        "id": "shadcn-dropdown-menu-deterministic-placement-attributes",
+        "summary": "Positioner, content, and submenu content expose side, align, offset, and collision attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

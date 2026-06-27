@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/skeleton",
+  "routePath": "/components/shadcn/skeleton",
+  "title": "Skeleton",
+  "description": "Foldkit-native shadcn base-nova Skeleton helper using cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/skeleton",
+  "defaultImportPath": "shadcn/skeleton",
+  "examples": [
+    {
+      "id": "shadcn/skeleton-avatar",
+      "title": "SkeletonAvatar",
+      "description": "Avatar and text loading placeholder.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-card",
+      "title": "SkeletonCard",
+      "description": "Card loading placeholder using example-local Card shell classes.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-demo",
+      "title": "SkeletonDemo",
+      "description": "Default Skeleton avatar and text demo.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-form",
+      "title": "SkeletonForm",
+      "description": "Form loading placeholder.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-rtl",
+      "title": "SkeletonRtl",
+      "description": "RTL Skeleton layout example with local direction constants.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-table",
+      "title": "SkeletonTable",
+      "description": "Table row loading placeholders.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/skeleton-text",
+      "title": "SkeletonText",
+      "description": "Multi-line text loading placeholder.",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-skeleton-local-card-shell",
+        "summary": "Card example uses fixture-local static Card shell classes instead of an installable shadcn Card component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/card as an installable registry item. The local Card shell preserves the origin DOM slots and base-nova classes used by the Skeleton Card example."
+      },
+      {
+        "id": "shadcn-skeleton-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

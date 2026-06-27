@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/alert",
+  "routePath": "/components/shadcn/alert",
+  "title": "Alert",
+  "description": "Foldkit-native shadcn base-nova Alert wrapper using Schema-backed variants and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/alert",
+  "defaultImportPath": "shadcn/alert",
+  "examples": [
+    {
+      "id": "shadcn/alert-action",
+      "title": "AlertActionExample",
+      "description": "Alert with an action Button.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-basic",
+      "title": "AlertBasic",
+      "description": "Basic Alert with an inline status icon.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-colors",
+      "title": "AlertColors",
+      "description": "Alert with custom amber color classes.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-demo",
+      "title": "AlertDemo",
+      "description": "Stacked Alert demo.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-destructive",
+      "title": "AlertDestructive",
+      "description": "Destructive Alert variant.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-rtl",
+      "title": "AlertRtl",
+      "description": "RTL Alert layout example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-alert-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Alert examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-alert-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

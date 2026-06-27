@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/toggle-group",
+  "routePath": "/components/base-ui/toggle-group",
+  "title": "Toggle Group",
+  "description": "Foldkit-native Base UI Toggle Group primitive preserving grouped pressed state, single and multiple selection, disabled items, orientation, roving focus metadata, aria-pressed, and data attributes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/toggle-group",
+  "defaultImportPath": "base-ui/toggle-group",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-toggle-group-controlled-state",
+        "summary": "Foldkit consumers own Toggle Group selection and highlight state instead of using React uncontrolled defaultValue.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit registry components preserve Elm-style unidirectional data flow. The helper emits value and highlight change facts while the consuming model remains the single source of truth."
+      }
+    ]
+  }
+}

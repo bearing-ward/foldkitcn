@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/select",
+  "routePath": "/components/base-ui/select",
+  "title": "Select",
+  "description": "Foldkit-native Base UI Select primitive preserving model-owned open, value, and highlighted-item state, popup/listbox ARIA, keyboard navigation, typeahead, grouping, labels, separators, scroll controls, selected and disabled item data attributes, deterministic placement attributes, and hidden form input wiring.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/select",
+  "defaultImportPath": "base-ui/select",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-select-model-owned-state",
+        "summary": "Open, selected value, and highlighted item are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow and keeps selection state in the consuming model."
+      },
+      {
+        "id": "base-ui-select-command-facing-focus-effects",
+        "summary": "Focus handoff and restoration reuse the Popover command-facing helpers instead of hiding side effects inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Select side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-select-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, and popup attributes without DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Select render helper side effect."
+      }
+    ]
+  }
+}

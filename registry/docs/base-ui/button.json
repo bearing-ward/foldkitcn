@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/button",
+  "routePath": "/components/base-ui/button",
+  "title": "Button",
+  "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/button",
+  "defaultImportPath": "base-ui/button",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

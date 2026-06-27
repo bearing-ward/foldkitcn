@@ -29,6 +29,13 @@ export interface ManifestValidationResult {
   readonly errors: ReadonlyArray<ValidationError>
 }
 
+export const requiredCompleteDocsHeadings = [
+  'Usage',
+  'Examples',
+  'API',
+  'Quality',
+]
+
 const generatedManifestFields = [
   'manifestHash',
   'generatedAt',
@@ -303,6 +310,55 @@ const importErrors = (
       }))
   })
 
+export const docsMarkdownPathFromManifest = (
+  manifest: RegistryItemManifestType,
+): string => `${manifest.sourceRoot}/docs.md`
+
+export const extractMarkdownHeadingTexts = (
+  markdown: string,
+): ReadonlyArray<string> =>
+  Array.fromIterable(markdown.matchAll(/^#{1,6}\s+(?<text>.+)$/gmu)).flatMap(
+    match => {
+      const { text } = match.groups ?? {}
+
+      return typeof text === 'string' ? [text.trim()] : []
+    },
+  )
+
+const docsReadinessErrors = (
+  manifestPath: string,
+  manifest: RegistryItemManifestType,
+  readText: SourceFileReader,
+  pathExists: PathExists,
+): ReadonlyArray<ValidationError> => {
+  if (manifest.lifecycle.docsStatus !== 'complete') {
+    return []
+  }
+
+  const docsMarkdownPath = docsMarkdownPathFromManifest(manifest)
+
+  if (!pathExists(docsMarkdownPath)) {
+    return [
+      {
+        path: manifestPath,
+        message: `Complete docs require ${docsMarkdownPath}.`,
+      },
+    ]
+  }
+
+  const headingTexts = new Set(
+    extractMarkdownHeadingTexts(readText(docsMarkdownPath)),
+  )
+  const missingHeadings = requiredCompleteDocsHeadings.filter(
+    heading => !headingTexts.has(heading),
+  )
+
+  return missingHeadings.map(heading => ({
+    path: docsMarkdownPath,
+    message: `Complete docs require a "${heading}" heading.`,
+  }))
+}
+
 export const validateRegistryItemManifest = ({
   manifestPath,
   rawManifest,
@@ -352,6 +408,12 @@ export const validateRegistryItemManifest = ({
       ...installabilityErrors(manifestPath, manifest),
       ...parityFixturePathErrors(manifestPath, manifest, pathExists),
       ...importErrors(manifestPath, manifest, readInstallableSource),
+      ...docsReadinessErrors(
+        manifestPath,
+        manifest,
+        readInstallableSource,
+        pathExists,
+      ),
     ],
   }
 }

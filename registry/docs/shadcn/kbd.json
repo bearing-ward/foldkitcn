@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/kbd",
+  "routePath": "/components/shadcn/kbd",
+  "title": "Kbd",
+  "description": "Foldkit-native shadcn base-nova Kbd and KbdGroup helpers using cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/kbd",
+  "defaultImportPath": "shadcn/kbd",
+  "examples": [
+    {
+      "id": "shadcn/kbd-button",
+      "title": "KbdButton",
+      "description": "Outline Button with inline end Kbd.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-demo",
+      "title": "KbdDemo",
+      "description": "Grouped modifier and shortcut Kbd examples.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-group",
+      "title": "KbdGroup",
+      "description": "Inline KbdGroup in muted text.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-input-group",
+      "title": "KbdInputGroup",
+      "description": "Static Input Group shell with search icon and Kbd shortcut.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-rtl",
+      "title": "KbdRtl",
+      "description": "RTL grouped Kbd layout example with local direction constants.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/kbd-tooltip",
+      "title": "KbdTooltip",
+      "description": "Static Tooltip shell examples with inline Kbd shortcuts.",
+      "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-kbd-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon DOM role and visual footprint for Kbd examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-kbd-local-input-group-shell",
+        "summary": "Input Group example uses fixture-local static Input Group shell classes instead of an installable shadcn Input Group component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/input-group as an installable registry item. The static shell preserves the origin DOM slots and base-nova classes needed for the Kbd example snapshot."
+      },
+      {
+        "id": "shadcn-kbd-local-tooltip-shell",
+        "summary": "Tooltip example uses fixture-local static ButtonGroup and Tooltip shell classes instead of installable sibling components.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/button-group or shadcn/tooltip as installable registry items. Static shells preserve the origin DOM slots and visual classes without adding tooltip behavior."
+      },
+      {
+        "id": "shadcn-kbd-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

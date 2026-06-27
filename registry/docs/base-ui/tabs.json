@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/tabs",
+  "routePath": "/components/base-ui/tabs",
+  "title": "Tabs",
+  "description": "Foldkit-native Base UI Tabs primitive preserving model-owned selected and highlighted values, root/list/tab/panel/indicator attributes, manual and automatic activation, orientation, disabled tabs, keyboard navigation, and panel mounting policy.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/tabs",
+  "defaultImportPath": "base-ui/tabs",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-tabs-model-owned-selection",
+        "summary": "Selected and highlighted tab values are model-owned inputs instead of hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit components preserve unidirectional data flow. The primitive emits value and highlight change payloads so consumers can update the model and run focus commands explicitly."
+      },
+      {
+        "id": "base-ui-tabs-indicator-geometry-input",
+        "summary": "Indicator CSS variable geometry is accepted as data instead of measured inside the render helper.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit render helpers are pure. DOM measurement belongs in a consumer command or runtime boundary, while the primitive still exposes the origin indicator attributes and CSS variable names."
+      }
+    ]
+  }
+}

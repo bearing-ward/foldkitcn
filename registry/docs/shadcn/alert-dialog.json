@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/alert-dialog",
+  "routePath": "/components/shadcn/alert-dialog",
+  "title": "Alert Dialog",
+  "description": "Foldkit-native shadcn base-nova Alert Dialog wrapper composed from the local Base UI Alert Dialog primitive, shadcn Button classes, shadcn slot classes, local class canonicalization, inline icon markup, and deterministic local examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/alert-dialog",
+  "defaultImportPath": "shadcn/alert-dialog",
+  "examples": [
+    {
+      "id": "shadcn/alert-dialog-demo",
+      "title": "AlertDialogDemo",
+      "description": "Default confirmation alert dialog.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-basic",
+      "title": "AlertDialogBasic",
+      "description": "Basic account deletion confirmation alert dialog.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-destructive",
+      "title": "AlertDialogDestructive",
+      "description": "Destructive chat deletion confirmation with media icon.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-media",
+      "title": "AlertDialogWithMedia",
+      "description": "Project sharing confirmation with media icon.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-small",
+      "title": "AlertDialogSmall",
+      "description": "Small accessory connection confirmation.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-small-media",
+      "title": "AlertDialogSmallWithMedia",
+      "description": "Small accessory confirmation with media icon.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/alert-dialog-rtl",
+      "title": "AlertDialogRtl",
+      "description": "RTL alert dialog pair with deterministic local translations.",
+      "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-alert-dialog-local-base-ui",
+        "summary": "The shadcn wrapper composes local Alert Dialog attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-alert-dialog-local-button",
+        "summary": "Trigger, cancel, and action surfaces use the local shadcn Button class helper instead of origin React render composition.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The local Button registry item provides the same base-nova class contract without React runtime composition."
+      },
+      {
+        "id": "shadcn-alert-dialog-local-example-shells",
+        "summary": "Examples use local deterministic translations and open-state shells rather than origin app-level language-selector state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The language selector is outside this component slice. Static local data preserves the relevant Alert Dialog DOM, class, ARIA, and visual contracts."
+      },
+      {
+        "id": "shadcn-alert-dialog-inline-icons",
+        "summary": "Media icons are local inline SVG markup instead of lucide-react runtime imports.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "lucide-react is not an installable runtime dependency for this registry item."
+      }
+    ]
+  }
+}

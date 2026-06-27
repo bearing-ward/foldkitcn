@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/radio",
+  "routePath": "/components/base-ui/radio",
+  "title": "Radio",
+  "description": "Foldkit-native Base UI Radio primitive preserving controlled checked and unchecked states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyup activation, Enter suppression, and native radio form controls without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/radio",
+  "defaultImportPath": "base-ui/radio",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-radio-model-owned-checked-state",
+        "summary": "Checked state is controlled by the consuming Foldkit model instead of Base UI group context or hidden native input mutation.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit installable source is stateless and pure. User interaction emits a typed checked-change fact, and the consuming update owns whether the radio is selected."
+      }
+    ]
+  }
+}

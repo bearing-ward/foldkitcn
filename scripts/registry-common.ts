@@ -1,8 +1,19 @@
 import { Schema as S } from 'effect'
 
-import { RegistryIndex } from '../src/registry/schema'
-import type { RegistryIndex as RegistryIndexType } from '../src/registry/schema'
 import {
+  ComponentDocsArtifact,
+  ComponentDocsIndex,
+  RegistryIndex,
+} from '../src/registry/schema'
+import type {
+  ComponentDocsArtifact as ComponentDocsArtifactType,
+  ComponentDocsIndex as ComponentDocsIndexType,
+  ComponentDocsRoute,
+  RegistryIndex as RegistryIndexType,
+  RegistryItemManifest,
+} from '../src/registry/schema'
+import {
+  docsMarkdownPathFromManifest,
   registrySourceRoot,
   validateRegistryItemManifest,
 } from '../src/registry/validation'
@@ -34,6 +45,11 @@ interface RegistryCheckResult {
 interface BuildRegistryIndexOptions {
   readonly previousIndex?: RegistryIndexType
   readonly generatedAt?: string
+}
+
+interface ComponentDocsBuildResult {
+  readonly index: ComponentDocsIndexType
+  readonly artifacts: ReadonlyArray<ComponentDocsArtifactType>
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -98,9 +114,28 @@ export const readRegistryIndex = (
   }
 }
 
+export const readComponentDocsIndex = (
+  outputPath: string,
+): ComponentDocsIndexType | undefined => {
+  if (!existsSync(outputPath)) {
+    return undefined
+  }
+
+  try {
+    return S.decodeUnknownSync(ComponentDocsIndex)(readJson(outputPath))
+  } catch {
+    return undefined
+  }
+}
+
 export const registryIndexIsCurrent = (
   previousIndex: RegistryIndexType,
   nextIndex: RegistryIndexType,
+): boolean => hashJson(previousIndex) === hashJson(nextIndex)
+
+export const componentDocsIndexIsCurrent = (
+  previousIndex: ComponentDocsIndexType,
+  nextIndex: ComponentDocsIndexType,
 ): boolean => hashJson(previousIndex) === hashJson(nextIndex)
 
 const readInstallableSource = (sourcePath: string): string => {
@@ -222,6 +257,162 @@ export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   }
 }
 
+export const componentDocsRouteForItem = (
+  item: RegistryItemManifest,
+): ComponentDocsRoute => ({
+  itemId: item.id,
+  routePath: `/components/${item.id}`,
+  docsArtifactPath: `registry/docs/${item.id}.json`,
+})
+
+const slugifyHeading = (text: string): string =>
+  text
+    .trim()
+    .toLowerCase()
+    .replaceAll(/[^a-z0-9]+/gu, '-')
+    .replaceAll(/^-|-$/gu, '')
+
+const extractMarkdownHeadings = (
+  markdown: string,
+): ComponentDocsArtifactType['headings'] =>
+  Array.fromIterable(
+    markdown.matchAll(/^(?<marks>#{1,6})\s+(?<text>.+)$/gmu),
+  ).flatMap(match => {
+    const { marks, text } = match.groups ?? {}
+
+    return typeof marks === 'string' && typeof text === 'string'
+      ? [
+          {
+            id: slugifyHeading(text),
+            text: text.trim(),
+            level: marks.length,
+          },
+        ]
+      : []
+  })
+
+const localInstallPathForItem = (item: RegistryItemManifest): string => {
+  const [firstSourcePath] = item.installableSourcePaths
+
+  return firstSourcePath === undefined
+    ? item.sourceRoot
+    : normalizePath(pathModule.dirname(firstSourcePath))
+}
+
+export const writeJson = (outputPath: string, value: unknown): void => {
+  mkdirSync(pathModule.dirname(outputPath), { recursive: true })
+  writeFileSync(outputPath, `${JSON.stringify(value, null, 2)}\n`)
+  execFileSync('bun', ['x', 'oxfmt', '--write', outputPath], {
+    stdio: 'ignore',
+  })
+}
+
+export const buildComponentDocsArtifacts = (
+  registryIndex: RegistryIndexType,
+): ComponentDocsBuildResult => {
+  const artifacts = registryIndex.items.map(entry => {
+    const { item } = entry
+    const docsMarkdownPath = docsMarkdownPathFromManifest(item)
+    const hasMarkdown = existsSync(docsMarkdownPath)
+    const markdown = hasMarkdown ? readFileSync(docsMarkdownPath, 'utf-8') : ''
+    const route = componentDocsRouteForItem(item)
+    const artifact = {
+      schemaVersion: 1,
+      itemId: item.id,
+      routePath: route.routePath,
+      title: item.name,
+      description: item.description,
+      docsStatus: hasMarkdown ? item.lifecycle.docsStatus : 'missing',
+      markdownPath: hasMarkdown ? docsMarkdownPath : null,
+      markdown: hasMarkdown ? markdown : null,
+      headings: hasMarkdown ? extractMarkdownHeadings(markdown) : [],
+      installCommand: null,
+      localInstallPath: localInstallPathForItem(item),
+      defaultImportPath: item.id,
+      examples: item.examples,
+      quality: {
+        availability: item.lifecycle.availability,
+        implementationStatus: item.lifecycle.implementationStatus,
+        parityStatus: item.lifecycle.parityStatus,
+        driftStatus: item.lifecycle.driftStatus,
+        deviations: item.deviations,
+      },
+    }
+
+    return S.decodeUnknownSync(ComponentDocsArtifact)(artifact)
+  })
+  const index = {
+    schemaVersion: 1,
+    generatedAt: registryIndex.generatedAt,
+    routes: registryIndex.items.map(entry =>
+      componentDocsRouteForItem(entry.item),
+    ),
+  }
+
+  return {
+    artifacts,
+    index: S.decodeUnknownSync(ComponentDocsIndex)(index),
+  }
+}
+
+export const writeComponentDocsArtifacts = (
+  result: ComponentDocsBuildResult,
+): void => {
+  writeJson(
+    'registry/docs/index.json',
+    S.encodeSync(ComponentDocsIndex)(result.index),
+  )
+
+  void result.artifacts.map(artifact =>
+    writeJson(
+      `registry/docs/${artifact.itemId}.json`,
+      S.encodeSync(ComponentDocsArtifact)(artifact),
+    ),
+  )
+}
+
+export const checkComponentDocsCurrent = (
+  registryIndex: RegistryIndexType,
+): ComponentDocsIndexType => {
+  const outputPath = 'registry/docs/index.json'
+
+  if (!existsSync(outputPath)) {
+    throw new Error(`${outputPath} is missing; run bun run registry:build`)
+  }
+
+  const previousIndex = readComponentDocsIndex(outputPath)
+
+  if (previousIndex === undefined) {
+    throw new Error(`${outputPath} is invalid; run bun run registry:build`)
+  }
+
+  const nextResult = buildComponentDocsArtifacts(registryIndex)
+
+  if (!componentDocsIndexIsCurrent(previousIndex, nextResult.index)) {
+    throw new Error(`${outputPath} is stale; run bun run registry:build`)
+  }
+
+  void nextResult.artifacts.map(nextArtifact => {
+    const artifactPath = `registry/docs/${nextArtifact.itemId}.json`
+
+    if (!existsSync(artifactPath)) {
+      throw new Error(`${artifactPath} is missing; run bun run registry:build`)
+    }
+
+    const previousArtifact = S.decodeUnknownSync(ComponentDocsArtifact)(
+      readJson(artifactPath),
+    )
+
+    if (hashJson(previousArtifact) !== hashJson(nextArtifact)) {
+      throw new Error(`${artifactPath} is stale; run bun run registry:build`)
+    }
+
+    return artifactPath
+  })
+
+  return previousIndex
+}
+
 export const checkRegistryIndexCurrent = (
   outputPath: string,
 ): RegistryIndexType => {
@@ -241,13 +432,7 @@ export const checkRegistryIndexCurrent = (
     throw new Error(`${outputPath} is stale; run bun run registry:build`)
   }
 
-  return previousIndex
-}
+  checkComponentDocsCurrent(previousIndex)
 
-export const writeJson = (outputPath: string, value: unknown): void => {
-  mkdirSync(pathModule.dirname(outputPath), { recursive: true })
-  writeFileSync(outputPath, `${JSON.stringify(value, null, 2)}\n`)
-  execFileSync('bun', ['x', 'oxfmt', '--write', outputPath], {
-    stdio: 'ignore',
-  })
+  return previousIndex
 }

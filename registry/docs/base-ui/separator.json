@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/separator",
+  "routePath": "/components/base-ui/separator",
+  "title": "Separator",
+  "description": "Foldkit-native Base UI Separator primitive preserving role, orientation, ARIA, and data attributes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/separator",
+  "defaultImportPath": "base-ui/separator",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

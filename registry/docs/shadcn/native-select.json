@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/native-select",
+  "routePath": "/components/shadcn/native-select",
+  "title": "Native Select",
+  "description": "Foldkit-native shadcn base-nova Native Select wrapper using native select, option, and optgroup markup.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/native-select",
+  "defaultImportPath": "shadcn/native-select",
+  "examples": [
+    {
+      "id": "shadcn/native-select-demo",
+      "title": "NativeSelectDemo",
+      "description": "Default native select status picker.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-disabled",
+      "title": "NativeSelectDisabled",
+      "description": "Disabled native select example.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-groups",
+      "title": "NativeSelectGroups",
+      "description": "Native select with grouped options.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-invalid",
+      "title": "NativeSelectInvalid",
+      "description": "Invalid native select example.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/native-select-rtl",
+      "title": "NativeSelectRtl",
+      "description": "RTL native select example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/native-select/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-native-select-local-icon",
+        "summary": "Chevron icon uses a local inline SVG instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVG preserves the native-select icon slot, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-native-select-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

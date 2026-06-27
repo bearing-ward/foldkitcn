@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/select",
+  "routePath": "/components/shadcn/select",
+  "title": "Select",
+  "description": "Foldkit-native shadcn base-nova Select wrapper composed from the local Base UI Select primitive, local class canonicalization, local SVG chevron/check icons, deterministic slot classes, and local static examples for demo, disabled, groups, scrollable, align-item, invalid, and RTL variants.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/select",
+  "defaultImportPath": "shadcn/select",
+  "examples": [
+    {
+      "id": "shadcn/select-demo",
+      "title": "SelectDemo",
+      "description": "Default fruit select with label group.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-disabled",
+      "title": "SelectDisabled",
+      "description": "Disabled fruit select with a disabled item.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-groups",
+      "title": "SelectGroups",
+      "description": "Select grouped into fruits and vegetables.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-scrollable",
+      "title": "SelectScrollable",
+      "description": "Scrollable timezone select with multiple groups.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-align-item",
+      "title": "SelectAlignItem",
+      "description": "Select with alignItemWithTrigger controls represented by local static switch markup.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-invalid",
+      "title": "SelectInvalid",
+      "description": "Invalid select inside a local static field shell.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/select-rtl",
+      "title": "SelectRtl",
+      "description": "RTL select example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/select/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-select-local-base-ui",
+        "summary": "The shadcn wrapper composes local Select attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-select-local-icons",
+        "summary": "Chevron and check icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-select-local-example-shells",
+        "summary": "Examples use local static Field, Label, and Switch shells instead of importing adjacent shadcn components.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Select slice stays focused while preserving the relevant Select DOM, class, ARIA, and visual contracts."
+      },
+      {
+        "id": "shadcn-select-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      },
+      {
+        "id": "shadcn-select-deterministic-placement-attributes",
+        "summary": "Positioner and content expose side, align, offset, collision, and align-trigger attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

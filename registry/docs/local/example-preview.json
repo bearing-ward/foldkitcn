@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "itemId": "local/example-preview",
+  "routePath": "/components/local/example-preview",
+  "title": "Example preview",
+  "description": "Private preview fixture used to validate the registry foundation.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "registry-src/local/example-preview",
+  "defaultImportPath": "local/example-preview",
+  "examples": [],
+  "quality": {
+    "availability": "private",
+    "implementationStatus": "planned",
+    "parityStatus": "not-started",
+    "driftStatus": "unknown",
+    "deviations": []
+  }
+}

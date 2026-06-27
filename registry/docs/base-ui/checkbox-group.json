@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/checkbox-group",
+  "routePath": "/components/base-ui/checkbox-group",
+  "title": "Checkbox Group",
+  "description": "Foldkit-native Base UI Checkbox Group primitive preserving controlled multi-value group semantics, parent checkbox coordination, disabled/read-only/required/invalid states, root and checkbox data attributes, Space keyboard activation, and native checkbox form inputs without internal state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/checkbox-group",
+  "defaultImportPath": "base-ui/checkbox-group",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-checkbox-group-parent-id-generation",
+        "summary": "Parent aria-controls uses caller-provided or group-derived stable IDs instead of runtime-generated React IDs.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit installable source is stateless and serializable. Stable caller-provided IDs preserve the public ARIA relationship without hidden runtime identity state."
+      }
+    ]
+  }
+}

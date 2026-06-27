@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/tooltip",
+  "routePath": "/components/base-ui/tooltip",
+  "title": "Tooltip",
+  "description": "Foldkit-native Base UI Tooltip primitive preserving model-owned open state, trigger hover/focus/press facts, provider delay metadata, deterministic placement attributes, role=tooltip relationships, portal, positioner, popup, viewport, arrow, disabled, detached-trigger, instant, transition, and keyboard-dismiss surfaces.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/tooltip",
+  "defaultImportPath": "base-ui/tooltip",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-tooltip-model-owned-open-state",
+        "summary": "Open state and active trigger identity are model-owned inputs; trigger interactions emit open-change facts instead of mutating hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers decide whether hover, focus, press, delay, and disabled facts update their model."
+      },
+      {
+        "id": "base-ui-tooltip-delay-as-model-facing-facts",
+        "summary": "Delay, closeDelay, provider delay, provider closeDelay, and provider timeout are exposed as deterministic attributes and open-change facts rather than hidden timers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable primitive remains pure. Shared timer or subscription behavior can be added later through a reusable Foldkit abstraction."
+      },
+      {
+        "id": "base-ui-tooltip-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, viewport, and arrow attributes without performing DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision handling depends on runtime geometry and should be shared with Popover rather than implemented ad hoc in Tooltip."
+      }
+    ]
+  }
+}

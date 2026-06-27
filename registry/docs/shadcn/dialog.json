@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/dialog",
+  "routePath": "/components/shadcn/dialog",
+  "title": "Dialog",
+  "description": "Foldkit-native shadcn base-nova Dialog wrapper composed from the local Base UI Dialog primitive, shadcn slot classes, local class canonicalization, static close icon markup, and deterministic local examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/dialog",
+  "defaultImportPath": "shadcn/dialog",
+  "examples": [
+    {
+      "id": "shadcn/dialog-demo",
+      "title": "DialogDemo",
+      "description": "Profile editing dialog with local static field markup.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dialog-close-button",
+      "title": "DialogCloseButton",
+      "description": "Share link dialog with static input and footer close button.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dialog-no-close-button",
+      "title": "DialogNoCloseButton",
+      "description": "Dialog content without the top-right close button.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dialog-scrollable-content",
+      "title": "DialogScrollableContent",
+      "description": "Dialog with scrollable content body.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dialog-sticky-footer",
+      "title": "DialogStickyFooter",
+      "description": "Dialog with scrollable content and footer action.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/dialog-rtl",
+      "title": "DialogRtl",
+      "description": "RTL profile dialog with local static translations.",
+      "sourcePath": "src/registry/shadcn/dialog/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-dialog-local-base-ui",
+        "summary": "The shadcn wrapper composes local Dialog attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-dialog-local-example-shells",
+        "summary": "Examples use local static Button, Field, Label, Input, and RTL shells instead of unavailable origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Dialog DOM, class, ARIA, and visual contracts."
+      },
+      {
+        "id": "shadcn-dialog-static-close-icon",
+        "summary": "The close icon is local static markup instead of a lucide-react runtime import.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "lucide-react is not an installable runtime dependency for this registry item."
+      }
+    ]
+  }
+}

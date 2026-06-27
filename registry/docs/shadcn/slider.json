@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/slider",
+  "routePath": "/components/shadcn/slider",
+  "title": "Slider",
+  "description": "Foldkit-native shadcn base-nova Slider wrapper composed from the local Base UI Slider primitive, shadcn slots, base-nova class tokens, deterministic edge thumb geometry, and local class canonicalization.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/slider",
+  "defaultImportPath": "shadcn/slider",
+  "examples": [
+    {
+      "id": "shadcn/slider-controlled",
+      "title": "SliderControlled",
+      "description": "Controlled range slider rendered with deterministic static state and local label text.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-demo",
+      "title": "SliderDemo",
+      "description": "Default one-thumb Slider demo.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-disabled",
+      "title": "SliderDisabled",
+      "description": "Disabled Slider demo.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-multiple",
+      "title": "SliderMultiple",
+      "description": "Three-thumb Slider demo.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-range",
+      "title": "SliderRange",
+      "description": "Two-thumb range Slider demo.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-rtl",
+      "title": "SliderRtl",
+      "description": "RTL Slider layout example with local static direction data.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/slider-vertical",
+      "title": "SliderVertical",
+      "description": "Vertical Slider demo pair.",
+      "sourcePath": "src/registry/shadcn/slider/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-slider-local-controlled-label",
+        "summary": "Controlled Slider example uses local static label markup instead of depending on shadcn/label.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The plan explicitly avoids introducing an installable runtime dependency on a missing registry item. The example preserves the rendered Slider structure and nearby text for parity."
+      },
+      {
+        "id": "shadcn-slider-local-rtl-data",
+        "summary": "RTL example uses local static direction data instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Static RTL direction preserves the rendered output needed by parity fixtures."
+      }
+    ]
+  }
+}

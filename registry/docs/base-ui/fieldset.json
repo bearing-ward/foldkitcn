@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/fieldset",
+  "routePath": "/components/base-ui/fieldset",
+  "title": "Fieldset",
+  "description": "Foldkit-native Base UI Fieldset primitive preserving native fieldset disabled behavior, explicit legend association, parent-disabled propagation, and root/legend data attributes without hidden runtime state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/fieldset",
+  "defaultImportPath": "base-ui/fieldset",
+  "examples": [
+    {
+      "id": "base-ui/fieldset-origin-fixture",
+      "title": "FieldsetOriginFixture",
+      "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "base-ui/fieldset-foldkit-fixture",
+      "title": "FieldsetFoldkitFixture",
+      "description": "Foldkit parity fixture exercising root, legend, disabled, and explicit legend id behavior.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-fieldset-explicit-legend-id",
+        "summary": "Legend association uses an explicit or root-derived legendId option instead of React context registration.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless and do not use hidden mutable context. Root aria-labelledby and legend id are derived from config or supplied by the consumer."
+      },
+      {
+        "id": "base-ui-fieldset-root-legend-only",
+        "summary": "Only Root and Legend parts are implemented; description, error, invalid, and required Fieldset parts or states are omitted.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The pinned Base UI Fieldset source and docs expose Root and Legend only, with disabled as the only Fieldset state. Additional form field states belong to later Field/Form primitives."
+      },
+      {
+        "id": "base-ui-fieldset-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for deterministic Root and Legend output.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Root and Legend render deterministic markup, and this matches the existing static-fixture pattern for behavior primitives while pinned origin source remains available in repos/base-ui."
+      }
+    ]
+  }
+}

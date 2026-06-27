@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/input",
+  "routePath": "/components/shadcn/input",
+  "title": "Input",
+  "description": "Foldkit-native shadcn base-nova Input wrapper composed from the local Base UI Input primitive and shadcn class tokens.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/input",
+  "defaultImportPath": "shadcn/input",
+  "examples": [
+    {
+      "id": "shadcn/input-demo",
+      "title": "InputDemo",
+      "description": "Password API key input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-basic",
+      "title": "InputBasic",
+      "description": "Default text input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-disabled",
+      "title": "InputDisabled",
+      "description": "Disabled email input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-invalid",
+      "title": "InputInvalid",
+      "description": "Invalid input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-file",
+      "title": "InputFile",
+      "description": "File input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-required",
+      "title": "InputRequired",
+      "description": "Required input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

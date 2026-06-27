@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/separator",
+  "routePath": "/components/shadcn/separator",
+  "title": "Separator",
+  "description": "Foldkit-native shadcn base-nova Separator wrapper using local Base UI Separator behavior and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/separator",
+  "defaultImportPath": "shadcn/separator",
+  "examples": [
+    {
+      "id": "shadcn/separator-demo",
+      "title": "SeparatorDemo",
+      "description": "Heading, subtitle, separator, and description demo.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-list",
+      "title": "SeparatorList",
+      "description": "Definition-list rows separated by horizontal separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-menu",
+      "title": "SeparatorMenu",
+      "description": "Menu-like labels separated by vertical separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-vertical",
+      "title": "SeparatorVertical",
+      "description": "Compact nav labels separated by vertical separators.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/separator-rtl",
+      "title": "SeparatorRtl",
+      "description": "RTL Separator layout example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-separator-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

@@ -38,6 +38,7 @@ const makeManifest = ({
     readonly parityStatus: string
     readonly driftStatus: string
     readonly availability: string
+    readonly docsStatus?: string
   }
   readonly parity?: {
     readonly itemId: string
@@ -70,11 +71,12 @@ const makeManifest = ({
     requiredComparisons: [],
     acceptedDeviationIds: [],
   },
-  lifecycle: lifecycle ?? {
-    implementationStatus: 'planned',
-    parityStatus: 'not-started',
-    driftStatus: 'unknown',
-    availability: 'private',
+  lifecycle: {
+    implementationStatus: lifecycle?.implementationStatus ?? 'planned',
+    parityStatus: lifecycle?.parityStatus ?? 'not-started',
+    driftStatus: lifecycle?.driftStatus ?? 'unknown',
+    availability: lifecycle?.availability ?? 'private',
+    docsStatus: lifecycle?.docsStatus ?? 'missing',
   },
   deviations: [],
 })
@@ -408,6 +410,119 @@ describe('registry validation', () => {
           'Parity fixture path does not exist: tests/parity/missing-foldkit.fixture.ts',
       },
     ])
+  })
+
+  test('allows installable items to keep missing docs during migration', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+          docsStatus: 'missing',
+        },
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([])
+  })
+
+  test('rejects complete docs without a docs sidecar', () => {
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map(),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/complete/item.json',
+        message: 'Complete docs require registry-src/local/complete/docs.md.',
+      },
+    ])
+  })
+
+  test('rejects complete docs with missing required headings', () => {
+    const docsPath = 'registry-src/local/complete/docs.md'
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map([[docsPath, '# Usage\n\n## Examples\n']]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: docsPath,
+        message: 'Complete docs require a "API" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Quality" heading.',
+      },
+    ])
+  })
+
+  test('allows stub docs status without a sidecar', () => {
+    const result = validateFixture(
+      'registry-src/local/stub/item.json',
+      makeManifest({
+        id: 'local/stub',
+        sourceRoot: 'registry-src/local/stub',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'stub',
+        },
+      }),
+      new Set(['local/stub']),
+      new Map(),
+    )
+
+    expect(result.errors).toStrictEqual([])
   })
 
   test('classifies registry-local dependency hints', () => {

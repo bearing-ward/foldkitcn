@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/aspect-ratio",
+  "routePath": "/components/shadcn/aspect-ratio",
+  "title": "Aspect Ratio",
+  "description": "Foldkit-native shadcn base-nova Aspect Ratio helper using a CSS ratio variable and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/aspect-ratio",
+  "defaultImportPath": "shadcn/aspect-ratio",
+  "examples": [
+    {
+      "id": "shadcn/aspect-ratio-demo",
+      "title": "AspectRatioDemo",
+      "description": "Landscape image inside a 16:9 ratio box.",
+      "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/aspect-ratio-portrait",
+      "title": "AspectRatioPortrait",
+      "description": "Portrait image inside a 9:16 ratio box.",
+      "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/aspect-ratio-rtl",
+      "title": "AspectRatioRtl",
+      "description": "RTL figure with a 16:9 ratio box and Arabic caption.",
+      "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/aspect-ratio-square",
+      "title": "AspectRatioSquare",
+      "description": "Square image inside a 1:1 ratio box.",
+      "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-aspect-ratio-local-image-shim",
+        "summary": "Image examples use local img rendering instead of the origin Next Image runtime component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on Next. The fixture shim and Foldkit examples preserve the rendered img element, classes, source, alt text, ratio box DOM, dimensions, and computed styles relevant to Aspect Ratio parity."
+      }
+    ]
+  }
+}

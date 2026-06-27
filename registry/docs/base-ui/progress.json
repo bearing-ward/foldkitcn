@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/progress",
+  "routePath": "/components/base-ui/progress",
+  "title": "Progress",
+  "description": "Foldkit-native Base UI Progress primitive preserving root, label, track, indicator, value, ARIA, state data attributes, value clamping, formatting, and indeterminate semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/progress",
+  "defaultImportPath": "base-ui/progress",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "explicit-label-id",
+        "summary": "Progress label association uses an explicit labelId option instead of React-managed context.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless and do not use hidden mutable context; callers provide a stable labelId so root aria-labelledby and label id remain explicit and deterministic."
+      }
+    ]
+  }
+}

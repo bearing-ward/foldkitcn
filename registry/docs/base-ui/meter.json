@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/meter",
+  "routePath": "/components/base-ui/meter",
+  "title": "Meter",
+  "description": "Foldkit-native Base UI Meter primitive preserving root, label, track, indicator, value, ARIA, value clamping, range normalization, and formatting semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/meter",
+  "defaultImportPath": "base-ui/meter",
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "explicit-label-id",
+        "summary": "Meter label association uses an explicit labelId option instead of React-managed context.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless and do not use hidden mutable context; callers provide a stable labelId so root aria-labelledby and label id remain explicit and deterministic."
+      },
+      {
+        "id": "foldkit-render-helper",
+        "summary": "Meter composition uses a Foldkit toView callback instead of Base UI's React render prop.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The registry item exposes Foldkit Html attributes for each named part and lets callers compose them through toView, preserving the part contract without React render/asChild interop."
+      }
+    ]
+  }
+}

@@ -54,11 +54,19 @@ export const Availability = S.Union([
 ])
 export type Availability = typeof Availability.Type
 
+export const DocsStatus = S.Union([
+  S.Literal('missing'),
+  S.Literal('stub'),
+  S.Literal('complete'),
+])
+export type DocsStatus = typeof DocsStatus.Type
+
 export const Lifecycle = S.Struct({
   implementationStatus: ImplementationStatus,
   parityStatus: ParityStatus,
   driftStatus: DriftStatus,
   availability: Availability,
+  docsStatus: DocsStatus,
 })
 export type Lifecycle = typeof Lifecycle.Type
 
@@ -243,6 +251,20 @@ export const ExampleManifest = S.Struct({
 })
 export type ExampleManifest = typeof ExampleManifest.Type
 
+export const ExampleDocsArtifact = S.Struct({
+  id: S.String,
+  title: S.String,
+  description: S.String,
+  sourcePath: S.String,
+  kind: S.Union([
+    S.Literal('origin-fixture'),
+    S.Literal('foldkit-fixture'),
+    S.Literal('demo'),
+    S.Literal('docs'),
+  ]),
+})
+export type ExampleDocsArtifact = typeof ExampleDocsArtifact.Type
+
 export const ThemeToken = S.Struct({
   name: S.String,
   value: S.String,
@@ -311,6 +333,51 @@ export const RegistryItemManifest = S.Struct({
   deviations: S.Array(DeviationRecord),
 })
 export type RegistryItemManifest = typeof RegistryItemManifest.Type
+
+export const ComponentDocsRoute = S.Struct({
+  itemId: S.String,
+  routePath: S.String,
+  docsArtifactPath: S.String,
+})
+export type ComponentDocsRoute = typeof ComponentDocsRoute.Type
+
+export const ComponentDocsHeading = S.Struct({
+  id: S.String,
+  text: S.String,
+  level: S.Number,
+})
+export type ComponentDocsHeading = typeof ComponentDocsHeading.Type
+
+export const ComponentDocsArtifact = S.Struct({
+  schemaVersion: RegistrySchemaVersion,
+  itemId: S.String,
+  routePath: S.String,
+  title: S.String,
+  description: S.String,
+  docsStatus: DocsStatus,
+  markdownPath: S.OptionFromNullOr(S.String),
+  markdown: S.OptionFromNullOr(S.String),
+  headings: S.Array(ComponentDocsHeading),
+  installCommand: S.OptionFromNullOr(S.String),
+  localInstallPath: S.String,
+  defaultImportPath: S.String,
+  examples: S.Array(ExampleDocsArtifact),
+  quality: S.Struct({
+    availability: Availability,
+    implementationStatus: ImplementationStatus,
+    parityStatus: ParityStatus,
+    driftStatus: DriftStatus,
+    deviations: S.Array(DeviationRecord),
+  }),
+})
+export type ComponentDocsArtifact = typeof ComponentDocsArtifact.Type
+
+export const ComponentDocsIndex = S.Struct({
+  schemaVersion: RegistrySchemaVersion,
+  generatedAt: S.String,
+  routes: S.Array(ComponentDocsRoute),
+})
+export type ComponentDocsIndex = typeof ComponentDocsIndex.Type
 
 export const BuildArtifactRole = S.Union([
   S.Literal('index'),

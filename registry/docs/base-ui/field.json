@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/field",
+  "routePath": "/components/base-ui/field",
+  "title": "Field",
+  "description": "Foldkit-native Base UI Field composition primitive preserving root, item, label, control, description, error, validity data, ARIA relationships, and validation data attributes with model-owned validation state.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/field",
+  "defaultImportPath": "base-ui/field",
+  "examples": [
+    {
+      "id": "base-ui/field-origin-fixture",
+      "title": "FieldOriginFixture",
+      "description": "Static origin-evidence fixture derived from deterministic Base UI Field relationships and data attributes.",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/field.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "base-ui/field-foldkit-fixture",
+      "title": "FieldFoldkitFixture",
+      "description": "Foldkit parity fixture exercising root, label, control, description, error, disabled, valid, invalid, touched, dirty, and ARIA relationships.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/field.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-field-model-owned-validation",
+        "summary": "Validation is represented by explicit Schema tagged states instead of Base UI React's internal validation hooks and Form context.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit keeps validation facts in the consuming model. Field exposes pure validity helpers and attributes so update owns validation transitions."
+      },
+      {
+        "id": "base-ui-field-explicit-ids",
+        "summary": "Label, control, description, and error relationships use explicit or field-derived ids instead of React context registration.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers are stateless. Deterministic ids preserve accessible relationships without hidden mutable registration state."
+      },
+      {
+        "id": "base-ui-field-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for deterministic Field output.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The React origin's dynamic validation machinery is evidence for attributes and relationships; the Foldkit port intentionally keeps state outside the component."
+      }
+    ]
+  }
+}

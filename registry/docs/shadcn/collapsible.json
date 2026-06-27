@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/collapsible",
+  "routePath": "/components/shadcn/collapsible",
+  "title": "Collapsible",
+  "description": "Foldkit-native shadcn base-nova Collapsible wrapper composed from the local Base UI Collapsible primitive, shadcn root/trigger/content slots, local class canonicalization, and deterministic local examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/collapsible",
+  "defaultImportPath": "shadcn/collapsible",
+  "examples": [
+    {
+      "id": "shadcn/collapsible-demo",
+      "title": "CollapsibleDemo",
+      "description": "Order details collapsible with status row and icon trigger shell.",
+      "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/collapsible-basic",
+      "title": "CollapsibleBasic",
+      "description": "Product details card with local Button and Card shells.",
+      "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/collapsible-settings",
+      "title": "CollapsibleSettings",
+      "description": "Settings panel with radius inputs revealed by a trigger.",
+      "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/collapsible-file-tree",
+      "title": "CollapsibleFileTree",
+      "description": "Nested collapsibles for a file-tree shell.",
+      "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/collapsible-rtl",
+      "title": "CollapsibleRtl",
+      "description": "RTL order details layout with local static labels.",
+      "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-collapsible-local-base-ui",
+        "summary": "The shadcn wrapper composes local Collapsible attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots and classes over the local Foldkit primitive."
+      },
+      {
+        "id": "shadcn-collapsible-local-example-shells",
+        "summary": "Examples use local static Button, Card, icon, Tab, and RTL shells instead of origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Collapsible DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+      }
+    ]
+  }
+}

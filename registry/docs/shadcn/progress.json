@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/progress",
+  "routePath": "/components/shadcn/progress",
+  "title": "Progress",
+  "description": "Foldkit-native shadcn base-nova Progress wrapper using local Base UI Progress behavior and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/progress",
+  "defaultImportPath": "shadcn/progress",
+  "examples": [
+    {
+      "id": "shadcn/progress-controlled",
+      "title": "ProgressControlled",
+      "description": "Controlled progress rendered with deterministic static state.",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/progress-demo",
+      "title": "ProgressDemo",
+      "description": "Default Progress demo at the captured initial value.",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/progress-label",
+      "title": "ProgressWithLabel",
+      "description": "Progress with visible label and formatted value.",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/progress-rtl",
+      "title": "ProgressRtl",
+      "description": "RTL Progress layout example with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-progress-static-controlled",
+        "summary": "Controlled Progress example renders a deterministic static value instead of live React timer or Slider interaction.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The registry example is a rendered parity fixture. Static progress state preserves the relevant DOM, class, ARIA, and visual contracts without introducing timer or Slider behavior."
+      },
+      {
+        "id": "shadcn-progress-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}
