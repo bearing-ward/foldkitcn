@@ -56,6 +56,9 @@ import { ProgressControlled } from '../../../../../repos/ui/apps/v4/examples/bas
 import ProgressDemo from '../../../../../repos/ui/apps/v4/examples/base/progress-demo'
 import { ProgressWithLabel } from '../../../../../repos/ui/apps/v4/examples/base/progress-label'
 import { ProgressRtl } from '../../../../../repos/ui/apps/v4/examples/base/progress-rtl'
+import { ScrollAreaDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-demo'
+import { ScrollAreaHorizontalDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo'
+import { ScrollAreaRtl } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-rtl'
 import SeparatorDemo from '../../../../../repos/ui/apps/v4/examples/base/separator-demo'
 import { SeparatorList } from '../../../../../repos/ui/apps/v4/examples/base/separator-list'
 import { SeparatorMenu } from '../../../../../repos/ui/apps/v4/examples/base/separator-menu'
@@ -249,6 +252,9 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'separator-menu': SeparatorMenu,
   'separator-vertical': SeparatorVertical,
   'separator-rtl': SeparatorRtl,
+  'scroll-area-demo': ScrollAreaDemo,
+  'scroll-area-horizontal-demo': ScrollAreaHorizontalDemo,
+  'scroll-area-rtl': ScrollAreaRtl,
   'progress-controlled': ProgressControlled,
   'progress-demo': ProgressDemo,
   'progress-label': ProgressWithLabel,

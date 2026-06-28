@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/scroll-area",
+  "namespace": "base-ui",
+  "name": "Scroll Area",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Scroll Area primitive preserving root, viewport, content, scrollbar, thumb, corner, orientation, overflow, scrolling, hover, and data-attribute contracts through deterministic model-owned state and geometry helpers.",
+  "sourceRoot": "registry-src/base-ui/scroll-area",
+  "installableSourcePaths": ["src/registry/base-ui/scroll-area/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Scroll Area",
+      "docsUrl": "https://base-ui.com/react/components/scroll-area",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/scroll-area",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/scroll-area/constants.ts",
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContent.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/corner/ScrollAreaCorner.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/index.parts.ts",
+        "repos/base-ui/packages/react/src/scroll-area/index.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRoot.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/root/stateAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbar.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumb.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumbDataAttributes.ts",
+        "repos/base-ui/packages/react/src/scroll-area/utils/getOffset.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewport.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportContext.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewportDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/both/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/scroll-area/demos/scroll-fade/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/scroll-area/content/ScrollAreaContent.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/corner/ScrollAreaCorner.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/root/ScrollAreaRoot.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbar.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/thumb/ScrollAreaThumb.test.tsx",
+        "repos/base-ui/packages/react/src/scroll-area/viewport/ScrollAreaViewport.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for serializable Scroll Area options and deterministic geometry inputs."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/scroll-area",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/scroll-area",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/scroll-area",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/scroll-area",
+        "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/scroll-area",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/scroll-area.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/scroll-area.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-scroll-area-model-owned-measurement-state",
+      "base-ui-scroll-area-deterministic-scroll-geometry"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-scroll-area-model-owned-measurement-state",
+      "summary": "Overflow, edge, scrolling, hover, thumb, and corner state are supplied or derived from deterministic metric inputs instead of hidden component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit render helpers stay pure. Browser measurement belongs behind commands or future shared measurement infrastructure rather than an ad hoc ResizeObserver inside installable source."
+    },
+    {
+      "id": "base-ui-scroll-area-deterministic-scroll-geometry",
+      "summary": "Track press and thumb drag scroll math is exposed as pure helpers that accept measured sizes.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The origin mutates scrollTop and scrollLeft from DOM events. The Foldkit implementation exposes equivalent deterministic calculations so consuming update/command code can own effects."
+    }
+  ]
+}

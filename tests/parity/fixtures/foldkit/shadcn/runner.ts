@@ -8,6 +8,11 @@ import { shadcnFoldkitCases } from './cases'
 
 import path from 'node:path'
 
+const transparentPixelPng = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
+  'base64',
+)
+
 export interface CaptureShadcnFoldkitSnapshotsOptions {
   readonly grep?: string
 }
@@ -95,6 +100,12 @@ export const captureShadcnFoldkitSnapshots = async (
         pageErrors.push(message.text())
       }
     })
+    await page.route('https://images.unsplash.com/**', route =>
+      route.fulfill({
+        body: transparentPixelPng,
+        contentType: 'image/png',
+      }),
+    )
     const baseUrl = serverUrl(server)
 
     return await foldkitCases.reduce(async (pendingSnapshots, foldkitCase) => {

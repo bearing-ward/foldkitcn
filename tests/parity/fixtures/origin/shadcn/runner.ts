@@ -96,6 +96,10 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/progress/index.ts')
     }
 
+    if (source === '@base-ui/react/scroll-area') {
+      return repoPath('repos/base-ui/packages/react/src/scroll-area/index.ts')
+    }
+
     if (source === '@base-ui/react/switch') {
       return repoPath('repos/base-ui/packages/react/src/switch/index.ts')
     }
@@ -407,6 +411,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/scroll-area',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/scroll-area.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/progress',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/progress.tsx',
@@ -494,6 +504,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/separator',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/separator.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/scroll-area',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/scroll-area.tsx',
           ),
         },
         {
@@ -613,6 +629,12 @@ export const captureShadcnOriginSnapshots = async (
       )
     })
     await page.route('https://github.com/*.png', route =>
+      route.fulfill({
+        body: transparentPixelPng,
+        contentType: 'image/png',
+      }),
+    )
+    await page.route('https://images.unsplash.com/**', route =>
       route.fulfill({
         body: transparentPixelPng,
         contentType: 'image/png',

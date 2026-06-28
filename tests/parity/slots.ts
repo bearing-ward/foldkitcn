@@ -165,6 +165,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/scroll-area',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/scroll-area.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/scroll-area.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'base-ui/number-field',
     status: 'ready',
     originFixtureEntrypoint:
@@ -650,6 +668,22 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'tests/parity/fixtures/origin/shadcn/slider.fixture.ts',
     foldkitFixtureEntrypoint:
       'tests/parity/fixtures/foldkit/shadcn/slider.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
+    itemId: 'shadcn/scroll-area',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
     comparisons: [
       'class-tokens',
       'attributes',

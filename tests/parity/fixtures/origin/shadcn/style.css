@@ -77,6 +77,11 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/progress-rtl.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/progress.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/progress.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/scroll-area-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/scroll-area-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/scroll-area.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/scroll-area.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-avatar.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-card.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-demo.tsx";

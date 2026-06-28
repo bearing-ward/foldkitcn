@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 29,
-      remaining: 9,
+      imported: 30,
+      remaining: 8,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 31,
-      remaining: 33,
+      imported: 32,
+      remaining: 32,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -68,6 +68,7 @@ describe('origin component progress', () => {
       'base-ui/progress',
       'base-ui/radio',
       'base-ui/radio-group',
+      'base-ui/scroll-area',
       'base-ui/separator',
       'base-ui/select',
       'base-ui/slider',
@@ -98,6 +99,7 @@ describe('origin component progress', () => {
       'shadcn/popover',
       'shadcn/progress',
       'shadcn/radio-group',
+      'shadcn/scroll-area',
       'shadcn/separator',
       'shadcn/slider',
       'shadcn/skeleton',
@@ -134,11 +136,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/scroll-area')
+    expect(nextRow?.itemId).toBe('base-ui/toolbar')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/scroll-area',
-      'https://ui.shadcn.com/docs/components/scroll-area',
+      'https://base-ui.com/react/components/toolbar',
     ])
   })
 

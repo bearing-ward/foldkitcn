@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/scroll-area",
+  "namespace": "shadcn",
+  "name": "Scroll Area",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Scroll Area wrapper composed from the local Base UI Scroll Area primitive, shadcn slot attributes, base-nova class tokens, local class canonicalization, and deterministic local examples.",
+  "sourceRoot": "registry-src/shadcn/scroll-area",
+  "installableSourcePaths": [
+    "src/registry/shadcn/scroll-area/index.ts",
+    "src/registry/shadcn/scroll-area/examples.ts"
+  ],
+  "consumedThemeTokens": ["--border", "--ring"],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Scroll Area",
+      "docsUrl": "https://ui.shadcn.com/docs/components/scroll-area",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/scroll-area.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/scroll-area.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/scroll-area.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/scroll-area.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/scroll-area.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/scroll-area-demo.tsx",
+        "repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo.tsx",
+        "repos/ui/apps/v4/examples/base/scroll-area-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/scroll-area",
+        "classification": "registry-local",
+        "target": "base-ui/scroll-area",
+        "reason": "shadcn Scroll Area composes the local Base UI Scroll Area primitive."
+      },
+      {
+        "specifier": "shadcn/separator",
+        "classification": "registry-local",
+        "target": "shadcn/separator",
+        "reason": "Scroll Area examples use the local shadcn Separator wrapper."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Scroll Area uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema through wrapper style options and the local Base UI dependency."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/scroll-area",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/scroll-area",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "next/image",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin horizontal artwork example uses Next Image; installable source renders equivalent image markup with Foldkit Html."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is fixture evidence only and is replaced by local static RTL data."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React fragments and component state are origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/scroll-area-demo",
+      "title": "ScrollAreaDemo",
+      "description": "Default vertical tag list Scroll Area demo.",
+      "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/scroll-area-horizontal-demo",
+      "title": "ScrollAreaHorizontalDemo",
+      "description": "Horizontal artwork Scroll Area demo with local image markup.",
+      "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/scroll-area-rtl",
+      "title": "ScrollAreaRtl",
+      "description": "RTL tag list Scroll Area demo with local Arabic strings.",
+      "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/scroll-area",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-scroll-area-local-base-ui",
+      "shadcn-scroll-area-local-image-markup",
+      "shadcn-scroll-area-local-rtl-data",
+      "shadcn-scroll-area-deterministic-measurement-state"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-scroll-area-local-base-ui",
+      "summary": "The wrapper composes local Scroll Area attributes instead of importing upstream Base UI React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+    },
+    {
+      "id": "shadcn-scroll-area-local-image-markup",
+      "summary": "The horizontal artwork example renders local img markup instead of Next Image.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable registry examples cannot depend on Next.js. The local markup preserves the image, alt, sizing, and figure structure relevant to parity."
+    },
+    {
+      "id": "shadcn-scroll-area-local-rtl-data",
+      "summary": "RTL example uses local Arabic strings instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Static RTL data preserves the rendered direction and content needed by fixtures."
+    },
+    {
+      "id": "shadcn-scroll-area-deterministic-measurement-state",
+      "summary": "Scrollbar visibility and thumb dimensions come from local Base UI deterministic state helpers instead of live ResizeObserver measurement.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "This keeps the wrapper pure and delegates browser measurement to consuming commands or future shared measurement infrastructure."
+    }
+  ]
+}

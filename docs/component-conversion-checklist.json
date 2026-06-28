@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T02:20:10.717Z",
+  "generatedAt": "2026-06-28T02:58:01.788Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 29,
-      "remaining": 9
+      "imported": 30,
+      "remaining": 8
     },
     "shadcn": {
       "total": 64,
-      "imported": 31,
-      "remaining": 33
+      "imported": 32,
+      "remaining": 32
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 32,
+    "dossierReadyCount": 30,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1448,25 +1448,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
         "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/scroll-area",
-        "https://ui.shadcn.com/docs/components/scroll-area"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/scroll-area"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 69",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/input-otp",
@@ -1501,27 +1498,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
         "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/scroll-area",
-        "https://ui.shadcn.com/docs/components/scroll-area"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/scroll-area"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 69",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/toolbar",

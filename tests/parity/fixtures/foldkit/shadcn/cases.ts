@@ -84,6 +84,11 @@ import {
   ProgressWithLabel,
 } from '../../../../../src/registry/shadcn/progress/examples'
 import {
+  ScrollAreaDemo,
+  ScrollAreaHorizontalDemo,
+  ScrollAreaRtl,
+} from '../../../../../src/registry/shadcn/scroll-area/examples'
+import {
   SeparatorDemo,
   SeparatorList,
   SeparatorMenu,
@@ -256,6 +261,9 @@ const components: Readonly<Record<string, () => Html>> = {
   'separator-menu': SeparatorMenu,
   'separator-vertical': SeparatorVertical,
   'separator-rtl': SeparatorRtl,
+  'scroll-area-demo': ScrollAreaDemo,
+  'scroll-area-horizontal-demo': ScrollAreaHorizontalDemo,
+  'scroll-area-rtl': ScrollAreaRtl,
   'progress-controlled': ProgressControlled,
   'progress-demo': ProgressDemo,
   'progress-label': ProgressWithLabel,
@@ -305,6 +313,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('separator-')) {
     return 'src/registry/shadcn/separator/examples.ts'
+  }
+
+  if (id.startsWith('scroll-area-')) {
+    return 'src/registry/shadcn/scroll-area/examples.ts'
   }
 
   if (id.startsWith('progress-')) {

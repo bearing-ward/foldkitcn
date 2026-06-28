@@ -457,6 +457,22 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-rtl.tsx',
     },
     {
+      id: 'scroll-area-demo',
+      title: 'Scroll Area demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/scroll-area-demo.tsx',
+    },
+    {
+      id: 'scroll-area-horizontal-demo',
+      title: 'Scroll Area horizontal demo',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo.tsx',
+    },
+    {
+      id: 'scroll-area-rtl',
+      title: 'Scroll Area RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/scroll-area-rtl.tsx',
+    },
+    {
       id: 'progress-controlled',
       title: 'Progress controlled',
       originFilePath: 'repos/ui/apps/v4/examples/base/progress-controlled.tsx',
