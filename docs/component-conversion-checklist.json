@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T10:34:14.849Z",
+  "generatedAt": "2026-06-28T01:46:34.146Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 27,
-      "remaining": 11
+      "imported": 28,
+      "remaining": 10
     },
     "shadcn": {
       "total": 64,
-      "imported": 29,
-      "remaining": 35
+      "imported": 30,
+      "remaining": 34
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 36,
+    "dossierReadyCount": 34,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1374,25 +1374,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
         "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/context-menu",
-        "https://ui.shadcn.com/docs/components/context-menu"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/context-menu"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 68",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/context-menu",
@@ -1401,27 +1398,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
         "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/context-menu",
-        "https://ui.shadcn.com/docs/components/context-menu"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/context-menu"],
       "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 68",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/otp-field",

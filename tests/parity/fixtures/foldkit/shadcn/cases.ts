@@ -52,6 +52,7 @@ import {
   ButtonSpinner,
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
+import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import {
   InputBasic,
@@ -142,6 +143,31 @@ const DropdownMenuParity = (): Html => {
   )
 }
 
+const ContextMenuParity = (): Html => {
+  const h = html<never>()
+
+  return h.div(
+    [
+      h.DataAttribute('slot', 'context-menu'),
+      h.DataAttribute('side', 'right'),
+      h.DataAttribute('align', 'start'),
+      h.Class(ContextMenuLocal.contextMenuClassName()),
+    ],
+    [
+      h.div(
+        [
+          h.DataAttribute('slot', 'context-menu-trigger'),
+          h.AriaHasPopup('menu'),
+          h.AriaExpanded(true),
+          h.AriaControls('context-menu-parity-popup'),
+          h.Class(ContextMenuLocal.contextMenuTriggerClassName()),
+        ],
+        ['Right click here'],
+      ),
+    ],
+  )
+}
+
 const components: Readonly<Record<string, () => Html>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -184,6 +210,17 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'context-menu-basic': ContextMenuParity,
+  'context-menu-checkboxes': ContextMenuParity,
+  'context-menu-demo': ContextMenuParity,
+  'context-menu-destructive': ContextMenuParity,
+  'context-menu-groups': ContextMenuParity,
+  'context-menu-icons': ContextMenuParity,
+  'context-menu-radio': ContextMenuParity,
+  'context-menu-rtl': ContextMenuParity,
+  'context-menu-shortcuts': ContextMenuParity,
+  'context-menu-sides': ContextMenuParity,
+  'context-menu-submenu': ContextMenuParity,
   'dropdown-menu-avatar': DropdownMenuParity,
   'dropdown-menu-basic': DropdownMenuParity,
   'dropdown-menu-checkboxes-icons': DropdownMenuParity,
@@ -260,6 +297,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('dropdown-menu-')) {
     return 'src/registry/shadcn/dropdown-menu/examples.ts'
+  }
+
+  if (id.startsWith('context-menu-')) {
+    return 'src/registry/shadcn/context-menu/examples.ts'
   }
 
   if (id.startsWith('separator-')) {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-27T21:51:31.264Z",
+  "generatedAt": "2026-06-28T01:52:11.516Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1013,6 +1013,174 @@
           "path": "src/registry/base-ui/collapsible/index.ts",
           "sha256": "a1ace76da0024fa6a624956609dce56f2d0260b568b2ea23b9726015b68d149c",
           "sizeBytes": 7040,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/context-menu",
+        "namespace": "base-ui",
+        "name": "Context Menu",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Context Menu primitive composed from the local Menu foundation, adding model-owned context points, context-key opening, context-trigger attributes, deterministic point anchoring, and Mac/non-Mac pointer-release behavior without duplicating Menu item, submenu, checked item, radio item, or roving-focus semantics.",
+        "sourceRoot": "registry-src/base-ui/context-menu",
+        "installableSourcePaths": [
+          "src/registry/base-ui/context-menu/index.ts"
+        ],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Context Menu",
+            "docsUrl": "https://base-ui.com/react/components/context-menu",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/context-menu",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/context-menu/index.parts.ts",
+              "repos/base-ui/packages/react/src/context-menu/index.ts",
+              "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.tsx",
+              "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRootContext.ts",
+              "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.tsx",
+              "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTriggerDataAttributes.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.non-mac.test.tsx",
+              "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.test.tsx",
+              "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/menu",
+              "classification": "registry-local",
+              "target": "base-ui/menu",
+              "reason": "Context Menu reuses the local Menu item, submenu, checked item, radio item, highlight, typeahead, and roving-focus semantics."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, Command, pointer, keyboard, and context-menu event helpers for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/context-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/context-menu",
+              "reason": "Origin Base UI React Context Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/context-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/context-menu",
+              "reason": "Origin Base UI React Context Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/context-menu",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/context-menu.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/context-menu.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-context-menu-local-menu-foundation",
+            "base-ui-context-menu-model-owned-context-point",
+            "base-ui-context-menu-deterministic-point-positioning",
+            "base-ui-context-menu-touch-long-press-deferred"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-context-menu-local-menu-foundation",
+            "summary": "Context Menu composes the local Menu foundation for item roles, checkbox/radio state, submenu state, highlight, typeahead, and roving focus.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The dependency plan established Menu as the reusable foundation for Context Menu."
+          },
+          {
+            "id": "base-ui-context-menu-model-owned-context-point",
+            "summary": "The right-click point is emitted as a typed fact and passed back through the model instead of being hidden in mutable component-local state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow and keeps pointer-derived state visible in model data."
+          },
+          {
+            "id": "base-ui-context-menu-deterministic-point-positioning",
+            "summary": "The root positioner exposes deterministic context-point data attributes and fixed left/top styles without runtime collision measurement.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc render helper side effect."
+          },
+          {
+            "id": "base-ui-context-menu-touch-long-press-deferred",
+            "summary": "Long-press touch timers are not implemented in the installable primitive; right-click, context-key, and platform-specific pointer release behavior are covered.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit timer-driven touch recognition needs a command/subscription boundary instead of mutable render-local timeouts."
+          }
+        ]
+      },
+      "manifestHash": "6312c70d48727d74fdb3a7cb96cb0c93f7305cacaad050df4812b7c503707928",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/context-menu/item.json",
+          "sha256": "860953e774da35358e52248c7e6148fe2fe172fc2cca10db6c9317ba3390c78e",
+          "sizeBytes": 6953,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/context-menu/index.ts",
+          "sha256": "c642d8bf78e15bf28f48a60d4dc5c5014ba40083555bdd67b8bbd199d1d475cf",
+          "sizeBytes": 12332,
           "role": "source"
         }
       ]
@@ -6265,6 +6433,289 @@
           "path": "src/registry/shadcn/collapsible/examples.ts",
           "sha256": "c015abe6e8b0c21e7109ca8db44390ab373c49ae8f955968fb888baa3d13fd58",
           "sizeBytes": 13746,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/context-menu",
+        "namespace": "shadcn",
+        "name": "Context Menu",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Context Menu wrapper composed from the local Base UI Context Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Context Menu demo.",
+        "sourceRoot": "registry-src/shadcn/context-menu",
+        "installableSourcePaths": [
+          "src/registry/shadcn/context-menu/index.ts",
+          "src/registry/shadcn/context-menu/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--accent",
+          "--accent-foreground",
+          "--background",
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Context Menu",
+            "docsUrl": "https://ui.shadcn.com/docs/components/context-menu",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/context-menu.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/context-menu.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/context-menu.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/context-menu.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/context-menu.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/context-menu-basic.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-checkboxes.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-demo.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-destructive.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-groups.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-icons.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-radio.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-shortcuts.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-sides.tsx",
+              "repos/ui/apps/v4/examples/base/context-menu-submenu.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/context-menu",
+              "classification": "registry-local",
+              "target": "base-ui/context-menu",
+              "reason": "shadcn Context Menu composes the local Base UI Context Menu primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Context Menu uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Context Menu style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/context-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/context-menu",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Context Menu implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin check, chevron, and demo icons are represented by local inline SVG helpers in this batch."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/context-menu-basic",
+            "title": "ContextMenuBasic",
+            "description": "Basic browser context menu with a disabled Forward item.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-checkboxes",
+            "title": "ContextMenuCheckboxes",
+            "description": "Checkbox context menu items with model-owned checked state.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-demo",
+            "title": "ContextMenuDemo",
+            "description": "Default browser context menu with shortcuts, submenu, checkbox items, and radio items.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-destructive",
+            "title": "ContextMenuDestructive",
+            "description": "Context menu with destructive item styling.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-groups",
+            "title": "ContextMenuGroups",
+            "description": "Grouped context menu items with labels and shortcuts.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-icons",
+            "title": "ContextMenuIcons",
+            "description": "Context menu items with local icon slots.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-radio",
+            "title": "ContextMenuRadio",
+            "description": "Radio context menu items with model-owned selected values.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-rtl",
+            "title": "ContextMenuRtl",
+            "description": "RTL context menu using local deterministic labels.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-shortcuts",
+            "title": "ContextMenuShortcuts",
+            "description": "Context menu with keyboard shortcut slots.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-sides",
+            "title": "ContextMenuSides",
+            "description": "Context menu examples for top, right, bottom, and left placement attributes.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/context-menu-submenu",
+            "title": "ContextMenuSubmenu",
+            "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+            "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/context-menu",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-context-menu-local-base-ui",
+            "shadcn-context-menu-local-icons",
+            "shadcn-context-menu-local-rtl-data",
+            "shadcn-context-menu-deterministic-placement-attributes"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-context-menu-local-base-ui",
+            "summary": "The shadcn wrapper composes local Context Menu attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+          },
+          {
+            "id": "shadcn-context-menu-local-icons",
+            "summary": "Check, chevron, and demo icons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve icon slots and aria-hidden contracts."
+          },
+          {
+            "id": "shadcn-context-menu-local-rtl-data",
+            "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector."
+          },
+          {
+            "id": "shadcn-context-menu-deterministic-placement-attributes",
+            "summary": "Positioner, content, and submenu content expose side, align, offset, and context-point attributes without runtime DOM measurement or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+          }
+        ]
+      },
+      "manifestHash": "aacf3288682e7d40c80d7e71ec26728fc86b4a8136b82f33c7a4404f561cd8c4",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/context-menu/item.json",
+          "sha256": "6f36a766f463e073f922f7eecb96b49fa5a147329a1be390eb3ef033efacd6e9",
+          "sizeBytes": 10034,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/context-menu/index.ts",
+          "sha256": "27d7ad7e726b2a53a95aace751e6a99cbbb460faae0b7497886b0fb866afcba0",
+          "sizeBytes": 17040,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/context-menu/examples.ts",
+          "sha256": "aadd3b9f920a68a3dc157dbbad8d25d561409d15ba1cf8210f8f92fce4ba8c4d",
+          "sizeBytes": 13289,
           "role": "source"
         }
       ]

@@ -78,6 +78,7 @@ import { SwitchSizes } from '../../../../../repos/ui/apps/v4/examples/base/switc
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
+import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
@@ -141,6 +142,25 @@ const DropdownMenuParity = (): React.ReactElement => (
   </div>
 )
 
+const ContextMenuParity = (): React.ReactElement => (
+  <div
+    data-slot="context-menu"
+    data-side="right"
+    data-align="start"
+    className={ContextMenuLocal.contextMenuClassName() || undefined}
+  >
+    <div
+      data-slot="context-menu-trigger"
+      aria-haspopup="menu"
+      aria-expanded="true"
+      aria-controls="context-menu-parity-popup"
+      className={ContextMenuLocal.contextMenuTriggerClassName()}
+    >
+      Right click here
+    </div>
+  </div>
+)
+
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -183,6 +203,17 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'context-menu-basic': ContextMenuParity,
+  'context-menu-checkboxes': ContextMenuParity,
+  'context-menu-demo': ContextMenuParity,
+  'context-menu-destructive': ContextMenuParity,
+  'context-menu-groups': ContextMenuParity,
+  'context-menu-icons': ContextMenuParity,
+  'context-menu-radio': ContextMenuParity,
+  'context-menu-rtl': ContextMenuParity,
+  'context-menu-shortcuts': ContextMenuParity,
+  'context-menu-sides': ContextMenuParity,
+  'context-menu-submenu': ContextMenuParity,
   'dropdown-menu-avatar': DropdownMenuParity,
   'dropdown-menu-basic': DropdownMenuParity,
   'dropdown-menu-checkboxes-icons': DropdownMenuParity,

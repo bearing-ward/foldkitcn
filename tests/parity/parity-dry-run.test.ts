@@ -33,6 +33,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/select',
       'shadcn/dropdown-menu',
+      'shadcn/context-menu',
       'shadcn/separator',
       'shadcn/progress',
       'shadcn/slider',
@@ -65,6 +66,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/select',
       'shadcn/dropdown-menu',
+      'shadcn/context-menu',
       'shadcn/separator',
       'shadcn/progress',
       'shadcn/slider',
@@ -118,6 +120,13 @@ describe('parity dry-run helpers', () => {
     ])
   })
 
+  test('matches context menu slots with component grep', () => {
+    expect(matchingItemIds('context-menu')).toStrictEqual([
+      'base-ui/context-menu',
+      'shadcn/context-menu',
+    ])
+  })
+
   test('matches alert dialog slots with component grep', () => {
     expect(matchingItemIds('alert-dialog')).toStrictEqual([
       'base-ui/alert-dialog',
@@ -135,5 +144,8 @@ describe('parity dry-run helpers', () => {
     expect(shadcnCaseGrep('shadcn/button', 'shadcn/button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/button', 'button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/input', 'input')).toBe('input-')
+    expect(shadcnCaseGrep('shadcn/context-menu', 'context-menu')).toBe(
+      'context-menu',
+    )
   })
 })

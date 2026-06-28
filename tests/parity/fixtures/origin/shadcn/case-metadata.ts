@@ -311,6 +311,64 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-list.tsx',
     },
     {
+      id: 'context-menu-basic',
+      title: 'Context Menu basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-basic.tsx',
+    },
+    {
+      id: 'context-menu-checkboxes',
+      title: 'Context Menu checkboxes',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/context-menu-checkboxes.tsx',
+    },
+    {
+      id: 'context-menu-demo',
+      title: 'Context Menu demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-demo.tsx',
+    },
+    {
+      id: 'context-menu-destructive',
+      title: 'Context Menu destructive',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/context-menu-destructive.tsx',
+    },
+    {
+      id: 'context-menu-groups',
+      title: 'Context Menu groups',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-groups.tsx',
+    },
+    {
+      id: 'context-menu-icons',
+      title: 'Context Menu icons',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-icons.tsx',
+    },
+    {
+      id: 'context-menu-radio',
+      title: 'Context Menu radio',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-radio.tsx',
+    },
+    {
+      id: 'context-menu-rtl',
+      title: 'Context Menu RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-rtl.tsx',
+    },
+    {
+      id: 'context-menu-shortcuts',
+      title: 'Context Menu shortcuts',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/context-menu-shortcuts.tsx',
+    },
+    {
+      id: 'context-menu-sides',
+      title: 'Context Menu sides',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-sides.tsx',
+    },
+    {
+      id: 'context-menu-submenu',
+      title: 'Context Menu submenu',
+      originFilePath: 'repos/ui/apps/v4/examples/base/context-menu-submenu.tsx',
+    },
+    {
       id: 'dropdown-menu-avatar',
       title: 'Dropdown Menu avatar',
       originFilePath: 'repos/ui/apps/v4/examples/base/dropdown-menu-avatar.tsx',

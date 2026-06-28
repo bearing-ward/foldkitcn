@@ -1,0 +1,500 @@
+import type { Attribute, Html } from 'foldkit/html'
+import { html } from 'foldkit/html'
+
+import * as ContextMenu from './index'
+import type { MenuItemDescriptor } from './index'
+
+type ExampleItem = MenuItemDescriptor &
+  Readonly<{
+    icon?: string
+    shortcut?: string
+  }>
+
+type ExampleDefinition = Readonly<{
+  id: string
+  title: string
+  view: () => Html
+}>
+
+type ExampleChild = Html | string
+
+const triggerClassName =
+  'flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm'
+
+const basicItems: ReadonlyArray<ExampleItem> = [
+  { value: 'back', label: 'Back' },
+  { value: 'forward', label: 'Forward', isDisabled: true },
+  { value: 'reload', label: 'Reload' },
+]
+
+const demoItems: ReadonlyArray<ExampleItem> = [
+  { value: 'back', label: 'Back', shortcut: '⌘[' },
+  { value: 'forward', label: 'Forward', shortcut: '⌘]', isDisabled: true },
+  { value: 'reload', label: 'Reload', shortcut: '⌘R' },
+  { value: 'more-tools', label: 'More Tools', kind: 'submenu-trigger' },
+  { value: 'save-page', label: 'Save Page...', parentValue: 'more-tools' },
+  {
+    value: 'create-shortcut',
+    label: 'Create Shortcut...',
+    parentValue: 'more-tools',
+  },
+  { value: 'name-window', label: 'Name Window...', parentValue: 'more-tools' },
+  {
+    value: 'developer-tools',
+    label: 'Developer Tools',
+    parentValue: 'more-tools',
+  },
+  { value: 'delete', label: 'Delete', parentValue: 'more-tools' },
+  {
+    value: 'show-bookmarks',
+    label: 'Show Bookmarks',
+    kind: 'checkbox',
+    isChecked: true,
+  },
+  { value: 'show-full-urls', label: 'Show Full URLs', kind: 'checkbox' },
+  {
+    value: 'pedro',
+    label: 'Pedro Duarte',
+    kind: 'radio',
+    radioGroupValue: 'people',
+    isChecked: true,
+  },
+  {
+    value: 'colm',
+    label: 'Colm Tuite',
+    kind: 'radio',
+    radioGroupValue: 'people',
+  },
+]
+
+const checkboxItems: ReadonlyArray<ExampleItem> = [
+  {
+    value: 'bookmarks-bar',
+    label: 'Show Bookmarks Bar',
+    kind: 'checkbox',
+    isChecked: true,
+  },
+  { value: 'full-urls', label: 'Show Full URLs', kind: 'checkbox' },
+  {
+    value: 'developer-tools',
+    label: 'Show Developer Tools',
+    kind: 'checkbox',
+    isChecked: true,
+  },
+]
+
+const radioItems: ReadonlyArray<ExampleItem> = [
+  {
+    value: 'pedro',
+    label: 'Pedro Duarte',
+    kind: 'radio',
+    radioGroupValue: 'people',
+    isChecked: true,
+  },
+  {
+    value: 'colm',
+    label: 'Colm Tuite',
+    kind: 'radio',
+    radioGroupValue: 'people',
+  },
+  {
+    value: 'light',
+    label: 'Light',
+    kind: 'radio',
+    radioGroupValue: 'theme',
+    isChecked: true,
+  },
+  {
+    value: 'dark',
+    label: 'Dark',
+    kind: 'radio',
+    radioGroupValue: 'theme',
+  },
+  {
+    value: 'system',
+    label: 'System',
+    kind: 'radio',
+    radioGroupValue: 'theme',
+  },
+]
+
+const submenuItems: ReadonlyArray<ExampleItem> = [
+  { value: 'copy', label: 'Copy', shortcut: '⌘C' },
+  { value: 'cut', label: 'Cut', shortcut: '⌘X' },
+  { value: 'more-tools', label: 'More Tools', kind: 'submenu-trigger' },
+  { value: 'save-page', label: 'Save Page...', parentValue: 'more-tools' },
+  {
+    value: 'create-shortcut',
+    label: 'Create Shortcut...',
+    parentValue: 'more-tools',
+  },
+  { value: 'name-window', label: 'Name Window...', parentValue: 'more-tools' },
+  {
+    value: 'developer-tools',
+    label: 'Developer Tools',
+    parentValue: 'more-tools',
+  },
+  { value: 'delete', label: 'Delete', parentValue: 'more-tools' },
+]
+
+const shortcutItems: ReadonlyArray<ExampleItem> = [
+  { value: 'back', label: 'Back', shortcut: '⌘[' },
+  { value: 'forward', label: 'Forward', shortcut: '⌘]', isDisabled: true },
+  { value: 'reload', label: 'Reload', shortcut: '⌘R' },
+  { value: 'save', label: 'Save', shortcut: '⌘S' },
+  { value: 'save-as', label: 'Save As...', shortcut: '⇧⌘S' },
+]
+
+const groupItems: ReadonlyArray<ExampleItem> = [
+  { value: 'new-file', label: 'New File', shortcut: '⌘N' },
+  { value: 'open-file', label: 'Open File', shortcut: '⌘O' },
+  { value: 'save', label: 'Save', shortcut: '⌘S' },
+  { value: 'undo', label: 'Undo', shortcut: '⌘Z' },
+  { value: 'redo', label: 'Redo', shortcut: '⇧⌘Z' },
+  { value: 'cut', label: 'Cut', shortcut: '⌘X' },
+  { value: 'copy', label: 'Copy', shortcut: '⌘C' },
+  { value: 'paste', label: 'Paste', shortcut: '⌘V' },
+  { value: 'delete', label: 'Delete', shortcut: '⌫' },
+]
+
+const iconItems: ReadonlyArray<ExampleItem> = [
+  { value: 'copy', label: 'Copy', icon: 'copy' },
+  { value: 'cut', label: 'Cut', icon: 'scissors' },
+  { value: 'paste', label: 'Paste', icon: 'clipboard-paste' },
+  { value: 'delete', label: 'Delete', icon: 'trash' },
+]
+
+const destructiveItems: ReadonlyArray<ExampleItem> = [
+  { value: 'edit', label: 'Edit', icon: 'pencil' },
+  { value: 'share', label: 'Share', icon: 'share' },
+  { value: 'delete', label: 'Delete', icon: 'trash' },
+]
+
+const rtlItems: ReadonlyArray<ExampleItem> = [
+  { value: 'navigation', label: 'التنقل', kind: 'submenu-trigger' },
+  {
+    value: 'back',
+    label: 'رجوع',
+    parentValue: 'navigation',
+    icon: 'arrow-left',
+  },
+  {
+    value: 'forward',
+    label: 'تقدم',
+    parentValue: 'navigation',
+    icon: 'arrow-right',
+    isDisabled: true,
+  },
+  { value: 'reload', label: 'إعادة تحميل', parentValue: 'navigation' },
+  { value: 'more-tools', label: 'المزيد من الأدوات', kind: 'submenu-trigger' },
+  { value: 'save-page', label: 'حفظ الصفحة...', parentValue: 'more-tools' },
+  {
+    value: 'create-shortcut',
+    label: 'إنشاء اختصار...',
+    parentValue: 'more-tools',
+  },
+  {
+    value: 'developer-tools',
+    label: 'أدوات المطور',
+    parentValue: 'more-tools',
+  },
+  {
+    value: 'show-bookmarks',
+    label: 'إظهار الإشارات المرجعية',
+    kind: 'checkbox',
+    isChecked: true,
+  },
+  {
+    value: 'show-full-urls',
+    label: 'إظهار عناوين URL الكاملة',
+    kind: 'checkbox',
+  },
+  {
+    value: 'pedro',
+    label: 'Pedro Duarte',
+    kind: 'radio',
+    radioGroupValue: 'people',
+    isChecked: true,
+  },
+  {
+    value: 'colm',
+    label: 'Colm Tuite',
+    kind: 'radio',
+    radioGroupValue: 'people',
+  },
+]
+
+const icon = <Message>(
+  name: string,
+  attributes: ReadonlyArray<Attribute<Message>> = [],
+): Html => {
+  const h = html<Message>()
+
+  return h.svg(
+    [
+      h.Xmlns('http://www.w3.org/2000/svg'),
+      h.Width('24'),
+      h.Height('24'),
+      h.ViewBox('0 0 24 24'),
+      h.Fill('none'),
+      h.Stroke('currentColor'),
+      h.StrokeWidth('2'),
+      h.StrokeLinecap('round'),
+      h.StrokeLinejoin('round'),
+      h.AriaHidden(true),
+      h.DataAttribute('icon', name),
+      ...attributes,
+    ],
+    [h.path([h.D('M12 5v14M5 12h14')], [])],
+  )
+}
+
+const triggerContent = (label = 'Right click here'): ReadonlyArray<Html> => {
+  const h = html<never>()
+
+  return [
+    h.span([h.Class('hidden pointer-fine:inline-block')], [label]),
+    h.span(
+      [h.Class('hidden pointer-coarse:inline-block')],
+      [label.replace('Right click', 'Long press')],
+    ),
+  ]
+}
+
+const sourceItem = (
+  items: ReadonlyArray<ExampleItem>,
+  item: MenuItemDescriptor,
+): ExampleItem =>
+  items.find(candidate => candidate.value === item.value) ?? item
+
+const itemContent = (
+  source: ExampleItem,
+  itemAttributes: ContextMenu.MenuItemAttributes<never>,
+): ReadonlyArray<Html> => {
+  const h = html<never>()
+  const kind = ContextMenu.itemKind(itemAttributes.item)
+  const indicator =
+    kind === 'checkbox' || kind === 'radio'
+      ? h.span([...itemAttributes.indicator], [ContextMenu.checkIcon([])])
+      : h.span([], [])
+  const maybeIcon = source.icon === undefined ? [] : [icon(source.icon)]
+  const maybeShortcut =
+    source.shortcut === undefined
+      ? []
+      : [h.span([...itemAttributes.shortcut], [source.shortcut])]
+  const maybeSubmenuIcon =
+    kind === 'submenu-trigger'
+      ? [ContextMenu.chevronRightIcon(itemAttributes.submenuIndicator)]
+      : []
+
+  return [
+    indicator,
+    ...maybeIcon,
+    h.span([...itemAttributes.label], [itemAttributes.item.label]),
+    ...maybeShortcut,
+    ...maybeSubmenuIcon,
+  ]
+}
+
+const popupView = (
+  items: ReadonlyArray<ExampleItem>,
+  popup: ContextMenu.MenuPopupAttributes<never>,
+): ReadonlyArray<Html> => {
+  const h = html<never>()
+
+  if (!popup.isMounted) {
+    return []
+  }
+
+  return [
+    h.div([...popup.backdrop.root], []),
+    h.div(
+      [...popup.positioner.root],
+      [
+        h.div(
+          [...popup.popup.root],
+          [
+            h.div(
+              [...popup.group],
+              popup.items.map(itemAttributes =>
+                h.div(
+                  [...itemAttributes.root],
+                  itemContent(
+                    sourceItem(items, itemAttributes.item),
+                    itemAttributes,
+                  ),
+                ),
+              ),
+            ),
+            h.div([...popup.separator], []),
+          ],
+        ),
+      ],
+    ),
+  ]
+}
+
+const contextMenuExample = (
+  id: string,
+  items: ReadonlyArray<ExampleItem>,
+  options: Partial<ContextMenu.ViewConfig<never>> &
+    Readonly<{
+      trigger?: ReadonlyArray<ExampleChild>
+      triggerLabel?: string
+    }> = {},
+): Html => {
+  const h = html<never>()
+  const { trigger, triggerLabel, ...viewOptions } = options
+
+  return ContextMenu.view<never>({
+    id,
+    items,
+    open: true,
+    contextPoint: ContextMenu.contextPoint(24, 32, 24, 32, 'mouse'),
+    highlightedValue: items.find(item => item.parentValue === undefined)?.value,
+    triggerClassName,
+    ...viewOptions,
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          h.div(
+            [...attributes.trigger],
+            trigger ?? triggerContent(triggerLabel),
+          ),
+          h.div(
+            [...attributes.portal],
+            [
+              ...popupView(items, attributes.popup),
+              ...attributes.submenus.flatMap(submenu =>
+                popupView(items, submenu),
+              ),
+            ],
+          ),
+        ],
+      ),
+  })
+}
+
+export const ContextMenuBasic = (): Html =>
+  contextMenuExample('context-menu-basic', basicItems)
+
+export const ContextMenuCheckboxes = (): Html =>
+  contextMenuExample('context-menu-checkboxes', checkboxItems)
+
+export const ContextMenuDemo = (): Html =>
+  contextMenuExample('context-menu-demo', demoItems, {
+    contentClassName: 'w-48',
+    highlightedValue: 'more-tools',
+    openSubmenuValues: ['more-tools'],
+  })
+
+export const ContextMenuDestructive = (): Html =>
+  contextMenuExample('context-menu-destructive', destructiveItems, {
+    variant: 'destructive',
+  })
+
+export const ContextMenuGroups = (): Html =>
+  contextMenuExample('context-menu-groups', groupItems)
+
+export const ContextMenuIcons = (): Html =>
+  contextMenuExample('context-menu-icons', iconItems)
+
+export const ContextMenuRadio = (): Html =>
+  contextMenuExample('context-menu-radio', radioItems)
+
+export const ContextMenuRtl = (): Html =>
+  contextMenuExample('context-menu-rtl', rtlItems, {
+    contentClassName: 'w-48',
+    dir: 'rtl',
+    highlightedValue: 'navigation',
+    openSubmenuValues: ['navigation', 'more-tools'],
+    trigger: triggerContent('انقر بزر الماوس الأيمن هنا'),
+  })
+
+export const ContextMenuShortcuts = (): Html =>
+  contextMenuExample('context-menu-shortcuts', shortcutItems)
+
+export const ContextMenuSides = (): Html => {
+  const h = html<never>()
+  const sides: ReadonlyArray<ContextMenu.MenuSide> = [
+    'top',
+    'right',
+    'bottom',
+    'left',
+  ]
+
+  return h.div(
+    [h.Class('grid w-full max-w-sm grid-cols-2 gap-4')],
+    sides.map(side =>
+      contextMenuExample(`context-menu-sides-${side}`, basicItems, {
+        side,
+        triggerLabel: `Right click (${side})`,
+      }),
+    ),
+  )
+}
+
+export const ContextMenuSubmenu = (): Html =>
+  contextMenuExample('context-menu-submenu', submenuItems, {
+    highlightedValue: 'more-tools',
+    openSubmenuValues: ['more-tools'],
+  })
+
+export const contextMenuExampleViews: ReadonlyArray<ExampleDefinition> = [
+  {
+    id: 'shadcn/context-menu-basic',
+    title: 'ContextMenuBasic',
+    view: ContextMenuBasic,
+  },
+  {
+    id: 'shadcn/context-menu-checkboxes',
+    title: 'ContextMenuCheckboxes',
+    view: ContextMenuCheckboxes,
+  },
+  {
+    id: 'shadcn/context-menu-demo',
+    title: 'ContextMenuDemo',
+    view: ContextMenuDemo,
+  },
+  {
+    id: 'shadcn/context-menu-destructive',
+    title: 'ContextMenuDestructive',
+    view: ContextMenuDestructive,
+  },
+  {
+    id: 'shadcn/context-menu-groups',
+    title: 'ContextMenuGroups',
+    view: ContextMenuGroups,
+  },
+  {
+    id: 'shadcn/context-menu-icons',
+    title: 'ContextMenuIcons',
+    view: ContextMenuIcons,
+  },
+  {
+    id: 'shadcn/context-menu-radio',
+    title: 'ContextMenuRadio',
+    view: ContextMenuRadio,
+  },
+  {
+    id: 'shadcn/context-menu-rtl',
+    title: 'ContextMenuRtl',
+    view: ContextMenuRtl,
+  },
+  {
+    id: 'shadcn/context-menu-shortcuts',
+    title: 'ContextMenuShortcuts',
+    view: ContextMenuShortcuts,
+  },
+  {
+    id: 'shadcn/context-menu-sides',
+    title: 'ContextMenuSides',
+    view: ContextMenuSides,
+  },
+  {
+    id: 'shadcn/context-menu-submenu',
+    title: 'ContextMenuSubmenu',
+    view: ContextMenuSubmenu,
+  },
+]

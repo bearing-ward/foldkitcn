@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/context-menu",
+  "namespace": "base-ui",
+  "name": "Context Menu",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Context Menu primitive composed from the local Menu foundation, adding model-owned context points, context-key opening, context-trigger attributes, deterministic point anchoring, and Mac/non-Mac pointer-release behavior without duplicating Menu item, submenu, checked item, radio item, or roving-focus semantics.",
+  "sourceRoot": "registry-src/base-ui/context-menu",
+  "installableSourcePaths": ["src/registry/base-ui/context-menu/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Context Menu",
+      "docsUrl": "https://base-ui.com/react/components/context-menu",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/context-menu",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/context-menu/index.parts.ts",
+        "repos/base-ui/packages/react/src/context-menu/index.ts",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.tsx",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRootContext.ts",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.tsx",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTriggerDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/context-menu/demos/submenu/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.non-mac.test.tsx",
+        "repos/base-ui/packages/react/src/context-menu/root/ContextMenuRoot.test.tsx",
+        "repos/base-ui/packages/react/src/context-menu/trigger/ContextMenuTrigger.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/menu",
+        "classification": "registry-local",
+        "target": "base-ui/menu",
+        "reason": "Context Menu reuses the local Menu item, submenu, checked item, radio item, highlight, typeahead, and roving-focus semantics."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, pointer, keyboard, and context-menu event helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/context-menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/context-menu",
+        "reason": "Origin Base UI React Context Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/context-menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/context-menu",
+        "reason": "Origin Base UI React Context Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/context-menu",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/context-menu.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/context-menu.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-context-menu-local-menu-foundation",
+      "base-ui-context-menu-model-owned-context-point",
+      "base-ui-context-menu-deterministic-point-positioning",
+      "base-ui-context-menu-touch-long-press-deferred"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-context-menu-local-menu-foundation",
+      "summary": "Context Menu composes the local Menu foundation for item roles, checkbox/radio state, submenu state, highlight, typeahead, and roving focus.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The dependency plan established Menu as the reusable foundation for Context Menu."
+    },
+    {
+      "id": "base-ui-context-menu-model-owned-context-point",
+      "summary": "The right-click point is emitted as a typed fact and passed back through the model instead of being hidden in mutable component-local state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit preserves unidirectional data flow and keeps pointer-derived state visible in model data."
+    },
+    {
+      "id": "base-ui-context-menu-deterministic-point-positioning",
+      "summary": "The root positioner exposes deterministic context-point data attributes and fixed left/top styles without runtime collision measurement.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc render helper side effect."
+    },
+    {
+      "id": "base-ui-context-menu-touch-long-press-deferred",
+      "summary": "Long-press touch timers are not implemented in the installable primitive; right-click, context-key, and platform-specific pointer release behavior are covered.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit timer-driven touch recognition needs a command/subscription boundary instead of mutable render-local timeouts."
+    }
+  ]
+}
