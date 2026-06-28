@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T03:22:38.450Z",
+  "generatedAt": "2026-06-28T03:42:16.322Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -146,6 +146,11 @@
       "itemId": "base-ui/toggle",
       "routePath": "/components/base-ui/toggle",
       "docsArtifactPath": "registry/docs/base-ui/toggle.json"
+    },
+    {
+      "itemId": "base-ui/toolbar",
+      "routePath": "/components/base-ui/toolbar",
+      "docsArtifactPath": "registry/docs/base-ui/toolbar.json"
     },
     {
       "itemId": "base-ui/tooltip",

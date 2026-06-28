@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/toolbar",
+  "routePath": "/components/base-ui/toolbar",
+  "title": "Toolbar",
+  "description": "Foldkit-native Base UI Toolbar primitive preserving toolbar root, grouped controls, buttons, links, inputs, disabled focusability, orientation, roving focus metadata, activation, ARIA, and data attributes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/toolbar",
+  "defaultImportPath": "base-ui/toolbar",
+  "sourceRoot": "registry-src/base-ui/toolbar",
+  "installableSourcePaths": ["src/registry/base-ui/toolbar/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toolbar",
+      "docsUrl": "https://base-ui.com/react/components/toolbar",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/toolbar",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButton.tsx",
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButtonDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroup.tsx",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroupContext.ts",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroupDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/index.parts.ts",
+        "repos/base-ui/packages/react/src/toolbar/index.ts",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInput.tsx",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLink.tsx",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLinkDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRoot.tsx",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRootContext.ts",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toolbar/separator/ToolbarSeparator.tsx",
+        "repos/base-ui/packages/react/src/toolbar/separator/ToolbarSeparatorDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toolbar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/toolbar/button/ToolbarButton.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/group/ToolbarGroup.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/input/ToolbarInput.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/link/ToolbarLink.test.tsx",
+        "repos/base-ui/packages/react/src/toolbar/root/ToolbarRoot.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/button",
+        "classification": "registry-local",
+        "target": "base-ui/button",
+        "reason": "Toolbar buttons preserve the local Base UI Button disabled, focusable-when-disabled, and native button semantics."
+      },
+      {
+        "specifier": "base-ui/input",
+        "classification": "registry-local",
+        "target": "base-ui/input",
+        "reason": "Toolbar inputs preserve the local Base UI Input controlled value and input-change conventions."
+      },
+      {
+        "specifier": "base-ui/toggle-group",
+        "classification": "registry-local",
+        "target": "base-ui/toggle-group",
+        "reason": "Toolbar roving focus mirrors the local Toggle Group explicit highlight-state conventions."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, keyboard event, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and Predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/toolbar",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-toolbar-model-owned-roving-focus",
+        "summary": "Foldkit consumers own Toolbar highlighted focus state instead of using React CompositeRoot internal state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit registry components preserve Elm-style unidirectional data flow. The helper emits highlight-change facts with optional focus selectors while the consuming model remains the single source of truth."
+      }
+    ]
+  }
+}

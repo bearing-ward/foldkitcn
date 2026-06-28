@@ -103,6 +103,7 @@ describe('parity canonicalizers', () => {
       'base-ui/button',
       'base-ui/toggle',
       'base-ui/toggle-group',
+      'base-ui/toolbar',
       'base-ui/avatar',
       'base-ui/progress',
       'base-ui/meter',

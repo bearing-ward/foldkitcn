@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 30,
-      remaining: 8,
+      imported: 31,
+      remaining: 7,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
@@ -77,6 +77,7 @@ describe('origin component progress', () => {
       'base-ui/tooltip',
       'base-ui/toggle',
       'base-ui/toggle-group',
+      'base-ui/toolbar',
       'shadcn/alert',
       'shadcn/accordion',
       'shadcn/alert-dialog',
@@ -136,10 +137,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/toolbar')
+    expect(nextRow?.itemId).toBe('base-ui/preview-card')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/toolbar',
+      'https://base-ui.com/react/components/preview-card',
+      'https://ui.shadcn.com/docs/components/hover-card',
     ])
   })
 
