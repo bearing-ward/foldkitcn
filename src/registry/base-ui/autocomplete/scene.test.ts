@@ -10,6 +10,8 @@ import { describe, expect, test } from 'vitest'
 import * as Autocomplete from './index'
 import type { AutocompleteItemDescriptor, ViewConfig } from './index'
 
+import { readFileSync } from 'node:fs'
+
 // MODEL
 
 const Model = S.Struct({
@@ -237,6 +239,41 @@ describe('base-ui/autocomplete helpers', () => {
         items: fruitItems,
       }),
     ).toBe('Apple')
+  })
+
+  test('exposes only implemented auto highlight schema values', () => {
+    expect(
+      S.decodeUnknownSync(Autocomplete.AutocompleteAutoHighlight)(true),
+    ).toBeTruthy()
+    expect(
+      S.decodeUnknownSync(Autocomplete.AutocompleteAutoHighlight)(false),
+    ).toBeFalsy()
+    expect(() =>
+      S.decodeUnknownSync(Autocomplete.AutocompleteAutoHighlight)('always'),
+    ).toThrow(/boolean/u)
+  })
+
+  test('records deferred origin root inline and always-highlight semantics', () => {
+    const manifest: {
+      readonly parity: {
+        readonly acceptedDeviationIds: ReadonlyArray<string>
+      }
+      readonly deviations: ReadonlyArray<{ readonly id: string }>
+    } = JSON.parse(
+      readFileSync('registry-src/base-ui/autocomplete/item.json', 'utf-8'),
+    )
+    const deviationIds = manifest.deviations.map(deviation => deviation.id)
+
+    expect(deviationIds).toContain('base-ui-autocomplete-inline-root-deferred')
+    expect(deviationIds).toContain(
+      'base-ui-autocomplete-auto-highlight-always-deferred',
+    )
+    expect(manifest.parity.acceptedDeviationIds).toContain(
+      'base-ui-autocomplete-inline-root-deferred',
+    )
+    expect(manifest.parity.acceptedDeviationIds).toContain(
+      'base-ui-autocomplete-auto-highlight-always-deferred',
+    )
   })
 })
 

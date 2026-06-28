@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T15:46:02.656Z",
+  "generatedAt": "2026-06-28T15:52:28.143Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -343,7 +343,7 @@
         "namespace": "base-ui",
         "name": "Autocomplete",
         "kind": "component",
-        "description": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, list and inline modes, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
+        "description": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, mode-based list/both/inline/none query behavior, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
         "sourceRoot": "registry-src/base-ui/autocomplete",
         "installableSourcePaths": [
           "src/registry/base-ui/autocomplete/index.ts"
@@ -451,7 +451,9 @@
             "base-ui-autocomplete-model-owned-state",
             "base-ui-autocomplete-combobox-engine-reuse",
             "base-ui-autocomplete-deterministic-placement-attributes",
-            "base-ui-autocomplete-local-filtering"
+            "base-ui-autocomplete-local-filtering",
+            "base-ui-autocomplete-inline-root-deferred",
+            "base-ui-autocomplete-auto-highlight-always-deferred"
           ]
         },
         "lifecycle": {
@@ -489,21 +491,35 @@
             "required": true,
             "status": "accepted",
             "rationale": "The local primitive preserves the origin filtering contract without importing React hooks or hiding query state outside the Foldkit model."
+          },
+          {
+            "id": "base-ui-autocomplete-inline-root-deferred",
+            "summary": "The origin root-level inline prop is not exposed in the installable API; mode=\"inline\" remains supported only as inline completion/static filtering behavior.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Origin inline rendering changes popup ownership and native form behavior. The local primitive keeps popup/list structure explicit through toView until a broader shared inline-list contract exists."
+          },
+          {
+            "id": "base-ui-autocomplete-auto-highlight-always-deferred",
+            "summary": "The origin autoHighlight=\"always\" value is not exposed; autoHighlight is boolean and does not claim immediate first-item highlighting on open/defaultOpen.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Combobox currently supports boolean autoHighlight-style wiring, but not the origin's distinct always semantics. The installable Autocomplete API avoids collapsing always to true."
           }
         ]
       },
-      "manifestHash": "80dfb7694e1d3884b456063cccbaecff8cad91f39070b0c6c9cdebb09b1d7b0c",
+      "manifestHash": "cf39866f3723bc2faccdcf1b6f02c0754bfc5b9b950a2b475b00364ae3b923d7",
       "artifacts": [
         {
           "path": "registry-src/base-ui/autocomplete/item.json",
-          "sha256": "6488fa9e6705c977c0c1398917fa0899268c3ecd5627f7e8afb73b6f877b0d0c",
-          "sizeBytes": 7480,
+          "sha256": "28af18260e4dcdb74de95697b04a5a58c811a7313220e9e1dcd98a11c50d9f62",
+          "sizeBytes": 8647,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/autocomplete/index.ts",
-          "sha256": "e792ae503f3fb1ace2cf91e5c4f261e9ca66270862c664cefe8878d1c9533e3c",
-          "sizeBytes": 14727,
+          "sha256": "777e282f3e8381c920aa94a0f1b8609fc55709a138d5024c6f9edf4c181bd48b",
+          "sizeBytes": 14618,
           "role": "source"
         }
       ]

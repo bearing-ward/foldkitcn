@@ -23,10 +23,7 @@ export const AutocompleteMode = S.Union([
 ])
 export type AutocompleteMode = typeof AutocompleteMode.Type
 
-export const AutocompleteAutoHighlight = S.Union([
-  S.Boolean,
-  S.Literal('always'),
-])
+export const AutocompleteAutoHighlight = S.Boolean
 export type AutocompleteAutoHighlight = typeof AutocompleteAutoHighlight.Type
 
 export const AutocompleteOpenChangeReason = S.Union([
@@ -95,7 +92,6 @@ export const AutocompleteOptions = S.Struct({
   isRequired: S.optional(S.Boolean),
   isReadOnly: S.optional(S.Boolean),
   mode: S.optional(AutocompleteMode),
-  inline: S.optional(S.Boolean),
   autoHighlight: S.optional(AutocompleteAutoHighlight),
   openOnInputClick: S.optional(S.Boolean),
   side: S.optional(AutocompleteSide),
@@ -407,9 +403,7 @@ const optionalComboboxOptions = <Message>(
     ...(isInvalid === undefined ? {} : { isInvalid }),
     ...(isRequired === undefined ? {} : { isRequired }),
     ...(isReadOnly === undefined ? {} : { isReadOnly }),
-    ...(autoHighlight === undefined
-      ? {}
-      : { autoHighlight: autoHighlight !== false }),
+    ...(autoHighlight === undefined ? {} : { autoHighlight }),
     ...(side === undefined ? {} : { side }),
     ...(align === undefined ? {} : { align }),
     ...(sideOffset === undefined ? {} : { sideOffset }),

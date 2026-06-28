@@ -130,7 +130,7 @@ export const cases: ReadonlyArray<FixtureCase> = [
     ),
   },
   {
-    id: 'autocomplete-inline',
+    id: 'autocomplete-mode-inline',
     snapshot: snapshot(
       autocompleteRoot({
         open: true,
