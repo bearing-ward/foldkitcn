@@ -119,6 +119,8 @@ export const ComboboxOptions = S.Struct({
   id: S.String,
   open: S.Boolean,
   inputValue: S.String,
+  displayInputValue: S.optional(S.String),
+  filterValue: S.optional(S.String),
   items: S.Array(ComboboxItemDescriptor),
   selectionMode: S.optional(ComboboxSelectionMode),
   value: S.optional(S.String),
@@ -142,6 +144,7 @@ export const ComboboxOptions = S.Struct({
   collisionAvoidance: S.optional(S.Boolean),
   collisionPadding: S.optional(S.Number),
   anchorToChips: S.optional(S.Boolean),
+  showTriggerPlaceholder: S.optional(S.Boolean),
 })
 export type ComboboxOptions = typeof ComboboxOptions.Type
 
@@ -296,9 +299,13 @@ export const displayValue = (
 export const inputDisplayValue = (
   config: Pick<
     ComboboxOptions,
-    'inputValue' | 'items' | 'selectionMode' | 'value'
+    'displayInputValue' | 'inputValue' | 'items' | 'selectionMode' | 'value'
   >,
 ): string => {
+  if (config.displayInputValue !== undefined) {
+    return config.displayInputValue
+  }
+
   if (isMultiple(config)) {
     return config.inputValue
   }
@@ -322,9 +329,14 @@ export const enabledItems = (
     : config.items.filter(item => item.isDisabled !== true)
 
 export const filteredItems = (
-  config: Pick<ComboboxOptions, 'inputValue' | 'isDisabled' | 'items'>,
+  config: Pick<
+    ComboboxOptions,
+    'filterValue' | 'inputValue' | 'isDisabled' | 'items'
+  >,
 ): ReadonlyArray<ComboboxItemDescriptor> => {
-  const normalizedInputValue = config.inputValue.trim().toLocaleLowerCase()
+  const normalizedInputValue = (config.filterValue ?? config.inputValue)
+    .trim()
+    .toLocaleLowerCase()
   const items = enabledItems(config)
 
   if (normalizedInputValue === '') {
@@ -344,7 +356,10 @@ export const highlightedItem = (
   config.items.find(item => item.value === config.highlightedValue)
 
 export const firstFilteredItem = (
-  config: Pick<ComboboxOptions, 'inputValue' | 'isDisabled' | 'items'>,
+  config: Pick<
+    ComboboxOptions,
+    'filterValue' | 'inputValue' | 'isDisabled' | 'items'
+  >,
 ): ComboboxItemDescriptor | undefined => filteredItems(config)[0]
 
 export const visibleSelectedItems = (
@@ -484,7 +499,7 @@ const indexOffset = (
 export const nextHighlightedItem = (
   config: Pick<
     ComboboxOptions,
-    'highlightedValue' | 'inputValue' | 'isDisabled' | 'items'
+    'filterValue' | 'highlightedValue' | 'inputValue' | 'isDisabled' | 'items'
   >,
   direction: 'first' | 'last' | 'next' | 'previous',
 ): ComboboxItemDescriptor | undefined => {
@@ -961,7 +976,9 @@ const triggerAttributes = <Message>(
   ...(config.open ? [h.DataAttribute('popup-open', '')] : []),
   h.DataAttribute('popup-side', config.open ? resolvedSide(config) : ''),
   ...(items.length === 0 ? [h.DataAttribute('list-empty', '')] : []),
-  ...(hasSelectedValue(config) ? [] : [h.DataAttribute('placeholder', '')]),
+  ...(hasSelectedValue(config) || config.showTriggerPlaceholder === false
+    ? []
+    : [h.DataAttribute('placeholder', '')]),
   ...booleanDataAttribute(h, 'disabled', config.isDisabled),
   ...booleanDataAttribute(h, 'readonly', config.isReadOnly),
   ...optionalBooleanAttribute<Message>(config.isDisabled, value =>

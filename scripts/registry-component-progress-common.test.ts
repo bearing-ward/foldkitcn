@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 35,
-      remaining: 3,
+      imported: 36,
+      remaining: 2,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
@@ -49,6 +49,7 @@ describe('origin component progress', () => {
     const importedItemIds = [
       'base-ui/accordion',
       'base-ui/alert-dialog',
+      'base-ui/autocomplete',
       'base-ui/avatar',
       'base-ui/button',
       'base-ui/checkbox',
@@ -145,10 +146,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/autocomplete')
+    expect(nextRow?.itemId).toBe('base-ui/drawer')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/autocomplete',
+      'https://base-ui.com/react/components/drawer',
+      'https://ui.shadcn.com/docs/components/drawer',
     ])
   })
 

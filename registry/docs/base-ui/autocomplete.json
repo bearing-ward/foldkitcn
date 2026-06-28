@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/autocomplete",
+  "routePath": "/components/base-ui/autocomplete",
+  "title": "Autocomplete",
+  "description": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, list and inline modes, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/autocomplete",
+  "defaultImportPath": "base-ui/autocomplete",
+  "sourceRoot": "registry-src/base-ui/autocomplete",
+  "installableSourcePaths": ["src/registry/base-ui/autocomplete/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Autocomplete",
+      "docsUrl": "https://base-ui.com/react/components/autocomplete",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/autocomplete",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/value/AutocompleteValue.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItem.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/input-group/AutocompleteInputGroup.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/trigger/AutocompleteTrigger.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/index.parts.ts",
+        "repos/base-ui/packages/react/src/autocomplete/index.ts",
+        "repos/base-ui/packages/react/src/combobox/root/AriaCombobox.tsx",
+        "repos/base-ui/packages/react/src/combobox/root/utils/useFilter.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/inline/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/auto-highlight/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/autocomplete/demos/grouped/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.test.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/item/AutocompleteItem.test.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/value/AutocompleteValue.test.tsx",
+        "repos/base-ui/packages/react/src/autocomplete/root/AutocompleteRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/combobox",
+        "classification": "registry-local",
+        "target": "base-ui/combobox",
+        "reason": "Autocomplete is a value-specialized primitive over the local Combobox collection, filtering, popup, listbox, highlighted-item, item, trigger, clear, and focus-command conventions."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and runtime-facing test helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/autocomplete",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/autocomplete",
+        "reason": "Origin Base UI React Autocomplete primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/autocomplete",
+        "reason": "Origin Base UI React Autocomplete primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-autocomplete-model-owned-state",
+        "summary": "Input value, open state, highlighted item, and inline completion display are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow and keeps autocomplete state in the consuming model."
+      },
+      {
+        "id": "base-ui-autocomplete-combobox-engine-reuse",
+        "summary": "Autocomplete delegates collection, filtering, highlighted-item navigation, popup/listbox attributes, item selection, clear behavior, and focus commands to the local Combobox primitive.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Base UI origin is implemented on top of Combobox internals, and the local registry keeps the same architecture instead of forking the behavior engine."
+      },
+      {
+        "id": "base-ui-autocomplete-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, and popup attributes without DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Autocomplete render helper side effect."
+      },
+      {
+        "id": "base-ui-autocomplete-local-filtering",
+        "summary": "Filtering is represented as a pure local label/textValue contains match over model-owned query text, with inline/static modes disabling filtering through Combobox's filter input.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The local primitive preserves the origin filtering contract without importing React hooks or hiding query state outside the Foldkit model."
+      }
+    ]
+  }
+}

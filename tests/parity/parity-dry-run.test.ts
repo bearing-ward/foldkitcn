@@ -147,6 +147,12 @@ describe('parity dry-run helpers', () => {
     ])
   })
 
+  test('matches autocomplete slots with component grep', () => {
+    expect(matchingItemIds('autocomplete')).toStrictEqual([
+      'base-ui/autocomplete',
+    ])
+  })
+
   test('matches preview card and hover card slots with component grep', () => {
     expect(matchingItemIds('preview-card')).toStrictEqual([
       'base-ui/preview-card',

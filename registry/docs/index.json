@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T14:50:46.574Z",
+  "generatedAt": "2026-06-28T15:46:02.656Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -11,6 +11,11 @@
       "itemId": "base-ui/alert-dialog",
       "routePath": "/components/base-ui/alert-dialog",
       "docsArtifactPath": "registry/docs/base-ui/alert-dialog.json"
+    },
+    {
+      "itemId": "base-ui/autocomplete",
+      "routePath": "/components/base-ui/autocomplete",
+      "docsArtifactPath": "registry/docs/base-ui/autocomplete.json"
     },
     {
       "itemId": "base-ui/avatar",

@@ -587,6 +587,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/autocomplete',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/autocomplete.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/autocomplete.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'shadcn/combobox',
     status: 'ready',
     originFixtureEntrypoint:
