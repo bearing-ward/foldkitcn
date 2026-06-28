@@ -15,6 +15,7 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - Write an improve-compatible dossier and plan preview, not implementation code.
 - Compose with the improve plan flow directly when available; hand the generated plan to improve instead of inventing a separate execution process.
 - Stop after planning unless the user explicitly asks for `improve execute`.
+- End every invocation by offering the most likely next step. Skip the question only when the user already requested that follow-up in the same prompt.
 - Create dependency-complete batch plans when missing local dependencies are required.
 - Create no `registry-src/<namespace>/<item>/` folders during planning.
 - Use Effect Schema and Foldkit-native conventions in every generated plan.
@@ -27,6 +28,10 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - Run `bun run origin:components:status`.
 - Report the summary and point at `docs/component-conversion-checklist.md`.
 - Do not create dossier artifacts.
+- Offer the next step based on the status:
+  - If there are ready or dossier-ready rows, ask whether to run `next [count]`.
+  - If a recent selection/dossier artifact exists, ask whether to compile implementation plans with `[$improve] plan ...`.
+  - If there are only blocked rows, ask whether to generate blocked planning evidence for those rows.
 
 ### `next [count]`
 
@@ -35,10 +40,16 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - For a normal planning invocation, generate dossier previews for those rows with `scripts/draft-registry-component-plan.ts`.
 - Keep each generated batch to one row and at most two origin URLs.
 - Do not include blocked rows unless the user explicitly asks for blocked planning evidence.
+- After writing the selection and dossier previews, report their paths and ask: "Would you like me to compile implementation plans from this selection with `[$improve] plan ...`?" Use the concrete selection path in the suggested command.
+- If the user says yes, invoke the `improve` plan flow with a prompt like: `create implementation plans for all rows in <selection-path>`.
+- If the original request already asks to compile implementation plans, skip the question and proceed directly to the `improve` plan flow after the dossier previews are written and validated.
 
 ### `<origin URL> [...origin URL]`
 
 - Preserve the existing behavior: resolve each URL, then write a dossier and plan preview for that explicit origin batch.
+- After writing the dossier and plan preview, report their paths and ask: "Would you like me to compile an implementation plan from this dossier with `[$improve] plan ...`?"
+- If the explicit URL batch is blocked or incomplete, offer the next unblock step instead, using the concrete blocker from the dossier.
+- If the original request already asks to compile implementation plans, skip the question and proceed directly to the `improve` plan flow after the dossier preview is written and validated.
 
 ## Evidence To Capture
 
