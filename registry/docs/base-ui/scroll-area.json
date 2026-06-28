@@ -111,6 +111,13 @@
     "driftStatus": "current",
     "deviations": [
       {
+        "id": "base-ui-scroll-area-static-origin-fixture",
+        "summary": "Base UI parity uses a static source-derived origin fixture for root, viewport, content, scrollbar, thumb, corner, data attributes, and CSS variable footprints.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Origin Scroll Area relies on live layout measurement and ResizeObserver. The static fixture keeps origin evidence independent of the Foldkit implementation while pinning the deterministic source-derived measured states used by parity."
+      },
+      {
         "id": "base-ui-scroll-area-model-owned-measurement-state",
         "summary": "Overflow, edge, scrolling, hover, thumb, and corner state are supplied or derived from deterministic metric inputs instead of hidden component state.",
         "required": true,

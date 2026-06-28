@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T03:15:54.166Z",
+  "generatedAt": "2026-06-28T03:22:38.450Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -3325,6 +3325,7 @@
             "keyboard-behavior"
           ],
           "acceptedDeviationIds": [
+            "base-ui-scroll-area-static-origin-fixture",
             "base-ui-scroll-area-model-owned-measurement-state",
             "base-ui-scroll-area-deterministic-scroll-geometry"
           ]
@@ -3337,6 +3338,13 @@
           "docsStatus": "missing"
         },
         "deviations": [
+          {
+            "id": "base-ui-scroll-area-static-origin-fixture",
+            "summary": "Base UI parity uses a static source-derived origin fixture for root, viewport, content, scrollbar, thumb, corner, data attributes, and CSS variable footprints.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Origin Scroll Area relies on live layout measurement and ResizeObserver. The static fixture keeps origin evidence independent of the Foldkit implementation while pinning the deterministic source-derived measured states used by parity."
+          },
           {
             "id": "base-ui-scroll-area-model-owned-measurement-state",
             "summary": "Overflow, edge, scrolling, hover, thumb, and corner state are supplied or derived from deterministic metric inputs instead of hidden component state.",
@@ -3353,12 +3361,12 @@
           }
         ]
       },
-      "manifestHash": "8a7f3eac40e97daeea9fc4c2bc50eb73468d539f1e516c54367fb3cd299925e6",
+      "manifestHash": "f0ea631f0b5949a4f43c0aec4c3ef7ee733aa6ddf8df9fa53adcd98b1d584e44",
       "artifacts": [
         {
           "path": "registry-src/base-ui/scroll-area/item.json",
-          "sha256": "97f37f5a94ffe85400ec60fdad226595cf58580baf1aceb8501e34b4ee5b0ad2",
-          "sizeBytes": 7230,
+          "sha256": "4d15dd91bb883d5dcd25774aa304319fb16d32620fd9d713566b032394a71894",
+          "sizeBytes": 7839,
           "role": "manifest"
         },
         {
