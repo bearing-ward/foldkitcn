@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T03:42:16.322Z",
+  "generatedAt": "2026-06-28T04:03:49.357Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -91,6 +91,11 @@
       "itemId": "base-ui/popover",
       "routePath": "/components/base-ui/popover",
       "docsArtifactPath": "registry/docs/base-ui/popover.json"
+    },
+    {
+      "itemId": "base-ui/preview-card",
+      "routePath": "/components/base-ui/preview-card",
+      "docsArtifactPath": "registry/docs/base-ui/preview-card.json"
     },
     {
       "itemId": "base-ui/progress",
@@ -226,6 +231,11 @@
       "itemId": "shadcn/field",
       "routePath": "/components/shadcn/field",
       "docsArtifactPath": "registry/docs/shadcn/field.json"
+    },
+    {
+      "itemId": "shadcn/hover-card",
+      "routePath": "/components/shadcn/hover-card",
+      "docsArtifactPath": "registry/docs/shadcn/hover-card.json"
     },
     {
       "itemId": "shadcn/input-otp",

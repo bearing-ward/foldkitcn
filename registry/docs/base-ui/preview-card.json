@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/preview-card",
+  "routePath": "/components/base-ui/preview-card",
+  "title": "Preview Card",
+  "description": "Foldkit-native Base UI Preview Card primitive preserving model-owned open state, link trigger hover/focus/press facts, deterministic delay and placement attributes, portal, positioner, popup, viewport, arrow, backdrop, transition, detached-trigger, and keyboard-dismiss surfaces.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/preview-card",
+  "defaultImportPath": "base-ui/preview-card",
+  "sourceRoot": "registry-src/base-ui/preview-card",
+  "installableSourcePaths": ["src/registry/base-ui/preview-card/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Preview Card",
+      "docsUrl": "https://base-ui.com/react/components/preview-card",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/preview-card",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/preview-card/arrow/PreviewCardArrow.tsx",
+        "repos/base-ui/packages/react/src/preview-card/backdrop/PreviewCardBackdrop.tsx",
+        "repos/base-ui/packages/react/src/preview-card/index.parts.ts",
+        "repos/base-ui/packages/react/src/preview-card/index.ts",
+        "repos/base-ui/packages/react/src/preview-card/popup/PreviewCardPopup.tsx",
+        "repos/base-ui/packages/react/src/preview-card/portal/PreviewCardPortal.tsx",
+        "repos/base-ui/packages/react/src/preview-card/positioner/PreviewCardPositioner.tsx",
+        "repos/base-ui/packages/react/src/preview-card/root/PreviewCardRoot.tsx",
+        "repos/base-ui/packages/react/src/preview-card/store/PreviewCardHandle.ts",
+        "repos/base-ui/packages/react/src/preview-card/store/PreviewCardStore.ts",
+        "repos/base-ui/packages/react/src/preview-card/trigger/PreviewCardTrigger.tsx",
+        "repos/base-ui/packages/react/src/preview-card/utils/constants.ts",
+        "repos/base-ui/packages/react/src/preview-card/viewport/PreviewCardViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/demos/detached-triggers-controlled/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/demos/detached-triggers-full/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/demos/detached-triggers-simple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/preview-card/demos/hero/index.ts"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/preview-card/arrow/PreviewCardArrow.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/backdrop/PreviewCardBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/popup/PreviewCardPopup.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/portal/PreviewCardPortal.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/positioner/PreviewCardPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/root/PreviewCardRoot.detached-triggers.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/root/PreviewCardRoot.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/trigger/PreviewCardTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/viewport/PreviewCardViewport.test.tsx",
+        "repos/base-ui/packages/react/src/preview-card/positioner/PreviewCardPositioner.spec.tsx",
+        "repos/base-ui/packages/react/src/preview-card/root/PreviewCardRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, and message helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/preview-card",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/preview-card",
+        "reason": "Origin Base UI React Preview Card primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/preview-card",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/preview-card",
+        "reason": "Origin Base UI React Preview Card primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-preview-card-model-owned-open-state",
+        "summary": "Open state and active trigger identity are model-owned inputs; trigger and popup interactions emit open-change facts instead of mutating hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers decide whether hover, focus, press, delay, and disabled facts update their model."
+      },
+      {
+        "id": "base-ui-preview-card-delay-as-model-facing-facts",
+        "summary": "Delay and closeDelay are exposed as deterministic attributes and open-change facts rather than hidden timers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable primitive remains pure. Shared timer or subscription behavior can be added later through a reusable Foldkit abstraction."
+      },
+      {
+        "id": "base-ui-preview-card-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, viewport, and arrow attributes without performing DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision handling depends on runtime geometry and should be shared with Popover and Tooltip rather than implemented ad hoc in Preview Card."
+      }
+    ]
+  }
+}

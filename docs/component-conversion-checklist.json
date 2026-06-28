@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T03:38:05.010Z",
+  "generatedAt": "2026-06-28T04:04:16.354Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 31,
-      "remaining": 7
+      "imported": 32,
+      "remaining": 6
     },
     "shadcn": {
       "total": 64,
-      "imported": 32,
-      "remaining": 32
+      "imported": 33,
+      "remaining": 31
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 29,
+    "dossierReadyCount": 27,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1548,25 +1548,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
         "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/preview-card",
-        "https://ui.shadcn.com/docs/components/hover-card"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/preview-card"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 71",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/hover-card",
@@ -1575,27 +1572,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
         "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/preview-card",
-        "https://ui.shadcn.com/docs/components/hover-card"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/hover-card"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 71",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/menubar",

@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/hover-card",
+  "namespace": "shadcn",
+  "name": "Hover Card",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Hover Card wrapper composed from the local Base UI Preview Card primitive, shadcn slot classes, local class canonicalization, deterministic delay and placement attributes, and local static examples.",
+  "sourceRoot": "registry-src/shadcn/hover-card",
+  "installableSourcePaths": [
+    "src/registry/shadcn/hover-card/index.ts",
+    "src/registry/shadcn/hover-card/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--popover",
+    "--popover-foreground",
+    "--foreground",
+    "--muted-foreground"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Hover Card",
+      "docsUrl": "https://ui.shadcn.com/docs/components/hover-card",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/hover-card.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/hover-card.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/hover-card.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/hover-card.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/hover-card.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/hover-card-demo.tsx",
+        "repos/ui/apps/v4/examples/base/hover-card-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/hover-card-sides.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/preview-card",
+        "classification": "registry-local",
+        "target": "base-ui/preview-card",
+        "reason": "shadcn Hover Card composes the local Base UI Preview Card primitive."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "shadcn Hover Card examples compose local Button class helpers for trigger demos."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Hover Card uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options used by the local wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/preview-card",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/preview-card",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Preview Card implementation."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL labels in installable examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/hover-card-demo",
+      "title": "HoverCardDemo",
+      "description": "Basic Hover Card with local Button trigger classes and default bottom content placement.",
+      "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/hover-card-sides",
+      "title": "HoverCardSides",
+      "description": "Hover Card examples rendered across the supported physical sides.",
+      "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/hover-card-rtl",
+      "title": "HoverCardRtl",
+      "description": "RTL Hover Card examples with physical and logical side attributes.",
+      "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/hover-card",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/hover-card.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/hover-card.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-hover-card-local-base-ui",
+      "shadcn-hover-card-local-example-shells",
+      "shadcn-hover-card-delay-as-model-facing-facts",
+      "shadcn-hover-card-deterministic-placement-attributes"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-hover-card-local-base-ui",
+      "summary": "The shadcn wrapper composes local Preview Card attributes instead of importing upstream Base UI React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+    },
+    {
+      "id": "shadcn-hover-card-local-example-shells",
+      "summary": "Examples use local Button classes and deterministic RTL labels instead of unavailable origin app dependencies.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The Hover Card slice preserves the relevant DOM, class, ARIA, and visual contracts without adding React or app-local language selector runtime dependencies."
+    },
+    {
+      "id": "shadcn-hover-card-delay-as-model-facing-facts",
+      "summary": "Delay and closeDelay are exposed as deterministic attributes and consumer-owned open-change facts.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Hover Card remains a pure Foldkit render helper and does not hide timers in installable view code."
+    },
+    {
+      "id": "shadcn-hover-card-deterministic-placement-attributes",
+      "summary": "Positioner and content expose side, align, offset, collision, viewport, and arrow attributes without runtime DOM measurement or collision flipping.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+    }
+  ]
+}

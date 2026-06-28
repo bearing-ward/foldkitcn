@@ -46,6 +46,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/alert-dialog',
       'shadcn/popover',
       'shadcn/tooltip',
+      'shadcn/hover-card',
       'shadcn/radio-group',
       'shadcn/tabs',
       'shadcn/accordion',
@@ -81,6 +82,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/alert-dialog',
       'shadcn/popover',
       'shadcn/tooltip',
+      'shadcn/hover-card',
       'shadcn/radio-group',
       'shadcn/tabs',
       'shadcn/accordion',
@@ -130,6 +132,13 @@ describe('parity dry-run helpers', () => {
       'base-ui/popover',
       'shadcn/popover',
     ])
+  })
+
+  test('matches preview card and hover card slots with component grep', () => {
+    expect(matchingItemIds('preview-card')).toStrictEqual([
+      'base-ui/preview-card',
+    ])
+    expect(matchingItemIds('hover-card')).toStrictEqual(['shadcn/hover-card'])
   })
 
   test('matches context menu slots with component grep', () => {

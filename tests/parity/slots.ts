@@ -875,6 +875,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/preview-card',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/preview-card.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/preview-card.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'shadcn/popover',
     status: 'ready',
     originFixtureEntrypoint:
@@ -898,6 +916,23 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'tests/parity/fixtures/origin/shadcn/tooltip.fixture.ts',
     foldkitFixtureEntrypoint:
       'tests/parity/fixtures/foldkit/shadcn/tooltip.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
+    itemId: 'shadcn/hover-card',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/hover-card.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/hover-card.fixture.ts',
     comparisons: [
       'class-tokens',
       'attributes',
