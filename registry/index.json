@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T04:41:44.589Z",
+  "generatedAt": "2026-06-28T14:01:21.061Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -2429,6 +2429,184 @@
           "path": "src/registry/base-ui/meter/index.ts",
           "sha256": "8c84a47e317e8ad7cc4069ddfdc9f698b3aec5f021c62dc3f731e02dfda1a911",
           "sizeBytes": 4564,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/navigation-menu",
+        "namespace": "base-ui",
+        "name": "Navigation Menu",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Navigation Menu primitive preserving model-owned value/open state, trigger/list keyboard navigation, link active state, portal, positioner, popup, viewport, content, icon, arrow, backdrop, transition, activation-direction, ARIA, and deterministic placement attributes.",
+        "sourceRoot": "registry-src/base-ui/navigation-menu",
+        "installableSourcePaths": [
+          "src/registry/base-ui/navigation-menu/index.ts"
+        ],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Navigation Menu",
+            "docsUrl": "https://base-ui.com/react/components/navigation-menu",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/navigation-menu",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/index.parts.ts",
+              "repos/base-ui/packages/react/src/navigation-menu/index.ts",
+              "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.tsx"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/css-modules/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.test.tsx",
+              "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.test.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/preview-card",
+              "classification": "registry-local",
+              "target": "base-ui/preview-card",
+              "reason": "Navigation Menu reuses the local Preview Card side, align, transition, instant, command, and deterministic popup/viewport conventions."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, Command, Dom, message, and keyboard event helpers for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/navigation-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/navigation-menu",
+              "reason": "Origin Base UI React Navigation Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react/navigation-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/navigation-menu",
+              "reason": "Origin Base UI React Navigation Menu primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/navigation-menu",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/navigation-menu.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/navigation-menu.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-navigation-menu-model-owned-value-state",
+            "base-ui-navigation-menu-command-facing-focus-effects",
+            "base-ui-navigation-menu-deterministic-placement-and-sizing"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-navigation-menu-model-owned-value-state",
+            "summary": "Open state is derived from the model-owned active item value; trigger, list, link, backdrop, and Escape interactions emit typed value-change facts instead of mutating internal component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow and keeps Navigation Menu value/open state in the consuming model."
+          },
+          {
+            "id": "base-ui-navigation-menu-command-facing-focus-effects",
+            "summary": "Focus handoff and restoration are exposed as Commands instead of being hidden inside render helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Navigation Menu side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+          },
+          {
+            "id": "base-ui-navigation-menu-deterministic-placement-and-sizing",
+            "summary": "Positioner, popup, viewport, content, arrow, collision, activation-direction, and sizing surfaces are represented as deterministic attributes without DOM measurement, ResizeObserver, MutationObserver, or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured geometry and auto-sizing belong behind a shared runtime service, not inside an installable render helper."
+          }
+        ]
+      },
+      "manifestHash": "108b7afa6707985e60be5fdd28100e8dac2dee2525bd0f36c602709d33fcfebf",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/navigation-menu/item.json",
+          "sha256": "8599213486add8a9d030889d8a0403e572a46aa4ba1494e4746547c173649bd0",
+          "sizeBytes": 8412,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/navigation-menu/index.ts",
+          "sha256": "9732c549ea0acef580d75b4fe34b4939cc6be5182802e8fa519fc91337ea0424",
+          "sizeBytes": 32117,
           "role": "source"
         }
       ]
@@ -9967,6 +10145,226 @@
           "path": "src/registry/shadcn/native-select/examples.ts",
           "sha256": "34653bce29534accd9d2befbe077534a40373de5bf5107a20a97f8ece58bb7f8",
           "sizeBytes": 3781,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/navigation-menu",
+        "namespace": "shadcn",
+        "name": "Navigation Menu",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Navigation Menu wrapper composed from the local Base UI Navigation Menu primitive, local class canonicalization, local SVG chevron/status icons, origin slot classes, deterministic popup/viewport attributes, and static demo/RTL examples.",
+        "sourceRoot": "registry-src/shadcn/navigation-menu",
+        "installableSourcePaths": [
+          "src/registry/shadcn/navigation-menu/index.ts",
+          "src/registry/shadcn/navigation-menu/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--foreground",
+          "--muted",
+          "--popover",
+          "--popover-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Navigation Menu",
+            "docsUrl": "https://ui.shadcn.com/docs/components/navigation-menu",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/navigation-menu.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/navigation-menu.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/navigation-menu.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/navigation-menu.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/navigation-menu.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/navigation-menu-demo.tsx",
+              "repos/ui/apps/v4/examples/base/navigation-menu-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/navigation-menu",
+              "classification": "registry-local",
+              "target": "base-ui/navigation-menu",
+              "reason": "shadcn Navigation Menu composes the local Base UI Navigation Menu primitive."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Navigation Menu uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema options used by the local wrapper."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/navigation-menu",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/navigation-menu",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Navigation Menu implementation."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin CVA trigger styling is represented by a pure local class helper."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin chevron and status icons are represented by local inline SVG helpers in this batch."
+            },
+            {
+              "specifier": "next/link",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin Next Link usage is represented by Foldkit anchor attributes in installable examples."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/navigation-menu-demo",
+            "title": "NavigationMenuDemo",
+            "description": "Default Navigation Menu with getting started, components, icon, and docs link items.",
+            "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/navigation-menu-rtl",
+            "title": "NavigationMenuRtl",
+            "description": "RTL Navigation Menu with deterministic local translated labels and end alignment.",
+            "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/navigation-menu",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-navigation-menu-local-base-ui",
+            "shadcn-navigation-menu-local-icons-and-links",
+            "shadcn-navigation-menu-local-rtl-data",
+            "shadcn-navigation-menu-deterministic-popup-viewport"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-navigation-menu-local-base-ui",
+            "summary": "The shadcn wrapper composes local Navigation Menu attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+          },
+          {
+            "id": "shadcn-navigation-menu-local-icons-and-links",
+            "summary": "Chevron/status icons use local inline SVG helpers and examples use Foldkit anchors instead of lucide-react and next/link.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The local helpers preserve icon, aria-hidden, link, and slot contracts without adding React app dependencies."
+          },
+          {
+            "id": "shadcn-navigation-menu-local-rtl-data",
+            "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector."
+          },
+          {
+            "id": "shadcn-navigation-menu-deterministic-popup-viewport",
+            "summary": "Positioner, popup, viewport, content, and activation-direction surfaces expose deterministic attributes without runtime DOM measurement or auto-size mutation.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured navigation-menu viewport sizing belongs behind a shared runtime service, not inside the shadcn wrapper."
+          }
+        ]
+      },
+      "manifestHash": "dca4d72b4c3d2a191481df69c7055150bdcb5c4c468bbab4aa29195c6c9a9290",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/navigation-menu/item.json",
+          "sha256": "3655b1d8923a9483aaedc22ea5db63ff05e3462e25941d48c13e4f991f8b3a7d",
+          "sizeBytes": 7647,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/navigation-menu/index.ts",
+          "sha256": "7d88e63d30283ddafac36f3ce91465d2b974a3c85989fda70cf1e71081ba7565",
+          "sizeBytes": 15673,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/navigation-menu/examples.ts",
+          "sha256": "7808f636a79000070a835796186a8c01254f53a3f8a3c64c572cf0a48865fd97",
+          "sizeBytes": 11095,
           "role": "source"
         }
       ]

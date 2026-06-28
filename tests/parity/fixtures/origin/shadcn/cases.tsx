@@ -84,6 +84,7 @@ import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
+import * as NavigationMenuLocal from '../../../../../src/registry/shadcn/navigation-menu'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
@@ -204,6 +205,52 @@ const MenubarParity = (): React.ReactElement => (
   </div>
 )
 
+const NavigationMenuParity = (): React.ReactElement => (
+  <nav
+    data-slot="navigation-menu"
+    id="navigation-menu-parity"
+    data-open=""
+    data-orientation="horizontal"
+    data-side="bottom"
+    data-align="start"
+    className={NavigationMenuLocal.navigationMenuClassName()}
+  >
+    <ul
+      data-slot="navigation-menu-list"
+      id="navigation-menu-parity-list"
+      data-open=""
+      data-orientation="horizontal"
+      className={NavigationMenuLocal.navigationMenuListClassName()}
+    >
+      <li
+        data-slot="navigation-menu-item"
+        id="navigation-menu-parity-item-product"
+        data-value="product"
+        className={NavigationMenuLocal.navigationMenuItemClassName()}
+      >
+        <button
+          data-slot="navigation-menu-trigger"
+          id="navigation-menu-parity-trigger-product"
+          type="button"
+          tabIndex={0}
+          aria-expanded="true"
+          aria-controls="navigation-menu-parity-popup"
+          data-base-ui-navigation-menu-trigger=""
+          data-delay="50"
+          data-close-delay="50"
+          data-popup-open=""
+          data-open=""
+          className={NavigationMenuLocal.navigationMenuTriggerStyle({
+            className: 'group',
+          })}
+        >
+          Product
+        </button>
+      </li>
+    </ul>
+  </nav>
+)
+
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -276,6 +323,8 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'menubar-radio': MenubarParity,
   'menubar-rtl': MenubarParity,
   'menubar-submenu': MenubarParity,
+  'navigation-menu-demo': NavigationMenuParity,
+  'navigation-menu-rtl': NavigationMenuParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,

@@ -442,6 +442,16 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
         'repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx',
     },
     {
+      id: 'navigation-menu-demo',
+      title: 'Navigation Menu demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/navigation-menu-demo.tsx',
+    },
+    {
+      id: 'navigation-menu-rtl',
+      title: 'Navigation Menu RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/navigation-menu-rtl.tsx',
+    },
+    {
       id: 'menubar-checkbox',
       title: 'Menubar checkbox',
       originFilePath: 'repos/ui/apps/v4/examples/base/menubar-checkbox.tsx',

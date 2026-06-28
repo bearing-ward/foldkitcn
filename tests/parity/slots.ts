@@ -605,6 +605,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/navigation-menu',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/navigation-menu.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/navigation-menu.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'base-ui/context-menu',
     status: 'ready',
     originFixtureEntrypoint:
@@ -624,6 +642,20 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
   },
   {
     itemId: 'shadcn/dropdown-menu',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+    ],
+  },
+  {
+    itemId: 'shadcn/navigation-menu',
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
     foldkitFixtureEntrypoint: 'tests/parity/fixtures/foldkit/shadcn/entry.ts',

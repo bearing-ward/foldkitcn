@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T04:41:44.589Z",
+  "generatedAt": "2026-06-28T14:01:21.061Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -81,6 +81,11 @@
       "itemId": "base-ui/meter",
       "routePath": "/components/base-ui/meter",
       "docsArtifactPath": "registry/docs/base-ui/meter.json"
+    },
+    {
+      "itemId": "base-ui/navigation-menu",
+      "routePath": "/components/base-ui/navigation-menu",
+      "docsArtifactPath": "registry/docs/base-ui/navigation-menu.json"
     },
     {
       "itemId": "base-ui/number-field",
@@ -271,6 +276,11 @@
       "itemId": "shadcn/native-select",
       "routePath": "/components/shadcn/native-select",
       "docsArtifactPath": "registry/docs/shadcn/native-select.json"
+    },
+    {
+      "itemId": "shadcn/navigation-menu",
+      "routePath": "/components/shadcn/navigation-menu",
+      "docsArtifactPath": "registry/docs/shadcn/navigation-menu.json"
     },
     {
       "itemId": "shadcn/popover",

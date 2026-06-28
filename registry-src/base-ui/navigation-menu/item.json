@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/navigation-menu",
+  "namespace": "base-ui",
+  "name": "Navigation Menu",
+  "kind": "component",
+  "description": "Foldkit-native Base UI Navigation Menu primitive preserving model-owned value/open state, trigger/list keyboard navigation, link active state, portal, positioner, popup, viewport, content, icon, arrow, backdrop, transition, activation-direction, ARIA, and deterministic placement attributes.",
+  "sourceRoot": "registry-src/base-ui/navigation-menu",
+  "installableSourcePaths": ["src/registry/base-ui/navigation-menu/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Navigation Menu",
+      "docsUrl": "https://base-ui.com/react/components/navigation-menu",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/navigation-menu",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/index.parts.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/index.ts",
+        "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/navigation-menu/demos/nested-inline/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/navigation-menu/arrow/NavigationMenuArrow.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/backdrop/NavigationMenuBackdrop.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/content/NavigationMenuContent.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/icon/NavigationMenuIcon.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/item/NavigationMenuItem.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/link/NavigationMenuLink.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/list/NavigationMenuList.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/popup/NavigationMenuPopup.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/portal/NavigationMenuPortal.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/positioner/NavigationMenuPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/root/NavigationMenuRoot.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/trigger/NavigationMenuTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/navigation-menu/viewport/NavigationMenuViewport.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/preview-card",
+        "classification": "registry-local",
+        "target": "base-ui/preview-card",
+        "reason": "Navigation Menu reuses the local Preview Card side, align, transition, instant, command, and deterministic popup/viewport conventions."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, message, and keyboard event helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/navigation-menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/navigation-menu",
+        "reason": "Origin Base UI React Navigation Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/navigation-menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/navigation-menu",
+        "reason": "Origin Base UI React Navigation Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "base-ui/navigation-menu",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/navigation-menu.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/navigation-menu.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-navigation-menu-model-owned-value-state",
+      "base-ui-navigation-menu-command-facing-focus-effects",
+      "base-ui-navigation-menu-deterministic-placement-and-sizing"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-navigation-menu-model-owned-value-state",
+      "summary": "Open state is derived from the model-owned active item value; trigger, list, link, backdrop, and Escape interactions emit typed value-change facts instead of mutating internal component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit preserves unidirectional data flow and keeps Navigation Menu value/open state in the consuming model."
+    },
+    {
+      "id": "base-ui-navigation-menu-command-facing-focus-effects",
+      "summary": "Focus handoff and restoration are exposed as Commands instead of being hidden inside render helpers.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Navigation Menu side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+    },
+    {
+      "id": "base-ui-navigation-menu-deterministic-placement-and-sizing",
+      "summary": "Positioner, popup, viewport, content, arrow, collision, activation-direction, and sizing surfaces are represented as deterministic attributes without DOM measurement, ResizeObserver, MutationObserver, or collision flipping.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Measured geometry and auto-sizing belong behind a shared runtime service, not inside an installable render helper."
+    }
+  ]
+}

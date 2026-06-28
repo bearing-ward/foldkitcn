@@ -78,6 +78,7 @@ import {
   NativeSelectInvalid,
   NativeSelectRtl,
 } from '../../../../../src/registry/shadcn/native-select/examples'
+import * as NavigationMenuLocal from '../../../../../src/registry/shadcn/navigation-menu'
 import {
   ProgressControlled,
   ProgressDemo,
@@ -222,6 +223,66 @@ const MenubarParity = (): Html => {
   )
 }
 
+const NavigationMenuParity = (): Html => {
+  const h = html<never>()
+
+  return h.nav(
+    [
+      h.DataAttribute('slot', 'navigation-menu'),
+      h.Id('navigation-menu-parity'),
+      h.DataAttribute('open', ''),
+      h.DataAttribute('orientation', 'horizontal'),
+      h.DataAttribute('side', 'bottom'),
+      h.DataAttribute('align', 'start'),
+      h.Class(NavigationMenuLocal.navigationMenuClassName()),
+    ],
+    [
+      h.ul(
+        [
+          h.DataAttribute('slot', 'navigation-menu-list'),
+          h.Id('navigation-menu-parity-list'),
+          h.DataAttribute('open', ''),
+          h.DataAttribute('orientation', 'horizontal'),
+          h.Class(NavigationMenuLocal.navigationMenuListClassName()),
+        ],
+        [
+          h.li(
+            [
+              h.DataAttribute('slot', 'navigation-menu-item'),
+              h.Id('navigation-menu-parity-item-product'),
+              h.DataAttribute('value', 'product'),
+              h.Class(NavigationMenuLocal.navigationMenuItemClassName()),
+            ],
+            [
+              h.button(
+                [
+                  h.DataAttribute('slot', 'navigation-menu-trigger'),
+                  h.Id('navigation-menu-parity-trigger-product'),
+                  h.Type('button'),
+                  h.Tabindex(0),
+                  h.AriaExpanded(true),
+                  h.AriaControls('navigation-menu-parity-popup'),
+                  h.DataAttribute('base-ui-navigation-menu-trigger', ''),
+                  h.DataAttribute('delay', '50'),
+                  h.DataAttribute('close-delay', '50'),
+                  h.DataAttribute('popup-open', ''),
+                  h.DataAttribute('open', ''),
+                  h.Class(
+                    NavigationMenuLocal.navigationMenuTriggerStyle({
+                      className: 'group',
+                    }),
+                  ),
+                ],
+                ['Product'],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  )
+}
+
 const components: Readonly<Record<string, () => Html>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -294,6 +355,8 @@ const components: Readonly<Record<string, () => Html>> = {
   'menubar-radio': MenubarParity,
   'menubar-rtl': MenubarParity,
   'menubar-submenu': MenubarParity,
+  'navigation-menu-demo': NavigationMenuParity,
+  'navigation-menu-rtl': NavigationMenuParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,
@@ -364,6 +427,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('menubar-')) {
     return 'src/registry/shadcn/menubar/examples.ts'
+  }
+
+  if (id.startsWith('navigation-menu-')) {
+    return 'src/registry/shadcn/navigation-menu/examples.ts'
   }
 
   if (id.startsWith('context-menu-')) {
