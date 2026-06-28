@@ -479,6 +479,19 @@ dt {
   margin: 0.35rem 0 0;
 }
 
+.live-example-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 4rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--shell-border);
+  background: var(--shell-bg);
+  padding: 1rem;
+}
+
 .status-badge {
   display: inline-flex;
   align-items: center;

@@ -226,7 +226,7 @@ describe(view, () => {
     )
   })
 
-  test('Button detail renders static example snippets', () => {
+  test('Button detail renders live example previews and snippets', () => {
     Scene.scene(
       { update, view },
       Scene.with(
@@ -236,11 +236,17 @@ describe(view, () => {
       ),
       Scene.expect(Scene.role('heading', { name: 'ButtonDefault' })).toExist(),
       Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('button', { name: 'Button' }),
+        ),
+      ).toExist(),
+      Scene.expect(
         Scene.text('export const ButtonDefault = (): Html => {', {
           exact: false,
         }),
       ).toExist(),
-      Scene.expect(Scene.text('static')).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
       Scene.expect(
         Scene.role('button', { name: 'Copy ButtonDefault example snippet' }),
       ).toExist(),

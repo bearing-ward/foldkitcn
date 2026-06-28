@@ -5,6 +5,10 @@ import {
 import type { Page } from '@playwright/test'
 
 const expectNoHeaderMainOverlap = async (page: Page) => {
+  await page.evaluate(() => {
+    window.scrollTo(0, 0)
+  })
+
   const headerBox = await page.locator('.site-header').boundingBox()
   const mainBox = await page.locator('#main-content').boundingBox()
 
@@ -27,6 +31,12 @@ playwrightTest(
     await playwrightExpect(
       page.getByRole('heading', { exact: true, level: 1, name: 'Button' }),
     ).toBeVisible()
+
+    const buttonDefaultPreview = page.getByLabel('ButtonDefault live preview')
+    await playwrightExpect(
+      buttonDefaultPreview.getByRole('button', { name: 'Button' }),
+    ).toBeVisible()
+    await buttonDefaultPreview.getByRole('button', { name: 'Button' }).click()
 
     await page.getByLabel('Search documentation').fill('button')
     await playwrightExpect(

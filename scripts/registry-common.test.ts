@@ -220,7 +220,7 @@ describe('registry build helpers', () => {
       componentItemId: 'shadcn/button',
       hasDefaultSnippet: true,
       hasDemoSnippet: false,
-      previewStatus: 'static',
+      previewStatus: 'live-ready',
       requiredRegistryItems: ['base-ui/button'],
     })
     expect(
@@ -231,6 +231,33 @@ describe('registry build helpers', () => {
             onSome: value => value,
           }),
     ).toBe('ButtonDefault')
+  })
+
+  test('leaves unregistered example exports static', () => {
+    const index = registryIndexWithDocsItems()
+    const docs = buildComponentDocsArtifacts({
+      ...index,
+      items: [
+        {
+          ...index.items[0],
+          item: {
+            ...index.items[0].item,
+            id: 'base-ui/button',
+            examples: [
+              {
+                id: 'base-ui/button-default',
+                title: 'ButtonDefault',
+                description: 'Default Button example.',
+                sourcePath: 'src/registry/shadcn/button/examples.ts',
+                kind: 'demo',
+              },
+            ],
+          },
+        },
+      ],
+    })
+
+    expect(docs.artifacts[0]?.examples[0]?.previewStatus).toBe('static')
   })
 
   test('includes dependency and source references in every component docs artifact', () => {

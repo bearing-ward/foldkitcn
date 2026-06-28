@@ -30,9 +30,11 @@ import {
   namespaceGroups,
   publicComponents,
 } from './data'
+import { liveExampleViewFor } from './live-examples'
 import { roadmapSnapshot } from './roadmap'
 import type { RoadmapBlockedGroup } from './roadmap'
 import type {
+  ExampleDocsArtifact,
   OriginComponentProgressReport,
   OriginComponentProgressRow,
 } from './registry/schema'
@@ -1245,6 +1247,18 @@ const examplesSectionView = (
   copiedSnippets: HashSet.HashSet<string>,
 ): Html => {
   const h = html<Message>()
+  const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
+    Option.match(liveExampleViewFor(example), {
+      onNone: () => h.empty,
+      onSome: exampleView =>
+        h.div(
+          [
+            h.Class('live-example-preview'),
+            h.AriaLabel(`${example.title} live preview`),
+          ],
+          [exampleView()],
+        ),
+    })
 
   return h.section([h.Id('examples'), h.Class('content-section')], [
     h.h2([], ['Examples']),
@@ -1262,6 +1276,7 @@ const examplesSectionView = (
                 ]),
                 statusBadgeView(example.previewStatus),
               ]),
+              liveExamplePreviewView(example),
               snippetBlockView(
                 example.snippet,
                 `Copy ${example.title} example snippet`,

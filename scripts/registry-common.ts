@@ -10,6 +10,7 @@ import type {
   ComponentDocsIndex as ComponentDocsIndexType,
   ComponentDocsRoute,
   ExampleManifest,
+  ExamplePreviewStatus,
   RegistryIndex as RegistryIndexType,
   RegistryItemManifest,
 } from '../src/registry/schema'
@@ -62,7 +63,7 @@ interface RawExampleDocsArtifact {
   readonly componentItemId: string
   readonly sourcePath: string
   readonly snippet: string
-  readonly previewStatus: 'static'
+  readonly previewStatus: ExamplePreviewStatus
   readonly previewExportName: string | null
   readonly requiredRegistryItems: ReadonlyArray<string>
   readonly notes: ReadonlyArray<string>
@@ -320,6 +321,41 @@ const requiredRegistryItemsForItem = (
 ): ReadonlyArray<string> =>
   item.dependencies.registry.map(dependency => dependency.target)
 
+const liveReadyExampleExportsByItemId: Readonly<
+  Record<string, ReadonlySet<string>>
+> = {
+  'shadcn/button': new Set([
+    'ButtonDefault',
+    'ButtonDemo',
+    'ButtonOutline',
+    'ButtonSecondary',
+    'ButtonGhost',
+    'ButtonDestructive',
+    'ButtonLink',
+    'ButtonIcon',
+    'ButtonWithIcon',
+    'ButtonSize',
+    'ButtonRounded',
+    'ButtonSpinner',
+    'ButtonRender',
+    'ButtonRtl',
+  ]),
+}
+
+const previewStatusForExample = (
+  item: RegistryItemManifest,
+  exportName: string | undefined,
+): ExamplePreviewStatus => {
+  if (
+    exportName !== undefined &&
+    liveReadyExampleExportsByItemId[item.id]?.has(exportName) === true
+  ) {
+    return 'live-ready'
+  }
+
+  return 'static'
+}
+
 const buildExampleDocsArtifact = (
   item: RegistryItemManifest,
   example: ExampleManifest,
@@ -333,7 +369,7 @@ const buildExampleDocsArtifact = (
     componentItemId: item.id,
     sourcePath: example.sourcePath,
     snippet: extractExampleSnippet(source, example),
-    previewStatus: 'static',
+    previewStatus: previewStatusForExample(item, exportName),
     previewExportName: exportName ?? null,
     requiredRegistryItems: requiredRegistryItemsForItem(item),
     notes: [],
