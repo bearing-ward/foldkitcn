@@ -34,6 +34,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/select',
       'shadcn/dropdown-menu',
+      'shadcn/menubar',
       'shadcn/context-menu',
       'shadcn/separator',
       'shadcn/progress',
@@ -70,6 +71,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/native-select',
       'shadcn/select',
       'shadcn/dropdown-menu',
+      'shadcn/menubar',
       'shadcn/context-menu',
       'shadcn/separator',
       'shadcn/progress',
@@ -145,6 +147,13 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('context-menu')).toStrictEqual([
       'base-ui/context-menu',
       'shadcn/context-menu',
+    ])
+  })
+
+  test('matches menubar slots with component grep', () => {
+    expect(matchingItemIds('menubar')).toStrictEqual([
+      'base-ui/menubar',
+      'shadcn/menubar',
     ])
   })
 

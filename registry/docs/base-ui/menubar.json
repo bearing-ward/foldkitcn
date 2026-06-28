@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/menubar",
+  "routePath": "/components/base-ui/menubar",
+  "title": "Menubar",
+  "description": "Foldkit-native Base UI Menubar primitive composed from the local Menu foundation, adding model-owned top-level menu selection, menubar root ARIA, horizontal and vertical trigger navigation, hover handoff while open, disabled propagation, and trigger roving focus metadata without duplicating Menu item, submenu, checkbox, radio, popup, or typeahead behavior.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/menubar",
+  "defaultImportPath": "base-ui/menubar",
+  "sourceRoot": "registry-src/base-ui/menubar",
+  "installableSourcePaths": ["src/registry/base-ui/menubar/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Menubar",
+      "docsUrl": "https://base-ui.com/react/components/menubar",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/menubar",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/menubar/index.ts",
+        "repos/base-ui/packages/react/src/menubar/Menubar.tsx",
+        "repos/base-ui/packages/react/src/menubar/MenubarContext.ts",
+        "repos/base-ui/packages/react/src/menubar/MenubarDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menubar/demos/hero/tailwind/index.tsx"
+      ],
+      "testPaths": ["repos/base-ui/packages/react/src/menubar/Menubar.test.tsx"]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/menu",
+        "classification": "registry-local",
+        "target": "base-ui/menu",
+        "reason": "Menubar reuses the local Menu item, submenu, popup, checked item, radio item, highlight, typeahead, and keyboard semantics for each top-level menu."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, keyboard event, and html factory APIs for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/menubar",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menubar",
+        "reason": "Origin Base UI React Menubar primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/menubar",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menubar",
+        "reason": "Origin Base UI React Menubar primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Menu primitives used inside Menubar are replaced by the local Foldkit Menu implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-menubar-local-menu-foundation",
+        "summary": "Menubar composes the local Menu foundation for item roles, checked/radio state, submenu state, popup structure, highlight, typeahead, and menu keyboard behavior.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Plan 051 explicitly requires Menubar to add only root and trigger behavior while reusing Menu behavior."
+      },
+      {
+        "id": "base-ui-menubar-model-owned-root-state",
+        "summary": "Top-level open menu, focused trigger, highlighted item, and submenu state are model-owned inputs and interactions emit typed facts.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow and keeps menubar state in the consuming model."
+      },
+      {
+        "id": "base-ui-menubar-command-facing-focus-effects",
+        "summary": "Trigger navigation emits focus selectors instead of moving focus inside the render helper.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Focus side effects belong at Foldkit's Command boundary."
+      },
+      {
+        "id": "base-ui-menubar-deterministic-placement-attributes",
+        "summary": "Top-level menus and submenus use deterministic Menu placement attributes without runtime collision measurement or sibling flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the Menubar render helper."
+      }
+    ]
+  }
+}

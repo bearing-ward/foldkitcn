@@ -442,6 +442,36 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
         'repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx',
     },
     {
+      id: 'menubar-checkbox',
+      title: 'Menubar checkbox',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-checkbox.tsx',
+    },
+    {
+      id: 'menubar-demo',
+      title: 'Menubar demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-demo.tsx',
+    },
+    {
+      id: 'menubar-icons',
+      title: 'Menubar icons',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-icons.tsx',
+    },
+    {
+      id: 'menubar-radio',
+      title: 'Menubar radio',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-radio.tsx',
+    },
+    {
+      id: 'menubar-rtl',
+      title: 'Menubar RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-rtl.tsx',
+    },
+    {
+      id: 'menubar-submenu',
+      title: 'Menubar submenu',
+      originFilePath: 'repos/ui/apps/v4/examples/base/menubar-submenu.tsx',
+    },
+    {
       id: 'separator-menu',
       title: 'Separator menu',
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-menu.tsx',

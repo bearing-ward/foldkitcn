@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/menubar",
+  "routePath": "/components/shadcn/menubar",
+  "title": "Menubar",
+  "description": "Foldkit-native shadcn base-nova Menubar wrapper composed from the local Base UI Menubar primitive, local class canonicalization, local SVG check and chevron icons, deterministic slots, and static examples for every dossier-listed Menubar demo.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/menubar",
+  "defaultImportPath": "shadcn/menubar",
+  "sourceRoot": "registry-src/shadcn/menubar",
+  "installableSourcePaths": [
+    "src/registry/shadcn/menubar/index.ts",
+    "src/registry/shadcn/menubar/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Menubar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/menubar",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/menubar.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/menubar.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/menubar.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/menubar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/menubar.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/menubar-checkbox.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-icons.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-radio.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/menubar-submenu.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/menubar",
+        "classification": "registry-local",
+        "target": "base-ui/menubar",
+        "reason": "shadcn Menubar composes the local Base UI Menubar primitive."
+      },
+      {
+        "specifier": "base-ui/menu",
+        "classification": "registry-local",
+        "target": "base-ui/menu",
+        "reason": "Base UI Menubar composes the local Menu primitive for item, submenu, checked, radio, and popup semantics."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Menubar uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Menubar style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/menubar",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menubar",
+        "reason": "Origin Base UI React Menubar primitive is replaced by the local Foldkit Base UI Menubar implementation."
+      },
+      {
+        "specifier": "@base-ui/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Base UI React Menu primitive is replaced by the local Foldkit Base UI Menu implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin check and chevron icons are represented by local inline SVG helpers in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/menubar-checkbox",
+      "title": "MenubarCheckbox",
+      "description": "Menubar checkbox items with local checked state.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarCheckbox = (): Html =>\n  menubarExample(\n    'menubar-checkbox',\n    [\n      { value: 'view', label: 'View', items: checkboxViewItems },\n      { value: 'format', label: 'Format', items: formatItems },\n    ],\n    { className: 'w-72' },\n  )",
+      "previewStatus": "static",
+      "previewExportName": "MenubarCheckbox",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/menubar-demo",
+      "title": "MenubarDemo",
+      "description": "Default browser-style menubar with grouped items, checkbox items, radio items, shortcuts, and submenus.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarDemo = (): Html =>\n  menubarExample('menubar-demo', browserMenus, { className: 'w-72' })",
+      "previewStatus": "static",
+      "previewExportName": "MenubarDemo",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/menubar-icons",
+      "title": "MenubarIcons",
+      "description": "Menubar items with local icon slots.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarIcons = (): Html =>\n  menubarExample(\n    'menubar-icons',\n    [\n      { value: 'file', label: 'File', items: iconFileItems },\n      { value: 'more', label: 'More', items: moreItems },\n    ],\n    { className: 'w-72' },\n  )",
+      "previewStatus": "static",
+      "previewExportName": "MenubarIcons",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/menubar-radio",
+      "title": "MenubarRadio",
+      "description": "Menubar radio groups with model-owned selected values.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarRadio = (): Html =>\n  menubarExample(\n    'menubar-radio',\n    [\n      { value: 'profiles', label: 'Profiles', items: radioProfileItems },\n      { value: 'theme', label: 'Theme', items: themeItems },\n    ],\n    { className: 'w-72' },\n  )",
+      "previewStatus": "static",
+      "previewExportName": "MenubarRadio",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/menubar-rtl",
+      "title": "MenubarRtl",
+      "description": "RTL menubar using deterministic local translations.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarRtl = (): Html =>\n  menubarExample(\n    'menubar-rtl',\n    [\n      { value: 'file', label: 'ملف', items: rtlFileItems },\n      { value: 'edit', label: 'تعديل', items: editItems },\n      { value: 'view', label: 'عرض', items: viewItems },\n      { value: 'profiles', label: 'الملفات الشخصية', items: profileItems },\n    ],\n    { className: 'w-72', dir: 'rtl' },\n  )",
+      "previewStatus": "static",
+      "previewExportName": "MenubarRtl",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/menubar-submenu",
+      "title": "MenubarSubmenu",
+      "description": "Menubar with nested submenu content rendered through local Menu composition.",
+      "componentItemId": "shadcn/menubar",
+      "sourcePath": "src/registry/shadcn/menubar/examples.ts",
+      "snippet": "export const MenubarSubmenu = (): Html =>\n  menubarExample(\n    'menubar-submenu',\n    [\n      { value: 'file', label: 'File', items: submenuFileItems },\n      { value: 'edit', label: 'Edit', items: submenuEditItems },\n    ],\n    { className: 'w-72' },\n  )",
+      "previewStatus": "static",
+      "previewExportName": "MenubarSubmenu",
+      "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-menubar-local-base-ui",
+        "summary": "The shadcn wrapper composes local Menubar attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-menubar-local-icons",
+        "summary": "Check and chevron icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-menubar-local-rtl-data",
+        "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector."
+      },
+      {
+        "id": "shadcn-menubar-deterministic-placement-attributes",
+        "summary": "Positioner, content, and submenu content expose side, align, offset, and collision attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

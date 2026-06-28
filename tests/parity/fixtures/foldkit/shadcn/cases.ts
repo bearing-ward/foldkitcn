@@ -70,6 +70,7 @@ import {
   KbdRtl,
   KbdTooltip,
 } from '../../../../../src/registry/shadcn/kbd/examples'
+import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
 import {
   NativeSelectDemo,
   NativeSelectDisabled,
@@ -173,6 +174,54 @@ const ContextMenuParity = (): Html => {
   )
 }
 
+const MenubarParity = (): Html => {
+  const h = html<never>()
+
+  return h.div(
+    [
+      h.DataAttribute('slot', 'menubar'),
+      h.Id('menubar-parity'),
+      h.Role('menubar'),
+      h.AriaOrientation('horizontal'),
+      h.DataAttribute('orientation', 'horizontal'),
+      h.DataAttribute('modal', ''),
+      h.DataAttribute('has-submenu-open', ''),
+      h.Class(MenubarLocal.menubarClassName()),
+    ],
+    [
+      h.div(
+        [
+          h.DataAttribute('slot', 'menubar-menu'),
+          h.DataAttribute('side', 'bottom'),
+          h.DataAttribute('align', 'start'),
+          h.DataAttribute('menubar-menu', ''),
+          h.DataAttribute('value', 'file'),
+        ],
+        [
+          h.button(
+            [
+              h.DataAttribute('slot', 'menubar-trigger'),
+              h.Id('menubar-parity-file-trigger'),
+              h.Type('button'),
+              h.AriaHasPopup('menu'),
+              h.AriaExpanded(true),
+              h.AriaControls('menubar-parity-file-popup'),
+              h.Role('menuitem'),
+              h.Tabindex(0),
+              h.DataAttribute('menubar-trigger', ''),
+              h.DataAttribute('orientation', 'horizontal'),
+              h.DataAttribute('value', 'file'),
+              h.DataAttribute('popup-open', ''),
+              h.Class(MenubarLocal.menubarTriggerClassName()),
+            ],
+            ['File'],
+          ),
+        ],
+      ),
+    ],
+  )
+}
+
 const components: Readonly<Record<string, () => Html>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -239,6 +288,12 @@ const components: Readonly<Record<string, () => Html>> = {
   'dropdown-menu-destructive': DropdownMenuParity,
   'dropdown-menu-rtl': DropdownMenuParity,
   'dropdown-menu-shortcuts': DropdownMenuParity,
+  'menubar-checkbox': MenubarParity,
+  'menubar-demo': MenubarParity,
+  'menubar-icons': MenubarParity,
+  'menubar-radio': MenubarParity,
+  'menubar-rtl': MenubarParity,
+  'menubar-submenu': MenubarParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,
@@ -305,6 +360,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('dropdown-menu-')) {
     return 'src/registry/shadcn/dropdown-menu/examples.ts'
+  }
+
+  if (id.startsWith('menubar-')) {
+    return 'src/registry/shadcn/menubar/examples.ts'
   }
 
   if (id.startsWith('context-menu-')) {

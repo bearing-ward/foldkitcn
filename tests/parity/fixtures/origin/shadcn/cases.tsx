@@ -83,6 +83,7 @@ import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
+import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
 import type { ShadcnOriginCaseMetadata } from './case-metadata'
 import { shadcnOriginCaseMetadata } from './case-metadata'
 
@@ -164,6 +165,45 @@ const ContextMenuParity = (): React.ReactElement => (
   </div>
 )
 
+const MenubarParity = (): React.ReactElement => (
+  <div
+    data-slot="menubar"
+    id="menubar-parity"
+    role="menubar"
+    aria-orientation="horizontal"
+    data-orientation="horizontal"
+    data-modal=""
+    data-has-submenu-open=""
+    className={MenubarLocal.menubarClassName()}
+  >
+    <div
+      data-slot="menubar-menu"
+      data-side="bottom"
+      data-align="start"
+      data-menubar-menu=""
+      data-value="file"
+    >
+      <button
+        data-slot="menubar-trigger"
+        id="menubar-parity-file-trigger"
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded="true"
+        aria-controls="menubar-parity-file-popup"
+        role="menuitem"
+        tabIndex={0}
+        data-menubar-trigger=""
+        data-orientation="horizontal"
+        data-value="file"
+        data-popup-open=""
+        className={MenubarLocal.menubarTriggerClassName()}
+      >
+        File
+      </button>
+    </div>
+  </div>
+)
+
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -230,6 +270,12 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'dropdown-menu-destructive': DropdownMenuParity,
   'dropdown-menu-rtl': DropdownMenuParity,
   'dropdown-menu-shortcuts': DropdownMenuParity,
+  'menubar-checkbox': MenubarParity,
+  'menubar-demo': MenubarParity,
+  'menubar-icons': MenubarParity,
+  'menubar-radio': MenubarParity,
+  'menubar-rtl': MenubarParity,
+  'menubar-submenu': MenubarParity,
   'kbd-button': KbdButton,
   'kbd-demo': KbdDemo,
   'kbd-group': KbdGroupExample,

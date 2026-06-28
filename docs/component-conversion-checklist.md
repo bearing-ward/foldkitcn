@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-28T04:04:16.354Z
+Generated at: 2026-06-28T04:37:45.442Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       32 |    38 |         6 |
-| shadcn docs  |       33 |    64 |        31 |
+| Base UI docs |       33 |    38 |         5 |
+| shadcn docs  |       34 |    64 |        30 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 5
-- Dossier-ready rows: 27
+- Dossier-ready rows: 25
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-28T04:04:16.354Z
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/menubar`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menubar)<br>[origin](https://ui.shadcn.com/docs/components/menubar)                 |          |
 | `base-ui/navigation-menu` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/navigation-menu)<br>[origin](https://ui.shadcn.com/docs/components/navigation-menu) |          |
 | `base-ui/combobox`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/combobox)<br>[origin](https://ui.shadcn.com/docs/components/combobox)               |          |
 | `base-ui/autocomplete`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/autocomplete)                                                                       |          |
+| `base-ui/drawer`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/drawer)<br>[origin](https://ui.shadcn.com/docs/components/drawer)                   |          |
 
 ## Imported Items
 
@@ -92,6 +92,8 @@ Generated at: 2026-06-28T04:04:16.354Z
 - `base-ui/toolbar`
 - `base-ui/preview-card`
 - `shadcn/hover-card`
+- `base-ui/menubar`
+- `shadcn/menubar`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -108,8 +110,6 @@ Generated at: 2026-06-28T04:04:16.354Z
 
 | Item                      | Readiness     | Parity      | URLs                                                                                                                              | Blockers |
 | ------------------------- | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `base-ui/menubar`         | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menubar)<br>[origin](https://ui.shadcn.com/docs/components/menubar)                 |          |
-| `shadcn/menubar`          | dossier-ready | not-started | [origin](https://base-ui.com/react/components/menubar)<br>[origin](https://ui.shadcn.com/docs/components/menubar)                 |          |
 | `base-ui/navigation-menu` | dossier-ready | not-started | [origin](https://base-ui.com/react/components/navigation-menu)<br>[origin](https://ui.shadcn.com/docs/components/navigation-menu) |          |
 | `shadcn/navigation-menu`  | dossier-ready | not-started | [origin](https://base-ui.com/react/components/navigation-menu)<br>[origin](https://ui.shadcn.com/docs/components/navigation-menu) |          |
 | `base-ui/combobox`        | dossier-ready | not-started | [origin](https://base-ui.com/react/components/combobox)<br>[origin](https://ui.shadcn.com/docs/components/combobox)               |          |

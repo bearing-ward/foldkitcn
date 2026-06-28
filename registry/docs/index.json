@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T04:12:26.763Z",
+  "generatedAt": "2026-06-28T04:41:44.589Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -71,6 +71,11 @@
       "itemId": "base-ui/menu",
       "routePath": "/components/base-ui/menu",
       "docsArtifactPath": "registry/docs/base-ui/menu.json"
+    },
+    {
+      "itemId": "base-ui/menubar",
+      "routePath": "/components/base-ui/menubar",
+      "docsArtifactPath": "registry/docs/base-ui/menubar.json"
     },
     {
       "itemId": "base-ui/meter",
@@ -256,6 +261,11 @@
       "itemId": "shadcn/label",
       "routePath": "/components/shadcn/label",
       "docsArtifactPath": "registry/docs/shadcn/label.json"
+    },
+    {
+      "itemId": "shadcn/menubar",
+      "routePath": "/components/shadcn/menubar",
+      "docsArtifactPath": "registry/docs/shadcn/menubar.json"
     },
     {
       "itemId": "shadcn/native-select",
