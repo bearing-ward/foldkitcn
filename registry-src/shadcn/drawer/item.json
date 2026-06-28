@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/drawer",
+  "namespace": "shadcn",
+  "name": "Drawer",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Drawer wrapper composed from the local Base UI Drawer primitive, shadcn slot classes, local class canonicalization, deterministic direction variants, and static local examples.",
+  "sourceRoot": "registry-src/shadcn/drawer",
+  "installableSourcePaths": [
+    "src/registry/shadcn/drawer/index.ts",
+    "src/registry/shadcn/drawer/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--foreground",
+    "--muted",
+    "--muted-foreground",
+    "--popover",
+    "--popover-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Drawer",
+      "docsUrl": "https://ui.shadcn.com/docs/components/drawer",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/drawer.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/drawer.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/drawer.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/drawer.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/drawer.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/drawer-demo.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-dialog.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-scrollable-content.tsx",
+        "repos/ui/apps/v4/examples/base/drawer-sides.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/drawer",
+        "classification": "registry-local",
+        "target": "base-ui/drawer",
+        "reason": "shadcn Drawer composes the local Base UI Drawer primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Drawer uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema variants and Array helpers used by local examples."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "vaul",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/drawer",
+        "reason": "Origin vaul Drawer primitive is replaced by the local Foldkit Base UI Drawer implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin plus/minus icons are represented with local static SVG markup in installable Foldkit examples."
+      },
+      {
+        "specifier": "recharts",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chart examples are represented with local static chart bars instead of a charting runtime dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "@/hooks/use-media-query",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin responsive Dialog/Drawer composition is outside this Drawer-only slice."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Examples use local static button class shells instead of importing a Button dependency."
+      },
+      {
+        "specifier": "shadcn/dialog",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The responsive Drawer/Dialog demo is deferred to avoid expanding this task beyond Drawer."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Input is only used by the deferred responsive Drawer/Dialog demo."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Label is only used by the deferred responsive Drawer/Dialog demo."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/drawer-demo",
+      "title": "DrawerDemo",
+      "description": "Activity goal drawer with static local controls and chart bars.",
+      "sourcePath": "src/registry/shadcn/drawer/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/drawer-scrollable-content",
+      "title": "DrawerScrollableContent",
+      "description": "Right-side drawer with scrollable content.",
+      "sourcePath": "src/registry/shadcn/drawer/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/drawer-sides",
+      "title": "DrawerWithSides",
+      "description": "Drawer direction variants for top, right, bottom, and left.",
+      "sourcePath": "src/registry/shadcn/drawer/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/drawer-rtl",
+      "title": "DrawerRtl",
+      "description": "RTL drawer with local static translations.",
+      "sourcePath": "src/registry/shadcn/drawer/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/drawer",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/drawer.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/drawer.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-drawer-local-base-ui",
+      "shadcn-drawer-local-example-shells",
+      "shadcn-drawer-static-icons-and-chart",
+      "shadcn-drawer-dialog-demo-deferred"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-drawer-local-base-ui",
+      "summary": "The shadcn wrapper composes local Drawer attributes instead of importing vaul or upstream React primitives.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source must not import React, vaul, or upstream runtime packages."
+    },
+    {
+      "id": "shadcn-drawer-local-example-shells",
+      "summary": "Examples use local static Button shells instead of origin app dependencies.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Those components are outside this Drawer slice. Static local markup preserves the relevant Drawer DOM, class, ARIA, and visual contracts."
+    },
+    {
+      "id": "shadcn-drawer-static-icons-and-chart",
+      "summary": "The activity goal example uses static SVG icons and chart bars instead of lucide-react and recharts runtime imports.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "lucide-react and recharts are not installable runtime dependencies for this registry item."
+    },
+    {
+      "id": "shadcn-drawer-dialog-demo-deferred",
+      "summary": "The responsive Drawer/Dialog composition example is deferred because this task explicitly does not implement Sheet or broaden cross-component responsive composition.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Plan 055 owns Drawer only and the user explicitly asked not to implement Sheet or refactor unrelated registry items."
+    }
+  ]
+}

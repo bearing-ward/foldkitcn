@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T15:52:28.143Z",
+  "generatedAt": "2026-06-28T16:20:45.578Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -56,6 +56,11 @@
       "itemId": "base-ui/dialog",
       "routePath": "/components/base-ui/dialog",
       "docsArtifactPath": "registry/docs/base-ui/dialog.json"
+    },
+    {
+      "itemId": "base-ui/drawer",
+      "routePath": "/components/base-ui/drawer",
+      "docsArtifactPath": "registry/docs/base-ui/drawer.json"
     },
     {
       "itemId": "base-ui/field",
@@ -246,6 +251,11 @@
       "itemId": "shadcn/dialog",
       "routePath": "/components/shadcn/dialog",
       "docsArtifactPath": "registry/docs/shadcn/dialog.json"
+    },
+    {
+      "itemId": "shadcn/drawer",
+      "routePath": "/components/shadcn/drawer",
+      "docsArtifactPath": "registry/docs/shadcn/drawer.json"
     },
     {
       "itemId": "shadcn/dropdown-menu",

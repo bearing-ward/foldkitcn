@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/drawer",
+  "routePath": "/components/base-ui/drawer",
+  "title": "Drawer",
+  "description": "Foldkit-native Base UI Drawer primitive composed from the local Dialog lifecycle, preserving model-owned open state, modal commands, focus and dismiss behavior, Drawer popup/content data attributes, placement direction, and model-owned indent activity.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/drawer",
+  "defaultImportPath": "base-ui/drawer",
+  "sourceRoot": "registry-src/base-ui/drawer",
+  "installableSourcePaths": ["src/registry/base-ui/drawer/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Drawer",
+      "docsUrl": "https://base-ui.com/react/components/drawer",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/drawer",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/drawer/backdrop/DrawerBackdrop.tsx",
+        "repos/base-ui/packages/react/src/drawer/close/DrawerClose.tsx",
+        "repos/base-ui/packages/react/src/drawer/content/DrawerContent.tsx",
+        "repos/base-ui/packages/react/src/drawer/description/DrawerDescription.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent-background/DrawerIndentBackground.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent/DrawerIndent.tsx",
+        "repos/base-ui/packages/react/src/drawer/index.parts.ts",
+        "repos/base-ui/packages/react/src/drawer/index.ts",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopup.tsx",
+        "repos/base-ui/packages/react/src/drawer/portal/DrawerPortal.tsx",
+        "repos/base-ui/packages/react/src/drawer/provider/DrawerProvider.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRootContext.ts",
+        "repos/base-ui/packages/react/src/drawer/title/DrawerTitle.tsx",
+        "repos/base-ui/packages/react/src/drawer/trigger/DrawerTrigger.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/indent-provider/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/drawer/demos/position/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/drawer/content/DrawerContent.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent-background/DrawerIndentBackground.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/indent/DrawerIndent.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/popup/DrawerPopup.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.test.tsx",
+        "repos/base-ui/packages/react/src/drawer/root/DrawerRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/dialog",
+        "classification": "registry-local",
+        "target": "base-ui/dialog",
+        "reason": "Drawer reuses the local Dialog primitive for modal lifecycle, portal, focus, Escape, outside dismiss, aria labeling, and scroll lock commands."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, and message-facing APIs for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema for serializable Drawer options and variants."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/drawer",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/drawer",
+        "reason": "Origin Base UI React Drawer primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/drawer",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/drawer",
+        "reason": "Origin Base UI React Drawer primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-drawer-local-dialog-lifecycle",
+        "summary": "Drawer delegates modal lifecycle, portal, focus, Escape, outside dismissal, ARIA labeling, and scroll lock commands to the local Dialog primitive.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Plan 055 requires Drawer to reuse Dialog behavior instead of forking modal infrastructure."
+      },
+      {
+        "id": "base-ui-drawer-model-owned-open-state",
+        "summary": "Open state is a model-owned input and user interactions emit open-change facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers update their model and return command helpers in response to DrawerOpenChange payloads."
+      },
+      {
+        "id": "base-ui-drawer-model-owned-indent-activity",
+        "summary": "Provider activity for Indent and IndentBackground is represented with a model-owned hasActiveDrawer input that defaults to the drawer open state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit registry primitives cannot hide provider mutation; the consuming model supplies the nearest-provider activity fact."
+      },
+      {
+        "id": "base-ui-drawer-no-touch-swipe-physics",
+        "summary": "Swipe direction, expanded state, swiping state, and swipe CSS variables are exposed as deterministic attributes, while pointer/touch drag physics are not implemented in this slice.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Plan 055 focuses on modal lifecycle reuse, structure, direction, ARIA, data attributes, and parity fixtures. Touch gesture physics would require a broader interaction subsystem."
+      }
+    ]
+  }
+}
