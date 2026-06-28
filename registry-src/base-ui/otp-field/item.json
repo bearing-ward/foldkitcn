@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "base-ui/otp-field",
+  "namespace": "base-ui",
+  "name": "OTP Field",
+  "kind": "component",
+  "description": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+  "sourceRoot": "registry-src/base-ui/otp-field",
+  "installableSourcePaths": ["src/registry/base-ui/otp-field/index.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Otp Field",
+      "docsUrl": "https://base-ui.com/react/components/otp-field",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/otp-field",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/otp-field/index.parts.ts",
+        "repos/base-ui/packages/react/src/otp-field/index.ts",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.tsx",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootContext.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.test.ts",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.spec.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom.focus, message, and keyboard APIs for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, predicates, and Effect composition for serializable options, interaction facts, and focus commands."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/otp-field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/otp-field",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/otp-field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/otp-field",
+        "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "base-ui/otp-field-origin-fixture",
+      "title": "OTPFieldOriginFixture",
+      "description": "Static source-derived origin fixture preserving OTP Field slots, grouped layout, hidden form input, validation patterns, and state data attributes.",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
+      "kind": "origin-fixture"
+    },
+    {
+      "id": "base-ui/otp-field-foldkit-fixture",
+      "title": "OTPFieldFoldkitFixture",
+      "description": "Foldkit parity fixture exercising basic, grouped, complete, disabled, invalid, and alphanumeric OTP Field states.",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
+      "kind": "foldkit-fixture"
+    }
+  ],
+  "parity": {
+    "itemId": "base-ui/otp-field",
+    "originFixturePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "base-ui-otp-field-model-owned-state",
+      "base-ui-otp-field-focus-command",
+      "base-ui-otp-field-static-origin-fixture"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "base-ui-otp-field-model-owned-state",
+      "summary": "OTP value and focused slot are supplied by the consuming Foldkit model instead of hidden component state.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit render helpers remain stateless. Typing, paste, deletion, invalid text, completion, and focus movement are emitted as typed facts for the application update function."
+    },
+    {
+      "id": "base-ui-otp-field-focus-command",
+      "summary": "Focus handoff is exposed as a Foldkit Dom.focus command helper and does not select slot text.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The local Foldkit DOM surface already provides shared focus commands, but not shared text-selection helpers. The primitive preserves focus movement without adding hidden raw DOM selection behavior to installable source."
+    },
+    {
+      "id": "base-ui-otp-field-static-origin-fixture",
+      "summary": "Parity origin fixture uses static source-derived markup for OTP slots and hidden validation input.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, patterns, form input, and keyboard behavior while the origin source remains checked in under repos/base-ui."
+    }
+  ]
+}

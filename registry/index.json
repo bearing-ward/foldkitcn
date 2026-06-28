@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T01:52:11.516Z",
+  "generatedAt": "2026-06-28T02:28:03.622Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -2459,6 +2459,176 @@
           "path": "src/registry/base-ui/number-field/index.ts",
           "sha256": "5381d8424c055c4997a27620e042e1f3b6445424796b9db9fdc1bb2401fb44eb",
           "sizeBytes": 33074,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/otp-field",
+        "namespace": "base-ui",
+        "name": "OTP Field",
+        "kind": "component",
+        "description": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+        "sourceRoot": "registry-src/base-ui/otp-field",
+        "installableSourcePaths": ["src/registry/base-ui/otp-field/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Otp Field",
+            "docsUrl": "https://base-ui.com/react/components/otp-field",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/otp-field",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/otp-field/index.parts.ts",
+              "repos/base-ui/packages/react/src/otp-field/index.ts",
+              "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.tsx",
+              "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInputDataAttributes.ts",
+              "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.tsx",
+              "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootContext.ts",
+              "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootDataAttributes.ts",
+              "repos/base-ui/packages/react/src/otp-field/utils/otp.ts",
+              "repos/base-ui/packages/react/src/otp-field/utils/stateAttributesMapping.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/tailwind/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/tailwind/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.test.tsx",
+              "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.test.tsx",
+              "repos/base-ui/packages/react/src/otp-field/utils/otp.test.ts",
+              "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.spec.tsx",
+              "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, Command, Dom.focus, message, and keyboard APIs for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, predicates, and Effect composition for serializable options, interaction facts, and focus commands."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/otp-field",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/otp-field",
+              "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "@base-ui/react/otp-field",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/otp-field",
+              "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "base-ui/otp-field-origin-fixture",
+            "title": "OTPFieldOriginFixture",
+            "description": "Static source-derived origin fixture preserving OTP Field slots, grouped layout, hidden form input, validation patterns, and state data attributes.",
+            "sourcePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
+            "kind": "origin-fixture"
+          },
+          {
+            "id": "base-ui/otp-field-foldkit-fixture",
+            "title": "OTPFieldFoldkitFixture",
+            "description": "Foldkit parity fixture exercising basic, grouped, complete, disabled, invalid, and alphanumeric OTP Field states.",
+            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "base-ui/otp-field",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-otp-field-model-owned-state",
+            "base-ui-otp-field-focus-command",
+            "base-ui-otp-field-static-origin-fixture"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-otp-field-model-owned-state",
+            "summary": "OTP value and focused slot are supplied by the consuming Foldkit model instead of hidden component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit render helpers remain stateless. Typing, paste, deletion, invalid text, completion, and focus movement are emitted as typed facts for the application update function."
+          },
+          {
+            "id": "base-ui-otp-field-focus-command",
+            "summary": "Focus handoff is exposed as a Foldkit Dom.focus command helper and does not select slot text.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The local Foldkit DOM surface already provides shared focus commands, but not shared text-selection helpers. The primitive preserves focus movement without adding hidden raw DOM selection behavior to installable source."
+          },
+          {
+            "id": "base-ui-otp-field-static-origin-fixture",
+            "summary": "Parity origin fixture uses static source-derived markup for OTP slots and hidden validation input.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, patterns, form input, and keyboard behavior while the origin source remains checked in under repos/base-ui."
+          }
+        ]
+      },
+      "manifestHash": "96b36131fec7240dc861e0ac49b4c01406c7a1650e0a134c4757b9b5d2899799",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/otp-field/item.json",
+          "sha256": "b83a747d1e876cdec299b01dbf939394f2e13d8dba411a431246c1f9b52e27e7",
+          "sizeBytes": 7083,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/otp-field/index.ts",
+          "sha256": "9638bfe7089c68ec0adb03c746178fda02a05991158b8e6a84527d932c945de1",
+          "sizeBytes": 25411,
           "role": "source"
         }
       ]
@@ -7563,6 +7733,302 @@
           "path": "src/registry/shadcn/field/examples.ts",
           "sha256": "abc5839b6a5eb6b0cfd218ca26b45d186e3d1623c5404907b042e73dc2cf3194",
           "sizeBytes": 8588,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/input-otp",
+        "namespace": "shadcn",
+        "name": "Input OTP",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Input OTP wrapper composed from the local Base UI OTP Field primitive and shadcn class tokens for container, group, slot, separator, and examples.",
+        "sourceRoot": "registry-src/shadcn/input-otp",
+        "installableSourcePaths": [
+          "src/registry/shadcn/input-otp/index.ts",
+          "src/registry/shadcn/input-otp/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Input Otp",
+            "docsUrl": "https://ui.shadcn.com/docs/components/input-otp",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/input-otp.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/input-otp.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/input-otp.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/input-otp.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/input-otp-alphanumeric.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-controlled.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-demo.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-form.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-four-digits.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-invalid.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-pattern.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/input-otp-separator.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/otp-field",
+              "classification": "registry-local",
+              "target": "base-ui/otp-field",
+              "reason": "shadcn Input OTP composes the local Base UI OTP Field primitive for value projection, slots, hidden form input, and interaction facts."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The form example composes the local shadcn Button item."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "registry-local",
+              "target": "shadcn/field",
+              "reason": "Pattern, RTL, and form examples compose the local shadcn Field item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Input OTP uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for Foldkit-native helpers and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provided by the local Base UI OTP Field dependency for Effect Schema options and interaction facts."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "input-otp",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/otp-field",
+              "reason": "Origin shadcn runtime is replaced by the local Foldkit Base UI OTP Field implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "The separator icon is represented by local inline SVG instead of adding a runtime icon dependency."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "The RTL example uses local static strings instead of the origin app language selector."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/input-otp-demo",
+            "title": "InputOTPDemo",
+            "description": "Default six-slot OTP example with a complete value.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-separator",
+            "title": "InputOTPSeparatorExample",
+            "description": "Grouped OTP slots with separator glyphs.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-disabled",
+            "title": "InputOTPDisabled",
+            "description": "Disabled grouped OTP example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-alphanumeric",
+            "title": "InputOTPAlphanumeric",
+            "description": "Alphanumeric OTP validation example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-four-digits",
+            "title": "InputOTPFourDigits",
+            "description": "Four digit numeric OTP example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-invalid",
+            "title": "InputOTPInvalid",
+            "description": "Invalid OTP state example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-pattern",
+            "title": "InputOTPPattern",
+            "description": "Field-labeled numeric OTP pattern example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-controlled",
+            "title": "InputOTPControlled",
+            "description": "Model-owned controlled value example.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-rtl",
+            "title": "InputOTPRtl",
+            "description": "RTL OTP example using local static labels.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-form",
+            "title": "InputOTPForm",
+            "description": "Verification form example with local Field, Button, and static Card shell.",
+            "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-otp-origin-fixture",
+            "title": "InputOTPOriginFixture",
+            "description": "Static origin-evidence fixture derived from base-nova Input OTP source.",
+            "sourcePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
+            "kind": "origin-fixture"
+          },
+          {
+            "id": "shadcn/input-otp-foldkit-fixture",
+            "title": "InputOTPFoldkitFixture",
+            "description": "Foldkit parity fixture for dependency-complete shadcn Input OTP composition.",
+            "sourcePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
+            "kind": "foldkit-fixture"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/input-otp",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-input-otp-input-otp-replaced",
+            "shadcn-input-otp-local-icon",
+            "shadcn-input-otp-static-origin-fixture",
+            "shadcn-input-otp-local-card-shell"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-input-otp-input-otp-replaced",
+            "summary": "The upstream input-otp React runtime and context are replaced with local Base UI OTP Field slot inputs.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on React or input-otp. The local wrapper preserves the base-nova container, group, slot, active, disabled, invalid, and separator styling while using Foldkit-native value and focus facts."
+          },
+          {
+            "id": "shadcn-input-otp-local-icon",
+            "summary": "The separator icon uses local inline SVG instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. A local minus SVG preserves the separator role and visual footprint without adding an icon registry item."
+          },
+          {
+            "id": "shadcn-input-otp-static-origin-fixture",
+            "summary": "Parity origin fixture uses static source-derived markup for the base-nova Input OTP examples.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The root project does not install input-otp. Static fixtures preserve the pinned base-nova class tokens, slots, state attributes, and keyboard behavior without adding the upstream runtime."
+          },
+          {
+            "id": "shadcn-input-otp-local-card-shell",
+            "summary": "The form example uses a local static Card shell instead of an installable shadcn Card dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "shadcn/card is not present in this registry yet. Static local Card markup preserves the example structure without expanding the component slice."
+          }
+        ]
+      },
+      "manifestHash": "59ac704933785fd1e52f1e6ef8f7a18c38f84b366c499eb90d7f973614118224",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/input-otp/item.json",
+          "sha256": "170da10e41ed6c989b7e13a8cf3568b1b8568a3153df55680bf3a7c78016222e",
+          "sizeBytes": 10479,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/input-otp/index.ts",
+          "sha256": "15a14f9f8f6a1e45ff20b22c9e8d8500d091bd5887c9b45238b74db73486a8cc",
+          "sizeBytes": 8848,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/input-otp/examples.ts",
+          "sha256": "15a07adcdd81d9cb31c9284c989d044f85eec34ffb217eb01ba0508dff5013a3",
+          "sizeBytes": 6518,
           "role": "source"
         }
       ]

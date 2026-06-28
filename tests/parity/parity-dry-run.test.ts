@@ -29,6 +29,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/checkbox',
       'shadcn/label',
       'shadcn/input',
+      'shadcn/input-otp',
       'shadcn/field',
       'shadcn/native-select',
       'shadcn/select',
@@ -62,6 +63,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/checkbox',
       'shadcn/label',
       'shadcn/input',
+      'shadcn/input-otp',
       'shadcn/field',
       'shadcn/native-select',
       'shadcn/select',
@@ -99,8 +101,16 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('input')).toStrictEqual([
       'base-ui/input',
       'shadcn/input',
+      'shadcn/input-otp',
     ])
     expect(matchingItemIds('button-default')).toStrictEqual([])
+  })
+
+  test('matches OTP slots with component grep', () => {
+    expect(matchingItemIds('otp')).toStrictEqual([
+      'base-ui/otp-field',
+      'shadcn/input-otp',
+    ])
   })
 
   test('matches number field by component grep', () => {

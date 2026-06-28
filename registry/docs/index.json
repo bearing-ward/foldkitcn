@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T01:52:11.516Z",
+  "generatedAt": "2026-06-28T02:28:03.622Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -81,6 +81,11 @@
       "itemId": "base-ui/number-field",
       "routePath": "/components/base-ui/number-field",
       "docsArtifactPath": "registry/docs/base-ui/number-field.json"
+    },
+    {
+      "itemId": "base-ui/otp-field",
+      "routePath": "/components/base-ui/otp-field",
+      "docsArtifactPath": "registry/docs/base-ui/otp-field.json"
     },
     {
       "itemId": "base-ui/popover",
@@ -211,6 +216,11 @@
       "itemId": "shadcn/field",
       "routePath": "/components/shadcn/field",
       "docsArtifactPath": "registry/docs/shadcn/field.json"
+    },
+    {
+      "itemId": "shadcn/input-otp",
+      "routePath": "/components/shadcn/input-otp",
+      "docsArtifactPath": "registry/docs/shadcn/input-otp.json"
     },
     {
       "itemId": "shadcn/input",

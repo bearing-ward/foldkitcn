@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/input-otp",
+  "routePath": "/components/shadcn/input-otp",
+  "title": "Input OTP",
+  "description": "Foldkit-native shadcn base-nova Input OTP wrapper composed from the local Base UI OTP Field primitive and shadcn class tokens for container, group, slot, separator, and examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/input-otp",
+  "defaultImportPath": "shadcn/input-otp",
+  "sourceRoot": "registry-src/shadcn/input-otp",
+  "installableSourcePaths": [
+    "src/registry/shadcn/input-otp/index.ts",
+    "src/registry/shadcn/input-otp/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Input Otp",
+      "docsUrl": "https://ui.shadcn.com/docs/components/input-otp",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/input-otp.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/input-otp.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/input-otp.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/input-otp.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/input-otp-alphanumeric.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-demo.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-form.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-four-digits.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-pattern.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/input-otp-separator.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/otp-field",
+        "classification": "registry-local",
+        "target": "base-ui/otp-field",
+        "reason": "shadcn Input OTP composes the local Base UI OTP Field primitive for value projection, slots, hidden form input, and interaction facts."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The form example composes the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "Pattern, RTL, and form examples compose the local shadcn Field item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Input OTP uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for Foldkit-native helpers and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provided by the local Base UI OTP Field dependency for Effect Schema options and interaction facts."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "input-otp",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/otp-field",
+        "reason": "Origin shadcn runtime is replaced by the local Foldkit Base UI OTP Field implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The separator icon is represented by local inline SVG instead of adding a runtime icon dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The RTL example uses local static strings instead of the origin app language selector."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/input-otp-demo",
+      "title": "InputOTPDemo",
+      "description": "Default six-slot OTP example with a complete value.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPDemo = (): Html =>\n  otp({\n    id: 'input-otp-demo',\n    value: '123456',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPDemo",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-separator",
+      "title": "InputOTPSeparatorExample",
+      "description": "Grouped OTP slots with separator glyphs.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPSeparatorExample = (): Html =>\n  InputOTP<never>({\n    id: 'input-otp-separator',\n    length: 6,\n    toView: attributes => {\n      const h = html<never>()\n\n      return h.div(\n        [...attributes.root],\n        [\n          InputOTPGroup<never>({ attributes, indexes: [0, 1] }),\n          InputOTPSeparator<never>(),\n          InputOTPGroup<never>({ attributes, indexes: [2, 3] }),\n          InputOTPSeparator<never>(),\n          InputOTPGroup<never>({ attributes, indexes: [4, 5] }),\n          h.input([...attributes.hiddenInput]),\n        ],\n      )\n    },\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPSeparatorExample",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-disabled",
+      "title": "InputOTPDisabled",
+      "description": "Disabled grouped OTP example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPDisabled = (): Html =>\n  splitOtp({\n    id: 'disabled',\n    value: '123456',\n    disabled: true,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPDisabled",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-alphanumeric",
+      "title": "InputOTPAlphanumeric",
+      "description": "Alphanumeric OTP validation example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPAlphanumeric = (): Html =>\n  splitOtp({\n    id: 'input-otp-alphanumeric',\n    validationType: 'alphanumeric',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPAlphanumeric",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-four-digits",
+      "title": "InputOTPFourDigits",
+      "description": "Four digit numeric OTP example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPFourDigits = (): Html =>\n  otp({\n    id: 'input-otp-four-digits',\n    length: 4,\n    validationType: 'numeric',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPFourDigits",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-invalid",
+      "title": "InputOTPInvalid",
+      "description": "Invalid OTP state example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPInvalid = (): Html =>\n  splitOtp({\n    id: 'input-otp-invalid',\n    value: '000000',\n    invalid: true,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPInvalid",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-pattern",
+      "title": "InputOTPPattern",
+      "description": "Field-labeled numeric OTP pattern example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPPattern = (): Html =>\n  Field<never>({\n    className: 'w-fit',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'digits-only',\n        children: ['Digits Only'],\n      }),\n      otp({\n        id: 'digits-only',\n        validationType: 'numeric',\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPPattern",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-controlled",
+      "title": "InputOTPControlled",
+      "description": "Model-owned controlled value example.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('space-y-2')],\n    [\n      otp({\n        id: 'input-otp-controlled',\n        value: '',\n      }),\n      h.div(\n        [h.Class('text-center text-sm')],\n        ['Enter your one-time password.'],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPControlled",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-rtl",
+      "title": "InputOTPRtl",
+      "description": "RTL OTP example using local static labels.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPRtl = (): Html =>\n  html<never>().div(\n    [html<never>().Dir('rtl')],\n    [\n      Field<never>({\n        className: 'mx-auto max-w-xs',\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-otp-rtl',\n            dir: 'rtl',\n            children: ['رمز التحقق'],\n          }),\n          otp({\n            id: 'input-otp-rtl',\n            value: '123456',\n            dir: 'rtl',\n          }),\n        ],\n      }),\n    ],\n  )\n\nconst localCard = (children: ReadonlyArray<Html>): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [\n      h.DataAttribute('slot', 'card'),\n      h.Class(\n        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm mx-auto max-w-md',\n      ),\n    ],\n    children,\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPRtl",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-form",
+      "title": "InputOTPForm",
+      "description": "Verification form example with local Field, Button, and static Card shell.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
+      "snippet": "export const InputOTPForm = (): Html => {\n  const h = html<never>()\n\n  return localCard([\n    h.div(\n      [\n        h.DataAttribute('slot', 'card-header'),\n        h.Class(\n          'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6',\n        ),\n      ],\n      [\n        h.div(\n          [\n            h.DataAttribute('slot', 'card-title'),\n            h.Class('leading-none font-semibold'),\n          ],\n          ['Verify your login'],\n        ),\n        h.div(\n          [\n            h.DataAttribute('slot', 'card-description'),\n            h.Class('text-muted-foreground text-sm'),\n          ],\n          [\n            'Enter the verification code we sent to your email address: m@example.com.',\n          ],\n        ),\n      ],\n    ),\n    h.div(\n      [h.DataAttribute('slot', 'card-content'), h.Class('px-6')],\n      [\n        Field<never>({\n          children: [\n            h.div(\n              [h.Class('flex items-center justify-between')],\n              [\n                FieldLabel<never>({\n                  htmlFor: 'otp-verification',\n                  children: ['Verification code'],\n                }),\n                Button<never>({\n                  variant: 'outline',\n                  size: 'xs',\n                  toView: attributes =>\n                    h.button([...attributes.button], ['Resend Code']),\n                }),\n              ],\n            ),\n            splitOtp({\n              id: 'otp-verification',\n              required: true,\n              large: true,\n            }),\n            FieldDescription<never>({\n              children: ['I no longer have access to this email address.'],\n            }),\n          ],\n        }),\n      ],\n    ),\n  ])\n}",
+      "previewStatus": "static",
+      "previewExportName": "InputOTPForm",
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-origin-fixture",
+      "title": "InputOTPOriginFixture",
+      "description": "Static origin-evidence fixture derived from base-nova Input OTP source.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
+      "snippet": "export { cases } from '../../foldkit/shadcn/input-otp.fixture'",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-otp-foldkit-fixture",
+      "title": "InputOTPFoldkitFixture",
+      "description": "Foldkit parity fixture for dependency-complete shadcn Input OTP composition.",
+      "componentItemId": "shadcn/input-otp",
+      "sourcePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
+      "snippet": "import { html } from 'foldkit/html'\n\nimport * as InputOTP from '../../../../../src/registry/shadcn/input-otp'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { suppressedKeyboard } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\ntype CaseConfig = Omit<InputOTP.ViewConfig<never>, 'toView'> &\n  Readonly<{\n    caseId: string\n    grouped?: boolean\n    split?: boolean\n  }>\n\nconst baseKeyboard = {\n  click: 'activates',\n  Enter: 'native-activates',\n  Space: 'native-activates',\n  ArrowLeft: 'activates',\n  ArrowRight: 'activates',\n  Backspace: 'activates',\n  Delete: 'activates',\n  mousedown: 'passes-through',\n  pointerdown: 'passes-through',\n}\n\nconst snapshot = (\n  config: CaseConfig,\n  keyboardBehavior: FixtureSnapshot['keyboardBehavior'] = baseKeyboard,\n): FixtureSnapshot => {\n  const h = html<never>()\n\n  return snapshotHtml(\n    InputOTP.view<never>({\n      ...config,\n      toView: attributes =>\n        h.div(\n          [...attributes.root],\n          config.split === true\n            ? [\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: [0, 1, 2],\n                }),\n                InputOTP.InputOTPSeparator<never>(),\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: [3, 4, 5],\n                }),\n                h.input([...attributes.hiddenInput]),\n              ]\n            : [\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: Array.from(\n                    { length: attributes.state.length },\n                    (_item, index) => index,\n                  ),\n                }),\n                h.input([...attributes.hiddenInput]),\n              ],\n        ),\n    }),\n    config.isDisabled === true ? suppressedKeyboard : keyboardBehavior,\n  )\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'input-otp-demo',\n    id: 'input-otp-demo',\n    length: 6,\n    value: '123456',\n  },\n  {\n    caseId: 'input-otp-separator',\n    id: 'input-otp-separator',\n    length: 6,\n    split: true,\n  },\n  {\n    caseId: 'input-otp-disabled',\n    id: 'disabled',\n    length: 6,\n    value: '123456',\n    isDisabled: true,\n    split: true,\n  },\n  {\n    caseId: 'input-otp-invalid',\n    id: 'input-otp-invalid',\n    length: 6,\n    value: '000000',\n    isInvalid: true,\n  },\n  {\n    caseId: 'input-otp-four-digits',\n    id: 'input-otp-four-digits',\n    length: 4,\n    validationType: 'numeric',\n  },\n  {\n    caseId: 'input-otp-alphanumeric',\n    id: 'input-otp-alphanumeric',\n    length: 6,\n    validationType: 'alphanumeric',\n    split: true,\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: snapshot(config),\n}))",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [
+        "base-ui/otp-field",
+        "shadcn/button",
+        "shadcn/field",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-input-otp-input-otp-replaced",
+        "summary": "The upstream input-otp React runtime and context are replaced with local Base UI OTP Field slot inputs.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on React or input-otp. The local wrapper preserves the base-nova container, group, slot, active, disabled, invalid, and separator styling while using Foldkit-native value and focus facts."
+      },
+      {
+        "id": "shadcn-input-otp-local-icon",
+        "summary": "The separator icon uses local inline SVG instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. A local minus SVG preserves the separator role and visual footprint without adding an icon registry item."
+      },
+      {
+        "id": "shadcn-input-otp-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for the base-nova Input OTP examples.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The root project does not install input-otp. Static fixtures preserve the pinned base-nova class tokens, slots, state attributes, and keyboard behavior without adding the upstream runtime."
+      },
+      {
+        "id": "shadcn-input-otp-local-card-shell",
+        "summary": "The form example uses a local static Card shell instead of an installable shadcn Card dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "shadcn/card is not present in this registry yet. Static local Card markup preserves the example structure without expanding the component slice."
+      }
+    ]
+  }
+}

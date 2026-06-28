@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/otp-field",
+  "routePath": "/components/base-ui/otp-field",
+  "title": "OTP Field",
+  "description": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/otp-field",
+  "defaultImportPath": "base-ui/otp-field",
+  "sourceRoot": "registry-src/base-ui/otp-field",
+  "installableSourcePaths": ["src/registry/base-ui/otp-field/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Otp Field",
+      "docsUrl": "https://base-ui.com/react/components/otp-field",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/otp-field",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/otp-field/index.parts.ts",
+        "repos/base-ui/packages/react/src/otp-field/index.ts",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.tsx",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInputDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootContext.ts",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.ts",
+        "repos/base-ui/packages/react/src/otp-field/utils/stateAttributesMapping.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/alphanumeric/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/grouped/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/otp-field/demos/password/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.test.tsx",
+        "repos/base-ui/packages/react/src/otp-field/utils/otp.test.ts",
+        "repos/base-ui/packages/react/src/otp-field/input/OTPFieldInput.spec.tsx",
+        "repos/base-ui/packages/react/src/otp-field/root/OTPFieldRoot.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom.focus, message, and keyboard APIs for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, predicates, and Effect composition for serializable options, interaction facts, and focus commands."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/otp-field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/otp-field",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/otp-field",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/otp-field",
+        "reason": "Origin Base UI React primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "base-ui/otp-field-origin-fixture",
+      "title": "OTPFieldOriginFixture",
+      "description": "Static source-derived origin fixture preserving OTP Field slots, grouped layout, hidden form input, validation patterns, and state data attributes.",
+      "componentItemId": "base-ui/otp-field",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
+      "snippet": "import type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { suppressedKeyboard } from '../../../fixture'\nimport { snapshotElement } from '../../dom'\n\ntype CaseConfig = Readonly<{\n  caseId: string\n  id: string\n  length: number\n  value?: string\n  name?: string\n  grouped?: boolean\n  disabled?: boolean\n  invalid?: boolean\n  fieldInvalid?: boolean\n  focused?: boolean\n  focusedIndex?: number\n  validationType?: 'numeric' | 'alphanumeric'\n}>\n\nconst baseKeyboard = {\n  click: 'activates',\n  Enter: 'native-activates',\n  Space: 'native-activates',\n  ArrowLeft: 'activates',\n  ArrowRight: 'activates',\n  Backspace: 'activates',\n  Delete: 'activates',\n  mousedown: 'passes-through',\n  pointerdown: 'passes-through',\n}\n\nconst hiddenInputStyle =\n  'clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: absolute;'\n\nconst characters = (value: string | undefined): ReadonlyArray<string> => [\n  ...(value ?? ''),\n]\n\nconst inputId = (id: string, index: number): string =>\n  index === 0 ? id : `${id}-${index + 1}`\n\nconst setBoolean = (\n  element: Element,\n  name: string,\n  value: boolean | undefined,\n): void => {\n  if (value === true) {\n    element.setAttribute(name, '')\n  }\n}\n\nconst appendStateAttributes = (element: Element, config: CaseConfig): void => {\n  setBoolean(\n    element,\n    'data-complete',\n    (config.value ?? '').length === config.length,\n  )\n  setBoolean(element, 'data-disabled', config.disabled)\n  setBoolean(element, 'data-invalid', config.fieldInvalid)\n  setBoolean(element, 'data-focused', config.focused)\n}\n\nconst slotInput = (config: CaseConfig, index: number): HTMLInputElement => {\n  const input = document.createElement('input')\n  const value = characters(config.value)[index] ?? ''\n\n  input.setAttribute('type', 'text')\n  input.setAttribute('id', inputId(config.id, index))\n  input.setAttribute('value', value)\n  input.setAttribute(\n    'inputmode',\n    config.validationType === 'alphanumeric' ? 'text' : 'numeric',\n  )\n  input.setAttribute('autocomplete', index === 0 ? 'one-time-code' : 'off')\n  input.setAttribute('autocorrect', 'off')\n  input.setAttribute('spellcheck', 'false')\n  input.setAttribute(\n    'enterkeyhint',\n    index === config.length - 1 ? 'done' : 'next',\n  )\n  input.setAttribute(\n    'tabindex',\n    (config.focused === true\n      ? (config.focusedIndex ?? 0)\n      : Math.min((config.value ?? '').length, config.length - 1)) === index\n      ? '0'\n      : '-1',\n  )\n  input.setAttribute(\n    'pattern',\n    config.validationType === 'alphanumeric' ? '[a-zA-Z0-9]{1}' : '\\\\d{1}',\n  )\n\n  if (index === 0) {\n    input.setAttribute('maxlength', String(config.length))\n  }\n\n  if (config.disabled === true) {\n    input.setAttribute('disabled', '')\n  }\n  if (config.invalid === true) {\n    input.setAttribute('aria-invalid', 'true')\n  }\n  if (value !== '') {\n    input.dataset.filled = ''\n  }\n  appendStateAttributes(input, config)\n\n  return input\n}\n\nconst hiddenInput = (config: CaseConfig): HTMLInputElement => {\n  const input = document.createElement('input')\n\n  input.setAttribute('type', 'text')\n  input.setAttribute('value', config.value ?? '')\n  input.setAttribute('aria-hidden', 'true')\n  input.setAttribute('tabindex', '-1')\n  input.setAttribute('minlength', String(config.length))\n  input.setAttribute('maxlength', String(config.length))\n  input.setAttribute('autocomplete', 'one-time-code')\n  input.setAttribute(\n    'inputmode',\n    config.validationType === 'alphanumeric' ? 'text' : 'numeric',\n  )\n  input.setAttribute('style', hiddenInputStyle)\n  input.setAttribute(\n    'pattern',\n    config.validationType === 'alphanumeric'\n      ? `[a-zA-Z0-9]{${config.length}}`\n      : `\\\\d{${config.length}}`,\n  )\n\n  if (config.name === undefined) {\n    input.setAttribute('id', `${config.id}-hidden-input`)\n  } else {\n    input.setAttribute('name', config.name)\n  }\n  if (config.disabled === true) {\n    input.setAttribute('disabled', '')\n  }\n\n  return input\n}\n\nconst snapshot = (config: CaseConfig): FixtureSnapshot => {\n  const root = document.createElement('div')\n  root.setAttribute('role', 'group')\n  appendStateAttributes(root, config)\n  setBoolean(root, 'data-filled', (config.value ?? '') !== '')\n\n  if (config.grouped === true) {\n    const firstGroup = document.createElement('div')\n    firstGroup.dataset.testid = 'first-group'\n    const secondGroup = document.createElement('div')\n    secondGroup.dataset.testid = 'second-group'\n    const separator = document.createElement('span')\n    separator.setAttribute('role', 'separator')\n    separator.textContent = '-'\n    Array.from({ length: 3 }, (_item, index) =>\n      firstGroup.append(slotInput(config, index)),\n    )\n    Array.from({ length: 3 }, (_item, index) =>\n      secondGroup.append(slotInput(config, index + 3)),\n    )\n    root.append(firstGroup, separator, secondGroup, hiddenInput(config))\n  } else {\n    Array.from({ length: config.length }, (_item, index) =>\n      root.append(slotInput(config, index)),\n    )\n    root.append(hiddenInput(config))\n  }\n\n  document.body.append(root)\n  const result = snapshotElement(\n    root,\n    config.disabled === true ? suppressedKeyboard : baseKeyboard,\n  )\n  root.remove()\n\n  return result\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'basic',\n    id: 'otp-basic',\n    name: 'otp-basic',\n    length: 6,\n  },\n  {\n    caseId: 'grouped',\n    id: 'otp-grouped',\n    length: 6,\n    value: '123456',\n    grouped: true,\n  },\n  {\n    caseId: 'complete',\n    id: 'otp-complete',\n    name: 'otp-complete',\n    length: 6,\n    value: '123456',\n    focused: true,\n    focusedIndex: 5,\n  },\n  {\n    caseId: 'disabled',\n    id: 'otp-disabled',\n    name: 'otp-disabled',\n    length: 6,\n    value: '123456',\n    disabled: true,\n  },\n  {\n    caseId: 'invalid',\n    id: 'otp-invalid',\n    length: 6,\n    value: '123',\n    invalid: true,\n    fieldInvalid: true,\n  },\n  {\n    caseId: 'alphanumeric',\n    id: 'otp-alphanumeric',\n    length: 6,\n    value: 'A1B2C3',\n    validationType: 'alphanumeric',\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: snapshot(config),\n}))",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/otp-field-foldkit-fixture",
+      "title": "OTPFieldFoldkitFixture",
+      "description": "Foldkit parity fixture exercising basic, grouped, complete, disabled, invalid, and alphanumeric OTP Field states.",
+      "componentItemId": "base-ui/otp-field",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
+      "snippet": "import { html } from 'foldkit/html'\n\nimport * as OTPField from '../../../../../src/registry/base-ui/otp-field'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { suppressedKeyboard } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\ntype CaseConfig = Omit<OTPField.ViewConfig<never>, 'toView'> &\n  Readonly<{\n    caseId: string\n    grouped?: boolean\n  }>\n\nconst baseKeyboard = {\n  click: 'activates',\n  Enter: 'native-activates',\n  Space: 'native-activates',\n  ArrowLeft: 'activates',\n  ArrowRight: 'activates',\n  Backspace: 'activates',\n  Delete: 'activates',\n  mousedown: 'passes-through',\n  pointerdown: 'passes-through',\n}\n\nconst snapshot = (\n  config: CaseConfig,\n  keyboardBehavior: FixtureSnapshot['keyboardBehavior'] = baseKeyboard,\n): FixtureSnapshot => {\n  const h = html<never>()\n\n  return snapshotHtml(\n    OTPField.view<never>({\n      ...config,\n      toView: attributes =>\n        h.div(\n          [...attributes.root],\n          config.grouped === true\n            ? [\n                h.div(\n                  [h.Attribute('data-testid', 'first-group')],\n                  attributes.slots\n                    .slice(0, 3)\n                    .map(slot => h.input([...slot.input])),\n                ),\n                h.span([h.Role('separator')], ['-']),\n                h.div(\n                  [h.Attribute('data-testid', 'second-group')],\n                  attributes.slots\n                    .slice(3)\n                    .map(slot => h.input([...slot.input])),\n                ),\n                h.input([...attributes.hiddenInput]),\n              ]\n            : [\n                ...attributes.slots.map(slot => h.input([...slot.input])),\n                h.input([...attributes.hiddenInput]),\n              ],\n        ),\n    }),\n    config.isDisabled === true ? suppressedKeyboard : keyboardBehavior,\n  )\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'basic',\n    id: 'otp-basic',\n    name: 'otp-basic',\n    length: 6,\n  },\n  {\n    caseId: 'grouped',\n    id: 'otp-grouped',\n    length: 6,\n    value: '123456',\n    grouped: true,\n  },\n  {\n    caseId: 'complete',\n    id: 'otp-complete',\n    name: 'otp-complete',\n    length: 6,\n    value: '123456',\n    isFocused: true,\n    focusedIndex: 5,\n  },\n  {\n    caseId: 'disabled',\n    id: 'otp-disabled',\n    name: 'otp-disabled',\n    length: 6,\n    value: '123456',\n    isDisabled: true,\n  },\n  {\n    caseId: 'invalid',\n    id: 'otp-invalid',\n    length: 6,\n    value: '123',\n    isInvalid: true,\n    isFieldInvalid: true,\n  },\n  {\n    caseId: 'alphanumeric',\n    id: 'otp-alphanumeric',\n    length: 6,\n    value: 'A1B2C3',\n    validationType: 'alphanumeric',\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: snapshot(config),\n}))",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-otp-field-model-owned-state",
+        "summary": "OTP value and focused slot are supplied by the consuming Foldkit model instead of hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit render helpers remain stateless. Typing, paste, deletion, invalid text, completion, and focus movement are emitted as typed facts for the application update function."
+      },
+      {
+        "id": "base-ui-otp-field-focus-command",
+        "summary": "Focus handoff is exposed as a Foldkit Dom.focus command helper and does not select slot text.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The local Foldkit DOM surface already provides shared focus commands, but not shared text-selection helpers. The primitive preserves focus movement without adding hidden raw DOM selection behavior to installable source."
+      },
+      {
+        "id": "base-ui-otp-field-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for OTP slots and hidden validation input.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, patterns, form input, and keyboard behavior while the origin source remains checked in under repos/base-ui."
+      }
+    ]
+  }
+}

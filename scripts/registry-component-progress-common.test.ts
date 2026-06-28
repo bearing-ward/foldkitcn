@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 28,
-      remaining: 10,
+      imported: 29,
+      remaining: 9,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 30,
-      remaining: 34,
+      imported: 31,
+      remaining: 33,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -63,6 +63,7 @@ describe('origin component progress', () => {
       'base-ui/menu',
       'base-ui/meter',
       'base-ui/number-field',
+      'base-ui/otp-field',
       'base-ui/popover',
       'base-ui/progress',
       'base-ui/radio',
@@ -90,6 +91,7 @@ describe('origin component progress', () => {
       'shadcn/kbd',
       'shadcn/label',
       'shadcn/input',
+      'shadcn/input-otp',
       'shadcn/field',
       'shadcn/native-select',
       'shadcn/select',
@@ -132,11 +134,11 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/otp-field')
+    expect(nextRow?.itemId).toBe('base-ui/scroll-area')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/otp-field',
-      'https://ui.shadcn.com/docs/components/input-otp',
+      'https://base-ui.com/react/components/scroll-area',
+      'https://ui.shadcn.com/docs/components/scroll-area',
     ])
   })
 

@@ -345,6 +345,24 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
     ],
   },
   {
+    itemId: 'base-ui/otp-field',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'base-ui/checkbox',
     status: 'ready',
     originFixtureEntrypoint:
@@ -428,6 +446,23 @@ export const paritySlots: ReadonlyArray<ParitySlot> = [
       'colors',
       'dimensions',
       'bounding-box',
+    ],
+  },
+  {
+    itemId: 'shadcn/input-otp',
+    status: 'ready',
+    originFixtureEntrypoint:
+      'tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
     ],
   },
   {
