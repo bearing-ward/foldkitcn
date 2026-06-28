@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 37,
-      remaining: 27,
+      imported: 38,
+      remaining: 26,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -97,6 +97,7 @@ describe('origin component progress', () => {
       'shadcn/context-menu',
       'shadcn/dialog',
       'shadcn/drawer',
+      'shadcn/sheet',
       'shadcn/dropdown-menu',
       'shadcn/menubar',
       'shadcn/navigation-menu',
@@ -148,10 +149,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('shadcn/sheet')
+    expect(nextRow?.itemId).toBe('shadcn/direction')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://ui.shadcn.com/docs/components/sheet',
+      'https://ui.shadcn.com/docs/components/direction',
     ])
   })
 

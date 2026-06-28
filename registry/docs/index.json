@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T16:20:45.578Z",
+  "generatedAt": "2026-06-28T16:44:06.904Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -336,6 +336,11 @@
       "itemId": "shadcn/separator",
       "routePath": "/components/shadcn/separator",
       "docsArtifactPath": "registry/docs/shadcn/separator.json"
+    },
+    {
+      "itemId": "shadcn/sheet",
+      "routePath": "/components/shadcn/sheet",
+      "docsArtifactPath": "registry/docs/shadcn/sheet.json"
     },
     {
       "itemId": "shadcn/skeleton",

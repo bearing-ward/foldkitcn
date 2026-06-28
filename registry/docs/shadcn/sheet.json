@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/sheet",
+  "routePath": "/components/shadcn/sheet",
+  "title": "Sheet",
+  "description": "Foldkit-native shadcn base-nova Sheet wrapper composed from the local Base UI Dialog primitive, local shadcn Button and form examples, side variants, shadcn slot classes, and local class canonicalization.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/sheet",
+  "defaultImportPath": "shadcn/sheet",
+  "sourceRoot": "registry-src/shadcn/sheet",
+  "installableSourcePaths": [
+    "src/registry/shadcn/sheet/index.ts",
+    "src/registry/shadcn/sheet/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sheet",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sheet",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sheet.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/sheet.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sheet.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sheet.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/sheet-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-no-close-button.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/sheet-side.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/dialog",
+        "classification": "registry-local",
+        "target": "base-ui/dialog",
+        "reason": "shadcn Sheet composes the local Base UI Dialog primitive instead of upstream Base UI React Dialog."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The Sheet close button and examples use the local shadcn Button styles."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "The profile editing examples use local shadcn field grouping."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "The profile editing examples use local shadcn input controls."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "The profile editing examples use local shadcn label semantics through field labels."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Sheet uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema side variants and Array helpers used by local examples."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/dialog",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/dialog",
+        "reason": "Origin Base UI React Dialog primitive is replaced by the local Foldkit Base UI Dialog implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin close icon is represented with local static SVG markup in installable Foldkit source."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/sheet-demo",
+      "title": "SheetDemo",
+      "description": "Profile editing sheet with local shadcn field and input markup.",
+      "componentItemId": "shadcn/sheet",
+      "sourcePath": "src/registry/shadcn/sheet/examples.ts",
+      "snippet": "export const SheetDemo = (): Html =>\n  sheetShell({\n    id: 'sheet-demo',\n    trigger: 'Open',\n    title: 'Edit profile',\n    description:\n      \"Make changes to your profile here. Click save when you're done.\",\n    body: [\n      profileFields({\n        name: 'Name',\n        nameId: 'sheet-demo-name',\n        nameValue: 'Pedro Duarte',\n        username: 'Username',\n        usernameId: 'sheet-demo-username',\n        usernameValue: '@peduarte',\n      }),\n    ],\n    footer: [\n      button('Save changes', { type: 'submit' }),\n      button('Close', { variant: 'outline' }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SheetDemo",
+      "requiredRegistryItems": [
+        "base-ui/dialog",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sheet-side",
+      "title": "SheetSide",
+      "description": "Sheet side variants for top, right, bottom, and left.",
+      "componentItemId": "shadcn/sheet",
+      "sourcePath": "src/registry/shadcn/sheet/examples.ts",
+      "snippet": "export const SheetSide = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    sheetSideValues.map(side =>\n      sheetShell({\n        id: `sheet-side-${side}`,\n        trigger: side,\n        title: 'Edit profile',\n        description:\n          \"Make changes to your profile here. Click save when you're done.\",\n        side,\n        contentClassName:\n          'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',\n        body: [scrollableBody()],\n        footer: [\n          button('Save changes', { type: 'submit' }),\n          button('Cancel', { variant: 'outline' }),\n        ],\n      }),\n    ),\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SheetSide",
+      "requiredRegistryItems": [
+        "base-ui/dialog",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sheet-no-close-button",
+      "title": "SheetNoCloseButton",
+      "description": "Sheet content without the top-right close button.",
+      "componentItemId": "shadcn/sheet",
+      "sourcePath": "src/registry/shadcn/sheet/examples.ts",
+      "snippet": "export const SheetNoCloseButton = (): Html =>\n  sheetShell({\n    id: 'sheet-no-close-button',\n    trigger: 'Open Sheet',\n    title: 'No Close Button',\n    description:\n      \"This sheet doesn't have a close button in the top-right corner. Click outside to close.\",\n    showCloseButton: false,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SheetNoCloseButton",
+      "requiredRegistryItems": [
+        "base-ui/dialog",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sheet-rtl",
+      "title": "SheetRtl",
+      "description": "RTL profile sheet with local static translations.",
+      "componentItemId": "shadcn/sheet",
+      "sourcePath": "src/registry/shadcn/sheet/examples.ts",
+      "snippet": "export const SheetRtl = (): Html =>\n  sheetShell({\n    id: 'sheet-rtl',\n    trigger: 'فتح',\n    title: 'تعديل الملف الشخصي',\n    description: 'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر حفظ عند الانتهاء.',\n    dir: 'rtl',\n    lang: 'ar',\n    side: 'left',\n    body: [\n      profileFields({\n        name: 'الاسم',\n        nameId: 'sheet-rtl-name',\n        nameValue: 'Pedro Duarte',\n        username: 'اسم المستخدم',\n        usernameId: 'sheet-rtl-username',\n        usernameValue: 'peduarte',\n        dir: 'rtl',\n      }),\n    ],\n    footer: [\n      button('حفظ التغييرات', { type: 'submit' }),\n      button('إغلاق', { variant: 'outline' }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "SheetRtl",
+      "requiredRegistryItems": [
+        "base-ui/dialog",
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-sheet-local-base-ui",
+        "summary": "The shadcn wrapper composes local Dialog attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-sheet-local-example-composition",
+        "summary": "Examples compose local shadcn Button, Field, Input, and Label helpers instead of origin app alias imports.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The local registry items preserve the relevant Sheet example structure without bringing origin app aliases into installable source."
+      },
+      {
+        "id": "shadcn-sheet-static-close-icon",
+        "summary": "The top-right close icon is local static markup instead of a lucide-react runtime import.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "lucide-react is not an installable runtime dependency for this registry item."
+      },
+      {
+        "id": "shadcn-sheet-local-rtl-translations",
+        "summary": "The RTL example uses deterministic local Arabic copy instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The language selector is an origin app dependency and is not needed to preserve Sheet direction, side, and layout behavior."
+      }
+    ]
+  }
+}

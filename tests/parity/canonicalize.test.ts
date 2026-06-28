@@ -156,6 +156,7 @@ describe('parity canonicalizers', () => {
       'shadcn/dialog',
       'base-ui/drawer',
       'shadcn/drawer',
+      'shadcn/sheet',
       'base-ui/alert-dialog',
       'shadcn/alert-dialog',
       'base-ui/popover',
