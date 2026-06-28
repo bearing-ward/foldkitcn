@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T14:01:21.061Z",
+  "generatedAt": "2026-06-28T14:50:46.574Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -36,6 +36,11 @@
       "itemId": "base-ui/collapsible",
       "routePath": "/components/base-ui/collapsible",
       "docsArtifactPath": "registry/docs/base-ui/collapsible.json"
+    },
+    {
+      "itemId": "base-ui/combobox",
+      "routePath": "/components/base-ui/combobox",
+      "docsArtifactPath": "registry/docs/base-ui/combobox.json"
     },
     {
       "itemId": "base-ui/context-menu",
@@ -221,6 +226,11 @@
       "itemId": "shadcn/collapsible",
       "routePath": "/components/shadcn/collapsible",
       "docsArtifactPath": "registry/docs/shadcn/collapsible.json"
+    },
+    {
+      "itemId": "shadcn/combobox",
+      "routePath": "/components/shadcn/combobox",
+      "docsArtifactPath": "registry/docs/shadcn/combobox.json"
     },
     {
       "itemId": "shadcn/context-menu",

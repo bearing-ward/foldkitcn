@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T14:01:21.061Z",
+  "generatedAt": "2026-06-28T14:50:46.574Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1013,6 +1013,187 @@
           "path": "src/registry/base-ui/collapsible/index.ts",
           "sha256": "a1ace76da0024fa6a624956609dce56f2d0260b568b2ea23b9726015b68d149c",
           "sizeBytes": 7040,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "base-ui/combobox",
+        "namespace": "base-ui",
+        "name": "Combobox",
+        "kind": "component",
+        "description": "Foldkit-native Base UI Combobox primitive preserving model-owned open, query, value, selected values, highlighted item, highlighted chip, filtering, popup/listbox ARIA, empty state, groups, chips, chip removal, disabled and readonly states, deterministic placement attributes, and hidden form input wiring.",
+        "sourceRoot": "registry-src/base-ui/combobox",
+        "installableSourcePaths": ["src/registry/base-ui/combobox/index.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [
+          {
+            "originKind": "base-ui",
+            "originName": "Base UI Combobox",
+            "docsUrl": "https://base-ui.com/react/components/combobox",
+            "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/combobox",
+            "localRepoPath": "repos/base-ui",
+            "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+            "sourcePaths": [
+              "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.tsx",
+              "repos/base-ui/packages/react/src/combobox/root/AriaCombobox.tsx",
+              "repos/base-ui/packages/react/src/combobox/input/ComboboxInput.tsx",
+              "repos/base-ui/packages/react/src/combobox/trigger/ComboboxTrigger.tsx",
+              "repos/base-ui/packages/react/src/combobox/value/ComboboxValue.tsx",
+              "repos/base-ui/packages/react/src/combobox/list/ComboboxList.tsx",
+              "repos/base-ui/packages/react/src/combobox/item/ComboboxItem.tsx",
+              "repos/base-ui/packages/react/src/combobox/empty/ComboboxEmpty.tsx",
+              "repos/base-ui/packages/react/src/combobox/group/ComboboxGroup.tsx",
+              "repos/base-ui/packages/react/src/combobox/group-label/ComboboxGroupLabel.tsx",
+              "repos/base-ui/packages/react/src/combobox/chips/ComboboxChips.tsx",
+              "repos/base-ui/packages/react/src/combobox/chip/ComboboxChip.tsx",
+              "repos/base-ui/packages/react/src/combobox/chip-remove/ComboboxChipRemove.tsx",
+              "repos/base-ui/packages/react/src/combobox/clear/ComboboxClear.tsx",
+              "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopup.tsx",
+              "repos/base-ui/packages/react/src/combobox/positioner/ComboboxPositioner.tsx",
+              "repos/base-ui/packages/react/src/combobox/arrow/ComboboxArrow.tsx",
+              "repos/base-ui/packages/react/src/combobox/store.ts"
+            ],
+            "docsPaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/page.mdx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.md",
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/types.ts"
+            ],
+            "examplePaths": [
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/grouped/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/multiple/css-modules/index.tsx",
+              "repos/base-ui/docs/src/app/(docs)/react/components/combobox/demos/input-inside-popup/css-modules/index.tsx"
+            ],
+            "testPaths": [
+              "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/input/ComboboxInput.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/item/ComboboxItem.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/chips/ComboboxChips.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/chip-remove/ComboboxChipRemove.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/popup/ComboboxPopup.test.tsx",
+              "repos/base-ui/packages/react/src/combobox/root/ComboboxRoot.spec.tsx"
+            ]
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/popover",
+              "classification": "registry-local",
+              "target": "base-ui/popover",
+              "reason": "Combobox reuses the local Popover placement and focus command conventions without introducing a competing positioning or dismiss system."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, Command, and keyboard event helpers for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui-components/react/combobox",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/combobox",
+              "reason": "Origin Base UI React Combobox primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "@base-ui/react",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/combobox",
+              "reason": "Origin Base UI React Combobox primitive is replaced by this Foldkit implementation."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "base-ui/combobox",
+          "originFixturePath": "tests/parity/fixtures/origin/base-ui/combobox.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/base-ui/combobox.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "base-ui-combobox-model-owned-state",
+            "base-ui-combobox-command-facing-focus-effects",
+            "base-ui-combobox-deterministic-placement-attributes",
+            "base-ui-combobox-local-filtering"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "base-ui-combobox-model-owned-state",
+            "summary": "Open state, query text, selected values, highlighted item, and highlighted chip are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit preserves unidirectional data flow and keeps combobox state in the consuming model."
+          },
+          {
+            "id": "base-ui-combobox-command-facing-focus-effects",
+            "summary": "Focus handoff and restoration reuse the Popover command-facing helpers instead of hiding side effects inside render helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Combobox side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+          },
+          {
+            "id": "base-ui-combobox-deterministic-placement-attributes",
+            "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, popup, and chips-anchor attributes without DOM measurement or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Combobox render helper side effect."
+          },
+          {
+            "id": "base-ui-combobox-local-filtering",
+            "summary": "Filtering is represented as a pure local label/textValue contains match over model-owned query text.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The local primitive preserves the origin filtering contract without importing React hooks or hiding query state outside the Foldkit model."
+          }
+        ]
+      },
+      "manifestHash": "59a077abaa4f8a89dab6a75c80c84379eb380f117982a115c7a61da0a1784712",
+      "artifacts": [
+        {
+          "path": "registry-src/base-ui/combobox/item.json",
+          "sha256": "390e835accbffb35d669a7b146a59a17fdd2af86e900e6909fae202c928af13c",
+          "sizeBytes": 7950,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/base-ui/combobox/index.ts",
+          "sha256": "d37fa1d79cf2d15564d060dcc7ab2f3067fb45b9c6ddcc90201a7a24a45bf2ac",
+          "sizeBytes": 41573,
           "role": "source"
         }
       ]
@@ -7435,6 +7616,343 @@
           "path": "src/registry/shadcn/collapsible/examples.ts",
           "sha256": "c015abe6e8b0c21e7109ca8db44390ab373c49ae8f955968fb888baa3d13fd58",
           "sizeBytes": 13746,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/combobox",
+        "namespace": "shadcn",
+        "name": "Combobox",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Combobox wrapper composed from the local Base UI Combobox primitive, local shadcn Button and Input class conventions, local class canonicalization, local SVG chevron/check/x icons, deterministic slot classes, and local static examples for basic, clear, grouped, input-group, multiple, disabled, invalid, popup, auto-highlight, custom item, and RTL variants.",
+        "sourceRoot": "registry-src/shadcn/combobox",
+        "installableSourcePaths": [
+          "src/registry/shadcn/combobox/index.ts",
+          "src/registry/shadcn/combobox/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--accent",
+          "--accent-foreground",
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground",
+          "--primary",
+          "--radius",
+          "--radius-md",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Combobox",
+            "docsUrl": "https://ui.shadcn.com/docs/components/combobox",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/combobox.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/combobox.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/combobox.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/combobox.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/combobox.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/combobox-auto-highlight.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-basic.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-clear.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-custom.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-demo.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-groups.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-input-group.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-invalid.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-multiple.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-popup.tsx",
+              "repos/ui/apps/v4/examples/base/combobox-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/combobox",
+              "classification": "registry-local",
+              "target": "base-ui/combobox",
+              "reason": "shadcn Combobox composes the local Base UI Combobox primitive."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "shadcn Combobox reuses local Button variant classes for trigger, clear, and chip remove controls."
+            },
+            {
+              "specifier": "shadcn/input",
+              "classification": "registry-local",
+              "target": "shadcn/input",
+              "reason": "shadcn Combobox reuses local Input classes for input-group controls."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Combobox uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Combobox style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/combobox",
+              "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Combobox implementation."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin chevron, check, and x icons are represented by local inline SVG helpers in this batch."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "dev-or-fixture-only",
+              "target": "shadcn/field",
+              "reason": "Examples use local static field shells to preserve Combobox demo output without broadening installable composition scope."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The origin InputGroup source is folded into this wrapper's class helpers because no local installable input-group registry item exists yet."
+            },
+            {
+              "specifier": "shadcn/item",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The custom item example uses local static markup instead of importing another origin runtime dependency."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/combobox-basic",
+            "title": "ComboboxBasic",
+            "description": "Default framework combobox.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-clear",
+            "title": "ComboboxWithClear",
+            "description": "Combobox with a selected framework and clear button.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-groups",
+            "title": "ComboboxWithGroupsAndSeparator",
+            "description": "Combobox grouped by timezone region with separators.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-input-group",
+            "title": "ComboxboxInputGroup",
+            "description": "Combobox with input-group shell and aligned popup.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-multiple",
+            "title": "ComboboxMultiple",
+            "description": "Multiple combobox with selected chips and chip input.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-disabled",
+            "title": "ComboboxDisabled",
+            "description": "Disabled framework combobox.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-invalid",
+            "title": "ComboboxInvalid",
+            "description": "Invalid combobox inside a local static field shell.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-popup",
+            "title": "ComboboxPopup",
+            "description": "Combobox with button trigger and input rendered inside the popup.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-auto-highlight",
+            "title": "ComboboxAutoHighlight",
+            "description": "Combobox with initial highlighted item.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-custom",
+            "title": "ComboboxWithCustomItems",
+            "description": "Combobox with country labels and text values.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/combobox-rtl",
+            "title": "ComboboxRtl",
+            "description": "RTL multiple combobox with local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/combobox",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/combobox.fixture.ts",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/combobox.fixture.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-combobox-local-base-ui",
+            "shadcn-combobox-local-icons",
+            "shadcn-combobox-local-input-group-classes",
+            "shadcn-combobox-local-example-shells",
+            "shadcn-combobox-local-rtl-data",
+            "shadcn-combobox-deterministic-placement-attributes"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-combobox-local-base-ui",
+            "summary": "The shadcn wrapper composes local Combobox attributes instead of importing upstream Base UI React primitives.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+          },
+          {
+            "id": "shadcn-combobox-local-icons",
+            "summary": "Chevron, check, and x icons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+          },
+          {
+            "id": "shadcn-combobox-local-input-group-classes",
+            "summary": "InputGroup and InputGroupButton origin classes are represented locally because no installable shadcn/input-group registry item is present.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The plan allows composing local input/button/cn conventions and should not introduce a new adjacent component slice inside this Combobox batch."
+          },
+          {
+            "id": "shadcn-combobox-local-example-shells",
+            "summary": "Examples use local static Field, Item, and language shells instead of importing adjacent origin app dependencies.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The Combobox slice stays focused while preserving the relevant Combobox DOM, class, ARIA, filtering, selected value, chip, and visual contracts."
+          },
+          {
+            "id": "shadcn-combobox-local-rtl-data",
+            "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the rendered RTL output."
+          },
+          {
+            "id": "shadcn-combobox-deterministic-placement-attributes",
+            "summary": "Positioner and content expose side, align, offset, collision, and chips-anchor attributes without runtime DOM measurement or collision flipping.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+          }
+        ]
+      },
+      "manifestHash": "4ee3cb2e845c3c8d8aa17a8cfda03e65adddfbc54640e84f06f437a71d6ffcab",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/combobox/item.json",
+          "sha256": "39f7ec3306037044e5aa9411bf1b832793bed9d86a9d8f09a80fb77fb1a9c519",
+          "sizeBytes": 12329,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/combobox/index.ts",
+          "sha256": "33d9736b2eeca131ec1eeda2984aefedfbdaea8bf2f0377ed1ee12cf2d318b36",
+          "sizeBytes": 27721,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/combobox/examples.ts",
+          "sha256": "408f270f0f380b3558f54fca614aa6e306b5510d77abedd8e4bfec87391f3e52",
+          "sizeBytes": 15002,
           "role": "source"
         }
       ]

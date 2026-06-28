@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/combobox",
+  "routePath": "/components/shadcn/combobox",
+  "title": "Combobox",
+  "description": "Foldkit-native shadcn base-nova Combobox wrapper composed from the local Base UI Combobox primitive, local shadcn Button and Input class conventions, local class canonicalization, local SVG chevron/check/x icons, deterministic slot classes, and local static examples for basic, clear, grouped, input-group, multiple, disabled, invalid, popup, auto-highlight, custom item, and RTL variants.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/combobox",
+  "defaultImportPath": "shadcn/combobox",
+  "sourceRoot": "registry-src/shadcn/combobox",
+  "installableSourcePaths": [
+    "src/registry/shadcn/combobox/index.ts",
+    "src/registry/shadcn/combobox/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Combobox",
+      "docsUrl": "https://ui.shadcn.com/docs/components/combobox",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/combobox.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/combobox.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/combobox.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/combobox.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/combobox-auto-highlight.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-basic.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-clear.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-custom.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-demo.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-groups.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-input-group.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-popup.tsx",
+        "repos/ui/apps/v4/examples/base/combobox-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/combobox",
+        "classification": "registry-local",
+        "target": "base-ui/combobox",
+        "reason": "shadcn Combobox composes the local Base UI Combobox primitive."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "shadcn Combobox reuses local Button variant classes for trigger, clear, and chip remove controls."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "shadcn Combobox reuses local Input classes for input-group controls."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Combobox uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Combobox style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/combobox",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Combobox implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin chevron, check, and x icons are represented by local inline SVG helpers in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/field",
+        "reason": "Examples use local static field shells to preserve Combobox demo output without broadening installable composition scope."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The origin InputGroup source is folded into this wrapper's class helpers because no local installable input-group registry item exists yet."
+      },
+      {
+        "specifier": "shadcn/item",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The custom item example uses local static markup instead of importing another origin runtime dependency."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/combobox-basic",
+      "title": "ComboboxBasic",
+      "description": "Default framework combobox.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxBasic = (): Html =>\n  comboboxShell({\n    id: 'combobox-basic',\n    items: frameworks,\n    placeholder: 'Select a framework',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxBasic",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-clear",
+      "title": "ComboboxWithClear",
+      "description": "Combobox with a selected framework and clear button.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxWithClear = (): Html =>\n  comboboxShell({\n    id: 'combobox-clear',\n    items: frameworks,\n    placeholder: 'Select a framework',\n    value: 'next',\n    showClear: true,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxWithClear",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-groups",
+      "title": "ComboboxWithGroupsAndSeparator",
+      "description": "Combobox grouped by timezone region with separators.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxWithGroupsAndSeparator = (): Html =>\n  comboboxShell({\n    id: 'combobox-groups',\n    items: allTimezones(),\n    placeholder: 'Select a timezone',\n    emptyText: 'No timezones found.',\n    groups: timezoneGroups,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxWithGroupsAndSeparator",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-input-group",
+      "title": "ComboxboxInputGroup",
+      "description": "Combobox with input-group shell and aligned popup.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboxboxInputGroup = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [],\n    [\n      comboboxShell({\n        id: 'combobox-input-group',\n        items: allTimezones(),\n        placeholder: 'Select a timezone',\n        contentClassName: 'w-60',\n        emptyText: 'No timezones found.',\n        inputGroupClassName: 'w-auto',\n        groups: timezoneGroups,\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ComboxboxInputGroup",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-multiple",
+      "title": "ComboboxMultiple",
+      "description": "Multiple combobox with selected chips and chip input.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxMultiple = (): Html =>\n  comboboxShell({\n    id: 'combobox-multiple',\n    items: frameworks,\n    placeholder: 'Add framework',\n    selectionMode: 'multiple',\n    values: ['next'],\n    highlightedValue: 'sveltekit',\n    autoHighlight: true,\n    anchorToChips: true,\n    chipsClassName: 'w-full max-w-xs',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxMultiple",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-disabled",
+      "title": "ComboboxDisabled",
+      "description": "Disabled framework combobox.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxDisabled = (): Html =>\n  comboboxShell({\n    id: 'combobox-disabled',\n    items: frameworks.map(item =>\n      item.value === 'astro' ? { ...item, isDisabled: true } : item,\n    ),\n    placeholder: 'Select a framework',\n    disabled: true,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxDisabled",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-invalid",
+      "title": "ComboboxInvalid",
+      "description": "Invalid combobox inside a local static field shell.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxInvalid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('w-full max-w-xs'), h.DataAttribute('invalid', '')],\n    [\n      h.label([h.Class('text-sm font-medium')], ['Framework']),\n      comboboxShell({\n        id: 'combobox-invalid',\n        items: frameworks,\n        placeholder: 'Select a framework',\n        invalid: true,\n      }),\n      h.p([h.Class('text-sm text-destructive')], [\n        'Please select a framework.',\n      ]),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxInvalid",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-popup",
+      "title": "ComboboxPopup",
+      "description": "Combobox with button trigger and input rendered inside the popup.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxPopup = (): Html => {\n  const h = html<never>()\n\n  return Combobox<never>({\n    id: 'combobox-popup',\n    open: true,\n    inputValue: '',\n    items: countries,\n    value: 'argentina',\n    placeholder: 'Search',\n    triggerClassName: 'w-64 justify-between font-normal',\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.button(\n            [...attributes.trigger],\n            [\n              h.span([...attributes.value], [\n                displayValue({\n                  items: countries,\n                  placeholder: 'Select country',\n                  value: 'argentina',\n                }),\n              ]),\n              h.span([], ['v']),\n            ],\n          ),\n          h.div(\n            [...attributes.portal],\n            [\n              h.div([...attributes.backdrop.root], []),\n              h.div(\n                [...attributes.positioner.root],\n                [\n                  h.div(\n                    [...attributes.popup.root],\n                    [\n                      h.div(\n                        [...attributes.inputGroup],\n                        [h.input([...attributes.input])],\n                      ),\n                      h.div([...attributes.empty], []),\n                      h.div(\n                        [...attributes.list.root],\n                        attributes.items.map(itemAttributes =>\n                          h.div(\n                            [...itemAttributes.root],\n                            [\n                              h.span(\n                                [...itemAttributes.text],\n                                [itemAttributes.item.label],\n                              ),\n                              h.span([...itemAttributes.indicator], []),\n                            ],\n                          ),\n                        ),\n                      ),\n                    ],\n                  ),\n                ],\n              ),\n            ],\n          ),\n        ],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxPopup",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-auto-highlight",
+      "title": "ComboboxAutoHighlight",
+      "description": "Combobox with initial highlighted item.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxAutoHighlight = (): Html =>\n  comboboxShell({\n    id: 'combobox-auto-highlight',\n    items: frameworks,\n    placeholder: 'Select a framework',\n    highlightedValue: 'next',\n    autoHighlight: true,\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxAutoHighlight",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-custom",
+      "title": "ComboboxWithCustomItems",
+      "description": "Combobox with country labels and text values.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxWithCustomItems = (): Html =>\n  comboboxShell({\n    id: 'combobox-custom',\n    items: countries,\n    placeholder: 'Search countries...',\n    inputValue: 'a',\n    emptyText: 'No countries found.',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxWithCustomItems",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/combobox-rtl",
+      "title": "ComboboxRtl",
+      "description": "RTL multiple combobox with local Arabic strings.",
+      "componentItemId": "shadcn/combobox",
+      "sourcePath": "src/registry/shadcn/combobox/examples.ts",
+      "snippet": "export const ComboboxRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto w-full max-w-xs'), h.Dir('rtl')],\n    [\n      h.label([h.Class('text-sm font-medium')], ['الفئات']),\n      comboboxShell({\n        id: 'combobox-rtl',\n        items: arabicCategories,\n        placeholder: 'أضف فئات',\n        selectionMode: 'multiple',\n        values: ['technology'],\n        highlightedValue: 'design',\n        anchorToChips: true,\n        dir: 'rtl',\n        emptyText: 'لم يتم العثور على فئات.',\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ComboboxRtl",
+      "requiredRegistryItems": [
+        "base-ui/combobox",
+        "shadcn/button",
+        "shadcn/input",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-combobox-local-base-ui",
+        "summary": "The shadcn wrapper composes local Combobox attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-combobox-local-icons",
+        "summary": "Chevron, check, and x icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-combobox-local-input-group-classes",
+        "summary": "InputGroup and InputGroupButton origin classes are represented locally because no installable shadcn/input-group registry item is present.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The plan allows composing local input/button/cn conventions and should not introduce a new adjacent component slice inside this Combobox batch."
+      },
+      {
+        "id": "shadcn-combobox-local-example-shells",
+        "summary": "Examples use local static Field, Item, and language shells instead of importing adjacent origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Combobox slice stays focused while preserving the relevant Combobox DOM, class, ARIA, filtering, selected value, chip, and visual contracts."
+      },
+      {
+        "id": "shadcn-combobox-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the rendered RTL output."
+      },
+      {
+        "id": "shadcn-combobox-deterministic-placement-attributes",
+        "summary": "Positioner and content expose side, align, offset, collision, and chips-anchor attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

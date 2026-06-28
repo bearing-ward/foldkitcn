@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T13:50:18.423Z",
+  "generatedAt": "2026-06-28T14:51:29.647Z",
   "summary": {
     "baseUi": {
       "total": 38,
-      "imported": 34,
-      "remaining": 4
+      "imported": 35,
+      "remaining": 3
     },
     "shadcn": {
       "total": 64,
-      "imported": 35,
-      "remaining": 29
+      "imported": 36,
+      "remaining": 28
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 23,
+    "dossierReadyCount": 21,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1703,25 +1703,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json",
         "plans/artifacts/040-next-component-dossiers/combobox/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/combobox",
-        "https://ui.shadcn.com/docs/components/combobox"
-      ],
+      "recommendedUrls": ["https://base-ui.com/react/components/combobox"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 74",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/combobox",
@@ -1730,27 +1727,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/combobox/dossier.json",
         "plans/artifacts/040-next-component-dossiers/combobox/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
-      "recommendedUrls": [
-        "https://base-ui.com/react/components/combobox",
-        "https://ui.shadcn.com/docs/components/combobox"
-      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/combobox"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 74",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/autocomplete",

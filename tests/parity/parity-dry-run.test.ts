@@ -33,6 +33,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/field',
       'shadcn/native-select',
       'shadcn/select',
+      'shadcn/combobox',
       'shadcn/dropdown-menu',
       'shadcn/navigation-menu',
       'shadcn/menubar',
@@ -71,6 +72,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/field',
       'shadcn/native-select',
       'shadcn/select',
+      'shadcn/combobox',
       'shadcn/dropdown-menu',
       'shadcn/navigation-menu',
       'shadcn/menubar',
@@ -135,6 +137,13 @@ describe('parity dry-run helpers', () => {
     expect(matchingItemIds('popover')).toStrictEqual([
       'base-ui/popover',
       'shadcn/popover',
+    ])
+  })
+
+  test('matches combobox slots with component grep', () => {
+    expect(matchingItemIds('combobox')).toStrictEqual([
+      'base-ui/combobox',
+      'shadcn/combobox',
     ])
   })
 

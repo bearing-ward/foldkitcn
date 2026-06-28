@@ -33,13 +33,13 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 34,
-      remaining: 4,
+      imported: 35,
+      remaining: 3,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 35,
-      remaining: 29,
+      imported: 36,
+      remaining: 28,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -54,6 +54,7 @@ describe('origin component progress', () => {
       'base-ui/checkbox',
       'base-ui/checkbox-group',
       'base-ui/collapsible',
+      'base-ui/combobox',
       'base-ui/context-menu',
       'base-ui/dialog',
       'base-ui/fieldset',
@@ -90,6 +91,7 @@ describe('origin component progress', () => {
       'shadcn/button',
       'shadcn/checkbox',
       'shadcn/collapsible',
+      'shadcn/combobox',
       'shadcn/context-menu',
       'shadcn/dialog',
       'shadcn/dropdown-menu',
@@ -143,11 +145,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('base-ui/combobox')
+    expect(nextRow?.itemId).toBe('base-ui/autocomplete')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://base-ui.com/react/components/combobox',
-      'https://ui.shadcn.com/docs/components/combobox',
+      'https://base-ui.com/react/components/autocomplete',
     ])
   })
 

@@ -132,6 +132,8 @@ describe('parity canonicalizers', () => {
       'shadcn/native-select',
       'base-ui/select',
       'shadcn/select',
+      'base-ui/combobox',
+      'shadcn/combobox',
       'base-ui/menu',
       'base-ui/menubar',
       'base-ui/navigation-menu',
