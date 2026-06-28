@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/card",
+  "routePath": "/components/shadcn/card",
+  "title": "Card",
+  "description": "Foldkit-native shadcn base-nova Card structural helpers with Schema-backed size metadata and local class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/card",
+  "defaultImportPath": "shadcn/card",
+  "sourceRoot": "registry-src/shadcn/card",
+  "installableSourcePaths": [
+    "src/registry/shadcn/card/index.ts",
+    "src/registry/shadcn/card/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Card",
+      "docsUrl": "https://ui.shadcn.com/docs/components/card",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/card.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/card.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/card.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/card.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/card-demo.tsx",
+        "repos/ui/apps/v4/examples/base/card-edge-to-edge.tsx",
+        "repos/ui/apps/v4/examples/base/card-image.tsx",
+        "repos/ui/apps/v4/examples/base/card-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/card-small.tsx",
+        "repos/ui/apps/v4/examples/base/card-spacing.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/badge",
+        "classification": "registry-local",
+        "target": "shadcn/badge",
+        "reason": "The Card image example composes the local shadcn Badge registry item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Card examples compose the local shadcn Button registry item."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Login Card examples compose the local shadcn Input registry item."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "Login Card examples compose the local shadcn Label registry item."
+      },
+      {
+        "specifier": "shadcn/toggle-group",
+        "classification": "registry-local",
+        "target": "shadcn/toggle-group",
+        "reason": "The spacing example composes the local shadcn Toggle Group registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Card uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Card size metadata."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local Arabic example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@base-ui/react/toggle",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group example evidence resolves Base UI React only inside parity fixtures."
+      },
+      {
+        "specifier": "@base-ui/react/toggle-group",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group example evidence resolves Base UI React only inside parity fixtures."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group fixture source uses CVA; installable Card source uses local pure class helpers."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/card-demo",
+      "title": "CardDemo",
+      "description": "Login Card with header action, form content, and footer actions.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardDemo = (): Html => loginCard(defaultLoginCopy)",
+      "previewStatus": "static",
+      "previewExportName": "CardDemo",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/card-edge-to-edge",
+      "title": "CardEdgeToEdge",
+      "description": "Terms Card with edge-to-edge scroll content.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardEdgeToEdge = (): Html => {\n  const h = html<never>()\n\n  return Card<never>({\n    className: 'mx-auto w-full max-w-sm',\n    children: [\n      CardHeader<never>({\n        children: [\n          CardTitle<never>({ children: ['Terms of Service'] }),\n          CardDescription<never>({\n            children: ['Review the terms before accepting the agreement.'],\n          }),\n        ],\n      }),\n      CardContent<never>({\n        className: '-mb-(--card-spacing)',\n        children: [\n          h.div(\n            [\n              h.Class(\n                '-mx-(--card-spacing) max-h-48 space-y-4 overflow-y-scroll border-t bg-muted/50 px-(--card-spacing) py-4 text-sm leading-relaxed',\n              ),\n            ],\n            [\n              h.p(\n                [],\n                [\n                  'These terms govern your use of the workspace, including access to shared documents, project files, and collaboration tools.',\n                ],\n              ),\n              h.p(\n                [],\n                [\n                  'You are responsible for the content you upload and for ensuring that your team has the appropriate permissions to view or edit it.',\n                ],\n              ),\n              h.p(\n                [],\n                [\n                  'We may update features or limits as the service evolves. When those changes materially affect your workflow, we will notify your workspace administrators.',\n                ],\n              ),\n              h.p(\n                [],\n                [\n                  \"By continuing, you agree to keep your account credentials secure and to follow your organization's acceptable use policies.\",\n                ],\n              ),\n            ],\n          ),\n        ],\n      }),\n      CardFooter<never>({\n        className: 'justify-end gap-2',\n        children: [button('Decline', { variant: 'outline' }), button('Accept')],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "CardEdgeToEdge",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/card-image",
+      "title": "CardImage",
+      "description": "Image Card with a Badge action and footer Button.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardImage = (): Html => {\n  const h = html<never>()\n\n  return Card<never>({\n    className: 'relative mx-auto w-full max-w-sm pt-0',\n    children: [\n      h.div([h.Class('absolute inset-0 z-30 aspect-video bg-black/35')], []),\n      h.img([\n        h.Src('https://avatar.vercel.sh/shadcn1'),\n        h.Alt('Event cover'),\n        h.Class(\n          'relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40',\n        ),\n      ]),\n      CardHeader<never>({\n        children: [\n          CardAction<never>({\n            children: [\n              Badge<never>({\n                variant: 'secondary',\n                toView: attributes =>\n                  h.span([...attributes.badge], ['Featured']),\n              }),\n            ],\n          }),\n          CardTitle<never>({ children: ['Design systems meetup'] }),\n          CardDescription<never>({\n            children: [\n              'A practical talk on component APIs, accessibility, and shipping faster.',\n            ],\n          }),\n        ],\n      }),\n      CardFooter<never>({\n        children: [button('View Event', { className: 'w-full' })],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "CardImage",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/card-rtl",
+      "title": "CardRtl",
+      "description": "RTL login Card using local Arabic strings instead of the origin language selector.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardRtl = (): Html => loginCard(arabicLoginCopy)",
+      "previewStatus": "static",
+      "previewExportName": "CardRtl",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/card-small",
+      "title": "CardSmall",
+      "description": "Small Card size with local inline chevron icons.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardSmall = (): Html => {\n  const h = html<never>()\n\n  return Card<never>({\n    size: 'sm',\n    className: 'mx-auto w-full max-w-xs',\n    children: [\n      CardHeader<never>({\n        children: [\n          CardTitle<never>({ children: ['Scheduled reports'] }),\n          CardDescription<never>({\n            children: ['Weekly snapshots. No more manual exports.'],\n          }),\n        ],\n      }),\n      CardContent<never>({\n        children: [\n          h.ul(\n            [h.Class('grid gap-2 py-2 text-sm')],\n            [\n              listItem(['Choose a schedule (daily, or weekly).']),\n              listItem(['Send to channels or specific teammates.']),\n              listItem(['Include charts, tables, and key metrics.']),\n            ],\n          ),\n        ],\n      }),\n      CardFooter<never>({\n        className: 'flex-col gap-2',\n        children: [\n          button('Set up scheduled reports', {\n            size: 'sm',\n            className: 'w-full',\n          }),\n          button(\"See what's new\", {\n            variant: 'outline',\n            size: 'sm',\n            className: 'w-full',\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "CardSmall",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/card-spacing",
+      "title": "CardSpacing",
+      "description": "Card spacing token example using the local shadcn Toggle Group item.",
+      "componentItemId": "shadcn/card",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "snippet": "export const CardSpacing = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto grid w-full max-w-sm gap-4')],\n    [\n      spacingToggleGroup(),\n      loginCard(\n        spacingLoginCopy,\n        selectedSpacing === undefined\n          ? {}\n          : { className: selectedSpacing.className },\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CardSpacing",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/toggle-group",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-card-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Card examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-card-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

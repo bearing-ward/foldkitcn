@@ -84,6 +84,14 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/button/index.ts')
     }
 
+    if (source === '@base-ui/react/toggle') {
+      return repoPath('repos/base-ui/packages/react/src/toggle/index.ts')
+    }
+
+    if (source === '@base-ui/react/toggle-group') {
+      return repoPath('repos/base-ui/packages/react/src/toggle-group/index.ts')
+    }
+
     if (source === '@base-ui/react/input') {
       return repoPath('repos/base-ui/packages/react/src/input/index.ts')
     }
@@ -383,6 +391,18 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/toggle',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/toggle-group',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/toggle-group.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/input',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/input.tsx',
@@ -474,6 +494,18 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/card',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/input',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/input.tsx',
           ),
         },
         {
@@ -635,6 +667,12 @@ export const captureShadcnOriginSnapshots = async (
       }),
     )
     await page.route('https://images.unsplash.com/**', route =>
+      route.fulfill({
+        body: transparentPixelPng,
+        contentType: 'image/png',
+      }),
+    )
+    await page.route('https://avatar.vercel.sh/**', route =>
       route.fulfill({
         body: transparentPixelPng,
         contentType: 'image/png',

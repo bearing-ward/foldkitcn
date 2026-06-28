@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T16:59:19.255Z",
+  "generatedAt": "2026-06-28T20:46:24.962Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,14 +9,14 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 39,
-      "remaining": 25
+      "imported": 40,
+      "remaining": 24
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 5,
-    "dossierReadyCount": 16,
+    "dossierReadyCount": 15,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1879,24 +1879,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/shadcn-card/dossier.json",
         "plans/artifacts/040-next-component-dossiers/card/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/card"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 81",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/breadcrumb",

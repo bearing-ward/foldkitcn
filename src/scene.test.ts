@@ -343,7 +343,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('37 of 38')).toExist(),
-      Scene.expect(Scene.text('39 of 64')).toExist(),
+      Scene.expect(Scene.text('40 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),

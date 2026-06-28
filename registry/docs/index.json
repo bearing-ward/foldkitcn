@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T17:03:18.793Z",
+  "generatedAt": "2026-06-28T21:00:54.443Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -226,6 +226,11 @@
       "itemId": "shadcn/button",
       "routePath": "/components/shadcn/button",
       "docsArtifactPath": "registry/docs/shadcn/button.json"
+    },
+    {
+      "itemId": "shadcn/card",
+      "routePath": "/components/shadcn/card",
+      "docsArtifactPath": "registry/docs/shadcn/card.json"
     },
     {
       "itemId": "shadcn/checkbox",

@@ -23,6 +23,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/card',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -65,6 +66,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/card',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -197,6 +199,7 @@ describe('parity dry-run helpers', () => {
     expect(shadcnCaseGrep('shadcn/button', 'shadcn/button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/button', 'button')).toBe('button')
     expect(shadcnCaseGrep('shadcn/input', 'input')).toBe('input-')
+    expect(shadcnCaseGrep('shadcn/card', 'card')).toBe('card-')
     expect(shadcnCaseGrep('shadcn/context-menu', 'context-menu')).toBe(
       'context-menu',
     )

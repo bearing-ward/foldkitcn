@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/card",
+  "namespace": "shadcn",
+  "name": "Card",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Card structural helpers with Schema-backed size metadata and local class maps.",
+  "sourceRoot": "registry-src/shadcn/card",
+  "installableSourcePaths": [
+    "src/registry/shadcn/card/index.ts",
+    "src/registry/shadcn/card/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--border",
+    "--card",
+    "--card-foreground",
+    "--card-spacing",
+    "--foreground",
+    "--muted",
+    "--muted-foreground",
+    "--spacing"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Card",
+      "docsUrl": "https://ui.shadcn.com/docs/components/card",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/card.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/card.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/card.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/card.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/card-demo.tsx",
+        "repos/ui/apps/v4/examples/base/card-edge-to-edge.tsx",
+        "repos/ui/apps/v4/examples/base/card-image.tsx",
+        "repos/ui/apps/v4/examples/base/card-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/card-small.tsx",
+        "repos/ui/apps/v4/examples/base/card-spacing.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/badge",
+        "classification": "registry-local",
+        "target": "shadcn/badge",
+        "reason": "The Card image example composes the local shadcn Badge registry item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Card examples compose the local shadcn Button registry item."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Login Card examples compose the local shadcn Input registry item."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "Login Card examples compose the local shadcn Label registry item."
+      },
+      {
+        "specifier": "shadcn/toggle-group",
+        "classification": "registry-local",
+        "target": "shadcn/toggle-group",
+        "reason": "The spacing example composes the local shadcn Toggle Group registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Card uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Card size metadata."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local Arabic example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@base-ui/react/toggle",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group example evidence resolves Base UI React only inside parity fixtures."
+      },
+      {
+        "specifier": "@base-ui/react/toggle-group",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group example evidence resolves Base UI React only inside parity fixtures."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Toggle Group fixture source uses CVA; installable Card source uses local pure class helpers."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/card-demo",
+      "title": "CardDemo",
+      "description": "Login Card with header action, form content, and footer actions.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/card-edge-to-edge",
+      "title": "CardEdgeToEdge",
+      "description": "Terms Card with edge-to-edge scroll content.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/card-image",
+      "title": "CardImage",
+      "description": "Image Card with a Badge action and footer Button.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/card-rtl",
+      "title": "CardRtl",
+      "description": "RTL login Card using local Arabic strings instead of the origin language selector.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/card-small",
+      "title": "CardSmall",
+      "description": "Small Card size with local inline chevron icons.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/card-spacing",
+      "title": "CardSpacing",
+      "description": "Card spacing token example using the local shadcn Toggle Group item.",
+      "sourcePath": "src/registry/shadcn/card/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/card",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": [
+      "shadcn-card-local-icons",
+      "shadcn-card-local-rtl-data"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-card-local-icons",
+      "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Card examples without adding icon registry items."
+    },
+    {
+      "id": "shadcn-card-local-rtl-data",
+      "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+    }
+  ]
+}

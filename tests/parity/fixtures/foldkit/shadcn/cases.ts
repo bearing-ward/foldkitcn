@@ -52,6 +52,14 @@ import {
   ButtonSpinner,
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
+import {
+  CardDemo,
+  CardEdgeToEdge,
+  CardImage,
+  CardRtl,
+  CardSmall,
+  CardSpacing,
+} from '../../../../../src/registry/shadcn/card/examples'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import {
@@ -325,6 +333,12 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'card-demo': CardDemo,
+  'card-edge-to-edge': CardEdgeToEdge,
+  'card-image': CardImage,
+  'card-rtl': CardRtl,
+  'card-small': CardSmall,
+  'card-spacing': CardSpacing,
   'context-menu-basic': ContextMenuParity,
   'context-menu-checkboxes': ContextMenuParity,
   'context-menu-demo': ContextMenuParity,
@@ -471,6 +485,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('textarea-')) {
     return 'src/registry/shadcn/textarea/examples.ts'
+  }
+
+  if (id.startsWith('card-')) {
+    return 'src/registry/shadcn/card/examples.ts'
   }
 
   return 'src/registry/shadcn/button/examples.ts'

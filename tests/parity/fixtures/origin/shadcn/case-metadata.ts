@@ -214,6 +214,36 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/button-rtl.tsx',
     },
     {
+      id: 'card-demo',
+      title: 'Card demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-demo.tsx',
+    },
+    {
+      id: 'card-edge-to-edge',
+      title: 'Card edge to edge',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-edge-to-edge.tsx',
+    },
+    {
+      id: 'card-image',
+      title: 'Card image',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-image.tsx',
+    },
+    {
+      id: 'card-rtl',
+      title: 'Card RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-rtl.tsx',
+    },
+    {
+      id: 'card-small',
+      title: 'Card small',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-small.tsx',
+    },
+    {
+      id: 'card-spacing',
+      title: 'Card spacing',
+      originFilePath: 'repos/ui/apps/v4/examples/base/card-spacing.tsx',
+    },
+    {
       id: 'kbd-button',
       title: 'Kbd button',
       originFilePath: 'repos/ui/apps/v4/examples/base/kbd-button.tsx',

@@ -41,6 +41,12 @@ import ButtonSecondary from '../../../../../repos/ui/apps/v4/examples/base/butto
 import ButtonSize from '../../../../../repos/ui/apps/v4/examples/base/button-size'
 import ButtonSpinner from '../../../../../repos/ui/apps/v4/examples/base/button-spinner'
 import ButtonWithIcon from '../../../../../repos/ui/apps/v4/examples/base/button-with-icon'
+import CardDemo from '../../../../../repos/ui/apps/v4/examples/base/card-demo'
+import { CardEdgeToEdge } from '../../../../../repos/ui/apps/v4/examples/base/card-edge-to-edge'
+import { CardImage } from '../../../../../repos/ui/apps/v4/examples/base/card-image'
+import { CardRtl } from '../../../../../repos/ui/apps/v4/examples/base/card-rtl'
+import { CardSmall } from '../../../../../repos/ui/apps/v4/examples/base/card-small'
+import { CardSpacing } from '../../../../../repos/ui/apps/v4/examples/base/card-spacing'
 import KbdButton from '../../../../../repos/ui/apps/v4/examples/base/kbd-button'
 import KbdDemo from '../../../../../repos/ui/apps/v4/examples/base/kbd-demo'
 import KbdGroupExample from '../../../../../repos/ui/apps/v4/examples/base/kbd-group'
@@ -293,6 +299,12 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'card-demo': CardDemo,
+  'card-edge-to-edge': CardEdgeToEdge,
+  'card-image': CardImage,
+  'card-rtl': CardRtl,
+  'card-small': CardSmall,
+  'card-spacing': CardSpacing,
   'context-menu-basic': ContextMenuParity,
   'context-menu-checkboxes': ContextMenuParity,
   'context-menu-demo': ContextMenuParity,
