@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/direction",
+  "routePath": "/components/shadcn/direction",
+  "title": "Direction",
+  "description": "Foldkit-native shadcn base-nova Direction helper that replaces the upstream React context provider with explicit direction data, dir attributes, local data-direction attributes, and direction-aware examples.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/direction",
+  "defaultImportPath": "shadcn/direction",
+  "sourceRoot": "registry-src/shadcn/direction",
+  "installableSourcePaths": [
+    "src/registry/shadcn/direction/index.ts",
+    "src/registry/shadcn/direction/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Direction",
+      "docsUrl": "https://ui.shadcn.com/docs/components/direction",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/direction.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/direction.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/direction.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/direction.mdx"
+      ],
+      "examplePaths": ["repos/ui/apps/v4/examples/base/card-rtl.tsx"],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Direction examples compose local shadcn Button helpers instead of origin app aliases."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Direction examples compose local shadcn Input helpers instead of origin app aliases."
+      },
+      {
+        "specifier": "shadcn/label",
+        "classification": "registry-local",
+        "target": "shadcn/label",
+        "reason": "Direction examples compose local shadcn Label helpers instead of origin app aliases."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Direction and its local card preview use the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for direction values."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/direction-provider",
+        "classification": "replace-with-foldkit",
+        "target": "shadcn/direction",
+        "reason": "The upstream React DirectionProvider/useDirection context is replaced by explicit Foldkit direction values passed into view renderers."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL preview language switching is replaced by deterministic local LTR and RTL example data."
+      },
+      {
+        "specifier": "@/styles/base-nova/ui-rtl/card",
+        "classification": "reject-or-defer",
+        "target": "shadcn/card",
+        "reason": "The origin Direction docs preview uses Card before a local shadcn Card registry item exists; Direction examples use a local card shell copied from origin classes."
+      },
+      {
+        "specifier": "@/styles/base-nova/ui-rtl/button",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/button",
+        "reason": "Origin Button imports are replaced by the local shadcn Button registry dependency."
+      },
+      {
+        "specifier": "@/styles/base-nova/ui-rtl/input",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/input",
+        "reason": "Origin Input imports are replaced by the local shadcn Input registry dependency."
+      },
+      {
+        "specifier": "@/styles/base-nova/ui-rtl/label",
+        "classification": "dev-or-fixture-only",
+        "target": "shadcn/label",
+        "reason": "Origin Label imports are replaced by the local shadcn Label registry dependency."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/direction-demo",
+      "title": "DirectionDemo",
+      "description": "LTR login card using explicit direction attributes and local shadcn form controls.",
+      "componentItemId": "shadcn/direction",
+      "sourcePath": "src/registry/shadcn/direction/examples.ts",
+      "snippet": "export const DirectionDemo = (): Html => loginCard(englishLoginCopy)",
+      "previewStatus": "static",
+      "previewExportName": "DirectionDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/direction-rtl-card",
+      "title": "DirectionRtlCard",
+      "description": "RTL login card preserving the shadcn Direction docs preview copy and direction behavior with local deterministic Arabic data.",
+      "componentItemId": "shadcn/direction",
+      "sourcePath": "src/registry/shadcn/direction/examples.ts",
+      "snippet": "export const DirectionRtlCard = (): Html => loginCard(arabicLoginCopy)",
+      "previewStatus": "static",
+      "previewExportName": "DirectionRtlCard",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/input",
+        "shadcn/label",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-direction-explicit-foldkit-data",
+        "summary": "The upstream React DirectionProvider/useDirection context is replaced by explicit direction values and attributes passed through Foldkit renderers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React context providers or upstream Base UI runtime packages. Explicit model/view data preserves the direction contract within Elm Architecture."
+      },
+      {
+        "id": "shadcn-direction-local-card-preview",
+        "summary": "The docs card preview is represented with a local card shell and local Button, Input, and Label helpers instead of importing origin app aliases.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Direction row should stay small and must not introduce a new Card registry item or origin language-selector dependency."
+      }
+    ]
+  }
+}
