@@ -63,6 +63,15 @@
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/toggle-group.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/input.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-dropdown.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-ellipsis.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-link.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/breadcrumb-separator.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/breadcrumb.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/kbd-button.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/kbd-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/kbd-group.tsx";

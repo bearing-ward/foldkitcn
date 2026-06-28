@@ -244,6 +244,41 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/card-spacing.tsx',
     },
     {
+      id: 'breadcrumb-basic',
+      title: 'Breadcrumb basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx',
+    },
+    {
+      id: 'breadcrumb-demo',
+      title: 'Breadcrumb demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-demo.tsx',
+    },
+    {
+      id: 'breadcrumb-dropdown',
+      title: 'Breadcrumb dropdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-dropdown.tsx',
+    },
+    {
+      id: 'breadcrumb-ellipsis',
+      title: 'Breadcrumb ellipsis',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-ellipsis.tsx',
+    },
+    {
+      id: 'breadcrumb-link',
+      title: 'Breadcrumb link',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-link.tsx',
+    },
+    {
+      id: 'breadcrumb-rtl',
+      title: 'Breadcrumb RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-rtl.tsx',
+    },
+    {
+      id: 'breadcrumb-separator',
+      title: 'Breadcrumb separator',
+      originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-separator.tsx',
+    },
+    {
       id: 'kbd-button',
       title: 'Kbd button',
       originFilePath: 'repos/ui/apps/v4/examples/base/kbd-button.tsx',

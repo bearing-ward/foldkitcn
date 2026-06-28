@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-28T20:46:24.962Z
+Generated at: 2026-06-28T21:18:31.140Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
 | Base UI docs |       37 |    38 |         1 |
-| shadcn docs  |       40 |    64 |        24 |
+| shadcn docs  |       41 |    64 |        23 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 5
-- Dossier-ready rows: 15
+- Dossier-ready rows: 14
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-28T20:46:24.962Z
 
 | Item                  | Readiness     | Parity      | URLs                                                         | Blockers |
 | --------------------- | ------------- | ----------- | ------------------------------------------------------------ | -------- |
-| `shadcn/breadcrumb`   | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/breadcrumb)   |          |
 | `shadcn/button-group` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/button-group) |          |
 | `shadcn/calendar`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/calendar)     |          |
 | `shadcn/carousel`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/carousel)     |          |
+| `shadcn/command`      | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/command)      |          |
 
 ## Imported Items
 
@@ -104,6 +104,7 @@ Generated at: 2026-06-28T20:46:24.962Z
 - `shadcn/sheet`
 - `shadcn/direction`
 - `shadcn/card`
+- `shadcn/breadcrumb`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -120,7 +121,6 @@ Generated at: 2026-06-28T20:46:24.962Z
 
 | Item                  | Readiness     | Parity      | URLs                                                         | Blockers |
 | --------------------- | ------------- | ----------- | ------------------------------------------------------------ | -------- |
-| `shadcn/breadcrumb`   | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/breadcrumb)   |          |
 | `shadcn/button-group` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/button-group) |          |
 | `shadcn/calendar`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/calendar)     |          |
 | `shadcn/carousel`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/carousel)     |          |

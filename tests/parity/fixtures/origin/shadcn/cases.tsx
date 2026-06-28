@@ -27,6 +27,13 @@ import { BadgeAsLink } from '../../../../../repos/ui/apps/v4/examples/base/badge
 import { BadgeRtl } from '../../../../../repos/ui/apps/v4/examples/base/badge-rtl'
 import { BadgeWithSpinner } from '../../../../../repos/ui/apps/v4/examples/base/badge-spinner'
 import { BadgeVariants } from '../../../../../repos/ui/apps/v4/examples/base/badge-variants'
+import { BreadcrumbBasic } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-basic'
+import { BreadcrumbDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-demo'
+import { BreadcrumbDropdown } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-dropdown'
+import { BreadcrumbEllipsisDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-ellipsis'
+import { BreadcrumbLinkDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-link'
+import { BreadcrumbRtl } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-rtl'
+import { BreadcrumbSeparatorDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-separator'
 import ButtonDefault from '../../../../../repos/ui/apps/v4/examples/base/button-default'
 import ButtonDemo from '../../../../../repos/ui/apps/v4/examples/base/button-demo'
 import ButtonDestructive from '../../../../../repos/ui/apps/v4/examples/base/button-destructive'
@@ -305,6 +312,13 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'card-rtl': CardRtl,
   'card-small': CardSmall,
   'card-spacing': CardSpacing,
+  'breadcrumb-basic': BreadcrumbBasic,
+  'breadcrumb-demo': BreadcrumbDemo,
+  'breadcrumb-dropdown': BreadcrumbDropdown,
+  'breadcrumb-ellipsis': BreadcrumbEllipsisDemo,
+  'breadcrumb-link': BreadcrumbLinkDemo,
+  'breadcrumb-rtl': BreadcrumbRtl,
+  'breadcrumb-separator': BreadcrumbSeparatorDemo,
   'context-menu-basic': ContextMenuParity,
   'context-menu-checkboxes': ContextMenuParity,
   'context-menu-demo': ContextMenuParity,

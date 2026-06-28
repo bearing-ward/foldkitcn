@@ -118,6 +118,7 @@ describe('parity canonicalizers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/card',
+      'shadcn/breadcrumb',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',

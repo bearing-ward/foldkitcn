@@ -24,6 +24,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/card',
+      'shadcn/breadcrumb',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -67,6 +68,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/card',
+      'shadcn/breadcrumb',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -122,6 +124,10 @@ describe('parity dry-run helpers', () => {
       'shadcn/input-otp',
     ])
     expect(matchingItemIds('button-default')).toStrictEqual([])
+  })
+
+  test('matches breadcrumb by component grep', () => {
+    expect(matchingItemIds('breadcrumb')).toStrictEqual(['shadcn/breadcrumb'])
   })
 
   test('matches OTP slots with component grep', () => {

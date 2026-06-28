@@ -37,6 +37,15 @@ import {
   BadgeVariants,
 } from '../../../../../src/registry/shadcn/badge/examples'
 import {
+  BreadcrumbBasic,
+  BreadcrumbDemo,
+  BreadcrumbDropdown,
+  BreadcrumbEllipsisDemo,
+  BreadcrumbLinkDemo,
+  BreadcrumbRtl,
+  BreadcrumbSeparatorDemo,
+} from '../../../../../src/registry/shadcn/breadcrumb/examples'
+import {
   ButtonDefault,
   ButtonDemo,
   ButtonDestructive,
@@ -339,6 +348,13 @@ const components: Readonly<Record<string, () => Html>> = {
   'card-rtl': CardRtl,
   'card-small': CardSmall,
   'card-spacing': CardSpacing,
+  'breadcrumb-basic': BreadcrumbBasic,
+  'breadcrumb-demo': BreadcrumbDemo,
+  'breadcrumb-dropdown': BreadcrumbDropdown,
+  'breadcrumb-ellipsis': BreadcrumbEllipsisDemo,
+  'breadcrumb-link': BreadcrumbLinkDemo,
+  'breadcrumb-rtl': BreadcrumbRtl,
+  'breadcrumb-separator': BreadcrumbSeparatorDemo,
   'context-menu-basic': ContextMenuParity,
   'context-menu-checkboxes': ContextMenuParity,
   'context-menu-demo': ContextMenuParity,
@@ -489,6 +505,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('card-')) {
     return 'src/registry/shadcn/card/examples.ts'
+  }
+
+  if (id.startsWith('breadcrumb-')) {
+    return 'src/registry/shadcn/breadcrumb/examples.ts'
   }
 
   return 'src/registry/shadcn/button/examples.ts'

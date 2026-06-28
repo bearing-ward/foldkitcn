@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T21:00:54.443Z",
+  "generatedAt": "2026-06-28T21:31:35.728Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -221,6 +221,11 @@
       "itemId": "shadcn/badge",
       "routePath": "/components/shadcn/badge",
       "docsArtifactPath": "registry/docs/shadcn/badge.json"
+    },
+    {
+      "itemId": "shadcn/breadcrumb",
+      "routePath": "/components/shadcn/breadcrumb",
+      "docsArtifactPath": "registry/docs/shadcn/breadcrumb.json"
     },
     {
       "itemId": "shadcn/button",

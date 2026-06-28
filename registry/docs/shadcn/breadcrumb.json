@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/breadcrumb",
+  "routePath": "/components/shadcn/breadcrumb",
+  "title": "Breadcrumb",
+  "description": "Foldkit-native shadcn base-nova Breadcrumb helpers with ordered-list navigation semantics, current-page state, separators, ellipsis, and local icon rendering.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/breadcrumb",
+  "defaultImportPath": "shadcn/breadcrumb",
+  "sourceRoot": "registry-src/shadcn/breadcrumb",
+  "installableSourcePaths": [
+    "src/registry/shadcn/breadcrumb/index.ts",
+    "src/registry/shadcn/breadcrumb/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Breadcrumb",
+      "docsUrl": "https://ui.shadcn.com/docs/components/breadcrumb",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/breadcrumb.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/breadcrumb.tsx",
+        "repos/ui/apps/v4/public/r/styles/base-nova/breadcrumb.json"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/breadcrumb.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/breadcrumb.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-demo.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-dropdown.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-ellipsis.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-link.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/breadcrumb-separator.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The Breadcrumb demo example uses the local shadcn Button for the ellipsis menu trigger."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "registry-local",
+        "target": "shadcn/dropdown-menu",
+        "reason": "Breadcrumb dropdown examples mirror the documented composition with the local shadcn Dropdown Menu item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Breadcrumb uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema metadata for Breadcrumb style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "utils/cn",
+        "reason": "Origin render-prop prop merging is represented by explicit Foldkit attributes and local class helpers."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "foldkit",
+        "reason": "Origin render slots are represented by native Foldkit Html helpers."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin separator, ellipsis, dot, and chevron icons are represented by local inline SVG helpers in installable source."
+      },
+      {
+        "specifier": "next/link",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin link examples are represented by native anchor hrefs in installable source and a fixture-only Next Link shim for parity."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic Arabic example data."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/breadcrumb-basic",
+      "title": "BreadcrumbBasic",
+      "description": "Basic Breadcrumb with Home and Components links followed by the current page.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbBasic = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbBasic",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-demo",
+      "title": "BreadcrumbDemo",
+      "description": "Default docs Breadcrumb with an ellipsis dropdown trigger.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([ellipsisMenuButton(), dropdownContent(dropdownItems)]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-dropdown",
+      "title": "BreadcrumbDropdown",
+      "description": "Breadcrumb with a custom dot separator and a components dropdown trigger.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbDropdown = (): Html => {\n  const h = html<never>()\n\n  return breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([\n      componentsMenuButton('Components', [\n        h.DataAttribute('icon', 'inline-end'),\n      ]),\n      dropdownContent(dropdownItems),\n    ]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])\n}",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbDropdown",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-ellipsis",
+      "title": "BreadcrumbEllipsisDemo",
+      "description": "Collapsed Breadcrumb state using the ellipsis helper.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbEllipsisDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([BreadcrumbEllipsis<never>()]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('/docs/components', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbEllipsisDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-link",
+      "title": "BreadcrumbLinkDemo",
+      "description": "Breadcrumb links using explicit local href attributes instead of an upstream router component.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbLinkDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#link-component', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#link-component', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbLinkDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-rtl",
+      "title": "BreadcrumbRtl",
+      "description": "RTL Breadcrumb using local Arabic strings instead of the origin language selector.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbRtl = (): Html => {\n  const h = html<never>()\n  const { dir, language, values } = arabicBreadcrumbRtl\n\n  return breadcrumbShell(\n    [\n      breadcrumbItem([breadcrumbLink('/', values.home)]),\n      breadcrumbSeparator([dotIcon()]),\n      breadcrumbItem([\n        h.button(\n          [\n            h.AriaHasPopup('menu'),\n            h.AriaExpanded(false),\n            h.Class('flex items-center gap-1'),\n          ],\n          [\n            values.components,\n            chevronDownIcon({\n              attributes: [h.DataAttribute('icon', 'inline-end')],\n              className: 'size-3.5',\n            }),\n          ],\n        ),\n        dropdownContent([values.documentation, values.themes, values.github], {\n          align: 'end',\n          dataLang: language,\n          dir,\n        }),\n      ]),\n      breadcrumbSeparator([dotIcon()]),\n      breadcrumbItem([breadcrumbPage(values.breadcrumb)]),\n    ],\n    { dir },\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbRtl",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/breadcrumb-separator",
+      "title": "BreadcrumbSeparatorDemo",
+      "description": "Breadcrumb with custom dot separator children.",
+      "componentItemId": "shadcn/breadcrumb",
+      "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+      "snippet": "export const BreadcrumbSeparatorDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbLink('/components', 'Components')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "BreadcrumbSeparatorDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-breadcrumb-local-icons",
+        "summary": "Icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-breadcrumb-local-links",
+        "summary": "Examples use native anchor hrefs instead of next/link render props.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on Next.js. Native links preserve the documented anchor semantics for BreadcrumbLink."
+      },
+      {
+        "id": "shadcn-breadcrumb-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin app language selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector."
+      },
+      {
+        "id": "shadcn-breadcrumb-deterministic-dropdown-fixtures",
+        "summary": "Dropdown examples render the documented closed menu state with deterministic fixture markup.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Breadcrumb parity should verify breadcrumb structure while the Dropdown Menu component owns menu positioning, opening, and keyboard interaction coverage."
+      }
+    ]
+  }
+}

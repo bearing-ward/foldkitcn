@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T21:00:54.443Z",
+  "generatedAt": "2026-06-28T21:31:35.728Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -7177,6 +7177,272 @@
           "path": "src/registry/shadcn/badge/examples.ts",
           "sha256": "4e3152c613340db4ce8e6b987f575dcb327f17c08bbd4ecd4a7a2a172ea7672e",
           "sizeBytes": 6919,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/breadcrumb",
+        "namespace": "shadcn",
+        "name": "Breadcrumb",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Breadcrumb helpers with ordered-list navigation semantics, current-page state, separators, ellipsis, and local icon rendering.",
+        "sourceRoot": "registry-src/shadcn/breadcrumb",
+        "installableSourcePaths": [
+          "src/registry/shadcn/breadcrumb/index.ts",
+          "src/registry/shadcn/breadcrumb/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--muted-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Breadcrumb",
+            "docsUrl": "https://ui.shadcn.com/docs/components/breadcrumb",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/breadcrumb.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/breadcrumb.tsx",
+              "repos/ui/apps/v4/public/r/styles/base-nova/breadcrumb.json"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/breadcrumb.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/breadcrumb.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-demo.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-dropdown.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-ellipsis.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-link.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/breadcrumb-separator.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The Breadcrumb demo example uses the local shadcn Button for the ellipsis menu trigger."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "Breadcrumb dropdown examples mirror the documented composition with the local shadcn Dropdown Menu item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Breadcrumb uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema metadata for Breadcrumb style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "utils/cn",
+              "reason": "Origin render-prop prop merging is represented by explicit Foldkit attributes and local class helpers."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "foldkit",
+              "reason": "Origin render slots are represented by native Foldkit Html helpers."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin separator, ellipsis, dot, and chevron icons are represented by local inline SVG helpers in installable source."
+            },
+            {
+              "specifier": "next/link",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin link examples are represented by native anchor hrefs in installable source and a fixture-only Next Link shim for parity."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic Arabic example data."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/breadcrumb-basic",
+            "title": "BreadcrumbBasic",
+            "description": "Basic Breadcrumb with Home and Components links followed by the current page.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-demo",
+            "title": "BreadcrumbDemo",
+            "description": "Default docs Breadcrumb with an ellipsis dropdown trigger.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-dropdown",
+            "title": "BreadcrumbDropdown",
+            "description": "Breadcrumb with a custom dot separator and a components dropdown trigger.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-ellipsis",
+            "title": "BreadcrumbEllipsisDemo",
+            "description": "Collapsed Breadcrumb state using the ellipsis helper.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-link",
+            "title": "BreadcrumbLinkDemo",
+            "description": "Breadcrumb links using explicit local href attributes instead of an upstream router component.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-rtl",
+            "title": "BreadcrumbRtl",
+            "description": "RTL Breadcrumb using local Arabic strings instead of the origin language selector.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/breadcrumb-separator",
+            "title": "BreadcrumbSeparatorDemo",
+            "description": "Breadcrumb with custom dot separator children.",
+            "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/breadcrumb",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-breadcrumb-local-icons",
+            "shadcn-breadcrumb-local-links",
+            "shadcn-breadcrumb-local-rtl-data",
+            "shadcn-breadcrumb-deterministic-dropdown-fixtures"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-breadcrumb-local-icons",
+            "summary": "Icons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+          },
+          {
+            "id": "shadcn-breadcrumb-local-links",
+            "summary": "Examples use native anchor hrefs instead of next/link render props.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on Next.js. Native links preserve the documented anchor semantics for BreadcrumbLink."
+          },
+          {
+            "id": "shadcn-breadcrumb-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin app language selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector."
+          },
+          {
+            "id": "shadcn-breadcrumb-deterministic-dropdown-fixtures",
+            "summary": "Dropdown examples render the documented closed menu state with deterministic fixture markup.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Breadcrumb parity should verify breadcrumb structure while the Dropdown Menu component owns menu positioning, opening, and keyboard interaction coverage."
+          }
+        ]
+      },
+      "manifestHash": "93f87fd978f197047d1f143aabf17385554b384b64f94049f9cc31ac981cbd27",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/breadcrumb/item.json",
+          "sha256": "10458875d85187115632bb7b8d9d728ddc87176378e458a40ff0a1296104be5b",
+          "sizeBytes": 9319,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/breadcrumb/index.ts",
+          "sha256": "14faf52c436b900b3669ed46489363421205abf812e16f5f8dbe0470bbba9493",
+          "sizeBytes": 8179,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/breadcrumb/examples.ts",
+          "sha256": "1ab5ec56857a40ad9faff555028eababd81958d9e85aa30bcf57ee4568ab2efb",
+          "sizeBytes": 8545,
           "role": "source"
         }
       ]

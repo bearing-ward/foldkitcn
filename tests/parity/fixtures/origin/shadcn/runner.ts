@@ -46,30 +46,27 @@ const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
+const nextLinkShimModuleId = '\0foldkitcn-shadcn-origin-next-link-shim'
 const dropdownMenuShimModuleId = '\0foldkitcn-shadcn-origin-dropdown-menu-shim'
+
+const virtualModuleAliases = new Map([
+  ['next/image', nextImageShimModuleId],
+  ['next/link', nextLinkShimModuleId],
+  ['@/styles/base-nova/ui/dropdown-menu', dropdownMenuShimModuleId],
+  ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
+  ['@/styles/base-nova/ui/slider', sliderShimModuleId],
+  ['@/styles/base-nova/ui/input-group', inputGroupShimModuleId],
+  ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
+])
 
 const originAliasPlugin = (): Plugin => ({
   name: 'foldkitcn-shadcn-origin-aliases',
   enforce: 'pre',
   resolveId(source) {
-    if (source === 'next/image') {
-      return nextImageShimModuleId
-    }
+    const virtualModuleId = virtualModuleAliases.get(source)
 
-    if (source === '@/styles/base-nova/ui/dropdown-menu') {
-      return dropdownMenuShimModuleId
-    }
-
-    if (source === '@/styles/base-nova/ui/slider') {
-      return sliderShimModuleId
-    }
-
-    if (source === '@/styles/base-nova/ui/input-group') {
-      return inputGroupShimModuleId
-    }
-
-    if (source === '@/styles/base-nova/ui/tooltip') {
-      return tooltipShimModuleId
+    if (virtualModuleId !== undefined) {
+      return virtualModuleId
     }
 
     if (source === '@base-ui/react/merge-props') {
@@ -137,6 +134,16 @@ const originAliasPlugin = (): Plugin => ({
 
         export default function Image({ fill, priority, ...props }) {
           return React.createElement('img', props)
+        }
+      `
+    }
+
+    if (id === nextLinkShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        export default function Link({ href, children, ...props }) {
+          return React.createElement('a', { ...props, href }, children)
         }
       `
     }
@@ -391,6 +398,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/breadcrumb',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/breadcrumb.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/toggle',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx',
@@ -500,6 +513,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/card',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/breadcrumb',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/breadcrumb.tsx',
           ),
         },
         {
