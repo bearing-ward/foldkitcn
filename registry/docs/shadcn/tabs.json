@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/tabs",
+  "routePath": "/components/shadcn/tabs",
+  "title": "Tabs",
+  "description": "Foldkit-native shadcn base-nova Tabs wrapper composed from the local Base UI Tabs primitive, shadcn root/list/trigger/content slots, local class canonicalization, and pure list variant classes.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/tabs",
+  "defaultImportPath": "shadcn/tabs",
+  "sourceRoot": "registry-src/shadcn/tabs",
+  "installableSourcePaths": [
+    "src/registry/shadcn/tabs/index.ts",
+    "src/registry/shadcn/tabs/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Tabs",
+      "docsUrl": "https://ui.shadcn.com/docs/components/tabs",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/tabs.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/tabs.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/tabs.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/tabs.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/tabs.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/tabs-demo.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-icons.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-line.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/tabs-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/tabs",
+        "classification": "registry-local",
+        "target": "base-ui/tabs",
+        "reason": "shadcn Tabs composes the local Base UI Tabs primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Tabs uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/tabs",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tabs",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Tabs implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "CVA variant handling is replaced with a local Effect Schema literal and pure class helper."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are rendered as fixture-only evidence; installable source does not import React icon packages."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is fixture evidence only and replaced by local deterministic RTL example data."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Card is not present in this registry yet; Tabs examples use local static card markup instead of declaring an unavailable registry dependency."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/tabs-demo",
+      "title": "TabsDemo",
+      "description": "Default Tabs demo with local static card markup.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsDemo = (): Html => tabsWithCards()",
+      "previewStatus": "static",
+      "previewExportName": "TabsDemo",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/tabs-disabled",
+      "title": "TabsDisabled",
+      "description": "Tabs list with a disabled trigger.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsDisabled = (): Html =>\n  Tabs<never>({\n    value: 'home',\n    tabs: [\n      { id: 'home-tab', value: 'home', label: 'Home' },\n      {\n        id: 'settings-tab',\n        value: 'settings',\n        label: 'Disabled',\n        isDisabled: true,\n      },\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsDisabled",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/tabs-icons",
+      "title": "TabsIcons",
+      "description": "Tabs triggers with inline icon slots.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsIcons = (): Html => {\n  const h = html<never>()\n\n  return Tabs<never>({\n    value: 'preview',\n    tabs: [\n      { id: 'preview-tab', value: 'preview', label: 'Preview' },\n      { id: 'code-tab', value: 'code', label: 'Code' },\n    ],\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.div(\n            [...attributes.list],\n            [\n              h.button(\n                [...(attributes.tabs[0]?.root ?? [])],\n                [\n                  h.span([h.DataAttribute('icon', 'inline-start')], []),\n                  'Preview',\n                ],\n              ),\n              h.button(\n                [...(attributes.tabs[1]?.root ?? [])],\n                [h.span([h.DataAttribute('icon', 'inline-start')], []), 'Code'],\n              ),\n            ],\n          ),\n        ],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "TabsIcons",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/tabs-line",
+      "title": "TabsLine",
+      "description": "Tabs list rendered with the line variant.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsLine = (): Html =>\n  Tabs<never>({\n    value: 'overview',\n    listVariant: 'line',\n    tabs: analyticsTabs.slice(0, 3),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsLine",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/tabs-rtl",
+      "title": "TabsRtl",
+      "description": "RTL Tabs demo with local translated labels.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsRtl = (): Html =>\n  tabsWithCards('rtl', {\n    overview: 'نظرة عامة',\n    analytics: 'التحليلات',\n    reports: 'التقارير',\n    settings: 'الإعدادات',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsRtl",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/tabs-vertical",
+      "title": "TabsVertical",
+      "description": "Vertical Tabs list example.",
+      "componentItemId": "shadcn/tabs",
+      "sourcePath": "src/registry/shadcn/tabs/examples.ts",
+      "snippet": "export const TabsVertical = (): Html =>\n  Tabs<never>({\n    value: 'account',\n    orientation: 'vertical',\n    tabs: [\n      { id: 'account-tab', value: 'account', label: 'Account' },\n      { id: 'password-tab', value: 'password', label: 'Password' },\n      {\n        id: 'notifications-tab',\n        value: 'notifications',\n        label: 'Notifications',\n      },\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TabsVertical",
+      "requiredRegistryItems": ["base-ui/tabs", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-tabs-local-base-ui",
+        "summary": "The shadcn wrapper composes local Tabs attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages. The wrapper preserves shadcn slots, classes, and variants over the local Foldkit primitive."
+      },
+      {
+        "id": "shadcn-tabs-local-examples",
+        "summary": "Examples use local static card, icon, and RTL data instead of unavailable origin app dependencies.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Card and language selector are outside this component slice. Static local markup preserves the relevant Tabs DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
+      }
+    ]
+  }
+}

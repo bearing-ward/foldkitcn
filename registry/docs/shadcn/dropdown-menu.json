@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/dropdown-menu",
+  "routePath": "/components/shadcn/dropdown-menu",
+  "title": "Dropdown Menu",
+  "description": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Dropdown Menu demo.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/dropdown-menu",
+  "defaultImportPath": "shadcn/dropdown-menu",
+  "sourceRoot": "registry-src/shadcn/dropdown-menu",
+  "installableSourcePaths": [
+    "src/registry/shadcn/dropdown-menu/index.ts",
+    "src/registry/shadcn/dropdown-menu/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Dropdown Menu",
+      "docsUrl": "https://ui.shadcn.com/docs/components/dropdown-menu",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/dropdown-menu.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/dropdown-menu.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/dropdown-menu.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/dropdown-menu.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/dropdown-menu-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-basic.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-checkboxes.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-complex.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-demo.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-radio-group.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-radio-icons.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-shortcuts.tsx",
+        "repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/menu",
+        "classification": "registry-local",
+        "target": "base-ui/menu",
+        "reason": "shadcn Dropdown Menu composes the local Base UI Menu primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Dropdown Menu uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Dropdown Menu style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Menu implementation."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin check and chevron icons are represented by local inline SVG helpers in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic RTL example data."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/dropdown-menu-avatar",
+      "title": "DropdownMenuAvatar",
+      "description": "Avatar-triggered dropdown menu with account actions.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuAvatar = (): Html =>\n  menuExample('dropdown-menu-avatar', avatarItems, {\n    align: 'end',\n    trigger: [avatar()],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuAvatar",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-basic",
+      "title": "DropdownMenuBasic",
+      "description": "Basic account dropdown menu with disabled API item.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuBasic = (): Html =>\n  menuExample('dropdown-menu-basic', basicItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuBasic",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-checkboxes-icons",
+      "title": "DropdownMenuCheckboxesIcons",
+      "description": "Checkbox menu items with local icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuCheckboxesIcons = (): Html =>\n  menuExample('dropdown-menu-checkboxes-icons', checkboxIconItems, {\n    contentClassName: 'w-48',\n    trigger: ['Notifications'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuCheckboxesIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-checkboxes",
+      "title": "DropdownMenuCheckboxes",
+      "description": "Checkbox menu items with model-owned checked state.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuCheckboxes = (): Html =>\n  menuExample('dropdown-menu-checkboxes', checkboxItems, {\n    contentClassName: 'w-40',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuCheckboxes",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-complex",
+      "title": "DropdownMenuComplex",
+      "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuComplex = (): Html =>\n  menuExample('dropdown-menu-complex', complexItems, {\n    contentClassName: 'w-44',\n    highlightedValue: 'open-recent',\n    openSubmenuValues: ['open-recent', 'more-projects', 'theme', 'settings'],\n    trigger: ['Complex Menu'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuComplex",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-demo",
+      "title": "DropdownMenuDemo",
+      "description": "Default account dropdown menu.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuDemo = (): Html =>\n  menuExample('dropdown-menu-demo', demoItems, {\n    contentClassName: 'w-40',\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuDemo",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-destructive",
+      "title": "DropdownMenuDestructive",
+      "description": "Destructive menu variant.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuDestructive = (): Html =>\n  menuExample('dropdown-menu-destructive', iconItems, {\n    variant: 'destructive',\n    trigger: ['Actions'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuDestructive",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-icons",
+      "title": "DropdownMenuIcons",
+      "description": "Dropdown menu items with local icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuIcons = (): Html =>\n  menuExample('dropdown-menu-icons', iconItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-radio-group",
+      "title": "DropdownMenuRadioGroup",
+      "description": "Radio menu items with model-owned selected value.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuRadioGroup = (): Html =>\n  menuExample('dropdown-menu-radio-group', radioItems, {\n    contentClassName: 'w-32',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRadioGroup",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-radio-icons",
+      "title": "DropdownMenuRadioIcons",
+      "description": "Radio menu items with local payment icon slots.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuRadioIcons = (): Html =>\n  menuExample('dropdown-menu-radio-icons', radioIconItems, {\n    contentClassName: 'min-w-56',\n    trigger: ['Payment Method'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRadioIcons",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-rtl",
+      "title": "DropdownMenuRtl",
+      "description": "RTL dropdown menu.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuRtl = (): Html =>\n  menuExample('dropdown-menu-rtl', demoItems, {\n    dir: 'rtl',\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuRtl",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-shortcuts",
+      "title": "DropdownMenuShortcuts",
+      "description": "Dropdown menu with keyboard shortcut slots.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuShortcuts = (): Html =>\n  menuExample('dropdown-menu-shortcuts', demoItems)",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuShortcuts",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/dropdown-menu-submenu",
+      "title": "DropdownMenuSubmenu",
+      "description": "Nested submenu rendered with deterministic submenu placement attributes.",
+      "componentItemId": "shadcn/dropdown-menu",
+      "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
+      "snippet": "export const DropdownMenuSubmenu = (): Html =>\n  menuExample('dropdown-menu-submenu', submenuItems, {\n    highlightedValue: 'invite',\n    openSubmenuValues: ['invite', 'more-options'],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "DropdownMenuSubmenu",
+      "requiredRegistryItems": ["base-ui/menu", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-dropdown-menu-local-base-ui",
+        "summary": "The shadcn wrapper composes local Menu attributes instead of importing upstream Base UI React primitives.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source must not import React or upstream Base UI runtime packages."
+      },
+      {
+        "id": "shadcn-dropdown-menu-local-icons",
+        "summary": "Check and chevron icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The local SVGs preserve the icon slots, geometry, and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-dropdown-menu-local-rtl-data",
+        "summary": "RTL example uses local deterministic direction and labels instead of the origin app language selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector."
+      },
+      {
+        "id": "shadcn-dropdown-menu-deterministic-placement-attributes",
+        "summary": "Positioner, content, and submenu content expose side, align, offset, and collision attributes without runtime DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
+      }
+    ]
+  }
+}

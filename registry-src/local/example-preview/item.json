@@ -26,7 +26,8 @@
     "implementationStatus": "planned",
     "parityStatus": "not-started",
     "driftStatus": "unknown",
-    "availability": "private"
+    "availability": "private",
+    "docsStatus": "missing"
   },
   "deviations": []
 }

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/skeleton",
+  "routePath": "/components/shadcn/skeleton",
+  "title": "Skeleton",
+  "description": "Foldkit-native shadcn base-nova Skeleton helper using cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/skeleton",
+  "defaultImportPath": "shadcn/skeleton",
+  "sourceRoot": "registry-src/shadcn/skeleton",
+  "installableSourcePaths": [
+    "src/registry/shadcn/skeleton/index.ts",
+    "src/registry/shadcn/skeleton/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Skeleton",
+      "docsUrl": "https://ui.shadcn.com/docs/components/skeleton",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/skeleton.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/skeleton.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/skeleton.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/skeleton.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/skeleton-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-card.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-demo.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-form.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-table.tsx",
+        "repos/ui/apps/v4/examples/base/skeleton-text.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Skeleton uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the helper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "shadcn/card",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The Card example is represented by fixture-local static Card shell classes until shadcn/card is implemented."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/skeleton-avatar",
+      "title": "SkeletonAvatar",
+      "description": "Avatar and text loading placeholder.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonAvatar = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-fit items-center gap-4')],\n    [\n      skeleton('size-10 shrink-0 rounded-full'),\n      h.div(\n        [h.Class('grid gap-2')],\n        [skeleton('h-4 w-[150px]'), skeleton('h-4 w-[100px]')],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonAvatar",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-card",
+      "title": "SkeletonCard",
+      "description": "Card loading placeholder using example-local Card shell classes.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonCard = (): Html =>\n  Card([\n    CardHeader([skeleton('h-4 w-2/3'), skeleton('h-4 w-1/2')]),\n    CardContent([skeleton('aspect-video w-full')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonCard",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-demo",
+      "title": "SkeletonDemo",
+      "description": "Default Skeleton avatar and text demo.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center gap-4')],\n    [\n      skeleton('h-12 w-12 rounded-full'),\n      h.div(\n        [h.Class('space-y-2')],\n        [skeleton('h-4 w-[250px]'), skeleton('h-4 w-[200px]')],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-form",
+      "title": "SkeletonForm",
+      "description": "Form loading placeholder.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonForm = (): Html => {\n  const h = html<never>()\n  const field = (labelClassName: string): Html =>\n    h.div(\n      [h.Class('flex flex-col gap-3')],\n      [skeleton(labelClassName), skeleton('h-8 w-full')],\n    )\n\n  return h.div(\n    [h.Class('flex w-full max-w-xs flex-col gap-7')],\n    [field('h-4 w-20'), field('h-4 w-24'), skeleton('h-8 w-24')],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonForm",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-rtl",
+      "title": "SkeletonRtl",
+      "description": "RTL Skeleton layout example with local direction constants.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center gap-4'), h.Dir(arabicSkeletonRtl.dir)],\n    [\n      skeleton('h-12 w-12 rounded-full'),\n      h.div(\n        [h.Class('space-y-2')],\n        [skeleton('h-4 w-[250px]'), skeleton('h-4 w-[200px]')],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonRtl",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-table",
+      "title": "SkeletonTable",
+      "description": "Table row loading placeholders.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonTable = (): Html => {\n  const h = html<never>()\n  const row = (index: number): Html =>\n    h.div(\n      [h.Class('flex gap-4'), h.Key(String(index))],\n      [skeleton('h-4 flex-1'), skeleton('h-4 w-24'), skeleton('h-4 w-20')],\n    )\n\n  return h.div(\n    [h.Class('flex w-full max-w-sm flex-col gap-2')],\n    Array.makeBy(5, row),\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonTable",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/skeleton-text",
+      "title": "SkeletonText",
+      "description": "Multi-line text loading placeholder.",
+      "componentItemId": "shadcn/skeleton",
+      "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
+      "snippet": "export const SkeletonText = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full max-w-xs flex-col gap-2')],\n    [skeleton('h-4 w-full'), skeleton('h-4 w-full'), skeleton('h-4 w-3/4')],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SkeletonText",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-skeleton-local-card-shell",
+        "summary": "Card example uses fixture-local static Card shell classes instead of an installable shadcn Card component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/card as an installable registry item. The local Card shell preserves the origin DOM slots and base-nova classes used by the Skeleton Card example."
+      },
+      {
+        "id": "shadcn-skeleton-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

@@ -1,159 +1,132 @@
-import { Button, Input, Listbox } from '@foldkit/ui'
-import type { AnchorConfig } from '@foldkit/ui/listbox'
-import { clsx } from 'clsx'
-import type { Types } from 'effect'
 import {
   Array,
   Effect,
+  HashSet,
   Match as M,
   Option,
-  Order,
   Schema as S,
-  SchemaTransformation,
-  String,
+  String as EffectString,
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
-import { Command, Route } from 'foldkit'
+import { Command } from 'foldkit'
 import type { Document, Html } from 'foldkit/html'
-import { childAttributes, html } from 'foldkit/html'
+import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
-import { UrlRequest, load, pushUrl, replaceUrl } from 'foldkit/navigation'
-import { r } from 'foldkit/route'
+import { UrlRequest, load, pushUrl } from 'foldkit/navigation'
 import { ts } from 'foldkit/schema'
 import { evo } from 'foldkit/struct'
 import { Url, toString as urlToString } from 'foldkit/url'
 
-import { dinosaurs } from './data'
-import type { Dinosaur } from './data'
+import {
+  DocsData,
+  FailedDocsData,
+  type NamespaceGroup,
+  type PublicComponent,
+  docsData,
+  findRoutedComponent,
+  generatedComponentCount,
+  LoadedDocsData,
+  namespaceGroups,
+  publicComponents,
+} from './data'
+import { liveExampleViewFor } from './live-examples'
+import { roadmapSnapshot } from './roadmap'
+import type { RoadmapBlockedGroup } from './roadmap'
+import type {
+  ExampleDocsArtifact,
+  OriginComponentProgressReport,
+  OriginComponentProgressRow,
+} from './registry/schema'
+import {
+  AppRoute,
+  ComponentDetailRoute,
+  ComponentsIndexRoute,
+  ComponentsNamespaceRoute,
+  DocsRoute,
+  HomeRoute,
+  NotFoundRoute,
+  RegistryLifecycleRoute,
+  RegistryRoute,
+  RegistrySchemaRoute,
+  RoadmapRoute,
+  componentDetailRouter,
+  componentsIndexRouter,
+  componentsNamespaceRouter,
+  docsRouter,
+  homeRouter,
+  registryLifecycleRouter,
+  registryRouter,
+  registrySchemaRouter,
+  roadmapRouter,
+  urlToAppRoute,
+} from './route'
+import {
+  componentSearchBadges,
+  searchPublicComponents,
+} from './search/component-search'
+import {
+  fallbackRouteMetadata,
+  routeMetadataForRoute,
+} from './route-inventory'
 
-const Diet = S.Literals(['Carnivore', 'Herbivore', 'Omnivore'])
-const Period = S.Literals(['Triassic', 'Jurassic', 'Cretaceous'])
-const SortColumn = S.Literals(['Name', 'Period', 'Diet', 'Length', 'Weight'])
-type SortColumn = typeof SortColumn.Type
-
-export const Unsorted = ts('Unsorted')
-export const Ascending = ts('Ascending', { column: SortColumn })
-export const Descending = ts('Descending', { column: SortColumn })
-const Sorting = S.Union([Unsorted, Ascending, Descending])
-type Sorting = typeof Sorting.Type
-
-const dietFilterItems: readonly string[] = ['', ...Diet.literals]
-const periodFilterItems: readonly string[] = ['', ...Period.literals]
-
-// ROUTE
-
-const SORT_PARAM_SEPARATOR = ':'
-
-const optionFromValidParam = <A extends string>(schema: S.Codec<A, A>) => {
-  const decode = S.decodeUnknownOption(schema)
-
-  return S.OptionFromOptional(S.String).pipe(
-    S.decodeTo(
-      S.Option(schema),
-      SchemaTransformation.transform({
-        decode: (maybeRaw: Option.Option<string>): Option.Option<A> =>
-          Option.flatMap(maybeRaw, decode),
-        encode: (maybeValue: Option.Option<A>): Option.Option<string> =>
-          maybeValue,
-      }),
-    ),
-  )
+export {
+  ComponentDetailRoute,
+  ComponentsIndexRoute,
+  ComponentsNamespaceRoute,
+  DocsRoute,
+  HomeRoute,
+  NotFoundRoute,
+  RegistryLifecycleRoute,
+  RegistryRoute,
+  RegistrySchemaRoute,
+  RoadmapRoute,
+  componentDetailRouter,
+  componentsIndexRouter,
+  componentsNamespaceRouter,
+  docsRouter,
+  homeRouter,
+  registryLifecycleRouter,
+  registryRouter,
+  registrySchemaRouter,
+  roadmapRouter,
+  urlToAppRoute,
 }
-
-const SortDirection = S.Literals(['Ascending', 'Descending'])
-
-const sortingFromParam = (() => {
-  const decodeColumn = S.decodeUnknownOption(SortColumn)
-  const decodeDirection = S.decodeUnknownOption(SortDirection)
-
-  return S.OptionFromOptional(S.String).pipe(
-    S.decodeTo(
-      Sorting,
-      SchemaTransformation.transform({
-        decode: (maybeRaw: Option.Option<string>): Sorting =>
-          Option.match(maybeRaw, {
-            onNone: () => Unsorted(),
-            onSome: value => {
-              const parts = String.split(value, SORT_PARAM_SEPARATOR)
-
-              return pipe(
-                Option.all({
-                  column: pipe(
-                    parts,
-                    Array.get(0),
-                    Option.flatMap(decodeColumn),
-                  ),
-                  direction: pipe(
-                    parts,
-                    Array.get(1),
-                    Option.flatMap(decodeDirection),
-                  ),
-                }),
-                Option.map(({ column, direction }) =>
-                  M.value(direction).pipe(
-                    M.when('Ascending', () => Ascending({ column })),
-                    M.when('Descending', () => Descending({ column })),
-                    M.exhaustive,
-                  ),
-                ),
-                Option.getOrElse(() => Unsorted()),
-              )
-            },
-          }),
-        encode: (sorting): Option.Option<string> =>
-          M.value(sorting).pipe(
-            M.withReturnType<Option.Option<string>>(),
-            M.tagsExhaustive({
-              Unsorted: () => Option.none(),
-              Ascending: ({ column }) =>
-                Option.some(`${column}${SORT_PARAM_SEPARATOR}Ascending`),
-              Descending: ({ column }) =>
-                Option.some(`${column}${SORT_PARAM_SEPARATOR}Descending`),
-            }),
-          ),
-      }),
-    ),
-  )
-})()
-
-export const BrowseRoute = r('Browse', {
-  search: S.Option(S.String),
-  sorting: Sorting,
-  diet: S.Option(Diet),
-  period: S.Option(Period),
-})
-
-export const NotFoundRoute = r('NotFound', { path: S.String })
-
-const AppRoute = S.Union([BrowseRoute, NotFoundRoute])
-type AppRoute = typeof AppRoute.Type
-
-const browseRouter = pipe(
-  Route.root,
-  Route.query(
-    S.Struct({
-      search: S.OptionFromOptional(S.String),
-      sorting: sortingFromParam,
-      diet: optionFromValidParam(Diet),
-      period: optionFromValidParam(Period),
-    }),
-  ),
-  Route.mapTo(BrowseRoute),
-)
-
-const routeParser = Route.oneOf(browseRouter)
-const urlToAppRoute = Route.parseUrlWithFallback(routeParser, NotFoundRoute)
-
-const DietListbox = Listbox.create<string>()
-const PeriodListbox = Listbox.create<string>()
 
 // MODEL
 
+export const MobileNavigation = ts('MobileNavigation', { isOpen: S.Boolean })
+type MobileNavigation = typeof MobileNavigation.Type
+
+export const PagefindSearchResult = S.Struct({
+  url: S.String,
+  title: S.String,
+  excerpt: S.String,
+  section: S.String,
+})
+export type PagefindSearchResult = typeof PagefindSearchResult.Type
+
+export const IdlePagefindSearch = ts('IdlePagefindSearch')
+export const LoadingPagefindSearch = ts('LoadingPagefindSearch', {
+  results: S.Array(PagefindSearchResult),
+})
+export const LoadedPagefindSearch = ts('LoadedPagefindSearch', {
+  results: S.Array(PagefindSearchResult),
+})
+export const PagefindSearch = S.Union([
+  IdlePagefindSearch,
+  LoadingPagefindSearch,
+  LoadedPagefindSearch,
+])
+export type PagefindSearch = typeof PagefindSearch.Type
+
 export const Model = S.Struct({
   route: AppRoute,
-  dietListbox: Listbox.Model,
-  periodListbox: Listbox.Model,
+  data: DocsData,
+  mobileNavigation: MobileNavigation,
+  copiedSnippets: S.HashSet(S.String),
+  searchQuery: S.String,
+  pagefindSearch: PagefindSearch,
 })
 export type Model = typeof Model.Type
 
@@ -161,122 +134,55 @@ export type Model = typeof Model.Type
 
 export const CompletedNavigateInternal = m('CompletedNavigateInternal')
 export const CompletedLoadExternal = m('CompletedLoadExternal')
-export const CompletedReplaceUrl = m('CompletedReplaceUrl')
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
-export const ChangedSearchInput = m('ChangedSearchInput', { value: S.String })
-export const ClickedColumnHeader = m('ClickedColumnHeader', {
-  column: SortColumn,
+export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
+export const ClickedCopySnippet = m('ClickedCopySnippet', { text: S.String })
+export const SucceededCopySnippet = m('SucceededCopySnippet', {
+  text: S.String,
 })
-export const GotDietListboxMessage = m('GotDietListboxMessage', {
-  message: Listbox.Message,
+export const FailedCopySnippet = m('FailedCopySnippet')
+export const HidCopiedIndicator = m('HidCopiedIndicator', { text: S.String })
+export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
+export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', {
+  results: S.Array(PagefindSearchResult),
+  query: S.String,
 })
-export const GotPeriodListboxMessage = m('GotPeriodListboxMessage', {
-  message: Listbox.Message,
-})
+export const ClickedClearSearch = m('ClickedClearSearch')
 
 export const Message = S.Union([
   CompletedNavigateInternal,
   CompletedLoadExternal,
-  CompletedReplaceUrl,
   ClickedLink,
   ChangedUrl,
-  ChangedSearchInput,
-  ClickedColumnHeader,
-  GotDietListboxMessage,
-  GotPeriodListboxMessage,
+  ClickedToggleMobileNavigation,
+  ClickedCopySnippet,
+  SucceededCopySnippet,
+  FailedCopySnippet,
+  HidCopiedIndicator,
+  UpdatedSearchQuery,
+  ReceivedPagefindSearchResults,
+  ClickedClearSearch,
 ])
 export type Message = typeof Message.Type
 
 // INIT
 
-type BrowseFields = Omit<typeof BrowseRoute.Type, '_tag'>
-
-const emptyBrowseFields: BrowseFields = {
-  search: Option.none(),
-  sorting: Unsorted(),
-  diet: Option.none(),
-  period: Option.none(),
-}
-
-const routeToBrowseFields = (route: AppRoute): BrowseFields =>
-  M.value(route).pipe(
-    M.tag('Browse', route => route),
-    M.orElse(() => emptyBrowseFields),
-  )
-
 export const init: Runtime.RoutingApplicationInit<Model, Message> = (
   url: Url,
-) => {
-  const route = urlToAppRoute(url)
-  const fields = routeToBrowseFields(route)
-
-  return [
-    {
-      route,
-      dietListbox: Listbox.init({
-        id: 'diet-filter',
-        selectedItem: Option.getOrElse(fields.diet, () => ''),
-      }),
-      periodListbox: Listbox.init({
-        id: 'period-filter',
-        selectedItem: Option.getOrElse(fields.period, () => ''),
-      }),
-    },
-    [],
-  ]
-}
+) => [
+  {
+    route: urlToAppRoute(url),
+    data: docsData,
+    mobileNavigation: MobileNavigation({ isOpen: false }),
+    copiedSnippets: HashSet.empty(),
+    searchQuery: '',
+    pagefindSearch: IdlePagefindSearch(),
+  },
+  [],
+]
 
 // UPDATE
-
-const columnSortDirection = (
-  sorting: Sorting,
-  column: SortColumn,
-): Types.Tags<Sorting> => {
-  const isColumnSorted =
-    sorting._tag !== 'Unsorted' && sorting.column === column
-
-  if (isColumnSorted) {
-    return sorting._tag
-  }
-  return 'Unsorted'
-}
-
-const nextSorting = (sorting: Sorting, column: SortColumn): Sorting =>
-  pipe(
-    columnSortDirection(sorting, column),
-    M.value,
-    M.when('Unsorted', () => Ascending({ column })),
-    M.when('Ascending', () => Descending({ column })),
-    M.when('Descending', () => Unsorted()),
-    M.exhaustive,
-  )
-
-const selectionToParam = <A extends string>(
-  maybeSelectedItem: Option.Option<string>,
-  schema: S.Codec<A, A>,
-): Option.Option<A> => {
-  const decode = S.decodeUnknownOption(schema)
-
-  return pipe(
-    maybeSelectedItem,
-    Option.filter(String.isNonEmpty),
-    Option.flatMap(value => decode(value)),
-  )
-}
-
-export const ReplaceFilters = Command.define(
-  'ReplaceFilters',
-  {
-    search: S.Option(S.String),
-    sorting: Sorting,
-    diet: S.Option(Diet),
-    period: S.Option(Period),
-  },
-  CompletedReplaceUrl,
-)(fields =>
-  replaceUrl(browseRouter(fields)).pipe(Effect.as(CompletedReplaceUrl())),
-)
 
 const NavigateInternal = Command.define(
   'NavigateInternal',
@@ -290,8 +196,114 @@ const LoadExternal = Command.define(
   CompletedLoadExternal,
 )(({ href }) => load(href).pipe(Effect.as(CompletedLoadExternal())))
 
-type UpdateReturn = readonly [Model, readonly Command.Command<Message>[]]
+const MAX_PAGEFIND_RESULTS = 6
+const PAGEFIND_PATH = '/pagefind/pagefind.js'
+
+type PagefindResultData = Readonly<{
+  url: string
+  excerpt: string
+  meta?: Readonly<{ title?: string; section?: string }>
+}>
+
+type PagefindResult = Readonly<{
+  data: () => Promise<PagefindResultData>
+}>
+
+type PagefindResponse = Readonly<{
+  results: ReadonlyArray<PagefindResult>
+}>
+
+type PagefindModule = Readonly<{
+  search: (query: string) => Promise<PagefindResponse>
+}>
+
+const pagefindSearchResult = (
+  result: PagefindSearchResult,
+): PagefindSearchResult => result
+
+const importPagefind = (): Promise<PagefindModule> =>
+  import(/* @vite-ignore */ PAGEFIND_PATH)
+
+export const SearchPagefind = Command.define(
+  'SearchPagefind',
+  { query: S.String },
+  ReceivedPagefindSearchResults,
+)(({ query }) =>
+  Effect.gen(function* searchPagefindProgram() {
+    const pagefind = yield* Effect.tryPromise({
+      try: () => importPagefind(),
+      catch: () => new Error('Pagefind is not available.'),
+    })
+
+    const response = yield* Effect.tryPromise({
+      try: () => pagefind.search(query),
+      catch: () => new Error('Pagefind search failed.'),
+    })
+
+    const topResults = Array.take(response.results, MAX_PAGEFIND_RESULTS)
+    const loadedResults = yield* Effect.tryPromise({
+      try: () => Promise.all(topResults.map(result => result.data())),
+      catch: () => new Error('Pagefind result loading failed.'),
+    })
+
+    const results = Array.map(loadedResults, result =>
+      pagefindSearchResult({
+        url: result.url,
+        title: result.meta?.title ?? 'Untitled',
+        excerpt: result.excerpt,
+        section: result.meta?.section ?? 'Docs',
+      }),
+    )
+
+    return ReceivedPagefindSearchResults({ results, query })
+  }).pipe(
+    Effect.catch(() =>
+      Effect.succeed(ReceivedPagefindSearchResults({ results: [], query })),
+    ),
+  ),
+)
+
+export const CopySnippet = Command.define(
+  'CopySnippet',
+  { text: S.String },
+  SucceededCopySnippet,
+  FailedCopySnippet,
+)(({ text }) =>
+  Effect.tryPromise({
+    try: () => navigator.clipboard.writeText(text),
+    catch: () => new Error('Failed to copy to clipboard'),
+  }).pipe(
+    Effect.as(SucceededCopySnippet({ text })),
+    Effect.catch(() => Effect.succeed(FailedCopySnippet())),
+  ),
+)
+
+const COPY_INDICATOR_DURATION = '2 seconds'
+
+export const HideCopiedIndicator = Command.define(
+  'HideCopiedIndicator',
+  { text: S.String },
+  HidCopiedIndicator,
+)(({ text }) =>
+  Effect.sleep(COPY_INDICATOR_DURATION).pipe(
+    Effect.as(HidCopiedIndicator({ text })),
+  ),
+)
+
+type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 const withUpdateReturn = M.withReturnType<UpdateReturn>()
+
+const pagefindResultsFromState = (
+  state: PagefindSearch,
+): ReadonlyArray<PagefindSearchResult> =>
+  M.value(state).pipe(
+    M.withReturnType<ReadonlyArray<PagefindSearchResult>>(),
+    M.tagsExhaustive({
+      IdlePagefindSearch: () => [],
+      LoadingPagefindSearch: ({ results }) => results,
+      LoadedPagefindSearch: ({ results }) => results,
+    }),
+  )
 
 export const update = (model: Model, message: Message): UpdateReturn =>
   M.value(message).pipe(
@@ -299,8 +311,6 @@ export const update = (model: Model, message: Message): UpdateReturn =>
     M.tagsExhaustive({
       CompletedNavigateInternal: () => [model, []],
       CompletedLoadExternal: () => [model, []],
-      CompletedReplaceUrl: () => [model, []],
-
       ClickedLink: ({ request }) =>
         M.value(request).pipe(
           withUpdateReturn,
@@ -312,623 +322,1394 @@ export const update = (model: Model, message: Message): UpdateReturn =>
             External: ({ href }) => [model, [LoadExternal({ href })]],
           }),
         ),
+      ChangedUrl: ({ url }) => [
+        evo(model, {
+          route: () => urlToAppRoute(url),
+          mobileNavigation: () => MobileNavigation({ isOpen: false }),
+        }),
+        [],
+      ],
+      ClickedToggleMobileNavigation: () => [
+        evo(model, {
+          mobileNavigation: ({ isOpen }) =>
+            MobileNavigation({ isOpen: !isOpen }),
+        }),
+        [],
+      ],
+      ClickedCopySnippet: ({ text }) => [model, [CopySnippet({ text })]],
+      SucceededCopySnippet: ({ text }) =>
+        HashSet.has(model.copiedSnippets, text)
+          ? [model, []]
+          : [
+              evo(model, {
+                copiedSnippets: HashSet.add(text),
+              }),
+              [HideCopiedIndicator({ text })],
+            ],
+      FailedCopySnippet: () => [model, []],
+      HidCopiedIndicator: ({ text }) => [
+        evo(model, {
+          copiedSnippets: HashSet.remove(text),
+        }),
+        [],
+      ],
+      UpdatedSearchQuery: ({ value }) => {
+        if (value === model.searchQuery) {
+          return [model, []]
+        }
 
-      ChangedUrl: ({ url }) => {
-        const nextRoute = urlToAppRoute(url)
-        const fields = routeToBrowseFields(nextRoute)
+        if (EffectString.isEmpty(EffectString.trim(value))) {
+          return [
+            evo(model, {
+              searchQuery: () => value,
+              pagefindSearch: () => IdlePagefindSearch(),
+            }),
+            [],
+          ]
+        }
 
         return [
           evo(model, {
-            route: () => nextRoute,
-            dietListbox: DietListbox.reflectSelectedItem(
-              Option.orElse(fields.diet, () => Option.some('')),
-            ),
-            periodListbox: PeriodListbox.reflectSelectedItem(
-              Option.orElse(fields.period, () => Option.some('')),
-            ),
+            searchQuery: () => value,
+            pagefindSearch: () =>
+              LoadingPagefindSearch({
+                results: pagefindResultsFromState(model.pagefindSearch),
+              }),
           }),
-          [],
+          [SearchPagefind({ query: value })],
         ]
       },
-
-      ChangedSearchInput: ({ value }) => {
-        const fields = routeToBrowseFields(model.route)
-
-        return [
-          model,
-          [
-            ReplaceFilters({
-              ...fields,
-              search: Option.liftPredicate(value, String.isNonEmpty),
-            }),
-          ],
-        ]
-      },
-
-      ClickedColumnHeader: ({ column }) => {
-        const fields = routeToBrowseFields(model.route)
-
-        return [
-          model,
-          [
-            ReplaceFilters({
-              ...fields,
-              sorting: nextSorting(fields.sorting, column),
-            }),
-          ],
-        ]
-      },
-
-      GotDietListboxMessage: ({ message }) => {
-        const [nextDietListbox, listboxCommands, maybeOutMessage] =
-          DietListbox.update(model.dietListbox, message)
-        const mappedCommands = Command.mapMessages(listboxCommands, message =>
-          GotDietListboxMessage({ message }),
-        )
-
-        return Option.match(maybeOutMessage, {
-          onNone: (): UpdateReturn => [
-            evo(model, { dietListbox: () => nextDietListbox }),
-            mappedCommands,
-          ],
-          onSome: M.type<Listbox.OutMessage>().pipe(
-            M.withReturnType<UpdateReturn>(),
-            M.tagsExhaustive({
-              Selected: () => {
-                const fields = routeToBrowseFields(model.route)
-                return [
-                  evo(model, { dietListbox: () => nextDietListbox }),
-                  [
-                    ...mappedCommands,
-                    ReplaceFilters({
-                      ...fields,
-                      diet: selectionToParam(
-                        nextDietListbox.maybeSelectedItem,
-                        Diet,
-                      ),
-                    }),
-                  ],
-                ]
-              },
-            }),
-          ),
-        })
-      },
-
-      GotPeriodListboxMessage: ({ message }) => {
-        const [nextPeriodListbox, listboxCommands, maybeOutMessage] =
-          PeriodListbox.update(model.periodListbox, message)
-        const mappedCommands = Command.mapMessages(listboxCommands, message =>
-          GotPeriodListboxMessage({ message }),
-        )
-
-        return Option.match(maybeOutMessage, {
-          onNone: (): UpdateReturn => [
-            evo(model, { periodListbox: () => nextPeriodListbox }),
-            mappedCommands,
-          ],
-          onSome: M.type<Listbox.OutMessage>().pipe(
-            M.withReturnType<UpdateReturn>(),
-            M.tagsExhaustive({
-              Selected: () => {
-                const fields = routeToBrowseFields(model.route)
-                return [
-                  evo(model, { periodListbox: () => nextPeriodListbox }),
-                  [
-                    ...mappedCommands,
-                    ReplaceFilters({
-                      ...fields,
-                      period: selectionToParam(
-                        nextPeriodListbox.maybeSelectedItem,
-                        Period,
-                      ),
-                    }),
-                  ],
-                ]
-              },
-            }),
-          ),
-        })
-      },
+      ReceivedPagefindSearchResults: ({ results, query }) =>
+        query === model.searchQuery
+          ? [
+              evo(model, {
+                pagefindSearch: () => LoadedPagefindSearch({ results }),
+              }),
+              [],
+            ]
+          : [model, []],
+      ClickedClearSearch: () => [
+        evo(model, {
+          searchQuery: () => '',
+          pagefindSearch: () => IdlePagefindSearch(),
+        }),
+        [],
+      ],
     }),
   )
 
 // VIEW
 
-const columnOrders: Record<SortColumn, Order.Order<Dinosaur>> = {
-  Name: Order.mapInput(Order.String, ({ name }: Dinosaur) => name),
-  Period: Order.mapInput(Order.String, ({ period }: Dinosaur) => period),
-  Diet: Order.mapInput(Order.String, ({ diet }: Dinosaur) => diet),
-  Length: Order.mapInput(
-    Order.Number,
-    ({ lengthMeters }: Dinosaur) => lengthMeters,
-  ),
-  Weight: Order.mapInput(Order.Number, ({ weightKg }: Dinosaur) => weightKg),
-}
+type PrimaryNavSection =
+  | 'home'
+  | 'docs'
+  | 'components'
+  | 'registry'
+  | 'roadmap'
+  | 'not-found'
 
-const filterWhenSome =
-  <A, B>(
-    maybeValue: Option.Option<A>,
-    predicate: (value: A, item: B) => boolean,
-  ) =>
-    (items: readonly B[]): readonly B[] =>
-      Option.match(maybeValue, {
-        onNone: () => items,
-        onSome: value => items.filter(item => predicate(value, item)),
-      })
+const navLinks: ReadonlyArray<
+  Readonly<{
+    label: string
+    href: string
+    section: PrimaryNavSection
+  }>
+> = [
+  { label: 'Home', href: homeRouter({}), section: 'home' },
+  { label: 'Docs', href: docsRouter({}), section: 'docs' },
+  {
+    label: 'Components',
+    href: componentsIndexRouter({}),
+    section: 'components',
+  },
+  { label: 'Registry', href: registryRouter({}), section: 'registry' },
+  { label: 'Roadmap', href: roadmapRouter({}), section: 'roadmap' },
+]
 
-const sortBySorting =
-  <A>(sorting: Sorting, orders: Record<SortColumn, Order.Order<A>>) =>
-    (items: readonly A[]): readonly A[] =>
-      M.value(sorting).pipe(
-        M.tag('Unsorted', () => items),
-        M.tag('Ascending', ({ column }) => Array.sort(items, orders[column])),
-        M.tag('Descending', ({ column }) =>
-          Array.sort(items, Order.flip(orders[column])),
-        ),
-        M.exhaustive,
-      )
-
-const filterAndSort = (fields: BrowseFields): readonly Dinosaur[] =>
-  pipe(
-    dinosaurs,
-    filterWhenSome(fields.search, (query, dinosaur) =>
-      dinosaur.name.toLowerCase().includes(query.toLowerCase()),
-    ),
-    filterWhenSome(
-      fields.diet,
-      (dietValue, dinosaur) => dinosaur.diet === dietValue,
-    ),
-    filterWhenSome(
-      fields.period,
-      (periodValue, dinosaur) => dinosaur.period === periodValue,
-    ),
-    sortBySorting(fields.sorting, columnOrders),
-  )
-
-const sortIndicator = (column: SortColumn, sorting: Sorting): string =>
-  M.value(columnSortDirection(sorting, column)).pipe(
-    M.when('Unsorted', () => ''),
-    M.when('Ascending', () => '↑'),
-    M.when('Descending', () => '↓'),
-    M.exhaustive,
-  )
-
-const BADGE_BASE = 'px-2 py-0.5 rounded-full text-xs font-medium'
-
-const periodBadgeClass = (period: string): string =>
-  clsx(BADGE_BASE, {
-    'bg-amber-100 text-amber-800': period === 'Triassic',
-    'bg-sky-100 text-sky-800': period === 'Jurassic',
-    'bg-purple-100 text-purple-800': period === 'Cretaceous',
-  })
-
-const dietBadgeClass = (diet: string): string =>
-  clsx(BADGE_BASE, {
-    'bg-red-100 text-red-800': diet === 'Carnivore',
-    'bg-green-100 text-green-800': diet === 'Herbivore',
-    'bg-orange-100 text-orange-800': diet === 'Omnivore',
-  })
-
-const SORT_INDICATOR_WIDTH = 'w-4'
-
-const headerButtonClass =
-  'w-full px-4 py-3 text-sm font-semibold text-gray-700 cursor-pointer select-none hover:bg-gray-100 focus-visible:bg-emerald-100 focus-visible:text-emerald-900 focus-visible:outline-none transition'
-
-const bodyCellClass = 'px-4 py-3 text-sm text-gray-700'
-
-const dinosaurRowView = (dinosaur: Dinosaur): Html => {
-  const h = html<Message>()
-  return h.keyed('tr')(
-    dinosaur.name,
-    [h.Class('border-b border-gray-100 hover:bg-gray-50 transition')],
-    [
-      h.td(
-        [h.Class(clsx(bodyCellClass, 'font-medium text-gray-900'))],
-        [dinosaur.name],
-      ),
-      h.td(
-        [h.Class(bodyCellClass)],
-        [
-          h.span(
-            [h.Class(periodBadgeClass(dinosaur.period))],
-            [dinosaur.period],
-          ),
-        ],
-      ),
-      h.td(
-        [h.Class(bodyCellClass)],
-        [h.span([h.Class(dietBadgeClass(dinosaur.diet))], [dinosaur.diet])],
-      ),
-      h.td(
-        [h.Class(clsx(bodyCellClass, 'text-right tabular-nums'))],
-        [dinosaur.lengthMeters.toString()],
-      ),
-      h.td(
-        [h.Class(clsx(bodyCellClass, 'text-right tabular-nums'))],
-        [dinosaur.weightKg.toLocaleString()],
-      ),
-    ],
-  )
-}
-
-const sortAriaLabel = (column: SortColumn, sorting: Sorting): string =>
-  M.value(columnSortDirection(sorting, column)).pipe(
-    M.when('Unsorted', () => `Sort by ${column}`),
-    M.when('Ascending', () => `Sort by ${column}, currently ascending`),
-    M.when('Descending', () => `Sort by ${column}, currently descending`),
-    M.exhaustive,
-  )
-
-const ariaSortValue = (column: SortColumn, sorting: Sorting): string =>
-  M.value(columnSortDirection(sorting, column)).pipe(
-    M.when('Unsorted', () => 'none'),
-    M.when('Ascending', () => 'ascending'),
-    M.when('Descending', () => 'descending'),
-    M.exhaustive,
-  )
-
-const sortableColumnHeader = (
-  column: SortColumn,
-  displayLabel: string,
-  fields: BrowseFields,
-  isRightAligned: boolean,
-): Html => {
-  const h = html<Message>()
-
-  const indicator = h.span(
-    [h.Class(clsx(SORT_INDICATOR_WIDTH, 'inline-block text-center'))],
-    [sortIndicator(column, fields.sorting)],
-  )
-  const label = h.span([], [displayLabel])
-  const alignment = isRightAligned ? 'text-right' : 'text-left'
-
-  return h.th(
-    [h.AriaSort(ariaSortValue(column, fields.sorting))],
-    [
-      Button.view<Message>({
-        onClick: ClickedColumnHeader({ column }),
-        toView: attributes =>
-          h.button(
-            [
-              ...attributes.button,
-              h.AriaLabel(sortAriaLabel(column, fields.sorting)),
-              h.Class(clsx(headerButtonClass, alignment)),
-            ],
-            isRightAligned ? [indicator, label] : [label, indicator],
-          ),
-      }),
-    ],
-  )
-}
-
-const LISTBOX_ANCHOR: AnchorConfig = {
-  placement: 'bottom-start',
-  gap: 4,
-  padding: 8,
-}
-
-
-
-const listboxButtonClassName =
-  'inline-flex items-center justify-between gap-2 min-w-40 px-4 py-2 text-sm border border-gray-300 rounded-lg bg-white cursor-pointer select-none hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:border-emerald-500'
-
-const listboxItemsClassName =
-  'absolute mt-1 min-w-40 rounded-lg border border-gray-200 bg-white shadow-lg overflow-hidden z-10 outline-none'
-
-const listboxItemClassName =
-  'group px-3 py-2 text-sm text-gray-700 cursor-pointer data-[active]:bg-emerald-50 data-[active]:text-emerald-900'
-
-const listboxBackdropClassName = 'fixed inset-0 z-0'
-
-const listboxWrapperClassName = 'relative inline-block'
-
-const filterItemConfig = (label: string): Listbox.ItemConfig => {
-  const h = html<Message>()
-
-  return {
-    className: listboxItemClassName,
-    content: h.div(
-      [h.Class('flex items-center gap-2')],
-      [
-        h.span(
-          [
-            h.Class(
-              'w-4 text-center text-emerald-600 invisible group-data-[selected]:visible',
-            ),
-          ],
-          ['✓'],
-        ),
-        h.span([], [label]),
-      ],
-    ),
-  }
-}
-
-const chevronDown = (className: string): Html => {
-  const h = html<Message>()
-
-  return h.svg(
-    [
-      h.AriaHidden(true),
-      h.Class(className),
-      h.Xmlns('http://www.w3.org/2000/svg'),
-      h.Fill('none'),
-      h.ViewBox('0 0 24 24'),
-      h.StrokeWidth('1.5'),
-      h.Stroke('currentColor'),
-    ],
-    [
-      h.path(
-        [
-          h.StrokeLinecap('round'),
-          h.StrokeLinejoin('round'),
-          h.D('M19.5 8.25l-7.5 7.5-7.5-7.5'),
-        ],
-        [],
-      ),
-    ],
-  )
-}
-
-const filterButtonContent = (label: string): Html => {
-  const h = html<Message>()
-
-  return h.div(
-    [h.Class('flex w-full items-center justify-between gap-4')],
-    [h.span([], [label]), chevronDown('w-4 h-4 text-gray-400')],
-  )
-}
-
-const filterButtonLabel = (
-  maybeSelectedItem: Option.Option<string>,
-  fallback: string,
-): string =>
-  pipe(
-    maybeSelectedItem,
-    Option.filter(String.isNonEmpty),
-    Option.getOrElse(() => fallback),
-  )
-
-const dietLabel = (item: string): string =>
-  String.isEmpty(item) ? 'All Diets' : item
-
-const periodLabel = (item: string): string =>
-  String.isEmpty(item) ? 'All Periods' : item
-
-const browseView = (model: Model, route: typeof BrowseRoute.Type): Html => {
-  const h = html<Message>()
-
-  const fields = routeToBrowseFields(route)
-  const results = filterAndSort(fields)
-
-  return h.div(
-    [h.Class('max-w-6xl mx-auto px-4')],
-    [
-      h.h1(
-        [h.Class('text-3xl font-bold text-gray-800 mb-2')],
-        ['Dinosaur Explorer'],
-      ),
-      h.p(
-        [h.Class('text-gray-500 mb-6')],
-        [
-          'Filter, sort, and search. Every control syncs to the URL. Try changing the filters, then copy the URL or hit the back button.',
-        ],
-      ),
-
-      h.div(
-        [h.Class('flex flex-wrap items-start gap-3 mb-6')],
-        [
-          Input.view<Message>({
-            id: 'dinosaur-search',
-            value: Option.getOrElse(fields.search, () => ''),
-            placeholder: 'Search by name…',
-            onInput: value => ChangedSearchInput({ value }),
-            toView: attributes =>
-              h.input([
-                ...attributes.input,
-                h.Class(
-                  'flex-1 min-w-48 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
-                ),
-              ]),
-          }),
-          h.submodel({
-            slotId: model.dietListbox.id,
-            model: model.dietListbox,
-            view: DietListbox.view,
-            viewInputs: {
-              anchor: LISTBOX_ANCHOR,
-              items: dietFilterItems,
-              itemToConfig: item => filterItemConfig(dietLabel(item)),
-              itemToSearchText: dietLabel,
-              buttonContent: filterButtonContent(
-                filterButtonLabel(
-                  model.dietListbox.maybeSelectedItem,
-                  'All Diets',
-                ),
-              ),
-              buttonAttributes: childAttributes([
-                h.Class(listboxButtonClassName),
-              ]),
-              itemsAttributes: childAttributes([
-                h.Class(listboxItemsClassName),
-              ]),
-              backdropAttributes: childAttributes([
-                h.Class(listboxBackdropClassName),
-              ]),
-              attributes: childAttributes([h.Class(listboxWrapperClassName)]),
-            },
-            toParentMessage: message => GotDietListboxMessage({ message }),
-          }),
-          h.submodel({
-            slotId: model.periodListbox.id,
-            model: model.periodListbox,
-            view: PeriodListbox.view,
-            viewInputs: {
-              anchor: LISTBOX_ANCHOR,
-              items: periodFilterItems,
-              itemToConfig: item => filterItemConfig(periodLabel(item)),
-              itemToSearchText: periodLabel,
-              buttonContent: filterButtonContent(
-                filterButtonLabel(
-                  model.periodListbox.maybeSelectedItem,
-                  'All Periods',
-                ),
-              ),
-              buttonAttributes: childAttributes([
-                h.Class(listboxButtonClassName),
-              ]),
-              itemsAttributes: childAttributes([
-                h.Class(listboxItemsClassName),
-              ]),
-              backdropAttributes: childAttributes([
-                h.Class(listboxBackdropClassName),
-              ]),
-              attributes: childAttributes([h.Class(listboxWrapperClassName)]),
-            },
-            toParentMessage: message => GotPeriodListboxMessage({ message }),
-          }),
-        ],
-      ),
-
-      h.p(
-        [h.Class('text-sm text-gray-500 mb-3')],
-        [
-          `Showing ${Array.length(results)} of ${Array.length(dinosaurs)} dinosaurs`,
-        ],
-      ),
-
-      Array.match(results, {
-        onEmpty: () =>
-          h.div(
-            [h.Class('text-center py-12 text-gray-400')],
-            [
-              h.p([h.Class('text-lg')], ['No dinosaurs match your filters.']),
-              h.p(
-                [h.Class('text-sm mt-2')],
-                ['Try broadening your search or removing filters.'],
-              ),
-            ],
-          ),
-        onNonEmpty: rows =>
-          h.div(
-            [h.Class('overflow-x-auto rounded-lg border border-gray-200')],
-            [
-              h.table(
-                [h.Class('w-full')],
-                [
-                  h.thead(
-                    [h.Class('bg-gray-50 border-b border-gray-200')],
-                    [
-                      h.tr(
-                        [],
-                        [
-                          sortableColumnHeader('Name', 'Name', fields, false),
-                          sortableColumnHeader(
-                            'Period',
-                            'Period',
-                            fields,
-                            false,
-                          ),
-                          sortableColumnHeader('Diet', 'Diet', fields, false),
-                          sortableColumnHeader(
-                            'Length',
-                            'Length (m)',
-                            fields,
-                            true,
-                          ),
-                          sortableColumnHeader(
-                            'Weight',
-                            'Weight (kg)',
-                            fields,
-                            true,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  h.tbody([], rows.map(dinosaurRowView)),
-                ],
-              ),
-            ],
-          ),
-      }),
-
-      h.p(
-        [h.Class('text-xs text-gray-400 mt-6 text-center')],
-        [
-          'All filter and sort state lives in the URL. Share it or bookmark it.',
-        ],
-      ),
-    ],
-  )
-}
-
-const notFoundView = (path: string): Html => {
-  const h = html<Message>()
-
-  return h.div(
-    [h.Class('max-w-4xl mx-auto px-4 text-center')],
-    [
-      h.h1(
-        [h.Class('text-4xl font-bold text-red-600 mb-6')],
-        ['404 — Page Not Found'],
-      ),
-      h.p(
-        [h.Class('text-lg text-gray-600 mb-4')],
-        [`The path "${path}" was not found.`],
-      ),
-      h.a(
-        [
-          h.Href(browseRouter(emptyBrowseFields)),
-          h.Class('text-emerald-600 hover:underline'),
-        ],
-        ['← Back to Dinosaur Explorer'],
-      ),
-    ],
-  )
-}
-
-const routeTitle = (route: Model['route']): string =>
+const primaryNavSection = (route: AppRoute): PrimaryNavSection =>
   M.value(route).pipe(
-    M.tag('Browse', () => 'Dinosaur Explorer'),
-    M.orElse(() => 'Not Found | Dinosaur Explorer'),
-  )
-
-export const view = (model: Model): Document => {
-  const h = html<Message>()
-
-  const routeContent = M.value(model.route).pipe(
+    M.withReturnType<PrimaryNavSection>(),
     M.tagsExhaustive({
-      Browse: route => browseView(model, route),
-      NotFound: ({ path }) => notFoundView(path),
+      Home: () => 'home',
+      Docs: () => 'docs',
+      ComponentsIndex: () => 'components',
+      ComponentsNamespace: () => 'components',
+      ComponentDetail: () => 'components',
+      Registry: () => 'registry',
+      RegistrySchema: () => 'registry',
+      RegistryLifecycle: () => 'registry',
+      Roadmap: () => 'roadmap',
+      NotFound: () => 'not-found',
     }),
   )
 
-  const body = h.div(
-    [h.Class('min-h-screen bg-gray-50')],
+const statusText = (value: string): string => value.replaceAll('-', ' ')
+
+const statusBadgeView = (value: string): Html => {
+  const h = html<Message>()
+
+  return h.span([h.Class(`status-badge status-${value}`)], [
+    statusText(value),
+  ])
+}
+
+const navLinkView = (
+  label: string,
+  href: string,
+  isActive: boolean,
+): Html => {
+  const h = html<Message>()
+
+  return h.a(
     [
-      h.header(
-        [h.Class('bg-emerald-600 text-white px-6 py-4 mb-8 shadow-sm')],
-        [
-          h.div(
-            [h.Class('max-w-6xl mx-auto flex items-center gap-3')],
-            [
-              h.span([h.Class('text-lg font-semibold')], ['foldkit']),
-              h.span(
-                [h.Class('text-emerald-200 text-sm')],
-                ['query-sync example'],
-              ),
-            ],
+      h.Class(isActive ? 'docs-nav-link active' : 'docs-nav-link'),
+      h.Href(href),
+      ...(isActive ? [h.AriaCurrent('page')] : []),
+    ],
+    [label],
+  )
+}
+
+const headerView = (model: Model): Html => {
+  const h = html<Message>()
+  const activeSection = primaryNavSection(model.route)
+
+  return h.header(
+    [h.Class('site-header'), h.DataAttribute('pagefind-ignore', '')],
+    [
+      h.a([h.Class('brand-link'), h.Href(homeRouter({}))], [
+        h.span([h.Class('brand-mark'), h.AriaHidden(true)], ['F']),
+        h.span([h.Class('brand-wordmark')], ['Foldkit']),
+        h.span([h.Class('brand-cn')], ['CN']),
+      ]),
+      h.nav([h.Class('desktop-nav'), h.AriaLabel('Primary')], [
+        ...navLinks.map(link =>
+          navLinkView(
+            link.label,
+            link.href,
+            link.section === activeSection,
           ),
+        ),
+      ]),
+      h.button(
+        [
+          h.Type('button'),
+          h.Class('mobile-nav-toggle'),
+          h.AriaLabel('Toggle navigation'),
+          h.AriaExpanded(model.mobileNavigation.isOpen),
+          h.OnClick(ClickedToggleMobileNavigation()),
         ],
-      ),
-      h.main(
-        [h.Class('pb-12')],
-        [h.keyed('div')(model.route._tag, [], [routeContent])],
+        ['Menu'],
       ),
     ],
   )
-
-  return { title: routeTitle(model.route), body }
 }
+
+const mobileNavigationView = (model: Model): Html => {
+  const h = html<Message>()
+  const activeSection = primaryNavSection(model.route)
+
+  return h.keyed('nav')(
+    model.mobileNavigation.isOpen ? 'mobile-open' : 'mobile-closed',
+    [
+      h.Class(
+        model.mobileNavigation.isOpen
+          ? 'mobile-nav mobile-nav-open'
+          : 'mobile-nav',
+      ),
+      h.AriaLabel('Mobile'),
+      h.DataAttribute('pagefind-ignore', ''),
+    ],
+    navLinks.map(link =>
+      navLinkView(link.label, link.href, link.section === activeSection),
+    ),
+  )
+}
+
+const componentSlug = (component: PublicComponent): string =>
+  component.entry.item.id.split('/')[1] ?? ''
+
+const componentHref = (component: PublicComponent): string =>
+  componentDetailRouter({
+    namespace: component.entry.item.namespace,
+    slug: componentSlug(component),
+  })
+
+const isComponentsIndexRoute = (route: AppRoute): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => true,
+      ComponentsNamespace: () => false,
+      ComponentDetail: () => false,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const isComponentNamespaceActive = (
+  route: AppRoute,
+  namespace: string,
+): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => false,
+      ComponentsNamespace: route => route.namespace === namespace,
+      ComponentDetail: route => route.namespace === namespace,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const isComponentLinkActive = (
+  route: AppRoute,
+  component: PublicComponent,
+): boolean =>
+  M.value(route).pipe(
+    M.withReturnType<boolean>(),
+    M.tagsExhaustive({
+      Home: () => false,
+      Docs: () => false,
+      ComponentsIndex: () => false,
+      ComponentsNamespace: () => false,
+      ComponentDetail: ({ namespace, slug }) =>
+        component.entry.item.id === `${namespace}/${slug}`,
+      Registry: () => false,
+      RegistrySchema: () => false,
+      RegistryLifecycle: () => false,
+      Roadmap: () => false,
+      NotFound: () => false,
+    }),
+  )
+
+const searchResultView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('search-result')], [
+    h.a([h.Href(componentHref(component))], [
+      h.span([h.Class('search-result-title')], [component.entry.item.name]),
+      h.code([], [component.entry.item.id]),
+    ]),
+    h.div(
+      [h.Class('badge-row')],
+      componentSearchBadges(component).map(statusBadgeView),
+    ),
+  ])
+}
+
+const htmlTagPattern = /<[^>]+>/gu
+
+const pagefindExcerptText = (excerpt: string): string =>
+  excerpt.replaceAll(htmlTagPattern, '')
+
+const pagefindSearchResultView = (result: PagefindSearchResult): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('search-result')], [
+    h.a([h.Href(result.url)], [
+      h.span([h.Class('search-result-title')], [result.title]),
+      h.code([], [result.url]),
+    ]),
+    h.p([h.Class('search-excerpt')], [pagefindExcerptText(result.excerpt)]),
+  ])
+}
+
+const searchResultsGroupView = (
+  label: string,
+  results: Html,
+): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Class('search-results-group')], [
+    h.h3([h.Class('search-results-heading')], [label]),
+    results,
+  ])
+}
+
+const componentSearchResultsView = (
+  results: ReadonlyArray<PublicComponent>,
+): Html => {
+  const h = html<Message>()
+
+  return Array.match(results, {
+    onEmpty: () => h.empty,
+    onNonEmpty: matches =>
+      searchResultsGroupView(
+        'Components',
+        h.ul([h.Class('search-results'), h.AriaLabel('Component search results')], [
+          ...matches.map(searchResultView),
+        ]),
+      ),
+  })
+}
+
+const pagefindSearchResultsView = (state: PagefindSearch): Html => {
+  const h = html<Message>()
+
+  return M.value(state).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      IdlePagefindSearch: () => h.empty,
+      LoadingPagefindSearch: ({ results }) =>
+        Array.match(results, {
+          onEmpty: () =>
+            h.p([h.Class('search-empty'), h.Role('status')], [
+              'Searching documentation...',
+            ]),
+          onNonEmpty: matches =>
+            searchResultsGroupView(
+              'Documentation',
+              h.ul(
+                [
+                  h.Class('search-results'),
+                  h.AriaLabel('Full-text search results'),
+                ],
+                [...matches.map(pagefindSearchResultView)],
+              ),
+            ),
+        }),
+      LoadedPagefindSearch: ({ results }) =>
+        Array.match(results, {
+          onEmpty: () => h.empty,
+          onNonEmpty: matches =>
+            searchResultsGroupView(
+              'Documentation',
+              h.ul(
+                [
+                  h.Class('search-results'),
+                  h.AriaLabel('Full-text search results'),
+                ],
+                [...matches.map(pagefindSearchResultView)],
+              ),
+            ),
+        }),
+    }),
+  )
+}
+
+const searchResultsView = (
+  query: string,
+  componentResults: ReadonlyArray<PublicComponent>,
+  pagefindSearch: PagefindSearch,
+): Html => {
+  const h = html<Message>()
+  const fullTextResults = pagefindResultsFromState(pagefindSearch)
+  const isLoading = pagefindSearch._tag === 'LoadingPagefindSearch'
+  const hasNoComponentResults = Array.match(componentResults, {
+    onEmpty: () => true,
+    onNonEmpty: () => false,
+  })
+  const hasNoFullTextResults = Array.match(fullTextResults, {
+    onEmpty: () => true,
+    onNonEmpty: () => false,
+  })
+
+  if (EffectString.isEmpty(EffectString.trim(query))) {
+    return h.empty
+  }
+
+  if (
+    hasNoComponentResults &&
+    hasNoFullTextResults &&
+    !isLoading
+  ) {
+    return h.p([h.Class('search-empty'), h.Role('status')], [
+      'No public docs match that search.',
+    ])
+  }
+
+  return h.div([h.Class('search-results-stack')], [
+    componentSearchResultsView(componentResults),
+    pagefindSearchResultsView(pagefindSearch),
+  ])
+}
+
+const componentSearchView = (model: Model): Html => {
+  const h = html<Message>()
+  const results = searchPublicComponents(
+    publicComponents(model.data),
+    model.searchQuery,
+  )
+  const isClearDisabled = EffectString.isEmpty(
+    EffectString.trim(model.searchQuery),
+  )
+
+  return h.div(
+    [
+      h.Class('component-search'),
+      h.Role('search'),
+      h.AriaLabel('Documentation search'),
+    ],
+    [
+      h.label([h.For('component-search-input'), h.Class('search-label')], [
+        'Search documentation',
+      ]),
+      h.div([h.Class('search-control')], [
+        h.input([
+          h.Id('component-search-input'),
+          h.Type('search'),
+          h.Placeholder('Search components and docs'),
+          h.Value(model.searchQuery),
+          h.OnInput(value => UpdatedSearchQuery({ value })),
+        ]),
+        h.button(
+          [
+            h.Type('button'),
+            h.Class('search-clear-button'),
+            h.AriaLabel('Clear component search'),
+            h.Disabled(isClearDisabled),
+            h.OnClick(ClickedClearSearch()),
+          ],
+          ['Clear'],
+        ),
+      ]),
+      searchResultsView(model.searchQuery, results, model.pagefindSearch),
+    ],
+  )
+}
+
+const sidebarView = (
+  model: Model,
+  groups: ReadonlyArray<NamespaceGroup>,
+): Html => {
+  const h = html<Message>()
+
+  return h.aside(
+    [h.Class('docs-sidebar'), h.DataAttribute('pagefind-ignore', '')],
+    [
+      componentSearchView(model),
+      h.nav([h.AriaLabel('Component navigation')], [
+        h.a(
+          [
+            h.Class(
+              isComponentsIndexRoute(model.route)
+                ? 'sidebar-root-link active'
+                : 'sidebar-root-link',
+            ),
+            h.Href(componentsIndexRouter({})),
+            ...(isComponentsIndexRoute(model.route)
+              ? [h.AriaCurrent('page')]
+              : []),
+          ],
+          ['All components'],
+        ),
+        ...groups.map(group =>
+          h.section([h.Class('sidebar-group')], [
+            h.h2([h.Class('sidebar-heading')], [
+              h.a(
+                [
+                  h.Href(
+                    componentsNamespaceRouter({ namespace: group.namespace }),
+                  ),
+                  ...(isComponentNamespaceActive(model.route, group.namespace)
+                    ? [h.Class('active')]
+                    : []),
+                ],
+                [group.label],
+              ),
+            ]),
+            h.ul(
+              [h.Class('sidebar-list')],
+              group.components.map(component =>
+                h.keyed('li')(
+                  component.entry.item.id,
+                  [],
+                  [
+                    h.a(
+                      [
+                        h.Href(componentHref(component)),
+                        h.AriaLabel(
+                          `${component.entry.item.name} (${component.entry.item.id})`,
+                        ),
+                        ...(isComponentLinkActive(model.route, component)
+                          ? [h.Class('active'), h.AriaCurrent('page')]
+                          : []),
+                      ],
+                      [
+                        h.span([], [component.entry.item.name]),
+                        component.entry.item.lifecycle.availability === 'preview'
+                          ? statusBadgeView('preview')
+                          : h.empty,
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ]),
+        ),
+      ]),
+    ],
+  )
+}
+
+const tableOfContentsView = (): Html => {
+  const h = html<Message>()
+
+  return h.aside(
+    [
+      h.Class('docs-toc'),
+      h.AriaLabel('On this page'),
+      h.DataAttribute('pagefind-ignore', ''),
+    ],
+    [
+      h.p([h.Class('toc-heading')], ['On this page']),
+      h.a([h.Href('#overview')], ['Overview']),
+      h.a([h.Href('#installation')], ['Installation']),
+      h.a([h.Href('#usage')], ['Usage']),
+      h.a([h.Href('#examples')], ['Examples']),
+      h.a([h.Href('#api')], ['API']),
+      h.a([h.Href('#accessibility')], ['Accessibility']),
+      h.a([h.Href('#quality')], ['Quality']),
+      h.a([h.Href('#source')], ['Source']),
+      h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
+    ],
+  )
+}
+
+const shellView = (model: Model, content: Html): Html => {
+  const h = html<Message>()
+  const groups = namespaceGroups(model.data)
+
+  return h.div([h.Class('app-shell')], [
+    headerView(model),
+    mobileNavigationView(model),
+    h.div([h.Class('docs-layout')], [
+      sidebarView(model, groups),
+      h.main(
+        [
+          h.Id('main-content'),
+          h.Class('docs-main'),
+          h.DataAttribute('pagefind-body', ''),
+        ],
+        [
+          h.keyed('div')(
+            model.route._tag,
+            [h.Class('route-frame')],
+            [content],
+          ),
+        ],
+      ),
+      tableOfContentsView(),
+    ]),
+  ])
+}
+
+const dataNoticeView = (data: DocsData): Html => {
+  const h = html<Message>()
+
+  return M.value(data).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      LoadedDocsData: () =>
+        h.p([h.Class('eyebrow')], [
+          `${generatedComponentCount(data)} public component docs artifacts generated`,
+        ]),
+      FailedDocsData: ({ message }) =>
+        h.p([h.Class('data-error'), h.Role('status')], [
+          `Generated registry artifacts could not be loaded: ${message}`,
+        ]),
+    }),
+  )
+}
+
+const pageHeaderView = (
+  eyebrow: string,
+  title: string,
+  summary: string,
+): Html => {
+  const h = html<Message>()
+
+  return h.header([h.Class('page-header')], [
+    h.p(
+      [h.Class('eyebrow'), h.DataAttribute('pagefind-meta', 'section')],
+      [eyebrow],
+    ),
+    h.h1([h.Id('overview')], [title]),
+    h.p([h.Class('lede')], [summary]),
+  ])
+}
+
+const homePageView = (model: Model): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Registry documentation',
+      'Foldkit CN',
+      'A Foldkit-native front door for installable component registry artifacts.',
+    ),
+    dataNoticeView(model.data),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['What is here now']),
+      h.p([], [
+        'The shell reads generated registry outputs, separates public components by namespace, and gives Registry and Roadmap pages stable URLs for the next documentation passes.',
+      ]),
+      h.div([h.Class('action-row')], [
+        h.a([h.Class('action-link'), h.Href(componentsIndexRouter({}))], [
+          'Browse components',
+        ]),
+        h.a([h.Class('action-link'), h.Href(registryRouter({}))], [
+          'Inspect registry',
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+const docsPageView = (): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Docs',
+      'Documentation overview',
+      'The docs site starts with generated registry data, then layers authored guidance onto each artifact.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Start points']),
+      h.ul([h.Class('link-list')], [
+        h.li([], [
+          h.a([h.Href(componentsIndexRouter({}))], ['Components']),
+          ' lists installable and preview component rows.',
+        ]),
+        h.li([], [
+          h.a([h.Href(registrySchemaRouter({}))], ['Registry Schema']),
+          ' names the generated artifact boundary.',
+        ]),
+        h.li([], [
+          h.a([h.Href(registryLifecycleRouter({}))], ['Registry Lifecycle']),
+          ' explains availability, parity, drift, and docs readiness.',
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+const componentSummaryView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.keyed('article')(
+    component.entry.item.id,
+    [h.Class('component-row')],
+    [
+      h.div([], [
+        h.h3([], [
+          h.a(
+            [
+              h.Href(
+                componentDetailRouter({
+                  namespace: component.entry.item.namespace,
+                  slug: component.entry.item.id.split('/')[1] ?? '',
+                }),
+              ),
+            ],
+            [component.entry.item.name],
+          ),
+        ]),
+        h.p([], [component.entry.item.description]),
+      ]),
+      h.dl([h.Class('meta-list')], [
+        h.div([], [
+          h.dt([], ['Availability']),
+          h.dd([], [component.entry.item.lifecycle.availability]),
+        ]),
+        h.div([], [
+          h.dt([], ['Docs']),
+          h.dd([], [component.entry.item.lifecycle.docsStatus]),
+        ]),
+      ]),
+    ],
+  )
+}
+
+const componentsIndexPageView = (model: Model): Html => {
+  const h = html<Message>()
+  const groups = namespaceGroups(model.data)
+
+  return h.article([], [
+    pageHeaderView(
+      'Components',
+      'Components',
+      'Installable and preview components from the generated registry and docs indexes.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Namespaces']),
+      ...groups.map(group =>
+        h.section([h.Class('namespace-section')], [
+          h.h3([], [
+            h.a(
+              [
+                h.Href(
+                  componentsNamespaceRouter({ namespace: group.namespace }),
+                ),
+              ],
+              [group.label],
+            ),
+          ]),
+          ...group.components.map(componentSummaryView),
+        ]),
+      ),
+    ]),
+  ])
+}
+
+const componentsNamespacePageView = (
+  model: Model,
+  namespace: string,
+): Html => {
+  const h = html<Message>()
+  const maybeGroup = pipe(
+    namespaceGroups(model.data),
+    Array.findFirst(group => group.namespace === namespace),
+  )
+
+  return Option.match(maybeGroup, {
+    onNone: () =>
+      notFoundPageView(
+        NotFoundRoute({ path: componentsNamespaceRouter({ namespace }) }),
+      ),
+    onSome: group =>
+      h.article([], [
+        pageHeaderView(
+          'Components',
+          `${group.label} components`,
+          'Public component rows for this registry namespace.',
+        ),
+        h.section([h.Id('status'), h.Class('content-section')], [
+          h.h2([], ['Generated entries']),
+          ...group.components.map(componentSummaryView),
+        ]),
+      ]),
+  })
+}
+
+const installCommandFor = (itemId: string): string =>
+  `bunx foldkitcn add ${itemId}`
+
+const physicalInstallPathFor = (itemId: string): string =>
+  `src/components/foldkitcn/${itemId}.ts`
+
+const aliasImportPathFor = (itemId: string): string =>
+  `@/components/foldkitcn/${itemId}`
+
+const importSnippetFor = (component: PublicComponent): string =>
+  `import { ${component.entry.item.name} } from '${aliasImportPathFor(
+    component.entry.item.id,
+  )}'`
+
+const snippetBlockView = (
+  text: string,
+  ariaLabel: string,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
+  const h = html<Message>()
+  const isCopied = HashSet.has(copiedSnippets, text)
+
+  return h.div([h.Class('snippet-block')], [
+    h.pre(
+      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
+      [h.code([], [text])],
+    ),
+    h.button(
+      [
+        h.Type('button'),
+        h.Class('copy-button'),
+        h.AriaLabel(ariaLabel),
+        h.OnClick(ClickedCopySnippet({ text })),
+      ],
+      [h.span([h.AriaHidden(true)], ['Copy'])],
+    ),
+    h.span(
+      [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
+      [isCopied ? 'Copied to clipboard' : ''],
+    ),
+  ])
+}
+
+const dependenciesPanelView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return Option.match(component.maybeDocsArtifact, {
+    onNone: () => h.empty,
+    onSome: artifact => {
+      const registryDependencies =
+        artifact.dependencies?.registry ?? component.entry.item.dependencies.registry
+
+      return Array.match(registryDependencies, {
+        onEmpty: () => h.empty,
+        onNonEmpty: dependencies =>
+          h.aside([h.Class('relationship-panel'), h.AriaLabel('Composes')], [
+            h.h2([], ['Composes']),
+            h.ul(
+              [h.Class('compact-list')],
+              dependencies.map(dependency =>
+                h.li([], [h.code([], [dependency.target])]),
+              ),
+            ),
+          ]),
+      })
+    },
+  })
+}
+
+const installationSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
+  const h = html<Message>()
+  const availability = component.entry.item.lifecycle.availability
+
+  return h.section([h.Id('installation'), h.Class('content-section')], [
+    h.h2([], ['Installation']),
+    M.value(availability).pipe(
+      M.withReturnType<Html>(),
+      M.when('installable', () =>
+        h.div([], [
+          h.p([], [
+            'Install the component into your app, then import it from the generated local namespace.',
+          ]),
+          snippetBlockView(
+            installCommandFor(component.entry.item.id),
+            `Copy ${component.entry.item.name} install command`,
+            copiedSnippets,
+          ),
+        ]),
+      ),
+      M.when('preview', () =>
+        h.p([], [
+          'This component is in preview. The public install command is not enabled for this row yet.',
+        ]),
+      ),
+      M.when('private', () =>
+        h.p([], [
+          'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
+        ]),
+      ),
+      M.orElse(() =>
+        h.p([], [
+          'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
+        ]),
+      ),
+    ),
+  ])
+}
+
+const usageSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('usage'), h.Class('content-section')], [
+    h.h2([], ['Usage']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], ['Usage guidance is waiting for the generated docs artifact.']),
+      onSome: artifact =>
+        h.div([], [
+          h.p([], [
+            'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
+          ]),
+          snippetBlockView(
+            importSnippetFor(component),
+            `Copy ${component.entry.item.name} import snippet`,
+            copiedSnippets,
+          ),
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Default physical path']),
+              h.dd([], [physicalInstallPathFor(artifact.itemId)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Default alias']),
+              h.dd([], [aliasImportPathFor(artifact.itemId)]),
+            ]),
+          ]),
+        ]),
+    }),
+  ])
+}
+
+const examplesSectionView = (
+  component: PublicComponent,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
+  const h = html<Message>()
+  const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
+    Option.match(liveExampleViewFor(example), {
+      onNone: () => h.empty,
+      onSome: exampleView =>
+        h.div(
+          [
+            h.Class('live-example-preview'),
+            h.AriaLabel(`${example.title} live preview`),
+          ],
+          [exampleView()],
+        ),
+    })
+
+  return h.section([h.Id('examples'), h.Class('content-section')], [
+    h.h2([], ['Examples']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () => h.p([], ['Example metadata is not loaded.']),
+      onSome: artifact =>
+        h.div(
+          [h.Class('example-list')],
+          artifact.examples.map(example =>
+            h.article([h.Class('example-card')], [
+              h.div([h.Class('example-card-header')], [
+                h.div([], [
+                  h.h3([], [example.title]),
+                  h.p([], [example.description]),
+                ]),
+                statusBadgeView(example.previewStatus),
+              ]),
+              liveExamplePreviewView(example),
+              snippetBlockView(
+                example.snippet,
+                `Copy ${example.title} example snippet`,
+                copiedSnippets,
+              ),
+            ]),
+          ),
+        ),
+    }),
+  ])
+}
+
+const apiSectionView = (): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('api'), h.Class('content-section')], [
+    h.h2([], ['API']),
+    h.p([], [
+      'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
+    ]),
+  ])
+}
+
+const accessibilitySectionView = (): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('accessibility'), h.Class('content-section')], [
+    h.h2([], ['Accessibility']),
+    h.p([], [
+      'Use Button for actions, provide clear visible text or an accessible label for icon-only buttons, and keep navigation or side effects in Foldkit messages and commands.',
+    ]),
+  ])
+}
+
+const qualitySectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('quality'), h.Class('content-section')], [
+    h.h2([], ['Quality']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], ['Quality metadata is waiting for the generated docs artifact.']),
+      onSome: artifact =>
+        h.div([], [
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Availability']),
+              h.dd([], [statusText(artifact.quality.availability)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Implementation']),
+              h.dd([], [statusText(artifact.quality.implementationStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Parity']),
+              h.dd([], [statusText(artifact.quality.parityStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Drift']),
+              h.dd([], [statusText(artifact.quality.driftStatus)]),
+            ]),
+            h.div([], [
+              h.dt([], ['Origin']),
+              h.dd([], [
+                Option.match(
+                  Array.head(
+                    artifact.originProvenance,
+                  ),
+                  {
+                  onNone: () => 'local registry source',
+                  onSome: origin => origin.originName,
+                  },
+                ),
+              ]),
+            ]),
+          ]),
+          h.h3([], ['Accepted deviations']),
+          h.ul(
+            [h.Class('compact-list')],
+            artifact.quality.deviations.map(deviation =>
+              h.li([], [
+                h.strong([], [statusText(deviation.status)]),
+                ` - ${deviation.summary}`,
+              ]),
+            ),
+          ),
+        ]),
+    }),
+  ])
+}
+
+const sourceSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section([h.Id('source'), h.Class('content-section')], [
+    h.h2([], ['Source']),
+    Option.match(component.maybeDocsArtifact, {
+      onNone: () =>
+        h.p([], [`Generated artifact: ${component.docsRoute.docsArtifactPath}`]),
+      onSome: artifact =>
+        h.div([], [
+          h.dl([h.Class('meta-list wide')], [
+            h.div([], [
+              h.dt([], ['Docs artifact']),
+              h.dd([], [component.docsRoute.docsArtifactPath]),
+            ]),
+            h.div([], [
+              h.dt([], ['Sidecar']),
+              h.dd(
+                [],
+                [
+                  Option.match(artifact.markdownPath, {
+                    onNone: () => 'missing',
+                    onSome: path => path,
+                  }),
+                ],
+              ),
+            ]),
+            h.div([], [
+              h.dt([], ['Source root']),
+              h.dd([], [artifact.sourceRoot]),
+            ]),
+          ]),
+          h.ul(
+            [h.Class('compact-list')],
+            artifact.installableSourcePaths.map(sourcePath =>
+              h.li([], [h.code([], [sourcePath])]),
+            ),
+          ),
+        ]),
+    }),
+  ])
+}
+
+const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.section(
+    [h.Id('foldkit-differences'), h.Class('content-section')],
+    [
+      h.h2([], ['Foldkit Differences']),
+      h.p([], [
+        'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
+      ]),
+      Option.match(component.maybeDocsArtifact, {
+        onNone: () => h.empty,
+        onSome: artifact => {
+          const developmentDependencies =
+            artifact.dependencies.development
+
+          return h.ul(
+            [h.Class('compact-list')],
+            developmentDependencies.map(dependency =>
+              h.li([], [
+                h.code([], [dependency.specifier]),
+                `: ${dependency.reason}`,
+              ]),
+            ),
+          )
+        },
+      }),
+    ],
+  )
+}
+
+const componentDetailPageView = (
+  model: Model,
+  namespace: string,
+  slug: string,
+): Html => {
+  const h = html<Message>()
+  const maybeComponent = findRoutedComponent(model.data, namespace, slug)
+
+  return Option.match(maybeComponent, {
+    onNone: () =>
+      notFoundPageView(
+        NotFoundRoute({ path: componentDetailRouter({ namespace, slug }) }),
+      ),
+    onSome: component =>
+      h.article([], [
+        pageHeaderView(
+          component.entry.item.namespace,
+          component.entry.item.name,
+          component.entry.item.description,
+        ),
+        h.section([h.Id('overview'), h.Class('content-section')], [
+          h.h2([], ['Overview']),
+          h.p([], [component.entry.item.description]),
+          dependenciesPanelView(component),
+        ]),
+        installationSectionView(component, model.copiedSnippets),
+        usageSectionView(component, model.copiedSnippets),
+        examplesSectionView(component, model.copiedSnippets),
+        apiSectionView(),
+        accessibilitySectionView(),
+        qualitySectionView(component),
+        sourceSectionView(component),
+        foldkitDifferencesSectionView(component),
+      ]),
+  })
+}
+
+const registryPageView = (): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Registry',
+      'Registry',
+      'Generated registry files are the website boundary; registry source stays behind the build step.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Artifacts']),
+      h.p([], [
+        'The catalog comes from registry/index.json. Component route metadata comes from registry/docs/index.json. The runtime shell does not read registry-src.',
+      ]),
+      h.ul([h.Class('link-list')], [
+        h.li([], [h.a([h.Href(registrySchemaRouter({}))], ['Schema'])]),
+        h.li([], [
+          h.a([h.Href(registryLifecycleRouter({}))], ['Lifecycle']),
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+const registrySchemaPageView = (): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Registry',
+      'Registry Schema',
+      'Schema-backed registry artifacts define what the docs shell can trust.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Current boundary']),
+      h.p([], [
+        'This page will summarize the RegistryIndex and ComponentDocsIndex contracts. For now it anchors the generated artifact split used by the shell.',
+      ]),
+    ]),
+  ])
+}
+
+const registryLifecyclePageView = (): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Registry',
+      'Registry Lifecycle',
+      'Lifecycle data explains what can be installed, previewed, documented, or deferred.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Axes']),
+      h.ul([h.Class('link-list')], [
+        h.li([], ['availability: private, preview, installable']),
+        h.li([], ['implementationStatus: planned, dossier-ready, implemented']),
+        h.li([], ['parityStatus and driftStatus: origin confidence signals']),
+        h.li([], ['docsStatus: missing, stub, complete']),
+      ]),
+    ]),
+  ])
+}
+
+const roadmapStatView = (
+  label: string,
+  value: string,
+  detail: string,
+): Html => {
+  const h = html<Message>()
+
+  return h.div([h.Class('roadmap-stat')], [
+    h.dt([], [label]),
+    h.dd([], [value]),
+    h.p([], [detail]),
+  ])
+}
+
+const roadmapRowView = (row: OriginComponentProgressRow): Html => {
+  const h = html<Message>()
+
+  return h.li([h.Class('roadmap-row')], [
+    h.div([h.Class('roadmap-row-header')], [
+      h.strong([], [row.itemId]),
+      statusBadgeView(row.readiness),
+    ]),
+    h.p([], [
+      row.readiness === 'blocked'
+        ? `${row.blockers.length} roadmap blocker${
+            row.blockers.length === 1 ? '' : 's'
+          } tracked in the progress report.`
+        : 'Origin evidence is available; the next step is a focused dossier.',
+    ]),
+    h.a([h.Class('source-link'), h.Href(row.docsUrl)], ['Origin docs']),
+  ])
+}
+
+const roadmapBlockedGroupView = (group: RoadmapBlockedGroup): Html => {
+  const h = html<Message>()
+
+  return h.article([h.Class('roadmap-group')], [
+    h.h3([], [group.label]),
+    h.p([], [group.summary]),
+    h.ul([h.Class('roadmap-list')], group.rows.map(roadmapRowView)),
+  ])
+}
+
+const roadmapLoadedPageView = (
+  progressReport: OriginComponentProgressReport,
+): Html => {
+  const h = html<Message>()
+  const snapshot = roadmapSnapshot(progressReport)
+
+  return h.article([], [
+    pageHeaderView(
+      'Roadmap',
+      'Roadmap',
+      'A product view of component availability, next candidates, and blocked work from the structured progress report.',
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.h2([], ['Available now']),
+      h.dl([h.Class('roadmap-stats')], [
+        roadmapStatView(
+          'Base UI',
+          `${snapshot.report.summary.baseUi.imported} of ${snapshot.report.summary.baseUi.total}`,
+          `${snapshot.report.summary.baseUi.remaining} remaining origin rows`,
+        ),
+        roadmapStatView(
+          'shadcn',
+          `${snapshot.report.summary.shadcn.imported} of ${snapshot.report.summary.shadcn.total}`,
+          `${snapshot.report.summary.shadcn.remaining} remaining origin rows`,
+        ),
+        roadmapStatView(
+          'Blocked',
+          String(snapshot.report.summary.blockedCount),
+          'Rows waiting on product or foundation decisions',
+        ),
+        roadmapStatView(
+          'Ready for dossier',
+          String(snapshot.report.summary.readyForDossierCount),
+          'Rows with enough source evidence for the next planning pass',
+        ),
+      ]),
+    ]),
+    h.section([h.Id('next-candidates'), h.Class('content-section')], [
+      h.h2([], ['Next candidates']),
+      h.p([], [
+        'These rows have enough public source evidence to start the next focused dossier without broad registry rewrites.',
+      ]),
+      h.ul([h.Class('roadmap-list')], snapshot.nextCandidates.map(roadmapRowView)),
+    ]),
+    h.section([h.Id('blocked'), h.Class('content-section')], [
+      h.h2([], ['Blocked categories']),
+      ...snapshot.blockedGroups.map(roadmapBlockedGroupView),
+    ]),
+    h.section([h.Id('next'), h.Class('content-section')], [
+      h.h2([], ['What is next']),
+      h.ul(
+        [h.Class('link-list')],
+        snapshot.nextSteps.map(step => h.li([], [step])),
+      ),
+    ]),
+  ])
+}
+
+const roadmapPageView = (model: Model): Html => {
+  const h = html<Message>()
+
+  return M.value(model.data).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      LoadedDocsData: ({ progressReport }) =>
+        roadmapLoadedPageView(progressReport),
+      FailedDocsData: ({ message }) =>
+        h.article([], [
+          pageHeaderView(
+            'Roadmap',
+            'Roadmap',
+            'Progress data could not be loaded from the generated artifacts.',
+          ),
+          h.p([h.Class('data-error'), h.Role('status')], [message]),
+        ]),
+    }),
+  )
+}
+
+const notFoundPageView = (route: typeof NotFoundRoute.Type): Html => {
+  const h = html<Message>()
+
+  return h.article([], [
+    pageHeaderView(
+      'Not Found',
+      'Page Not Found',
+      `The path "${route.path}" was not found in the Foldkit CN docs shell.`,
+    ),
+    h.section([h.Id('status'), h.Class('content-section')], [
+      h.a([h.Class('action-link'), h.Href(homeRouter({}))], [
+        'Back to Foldkit CN',
+      ]),
+    ]),
+  ])
+}
+
+const routeContentView = (model: Model): Html =>
+  M.value(model.route).pipe(
+    M.withReturnType<Html>(),
+    M.tagsExhaustive({
+      Home: () => homePageView(model),
+      Docs: () => docsPageView(),
+      ComponentsIndex: () => componentsIndexPageView(model),
+      ComponentsNamespace: ({ namespace }) =>
+        componentsNamespacePageView(model, namespace),
+      ComponentDetail: ({ namespace, slug }) =>
+        componentDetailPageView(model, namespace, slug),
+      Registry: () => registryPageView(),
+      RegistrySchema: () => registrySchemaPageView(),
+      RegistryLifecycle: () => registryLifecyclePageView(),
+      Roadmap: () => roadmapPageView(model),
+      NotFound: route => notFoundPageView(route),
+    }),
+  )
+
+const routeMetadata = (data: DocsData, route: AppRoute) =>
+  pipe(
+    routeMetadataForRoute(data, route),
+    Option.getOrElse(() => fallbackRouteMetadata(route)),
+  )
+
+const routeTitle = (data: DocsData, route: AppRoute): string =>
+  routeMetadata(data, route).title
+
+export const view = (model: Model): Document => ({
+  title: routeTitle(model.data, model.route),
+  body: shellView(model, routeContentView(model)),
+})

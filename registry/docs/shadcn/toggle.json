@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/toggle",
+  "routePath": "/components/shadcn/toggle",
+  "title": "Toggle",
+  "description": "Foldkit-native shadcn base-nova Toggle wrapper using the local Base UI Toggle primitive, Effect Schema variant and size literals, and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/toggle",
+  "defaultImportPath": "shadcn/toggle",
+  "sourceRoot": "registry-src/shadcn/toggle",
+  "installableSourcePaths": [
+    "src/registry/shadcn/toggle/index.ts",
+    "src/registry/shadcn/toggle/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Toggle",
+      "docsUrl": "https://ui.shadcn.com/docs/components/toggle",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/toggle.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/toggle.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/toggle.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toggle.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toggle.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/toggle-demo.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-outline.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/toggle-text.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/toggle",
+        "classification": "registry-local",
+        "target": "base-ui/toggle",
+        "reason": "shadcn Toggle composes the local Base UI Toggle primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Toggle uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant and size options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/toggle",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/toggle",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit Base UI Toggle implementation."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL strings in Foldkit examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/toggle-demo",
+      "title": "ToggleDemo",
+      "description": "Bookmark Toggle demo with outline styling and a local icon.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleDemo = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle bookmark',\n    size: 'sm',\n    variant: 'outline',\n    children: [icon('bookmark'), 'Bookmark'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleDemo",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/toggle-disabled",
+      "title": "ToggleDisabled",
+      "description": "Disabled default and outline Toggle examples.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleDisabled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle disabled',\n        isDisabled: true,\n        children: ['Disabled'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle disabled outline',\n        isDisabled: true,\n        variant: 'outline',\n        children: ['Disabled'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleDisabled",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/toggle-outline",
+      "title": "ToggleOutline",
+      "description": "Outline Toggle examples with local formatting icons.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleOutline = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle italic',\n        variant: 'outline',\n        children: [icon('italic'), 'Italic'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle bold',\n        variant: 'outline',\n        children: [icon('bold'), 'Bold'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleOutline",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/toggle-rtl",
+      "title": "ToggleRtl",
+      "description": "RTL Toggle layout using local Arabic text.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleRtl = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle bookmark',\n    dir: 'rtl',\n    size: 'sm',\n    variant: 'outline',\n    children: [icon('bookmark'), 'إشارة مرجعية'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleRtl",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/toggle-sizes",
+      "title": "ToggleSizes",
+      "description": "Small, default, and large outline Toggle examples.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleSizes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2')],\n    [\n      toggleButton(h, {\n        ariaLabel: 'Toggle small',\n        size: 'sm',\n        variant: 'outline',\n        children: ['Small'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle default',\n        size: 'default',\n        variant: 'outline',\n        children: ['Default'],\n      }),\n      toggleButton(h, {\n        ariaLabel: 'Toggle large',\n        size: 'lg',\n        variant: 'outline',\n        children: ['Large'],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleSizes",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/toggle-text",
+      "title": "ToggleText",
+      "description": "Default text Toggle example with a local icon.",
+      "componentItemId": "shadcn/toggle",
+      "sourcePath": "src/registry/shadcn/toggle/examples.ts",
+      "snippet": "export const ToggleText = (): Html => {\n  const h = html<never>()\n\n  return toggleButton(h, {\n    ariaLabel: 'Toggle italic',\n    children: [icon('italic'), 'Italic'],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ToggleText",
+      "requiredRegistryItems": ["base-ui/toggle", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-toggle-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Toggle examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-toggle-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+      }
+    ]
+  }
+}

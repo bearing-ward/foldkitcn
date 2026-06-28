@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/alert",
+  "routePath": "/components/shadcn/alert",
+  "title": "Alert",
+  "description": "Foldkit-native shadcn base-nova Alert wrapper using Schema-backed variants and pure class maps.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/alert",
+  "defaultImportPath": "shadcn/alert",
+  "sourceRoot": "registry-src/shadcn/alert",
+  "installableSourcePaths": [
+    "src/registry/shadcn/alert/index.ts",
+    "src/registry/shadcn/alert/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Alert",
+      "docsUrl": "https://ui.shadcn.com/docs/components/alert",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/alert.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/alert.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/alert.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/alert.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/alert.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/alert-action.tsx",
+        "repos/ui/apps/v4/examples/base/alert-basic.tsx",
+        "repos/ui/apps/v4/examples/base/alert-colors.tsx",
+        "repos/ui/apps/v4/examples/base/alert-demo.tsx",
+        "repos/ui/apps/v4/examples/base/alert-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/alert-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Alert uses the local class composition helper instead of CVA."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The Alert action example composes the local shadcn Button registry item."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for Alert variant and direction options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/alert-action",
+      "title": "AlertActionExample",
+      "description": "Alert with an action Button.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertActionExample = (): Html => {\n  const h = html<never>()\n\n  return alert({\n    className: 'max-w-md',\n    children: [\n      alertTitle(['Dark mode is now available']),\n      alertDescription([\n        'Enable it under your profile settings to get started.',\n      ]),\n      alertAction([\n        Button<never>({\n          size: 'xs',\n          variant: 'default',\n          toView: attributes => h.button([...attributes.button], ['Enable']),\n        }),\n      ]),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertActionExample",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/alert-basic",
+      "title": "AlertBasic",
+      "description": "Basic Alert with an inline status icon.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertBasic = (): Html =>\n  alert({\n    className: 'max-w-md',\n    children: [\n      checkCircle2Icon(),\n      alertTitle(['Account updated successfully']),\n      alertDescription([\n        'Your profile information has been saved. Changes will be reflected immediately.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertBasic",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/alert-colors",
+      "title": "AlertColors",
+      "description": "Alert with custom amber color classes.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertColors = (): Html =>\n  alert({\n    className:\n      'max-w-md border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50',\n    children: [\n      alertTriangleIcon(),\n      alertTitle(['Your subscription will expire in 3 days.']),\n      alertDescription([\n        'Renew now to avoid service interruption or upgrade to a paid plan to continue using the service.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertColors",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/alert-demo",
+      "title": "AlertDemo",
+      "description": "Stacked Alert demo.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full max-w-md items-start gap-4')],\n    [\n      alert({\n        children: [\n          checkCircle2Icon(),\n          alertTitle(['Payment successful']),\n          alertDescription([\n            'Your payment of $29.99 has been processed. A receipt has been sent to your email address.',\n          ]),\n        ],\n      }),\n      alert({\n        children: [\n          infoIcon(),\n          alertTitle(['New feature available']),\n          alertDescription([\n            \"We've added dark mode support. You can enable it in your account settings.\",\n          ]),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertDemo",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/alert-destructive",
+      "title": "AlertDestructive",
+      "description": "Destructive Alert variant.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertDestructive = (): Html =>\n  alert({\n    variant: 'destructive',\n    className: 'max-w-md',\n    children: [\n      alertCircleIcon(),\n      alertTitle(['Payment failed']),\n      alertDescription([\n        'Your payment could not be processed. Please check your payment method and try again.',\n      ]),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AlertDestructive",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/alert-rtl",
+      "title": "AlertRtl",
+      "description": "RTL Alert layout example with local Arabic strings.",
+      "componentItemId": "shadcn/alert",
+      "sourcePath": "src/registry/shadcn/alert/examples.ts",
+      "snippet": "export const AlertRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAlertRtl\n\n  return h.div(\n    [h.Class('grid w-full max-w-md items-start gap-4'), h.Dir(dir)],\n    [\n      alert({\n        direction: 'rtl',\n        children: [\n          checkCircle2Icon(),\n          alertTitle([values.paymentTitle]),\n          alertDescription([values.paymentDescription]),\n        ],\n      }),\n      alert({\n        direction: 'rtl',\n        children: [\n          infoIcon(),\n          alertTitle([values.featureTitle]),\n          alertDescription([values.featureDescription]),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AlertRtl",
+      "requiredRegistryItems": ["utils/cn", "shadcn/button"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-alert-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Alert examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-alert-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

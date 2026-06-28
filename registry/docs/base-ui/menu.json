@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/menu",
+  "routePath": "/components/base-ui/menu",
+  "title": "Menu",
+  "description": "Foldkit-native Base UI Menu primitive preserving model-owned open, submenu, highlighted, checked, and radio state, popup/menu ARIA, local keyboard navigation, typeahead, disabled items, grouping, separators, arrows, deterministic placement attributes, and dismiss events.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/menu",
+  "defaultImportPath": "base-ui/menu",
+  "sourceRoot": "registry-src/base-ui/menu",
+  "installableSourcePaths": ["src/registry/base-ui/menu/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Menu",
+      "docsUrl": "https://base-ui.com/react/components/menu",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/menu",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/menu/index.ts",
+        "repos/base-ui/packages/react/src/menu/root/MenuRoot.tsx",
+        "repos/base-ui/packages/react/src/menu/trigger/MenuTrigger.tsx",
+        "repos/base-ui/packages/react/src/menu/popup/MenuPopup.tsx",
+        "repos/base-ui/packages/react/src/menu/positioner/MenuPositioner.tsx",
+        "repos/base-ui/packages/react/src/menu/item/MenuItem.tsx",
+        "repos/base-ui/packages/react/src/menu/checkbox-item/MenuCheckboxItem.tsx",
+        "repos/base-ui/packages/react/src/menu/radio-item/MenuRadioItem.tsx",
+        "repos/base-ui/packages/react/src/menu/submenu-root/MenuSubmenuRoot.tsx",
+        "repos/base-ui/packages/react/src/menu/submenu-trigger/MenuSubmenuTrigger.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/checkbox-items/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/radio-items/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/menu/demos/submenu/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/menu/root/MenuRoot.test.tsx",
+        "repos/base-ui/packages/react/src/menu/item/MenuItem.test.tsx",
+        "repos/base-ui/packages/react/src/menu/checkbox-item/MenuCheckboxItem.test.tsx",
+        "repos/base-ui/packages/react/src/menu/radio-item/MenuRadioItem.test.tsx",
+        "repos/base-ui/packages/react/src/menu/submenu-trigger/MenuSubmenuTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/menu/positioner/MenuPositioner.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/popover",
+        "classification": "registry-local",
+        "target": "base-ui/popover",
+        "reason": "Menu reuses the local Popover focus command and deterministic placement conventions without creating another overlay stack."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, and keyboard event helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, and predicate helpers for serializable options and event payloads."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Base UI React Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/menu",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/menu",
+        "reason": "Origin Base UI React Menu primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-menu-model-owned-state",
+        "summary": "Open, highlighted, submenu, checkbox, and radio state are model-owned inputs and interactions emit typed facts instead of mutating internal component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow and keeps menu state in the consuming model."
+      },
+      {
+        "id": "base-ui-menu-command-facing-focus-effects",
+        "summary": "Focus handoff and restoration reuse the Popover command-facing helpers instead of hiding side effects inside render helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Menu side effects must stay at Foldkit's Command boundary. The installable view remains pure and deterministic."
+      },
+      {
+        "id": "base-ui-menu-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, popup, and submenu attributes without DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Menu render helper side effect."
+      }
+    ]
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/avatar",
+  "routePath": "/components/shadcn/avatar",
+  "title": "Avatar",
+  "description": "Foldkit-native shadcn base-nova Avatar wrapper composing the local Base UI Avatar primitive with Avatar image, fallback, badge, group, and group count styling.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/avatar",
+  "defaultImportPath": "shadcn/avatar",
+  "sourceRoot": "registry-src/shadcn/avatar",
+  "installableSourcePaths": [
+    "src/registry/shadcn/avatar/index.ts",
+    "src/registry/shadcn/avatar/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Avatar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/avatar",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/avatar.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/avatar.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/avatar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/avatar.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/avatar-badge-icon.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-badge.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-basic.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-dropdown.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group-count-icon.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group-count.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-group.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/avatar-size.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/avatar",
+        "classification": "registry-local",
+        "target": "base-ui/avatar",
+        "reason": "shadcn Avatar composes the local Base UI Avatar primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Avatar uses the local class composition helper."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The dropdown origin example uses Button; this batch keeps the dropdown as a fixture-local static shell while preserving the dependency classification."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/avatar",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/avatar",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The dropdown example is represented with a fixture-local static shell until shadcn/dropdown-menu exists locally."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL constants and origin fixture aliases."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/avatar-badge-icon",
+      "title": "AvatarBadgeIconExample",
+      "description": "Avatar with fixture-local Plus icon badge.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarBadgeIconExample = (): Html =>\n  avatar(pranathiProfile, {\n    className: 'grayscale',\n    children: [badge(undefined, [plusIcon()])],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarBadgeIconExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-badge",
+      "title": "AvatarWithBadge",
+      "description": "Avatar with status badge.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarWithBadge = (): Html =>\n  avatar(shadcnProfile, {\n    children: [badge('bg-green-600 dark:bg-green-800')],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarWithBadge",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-basic",
+      "title": "AvatarBasic",
+      "description": "Basic Avatar example.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarBasic = (): Html =>\n  avatar(shadcnProfile, { imageClassName: 'grayscale' })",
+      "previewStatus": "static",
+      "previewExportName": "AvatarBasic",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-demo",
+      "title": "AvatarDemo",
+      "description": "Avatar demo with badge and group examples.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-row flex-wrap items-center gap-6 md:gap-12')],\n    [\n      avatar(shadcnProfile, { imageClassName: 'grayscale' }),\n      avatar(evilRabbitProfile, {\n        children: [badge('bg-green-600 dark:bg-green-800')],\n      }),\n      avatarGroup('+3'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarDemo",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-dropdown",
+      "title": "AvatarDropdown",
+      "description": "Dropdown Avatar example represented by a fixture-local static dropdown shell.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarDropdown = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'ghost',\n    size: 'icon',\n    className: 'rounded-full',\n    toView: attributes =>\n      h.button(\n        [\n          ...attributes.button,\n          h.Attribute('aria-haspopup', 'menu'),\n          h.AriaExpanded(false),\n        ],\n        [avatar({ ...shadcnProfile, alt: 'shadcn' })],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarDropdown",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-group-count-icon",
+      "title": "AvatarGroupCountIconExample",
+      "description": "Avatar group count with fixture-local Plus icon.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarGroupCountIconExample = (): Html => avatarGroup(plusIcon())",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupCountIconExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-group-count",
+      "title": "AvatarGroupCountExample",
+      "description": "Avatar group count example.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarGroupCountExample = (): Html => avatarGroup('+3')",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupCountExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-group",
+      "title": "AvatarGroupExample",
+      "description": "Avatar group example.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarGroupExample = (): Html => avatarGroup()",
+      "previewStatus": "static",
+      "previewExportName": "AvatarGroupExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-rtl",
+      "title": "AvatarRtl",
+      "description": "RTL Avatar layout example with local Arabic strings.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAvatarRtl\n\n  return h.div(\n    [\n      h.Class('flex flex-row flex-wrap items-center gap-6 md:gap-12'),\n      h.Dir(dir),\n    ],\n    [\n      avatar(shadcnProfile, { imageClassName: 'grayscale' }),\n      avatar(evilRabbitProfile, {\n        children: [badge('bg-green-600 dark:bg-green-800', [], 'inline-end')],\n      }),\n      avatarGroup(values.moreUsers),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarRtl",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/avatar-size",
+      "title": "AvatarSizeExample",
+      "description": "Avatar size matrix example.",
+      "componentItemId": "shadcn/avatar",
+      "sourcePath": "src/registry/shadcn/avatar/examples.ts",
+      "snippet": "export const AvatarSizeExample = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 grayscale')],\n    [\n      avatar(shadcnProfile, { size: 'sm' }),\n      avatar(shadcnProfile),\n      avatar(shadcnProfile, { size: 'lg' }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "AvatarSizeExample",
+      "requiredRegistryItems": ["base-ui/avatar", "utils/cn", "shadcn/button"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-avatar-static-dropdown-shell",
+        "summary": "Dropdown example uses a fixture-local static shell instead of an installable shadcn Dropdown Menu component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/dropdown-menu. The static shell preserves the Avatar trigger and fixture coverage without adding runtime dependencies."
+      },
+      {
+        "id": "shadcn-avatar-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      },
+      {
+        "id": "shadcn-avatar-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot include lucide-react. The inline Plus SVG preserves the visible icon examples as fixture-local markup."
+      }
+    ]
+  }
+}

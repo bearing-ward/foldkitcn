@@ -39,7 +39,8 @@
     "implementationStatus": "implemented",
     "parityStatus": "waived",
     "driftStatus": "current",
-    "availability": "installable"
+    "availability": "installable",
+    "docsStatus": "missing"
   },
   "deviations": []
 }

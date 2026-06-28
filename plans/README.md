@@ -68,15 +68,15 @@ honor its STOP conditions, and update your row when done.
 | 058 | Implement shadcn Card | P1 | S | 019 | TODO |
 | 059 | Implement shadcn Breadcrumb | P1 | S | 019 | TODO |
 | 060 | Record documentation-site and Effect-native tooling decisions | P1 | S | - | DONE |
-| 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | TODO |
-| 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | TODO |
-| 063 | Add component docs sidecars and the shadcn Button page | P1 | M | 061, 062 | TODO |
-| 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | TODO |
-| 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | TODO |
-| 066 | Add static prerender and Pagefind search | P2 | L | 065 | TODO |
-| 067 | Add structured example docs artifacts | P2 | M | 063 | TODO |
-| 068 | Add live component example runtime | P2 | L | 067 | TODO |
-| 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | TODO |
+| 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | DONE |
+| 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | DONE |
+| 063 | Add component docs sidecars and the shadcn Button page | P1 | M | 061, 062 | DONE |
+| 064 | Add lifecycle-aware install panels and copy buttons | P1 | M | 062, 063 | DONE |
+| 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | DONE |
+| 066 | Add static prerender and Pagefind search | P2 | L | 065 | DONE |
+| 067 | Add structured example docs artifacts | P2 | M | 063 | DONE |
+| 068 | Add live component example runtime | P2 | L | 067 | DONE |
+| 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 

@@ -1,7 +1,80 @@
 import { Schema as S } from 'effect'
 import { describe, expect, test } from 'vitest'
 
-import { RegistryItemManifest } from './schema'
+import {
+  ComponentDocsArtifact,
+  ComponentDocsRoute,
+  DocsStatus,
+  ExampleDocsArtifact,
+  InstallerConfig,
+  InstallerItemId,
+  InstallerWritePlan,
+  InstallTargetPath,
+  RegistryItemManifest,
+} from './schema'
+import type { ExamplePreviewStatus } from './schema'
+
+const exampleDocsArtifact = (previewStatus: ExamplePreviewStatus) => ({
+  id: `shadcn/button-${previewStatus}`,
+  title: `Button ${previewStatus}`,
+  description: `Button ${previewStatus} example.`,
+  componentItemId: 'shadcn/button',
+  sourcePath: 'src/registry/shadcn/button/examples.ts',
+  snippet: 'export const ButtonDefault = (): Html => {}',
+  previewStatus,
+  previewExportName: 'ButtonDefault',
+  requiredRegistryItems: ['base-ui/button', 'utils/cn'],
+  notes: [],
+})
+
+describe('installer schemas', () => {
+  test('decodes valid installer config and write plan boundaries', () => {
+    const config = S.decodeUnknownSync(InstallerConfig)({
+      itemId: 'shadcn/button',
+      cwd: '/tmp/foldkitcn-fixture',
+      registryIndexPath: 'registry/index.json',
+      dryRun: true,
+      conflictPolicy: 'preserve',
+    })
+    const plan = S.decodeUnknownSync(InstallerWritePlan)({
+      itemId: 'shadcn/button',
+      cwd: '/tmp/foldkitcn-fixture',
+      registryIndexPath: 'registry/index.json',
+      conflictPolicy: 'preserve',
+      dependencies: ['base-ui/button', 'utils/cn'],
+      operations: [
+        {
+          itemId: 'shadcn/button',
+          sourcePath: 'src/registry/shadcn/button/index.ts',
+          targetPath: 'src/components/foldkitcn/shadcn/button.ts',
+          targetAbsolutePath:
+            '/tmp/foldkitcn-fixture/src/components/foldkitcn/shadcn/button.ts',
+          sha256:
+            'f899e5b745c3d75ece719a5d3d0f2ef1a470812f7ace09cb1be642641f75e714',
+          content: 'export const Button = {}',
+          status: 'create',
+        },
+      ],
+      hasConflicts: false,
+    })
+
+    expect(config.itemId).toBe('shadcn/button')
+    expect(plan.operations[0]?.targetPath).toBe(
+      'src/components/foldkitcn/shadcn/button.ts',
+    )
+  })
+
+  test('rejects invalid installer item ids and target paths', () => {
+    expect(() => S.decodeUnknownSync(InstallerItemId)('../button')).toThrow(
+      /\.\.\/button/u,
+    )
+    expect(() =>
+      S.decodeUnknownSync(InstallTargetPath)(
+        'src/components/ui/shadcn/button.ts',
+      ),
+    ).toThrow(/src\/components\/ui\/shadcn\/button\.ts/u)
+  })
+})
 
 const validManifest = {
   schemaVersion: 1,
@@ -32,6 +105,7 @@ const validManifest = {
     parityStatus: 'not-started',
     driftStatus: 'unknown',
     availability: 'private',
+    docsStatus: 'missing',
   },
   deviations: [],
 }
@@ -56,5 +130,103 @@ describe('registry item manifest schema', () => {
     expect(() =>
       S.decodeUnknownSync(RegistryItemManifest)(invalidManifest),
     ).toThrow(/public/u)
+  })
+})
+
+describe('generated docs artifact schemas', () => {
+  test('decodes docs status values', () => {
+    expect(S.decodeUnknownSync(DocsStatus)('missing')).toBe('missing')
+    expect(() => S.decodeUnknownSync(DocsStatus)('draft')).toThrow(/draft/u)
+  })
+
+  test('decodes component docs routes', () => {
+    const route = S.decodeUnknownSync(ComponentDocsRoute)({
+      itemId: 'shadcn/button',
+      routePath: '/components/shadcn/button',
+      docsArtifactPath: 'registry/docs/shadcn/button.json',
+    })
+
+    expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
+  })
+
+  test.each(['static', 'live-ready', 'blocked'] as const)(
+    'encodes and decodes %s example docs artifacts',
+    previewStatus => {
+      const example = S.decodeUnknownSync(ExampleDocsArtifact)(
+        exampleDocsArtifact(previewStatus),
+      )
+
+      expect(
+        S.decodeUnknownSync(ExampleDocsArtifact)(
+          S.encodeSync(ExampleDocsArtifact)(example),
+        ),
+      ).toStrictEqual(example)
+    },
+  )
+
+  test('encodes and decodes component docs artifacts', () => {
+    const artifact = S.decodeUnknownSync(ComponentDocsArtifact)({
+      schemaVersion: 1,
+      itemId: 'shadcn/button',
+      routePath: '/components/shadcn/button',
+      title: 'Button',
+      description: 'Foldkit-native shadcn button wrapper.',
+      docsStatus: 'complete',
+      markdownPath: 'registry-src/shadcn/button/docs.md',
+      markdown: '# Usage\n',
+      headings: [{ id: 'usage', text: 'Usage', level: 1 }],
+      installCommand: null,
+      localInstallPath: 'src/registry/shadcn/button',
+      defaultImportPath: 'shadcn/button',
+      sourceRoot: 'registry-src/shadcn/button',
+      installableSourcePaths: ['src/registry/shadcn/button/index.ts'],
+      originProvenance: [],
+      dependencies: {
+        registry: [],
+        runtime: [],
+        development: [],
+      },
+      examples: [exampleDocsArtifact('static')],
+      quality: {
+        availability: 'installable',
+        implementationStatus: 'implemented',
+        parityStatus: 'accepted',
+        driftStatus: 'current',
+        deviations: [],
+      },
+    })
+
+    expect(
+      S.decodeUnknownSync(ComponentDocsArtifact)(
+        S.encodeSync(ComponentDocsArtifact)(artifact),
+      ),
+    ).toStrictEqual(artifact)
+  })
+
+  test('requires source and dependency metadata on component docs artifacts', () => {
+    expect(() =>
+      S.decodeUnknownSync(ComponentDocsArtifact)({
+        schemaVersion: 1,
+        itemId: 'local/example-preview',
+        routePath: '/components/local/example-preview',
+        title: 'Example preview',
+        description: 'Private preview fixture.',
+        docsStatus: 'missing',
+        markdownPath: null,
+        markdown: null,
+        headings: [],
+        installCommand: null,
+        localInstallPath: 'registry-src/local/example-preview',
+        defaultImportPath: 'local/example-preview',
+        examples: [],
+        quality: {
+          availability: 'private',
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          deviations: [],
+        },
+      }),
+    ).toThrow(/sourceRoot/u)
   })
 })

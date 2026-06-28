@@ -54,11 +54,19 @@ export const Availability = S.Union([
 ])
 export type Availability = typeof Availability.Type
 
+export const DocsStatus = S.Union([
+  S.Literal('missing'),
+  S.Literal('stub'),
+  S.Literal('complete'),
+])
+export type DocsStatus = typeof DocsStatus.Type
+
 export const Lifecycle = S.Struct({
   implementationStatus: ImplementationStatus,
   parityStatus: ParityStatus,
   driftStatus: DriftStatus,
   availability: Availability,
+  docsStatus: DocsStatus,
 })
 export type Lifecycle = typeof Lifecycle.Type
 
@@ -243,6 +251,27 @@ export const ExampleManifest = S.Struct({
 })
 export type ExampleManifest = typeof ExampleManifest.Type
 
+export const ExamplePreviewStatus = S.Union([
+  S.Literal('static'),
+  S.Literal('live-ready'),
+  S.Literal('blocked'),
+])
+export type ExamplePreviewStatus = typeof ExamplePreviewStatus.Type
+
+export const ExampleDocsArtifact = S.Struct({
+  id: S.String,
+  title: S.String,
+  description: S.String,
+  componentItemId: S.String,
+  sourcePath: S.String,
+  snippet: S.String,
+  previewStatus: ExamplePreviewStatus,
+  previewExportName: S.OptionFromNullOr(S.String),
+  requiredRegistryItems: S.Array(S.String),
+  notes: S.Array(S.String),
+})
+export type ExampleDocsArtifact = typeof ExampleDocsArtifact.Type
+
 export const ThemeToken = S.Struct({
   name: S.String,
   value: S.String,
@@ -312,6 +341,55 @@ export const RegistryItemManifest = S.Struct({
 })
 export type RegistryItemManifest = typeof RegistryItemManifest.Type
 
+export const ComponentDocsRoute = S.Struct({
+  itemId: S.String,
+  routePath: S.String,
+  docsArtifactPath: S.String,
+})
+export type ComponentDocsRoute = typeof ComponentDocsRoute.Type
+
+export const ComponentDocsHeading = S.Struct({
+  id: S.String,
+  text: S.String,
+  level: S.Number,
+})
+export type ComponentDocsHeading = typeof ComponentDocsHeading.Type
+
+export const ComponentDocsArtifact = S.Struct({
+  schemaVersion: RegistrySchemaVersion,
+  itemId: S.String,
+  routePath: S.String,
+  title: S.String,
+  description: S.String,
+  docsStatus: DocsStatus,
+  markdownPath: S.OptionFromNullOr(S.String),
+  markdown: S.OptionFromNullOr(S.String),
+  headings: S.Array(ComponentDocsHeading),
+  installCommand: S.OptionFromNullOr(S.String),
+  localInstallPath: S.String,
+  defaultImportPath: S.String,
+  sourceRoot: S.String,
+  installableSourcePaths: S.Array(S.String),
+  originProvenance: S.Array(OriginProvenance),
+  dependencies: DependencyGraph,
+  examples: S.Array(ExampleDocsArtifact),
+  quality: S.Struct({
+    availability: Availability,
+    implementationStatus: ImplementationStatus,
+    parityStatus: ParityStatus,
+    driftStatus: DriftStatus,
+    deviations: S.Array(DeviationRecord),
+  }),
+})
+export type ComponentDocsArtifact = typeof ComponentDocsArtifact.Type
+
+export const ComponentDocsIndex = S.Struct({
+  schemaVersion: RegistrySchemaVersion,
+  generatedAt: S.String,
+  routes: S.Array(ComponentDocsRoute),
+})
+export type ComponentDocsIndex = typeof ComponentDocsIndex.Type
+
 export const BuildArtifactRole = S.Union([
   S.Literal('index'),
   S.Literal('manifest'),
@@ -352,3 +430,80 @@ export const RegistryIndex = S.Struct({
   items: S.Array(RegistryIndexEntry),
 })
 export type RegistryIndex = typeof RegistryIndex.Type
+
+export const InstallerItemId = S.String.check(
+  S.isPattern(
+    /^(?<namespace>base-ui|shadcn|utils|themes|blocks|charts|local)\/[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/u,
+  ),
+)
+export type InstallerItemId = typeof InstallerItemId.Type
+
+export const InstallTargetPath = S.String.check(
+  S.isPattern(
+    /^src\/components\/foldkitcn\/(?<namespace>base-ui|shadcn|utils|themes|blocks|charts|local)\/[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*\.ts$/u,
+  ),
+)
+export type InstallTargetPath = typeof InstallTargetPath.Type
+
+export const InstallerConflictPolicy = S.Union([
+  S.Literal('preserve'),
+  S.Literal('overwrite'),
+])
+export type InstallerConflictPolicy = typeof InstallerConflictPolicy.Type
+
+export const InstallerConfig = S.Struct({
+  itemId: InstallerItemId,
+  cwd: S.String,
+  registryIndexPath: S.String,
+  dryRun: S.Boolean,
+  conflictPolicy: InstallerConflictPolicy,
+})
+export type InstallerConfig = typeof InstallerConfig.Type
+
+export const InstallerWriteStatus = S.Union([
+  S.Literal('create'),
+  S.Literal('overwrite'),
+  S.Literal('skip-identical'),
+  S.Literal('conflict'),
+])
+export type InstallerWriteStatus = typeof InstallerWriteStatus.Type
+
+export const InstallerWriteOperation = S.Struct({
+  itemId: InstallerItemId,
+  sourcePath: S.String,
+  targetPath: InstallTargetPath,
+  targetAbsolutePath: S.String,
+  sha256: S.String,
+  content: S.String,
+  status: InstallerWriteStatus,
+})
+export type InstallerWriteOperation = typeof InstallerWriteOperation.Type
+
+export const InstallerWritePlan = S.Struct({
+  itemId: InstallerItemId,
+  cwd: S.String,
+  registryIndexPath: S.String,
+  conflictPolicy: InstallerConflictPolicy,
+  dependencies: S.Array(InstallerItemId),
+  operations: S.Array(InstallerWriteOperation),
+  hasConflicts: S.Boolean,
+})
+export type InstallerWritePlan = typeof InstallerWritePlan.Type
+
+export class InstallerError extends S.TaggedErrorClass<InstallerError>()(
+  'InstallerError',
+  {
+    reason: S.Union([
+      S.Literal('InvalidConfig'),
+      S.Literal('RegistryReadFailed'),
+      S.Literal('RegistryItemNotFound'),
+      S.Literal('RegistryItemNotInstallable'),
+      S.Literal('SourceReadFailed'),
+      S.Literal('UnsafeTargetPath'),
+      S.Literal('WriteConflict'),
+      S.Literal('WriteFailed'),
+    ]),
+    message: S.String,
+    path: S.OptionFromNullOr(S.String),
+  },
+) {}

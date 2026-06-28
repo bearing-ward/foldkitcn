@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/textarea",
+  "routePath": "/components/shadcn/textarea",
+  "title": "Textarea",
+  "description": "Foldkit-native shadcn base-nova Textarea helper using native textarea markup and shadcn class tokens.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/textarea",
+  "defaultImportPath": "shadcn/textarea",
+  "sourceRoot": "registry-src/shadcn/textarea",
+  "installableSourcePaths": [
+    "src/registry/shadcn/textarea/index.ts",
+    "src/registry/shadcn/textarea/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Textarea",
+      "docsUrl": "https://ui.shadcn.com/docs/components/textarea",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/textarea.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/textarea.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/textarea.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/textarea.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/textarea.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/textarea-button.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-demo.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-field.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-invalid.tsx",
+        "repos/ui/apps/v4/examples/base/textarea-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "TextareaButton composes the local shadcn Button example."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Textarea uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for Textarea props and value-change payloads."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "shadcn/field",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin field examples compose shadcn Field, which is not implemented in this registry slice; local examples preserve the rendered field semantics without adding an installable dependency."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example runtime dependency is represented by local example constants and fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/textarea-demo",
+      "title": "TextareaDemo",
+      "description": "Default message textarea example.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaDemo = (): Html =>\n  textarea({\n    placeholder: 'Type your message here.',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaDemo",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/textarea-button",
+      "title": "TextareaButton",
+      "description": "Textarea paired with a send button.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaButton = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full gap-2')],\n    [\n      textarea({\n        placeholder: 'Type your message here.',\n      }),\n      Button<never>({\n        toView: attributes =>\n          h.button([...attributes.button], ['Send message']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "TextareaButton",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/textarea-disabled",
+      "title": "TextareaDisabled",
+      "description": "Disabled textarea field example.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaDisabled = (): Html =>\n  field({\n    disabled: true,\n    children: [\n      fieldLabel({\n        forId: 'textarea-disabled',\n        children: ['Message'],\n      }),\n      textarea({\n        id: 'textarea-disabled',\n        placeholder: 'Type your message here.',\n        disabled: true,\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaDisabled",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/textarea-field",
+      "title": "TextareaField",
+      "description": "Textarea field with description.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaField = (): Html =>\n  field({\n    children: [\n      fieldLabel({\n        forId: 'textarea-message',\n        children: ['Message'],\n      }),\n      fieldDescription({\n        children: ['Enter your message below.'],\n      }),\n      textarea({\n        id: 'textarea-message',\n        placeholder: 'Type your message here.',\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaField",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/textarea-invalid",
+      "title": "TextareaInvalid",
+      "description": "Invalid textarea field example.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaInvalid = (): Html =>\n  field({\n    invalid: true,\n    children: [\n      fieldLabel({\n        forId: 'textarea-invalid',\n        children: ['Message'],\n      }),\n      textarea({\n        id: 'textarea-invalid',\n        placeholder: 'Type your message here.',\n        invalid: true,\n      }),\n      fieldDescription({\n        children: ['Please enter a valid message.'],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaInvalid",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/textarea-rtl",
+      "title": "TextareaRtl",
+      "description": "RTL textarea field example with local Arabic strings.",
+      "componentItemId": "shadcn/textarea",
+      "sourcePath": "src/registry/shadcn/textarea/examples.ts",
+      "snippet": "export const TextareaRtl = (): Html =>\n  field({\n    className: 'w-full max-w-xs',\n    dir: 'rtl',\n    children: [\n      fieldLabel({\n        forId: 'feedback',\n        dir: 'rtl',\n        children: ['التعليقات'],\n      }),\n      textarea({\n        id: 'feedback',\n        placeholder: 'تعليقاتك تساعدنا على التحسين...',\n        dir: 'rtl',\n        rows: 4,\n      }),\n      fieldDescription({\n        dir: 'rtl',\n        children: ['شاركنا أفكارك حول خدمتنا.'],\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TextareaRtl",
+      "requiredRegistryItems": ["shadcn/button", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-textarea-local-field",
+        "summary": "Field-based examples use local Foldkit markup instead of a shadcn Field registry dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The shadcn Field registry item is not part of this implementation slice. The examples preserve the source field slot, orientation, class, label, description, disabled, invalid, and direction attributes without importing React or CVA."
+      },
+      {
+        "id": "shadcn-textarea-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic strings preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

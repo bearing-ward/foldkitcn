@@ -1,166 +1,243 @@
-type Dinosaur = Readonly<{
-  name: string
-  period: string
-  diet: string
-  lengthMeters: number
-  weightKg: number
+import { Array, Match as M, Option, Order, Schema as S, pipe } from 'effect'
+import { ts } from 'foldkit/schema'
+
+import progressReportJson from '../docs/component-conversion-checklist.json'
+import docsIndexJson from '../registry/docs/index.json'
+import localExamplePreviewDocsJson from '../registry/docs/local/example-preview.json'
+import shadcnButtonDocsJson from '../registry/docs/shadcn/button.json'
+import registryIndexJson from '../registry/index.json'
+import {
+  ComponentDocsArtifact,
+  ComponentDocsIndex,
+  OriginComponentProgressReport,
+  RegistryIndex,
+} from './registry/schema'
+import type {
+  ComponentDocsArtifact as ComponentDocsArtifactType,
+  ComponentDocsRoute,
+  OriginComponentProgressReport as OriginComponentProgressReportType,
+  RegistryIndexEntry,
+  RegistryNamespace,
+} from './registry/schema'
+
+export const LoadedDocsData = ts('LoadedDocsData', {
+  registry: RegistryIndex,
+  docsIndex: ComponentDocsIndex,
+  localExamplePreviewDocs: ComponentDocsArtifact,
+  shadcnButtonDocs: ComponentDocsArtifact,
+  progressReport: OriginComponentProgressReport,
+})
+export const FailedDocsData = ts('FailedDocsData', {
+  message: S.String,
+})
+export const DocsData = S.Union([LoadedDocsData, FailedDocsData])
+export type DocsData = typeof DocsData.Type
+
+export type PublicComponent = Readonly<{
+  entry: RegistryIndexEntry
+  docsRoute: ComponentDocsRoute
+  maybeDocsArtifact: Option.Option<ComponentDocsArtifactType>
 }>
 
-const dinosaurs: readonly Dinosaur[] = [
-  {
-    name: 'Tyrannosaurus Rex',
-    period: 'Cretaceous',
-    diet: 'Carnivore',
-    lengthMeters: 12.3,
-    weightKg: 8400,
-  },
-  {
-    name: 'Triceratops',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 9,
-    weightKg: 6000,
-  },
-  {
-    name: 'Velociraptor',
-    period: 'Cretaceous',
-    diet: 'Carnivore',
-    lengthMeters: 2,
-    weightKg: 15,
-  },
-  {
-    name: 'Brachiosaurus',
-    period: 'Jurassic',
-    diet: 'Herbivore',
-    lengthMeters: 26,
-    weightKg: 56_000,
-  },
-  {
-    name: 'Stegosaurus',
-    period: 'Jurassic',
-    diet: 'Herbivore',
-    lengthMeters: 9,
-    weightKg: 3500,
-  },
-  {
-    name: 'Ankylosaurus',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 6.5,
-    weightKg: 6000,
-  },
-  {
-    name: 'Spinosaurus',
-    period: 'Cretaceous',
-    diet: 'Carnivore',
-    lengthMeters: 15,
-    weightKg: 7000,
-  },
-  {
-    name: 'Allosaurus',
-    period: 'Jurassic',
-    diet: 'Carnivore',
-    lengthMeters: 9.7,
-    weightKg: 2300,
-  },
-  {
-    name: 'Diplodocus',
-    period: 'Jurassic',
-    diet: 'Herbivore',
-    lengthMeters: 25,
-    weightKg: 12_000,
-  },
-  {
-    name: 'Parasaurolophus',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 9.5,
-    weightKg: 2500,
-  },
-  {
-    name: 'Compsognathus',
-    period: 'Jurassic',
-    diet: 'Carnivore',
-    lengthMeters: 1,
-    weightKg: 3,
-  },
-  {
-    name: 'Pachycephalosaurus',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 4.5,
-    weightKg: 450,
-  },
-  {
-    name: 'Dilophosaurus',
-    period: 'Jurassic',
-    diet: 'Carnivore',
-    lengthMeters: 7,
-    weightKg: 400,
-  },
-  {
-    name: 'Iguanodon',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 10,
-    weightKg: 3500,
-  },
-  {
-    name: 'Gallimimus',
-    period: 'Cretaceous',
-    diet: 'Omnivore',
-    lengthMeters: 6,
-    weightKg: 440,
-  },
-  {
-    name: 'Therizinosaurus',
-    period: 'Cretaceous',
-    diet: 'Herbivore',
-    lengthMeters: 10,
-    weightKg: 5000,
-  },
-  {
-    name: 'Carnotaurus',
-    period: 'Cretaceous',
-    diet: 'Carnivore',
-    lengthMeters: 7.5,
-    weightKg: 1300,
-  },
-  {
-    name: 'Oviraptor',
-    period: 'Cretaceous',
-    diet: 'Omnivore',
-    lengthMeters: 1.6,
-    weightKg: 33,
-  },
-  {
-    name: 'Baryonyx',
-    period: 'Cretaceous',
-    diet: 'Carnivore',
-    lengthMeters: 10,
-    weightKg: 1700,
-  },
-  {
-    name: 'Coelophysis',
-    period: 'Triassic',
-    diet: 'Carnivore',
-    lengthMeters: 3,
-    weightKg: 20,
-  },
-  {
-    name: 'Plateosaurus',
-    period: 'Triassic',
-    diet: 'Herbivore',
-    lengthMeters: 8,
-    weightKg: 700,
-  },
-  {
-    name: 'Herrerasaurus',
-    period: 'Triassic',
-    diet: 'Carnivore',
-    lengthMeters: 6,
-    weightKg: 350,
-  },
+export type NamespaceGroup = Readonly<{
+  namespace: RegistryNamespace
+  label: string
+  components: ReadonlyArray<PublicComponent>
+}>
+
+export type LoadedDocsDataValue = Readonly<{
+  registry: typeof RegistryIndex.Type
+  docsIndex: typeof ComponentDocsIndex.Type
+  localExamplePreviewDocs: ComponentDocsArtifactType
+  shadcnButtonDocs: ComponentDocsArtifactType
+  progressReport: OriginComponentProgressReportType
+}>
+
+const namespaceLabels: Readonly<Record<RegistryNamespace, string>> = {
+  'base-ui': 'Base UI',
+  shadcn: 'shadcn',
+  utils: 'Utilities',
+  themes: 'Themes',
+  blocks: 'Blocks',
+  charts: 'Charts',
+  local: 'Local',
+}
+
+const namespaceOrder: ReadonlyArray<RegistryNamespace> = [
+  'base-ui',
+  'shadcn',
+  'utils',
+  'themes',
+  'blocks',
+  'charts',
+  'local',
 ]
 
-export { type Dinosaur, dinosaurs }
+const decodeDocsData = (): DocsData => {
+  try {
+    return LoadedDocsData({
+      registry: S.decodeUnknownSync(RegistryIndex)(registryIndexJson),
+      docsIndex: S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson),
+      localExamplePreviewDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
+        localExamplePreviewDocsJson,
+      ),
+      shadcnButtonDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
+        shadcnButtonDocsJson,
+      ),
+      progressReport: S.decodeUnknownSync(OriginComponentProgressReport)(
+        progressReportJson,
+      ),
+    })
+  } catch (error: unknown) {
+    return FailedDocsData({
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Generated registry artifacts could not be decoded.',
+    })
+  }
+}
+
+export const docsData = decodeDocsData()
+
+export const namespaceLabel = (namespace: RegistryNamespace): string =>
+  namespaceLabels[namespace]
+
+const canRenderPublicComponent = (entry: RegistryIndexEntry): boolean =>
+  entry.item.kind === 'component' &&
+  (entry.item.lifecycle.availability === 'installable' ||
+    entry.item.lifecycle.availability === 'preview')
+
+const docsRouteFor = (
+  docsIndex: typeof ComponentDocsIndex.Type,
+  itemId: string,
+): Option.Option<ComponentDocsRoute> =>
+  Array.findFirst(docsIndex.routes, route => route.itemId === itemId)
+
+const docsArtifactFor = (
+  localExamplePreviewDocs: ComponentDocsArtifactType,
+  shadcnButtonDocs: ComponentDocsArtifactType,
+  itemId: string,
+): Option.Option<ComponentDocsArtifactType> =>
+  M.value(itemId).pipe(
+    M.withReturnType<Option.Option<ComponentDocsArtifactType>>(),
+    M.when('local/example-preview', () => Option.some(localExamplePreviewDocs)),
+    M.when('shadcn/button', () => Option.some(shadcnButtonDocs)),
+    M.orElse(() => Option.none()),
+  )
+
+export const publicComponents = (
+  data: DocsData,
+): ReadonlyArray<PublicComponent> =>
+  M.value(data).pipe(
+    M.withReturnType<ReadonlyArray<PublicComponent>>(),
+    M.tagsExhaustive({
+      FailedDocsData: () => [],
+      LoadedDocsData: ({
+        registry,
+        docsIndex,
+        localExamplePreviewDocs,
+        shadcnButtonDocs,
+      }) => {
+        const initialComponents: Array<PublicComponent> = []
+
+        return Array.reduce(registry.items, initialComponents, (acc, entry) => {
+          if (!canRenderPublicComponent(entry)) {
+            return acc
+          }
+
+          return Option.match(docsRouteFor(docsIndex, entry.item.id), {
+            onNone: () => acc,
+            onSome: docsRoute => [
+              ...acc,
+              {
+                entry,
+                docsRoute,
+                maybeDocsArtifact: docsArtifactFor(
+                  localExamplePreviewDocs,
+                  shadcnButtonDocs,
+                  entry.item.id,
+                ),
+              },
+            ],
+          })
+        })
+      },
+    }),
+  )
+
+export const namespaceGroups = (
+  data: DocsData,
+): ReadonlyArray<NamespaceGroup> => {
+  const components = publicComponents(data)
+  const initialGroups: Array<NamespaceGroup> = []
+
+  return Array.reduce(namespaceOrder, initialGroups, (groups, namespace) => {
+    const namespaceComponents = pipe(
+      components,
+      Array.filter(component => component.entry.item.namespace === namespace),
+      Array.sortWith(component => component.entry.item.name, Order.String),
+    )
+
+    return Array.match(namespaceComponents, {
+      onEmpty: () => groups,
+      onNonEmpty: () => [
+        ...groups,
+        {
+          namespace,
+          label: namespaceLabel(namespace),
+          components: namespaceComponents,
+        },
+      ],
+    })
+  })
+}
+
+export const findPublicComponent = (
+  data: DocsData,
+  namespace: string,
+  slug: string,
+): Option.Option<PublicComponent> =>
+  pipe(
+    publicComponents(data),
+    Array.findFirst(
+      component => component.entry.item.id === `${namespace}/${slug}`,
+    ),
+  )
+
+export const findRoutedComponent = (
+  data: DocsData,
+  namespace: string,
+  slug: string,
+): Option.Option<PublicComponent> =>
+  M.value(data).pipe(
+    M.withReturnType<Option.Option<PublicComponent>>(),
+    M.tagsExhaustive({
+      FailedDocsData: () => Option.none(),
+      LoadedDocsData: ({
+        registry,
+        docsIndex,
+        localExamplePreviewDocs,
+        shadcnButtonDocs,
+      }) => {
+        const itemId = `${namespace}/${slug}`
+
+        return Option.flatMap(
+          Array.findFirst(registry.items, entry => entry.item.id === itemId),
+          entry =>
+            Option.map(docsRouteFor(docsIndex, itemId), docsRoute => ({
+              entry,
+              docsRoute,
+              maybeDocsArtifact: docsArtifactFor(
+                localExamplePreviewDocs,
+                shadcnButtonDocs,
+                itemId,
+              ),
+            })),
+        )
+      },
+    }),
+  )
+
+export const generatedComponentCount = (data: DocsData): number =>
+  publicComponents(data).length

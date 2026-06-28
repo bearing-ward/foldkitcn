@@ -205,7 +205,8 @@
     "implementationStatus": "implemented",
     "parityStatus": "accepted",
     "driftStatus": "current",
-    "availability": "installable"
+    "availability": "installable",
+    "docsStatus": "missing"
   },
   "deviations": [
     {

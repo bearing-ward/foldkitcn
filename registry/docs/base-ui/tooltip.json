@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/tooltip",
+  "routePath": "/components/base-ui/tooltip",
+  "title": "Tooltip",
+  "description": "Foldkit-native Base UI Tooltip primitive preserving model-owned open state, trigger hover/focus/press facts, provider delay metadata, deterministic placement attributes, role=tooltip relationships, portal, positioner, popup, viewport, arrow, disabled, detached-trigger, instant, transition, and keyboard-dismiss surfaces.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/tooltip",
+  "defaultImportPath": "base-ui/tooltip",
+  "sourceRoot": "registry-src/base-ui/tooltip",
+  "installableSourcePaths": ["src/registry/base-ui/tooltip/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Tooltip",
+      "docsUrl": "https://base-ui.com/react/components/tooltip",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/tooltip",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/tooltip/arrow/TooltipArrow.tsx",
+        "repos/base-ui/packages/react/src/tooltip/index.ts",
+        "repos/base-ui/packages/react/src/tooltip/popup/TooltipPopup.tsx",
+        "repos/base-ui/packages/react/src/tooltip/portal/TooltipPortal.tsx",
+        "repos/base-ui/packages/react/src/tooltip/positioner/TooltipPositioner.tsx",
+        "repos/base-ui/packages/react/src/tooltip/provider/TooltipProvider.tsx",
+        "repos/base-ui/packages/react/src/tooltip/root/TooltipRoot.tsx",
+        "repos/base-ui/packages/react/src/tooltip/trigger/TooltipTrigger.tsx",
+        "repos/base-ui/packages/react/src/tooltip/viewport/TooltipViewport.tsx"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/demos/detached-triggers-controlled/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/demos/detached-triggers-full/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/demos/detached-triggers-simple/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/tooltip/demos/hero/index.ts"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/tooltip/arrow/TooltipArrow.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/popup/TooltipPopup.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/portal/TooltipPortal.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/positioner/TooltipPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/provider/TooltipProvider.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/root/TooltipRoot.detached-triggers.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/root/TooltipRoot.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/trigger/TooltipTrigger.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/viewport/TooltipViewport.test.tsx",
+        "repos/base-ui/packages/react/src/tooltip/positioner/TooltipPositioner.spec.tsx",
+        "repos/base-ui/packages/react/src/tooltip/trigger/TooltipTrigger.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, Command, Dom, and message helpers for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Option, Predicate, and Effect composition for serializable options and command helpers."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/tooltip",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tooltip",
+        "reason": "Origin Base UI React Tooltip primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "@base-ui/react/tooltip",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/tooltip",
+        "reason": "Origin Base UI React Tooltip primitive is replaced by this Foldkit implementation."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-tooltip-model-owned-open-state",
+        "summary": "Open state and active trigger identity are model-owned inputs; trigger interactions emit open-change facts instead of mutating hidden component state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit preserves unidirectional data flow. Consumers decide whether hover, focus, press, delay, and disabled facts update their model."
+      },
+      {
+        "id": "base-ui-tooltip-delay-as-model-facing-facts",
+        "summary": "Delay, closeDelay, provider delay, provider closeDelay, and provider timeout are exposed as deterministic attributes and open-change facts rather than hidden timers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable primitive remains pure. Shared timer or subscription behavior can be added later through a reusable Foldkit abstraction."
+      },
+      {
+        "id": "base-ui-tooltip-deterministic-placement-attributes",
+        "summary": "Placement is represented through deterministic side, align, offset, collision, positioner, viewport, and arrow attributes without performing DOM measurement or collision flipping.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Measured collision handling depends on runtime geometry and should be shared with Popover rather than implemented ad hoc in Tooltip."
+      }
+    ]
+  }
+}

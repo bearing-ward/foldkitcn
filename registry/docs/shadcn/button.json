@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/button",
+  "routePath": "/components/shadcn/button",
+  "title": "Button",
+  "description": "Foldkit-native shadcn base-nova Button wrapper using local Base UI Button behavior and pure class maps.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/button/docs.md",
+  "markdown": "# Button\n\n## Overview\n\nButton is a styled Foldkit wrapper for shadcn's base-nova button treatment. It composes the local Base UI Button primitive for behavior and `utils/cn` for class composition, so installable source stays Foldkit-native while preserving the origin visual contract.\n\n## Foldkit Model\n\nButton is a stateless render helper. It does not own a Model, Message, update function, or Command. Call it from a view with Foldkit Html children and pass event attributes, disabled state, variant, and size from the parent model.\n\n## Usage\n\nImport the Button helper from the generated registry source and call it inside a view after binding `const h = html<Message>()`.\n\n```ts\nButton(\n  {\n    variant: 'default',\n    size: 'default',\n    attributes: [h.OnClick(ClickedSave())],\n  },\n  ['Save changes'],\n)\n```\n\nKeep state transitions in the parent update function. The Button should report facts through messages such as `ClickedSave`, not perform imperative work itself.\n\n## Examples\n\nThe registry includes examples for default, outline, secondary, ghost, destructive, link, icon-only, icon-with-text, size, rounded, spinner, render-as-anchor, and RTL button layouts.\n\nIcon examples use local inline SVGs instead of origin icon packages. This keeps the component installable without adding `lucide-react` or `@tabler/icons-react` as runtime dependencies.\n\n## Accessibility\n\nUse Button for actions and provide clear visible text or an accessible label for icon-only buttons. Disabled buttons should pass disabled state through the helper instead of hiding click behavior in event handlers.\n\nWhen rendering as a link-like control, make sure navigation still flows through Foldkit navigation messages so the application model remains the source of truth.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes React, Base UI React behavior, CVA, and external icon packages. This registry item replaces those pieces with Foldkit Html, the local Base UI Button primitive, Effect Schema literals for variants and sizes, and `utils/cn`.\n\nThat difference is intentional and accepted: the installable source cannot depend on React-only primitives or icon packages, but it should preserve the same base-nova class contract and example coverage.\n",
+  "headings": [
+    {
+      "id": "button",
+      "text": "Button",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/button",
+  "defaultImportPath": "shadcn/button",
+  "sourceRoot": "registry-src/shadcn/button",
+  "installableSourcePaths": [
+    "src/registry/shadcn/button/index.ts",
+    "src/registry/shadcn/button/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Button",
+      "docsUrl": "https://ui.shadcn.com/docs/components/button",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/button.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "141083036420a83aab726f0fb5e8374f097499e162bb8a8aaed299c86092afe0",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/button.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx"
+      ],
+      "docsPaths": ["repos/ui/apps/v4/content/docs/components/base/button.mdx"],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/button-demo.tsx",
+        "repos/ui/apps/v4/examples/base/button-default.tsx",
+        "repos/ui/apps/v4/examples/base/button-outline.tsx",
+        "repos/ui/apps/v4/examples/base/button-secondary.tsx",
+        "repos/ui/apps/v4/examples/base/button-ghost.tsx",
+        "repos/ui/apps/v4/examples/base/button-destructive.tsx",
+        "repos/ui/apps/v4/examples/base/button-link.tsx",
+        "repos/ui/apps/v4/examples/base/button-icon.tsx",
+        "repos/ui/apps/v4/examples/base/button-with-icon.tsx",
+        "repos/ui/apps/v4/examples/base/button-size.tsx",
+        "repos/ui/apps/v4/examples/base/button-rounded.tsx",
+        "repos/ui/apps/v4/examples/base/button-spinner.tsx",
+        "repos/ui/apps/v4/examples/base/button-render.tsx",
+        "repos/ui/apps/v4/examples/base/button-rtl.tsx"
+      ],
+      "testPaths": [
+        "repos/ui/packages/tests/src/tests/add.test.ts",
+        "repos/ui/packages/tests/src/tests/view.test.ts"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/button",
+        "classification": "registry-local",
+        "target": "base-ui/button",
+        "reason": "shadcn Button composes the local Base UI Button primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Button uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant and size options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/button",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/button",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@tabler/icons-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/button-default",
+      "title": "ButtonDefault",
+      "description": "Default shadcn Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonDefault = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    toView: attributes => h.button([...attributes.button], ['Button']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonDefault",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-demo",
+      "title": "ButtonDemo",
+      "description": "Outline Button and icon Button demo.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 md:flex-row')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes => h.button([...attributes.button], ['Button']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        toView: attributes =>\n          h.button(\n            [...attributes.button, h.AriaLabel('Submit')],\n            [arrowUpIcon()],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonDemo",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-outline",
+      "title": "ButtonOutline",
+      "description": "Outline variant Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonOutline = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    toView: attributes => h.button([...attributes.button], ['Outline']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonOutline",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-secondary",
+      "title": "ButtonSecondary",
+      "description": "Secondary variant Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonSecondary = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'secondary',\n    toView: attributes => h.button([...attributes.button], ['Secondary']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonSecondary",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-ghost",
+      "title": "ButtonGhost",
+      "description": "Ghost variant Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonGhost = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'ghost',\n    toView: attributes => h.button([...attributes.button], ['Ghost']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonGhost",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-destructive",
+      "title": "ButtonDestructive",
+      "description": "Destructive variant Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonDestructive = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'destructive',\n    toView: attributes => h.button([...attributes.button], ['Destructive']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonDestructive",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-link",
+      "title": "ButtonLink",
+      "description": "Link variant Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonLink = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'link',\n    toView: attributes => h.button([...attributes.button], ['Link']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonLink",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-icon",
+      "title": "ButtonIcon",
+      "description": "Icon-sized Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonIcon = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    size: 'icon',\n    toView: attributes =>\n      h.button([...attributes.button], [circleFadingArrowUpIcon()]),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonIcon",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-with-icon",
+      "title": "ButtonWithIcon",
+      "description": "Inline start and end icon Button examples.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonWithIcon = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [branchIcon('inline-start'), ' New Branch'],\n          ),\n      }),\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button([...attributes.button], ['Fork ', forkIcon('inline-end')]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonWithIcon",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-size",
+      "title": "ButtonSize",
+      "description": "Button size matrix example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonSize = (): Html => {\n  const h = html<never>()\n  const sizePair = (\n    label: string,\n    size: 'xs' | 'sm' | 'default' | 'lg',\n    iconSize: 'icon-xs' | 'icon-sm' | 'icon' | 'icon-lg',\n  ): Html =>\n    h.div(\n      [h.Class('flex items-start gap-2')],\n      [\n        Button<never>({\n          variant: 'outline',\n          size,\n          toView: attributes => h.button([...attributes.button], [label]),\n        }),\n        Button<never>({\n          variant: 'outline',\n          size: iconSize,\n          toView: attributes =>\n            h.button(\n              [...attributes.button, h.AriaLabel('Submit')],\n              [arrowUpRightIcon()],\n            ),\n        }),\n      ],\n    )\n\n  return h.div(\n    [h.Class('flex flex-col items-start gap-8 sm:flex-row')],\n    [\n      sizePair('Extra Small', 'xs', 'icon-xs'),\n      sizePair('Small', 'sm', 'icon-sm'),\n      sizePair('Default', 'default', 'icon'),\n      sizePair('Large', 'lg', 'icon-lg'),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonSize",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-rounded",
+      "title": "ButtonRounded",
+      "description": "Rounded Button example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonRounded = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        className: 'rounded-full',\n        toView: attributes => h.button([...attributes.button], ['Get Started']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        className: 'rounded-full',\n        toView: attributes => h.button([...attributes.button], [arrowUpIcon()]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonRounded",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-spinner",
+      "title": "ButtonSpinner",
+      "description": "Disabled Button examples using an example-local spinner helper.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonSpinner = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex gap-2')],\n    [\n      Button<never>({\n        variant: 'outline',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [spinner('inline-start'), ' Generating'],\n          ),\n      }),\n      Button<never>({\n        variant: 'secondary',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            ['Downloading ', spinner('inline-start')],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonSpinner",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-render",
+      "title": "ButtonRender",
+      "description": "Plain anchor using the shadcn Button class helper.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonRender = (): Html => {\n  const h = html<never>()\n\n  return h.a(\n    [\n      h.Href('#'),\n      h.Class(buttonVariants({ variant: 'secondary', size: 'sm' })),\n    ],\n    ['Login'],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonRender",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/button-rtl",
+      "title": "ButtonRtl",
+      "description": "RTL Button layout example.",
+      "componentItemId": "shadcn/button",
+      "sourcePath": "src/registry/shadcn/button/examples.ts",
+      "snippet": "export const ButtonRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap items-center gap-2 md:flex-row'), h.Dir('rtl')],\n    [\n      Button<never>({\n        variant: 'outline',\n        toView: attributes => h.button([...attributes.button], ['زر']),\n      }),\n      Button<never>({\n        variant: 'destructive',\n        toView: attributes => h.button([...attributes.button], ['حذف']),\n      }),\n      Button<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            ['إرسال ', arrowRightIcon('inline-end')],\n          ),\n      }),\n      Button<never>({\n        variant: 'outline',\n        size: 'icon',\n        toView: attributes =>\n          h.button([...attributes.button, h.AriaLabel('Add')], [plusIcon()]),\n      }),\n      Button<never>({\n        variant: 'secondary',\n        isDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button],\n            [spinner('inline-start'), ' جاري التحميل'],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonRtl",
+      "requiredRegistryItems": ["base-ui/button", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-button-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react or @tabler/icons-react. Local SVGs preserve the inline icon DOM role and visual footprint for Button examples without adding icon registry items."
+      }
+    ]
+  }
+}

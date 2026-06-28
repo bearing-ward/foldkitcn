@@ -1,7 +1,10 @@
+import { Option } from 'effect'
 import { describe, expect, test } from 'vitest'
 
 import type { RegistryIndex } from '../src/registry/schema'
 import {
+  buildComponentDocsArtifacts,
+  componentDocsRouteForItem,
   registryIndexIsCurrent,
   selectRegistryGeneratedAt,
 } from './registry-common'
@@ -11,6 +14,102 @@ const emptyIndex = (generatedAt: string): RegistryIndex => ({
   generatedAt,
   sourceRoot: 'registry-src',
   items: [],
+})
+
+const registryIndexWithDocsItems = (): RegistryIndex => ({
+  schemaVersion: 1,
+  generatedAt: '2026-06-24T18:00:00.000Z',
+  sourceRoot: 'registry-src',
+  items: [
+    {
+      item: {
+        schemaVersion: 1,
+        id: 'shadcn/button',
+        namespace: 'shadcn',
+        name: 'Button',
+        kind: 'component',
+        description: 'Foldkit-native shadcn Button wrapper.',
+        sourceRoot: 'registry-src/shadcn/button',
+        installableSourcePaths: ['src/registry/shadcn/button/index.ts'],
+        consumedThemeTokens: [],
+        originProvenance: [],
+        dependencies: {
+          registry: [
+            {
+              specifier: 'base-ui/button',
+              classification: 'registry-local',
+              target: 'base-ui/button',
+              reason: 'Button composes Base UI Button.',
+            },
+          ],
+          runtime: [],
+          development: [],
+        },
+        examples: [],
+        parity: {
+          itemId: 'shadcn/button',
+          originFixturePath: '',
+          foldkitFixturePath: '',
+          requiredComparisons: [],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+          docsStatus: 'missing',
+        },
+        deviations: [],
+      },
+      manifestHash: 'button-hash',
+      artifacts: [],
+    },
+    {
+      item: {
+        schemaVersion: 1,
+        id: 'local/example-preview',
+        namespace: 'local',
+        name: 'Example preview',
+        kind: 'example',
+        description: 'Private preview fixture.',
+        sourceRoot: 'registry-src/local/example-preview',
+        installableSourcePaths: [],
+        consumedThemeTokens: [],
+        originProvenance: [],
+        dependencies: {
+          registry: [],
+          runtime: [
+            {
+              specifier: 'foldkit',
+              classification: 'allowed-runtime',
+              target: 'npm:foldkit',
+              reason: 'Provides Foldkit Html types.',
+            },
+          ],
+          development: [],
+        },
+        examples: [],
+        parity: {
+          itemId: 'local/example-preview',
+          originFixturePath: '',
+          foldkitFixturePath: '',
+          requiredComparisons: [],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'missing',
+        },
+        deviations: [],
+      },
+      manifestHash: 'example-preview-hash',
+      artifacts: [],
+    },
+  ],
 })
 
 describe('registry build helpers', () => {
@@ -72,5 +171,110 @@ describe('registry build helpers', () => {
     expect(
       registryIndexIsCurrent(previousIndex, nextIndexWithPreservedGeneratedAt),
     ).toBeTruthy()
+  })
+
+  test('builds the generated docs artifact route for shadcn button', () => {
+    const index = registryIndexWithDocsItems()
+    const route = componentDocsRouteForItem(index.items[0].item)
+    const docs = buildComponentDocsArtifacts(index)
+
+    expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
+    expect(docs.index.routes).toContainEqual(route)
+    expect(docs.artifacts[0]?.routePath).toBe('/components/shadcn/button')
+    expect(docs.artifacts[0]?.docsStatus).toBe('missing')
+  })
+
+  test('generates example docs artifacts with snippets and dependencies', () => {
+    const index = registryIndexWithDocsItems()
+    const docs = buildComponentDocsArtifacts({
+      ...index,
+      items: [
+        {
+          ...index.items[0],
+          item: {
+            ...index.items[0].item,
+            examples: [
+              {
+                id: 'shadcn/button-default',
+                title: 'ButtonDefault',
+                description: 'Default shadcn Button example.',
+                sourcePath: 'src/registry/shadcn/button/examples.ts',
+                kind: 'demo',
+              },
+            ],
+          },
+        },
+      ],
+    })
+    const example = docs.artifacts[0]?.examples[0]
+
+    expect({
+      componentItemId: example?.componentItemId,
+      hasDefaultSnippet: example?.snippet.includes(
+        'export const ButtonDefault',
+      ),
+      hasDemoSnippet: example?.snippet.includes('export const ButtonDemo'),
+      previewStatus: example?.previewStatus,
+      requiredRegistryItems: example?.requiredRegistryItems,
+    }).toStrictEqual({
+      componentItemId: 'shadcn/button',
+      hasDefaultSnippet: true,
+      hasDemoSnippet: false,
+      previewStatus: 'live-ready',
+      requiredRegistryItems: ['base-ui/button'],
+    })
+    expect(
+      example === undefined
+        ? ''
+        : Option.match(example.previewExportName, {
+            onNone: () => '',
+            onSome: value => value,
+          }),
+    ).toBe('ButtonDefault')
+  })
+
+  test('leaves unregistered example exports static', () => {
+    const index = registryIndexWithDocsItems()
+    const docs = buildComponentDocsArtifacts({
+      ...index,
+      items: [
+        {
+          ...index.items[0],
+          item: {
+            ...index.items[0].item,
+            id: 'base-ui/button',
+            examples: [
+              {
+                id: 'base-ui/button-default',
+                title: 'ButtonDefault',
+                description: 'Default Button example.',
+                sourcePath: 'src/registry/shadcn/button/examples.ts',
+                kind: 'demo',
+              },
+            ],
+          },
+        },
+      ],
+    })
+
+    expect(docs.artifacts[0]?.examples[0]?.previewStatus).toBe('static')
+  })
+
+  test('includes dependency and source references in every component docs artifact', () => {
+    const index = registryIndexWithDocsItems()
+    const docs = buildComponentDocsArtifacts(index)
+
+    expect(docs.artifacts[0]?.dependencies.registry[0]?.target).toBe(
+      'base-ui/button',
+    )
+    expect(docs.artifacts[0]?.installableSourcePaths).toStrictEqual([
+      'src/registry/shadcn/button/index.ts',
+    ])
+    expect(docs.artifacts[1]?.sourceRoot).toBe(
+      'registry-src/local/example-preview',
+    )
+    expect(docs.artifacts[1]?.dependencies.runtime[0]?.specifier).toBe(
+      'foldkit',
+    )
   })
 })

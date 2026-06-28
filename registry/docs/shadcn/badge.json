@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/badge",
+  "routePath": "/components/shadcn/badge",
+  "title": "Badge",
+  "description": "Foldkit-native shadcn base-nova Badge wrapper using pure class maps and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/badge",
+  "defaultImportPath": "shadcn/badge",
+  "sourceRoot": "registry-src/shadcn/badge",
+  "installableSourcePaths": [
+    "src/registry/shadcn/badge/index.ts",
+    "src/registry/shadcn/badge/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Badge",
+      "docsUrl": "https://ui.shadcn.com/docs/components/badge",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/badge.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "968b0403af74a785c9408ca69a677235e49d0c80b2c27fb9858ad421a8778c7d",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/badge.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/badge.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/badge.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/badge-colors.tsx",
+        "repos/ui/apps/v4/examples/base/badge-demo.tsx",
+        "repos/ui/apps/v4/examples/base/badge-icon.tsx",
+        "repos/ui/apps/v4/examples/base/badge-link.tsx",
+        "repos/ui/apps/v4/examples/base/badge-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/badge-spinner.tsx",
+        "repos/ui/apps/v4/examples/base/badge-variants.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Badge uses the local class composition helper instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React render composition is replaced by the Foldkit toView helper shape."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin spinner examples are represented by an example-local inline SVG helper."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local RTL example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/badge-colors",
+      "title": "BadgeColors",
+      "description": "Custom color Badge examples.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeColors = (): Html => {\n  const h = html<never>()\n  const customColorBadge = (className: string, label: string): Html =>\n    Badge<never>({\n      className,\n      toView: attributes => h.span([...attributes.badge], [label]),\n    })\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      customColorBadge(\n        'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300',\n        'Blue',\n      ),\n      customColorBadge(\n        'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300',\n        'Green',\n      ),\n      customColorBadge(\n        'bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300',\n        'Sky',\n      ),\n      customColorBadge(\n        'bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300',\n        'Purple',\n      ),\n      customColorBadge(\n        'bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300',\n        'Red',\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeColors",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-demo",
+      "title": "BadgeDemo",
+      "description": "Badge variant demo.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full flex-wrap justify-center gap-2')],\n    [\n      Badge<never>({\n        toView: attributes => h.span([...attributes.badge], ['Badge']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes => h.span([...attributes.badge], ['Secondary']),\n      }),\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes => h.span([...attributes.badge], ['Destructive']),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes => h.span([...attributes.badge], ['Outline']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-icon",
+      "title": "BadgeIcon",
+      "description": "Inline start and end icon Badge examples.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeIcon = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes =>\n          h.span(\n            [...attributes.badge],\n            [badgeCheckIcon('inline-start'), 'Verified'],\n          ),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes =>\n          h.span(\n            [...attributes.badge],\n            ['Bookmark', bookmarkIcon('inline-end')],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeIcon",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-link",
+      "title": "BadgeLink",
+      "description": "Anchor Badge example.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeLink = (): Html => {\n  const h = html<never>()\n\n  return Badge<never>({\n    toView: attributes =>\n      h.a(\n        [...attributes.badge, h.Href('#link')],\n        ['Open Link ', arrowUpRightIcon('inline-end')],\n      ),\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeLink",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-rtl",
+      "title": "BadgeRtl",
+      "description": "RTL Badge layout example with local Arabic strings.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicBadgeRtl\n\n  return h.div(\n    [h.Class('flex w-full flex-wrap justify-center gap-2'), h.Dir(dir)],\n    [\n      RtlBadge('default', [values.badge]),\n      RtlBadge('secondary', [values.secondary]),\n      RtlBadge('destructive', [values.destructive]),\n      RtlBadge('outline', [values.outline]),\n      RtlBadge('secondary', [badgeCheckIcon('inline-start'), values.verified]),\n      RtlBadge('outline', [values.bookmark, bookmarkIcon('inline-end')]),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeRtl",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-spinner",
+      "title": "BadgeSpinner",
+      "description": "Badge examples using an example-local spinner helper.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeSpinner = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes =>\n          h.span([...attributes.badge], [spinner('inline-start'), 'Deleting']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes =>\n          h.span([...attributes.badge], ['Generating', spinner('inline-end')]),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeSpinner",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/badge-variants",
+      "title": "BadgeVariants",
+      "description": "Badge variant list example.",
+      "componentItemId": "shadcn/badge",
+      "sourcePath": "src/registry/shadcn/badge/examples.ts",
+      "snippet": "export const BadgeVariants = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    [\n      Badge<never>({\n        toView: attributes => h.span([...attributes.badge], ['Default']),\n      }),\n      Badge<never>({\n        variant: 'secondary',\n        toView: attributes => h.span([...attributes.badge], ['Secondary']),\n      }),\n      Badge<never>({\n        variant: 'destructive',\n        toView: attributes => h.span([...attributes.badge], ['Destructive']),\n      }),\n      Badge<never>({\n        variant: 'outline',\n        toView: attributes => h.span([...attributes.badge], ['Outline']),\n      }),\n      Badge<never>({\n        variant: 'ghost',\n        toView: attributes => h.span([...attributes.badge], ['Ghost']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "BadgeVariants",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-badge-local-icons",
+        "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Badge examples without adding icon registry items."
+      },
+      {
+        "id": "shadcn-badge-local-spinner",
+        "summary": "Spinner example uses a local inline SVG instead of an installable shadcn Spinner component.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "This batch intentionally does not add shadcn/spinner as an installable registry item. The example-local SVG preserves the origin spinner slot, status role, and icon placement."
+      },
+      {
+        "id": "shadcn-badge-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

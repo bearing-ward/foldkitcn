@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/separator",
+  "routePath": "/components/shadcn/separator",
+  "title": "Separator",
+  "description": "Foldkit-native shadcn base-nova Separator wrapper using local Base UI Separator behavior and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/separator",
+  "defaultImportPath": "shadcn/separator",
+  "sourceRoot": "registry-src/shadcn/separator",
+  "installableSourcePaths": [
+    "src/registry/shadcn/separator/index.ts",
+    "src/registry/shadcn/separator/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Separator",
+      "docsUrl": "https://ui.shadcn.com/docs/components/separator",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/separator.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "65cd557e0d609c74abb2adcb76a999728e6abaff0e23447e5701c713bb3431ef",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/separator.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/separator.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/separator.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/separator-demo.tsx",
+        "repos/ui/apps/v4/examples/base/separator-list.tsx",
+        "repos/ui/apps/v4/examples/base/separator-menu.tsx",
+        "repos/ui/apps/v4/examples/base/separator-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/separator-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/separator",
+        "classification": "registry-local",
+        "target": "base-ui/separator",
+        "reason": "shadcn Separator composes the local Base UI Separator primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Separator uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/separator",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/separator",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local example constants and origin fixture aliases."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/separator-demo",
+      "title": "SeparatorDemo",
+      "description": "Heading, subtitle, separator, and description demo.",
+      "componentItemId": "shadcn/separator",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "snippet": "export const SeparatorDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex max-w-sm flex-col gap-4 text-sm')],\n    [\n      h.div(\n        [h.Class('flex flex-col gap-1.5')],\n        [\n          h.div([h.Class('leading-none font-medium')], ['shadcn/ui']),\n          h.div(\n            [h.Class('text-muted-foreground')],\n            ['The Foundation for your Design System'],\n          ),\n        ],\n      ),\n      Separator<never>({\n        toView: attributes => h.div([...attributes.separator], []),\n      }),\n      h.div(\n        [],\n        [\n          'A set of beautifully designed components that you can customize, extend, and build on.',\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SeparatorDemo",
+      "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/separator-list",
+      "title": "SeparatorList",
+      "description": "Definition-list rows separated by horizontal separators.",
+      "componentItemId": "shadcn/separator",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "snippet": "export const SeparatorList = (): Html => {\n  const h = html<never>()\n  const row = (item: string, value: string): Html =>\n    h.dl(\n      [h.Class('flex items-center justify-between')],\n      [h.dt([], [item]), h.dd([h.Class('text-muted-foreground')], [value])],\n    )\n  const separator = (): Html =>\n    Separator<never>({\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex w-full max-w-sm flex-col gap-2 text-sm')],\n    [\n      row('Item 1', 'Value 1'),\n      separator(),\n      row('Item 2', 'Value 2'),\n      separator(),\n      row('Item 3', 'Value 3'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SeparatorList",
+      "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/separator-menu",
+      "title": "SeparatorMenu",
+      "description": "Menu-like labels separated by vertical separators.",
+      "componentItemId": "shadcn/separator",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "snippet": "export const SeparatorMenu = (): Html => {\n  const h = html<never>()\n  const group = (\n    title: string,\n    description: string,\n    className = 'flex flex-col gap-1',\n  ): Html =>\n    h.div(\n      [h.Class(className)],\n      [\n        h.span([h.Class('font-medium')], [title]),\n        h.span([h.Class('text-xs text-muted-foreground')], [description]),\n      ],\n    )\n  const verticalSeparator = (className?: string): Html =>\n    Separator<never>({\n      orientation: 'vertical',\n      className,\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex items-center gap-2 text-sm md:gap-4')],\n    [\n      group('Settings', 'Manage preferences'),\n      verticalSeparator(),\n      group('Account', 'Profile & security'),\n      verticalSeparator('hidden md:block'),\n      group('Help', 'Support & docs', 'hidden flex-col gap-1 md:flex'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SeparatorMenu",
+      "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/separator-vertical",
+      "title": "SeparatorVertical",
+      "description": "Compact nav labels separated by vertical separators.",
+      "componentItemId": "shadcn/separator",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "snippet": "export const SeparatorVertical = (): Html => {\n  const h = html<never>()\n  const verticalSeparator = (): Html =>\n    Separator<never>({\n      orientation: 'vertical',\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex h-5 items-center gap-4 text-sm')],\n    [\n      h.div([], ['Blog']),\n      verticalSeparator(),\n      h.div([], ['Docs']),\n      verticalSeparator(),\n      h.div([], ['Source']),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SeparatorVertical",
+      "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/separator-rtl",
+      "title": "SeparatorRtl",
+      "description": "RTL Separator layout example with local Arabic strings.",
+      "componentItemId": "shadcn/separator",
+      "sourcePath": "src/registry/shadcn/separator/examples.ts",
+      "snippet": "export const SeparatorRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicSeparatorRtl\n\n  return h.div(\n    [h.Class('flex max-w-sm flex-col gap-4 text-sm'), h.Dir(dir)],\n    [\n      h.div(\n        [h.Class('flex flex-col gap-1.5')],\n        [\n          h.div([h.Class('leading-none font-medium')], [values.title]),\n          h.div([h.Class('text-muted-foreground')], [values.subtitle]),\n        ],\n      ),\n      Separator<never>({\n        toView: attributes => h.div([...attributes.separator], []),\n      }),\n      h.div([], [values.description]),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "SeparatorRtl",
+      "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-separator-local-rtl-data",
+        "summary": "RTL example uses local constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}

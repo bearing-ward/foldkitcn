@@ -9,6 +9,7 @@ const makeManifest = ({
   dependencies,
   lifecycle,
   parity,
+  examples,
 }: {
   readonly id: string
   readonly sourceRoot: string
@@ -38,6 +39,7 @@ const makeManifest = ({
     readonly parityStatus: string
     readonly driftStatus: string
     readonly availability: string
+    readonly docsStatus?: string
   }
   readonly parity?: {
     readonly itemId: string
@@ -46,6 +48,13 @@ const makeManifest = ({
     readonly requiredComparisons: ReadonlyArray<string>
     readonly acceptedDeviationIds: ReadonlyArray<string>
   }
+  readonly examples?: ReadonlyArray<{
+    readonly id: string
+    readonly title: string
+    readonly description: string
+    readonly sourcePath: string
+    readonly kind: string
+  }>
 }) => ({
   schemaVersion: 1,
   id,
@@ -62,7 +71,7 @@ const makeManifest = ({
     runtime: dependencies?.runtime ?? [],
     development: dependencies?.development ?? [],
   },
-  examples: [],
+  examples: examples ?? [],
   parity: parity ?? {
     itemId: id,
     originFixturePath: '',
@@ -70,11 +79,12 @@ const makeManifest = ({
     requiredComparisons: [],
     acceptedDeviationIds: [],
   },
-  lifecycle: lifecycle ?? {
-    implementationStatus: 'planned',
-    parityStatus: 'not-started',
-    driftStatus: 'unknown',
-    availability: 'private',
+  lifecycle: {
+    implementationStatus: lifecycle?.implementationStatus ?? 'planned',
+    parityStatus: lifecycle?.parityStatus ?? 'not-started',
+    driftStatus: lifecycle?.driftStatus ?? 'unknown',
+    availability: lifecycle?.availability ?? 'private',
+    docsStatus: lifecycle?.docsStatus ?? 'missing',
   },
   deviations: [],
 })
@@ -406,6 +416,257 @@ describe('registry validation', () => {
         path: 'registry-src/local/installable/item.json',
         message:
           'Parity fixture path does not exist: tests/parity/missing-foldkit.fixture.ts',
+      },
+    ])
+  })
+
+  test('allows installable items to keep missing docs during migration', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+          docsStatus: 'missing',
+        },
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([])
+  })
+
+  test('rejects complete docs without a docs sidecar', () => {
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map(),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/complete/item.json',
+        message: 'Complete docs require registry-src/local/complete/docs.md.',
+      },
+    ])
+  })
+
+  test('rejects complete docs with missing required sidecar headings', () => {
+    const docsPath = 'registry-src/local/complete/docs.md'
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map([[docsPath, '# Usage\n\n## Examples\n']]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Button" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Overview" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Foldkit Model" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Accessibility" heading.',
+      },
+      {
+        path: docsPath,
+        message: 'Complete docs require a "Foldkit Differences" heading.',
+      },
+    ])
+  })
+
+  test('rejects complete docs with raw HTML', () => {
+    const docsPath = 'registry-src/local/complete/docs.md'
+    const result = validateFixture(
+      'registry-src/local/complete/item.json',
+      makeManifest({
+        id: 'local/complete',
+        sourceRoot: 'registry-src/local/complete',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'complete',
+        },
+      }),
+      new Set(['local/complete']),
+      new Map([
+        [
+          docsPath,
+          '# Button\n\n## Overview\n\n## Foldkit Model\n\n## Usage\n\n## Examples\n\n## Accessibility\n\n## Foldkit Differences\n\n<div>nope</div>\n',
+        ],
+      ]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: docsPath,
+        message: 'Complete docs must not include raw HTML.',
+      },
+    ])
+  })
+
+  test('allows stub docs status without a sidecar', () => {
+    const result = validateFixture(
+      'registry-src/local/stub/item.json',
+      makeManifest({
+        id: 'local/stub',
+        sourceRoot: 'registry-src/local/stub',
+        installableSourcePaths: [],
+        lifecycle: {
+          implementationStatus: 'planned',
+          parityStatus: 'not-started',
+          driftStatus: 'unknown',
+          availability: 'private',
+          docsStatus: 'stub',
+        },
+      }),
+      new Set(['local/stub']),
+      new Map(),
+    )
+
+    expect(result.errors).toStrictEqual([])
+  })
+
+  test('rejects installable examples with missing source paths', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+        examples: [
+          {
+            id: 'local/installable-default',
+            title: 'InstallableDefault',
+            description: 'Missing example source.',
+            sourcePath: 'src/registry/local/installable/examples.ts',
+            kind: 'demo',
+          },
+        ],
+      }),
+      new Set(['local/installable']),
+      new Map(),
+      new Set([originFixturePath, foldkitFixturePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message:
+          'Example source path does not exist: src/registry/local/installable/examples.ts',
+      },
+    ])
+  })
+
+  test('rejects installable examples with empty generated snippets', () => {
+    const originFixturePath = 'tests/parity/origin/installable.fixture.ts'
+    const foldkitFixturePath = 'tests/parity/foldkit/installable.fixture.ts'
+    const sourcePath = 'src/registry/local/installable/examples.ts'
+    const result = validateFixture(
+      'registry-src/local/installable/item.json',
+      makeManifest({
+        id: 'local/installable',
+        sourceRoot: 'registry-src/local/installable',
+        installableSourcePaths: [],
+        parity: {
+          itemId: 'local/installable',
+          originFixturePath,
+          foldkitFixturePath,
+          requiredComparisons: ['attributes'],
+          acceptedDeviationIds: [],
+        },
+        lifecycle: {
+          implementationStatus: 'implemented',
+          parityStatus: 'accepted',
+          driftStatus: 'current',
+          availability: 'installable',
+        },
+        examples: [
+          {
+            id: 'local/installable-default',
+            title: 'InstallableDefault',
+            description: 'Empty example source.',
+            sourcePath,
+            kind: 'demo',
+          },
+        ],
+      }),
+      new Set(['local/installable']),
+      new Map([[sourcePath, '']]),
+      new Set([originFixturePath, foldkitFixturePath, sourcePath]),
+    )
+
+    expect(result.errors).toStrictEqual([
+      {
+        path: 'registry-src/local/installable/item.json',
+        message:
+          'Example source generated an empty snippet: src/registry/local/installable/examples.ts',
       },
     ])
   })

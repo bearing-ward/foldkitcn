@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/button",
+  "routePath": "/components/base-ui/button",
+  "title": "Button",
+  "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/button",
+  "defaultImportPath": "base-ui/button",
+  "sourceRoot": "registry-src/base-ui/button",
+  "installableSourcePaths": ["src/registry/base-ui/button/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Button",
+      "docsUrl": "https://base-ui.com/react/components/button",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/button",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "74ec10d181816c05916358c264cf9ab821e27cb3555e99b63317096b530f3bde",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/button/Button.tsx",
+        "repos/base-ui/packages/react/src/button/ButtonDataAttributes.tsx",
+        "repos/base-ui/packages/react/src/button/index.ts",
+        "repos/base-ui/packages/react/src/internals/use-button/useButton.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/button/demos/loading/css-modules/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/button/Button.test.tsx",
+        "repos/base-ui/packages/react/src/button/Button.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema and Option for the serializable options and event mapping."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/button",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

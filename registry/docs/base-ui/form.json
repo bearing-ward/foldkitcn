@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/form",
+  "routePath": "/components/base-ui/form",
+  "title": "Form",
+  "description": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/form",
+  "defaultImportPath": "base-ui/form",
+  "sourceRoot": "registry-src/base-ui/form",
+  "installableSourcePaths": ["src/registry/base-ui/form/index.ts"],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Form",
+      "docsUrl": "https://base-ui.com/react/components/form",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/form",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/form/Form.tsx",
+        "repos/base-ui/packages/react/src/form/index.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/form-action/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/form/demos/zod/tailwind/index.tsx"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/form/Form.test.tsx",
+        "repos/base-ui/packages/react/src/form/Form.spec.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/field",
+        "classification": "registry-local",
+        "target": "base-ui/field",
+        "reason": "Base UI Form composes Field validation facts; the Foldkit port reuses the local Field validation state helpers instead of creating competing semantics."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native render helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Predicate, and Array helpers for typed form states, payloads, and validation reporting."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/form",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/form",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "@base-ui/react/form",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/form",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "base-ui/form-origin-fixture",
+      "title": "FormOriginFixture",
+      "description": "Static origin-evidence fixture derived from deterministic Base UI Form root, Field composition, validation state, and data attributes.",
+      "componentItemId": "base-ui/form",
+      "sourcePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
+      "snippet": "import type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotElement } from '../../dom'\n\ntype FieldConfig = Readonly<{\n  id: string\n  name: string\n  label: string\n  value?: string\n  description?: string\n  required?: boolean\n  disabled?: boolean\n  invalid?: boolean\n  error?: string\n}>\n\ntype CaseConfig = Readonly<{\n  caseId: string\n  id: string\n  action?: string\n  method?: string\n  invalid?: boolean\n  disabled?: boolean\n  submitted?: boolean\n  submitting?: boolean\n  fields: ReadonlyArray<FieldConfig>\n}>\n\nconst setBooleanAttribute = (\n  element: Element,\n  name: string,\n  value: boolean | undefined,\n): void => {\n  if (value === true) {\n    element.setAttribute(name, '')\n  }\n}\n\nconst setFormState = (element: HTMLElement, config: CaseConfig): void => {\n  setBooleanAttribute(element, 'data-valid', config.invalid !== true)\n  setBooleanAttribute(element, 'data-invalid', config.invalid)\n  setBooleanAttribute(element, 'data-disabled', config.disabled)\n  setBooleanAttribute(element, 'data-submitted', config.submitted)\n  setBooleanAttribute(element, 'data-submitting', config.submitting)\n}\n\nconst setFieldState = (element: HTMLElement, config: FieldConfig): void => {\n  setBooleanAttribute(element, 'data-disabled', config.disabled)\n  setBooleanAttribute(element, 'data-required', config.required)\n  setBooleanAttribute(element, 'data-invalid', config.invalid)\n}\n\nconst renderField = (config: FieldConfig): HTMLElement => {\n  const root = document.createElement('div')\n  const label = document.createElement('label')\n  const control = document.createElement('input')\n  const description = document.createElement('p')\n  const error = document.createElement('div')\n  const descriptionId = `${config.id}-description`\n  const errorId = `${config.id}-error`\n\n  root.id = config.id\n  root.setAttribute('role', 'group')\n  setFieldState(root, config)\n\n  label.id = `${config.id}-label`\n  label.setAttribute('for', `${config.id}-control`)\n  label.textContent = config.label\n  setFieldState(label, config)\n\n  control.id = `${config.id}-control`\n  control.name = config.name\n  control.setAttribute('aria-labelledby', `${config.id}-label`)\n  control.setAttribute(\n    'aria-describedby',\n    config.invalid === true ? `${descriptionId} ${errorId}` : descriptionId,\n  )\n  if (config.value !== undefined) {\n    control.value = config.value\n    control.setAttribute('value', config.value)\n  }\n  if (config.disabled === true) {\n    control.disabled = true\n  }\n  if (config.required === true) {\n    control.required = true\n  }\n  if (config.invalid === true) {\n    control.setAttribute('aria-invalid', 'true')\n  }\n  setFieldState(control, config)\n\n  description.id = descriptionId\n  description.textContent = config.description ?? ''\n  setFieldState(description, config)\n\n  root.append(label, control, description)\n\n  if (config.invalid === true && config.error !== undefined) {\n    error.id = errorId\n    error.textContent = config.error\n    setFieldState(error, config)\n    root.append(error)\n  }\n\n  return root\n}\n\nconst renderOriginForm = (config: CaseConfig): FixtureSnapshot => {\n  const form = document.createElement('form')\n\n  form.id = config.id\n  form.noValidate = true\n  form.setAttribute('novalidate', '')\n  if (config.action !== undefined) {\n    form.setAttribute('action', config.action)\n  }\n  if (config.method !== undefined) {\n    form.setAttribute('method', config.method)\n  }\n  setFormState(form, config)\n  config.fields.map(renderField).reduce((currentForm, field) => {\n    currentForm.append(field)\n    return currentForm\n  }, form)\n\n  document.body.append(form)\n  const snapshot = snapshotElement(form, {})\n  form.remove()\n\n  return snapshot\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'basic',\n    id: 'profile-form',\n    action: '/profiles',\n    method: 'post',\n    fields: [\n      {\n        id: 'profile-name',\n        name: 'name',\n        label: 'Name',\n        value: 'Ada',\n        description: 'Your public display name.',\n      },\n    ],\n  },\n  {\n    caseId: 'invalid',\n    id: 'signup-form',\n    invalid: true,\n    submitted: true,\n    fields: [\n      {\n        id: 'signup-email',\n        name: 'email',\n        label: 'Email',\n        required: true,\n        invalid: true,\n        error: 'Email is required',\n        description: 'Use your work email.',\n      },\n    ],\n  },\n  {\n    caseId: 'disabled',\n    id: 'disabled-form',\n    disabled: true,\n    fields: [\n      {\n        id: 'disabled-url',\n        name: 'url',\n        label: 'Homepage',\n        disabled: true,\n        description: 'A verified homepage.',\n      },\n    ],\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: renderOriginForm(config),\n}))",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": ["base-ui/field"],
+      "notes": []
+    },
+    {
+      "id": "base-ui/form-foldkit-fixture",
+      "title": "FormFoldkitFixture",
+      "description": "Foldkit parity fixture exercising root, Field composition, valid/invalid/disabled states, noValidate behavior, and submit/reset handlers.",
+      "componentItemId": "base-ui/form",
+      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
+      "snippet": "import { html } from 'foldkit/html'\n\nimport * as Field from '../../../../../src/registry/base-ui/field'\nimport * as Form from '../../../../../src/registry/base-ui/form'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\ntype FieldConfig = Omit<Field.ViewConfig<never>, 'toView'> &\n  Readonly<{\n    label: string\n    description: string\n  }>\n\ntype CaseConfig = Omit<Form.ViewConfig<never>, 'fields' | 'toView'> &\n  Readonly<{\n    caseId: string\n    fields: ReadonlyArray<FieldConfig>\n  }>\n\nconst renderField = (h: ReturnType<typeof html<never>>, config: FieldConfig) =>\n  Field.view<never>({\n    ...config,\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.label([...attributes.label], [config.label]),\n          h.input([...attributes.control]),\n          h.p([...attributes.description], [config.description]),\n          attributes.state.isErrorVisible\n            ? h.div(\n                [...attributes.error],\n                [attributes.state.validityData.error],\n              )\n            : h.empty,\n        ],\n      ),\n  })\n\nconst formFields = (\n  fields: ReadonlyArray<FieldConfig>,\n): ReadonlyArray<Form.FormFieldValue> =>\n  fields.map(field => ({\n    name: field.name ?? '',\n    value:\n      typeof field.value === 'string' || typeof field.value === 'number'\n        ? field.value\n        : '',\n    validation: field.validation,\n    isDisabled: field.isDisabled,\n  }))\n\nconst renderFoldkitForm = (config: CaseConfig): FixtureSnapshot => {\n  const h = html<never>()\n\n  return snapshotHtml(\n    Form.view<never>({\n      ...config,\n      fields: formFields(config.fields),\n      toView: attributes =>\n        h.form(\n          [...attributes.root],\n          config.fields.map(field => renderField(h, field)),\n        ),\n    }),\n    {},\n  )\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'basic',\n    id: 'profile-form',\n    action: '/profiles',\n    method: 'post',\n    fields: [\n      {\n        id: 'profile-name',\n        name: 'name',\n        label: 'Name',\n        value: 'Ada',\n        description: 'Your public display name.',\n      },\n    ],\n  },\n  {\n    caseId: 'invalid',\n    id: 'signup-form',\n    isSubmitted: true,\n    fields: [\n      {\n        id: 'signup-email',\n        name: 'email',\n        label: 'Email',\n        isRequired: true,\n        validation: Field.InvalidFieldValidation({\n          error: 'Email is required',\n          errors: ['Email is required'],\n          issues: ['valueMissing'],\n        }),\n        description: 'Use your work email.',\n      },\n    ],\n  },\n  {\n    caseId: 'disabled',\n    id: 'disabled-form',\n    isDisabled: true,\n    fields: [\n      {\n        id: 'disabled-url',\n        name: 'url',\n        label: 'Homepage',\n        isDisabled: true,\n        description: 'A verified homepage.',\n      },\n    ],\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: renderFoldkitForm(config),\n}))",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": ["base-ui/field"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "base-ui-form-model-owned-validation",
+        "summary": "Validation and submission state are represented by explicit model-owned fields and typed payloads instead of Base UI React's internal Form context.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit keeps validation facts and side effects in update/commands. The Form helper reports submit/reset payloads and invalid field names without mutating application state."
+      },
+      {
+        "id": "base-ui-form-no-imperative-actions-ref",
+        "summary": "The React actionsRef validate API is not implemented as an imperative Form method.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Imperative validation conflicts with Foldkit's Elm-style architecture. Consumers trigger validation through messages and update transitions."
+      },
+      {
+        "id": "base-ui-form-static-origin-fixture",
+        "summary": "Parity origin fixture uses static source-derived markup for deterministic Form and Field output.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned form root, noValidate default, Field structure, and state attributes while the origin source remains checked in under repos/base-ui."
+      }
+    ]
+  }
+}

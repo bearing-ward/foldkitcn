@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-27T21:51:31.264Z",
+  "routes": [
+    {
+      "itemId": "base-ui/accordion",
+      "routePath": "/components/base-ui/accordion",
+      "docsArtifactPath": "registry/docs/base-ui/accordion.json"
+    },
+    {
+      "itemId": "base-ui/alert-dialog",
+      "routePath": "/components/base-ui/alert-dialog",
+      "docsArtifactPath": "registry/docs/base-ui/alert-dialog.json"
+    },
+    {
+      "itemId": "base-ui/avatar",
+      "routePath": "/components/base-ui/avatar",
+      "docsArtifactPath": "registry/docs/base-ui/avatar.json"
+    },
+    {
+      "itemId": "base-ui/button",
+      "routePath": "/components/base-ui/button",
+      "docsArtifactPath": "registry/docs/base-ui/button.json"
+    },
+    {
+      "itemId": "base-ui/checkbox-group",
+      "routePath": "/components/base-ui/checkbox-group",
+      "docsArtifactPath": "registry/docs/base-ui/checkbox-group.json"
+    },
+    {
+      "itemId": "base-ui/checkbox",
+      "routePath": "/components/base-ui/checkbox",
+      "docsArtifactPath": "registry/docs/base-ui/checkbox.json"
+    },
+    {
+      "itemId": "base-ui/collapsible",
+      "routePath": "/components/base-ui/collapsible",
+      "docsArtifactPath": "registry/docs/base-ui/collapsible.json"
+    },
+    {
+      "itemId": "base-ui/dialog",
+      "routePath": "/components/base-ui/dialog",
+      "docsArtifactPath": "registry/docs/base-ui/dialog.json"
+    },
+    {
+      "itemId": "base-ui/field",
+      "routePath": "/components/base-ui/field",
+      "docsArtifactPath": "registry/docs/base-ui/field.json"
+    },
+    {
+      "itemId": "base-ui/fieldset",
+      "routePath": "/components/base-ui/fieldset",
+      "docsArtifactPath": "registry/docs/base-ui/fieldset.json"
+    },
+    {
+      "itemId": "base-ui/form",
+      "routePath": "/components/base-ui/form",
+      "docsArtifactPath": "registry/docs/base-ui/form.json"
+    },
+    {
+      "itemId": "base-ui/input",
+      "routePath": "/components/base-ui/input",
+      "docsArtifactPath": "registry/docs/base-ui/input.json"
+    },
+    {
+      "itemId": "base-ui/menu",
+      "routePath": "/components/base-ui/menu",
+      "docsArtifactPath": "registry/docs/base-ui/menu.json"
+    },
+    {
+      "itemId": "base-ui/meter",
+      "routePath": "/components/base-ui/meter",
+      "docsArtifactPath": "registry/docs/base-ui/meter.json"
+    },
+    {
+      "itemId": "base-ui/number-field",
+      "routePath": "/components/base-ui/number-field",
+      "docsArtifactPath": "registry/docs/base-ui/number-field.json"
+    },
+    {
+      "itemId": "base-ui/popover",
+      "routePath": "/components/base-ui/popover",
+      "docsArtifactPath": "registry/docs/base-ui/popover.json"
+    },
+    {
+      "itemId": "base-ui/progress",
+      "routePath": "/components/base-ui/progress",
+      "docsArtifactPath": "registry/docs/base-ui/progress.json"
+    },
+    {
+      "itemId": "base-ui/radio-group",
+      "routePath": "/components/base-ui/radio-group",
+      "docsArtifactPath": "registry/docs/base-ui/radio-group.json"
+    },
+    {
+      "itemId": "base-ui/radio",
+      "routePath": "/components/base-ui/radio",
+      "docsArtifactPath": "registry/docs/base-ui/radio.json"
+    },
+    {
+      "itemId": "base-ui/select",
+      "routePath": "/components/base-ui/select",
+      "docsArtifactPath": "registry/docs/base-ui/select.json"
+    },
+    {
+      "itemId": "base-ui/separator",
+      "routePath": "/components/base-ui/separator",
+      "docsArtifactPath": "registry/docs/base-ui/separator.json"
+    },
+    {
+      "itemId": "base-ui/slider",
+      "routePath": "/components/base-ui/slider",
+      "docsArtifactPath": "registry/docs/base-ui/slider.json"
+    },
+    {
+      "itemId": "base-ui/switch",
+      "routePath": "/components/base-ui/switch",
+      "docsArtifactPath": "registry/docs/base-ui/switch.json"
+    },
+    {
+      "itemId": "base-ui/tabs",
+      "routePath": "/components/base-ui/tabs",
+      "docsArtifactPath": "registry/docs/base-ui/tabs.json"
+    },
+    {
+      "itemId": "base-ui/toggle-group",
+      "routePath": "/components/base-ui/toggle-group",
+      "docsArtifactPath": "registry/docs/base-ui/toggle-group.json"
+    },
+    {
+      "itemId": "base-ui/toggle",
+      "routePath": "/components/base-ui/toggle",
+      "docsArtifactPath": "registry/docs/base-ui/toggle.json"
+    },
+    {
+      "itemId": "base-ui/tooltip",
+      "routePath": "/components/base-ui/tooltip",
+      "docsArtifactPath": "registry/docs/base-ui/tooltip.json"
+    },
+    {
+      "itemId": "local/example-preview",
+      "routePath": "/components/local/example-preview",
+      "docsArtifactPath": "registry/docs/local/example-preview.json"
+    },
+    {
+      "itemId": "shadcn/accordion",
+      "routePath": "/components/shadcn/accordion",
+      "docsArtifactPath": "registry/docs/shadcn/accordion.json"
+    },
+    {
+      "itemId": "shadcn/alert-dialog",
+      "routePath": "/components/shadcn/alert-dialog",
+      "docsArtifactPath": "registry/docs/shadcn/alert-dialog.json"
+    },
+    {
+      "itemId": "shadcn/alert",
+      "routePath": "/components/shadcn/alert",
+      "docsArtifactPath": "registry/docs/shadcn/alert.json"
+    },
+    {
+      "itemId": "shadcn/aspect-ratio",
+      "routePath": "/components/shadcn/aspect-ratio",
+      "docsArtifactPath": "registry/docs/shadcn/aspect-ratio.json"
+    },
+    {
+      "itemId": "shadcn/avatar",
+      "routePath": "/components/shadcn/avatar",
+      "docsArtifactPath": "registry/docs/shadcn/avatar.json"
+    },
+    {
+      "itemId": "shadcn/badge",
+      "routePath": "/components/shadcn/badge",
+      "docsArtifactPath": "registry/docs/shadcn/badge.json"
+    },
+    {
+      "itemId": "shadcn/button",
+      "routePath": "/components/shadcn/button",
+      "docsArtifactPath": "registry/docs/shadcn/button.json"
+    },
+    {
+      "itemId": "shadcn/checkbox",
+      "routePath": "/components/shadcn/checkbox",
+      "docsArtifactPath": "registry/docs/shadcn/checkbox.json"
+    },
+    {
+      "itemId": "shadcn/collapsible",
+      "routePath": "/components/shadcn/collapsible",
+      "docsArtifactPath": "registry/docs/shadcn/collapsible.json"
+    },
+    {
+      "itemId": "shadcn/dialog",
+      "routePath": "/components/shadcn/dialog",
+      "docsArtifactPath": "registry/docs/shadcn/dialog.json"
+    },
+    {
+      "itemId": "shadcn/dropdown-menu",
+      "routePath": "/components/shadcn/dropdown-menu",
+      "docsArtifactPath": "registry/docs/shadcn/dropdown-menu.json"
+    },
+    {
+      "itemId": "shadcn/field",
+      "routePath": "/components/shadcn/field",
+      "docsArtifactPath": "registry/docs/shadcn/field.json"
+    },
+    {
+      "itemId": "shadcn/input",
+      "routePath": "/components/shadcn/input",
+      "docsArtifactPath": "registry/docs/shadcn/input.json"
+    },
+    {
+      "itemId": "shadcn/kbd",
+      "routePath": "/components/shadcn/kbd",
+      "docsArtifactPath": "registry/docs/shadcn/kbd.json"
+    },
+    {
+      "itemId": "shadcn/label",
+      "routePath": "/components/shadcn/label",
+      "docsArtifactPath": "registry/docs/shadcn/label.json"
+    },
+    {
+      "itemId": "shadcn/native-select",
+      "routePath": "/components/shadcn/native-select",
+      "docsArtifactPath": "registry/docs/shadcn/native-select.json"
+    },
+    {
+      "itemId": "shadcn/popover",
+      "routePath": "/components/shadcn/popover",
+      "docsArtifactPath": "registry/docs/shadcn/popover.json"
+    },
+    {
+      "itemId": "shadcn/progress",
+      "routePath": "/components/shadcn/progress",
+      "docsArtifactPath": "registry/docs/shadcn/progress.json"
+    },
+    {
+      "itemId": "shadcn/radio-group",
+      "routePath": "/components/shadcn/radio-group",
+      "docsArtifactPath": "registry/docs/shadcn/radio-group.json"
+    },
+    {
+      "itemId": "shadcn/select",
+      "routePath": "/components/shadcn/select",
+      "docsArtifactPath": "registry/docs/shadcn/select.json"
+    },
+    {
+      "itemId": "shadcn/separator",
+      "routePath": "/components/shadcn/separator",
+      "docsArtifactPath": "registry/docs/shadcn/separator.json"
+    },
+    {
+      "itemId": "shadcn/skeleton",
+      "routePath": "/components/shadcn/skeleton",
+      "docsArtifactPath": "registry/docs/shadcn/skeleton.json"
+    },
+    {
+      "itemId": "shadcn/slider",
+      "routePath": "/components/shadcn/slider",
+      "docsArtifactPath": "registry/docs/shadcn/slider.json"
+    },
+    {
+      "itemId": "shadcn/switch",
+      "routePath": "/components/shadcn/switch",
+      "docsArtifactPath": "registry/docs/shadcn/switch.json"
+    },
+    {
+      "itemId": "shadcn/tabs",
+      "routePath": "/components/shadcn/tabs",
+      "docsArtifactPath": "registry/docs/shadcn/tabs.json"
+    },
+    {
+      "itemId": "shadcn/textarea",
+      "routePath": "/components/shadcn/textarea",
+      "docsArtifactPath": "registry/docs/shadcn/textarea.json"
+    },
+    {
+      "itemId": "shadcn/toggle-group",
+      "routePath": "/components/shadcn/toggle-group",
+      "docsArtifactPath": "registry/docs/shadcn/toggle-group.json"
+    },
+    {
+      "itemId": "shadcn/toggle",
+      "routePath": "/components/shadcn/toggle",
+      "docsArtifactPath": "registry/docs/shadcn/toggle.json"
+    },
+    {
+      "itemId": "shadcn/tooltip",
+      "routePath": "/components/shadcn/tooltip",
+      "docsArtifactPath": "registry/docs/shadcn/tooltip.json"
+    },
+    {
+      "itemId": "utils/cn",
+      "routePath": "/components/utils/cn",
+      "docsArtifactPath": "registry/docs/utils/cn.json"
+    }
+  ]
+}

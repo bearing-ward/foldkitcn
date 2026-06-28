@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/progress",
+  "routePath": "/components/shadcn/progress",
+  "title": "Progress",
+  "description": "Foldkit-native shadcn base-nova Progress wrapper using local Base UI Progress behavior and cn.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/progress",
+  "defaultImportPath": "shadcn/progress",
+  "sourceRoot": "registry-src/shadcn/progress",
+  "installableSourcePaths": [
+    "src/registry/shadcn/progress/index.ts",
+    "src/registry/shadcn/progress/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Progress",
+      "docsUrl": "https://ui.shadcn.com/docs/components/progress",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/95471a0fb95b2b205e1850841e05d93f3fcae659/apps/v4/styles/base-nova/ui/progress.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "95471a0fb95b2b205e1850841e05d93f3fcae659",
+      "inventoryHash": "2ce5b0133e34ae10821c25eba0bdd3d4eeb58181cc4a9fadf685e544b7970a39",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/progress.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/progress.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/progress.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/progress-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/progress-demo.tsx",
+        "repos/ui/apps/v4/examples/base/progress-label.tsx",
+        "repos/ui/apps/v4/examples/base/progress-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/progress",
+        "classification": "registry-local",
+        "target": "base-ui/progress",
+        "reason": "shadcn Progress composes the local Base UI Progress primitive."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Progress uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema options for the wrapper."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/progress",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/progress",
+        "reason": "Origin Base UI React primitive is replaced by the local Foldkit primitive."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React state and effects are origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/styles/base-nova/ui/slider",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The controlled origin example uses Slider interaction; the Foldkit parity example renders deterministic static state."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin language selector runtime dependency is replaced by local Arabic example constants and origin fixture aliases."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/progress-controlled",
+      "title": "ProgressControlled",
+      "description": "Controlled progress rendered with deterministic static state.",
+      "componentItemId": "shadcn/progress",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "snippet": "export const ProgressControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full max-w-sm flex-col gap-4')],\n    [\n      Progress<never>({\n        value: 50,\n        className: 'w-full',\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressControlled",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/progress-demo",
+      "title": "ProgressDemo",
+      "description": "Default Progress demo at the captured initial value.",
+      "componentItemId": "shadcn/progress",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "snippet": "export const ProgressDemo = (): Html =>\n  Progress<never>({\n    value: 13,\n    className: 'w-[60%]',\n  })",
+      "previewStatus": "static",
+      "previewExportName": "ProgressDemo",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/progress-label",
+      "title": "ProgressWithLabel",
+      "description": "Progress with visible label and formatted value.",
+      "componentItemId": "shadcn/progress",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "snippet": "export const ProgressWithLabel = (): Html => {\n  const h = html<never>()\n\n  return Progress<never>({\n    value: 56,\n    className: 'w-full max-w-sm',\n    labelId: 'base-ui-_r_0_',\n    children: attributes => [\n      h.span([...attributes.label], ['Upload progress']),\n      h.span([...attributes.value], [progressValue(56)]),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressWithLabel",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/progress-rtl",
+      "title": "ProgressRtl",
+      "description": "RTL Progress layout example with local Arabic strings.",
+      "componentItemId": "shadcn/progress",
+      "sourcePath": "src/registry/shadcn/progress/examples.ts",
+      "snippet": "export const ProgressRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicProgressRtl\n\n  return Progress<never>({\n    value: 56,\n    className: 'w-full max-w-sm',\n    dir,\n    labelId: 'base-ui-_r_0_',\n    children: attributes => [\n      h.span([...attributes.label], [values.label]),\n      h.span(\n        [...attributes.value],\n        [h.span([h.Class('ms-auto')], [values.value])],\n      ),\n    ],\n  })\n}",
+      "previewStatus": "static",
+      "previewExportName": "ProgressRtl",
+      "requiredRegistryItems": ["base-ui/progress", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-progress-static-controlled",
+        "summary": "Controlled Progress example renders a deterministic static value instead of live React timer or Slider interaction.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The registry example is a rendered parity fixture. Static progress state preserves the relevant DOM, class, ARIA, and visual contracts without introducing timer or Slider behavior."
+      },
+      {
+        "id": "shadcn-progress-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      }
+    ]
+  }
+}
