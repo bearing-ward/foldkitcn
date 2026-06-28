@@ -75,7 +75,7 @@ honor its STOP conditions, and update your row when done.
 | 065 | Add component navigation, roadmap, and local search | P1 | M | 062, 064 | DONE |
 | 066 | Add static prerender and Pagefind search | P2 | L | 065 | DONE |
 | 067 | Add structured example docs artifacts | P2 | M | 063 | DONE |
-| 068 | Add live component example runtime | P2 | L | 067 | TODO |
+| 068 | Add live component example runtime | P2 | L | 067 | DONE |
 | 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
