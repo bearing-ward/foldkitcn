@@ -1192,8 +1192,8 @@
         },
         {
           "path": "src/registry/base-ui/combobox/index.ts",
-          "sha256": "d37fa1d79cf2d15564d060dcc7ab2f3067fb45b9c6ddcc90201a7a24a45bf2ac",
-          "sizeBytes": 41573,
+          "sha256": "b497f753c4f36d687e661040d29b3baff470016aa70fc8a88729b4938eb3f45e",
+          "sizeBytes": 41604,
           "role": "source"
         }
       ]
@@ -7945,14 +7945,14 @@
         },
         {
           "path": "src/registry/shadcn/combobox/index.ts",
-          "sha256": "33d9736b2eeca131ec1eeda2984aefedfbdaea8bf2f0377ed1ee12cf2d318b36",
-          "sizeBytes": 27721,
+          "sha256": "518642520e697e86664c80ccd944c9e8275456b87503826f0889017c7e1a31f2",
+          "sizeBytes": 27689,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/combobox/examples.ts",
-          "sha256": "408f270f0f380b3558f54fca614aa6e306b5510d77abedd8e4bfec87391f3e52",
-          "sizeBytes": 15002,
+          "sha256": "4c71cedcda049df6eff1c34a413996efd0492766722905668cf53a9bb7ceae5b",
+          "sizeBytes": 14686,
           "role": "source"
         }
       ]
