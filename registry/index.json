@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T04:03:49.357Z",
+  "generatedAt": "2026-06-28T04:12:26.763Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8434,8 +8434,8 @@
         },
         {
           "path": "src/registry/shadcn/hover-card/examples.ts",
-          "sha256": "272c44d4fe4ec709118a400349ac9cc4419bb6ab2a4a526c75d3910c490cce9f",
-          "sizeBytes": 4333,
+          "sha256": "668965ae27ea0cc3d49b9f2b6cc515416c0fb5803583ce13b93648b5d0b9e349",
+          "sizeBytes": 4367,
           "role": "source"
         }
       ]
