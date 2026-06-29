@@ -762,6 +762,26 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/pagination-simple.tsx',
     },
     {
+      id: 'resizable-demo',
+      title: 'Resizable demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/resizable-demo.tsx',
+    },
+    {
+      id: 'resizable-handle',
+      title: 'Resizable handle',
+      originFilePath: 'repos/ui/apps/v4/examples/base/resizable-handle.tsx',
+    },
+    {
+      id: 'resizable-vertical',
+      title: 'Resizable vertical',
+      originFilePath: 'repos/ui/apps/v4/examples/base/resizable-vertical.tsx',
+    },
+    {
+      id: 'resizable-rtl',
+      title: 'Resizable RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/resizable-rtl.tsx',
+    },
+    {
       id: 'separator-demo',
       title: 'Separator demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/separator-demo.tsx',

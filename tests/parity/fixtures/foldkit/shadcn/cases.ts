@@ -188,6 +188,12 @@ import {
   ProgressWithLabel,
 } from '../../../../../src/registry/shadcn/progress/examples'
 import {
+  ResizableDemo,
+  ResizableHandleDemo,
+  ResizableRtl,
+  ResizableVertical,
+} from '../../../../../src/registry/shadcn/resizable/examples'
+import {
   ScrollAreaDemo,
   ScrollAreaHorizontalDemo,
   ScrollAreaRtl,
@@ -582,6 +588,10 @@ const components: Readonly<Record<string, () => Html>> = {
   'pagination-icons-only': PaginationIconsOnly,
   'pagination-rtl': PaginationRtl,
   'pagination-simple': PaginationSimple,
+  'resizable-demo': ResizableDemo,
+  'resizable-handle': ResizableHandleDemo,
+  'resizable-vertical': ResizableVertical,
+  'resizable-rtl': ResizableRtl,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
@@ -642,6 +652,7 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['table-', 'src/registry/shadcn/table/examples.ts'],
   ['native-select-', 'src/registry/shadcn/native-select/examples.ts'],
   ['pagination-', 'src/registry/shadcn/pagination/examples.ts'],
+  ['resizable-', 'src/registry/shadcn/resizable/examples.ts'],
   ['textarea-', 'src/registry/shadcn/textarea/examples.ts'],
   ['card-', 'src/registry/shadcn/card/examples.ts'],
   ['item-', 'src/registry/shadcn/item/examples.ts'],

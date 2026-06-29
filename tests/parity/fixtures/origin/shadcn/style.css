@@ -172,6 +172,12 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/pagination-simple.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/pagination.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/pagination.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/resizable-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/resizable-handle.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/resizable-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/resizable-vertical.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/resizable.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/progress-controlled.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/progress-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/progress-label.tsx";

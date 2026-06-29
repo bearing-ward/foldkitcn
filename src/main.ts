@@ -75,6 +75,11 @@ import {
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
 import {
+  ResizableMessage,
+  ResizableState,
+  update as updateResizableState,
+} from './registry/shadcn/resizable'
+import {
   fallbackRouteMetadata,
   routeMetadataForRoute,
 } from './route-inventory'
@@ -138,6 +143,7 @@ export const Model = S.Struct({
   liveExampleRadioGroupValues: S.Record(S.String, S.String),
   liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
   liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
+  liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
@@ -188,6 +194,14 @@ export const GotLiveExampleCarouselMessage = m(
     dir: S.optional(S.String),
   },
 )
+export const GotLiveExampleResizableMessage = m(
+  'GotLiveExampleResizableMessage',
+  {
+    exampleId: S.String,
+    defaultState: ResizableState,
+    message: ResizableMessage,
+  },
+)
 export const ClickedOpenLiveExampleCommandDialog = m(
   'ClickedOpenLiveExampleCommandDialog',
   {
@@ -226,6 +240,7 @@ export const Message = S.Union([
   UpdatedLiveExampleRadioGroupValue,
   SelectedLiveExampleCalendarDate,
   GotLiveExampleCarouselMessage,
+  GotLiveExampleResizableMessage,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
   PressedLiveExampleCommandDialogShortcut,
@@ -249,6 +264,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleRadioGroupValues: {},
       liveExampleCalendarSelectedDates: {},
       liveExampleCarouselSelectedIndexes: {},
+      liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
@@ -491,6 +507,24 @@ export const update = (model: Model, message: Message): UpdateReturn =>
               exampleId,
               nextState.selectedIndex,
             ),
+          }),
+          [],
+        ]
+      },
+      GotLiveExampleResizableMessage: ({
+        exampleId,
+        defaultState,
+        message,
+      }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleResizableStates, exampleId),
+          Option.getOrElse(() => defaultState),
+        )
+        const [nextState] = updateResizableState(state, message)
+
+        return [
+          evo(model, {
+            liveExampleResizableStates: EffectRecord.set(exampleId, nextState),
           }),
           [],
         ]
@@ -1525,6 +1559,7 @@ const examplesSectionView = (
   liveExampleRadioGroupValues: Readonly<Record<string, string>>,
   liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
   liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
+  liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
 ): Html => {
   const h = html<Message>()
@@ -1606,6 +1641,22 @@ const examplesSectionView = (
           ? {}
           : { orientation: change.orientation }),
         ...(change.dir === undefined ? {} : { dir: change.dir }),
+      }),
+    resizableStateFor: (
+      example: ExampleDocsArtifact,
+    ): Option.Option<ResizableState> =>
+      EffectRecord.get(liveExampleResizableStates, example.id),
+    onResizableMessage: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{
+        defaultState: ResizableState
+        message: ResizableMessage
+      }>,
+    ): Message =>
+      GotLiveExampleResizableMessage({
+        exampleId: example.id,
+        defaultState: change.defaultState,
+        message: change.message,
       }),
     commandDialogIsOpenFor: (example: ExampleDocsArtifact): boolean =>
       pipe(
@@ -1858,6 +1909,7 @@ const componentDetailPageView = (
           model.liveExampleRadioGroupValues,
           model.liveExampleCalendarSelectedDates,
           model.liveExampleCarouselSelectedIndexes,
+          model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,
         ),
         apiSectionView(),

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T16:38:23.460Z",
+  "generatedAt": "2026-06-29T17:34:15.118Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -15378,6 +15378,197 @@
           "path": "src/registry/shadcn/radio-group/examples.ts",
           "sha256": "6732624f1b3bc26920addc6c6036d7fae49b5884cbc925f54ea352f51398159d",
           "sizeBytes": 14870,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/resizable",
+        "namespace": "shadcn",
+        "name": "Resizable",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Resizable split-panel primitive with local size normalization, keyboard resizing, pointer-drag messages, shadcn slots, and origin example coverage.",
+        "sourceRoot": "registry-src/shadcn/resizable",
+        "installableSourcePaths": [
+          "src/registry/shadcn/resizable/index.ts",
+          "src/registry/shadcn/resizable/examples.ts"
+        ],
+        "consumedThemeTokens": ["--border", "--background", "--ring"],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Resizable",
+            "docsUrl": "https://ui.shadcn.com/docs/components/resizable",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/resizable.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/resizable.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/resizable.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/resizable.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/resizable-demo.tsx",
+              "repos/ui/apps/v4/examples/base/resizable-handle.tsx",
+              "repos/ui/apps/v4/examples/base/resizable-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/resizable-vertical.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Resizable uses the local class composition helper."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, message, and runtime command types for the Foldkit-native primitive."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Schema, Match, Array, and Option modules for state and update helpers."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "react-resizable-panels",
+              "classification": "replace-with-foldkit",
+              "target": "shadcn/resizable",
+              "reason": "Origin runtime behavior is replaced by local Foldkit state, messages, and pure resize helpers."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local static RTL labels."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/resizable-demo",
+            "title": "ResizableDemo",
+            "description": "Nested horizontal and vertical Resizable layout.",
+            "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/resizable-handle",
+            "title": "ResizableHandleDemo",
+            "description": "Two-panel Resizable layout with visible handle affordance.",
+            "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/resizable-vertical",
+            "title": "ResizableVertical",
+            "description": "Vertical Resizable layout.",
+            "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/resizable-rtl",
+            "title": "ResizableRtl",
+            "description": "RTL nested Resizable layout with local static direction data.",
+            "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/resizable",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-resizable-local-state",
+            "shadcn-resizable-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-resizable-local-state",
+            "summary": "Resizable replaces react-resizable-panels with local Foldkit state, message, keyboard, and pointer-delta helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot depend on React panel runtime behavior; local state preserves the public split-panel semantics and shadcn markup slots."
+          },
+          {
+            "id": "shadcn-resizable-local-rtl-data",
+            "summary": "RTL example uses local static labels instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Static RTL direction preserves the rendered layout needed by parity fixtures."
+          }
+        ]
+      },
+      "manifestHash": "b2b327b59b377654292bd3cdf6ce2550eacfe3ea8b103d73e0d6d6d8f6bda2f8",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/resizable/item.json",
+          "sha256": "23454a91f61c9578ab714927b8d4a92069edfd2b49aab2d9730aafb4c0644c85",
+          "sizeBytes": 6462,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/resizable/index.ts",
+          "sha256": "29d9cbf2336071695082984fa008f002d49e7be34cc529aba12217db2b27c754",
+          "sizeBytes": 21346,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/resizable/examples.ts",
+          "sha256": "c560fedfd78db2672c1f6e04013ad523bffcfcf518439298e897415b8478e993",
+          "sizeBytes": 4295,
           "role": "source"
         }
       ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T15:40:34.586Z",
+  "generatedAt": "2026-06-29T16:54:35.043Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,14 +9,14 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 51,
-      "remaining": 13
+      "imported": 52,
+      "remaining": 12
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 9,
+    "dossierReadyCount": 8,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -2144,24 +2144,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/shadcn-resizable/dossier.json",
         "plans/artifacts/070-next-component-dossiers/shadcn-resizable/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/resizable"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 91",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/sidebar",

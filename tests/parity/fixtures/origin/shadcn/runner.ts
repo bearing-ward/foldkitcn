@@ -47,6 +47,8 @@ const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
 const popoverShimModuleId = '\0foldkitcn-shadcn-origin-popover-shim'
 const selectShimModuleId = '\0foldkitcn-shadcn-origin-select-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
+const resizablePanelsShimModuleId =
+  '\0foldkitcn-shadcn-origin-resizable-panels-shim'
 const carouselShimModuleId = '\0foldkitcn-shadcn-origin-carousel-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
 const nextLinkShimModuleId = '\0foldkitcn-shadcn-origin-next-link-shim'
@@ -59,6 +61,7 @@ const virtualModuleAliases = new Map([
   ['cmdk', cmdkShimModuleId],
   ['next/image', nextImageShimModuleId],
   ['next/link', nextLinkShimModuleId],
+  ['react-resizable-panels', resizablePanelsShimModuleId],
   ['@/styles/base-nova/ui/dialog', commandDialogShimModuleId],
   ['@/styles/base-nova/ui-rtl/dialog', commandDialogShimModuleId],
   ['@/styles/base-nova/ui/dropdown-menu', dropdownMenuShimModuleId],
@@ -272,6 +275,95 @@ const originAliasPlugin = (): Plugin => ({
       return `
         export function Slider() {
           return null
+        }
+      `
+    }
+
+    if (id === resizablePanelsShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const OrientationContext = React.createContext('horizontal')
+
+        const panelSize = child => {
+          if (!React.isValidElement(child)) {
+            return undefined
+          }
+
+          return child.props.defaultSize
+        }
+
+        const numericSize = size => {
+          if (typeof size === 'number') {
+            return size
+          }
+
+          if (typeof size === 'string') {
+            return Number.parseFloat(size)
+          }
+
+          return undefined
+        }
+
+        const handleAttributes = (children, index) => {
+          const previousSize = numericSize(panelSize(children[index - 1]))
+
+          return previousSize === undefined
+            ? {}
+            : {
+                'aria-valuemin': 10,
+                'aria-valuemax': 90,
+                'aria-valuenow': previousSize,
+              }
+        }
+
+        const enhancedChildren = children =>
+          React.Children.toArray(children).map((child, index, allChildren) => {
+            if (!React.isValidElement(child)) {
+              return child
+            }
+
+            if (child.type === Panel) {
+              return child
+            }
+
+            return React.cloneElement(child, handleAttributes(allChildren, index))
+          })
+
+        const sizeStyle = defaultSize =>
+          defaultSize === undefined
+            ? undefined
+            : { flexBasis: typeof defaultSize === 'number' ? defaultSize + '%' : defaultSize }
+
+        export function Group({ children, orientation = 'horizontal', ...props }) {
+          return React.createElement(
+            OrientationContext.Provider,
+            { value: orientation },
+            React.createElement('div', { ...props, role: 'group', 'aria-orientation': orientation }, enhancedChildren(children)),
+          )
+        }
+
+        export function Panel({ children, defaultSize, ...props }) {
+          return React.createElement(
+            'div',
+            { ...props, style: { ...sizeStyle(defaultSize), ...props.style } },
+            children,
+          )
+        }
+
+        export function Separator({ children, ...props }) {
+          return React.createElement(OrientationContext.Consumer, null, orientation =>
+            React.createElement(
+              'div',
+              {
+                ...props,
+                role: 'separator',
+                tabIndex: 0,
+                'aria-orientation': orientation === 'vertical' ? 'horizontal' : 'vertical',
+              },
+              children,
+            ),
+          )
         }
       `
     }
@@ -899,6 +991,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/resizable',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/spinner',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx',
@@ -1052,6 +1150,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/pagination',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/pagination.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/resizable',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/resizable.tsx',
           ),
         },
         {

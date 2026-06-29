@@ -158,6 +158,7 @@ describe('parity canonicalizers', () => {
       'shadcn/separator',
       'shadcn/progress',
       'shadcn/slider',
+      'shadcn/resizable',
       'shadcn/scroll-area',
       'base-ui/switch',
       'shadcn/switch',

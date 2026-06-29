@@ -134,6 +134,10 @@ import { ProgressControlled } from '../../../../../repos/ui/apps/v4/examples/bas
 import ProgressDemo from '../../../../../repos/ui/apps/v4/examples/base/progress-demo'
 import { ProgressWithLabel } from '../../../../../repos/ui/apps/v4/examples/base/progress-label'
 import { ProgressRtl } from '../../../../../repos/ui/apps/v4/examples/base/progress-rtl'
+import ResizableDemo from '../../../../../repos/ui/apps/v4/examples/base/resizable-demo'
+import ResizableHandleDemo from '../../../../../repos/ui/apps/v4/examples/base/resizable-handle'
+import { ResizableRtl } from '../../../../../repos/ui/apps/v4/examples/base/resizable-rtl'
+import { ResizableVertical } from '../../../../../repos/ui/apps/v4/examples/base/resizable-vertical'
 import { ScrollAreaDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-demo'
 import { ScrollAreaHorizontalDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo'
 import { ScrollAreaRtl } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-rtl'
@@ -693,6 +697,10 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'pagination-icons-only': PaginationIconsOnly,
   'pagination-rtl': PaginationRtl,
   'pagination-simple': PaginationSimple,
+  'resizable-demo': ResizableDemo,
+  'resizable-handle': ResizableHandleDemo,
+  'resizable-vertical': ResizableVertical,
+  'resizable-rtl': ResizableRtl,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,

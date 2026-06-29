@@ -135,6 +135,17 @@ import {
 } from './registry/shadcn/radio-group/examples'
 import type { RadioGroupExampleController } from './registry/shadcn/radio-group/examples'
 import {
+  ResizableDemo,
+  ResizableHandleDemo,
+  ResizableRtl,
+  ResizableVertical,
+} from './registry/shadcn/resizable/examples'
+import type {
+  ResizableExampleController,
+  ResizableExampleMessageChange,
+} from './registry/shadcn/resizable/examples'
+import type { ResizableState } from './registry/shadcn/resizable/index'
+import {
   SpinnerBadge,
   SpinnerButton,
   SpinnerCustom,
@@ -183,6 +194,13 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: CarouselExampleMessageChange,
   ) => Message
+  resizableStateFor: (
+    example: ExampleDocsArtifact,
+  ) => Option.Option<ResizableState>
+  onResizableMessage: (
+    example: ExampleDocsArtifact,
+    change: ResizableExampleMessageChange,
+  ) => Message
   commandDialogIsOpenFor: (example: ExampleDocsArtifact) => boolean
   commandDialogIdFor: (example: ExampleDocsArtifact) => string
   onCommandDialogOpen: (example: ExampleDocsArtifact) => Message
@@ -210,6 +228,10 @@ type CalendarExampleView = <Message = never>(
 
 type CarouselExampleView = <Message = never>(
   controller?: CarouselExampleController<Message>,
+) => Html
+
+type ResizableExampleView = <Message = never>(
+  controller?: ResizableExampleController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -294,6 +316,23 @@ const carouselExample = (
       ),
       onCarouselMessage: change => context.onCarouselMessage(example, change),
     }),
+})
+
+const resizableExample = (
+  view: ResizableExampleView,
+): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const onResizableMessage = (change: ResizableExampleMessageChange) =>
+      context.onResizableMessage(example, change)
+
+    return Option.match(context.resizableStateFor(example), {
+      onNone: () => view<Message>({ onResizableMessage }),
+      onSome: state => view<Message>({ state, onResizableMessage }),
+    })
+  },
 })
 
 const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
@@ -482,6 +521,14 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(PaginationRtl),
   [liveExampleKey('shadcn/pagination', 'PaginationSimple')]:
     staticExample(PaginationSimple),
+  [liveExampleKey('shadcn/resizable', 'ResizableDemo')]:
+    resizableExample(ResizableDemo),
+  [liveExampleKey('shadcn/resizable', 'ResizableHandleDemo')]:
+    resizableExample(ResizableHandleDemo),
+  [liveExampleKey('shadcn/resizable', 'ResizableVertical')]:
+    resizableExample(ResizableVertical),
+  [liveExampleKey('shadcn/resizable', 'ResizableRtl')]:
+    resizableExample(ResizableRtl),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',

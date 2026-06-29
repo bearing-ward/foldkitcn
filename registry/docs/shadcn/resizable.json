@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/resizable",
+  "routePath": "/components/shadcn/resizable",
+  "title": "Resizable",
+  "description": "Foldkit-native shadcn base-nova Resizable split-panel primitive with local size normalization, keyboard resizing, pointer-drag messages, shadcn slots, and origin example coverage.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/resizable/docs.md",
+  "markdown": "# Resizable\n\n## Overview\n\nFoldkit-native shadcn Resizable implements split-panel layouts with local\nSchema-backed state, keyboard resizing, pointer-drag messages, and shadcn\nbase-nova slots.\n\n## Foldkit Model\n\nUse `resizableState` to create the panel model from `orientation`, `dir`, and\npanel size constraints. The exported `update` function handles\n`ResizableMessage` values for keyboard resizing and pointer drag facts.\n\n## Usage\n\nRender `view` with a `state` and matching `panels` array. Pass `toMessage` when\nthe parent model owns interactive resizing; omit it for static documentation\nexamples.\n\n## Examples\n\nThe registry includes nested, handle, vertical, and RTL examples matching the\norigin Resizable examples without importing React runtime helpers.\n\n## Accessibility\n\nHandles render as focusable `separator` elements with orientation and value\nattributes. Keyboard resizing supports arrow keys, Home, End, and larger Shift\nsteps.\n\n## Foldkit Differences\n\nThe component exports `resizableState`, `update`, and pure resize helpers so an\napplication can keep panel sizes in its model while examples can render static\norigin-matching layouts. Installable source does not depend on React or\n`react-resizable-panels`.\n",
+  "headings": [
+    {
+      "id": "resizable",
+      "text": "Resizable",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/resizable",
+  "defaultImportPath": "shadcn/resizable",
+  "sourceRoot": "registry-src/shadcn/resizable",
+  "installableSourcePaths": [
+    "src/registry/shadcn/resizable/index.ts",
+    "src/registry/shadcn/resizable/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Resizable",
+      "docsUrl": "https://ui.shadcn.com/docs/components/resizable",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/resizable.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/resizable.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/resizable.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/resizable.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/resizable.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/resizable-demo.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-handle.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/resizable-vertical.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Resizable uses the local class composition helper."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, message, and runtime command types for the Foldkit-native primitive."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema, Match, Array, and Option modules for state and update helpers."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "react-resizable-panels",
+        "classification": "replace-with-foldkit",
+        "target": "shadcn/resizable",
+        "reason": "Origin runtime behavior is replaced by local Foldkit state, messages, and pure resize helpers."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local static RTL labels."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/resizable-demo",
+      "title": "ResizableDemo",
+      "description": "Nested horizontal and vertical Resizable layout.",
+      "componentItemId": "shadcn/resizable",
+      "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+      "snippet": "export const ResizableDemo = <Message = never>(\n  controller?: ResizableExampleController<Message>,\n): Html => {\n  const nestedPanels: ReadonlyArray<ResizablePanelConfig<Message>> = [\n    panel<Message>('two', 25, 'Two'),\n    panel<Message>('three', 75, 'Three'),\n  ]\n\n  return group<Message>({\n    className: 'max-w-sm rounded-lg border',\n    controller,\n    withHandle: true,\n    panels: [\n      panel<Message>('one', 50, 'One', 'h-[200px]'),\n      {\n        id: 'nested',\n        defaultSize: 50,\n        children: [\n          Resizable<Message>({\n            state: resizableState({\n              orientation: 'vertical',\n              panels: nestedPanels,\n            }),\n            panels: nestedPanels,\n            withHandle: true,\n          }),\n        ],\n      },\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ResizableDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/resizable-handle",
+      "title": "ResizableHandleDemo",
+      "description": "Two-panel Resizable layout with visible handle affordance.",
+      "componentItemId": "shadcn/resizable",
+      "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+      "snippet": "export const ResizableHandleDemo = <Message = never>(\n  controller?: ResizableExampleController<Message>,\n): Html =>\n  group<Message>({\n    className: 'min-h-[200px] max-w-sm rounded-lg border',\n    controller,\n    withHandle: true,\n    panels: [\n      panel<Message>('sidebar', 25, 'Sidebar'),\n      panel<Message>('content', 75, 'Content'),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "ResizableHandleDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/resizable-vertical",
+      "title": "ResizableVertical",
+      "description": "Vertical Resizable layout.",
+      "componentItemId": "shadcn/resizable",
+      "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+      "snippet": "export const ResizableVertical = <Message = never>(\n  controller?: ResizableExampleController<Message>,\n): Html =>\n  group<Message>({\n    orientation: 'vertical',\n    className: 'min-h-[200px] max-w-sm rounded-lg border',\n    controller,\n    panels: [\n      panel<Message>('header', 25, 'Header'),\n      panel<Message>('content', 75, 'Content'),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "ResizableVertical",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/resizable-rtl",
+      "title": "ResizableRtl",
+      "description": "RTL nested Resizable layout with local static direction data.",
+      "componentItemId": "shadcn/resizable",
+      "sourcePath": "src/registry/shadcn/resizable/examples.ts",
+      "snippet": "export const ResizableRtl = <Message = never>(\n  controller?: ResizableExampleController<Message>,\n): Html => {\n  const nestedPanels: ReadonlyArray<ResizablePanelConfig<Message>> = [\n    panel<Message>('two', 25, 'اثنان'),\n    panel<Message>('three', 75, 'ثلاثة'),\n  ]\n\n  return group<Message>({\n    dir: 'rtl',\n    className: 'max-w-sm rounded-lg border',\n    controller,\n    withHandle: true,\n    panels: [\n      panel<Message>('one', 50, 'واحد', 'h-[200px]'),\n      {\n        id: 'nested',\n        defaultSize: 50,\n        children: [\n          Resizable<Message>({\n            state: resizableState({\n              orientation: 'vertical',\n              dir: 'rtl',\n              panels: nestedPanels,\n            }),\n            panels: nestedPanels,\n            withHandle: true,\n          }),\n        ],\n      },\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ResizableRtl",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-resizable-local-state",
+        "summary": "Resizable replaces react-resizable-panels with local Foldkit state, message, keyboard, and pointer-delta helpers.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source cannot depend on React panel runtime behavior; local state preserves the public split-panel semantics and shadcn markup slots."
+      },
+      {
+        "id": "shadcn-resizable-local-rtl-data",
+        "summary": "RTL example uses local static labels instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Static RTL direction preserves the rendered layout needed by parity fixtures."
+      }
+    ]
+  }
+}

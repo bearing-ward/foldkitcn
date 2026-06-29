@@ -54,6 +54,7 @@ const model: Model = {
   liveExampleRadioGroupValues: {},
   liveExampleCalendarSelectedDates: {},
   liveExampleCarouselSelectedIndexes: {},
+  liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),

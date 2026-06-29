@@ -449,6 +449,12 @@ const liveReadyExampleExportsByItemId: Readonly<
     'PaginationRtl',
     'PaginationSimple',
   ]),
+  'shadcn/resizable': new Set([
+    'ResizableDemo',
+    'ResizableHandleDemo',
+    'ResizableVertical',
+    'ResizableRtl',
+  ]),
   'shadcn/radio-group': new Set([
     'RadioGroupDemo',
     'RadioGroupDescription',

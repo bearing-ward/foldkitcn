@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T16:38:23.460Z",
+  "generatedAt": "2026-06-29T17:34:15.118Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -376,6 +376,11 @@
       "itemId": "shadcn/radio-group",
       "routePath": "/components/shadcn/radio-group",
       "docsArtifactPath": "registry/docs/shadcn/radio-group.json"
+    },
+    {
+      "itemId": "shadcn/resizable",
+      "routePath": "/components/shadcn/resizable",
+      "docsArtifactPath": "registry/docs/shadcn/resizable.json"
     },
     {
       "itemId": "shadcn/scroll-area",

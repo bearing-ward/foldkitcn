@@ -49,6 +49,13 @@ const carouselLiveExampleInteractions = [
   ['CarouselRtl', 'translate3d(100%, 0, 0)'],
 ] as const
 
+const resizableLiveExampleInteractions = [
+  ['ResizableDemo', 'ArrowRight', 'flex-basis: 60%;'],
+  ['ResizableHandleDemo', 'ArrowRight', 'flex-basis: 35%;'],
+  ['ResizableVertical', 'ArrowDown', 'flex-basis: 35%;'],
+  ['ResizableRtl', 'ArrowRight', 'flex-basis: 40%;'],
+] as const
+
 const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
@@ -58,6 +65,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleRadioGroupValues: {},
   liveExampleCalendarSelectedDates: {},
   liveExampleCarouselSelectedIndexes: {},
+  liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
@@ -76,6 +84,28 @@ const documentedCarouselLiveExampleTitles = (): ReadonlyArray<string> => {
   const artifact = Option.getOrThrowWith(
     component.maybeDocsArtifact,
     () => new Error('Missing shadcn/carousel docs artifact.'),
+  )
+
+  return pipe(
+    artifact.examples,
+    Array.filter(example => example.previewStatus === 'live-ready'),
+    Array.map(example => example.title),
+  )
+}
+
+const documentedResizableLiveExampleTitles = (): ReadonlyArray<string> => {
+  const component = pipe(
+    publicComponents(docsData),
+    Array.findFirst(
+      publicComponent => publicComponent.entry.item.id === 'shadcn/resizable',
+    ),
+    Option.getOrThrowWith(
+      () => new Error('Missing public shadcn/resizable component docs.'),
+    ),
+  )
+  const artifact = Option.getOrThrowWith(
+    component.maybeDocsArtifact,
+    () => new Error('Missing shadcn/resizable docs artifact.'),
   )
 
   return pipe(
@@ -197,6 +227,35 @@ describe(view, () => {
       ).toHaveStyle('transform', 'translate3d(-400%, 0, 0)'),
     )
   })
+
+  test('interaction validation covers every documented Resizable live example', () => {
+    expect(
+      resizableLiveExampleInteractions.map(([title]) => title),
+    ).toStrictEqual(documentedResizableLiveExampleTitles())
+  })
+
+  test.each(resizableLiveExampleInteractions)(
+    '%s live preview resizes when its separator receives keyboard input',
+    (exampleTitle, key, expectedStyle) => {
+      const preview = Scene.label(`${exampleTitle} live preview`)
+
+      Scene.scene(
+        { update, view },
+        Scene.with(
+          modelWithRoute(
+            ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
+          ),
+        ),
+        Scene.keydown(Scene.within(preview, Scene.role('separator')), key),
+        Scene.expect(
+          Scene.within(
+            preview,
+            Scene.selector('[data-slot="resizable-panel"]'),
+          ),
+        ).toHaveAttr('style', expectedStyle),
+      )
+    },
+  )
 
   test('documentation search filters public generated records and clears', () => {
     Scene.scene(
@@ -722,7 +781,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('37 of 38')).toExist(),
-      Scene.expect(Scene.text('51 of 64')).toExist(),
+      Scene.expect(Scene.text('52 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
