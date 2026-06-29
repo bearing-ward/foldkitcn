@@ -2,12 +2,26 @@ import { Array as EffectArray } from 'effect'
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import { cn } from '../../../utils/cn'
 import { Card, CardContent } from '../card'
 import type {
   CarouselItemConfig,
+  CarouselMessage,
   CarouselOrientation as CarouselOrientationValue,
 } from './index'
 import { carouselState, view as Carousel } from './index'
+
+export type CarouselExampleMessageChange = Readonly<{
+  message: CarouselMessage
+  itemCount: number
+  orientation?: CarouselOrientationValue
+  dir?: string
+}>
+
+export type CarouselExampleController<Message> = Readonly<{
+  selectedIndex?: number
+  onCarouselMessage?: (change: CarouselExampleMessageChange) => Message
+}>
 
 const arabicNumerals: ReadonlyArray<string> = [
   '٠',
@@ -56,7 +70,7 @@ const slideCard = (
     : h.div([h.Class(config.wrapperClassName)], [card])
 }
 
-const slideItems = (
+const slideItems = <Message = never>(
   config: Readonly<{
     contentClassName: string
     itemClassName?: string
@@ -64,7 +78,7 @@ const slideItems = (
     toText?: (index: number) => string
     wrapperClassName?: string
   }>,
-): ReadonlyArray<CarouselItemConfig<never>> =>
+): ReadonlyArray<CarouselItemConfig<Message>> =>
   EffectArray.makeBy(5, index => {
     const text = config.toText?.(index)
 
@@ -85,50 +99,114 @@ const slideItems = (
     }
   })
 
-const carousel = (
+const previousControlClassName = (
+  orientation: CarouselOrientationValue | undefined,
+  dir: string | undefined,
+): string => {
+  if (orientation === 'vertical') {
+    return 'top-2'
+  }
+
+  if (dir === 'rtl') {
+    return 'start-2'
+  }
+
+  return 'left-2'
+}
+
+const nextControlClassName = (
+  orientation: CarouselOrientationValue | undefined,
+  dir: string | undefined,
+): string => {
+  if (orientation === 'vertical') {
+    return 'bottom-2'
+  }
+
+  if (dir === 'rtl') {
+    return 'end-2'
+  }
+
+  return 'right-2'
+}
+
+const carousel = <Message = never>(
   config: Readonly<{
     className: string
     contentClassName?: string
     dir?: string
-    items: ReadonlyArray<CarouselItemConfig<never>>
+    items: ReadonlyArray<CarouselItemConfig<Message>>
     nextClassName?: string
     orientation?: CarouselOrientationValue
     previousClassName?: string
-  }>,
-): Html =>
-  Carousel<never>({
+  }> &
+    CarouselExampleController<Message>,
+): Html => {
+  const { onCarouselMessage } = config
+  const previousClassName = cn(
+    previousControlClassName(config.orientation, config.dir),
+    config.previousClassName,
+  )
+  const nextClassName = cn(
+    nextControlClassName(config.orientation, config.dir),
+    config.nextClassName,
+  )
+
+  return Carousel<Message>({
     state: carouselState({
       itemCount: config.items.length,
-      orientation: config.orientation,
-      dir: config.dir,
+      ...(config.selectedIndex === undefined
+        ? {}
+        : { selectedIndex: config.selectedIndex }),
+      ...(config.orientation === undefined
+        ? {}
+        : { orientation: config.orientation }),
+      ...(config.dir === undefined ? {} : { dir: config.dir }),
     }),
     items: config.items,
     className: config.className,
+    ...(onCarouselMessage === undefined
+      ? {}
+      : {
+          toMessage: message =>
+            onCarouselMessage({
+              message,
+              itemCount: config.items.length,
+              ...(config.orientation === undefined
+                ? {}
+                : { orientation: config.orientation }),
+              ...(config.dir === undefined ? {} : { dir: config.dir }),
+            }),
+        }),
     ...(config.contentClassName === undefined
       ? {}
       : { contentClassName: config.contentClassName }),
-    ...(config.previousClassName === undefined
-      ? {}
-      : { previousClassName: config.previousClassName }),
-    ...(config.nextClassName === undefined
-      ? {}
-      : { nextClassName: config.nextClassName }),
+    previousClassName,
+    nextClassName,
   })
+}
 
-export const CarouselDemo = (): Html =>
+export const CarouselDemo = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     className: 'w-full max-w-[12rem] sm:max-w-xs',
-    items: slideItems({
+    items: slideItems<Message>({
       contentClassName: 'flex aspect-square items-center justify-center p-6',
       textClassName: 'text-4xl font-semibold',
       wrapperClassName: 'p-1',
     }),
   })
 
-export const CarouselSize = (): Html =>
+export const CarouselSize = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     className: 'w-full max-w-[12rem] sm:max-w-xs md:max-w-sm',
-    items: slideItems({
+    contentClassName:
+      '[--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
+    items: slideItems<Message>({
       itemClassName: 'basis-1/2 lg:basis-1/3',
       contentClassName: 'flex aspect-square items-center justify-center p-6',
       textClassName: 'text-3xl font-semibold',
@@ -136,12 +214,17 @@ export const CarouselSize = (): Html =>
     }),
   })
 
-export const CarouselMultiple = (): Html =>
+export const CarouselMultiple = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     className: 'mx-auto max-w-xs sm:max-w-sm',
+    contentClassName:
+      '[--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
     previousClassName: 'hidden sm:inline-flex',
     nextClassName: 'hidden sm:inline-flex',
-    items: slideItems({
+    items: slideItems<Message>({
       itemClassName: 'sm:basis-1/2 lg:basis-1/3',
       contentClassName: 'flex aspect-square items-center justify-center p-6',
       textClassName: 'text-3xl font-semibold',
@@ -149,11 +232,15 @@ export const CarouselMultiple = (): Html =>
     }),
   })
 
-export const CarouselSpacing = (): Html =>
+export const CarouselSpacing = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     className: 'w-full max-w-[12rem] sm:max-w-xs md:max-w-sm',
-    contentClassName: '-ml-1',
-    items: slideItems({
+    contentClassName:
+      '-ml-1 [--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
+    items: slideItems<Message>({
       itemClassName: 'basis-1/2 pl-1 lg:basis-1/3',
       contentClassName: 'flex aspect-square items-center justify-center p-6',
       textClassName: 'text-2xl font-semibold',
@@ -161,12 +248,15 @@ export const CarouselSpacing = (): Html =>
     }),
   })
 
-export const CarouselOrientation = (): Html =>
+export const CarouselOrientation = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     className: 'w-full max-w-xs',
     orientation: 'vertical',
-    contentClassName: '-mt-1 h-[270px]',
-    items: slideItems({
+    contentClassName: '-mt-1 h-[340px] [--carousel-slide-step:50%]',
+    items: slideItems<Message>({
       itemClassName: 'basis-1/2 pt-1',
       contentClassName: 'flex items-center justify-center p-6',
       textClassName: 'text-3xl font-semibold',
@@ -174,15 +264,22 @@ export const CarouselOrientation = (): Html =>
     }),
   })
 
-export const CarouselApi = (): Html => {
-  const h = html<never>()
+export const CarouselApi = <Message = never>({
+  selectedIndex,
+  onCarouselMessage,
+}: CarouselExampleController<Message> = {}): Html => {
+  const h = html<Message>()
   const itemCount = 5
+  const state = carouselState({
+    itemCount,
+    ...(selectedIndex === undefined ? {} : { selectedIndex }),
+  })
 
   return h.div(
     [h.Class('mx-auto max-w-[10rem] sm:max-w-xs')],
     [
-      Carousel<never>({
-        state: carouselState({ itemCount }),
+      Carousel<Message>({
+        state,
         className: 'w-full max-w-xs',
         items: EffectArray.makeBy(itemCount, index => ({
           children: [
@@ -194,20 +291,28 @@ export const CarouselApi = (): Html => {
             }),
           ],
         })),
+        ...(onCarouselMessage === undefined
+          ? {}
+          : {
+              toMessage: message => onCarouselMessage({ message, itemCount }),
+            }),
       }),
       h.div(
         [h.Class('py-2 text-center text-sm text-muted-foreground')],
-        [`Slide 1 of ${itemCount}`],
+        [`Slide ${state.selectedIndex + 1} of ${itemCount}`],
       ),
     ],
   )
 }
 
-export const CarouselRtl = (): Html =>
+export const CarouselRtl = <Message = never>(
+  controller: CarouselExampleController<Message> = {},
+): Html =>
   carousel({
+    ...controller,
     dir: 'rtl',
     className: 'w-full max-w-[12rem] sm:max-w-xs',
-    items: slideItems({
+    items: slideItems<Message>({
       contentClassName: 'flex aspect-square items-center justify-center p-6',
       textClassName: 'text-4xl font-semibold',
       toText: index => toArabicNumerals(index + 1),

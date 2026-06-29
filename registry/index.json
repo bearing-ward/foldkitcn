@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T15:49:14.190Z",
+  "generatedAt": "2026-06-29T16:38:23.460Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8912,14 +8912,14 @@
         },
         {
           "path": "src/registry/shadcn/carousel/index.ts",
-          "sha256": "5d2320d7009628d2b759ed654145ab809ed327aad7b6da6191672c169945c058",
-          "sizeBytes": 16435,
+          "sha256": "4a3e6552c61ff890566b9d04937c020ca40906f456b0c59ac8f390fc17b4f4ca",
+          "sizeBytes": 18238,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/carousel/examples.ts",
-          "sha256": "91d2cb96895a3e54cb1557117c1f1cb2a6b9daf29b179b532b7d5002f925e367",
-          "sizeBytes": 5965,
+          "sha256": "005eea78f871dc85b112231f97e5094f17772fef5c2ff9c8fef6efa88e0f0ee3",
+          "sizeBytes": 8980,
           "role": "source"
         }
       ]

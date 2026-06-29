@@ -69,6 +69,12 @@ import {
   searchPublicComponents,
 } from './search/component-search'
 import {
+  CarouselMessage,
+  CarouselOrientation,
+  carouselState,
+  update as updateCarouselState,
+} from './registry/shadcn/carousel'
+import {
   fallbackRouteMetadata,
   routeMetadataForRoute,
 } from './route-inventory'
@@ -131,6 +137,7 @@ export const Model = S.Struct({
   liveExampleInputValues: S.Record(S.String, S.String),
   liveExampleRadioGroupValues: S.Record(S.String, S.String),
   liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
+  liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
@@ -171,6 +178,16 @@ export const SelectedLiveExampleCalendarDate = m(
     date: S.String,
   },
 )
+export const GotLiveExampleCarouselMessage = m(
+  'GotLiveExampleCarouselMessage',
+  {
+    exampleId: S.String,
+    message: CarouselMessage,
+    itemCount: S.Number,
+    orientation: S.optional(CarouselOrientation),
+    dir: S.optional(S.String),
+  },
+)
 export const ClickedOpenLiveExampleCommandDialog = m(
   'ClickedOpenLiveExampleCommandDialog',
   {
@@ -208,6 +225,7 @@ export const Message = S.Union([
   UpdatedLiveExampleInputValue,
   UpdatedLiveExampleRadioGroupValue,
   SelectedLiveExampleCalendarDate,
+  GotLiveExampleCarouselMessage,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
   PressedLiveExampleCommandDialogShortcut,
@@ -230,6 +248,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleInputValues: {},
       liveExampleRadioGroupValues: {},
       liveExampleCalendarSelectedDates: {},
+      liveExampleCarouselSelectedIndexes: {},
       liveExampleCommandDialogOpenValues: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
@@ -445,6 +464,37 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      GotLiveExampleCarouselMessage: ({
+        exampleId,
+        message,
+        itemCount,
+        orientation,
+        dir,
+      }) => {
+        const selectedIndex = pipe(
+          EffectRecord.get(model.liveExampleCarouselSelectedIndexes, exampleId),
+          Option.getOrElse(() => 0),
+        )
+        const [nextState] = updateCarouselState(
+          carouselState({
+            selectedIndex,
+            itemCount,
+            ...(orientation === undefined ? {} : { orientation }),
+            ...(dir === undefined ? {} : { dir }),
+          }),
+          message,
+        )
+
+        return [
+          evo(model, {
+            liveExampleCarouselSelectedIndexes: EffectRecord.set(
+              exampleId,
+              nextState.selectedIndex,
+            ),
+          }),
+          [],
+        ]
+      },
       ClickedOpenLiveExampleCommandDialog: ({ exampleId }) => [
         evo(model, {
           liveExampleCommandDialogOpenValues: EffectRecord.set(exampleId, true),
@@ -1474,6 +1524,7 @@ const examplesSectionView = (
   liveExampleInputValues: Readonly<Record<string, string>>,
   liveExampleRadioGroupValues: Readonly<Record<string, string>>,
   liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
+  liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
 ): Html => {
   const h = html<Message>()
@@ -1529,6 +1580,32 @@ const examplesSectionView = (
       SelectedLiveExampleCalendarDate({
         exampleId: example.id,
         date: change.date,
+      }),
+    carouselSelectedIndexFor: (
+      example: ExampleDocsArtifact,
+      defaultSelectedIndex: number,
+    ): number =>
+      pipe(
+        EffectRecord.get(liveExampleCarouselSelectedIndexes, example.id),
+        Option.getOrElse(() => defaultSelectedIndex),
+      ),
+    onCarouselMessage: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{
+        message: typeof CarouselMessage.Type
+        itemCount: number
+        orientation?: typeof CarouselOrientation.Type
+        dir?: string
+      }>,
+    ): Message =>
+      GotLiveExampleCarouselMessage({
+        exampleId: example.id,
+        message: change.message,
+        itemCount: change.itemCount,
+        ...(change.orientation === undefined
+          ? {}
+          : { orientation: change.orientation }),
+        ...(change.dir === undefined ? {} : { dir: change.dir }),
       }),
     commandDialogIsOpenFor: (example: ExampleDocsArtifact): boolean =>
       pipe(
@@ -1780,6 +1857,7 @@ const componentDetailPageView = (
           model.liveExampleInputValues,
           model.liveExampleRadioGroupValues,
           model.liveExampleCalendarSelectedDates,
+          model.liveExampleCarouselSelectedIndexes,
           model.liveExampleCommandDialogOpenValues,
         ),
         apiSectionView(),

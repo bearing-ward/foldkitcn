@@ -129,9 +129,9 @@ describe('shadcn/carousel class helpers', () => {
     expect(
       Carousel.carouselContentClassName({
         orientation: 'vertical',
-        className: '-mt-1 h-[270px]',
+        className: '-mt-1 h-[340px]',
       }),
-    ).toBe('flex flex-col -mt-1 h-[270px]')
+    ).toBe('flex flex-col -mt-1 h-[340px]')
     expect(
       Carousel.carouselItemClassName({
         orientation: 'horizontal',
@@ -190,7 +190,7 @@ describe('shadcn/carousel view', () => {
         Scene.with(initialModel()),
         Scene.expect(
           Scene.role('button', { name: 'Previous slide' }),
-        ).toBeDisabled(),
+        ).toBeEnabled(),
         Scene.expect(
           Scene.role('button', { name: 'Next slide' }),
         ).toBeEnabled(),
@@ -212,8 +212,21 @@ describe('shadcn/carousel view', () => {
         ).toHaveStyle('transform', 'translate3d(-100%, 0, 0)'),
         Scene.click(Scene.role('button', { name: 'Previous slide' })),
         Scene.expect(
-          Scene.role('button', { name: 'Previous slide' }),
-        ).toBeDisabled(),
+          Scene.selector('[data-slot="carousel-content"] div'),
+        ).not.toHaveStyle('transform', 'translate3d(-100%, 0, 0)'),
+      )
+    }).not.toThrow()
+  })
+
+  test('previous control wraps from the first slide to the last slide', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewCarousel() },
+        Scene.with(initialModel()),
+        Scene.click(Scene.role('button', { name: 'Previous slide' })),
+        Scene.expect(
+          Scene.selector('[data-slot="carousel-content"] div'),
+        ).toHaveStyle('transform', 'translate3d(-200%, 0, 0)'),
       )
     }).not.toThrow()
   })
@@ -229,8 +242,8 @@ describe('shadcn/carousel view', () => {
         ).toHaveStyle('transform', 'translate3d(-100%, 0, 0)'),
         Scene.keydown(Scene.role('region'), 'ArrowLeft'),
         Scene.expect(
-          Scene.role('button', { name: 'Previous slide' }),
-        ).toBeDisabled(),
+          Scene.selector('[data-slot="carousel-content"] div'),
+        ).not.toHaveStyle('transform', 'translate3d(-100%, 0, 0)'),
       )
     }).not.toThrow()
   })
@@ -256,8 +269,8 @@ describe('shadcn/carousel view', () => {
         ).toHaveStyle('transform', 'translate3d(0, -100%, 0)'),
         Scene.keydown(Scene.role('region'), 'ArrowUp'),
         Scene.expect(
-          Scene.role('button', { name: 'Previous slide' }),
-        ).toBeDisabled(),
+          Scene.selector('[data-slot="carousel-content"] div'),
+        ).not.toHaveStyle('transform', 'translate3d(0, -100%, 0)'),
       )
     }).not.toThrow()
   })
@@ -299,6 +312,9 @@ describe('shadcn/carousel view', () => {
             className: 'basis-1/2 lg:basis-1/3',
           }),
         ),
+        Scene.expectAll(
+          Scene.all.selector('[data-slot="carousel-loop-fill-item"]'),
+        ).toHaveCount(5),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselMultiple()) },
@@ -312,14 +328,20 @@ describe('shadcn/carousel view', () => {
         Scene.with(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
-        ).toHaveAttr('class', 'flex -ml-1'),
+        ).toHaveAttr(
+          'class',
+          'flex -ml-1 [--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
+        ),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselOrientation()) },
         Scene.with(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
-        ).toHaveAttr('class', 'flex flex-col -mt-1 h-[270px]'),
+        ).toHaveAttr(
+          'class',
+          'flex flex-col -mt-1 h-[340px] [--carousel-slide-step:50%]',
+        ),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselApi()) },

@@ -52,14 +52,15 @@ describe('shadcn/carousel update', () => {
     )
   })
 
-  test('next and previous clamp at boundaries', () => {
+  test('next and previous wrap at boundaries', () => {
     Story.story(
       update,
       Story.with(initialState({ selectedIndex: 2 })),
       Story.message(ClickedCarouselNext()),
       Story.model(model => {
-        expect(model.selectedIndex).toBe(2)
-        expect(model.canScrollNext).toBeFalsy()
+        expect(model.selectedIndex).toBe(0)
+        expect(model.canScrollPrevious).toBeTruthy()
+        expect(model.canScrollNext).toBeTruthy()
       }),
     )
 
@@ -68,10 +69,18 @@ describe('shadcn/carousel update', () => {
       Story.with(initialState()),
       Story.message(ClickedCarouselPrevious()),
       Story.model(model => {
-        expect(model.selectedIndex).toBe(0)
-        expect(model.canScrollPrevious).toBeFalsy()
+        expect(model.selectedIndex).toBe(2)
+        expect(model.canScrollPrevious).toBeTruthy()
+        expect(model.canScrollNext).toBeTruthy()
       }),
     )
+  })
+
+  test('single-item carousels keep controls unavailable', () => {
+    const model = initialState({ itemCount: 1 })
+
+    expect(model.canScrollPrevious).toBeFalsy()
+    expect(model.canScrollNext).toBeFalsy()
   })
 
   test('horizontal keyboard input uses left and right arrows', () => {

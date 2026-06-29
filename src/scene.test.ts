@@ -1,8 +1,8 @@
-import { HashSet } from 'effect'
+import { Array, HashSet, Option, pipe } from 'effect'
 import { Scene } from 'foldkit'
-import { describe, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 
-import { docsData } from './data'
+import { docsData, publicComponents } from './data'
 import {
   ComponentDetailRoute,
   CopySnippet,
@@ -27,6 +27,28 @@ import {
 } from './main'
 import type { Model } from './main'
 
+const carouselLiveExampleInteractions = [
+  ['CarouselDemo', 'translate3d(-100%, 0, 0)'],
+  [
+    'CarouselSize',
+    'translate3d(calc(var(--carousel-slide-step, 100%) * -1), 0, 0)',
+  ],
+  [
+    'CarouselMultiple',
+    'translate3d(calc(var(--carousel-slide-step, 100%) * -1), 0, 0)',
+  ],
+  [
+    'CarouselSpacing',
+    'translate3d(calc(var(--carousel-slide-step, 100%) * -1), 0, 0)',
+  ],
+  [
+    'CarouselOrientation',
+    'translate3d(0, calc(var(--carousel-slide-step, 100%) * -1), 0)',
+  ],
+  ['CarouselApi', 'translate3d(-100%, 0, 0)'],
+  ['CarouselRtl', 'translate3d(100%, 0, 0)'],
+] as const
+
 const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
@@ -35,10 +57,33 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleInputValues: {},
   liveExampleRadioGroupValues: {},
   liveExampleCalendarSelectedDates: {},
+  liveExampleCarouselSelectedIndexes: {},
   liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
+
+const documentedCarouselLiveExampleTitles = (): ReadonlyArray<string> => {
+  const component = pipe(
+    publicComponents(docsData),
+    Array.findFirst(
+      publicComponent => publicComponent.entry.item.id === 'shadcn/carousel',
+    ),
+    Option.getOrThrowWith(
+      () => new Error('Missing public shadcn/carousel component docs.'),
+    ),
+  )
+  const artifact = Option.getOrThrowWith(
+    component.maybeDocsArtifact,
+    () => new Error('Missing shadcn/carousel docs artifact.'),
+  )
+
+  return pipe(
+    artifact.examples,
+    Array.filter(example => example.previewStatus === 'live-ready'),
+    Array.map(example => example.title),
+  )
+}
 
 describe(view, () => {
   test('the shell renders primary navigation and component namespace groups', () => {
@@ -80,6 +125,76 @@ describe(view, () => {
       Scene.expect(
         Scene.role('link', { name: 'Button (shadcn/button)' }),
       ).toHaveAttr('aria-current', 'page'),
+    )
+  })
+
+  test('interaction validation covers every documented Carousel live example', () => {
+    expect(
+      carouselLiveExampleInteractions.map(([title]) => title),
+    ).toStrictEqual(documentedCarouselLiveExampleTitles())
+  })
+
+  test.each(carouselLiveExampleInteractions)(
+    '%s live preview advances when its next control is clicked',
+    (exampleTitle, expectedTransform) => {
+      const preview = Scene.label(`${exampleTitle} live preview`)
+
+      Scene.scene(
+        { update, view },
+        Scene.with(
+          modelWithRoute(
+            ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
+          ),
+        ),
+        Scene.click(
+          Scene.within(preview, Scene.role('button', { name: 'Next slide' })),
+        ),
+        Scene.expect(
+          Scene.within(
+            preview,
+            Scene.selector('[data-slot="carousel-content"] div'),
+          ),
+        ).toHaveStyle('transform', expectedTransform),
+      )
+    },
+  )
+
+  test('CarouselApi live preview updates its selected slide status text', () => {
+    const preview = Scene.label('CarouselApi live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: 'Next slide' })),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('Slide 2 of 5'))).toExist(),
+    )
+  })
+
+  test('Carousel live previews wrap backward from their first slide', () => {
+    const preview = Scene.label('CarouselDemo live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: 'Previous slide' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          preview,
+          Scene.selector('[data-slot="carousel-content"] div'),
+        ),
+      ).toHaveStyle('transform', 'translate3d(-400%, 0, 0)'),
     )
   })
 

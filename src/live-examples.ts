@@ -60,6 +60,10 @@ import {
   CarouselSize,
   CarouselSpacing,
 } from './registry/shadcn/carousel/examples'
+import type {
+  CarouselExampleController,
+  CarouselExampleMessageChange,
+} from './registry/shadcn/carousel/examples'
 import {
   CommandBasic,
   CommandDemo,
@@ -171,6 +175,14 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: CalendarSelectChange,
   ) => Message
+  carouselSelectedIndexFor: (
+    example: ExampleDocsArtifact,
+    defaultSelectedIndex: number,
+  ) => number
+  onCarouselMessage: (
+    example: ExampleDocsArtifact,
+    change: CarouselExampleMessageChange,
+  ) => Message
   commandDialogIsOpenFor: (example: ExampleDocsArtifact) => boolean
   commandDialogIdFor: (example: ExampleDocsArtifact) => string
   onCommandDialogOpen: (example: ExampleDocsArtifact) => Message
@@ -194,6 +206,10 @@ type CommandDialogExampleView = <Message = never>(
 
 type CalendarExampleView = <Message = never>(
   controller?: CalendarExampleController<Message>,
+) => Html
+
+type CarouselExampleView = <Message = never>(
+  controller?: CarouselExampleController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -264,6 +280,20 @@ const calendarExample = (
       onSelectDate: change => context.onCalendarSelectDate(example, change),
     })
   },
+})
+
+const carouselExample = (
+  view: CarouselExampleView,
+  defaultSelectedIndex = 0,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      selectedIndex: context.carouselSelectedIndexFor(
+        example,
+        defaultSelectedIndex,
+      ),
+      onCarouselMessage: change => context.onCarouselMessage(example, change),
+    }),
 })
 
 const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
@@ -342,19 +372,19 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     '2025-01-06',
   ),
   [liveExampleKey('shadcn/carousel', 'CarouselDemo')]:
-    staticExample(CarouselDemo),
+    carouselExample(CarouselDemo),
   [liveExampleKey('shadcn/carousel', 'CarouselSize')]:
-    staticExample(CarouselSize),
+    carouselExample(CarouselSize),
   [liveExampleKey('shadcn/carousel', 'CarouselMultiple')]:
-    staticExample(CarouselMultiple),
+    carouselExample(CarouselMultiple),
   [liveExampleKey('shadcn/carousel', 'CarouselSpacing')]:
-    staticExample(CarouselSpacing),
+    carouselExample(CarouselSpacing),
   [liveExampleKey('shadcn/carousel', 'CarouselOrientation')]:
-    staticExample(CarouselOrientation),
+    carouselExample(CarouselOrientation),
   [liveExampleKey('shadcn/carousel', 'CarouselApi')]:
-    staticExample(CarouselApi),
+    carouselExample(CarouselApi),
   [liveExampleKey('shadcn/carousel', 'CarouselRtl')]:
-    staticExample(CarouselRtl),
+    carouselExample(CarouselRtl),
   [liveExampleKey('shadcn/command', 'CommandDemo')]: staticExample(CommandDemo),
   [liveExampleKey('shadcn/command', 'CommandBasic')]:
     commandDialogExample(CommandBasic),

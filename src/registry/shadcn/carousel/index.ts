@@ -41,11 +41,18 @@ export type CarouselStateOptions = typeof CarouselStateOptions.Type
 const normalizedItemCount = (itemCount: number): number =>
   Math.max(0, Math.floor(itemCount))
 
-const lastIndex = (itemCount: number): number =>
-  Math.max(0, normalizedItemCount(itemCount) - 1)
+const wrapSelectedIndex = (
+  selectedIndex: number,
+  itemCount: number,
+): number => {
+  const count = normalizedItemCount(itemCount)
 
-const clampSelectedIndex = (selectedIndex: number, itemCount: number): number =>
-  Math.min(Math.max(0, Math.floor(selectedIndex)), lastIndex(itemCount))
+  if (count === 0) {
+    return 0
+  }
+
+  return ((Math.floor(selectedIndex) % count) + count) % count
+}
 
 export const carouselState = ({
   selectedIndex = 0,
@@ -54,15 +61,16 @@ export const carouselState = ({
   dir,
 }: CarouselStateOptions): CarouselState => {
   const count = normalizedItemCount(itemCount)
-  const index = clampSelectedIndex(selectedIndex, count)
+  const index = wrapSelectedIndex(selectedIndex, count)
+  const canScroll = count > 1
 
   return {
     selectedIndex: index,
     itemCount: count,
     orientation,
     dir,
-    canScrollPrevious: index > 0,
-    canScrollNext: index < lastIndex(count),
+    canScrollPrevious: canScroll,
+    canScrollNext: canScroll,
   }
 }
 
@@ -422,27 +430,54 @@ const viewportAttributes = <Message>(
 
 export const carouselContentStyle = (
   state: Pick<CarouselState, 'dir' | 'orientation' | 'selectedIndex'>,
+  config: Readonly<{ usesSlideStepVariable?: boolean }> = {},
 ): Record<string, string> => {
   if (state.selectedIndex === 0) {
     return {}
   }
 
+  if (config.usesSlideStepVariable === true) {
+    const multiplier = isRtl(state.dir)
+      ? state.selectedIndex
+      : -state.selectedIndex
+    const offset = `calc(var(--carousel-slide-step, 100%) * ${multiplier})`
+
+    if (state.orientation === 'vertical') {
+      return {
+        transform: `translate3d(0, calc(var(--carousel-slide-step, 100%) * -${state.selectedIndex}), 0)`,
+      }
+    }
+
+    return {
+      transform: `translate3d(${offset}, 0, 0)`,
+    }
+  }
+
   const offset = state.selectedIndex * 100
+  const multiplier = isRtl(state.dir)
+    ? state.selectedIndex
+    : -state.selectedIndex
 
   if (state.orientation === 'vertical') {
     return { transform: `translate3d(0, -${offset}%, 0)` }
   }
 
   return {
-    transform: `translate3d(${isRtl(state.dir) ? offset : -offset}%, 0, 0)`,
+    transform: `translate3d(${multiplier * 100}%, 0, 0)`,
   }
 }
 
+const usesSlideStepVariable = (className: string | undefined): boolean =>
+  className === undefined ? false : className.includes('--carousel-slide-step')
+
 const styleAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
+  config: ViewConfig<Message>,
   state: CarouselState,
 ): ReadonlyArray<Attribute<Message>> => {
-  const style = carouselContentStyle(state)
+  const style = carouselContentStyle(state, {
+    usesSlideStepVariable: usesSlideStepVariable(config.contentClassName),
+  })
   return Object.keys(style).length === 0 ? [] : [h.Style(style)]
 }
 
@@ -458,7 +493,7 @@ const contentAttributes = <Message>(
       dir: state.dir,
     }),
   ),
-  ...styleAttributes(h, state),
+  ...styleAttributes(h, config, state),
 ]
 
 const itemAttributes = <Message>(
@@ -482,6 +517,23 @@ const itemAttributes = <Message>(
     ...(item.attributes ?? []),
   ],
 })
+
+const loopFillItemAttributes = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  config: ViewConfig<Message>,
+  state: CarouselState,
+  item: CarouselItemConfig<Message>,
+): ReadonlyArray<Attribute<Message>> => [
+  h.AriaHidden(true),
+  h.DataAttribute('slot', 'carousel-loop-fill-item'),
+  h.Class(
+    carouselItemClassName({
+      className: cn(config.itemClassName, item.className),
+      orientation: state.orientation,
+      dir: state.dir,
+    }),
+  ),
+]
 
 const icon = (kind: 'left' | 'right', dir: string | undefined): Html => {
   const h = html<never>()
@@ -575,6 +627,12 @@ const carouselAttributes = <Message>(
 export const view = <Message>(config: ViewConfig<Message>): Html => {
   const h = html<Message>()
   const attributes = carouselAttributes(config)
+  const state = carouselState({
+    selectedIndex: config.state.selectedIndex,
+    itemCount: config.items.length,
+    orientation: config.state.orientation,
+    dir: config.state.dir,
+  })
 
   if (config.toView !== undefined) {
     return config.toView(attributes)
@@ -588,9 +646,17 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
         [
           h.div(
             [...attributes.content],
-            attributes.items.map(item =>
-              h.div([...item.root], item.item.children ?? []),
-            ),
+            [
+              ...attributes.items.map(item =>
+                h.div([...item.root], item.item.children ?? []),
+              ),
+              ...attributes.items.map(item =>
+                h.div(
+                  [...loopFillItemAttributes(h, config, state, item.item)],
+                  item.item.children ?? [],
+                ),
+              ),
+            ],
           ),
         ],
       ),
