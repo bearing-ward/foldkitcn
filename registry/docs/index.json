@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T11:06:38.870Z",
+  "generatedAt": "2026-06-29T12:02:20.047Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -391,6 +391,11 @@
       "itemId": "shadcn/slider",
       "routePath": "/components/shadcn/slider",
       "docsArtifactPath": "registry/docs/shadcn/slider.json"
+    },
+    {
+      "itemId": "shadcn/spinner",
+      "routePath": "/components/shadcn/spinner",
+      "docsArtifactPath": "registry/docs/shadcn/spinner.json"
     },
     {
       "itemId": "shadcn/switch",

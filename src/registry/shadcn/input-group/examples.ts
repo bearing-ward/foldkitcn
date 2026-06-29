@@ -20,6 +20,7 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from '../field'
 import { view as Input } from '../input'
 import { groupView as KbdGroup, view as Kbd } from '../kbd'
 import * as Label from '../label'
+import { Spinner } from '../spinner'
 import * as Tooltip from '../tooltip'
 import {
   InputGroup,
@@ -41,7 +42,7 @@ type IconName =
   | 'eyeOff'
   | 'info'
   | 'link'
-  | 'loaderCircle'
+  | 'loader'
   | 'mail'
   | 'mic'
   | 'moreHorizontal'
@@ -80,7 +81,16 @@ const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
     'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71',
     'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71',
   ],
-  loaderCircle: ['M21 12a9 9 0 1 1-6.219-8.56'],
+  loader: [
+    'M12 2v4',
+    'm16.2 7.8 2.9-2.9',
+    'M18 12h4',
+    'm16.2 16.2 2.9 2.9',
+    'M12 18v4',
+    'm4.9 19.1 2.9-2.9',
+    'M2 12h4',
+    'm4.9 4.9 2.9 2.9',
+  ],
   mail: ['rect 2 4 20 16 2', 'm22 7-10 5L2 7'],
   mic: [
     'M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3',
@@ -121,7 +131,7 @@ const iconClassNames: Readonly<Record<IconName, string>> = {
   eyeOff: 'lucide lucide-eye-off-icon',
   info: 'lucide lucide-info-icon',
   link: 'lucide lucide-link-icon',
-  loaderCircle: 'lucide lucide-loader-circle',
+  loader: 'lucide lucide-loader-icon',
   mail: 'lucide lucide-mail-icon',
   mic: 'lucide lucide-mic-icon',
   moreHorizontal: 'lucide lucide-more-horizontal-icon',
@@ -161,6 +171,27 @@ const icon = (
   )
 }
 
+const loaderIcon = (): Html => {
+  const h = html<never>()
+
+  return h.svg(
+    [
+      h.Xmlns('http://www.w3.org/2000/svg'),
+      h.Width('24'),
+      h.Height('24'),
+      h.ViewBox('0 0 24 24'),
+      h.Fill('none'),
+      h.Stroke('currentColor'),
+      h.StrokeWidth('2'),
+      h.StrokeLinecap('round'),
+      h.StrokeLinejoin('round'),
+      h.Class(`${iconClassNames.loader} animate-spin`),
+      h.AriaHidden(true),
+    ],
+    iconPaths.loader.map(path => h.path([h.D(path)], [])),
+  )
+}
+
 const kbd = (children: ReadonlyArray<Child>): Html => {
   const h = html<never>()
 
@@ -175,29 +206,6 @@ const kbdGroup = (children: ReadonlyArray<Child>): Html => {
   return KbdGroup<never>({
     toView: attributes => h.kbd([...attributes.kbdGroup], children),
   })
-}
-
-const spinner = (): Html => {
-  const h = html<never>()
-
-  return h.svg(
-    [
-      h.Xmlns('http://www.w3.org/2000/svg'),
-      h.Width('24'),
-      h.Height('24'),
-      h.ViewBox('0 0 24 24'),
-      h.Fill('none'),
-      h.Stroke('currentColor'),
-      h.StrokeWidth('2'),
-      h.StrokeLinecap('round'),
-      h.StrokeLinejoin('round'),
-      h.Class('lucide lucide-loader-circle size-4 animate-spin'),
-      h.DataAttribute('slot', 'spinner'),
-      h.Role('status'),
-      h.AriaLabel('Loading'),
-    ],
-    [h.path([h.D('M21 12a9 9 0 1 1-6.219-8.56')], [])],
-  )
 }
 
 const label = (htmlFor: string, children: ReadonlyArray<Child>): Html => {
@@ -1191,7 +1199,7 @@ export const InputGroupWithKbd = (): Html =>
             }),
             InputGroupAddon<never>({
               align: 'inline-end',
-              children: [spinner()],
+              children: [Spinner<never>()],
             }),
           ],
         }),
@@ -1201,6 +1209,59 @@ export const InputGroupWithKbd = (): Html =>
       ]),
     ],
   })
+
+export const InputGroupSpinner = (): Html =>
+  html<never>().div(
+    [html<never>().Class('grid w-full max-w-sm gap-4')],
+    [
+      InputGroup<never>({
+        children: [
+          InputGroupInput<never>({ placeholder: 'Searching...' }),
+          InputGroupAddon<never>({
+            align: 'inline-end',
+            children: [Spinner<never>()],
+          }),
+        ],
+      }),
+      InputGroup<never>({
+        children: [
+          InputGroupInput<never>({ placeholder: 'Processing...' }),
+          InputGroupAddon<never>({
+            children: [Spinner<never>()],
+          }),
+        ],
+      }),
+      InputGroup<never>({
+        children: [
+          InputGroupInput<never>({ placeholder: 'Saving changes...' }),
+          InputGroupAddon<never>({
+            align: 'inline-end',
+            children: [
+              InputGroupText<never>({ children: ['Saving...'] }),
+              Spinner<never>(),
+            ],
+          }),
+        ],
+      }),
+      InputGroup<never>({
+        children: [
+          InputGroupInput<never>({ placeholder: 'Refreshing data...' }),
+          InputGroupAddon<never>({
+            children: [loaderIcon()],
+          }),
+          InputGroupAddon<never>({
+            align: 'inline-end',
+            children: [
+              InputGroupText<never>({
+                className: 'text-muted-foreground',
+                children: ['Please wait...'],
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
+  )
 
 export const InputGroupRtl = (): Html =>
   html<never>().div(
@@ -1229,7 +1290,7 @@ export const InputGroupRtl = (): Html =>
           InputGroupAddon<never>({
             align: 'inline-end',
             dir: 'rtl',
-            children: [spinner()],
+            children: [Spinner<never>()],
           }),
         ],
       }),
@@ -1242,7 +1303,7 @@ export const InputGroupRtl = (): Html =>
             dir: 'rtl',
             children: [
               InputGroupText<never>({ children: ['جاري الحفظ...'] }),
-              spinner(),
+              Spinner<never>(),
             ],
           }),
         ],

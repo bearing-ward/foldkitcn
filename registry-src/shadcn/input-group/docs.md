@@ -30,9 +30,9 @@ Use `align: 'block-start'` or `align: 'block-end'` for header and footer afforda
 
 ## Examples
 
-The registry includes live examples for basic states, inline and block addons, buttons, Button Group composition, dropdown triggers, icons, keyboard hints, labels, text addons, textareas, card composition, and RTL layout.
+The registry includes live examples for basic states, inline and block addons, buttons, Button Group composition, dropdown triggers, icons, keyboard hints, labels, spinner addons, text addons, textareas, card composition, and RTL layout.
 
-Spinner-specific examples remain deferred until the local shadcn Spinner item is available. Toast and clipboard examples are represented as static controls because those effects belong in parent Foldkit messages and commands.
+Toast and clipboard examples are represented as static controls because those effects belong in parent Foldkit messages and commands.
 
 ## Accessibility
 

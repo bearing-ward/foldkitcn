@@ -533,9 +533,49 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/input-group-with-kbd.tsx',
     },
     {
+      id: 'input-group-spinner',
+      title: 'Input Group spinner',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-spinner.tsx',
+    },
+    {
       id: 'input-group-rtl',
       title: 'Input Group RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/input-group-rtl.tsx',
+    },
+    {
+      id: 'spinner-demo',
+      title: 'Spinner demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-demo.tsx',
+    },
+    {
+      id: 'spinner-badge',
+      title: 'Spinner badge',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-badge.tsx',
+    },
+    {
+      id: 'spinner-button',
+      title: 'Spinner button',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-button.tsx',
+    },
+    {
+      id: 'spinner-custom',
+      title: 'Spinner custom',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-custom.tsx',
+    },
+    {
+      id: 'spinner-input-group',
+      title: 'Spinner input group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-input-group.tsx',
+    },
+    {
+      id: 'spinner-rtl',
+      title: 'Spinner RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-rtl.tsx',
+    },
+    {
+      id: 'spinner-size',
+      title: 'Spinner size',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-size.tsx',
     },
     {
       id: 'native-select-demo',

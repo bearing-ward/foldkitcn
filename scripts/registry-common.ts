@@ -377,6 +377,7 @@ const liveReadyExampleExportsByItemId: Readonly<
     'InputGroupTextareaExample',
     'InputGroupInCard',
     'InputGroupWithKbd',
+    'InputGroupSpinner',
     'InputGroupRtl',
   ]),
   'shadcn/item': new Set([
@@ -391,6 +392,15 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ItemRtl',
     'ItemSizeDemo',
     'ItemVariant',
+  ]),
+  'shadcn/spinner': new Set([
+    'SpinnerDemo',
+    'SpinnerBadge',
+    'SpinnerButton',
+    'SpinnerCustom',
+    'SpinnerInputGroup',
+    'SpinnerRtl',
+    'SpinnerSize',
   ]),
   'shadcn/radio-group': new Set([
     'RadioGroupDemo',

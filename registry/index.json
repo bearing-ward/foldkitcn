@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T11:06:38.870Z",
+  "generatedAt": "2026-06-29T12:02:20.047Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -11491,6 +11491,12 @@
               "reason": "Label examples compose the local Label item."
             },
             {
+              "specifier": "shadcn/spinner",
+              "classification": "registry-local",
+              "target": "shadcn/spinner",
+              "reason": "Spinner-specific Input Group examples compose the local shadcn Spinner item."
+            },
+            {
               "specifier": "shadcn/textarea",
               "classification": "registry-local",
               "target": "shadcn/textarea",
@@ -11571,12 +11577,6 @@
               "classification": "reject-or-defer",
               "target": "",
               "reason": "Autosize behavior is not required for the core helper and is replaced by static textarea sizing in examples."
-            },
-            {
-              "specifier": "shadcn/spinner",
-              "classification": "reject-or-defer",
-              "target": "",
-              "reason": "Local spinner is not implemented yet, so spinner-specific examples are deferred to plan 073."
             },
             {
               "specifier": "sonner",
@@ -11700,6 +11700,13 @@
             "kind": "demo"
           },
           {
+            "id": "shadcn/input-group-spinner",
+            "title": "InputGroupSpinner",
+            "description": "Input Group examples with local Spinner and custom LoaderIcon affordances.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
             "id": "shadcn/input-group-rtl",
             "title": "InputGroupRtl",
             "description": "RTL Input Group with deterministic local labels.",
@@ -11723,7 +11730,6 @@
           "acceptedDeviationIds": [
             "shadcn-input-group-local-class-helper",
             "shadcn-input-group-local-icons-and-rtl",
-            "shadcn-input-group-spinner-deferred",
             "shadcn-input-group-toast-and-clipboard-deferred",
             "shadcn-input-group-static-textarea-sizing"
           ]
@@ -11751,13 +11757,6 @@
             "rationale": "Installable source cannot depend on lucide-react, @tabler/icons-react, or the origin app language selector."
           },
           {
-            "id": "shadcn-input-group-spinner-deferred",
-            "summary": "Spinner-specific input group examples are deferred until shadcn/spinner is available.",
-            "required": true,
-            "status": "accepted",
-            "rationale": "Plan 073 owns the local spinner item, so this plan preserves the core Input Group helper without importing an upstream spinner."
-          },
-          {
             "id": "shadcn-input-group-toast-and-clipboard-deferred",
             "summary": "Toast and copy-to-clipboard behavior is represented as static controls until local command/toast foundations are available.",
             "required": true,
@@ -11773,12 +11772,12 @@
           }
         ]
       },
-      "manifestHash": "add1b2db9dabd5888771156ca43f7f351442edae9330d896dc0128f0b64f454f",
+      "manifestHash": "4065c5670b04df78055270ff762901875153cc4c1bec275521ebf820775c75bc",
       "artifacts": [
         {
           "path": "registry-src/shadcn/input-group/item.json",
-          "sha256": "5934a8800e942f898afa68a0759ee8289b2623b79621ce42755bf7cb5bfcbba8",
-          "sizeBytes": 15483,
+          "sha256": "e792841bf05e53c43f8068fd4389f9ac56b848e83fbbd6329e185fa03b55667e",
+          "sizeBytes": 15342,
           "role": "manifest"
         },
         {
@@ -11789,8 +11788,8 @@
         },
         {
           "path": "src/registry/shadcn/input-group/examples.ts",
-          "sha256": "185520ec896236f0eebb2b8dd1e10b8130b3b46695dcf9587f3996c6a2e2960b",
-          "sizeBytes": 37051,
+          "sha256": "d10a860dbe48a13e69ed3dbcfed2a112cb40dd34d0588c9375988323e62cfd5d",
+          "sizeBytes": 38636,
           "role": "source"
         }
       ]
@@ -15994,6 +15993,257 @@
           "path": "src/registry/shadcn/slider/examples.ts",
           "sha256": "86636df8481354e8f180a752d2a5ef47a378160e092137fbbd7f44b5ae7dff79",
           "sizeBytes": 2466,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/spinner",
+        "namespace": "shadcn",
+        "name": "Spinner",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Spinner helper with local inline SVG rendering, status semantics, and examples across badges, buttons, items, input groups, RTL, custom icons, and sizes.",
+        "sourceRoot": "registry-src/shadcn/spinner",
+        "installableSourcePaths": [
+          "src/registry/shadcn/spinner/index.ts",
+          "src/registry/shadcn/spinner/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Spinner",
+            "docsUrl": "https://ui.shadcn.com/docs/components/spinner",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/spinner.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/spinner.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/spinner.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/spinner.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/spinner-badge.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-button.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-custom.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-demo.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-empty.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-input-group.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-size.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/badge",
+              "classification": "registry-local",
+              "target": "shadcn/badge",
+              "reason": "Spinner badge examples compose the local shadcn Badge registry item."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Spinner button examples compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "registry-local",
+              "target": "shadcn/input-group",
+              "reason": "Spinner Input Group examples compose the local shadcn Input Group registry item."
+            },
+            {
+              "specifier": "shadcn/item",
+              "classification": "registry-local",
+              "target": "shadcn/item",
+              "reason": "Spinner demo and RTL examples compose the local shadcn Item registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Spinner uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema style options for Spinner metadata."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
+            },
+            {
+              "specifier": "shadcn/empty",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "The origin Empty example waits for plan 074, which owns local shadcn Empty."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/spinner-demo",
+            "title": "SpinnerDemo",
+            "description": "Spinner composed inside a muted Item row.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-badge",
+            "title": "SpinnerBadge",
+            "description": "Badge variants with inline-start Spinner icons.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-button",
+            "title": "SpinnerButton",
+            "description": "Disabled Button variants with inline-start Spinner icons.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-custom",
+            "title": "SpinnerCustom",
+            "description": "Custom local loader icon preserving the origin status and animation footprint.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-input-group",
+            "title": "SpinnerInputGroup",
+            "description": "Input Group examples with disabled controls and Spinner addons.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-rtl",
+            "title": "SpinnerRtl",
+            "description": "RTL Item row using deterministic local Arabic strings.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/spinner-size",
+            "title": "SpinnerSize",
+            "description": "Spinner size overrides through class canonicalization.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/spinner",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-spinner-local-icons-and-rtl",
+            "shadcn-spinner-empty-deferred"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-spinner-local-icons-and-rtl",
+            "summary": "Loader icons and RTL labels use local inline SVGs and deterministic strings instead of lucide-react and the origin language selector runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Spinner examples."
+          },
+          {
+            "id": "shadcn-spinner-empty-deferred",
+            "summary": "The origin SpinnerEmpty example is deferred until local shadcn Empty exists.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Plan 074 owns the local Empty item. Deferring this example avoids importing upstream Empty code into installable Spinner source."
+          }
+        ]
+      },
+      "manifestHash": "1cdd9edf5c2c5fa8b751b9b0fc9f3004a0b85b0d9f23ff7a5c9dc1b404ce1d95",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/spinner/item.json",
+          "sha256": "cb38868a77f9189b8323c32abcf6b4e7ebbc7b4bbef40e63eef763beef0e8800",
+          "sizeBytes": 8216,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/spinner/index.ts",
+          "sha256": "15148a6707194132b7746476093b6ef6b07fc279cd56b03b589931cef0b99955",
+          "sizeBytes": 1894,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/spinner/examples.ts",
+          "sha256": "1bf014a01b2e1181e5a53f962af04573fd58fd4b3d7121a9ab679ac721fdf7e3",
+          "sizeBytes": 6793,
           "role": "source"
         }
       ]

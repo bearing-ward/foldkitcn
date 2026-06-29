@@ -114,6 +114,7 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-kbd.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-label.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/input-group-spinner.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-text.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-textarea.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-with-buttons.tsx";
@@ -130,6 +131,14 @@
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/separator.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/textarea.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/tooltip.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-badge.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-button.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-custom.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-input-group.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/spinner-size.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/spinner.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/native-select-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/native-select-disabled.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/native-select-groups.tsx";

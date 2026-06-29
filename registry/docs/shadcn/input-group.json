@@ -6,7 +6,7 @@
   "description": "Foldkit-native shadcn base-nova Input Group helper with Effect Schema addon alignment, grouped controls, text, buttons, input and textarea affordances, and local examples composed from existing shadcn registry controls.",
   "docsStatus": "complete",
   "markdownPath": "registry-src/shadcn/input-group/docs.md",
-  "markdown": "# Input Group\n\n## Overview\n\nInput Group is a Foldkit-native port of the shadcn base-nova Input Group helper. It composes inputs, textareas, addons, buttons, labels, keyboard hints, and grouped controls while preserving the origin slot and class contracts.\n\n## Foldkit Model\n\nInput Group is a stateless render helper. It does not own a Model, Message, update function, or Command. Parent views provide children, event attributes, values, and side-effect messages.\n\n## Usage\n\nImport the helper from the generated registry source and compose it inside a Foldkit view after binding the Html factory.\n\n```ts\nInputGroup<Message>({\n  children: [\n    InputGroupInput<Message>({\n      placeholder: 'Search...',\n    }),\n    InputGroupAddon<Message>({\n      align: 'inline-end',\n      children: [InputGroupText<Message>({ children: ['12 results'] })],\n    }),\n  ],\n})\n```\n\nUse `align: 'block-start'` or `align: 'block-end'` for header and footer affordances. Use `dir: 'rtl'` on the group and addons when rendering right-to-left controls.\n\n## Examples\n\nThe registry includes live examples for basic states, inline and block addons, buttons, Button Group composition, dropdown triggers, icons, keyboard hints, labels, text addons, textareas, card composition, and RTL layout.\n\nSpinner-specific examples remain deferred until the local shadcn Spinner item is available. Toast and clipboard examples are represented as static controls because those effects belong in parent Foldkit messages and commands.\n\n## Accessibility\n\nInput Group renders a `role=\"group\"` root. Labels should still target the actual input or textarea id. Icon-only buttons should provide `ariaLabel`, and grouped controls should keep their individual accessible names.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes React, CVA, icon packages, clipboard hooks, sonner toasts, and `react-textarea-autosize`. This registry item replaces those pieces with Foldkit Html, Effect Schema literals, local class helpers, local registry dependencies, inline SVG examples, and static textarea sizing.\n\nThose differences are accepted because installable source must stay Foldkit-native while preserving the origin visual structure and composition behavior.\n",
+  "markdown": "# Input Group\n\n## Overview\n\nInput Group is a Foldkit-native port of the shadcn base-nova Input Group helper. It composes inputs, textareas, addons, buttons, labels, keyboard hints, and grouped controls while preserving the origin slot and class contracts.\n\n## Foldkit Model\n\nInput Group is a stateless render helper. It does not own a Model, Message, update function, or Command. Parent views provide children, event attributes, values, and side-effect messages.\n\n## Usage\n\nImport the helper from the generated registry source and compose it inside a Foldkit view after binding the Html factory.\n\n```ts\nInputGroup<Message>({\n  children: [\n    InputGroupInput<Message>({\n      placeholder: 'Search...',\n    }),\n    InputGroupAddon<Message>({\n      align: 'inline-end',\n      children: [InputGroupText<Message>({ children: ['12 results'] })],\n    }),\n  ],\n})\n```\n\nUse `align: 'block-start'` or `align: 'block-end'` for header and footer affordances. Use `dir: 'rtl'` on the group and addons when rendering right-to-left controls.\n\n## Examples\n\nThe registry includes live examples for basic states, inline and block addons, buttons, Button Group composition, dropdown triggers, icons, keyboard hints, labels, spinner addons, text addons, textareas, card composition, and RTL layout.\n\nToast and clipboard examples are represented as static controls because those effects belong in parent Foldkit messages and commands.\n\n## Accessibility\n\nInput Group renders a `role=\"group\"` root. Labels should still target the actual input or textarea id. Icon-only buttons should provide `ariaLabel`, and grouped controls should keep their individual accessible names.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes React, CVA, icon packages, clipboard hooks, sonner toasts, and `react-textarea-autosize`. This registry item replaces those pieces with Foldkit Html, Effect Schema literals, local class helpers, local registry dependencies, inline SVG examples, and static textarea sizing.\n\nThose differences are accepted because installable source must stay Foldkit-native while preserving the origin visual structure and composition behavior.\n",
   "headings": [
     {
       "id": "input-group",
@@ -149,6 +149,12 @@
         "reason": "Label examples compose the local Label item."
       },
       {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "Spinner-specific Input Group examples compose the local shadcn Spinner item."
+      },
+      {
         "specifier": "shadcn/textarea",
         "classification": "registry-local",
         "target": "shadcn/textarea",
@@ -231,12 +237,6 @@
         "reason": "Autosize behavior is not required for the core helper and is replaced by static textarea sizing in examples."
       },
       {
-        "specifier": "shadcn/spinner",
-        "classification": "reject-or-defer",
-        "target": "",
-        "reason": "Local spinner is not implemented yet, so spinner-specific examples are deferred to plan 073."
-      },
-      {
         "specifier": "sonner",
         "classification": "reject-or-defer",
         "target": "",
@@ -263,6 +263,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -286,6 +287,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -309,6 +311,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -332,6 +335,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -355,6 +359,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -378,6 +383,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -401,6 +407,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -424,6 +431,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -447,6 +455,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -470,6 +479,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -493,6 +503,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -516,6 +527,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -539,6 +551,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -562,6 +575,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -585,6 +599,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -596,7 +611,7 @@
       "description": "Input Group with keyboard shortcut groups.",
       "componentItemId": "shadcn/input-group",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "snippet": "export const InputGroupWithKbd = (): Html =>\n  FieldGroup<never>({\n    children: [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-kbd-22',\n            children: ['Input Group with Kbd'],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({ id: 'input-kbd-22' }),\n              InputGroupAddon<never>({ children: [kbd(['⌘K'])] }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({ id: 'input-kbd-23' }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbd(['⌘K'])],\n              }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-search-apps-24',\n                placeholder: 'Search for Apps...',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: ['Ask AI'],\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbd(['Tab'])],\n              }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-search-type-25',\n                placeholder: 'Type to search...',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-start',\n                children: [icon('sparkles')],\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbdGroup([kbd(['Ctrl']), kbd(['C'])])],\n              }),\n            ],\n          }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-username-26',\n            children: ['Username'],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-username-26',\n                value: 'shadcn',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [\n                  html<never>().div(\n                    [\n                      html<never>().Class(\n                        'flex size-4 items-center justify-center rounded-full bg-green-500 dark:bg-green-800',\n                      ),\n                    ],\n                    [icon('check', [html<never>().Class('size-3 text-white')])],\n                  ),\n                ],\n              }),\n            ],\n          }),\n          FieldDescription<never>({\n            className: 'text-green-700',\n            children: ['This username is available.'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({\n            id: 'input-search-docs-27',\n            placeholder: 'Search documentation...',\n          }),\n          InputGroupAddon<never>({\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: ['12 results'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        isDisabled: true,\n        children: [\n          InputGroupInput<never>({\n            id: 'input-search-disabled-28',\n            placeholder: 'Search documentation...',\n            isDisabled: true,\n          }),\n          InputGroupAddon<never>({\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: ['Disabled'],\n          }),\n        ],\n      }),\n      FieldGroup<never>({\n        className: 'grid grid-cols-2 gap-4',\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'input-group-11',\n                children: ['First Name'],\n              }),\n              InputGroup<never>({\n                children: [\n                  InputGroupInput<never>({\n                    id: 'input-group-11',\n                    placeholder: 'First Name',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'inline-end',\n                    children: [icon('info')],\n                  }),\n                ],\n              }),\n            ],\n          }),\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'input-group-12',\n                children: ['Last Name'],\n              }),\n              InputGroup<never>({\n                children: [\n                  InputGroupInput<never>({\n                    id: 'input-group-12',\n                    placeholder: 'Last Name',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'inline-end',\n                    children: [icon('info')],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n      fieldWithDataAttribute('disabled', [\n        FieldLabel<never>({\n          htmlFor: 'input-group-29',\n          children: ['Loading (\"data-disabled=\"true\")'],\n        }),\n        InputGroup<never>({\n          children: [\n            InputGroupInput<never>({\n              id: 'input-group-29',\n              isDisabled: true,\n              value: 'shadcn',\n            }),\n            InputGroupAddon<never>({\n              align: 'inline-end',\n              children: [spinner()],\n            }),\n          ],\n        }),\n        FieldDescription<never>({\n          children: ['This is a description of the input group.'],\n        }),\n      ]),\n    ],\n  })",
+      "snippet": "export const InputGroupWithKbd = (): Html =>\n  FieldGroup<never>({\n    children: [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-kbd-22',\n            children: ['Input Group with Kbd'],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({ id: 'input-kbd-22' }),\n              InputGroupAddon<never>({ children: [kbd(['⌘K'])] }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({ id: 'input-kbd-23' }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbd(['⌘K'])],\n              }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-search-apps-24',\n                placeholder: 'Search for Apps...',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: ['Ask AI'],\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbd(['Tab'])],\n              }),\n            ],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-search-type-25',\n                placeholder: 'Type to search...',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-start',\n                children: [icon('sparkles')],\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbdGroup([kbd(['Ctrl']), kbd(['C'])])],\n              }),\n            ],\n          }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-username-26',\n            children: ['Username'],\n          }),\n          InputGroup<never>({\n            children: [\n              InputGroupInput<never>({\n                id: 'input-username-26',\n                value: 'shadcn',\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [\n                  html<never>().div(\n                    [\n                      html<never>().Class(\n                        'flex size-4 items-center justify-center rounded-full bg-green-500 dark:bg-green-800',\n                      ),\n                    ],\n                    [icon('check', [html<never>().Class('size-3 text-white')])],\n                  ),\n                ],\n              }),\n            ],\n          }),\n          FieldDescription<never>({\n            className: 'text-green-700',\n            children: ['This username is available.'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({\n            id: 'input-search-docs-27',\n            placeholder: 'Search documentation...',\n          }),\n          InputGroupAddon<never>({\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: ['12 results'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        isDisabled: true,\n        children: [\n          InputGroupInput<never>({\n            id: 'input-search-disabled-28',\n            placeholder: 'Search documentation...',\n            isDisabled: true,\n          }),\n          InputGroupAddon<never>({\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: ['Disabled'],\n          }),\n        ],\n      }),\n      FieldGroup<never>({\n        className: 'grid grid-cols-2 gap-4',\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'input-group-11',\n                children: ['First Name'],\n              }),\n              InputGroup<never>({\n                children: [\n                  InputGroupInput<never>({\n                    id: 'input-group-11',\n                    placeholder: 'First Name',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'inline-end',\n                    children: [icon('info')],\n                  }),\n                ],\n              }),\n            ],\n          }),\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'input-group-12',\n                children: ['Last Name'],\n              }),\n              InputGroup<never>({\n                children: [\n                  InputGroupInput<never>({\n                    id: 'input-group-12',\n                    placeholder: 'Last Name',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'inline-end',\n                    children: [icon('info')],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n      fieldWithDataAttribute('disabled', [\n        FieldLabel<never>({\n          htmlFor: 'input-group-29',\n          children: ['Loading (\"data-disabled=\"true\")'],\n        }),\n        InputGroup<never>({\n          children: [\n            InputGroupInput<never>({\n              id: 'input-group-29',\n              isDisabled: true,\n              value: 'shadcn',\n            }),\n            InputGroupAddon<never>({\n              align: 'inline-end',\n              children: [Spinner<never>()],\n            }),\n          ],\n        }),\n        FieldDescription<never>({\n          children: ['This is a description of the input group.'],\n        }),\n      ]),\n    ],\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputGroupWithKbd",
       "requiredRegistryItems": [
@@ -608,6 +623,31 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
+        "shadcn/textarea",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-group-spinner",
+      "title": "InputGroupSpinner",
+      "description": "Input Group examples with local Spinner and custom LoaderIcon affordances.",
+      "componentItemId": "shadcn/input-group",
+      "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+      "snippet": "export const InputGroupSpinner = (): Html =>\n  html<never>().div(\n    [html<never>().Class('grid w-full max-w-sm gap-4')],\n    [\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({ placeholder: 'Searching...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: [Spinner<never>()],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({ placeholder: 'Processing...' }),\n          InputGroupAddon<never>({\n            children: [Spinner<never>()],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({ placeholder: 'Saving changes...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: [\n              InputGroupText<never>({ children: ['Saving...'] }),\n              Spinner<never>(),\n            ],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({ placeholder: 'Refreshing data...' }),\n          InputGroupAddon<never>({\n            children: [loaderIcon()],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: [\n              InputGroupText<never>({\n                className: 'text-muted-foreground',\n                children: ['Please wait...'],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputGroupSpinner",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/card",
+        "shadcn/dropdown-menu",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/kbd",
+        "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -619,7 +659,7 @@
       "description": "RTL Input Group with deterministic local labels.",
       "componentItemId": "shadcn/input-group",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "snippet": "export const InputGroupRtl = (): Html =>\n  html<never>().div(\n    [html<never>().Class('grid w-full max-w-sm gap-6')],\n    [\n      InputGroup<never>({\n        dir: 'rtl',\n        className: 'max-w-xs',\n        children: [\n          InputGroupInput<never>({ placeholder: 'بحث...' }),\n          InputGroupAddon<never>({\n            dir: 'rtl',\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: ['١٢ نتيجة'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        dir: 'rtl',\n        children: [\n          InputGroupInput<never>({ placeholder: 'جاري البحث...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: [spinner()],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        dir: 'rtl',\n        children: [\n          InputGroupInput<never>({ placeholder: 'جاري حفظ التغييرات...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: [\n              InputGroupText<never>({ children: ['جاري الحفظ...'] }),\n              spinner(),\n            ],\n          }),\n        ],\n      }),\n      FieldGroup<never>({\n        className: 'max-w-sm',\n        dir: 'rtl',\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'rtl-textarea',\n                children: ['منطقة النص'],\n              }),\n              InputGroup<never>({\n                dir: 'rtl',\n                children: [\n                  InputGroupTextarea<never>({\n                    id: 'rtl-textarea',\n                    placeholder: 'اكتب تعليقًا...',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'block-end',\n                    dir: 'rtl',\n                    children: [\n                      InputGroupText<never>({ children: ['٠/٢٨٠'] }),\n                      InputGroupButton<never>({\n                        variant: 'default',\n                        size: 'sm',\n                        className: 'ms-auto',\n                        children: ['نشر'],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n              FieldDescription<never>({\n                dir: 'rtl',\n                children: ['تذييل موضع أسفل منطقة النص.'],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )",
+      "snippet": "export const InputGroupRtl = (): Html =>\n  html<never>().div(\n    [html<never>().Class('grid w-full max-w-sm gap-6')],\n    [\n      InputGroup<never>({\n        dir: 'rtl',\n        className: 'max-w-xs',\n        children: [\n          InputGroupInput<never>({ placeholder: 'بحث...' }),\n          InputGroupAddon<never>({\n            dir: 'rtl',\n            children: [icon('search')],\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: ['١٢ نتيجة'],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        dir: 'rtl',\n        children: [\n          InputGroupInput<never>({ placeholder: 'جاري البحث...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: [Spinner<never>()],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        dir: 'rtl',\n        children: [\n          InputGroupInput<never>({ placeholder: 'جاري حفظ التغييرات...' }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            dir: 'rtl',\n            children: [\n              InputGroupText<never>({ children: ['جاري الحفظ...'] }),\n              Spinner<never>(),\n            ],\n          }),\n        ],\n      }),\n      FieldGroup<never>({\n        className: 'max-w-sm',\n        dir: 'rtl',\n        children: [\n          Field<never>({\n            children: [\n              FieldLabel<never>({\n                htmlFor: 'rtl-textarea',\n                children: ['منطقة النص'],\n              }),\n              InputGroup<never>({\n                dir: 'rtl',\n                children: [\n                  InputGroupTextarea<never>({\n                    id: 'rtl-textarea',\n                    placeholder: 'اكتب تعليقًا...',\n                  }),\n                  InputGroupAddon<never>({\n                    align: 'block-end',\n                    dir: 'rtl',\n                    children: [\n                      InputGroupText<never>({ children: ['٠/٢٨٠'] }),\n                      InputGroupButton<never>({\n                        variant: 'default',\n                        size: 'sm',\n                        className: 'ms-auto',\n                        children: ['نشر'],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n              FieldDescription<never>({\n                dir: 'rtl',\n                children: ['تذييل موضع أسفل منطقة النص.'],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )",
       "previewStatus": "live-ready",
       "previewExportName": "InputGroupRtl",
       "requiredRegistryItems": [
@@ -631,6 +671,7 @@
         "shadcn/input",
         "shadcn/kbd",
         "shadcn/label",
+        "shadcn/spinner",
         "shadcn/textarea",
         "utils/cn"
       ],
@@ -656,13 +697,6 @@
         "required": true,
         "status": "accepted",
         "rationale": "Installable source cannot depend on lucide-react, @tabler/icons-react, or the origin app language selector."
-      },
-      {
-        "id": "shadcn-input-group-spinner-deferred",
-        "summary": "Spinner-specific input group examples are deferred until shadcn/spinner is available.",
-        "required": true,
-        "status": "accepted",
-        "rationale": "Plan 073 owns the local spinner item, so this plan preserves the core Input Group helper without importing an upstream spinner."
       },
       {
         "id": "shadcn-input-group-toast-and-clipboard-deferred",

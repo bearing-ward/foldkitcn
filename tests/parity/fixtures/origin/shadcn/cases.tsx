@@ -84,6 +84,7 @@ import { InputGroupInlineStart } from '../../../../../repos/ui/apps/v4/examples/
 import { InputGroupKbd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-kbd'
 import InputGroupLabel from '../../../../../repos/ui/apps/v4/examples/base/input-group-label'
 import { InputGroupRtl } from '../../../../../repos/ui/apps/v4/examples/base/input-group-rtl'
+import InputGroupSpinner from '../../../../../repos/ui/apps/v4/examples/base/input-group-spinner'
 import InputGroupTextExample from '../../../../../repos/ui/apps/v4/examples/base/input-group-text'
 import InputGroupTextareaExample from '../../../../../repos/ui/apps/v4/examples/base/input-group-textarea'
 import { InputGroupWithButtons } from '../../../../../repos/ui/apps/v4/examples/base/input-group-with-buttons'
@@ -133,6 +134,13 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { SpinnerBadge } from '../../../../../repos/ui/apps/v4/examples/base/spinner-badge'
+import { SpinnerButton } from '../../../../../repos/ui/apps/v4/examples/base/spinner-button'
+import { SpinnerCustom } from '../../../../../repos/ui/apps/v4/examples/base/spinner-custom'
+import { SpinnerDemo } from '../../../../../repos/ui/apps/v4/examples/base/spinner-demo'
+import { SpinnerInputGroup } from '../../../../../repos/ui/apps/v4/examples/base/spinner-input-group'
+import { SpinnerRtl } from '../../../../../repos/ui/apps/v4/examples/base/spinner-rtl'
+import { SpinnerSize } from '../../../../../repos/ui/apps/v4/examples/base/spinner-size'
 import { SwitchChoiceCard } from '../../../../../repos/ui/apps/v4/examples/base/switch-choice-card'
 import { SwitchDemo } from '../../../../../repos/ui/apps/v4/examples/base/switch-demo'
 import { SwitchDescription } from '../../../../../repos/ui/apps/v4/examples/base/switch-description'
@@ -460,7 +468,15 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'input-group-textarea': InputGroupTextareaExample,
   'input-group-in-card': InputGroupInCard,
   'input-group-with-kbd': InputGroupWithKbd,
+  'input-group-spinner': InputGroupSpinner,
   'input-group-rtl': InputGroupRtl,
+  'spinner-demo': SpinnerDemo,
+  'spinner-badge': SpinnerBadge,
+  'spinner-button': SpinnerButton,
+  'spinner-custom': SpinnerCustom,
+  'spinner-input-group': SpinnerInputGroup,
+  'spinner-rtl': SpinnerRtl,
+  'spinner-size': SpinnerSize,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,

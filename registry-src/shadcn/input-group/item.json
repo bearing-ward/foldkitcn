@@ -118,6 +118,12 @@
         "reason": "Label examples compose the local Label item."
       },
       {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "Spinner-specific Input Group examples compose the local shadcn Spinner item."
+      },
+      {
         "specifier": "shadcn/textarea",
         "classification": "registry-local",
         "target": "shadcn/textarea",
@@ -198,12 +204,6 @@
         "classification": "reject-or-defer",
         "target": "",
         "reason": "Autosize behavior is not required for the core helper and is replaced by static textarea sizing in examples."
-      },
-      {
-        "specifier": "shadcn/spinner",
-        "classification": "reject-or-defer",
-        "target": "",
-        "reason": "Local spinner is not implemented yet, so spinner-specific examples are deferred to plan 073."
       },
       {
         "specifier": "sonner",
@@ -327,6 +327,13 @@
       "kind": "demo"
     },
     {
+      "id": "shadcn/input-group-spinner",
+      "title": "InputGroupSpinner",
+      "description": "Input Group examples with local Spinner and custom LoaderIcon affordances.",
+      "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+      "kind": "demo"
+    },
+    {
       "id": "shadcn/input-group-rtl",
       "title": "InputGroupRtl",
       "description": "RTL Input Group with deterministic local labels.",
@@ -350,7 +357,6 @@
     "acceptedDeviationIds": [
       "shadcn-input-group-local-class-helper",
       "shadcn-input-group-local-icons-and-rtl",
-      "shadcn-input-group-spinner-deferred",
       "shadcn-input-group-toast-and-clipboard-deferred",
       "shadcn-input-group-static-textarea-sizing"
     ]
@@ -376,13 +382,6 @@
       "required": true,
       "status": "accepted",
       "rationale": "Installable source cannot depend on lucide-react, @tabler/icons-react, or the origin app language selector."
-    },
-    {
-      "id": "shadcn-input-group-spinner-deferred",
-      "summary": "Spinner-specific input group examples are deferred until shadcn/spinner is available.",
-      "required": true,
-      "status": "accepted",
-      "rationale": "Plan 073 owns the local spinner item, so this plan preserves the core Input Group helper without importing an upstream spinner."
     },
     {
       "id": "shadcn-input-group-toast-and-clipboard-deferred",

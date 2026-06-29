@@ -57,6 +57,7 @@ import {
   InputGroupKbd,
   InputGroupLabel,
   InputGroupRtl,
+  InputGroupSpinner,
   InputGroupTextExample,
   InputGroupTextareaExample,
   InputGroupWithButtons,
@@ -86,6 +87,15 @@ import {
   RadioGroupRtl,
 } from './registry/shadcn/radio-group/examples'
 import type { RadioGroupExampleController } from './registry/shadcn/radio-group/examples'
+import {
+  SpinnerBadge,
+  SpinnerButton,
+  SpinnerCustom,
+  SpinnerDemo,
+  SpinnerInputGroup,
+  SpinnerRtl,
+  SpinnerSize,
+} from './registry/shadcn/spinner/examples'
 
 export type LiveExampleContext<Message> = Readonly<{
   inputValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
@@ -259,8 +269,21 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(InputGroupInCard),
   [liveExampleKey('shadcn/input-group', 'InputGroupWithKbd')]:
     staticExample(InputGroupWithKbd),
+  [liveExampleKey('shadcn/input-group', 'InputGroupSpinner')]:
+    staticExample(InputGroupSpinner),
   [liveExampleKey('shadcn/input-group', 'InputGroupRtl')]:
     staticExample(InputGroupRtl),
+  [liveExampleKey('shadcn/spinner', 'SpinnerDemo')]: staticExample(SpinnerDemo),
+  [liveExampleKey('shadcn/spinner', 'SpinnerBadge')]:
+    staticExample(SpinnerBadge),
+  [liveExampleKey('shadcn/spinner', 'SpinnerButton')]:
+    staticExample(SpinnerButton),
+  [liveExampleKey('shadcn/spinner', 'SpinnerCustom')]:
+    staticExample(SpinnerCustom),
+  [liveExampleKey('shadcn/spinner', 'SpinnerInputGroup')]:
+    staticExample(SpinnerInputGroup),
+  [liveExampleKey('shadcn/spinner', 'SpinnerRtl')]: staticExample(SpinnerRtl),
+  [liveExampleKey('shadcn/spinner', 'SpinnerSize')]: staticExample(SpinnerSize),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',
