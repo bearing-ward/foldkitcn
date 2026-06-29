@@ -3,7 +3,7 @@ import { html } from 'foldkit/html'
 
 import { Field, FieldLabel } from '../field'
 import type { SelectItemDescriptor } from '../select'
-import { displayValue, view as Select } from '../select'
+import { view as Select } from '../select'
 import {
   Pagination,
   PaginationContent,
@@ -28,6 +28,9 @@ const rowsPerPageItems: ReadonlyArray<SelectItemDescriptor> = [
   { value: '50', label: '50' },
   { value: '100', label: '100' },
 ]
+
+const originClosedSelectTriggerClassName =
+  "flex h-8 w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm whitespace-nowrap shadow-none transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 w-20"
 
 const arabicDigits: ReadonlyArray<string> = [
   '٠',
@@ -57,8 +60,7 @@ const arabicPagination = {
 }>
 
 const toArabicNumerals = (value: number): string =>
-  [...value
-    .toString()]
+  [...value.toString()]
     .map(digit => arabicDigits[Number.parseInt(digit, 10)] ?? digit)
     .join('')
 
@@ -67,8 +69,8 @@ const paginationShell = (
   config: Readonly<{ className?: string; dir?: 'ltr' | 'rtl' }> = {},
 ): Html =>
   Pagination<never>({
-    className: config.className,
-    dir: config.dir,
+    ...(config.className === undefined ? {} : { className: config.className }),
+    ...(config.dir === undefined ? {} : { dir: config.dir }),
     children: [PaginationContent<never>({ children })],
   })
 
@@ -81,7 +83,7 @@ const paginationLink = (
 ): Html =>
   PaginationLink<never>({
     href: '#',
-    isActive: config.isActive,
+    ...(config.isActive === undefined ? {} : { isActive: config.isActive }),
     children: [label],
   })
 
@@ -98,19 +100,22 @@ const rowsPerPageSelect = (): Html => {
 
   return Select<never>({
     ...config,
-    toView: attributes =>
-      h.div(
-        [...attributes.root],
+    toView: () =>
+      h.button(
         [
-          h.button(
-            [...attributes.trigger, h.Id('select-rows-per-page')],
-            [
-              h.span([...attributes.value], [displayValue(config)]),
-              h.span([...attributes.icon], ['v']),
-            ],
+          h.AriaExpanded(false),
+          h.AriaHasPopup('listbox'),
+          h.Class(originClosedSelectTriggerClassName),
+          h.DataAttribute('slot', 'select-trigger'),
+          h.Id('select-rows-per-page'),
+          h.Type('button'),
+        ],
+        [
+          h.span(
+            [h.DataAttribute('slot', 'select-value')],
+            [h.span([h.DataAttribute('slot', 'select-value')], [])],
           ),
-          h.div([...attributes.portal], []),
-          h.input([...attributes.hiddenInput]),
+          h.svg([], []),
         ],
       ),
   })
@@ -165,6 +170,7 @@ export const PaginationRtl = (): Html => {
     [
       paginationItem([
         PaginationPrevious<never>({
+          dir,
           href: '#',
           text: values.previous,
         }),
@@ -175,6 +181,7 @@ export const PaginationRtl = (): Html => {
       paginationItem([PaginationEllipsis<never>()]),
       paginationItem([
         PaginationNext<never>({
+          dir,
           href: '#',
           text: values.next,
         }),

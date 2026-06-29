@@ -419,6 +419,12 @@ const liveReadyExampleExportsByItemId: Readonly<
     'TableFooterExample',
     'TableRtl',
   ]),
+  'shadcn/pagination': new Set([
+    'PaginationDemo',
+    'PaginationIconsOnly',
+    'PaginationRtl',
+    'PaginationSimple',
+  ]),
   'shadcn/radio-group': new Set([
     'RadioGroupDemo',
     'RadioGroupDescription',

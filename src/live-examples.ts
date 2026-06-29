@@ -86,6 +86,12 @@ import {
   ItemSizeDemo,
   ItemVariant,
 } from './registry/shadcn/item/examples'
+import {
+  PaginationDemo,
+  PaginationIconsOnly,
+  PaginationRtl,
+  PaginationSimple,
+} from './registry/shadcn/pagination/examples'
 import type { RadioGroupValueChange } from './registry/shadcn/radio-group'
 import {
   RadioGroupChoiceCard,
@@ -318,6 +324,14 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/table', 'TableFooterExample')]:
     staticExample(TableFooterExample),
   [liveExampleKey('shadcn/table', 'TableRtl')]: staticExample(TableRtl),
+  [liveExampleKey('shadcn/pagination', 'PaginationDemo')]:
+    staticExample(PaginationDemo),
+  [liveExampleKey('shadcn/pagination', 'PaginationIconsOnly')]:
+    staticExample(PaginationIconsOnly),
+  [liveExampleKey('shadcn/pagination', 'PaginationRtl')]:
+    staticExample(PaginationRtl),
+  [liveExampleKey('shadcn/pagination', 'PaginationSimple')]:
+    staticExample(PaginationSimple),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',

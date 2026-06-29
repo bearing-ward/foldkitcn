@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T12:56:27.432Z",
+  "generatedAt": "2026-06-29T13:10:15.269Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -14132,7 +14132,7 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "complete"
         },
         "deviations": [
           {
@@ -14165,24 +14165,24 @@
           }
         ]
       },
-      "manifestHash": "94746abc00f259e6df06653c565c520b76927d5856a870ade9e31b63830456d2",
+      "manifestHash": "d1cf6d8efd02906fd535191e11016106510626681b6e38843bdeaf497bc98a27",
       "artifacts": [
         {
           "path": "registry-src/shadcn/pagination/item.json",
-          "sha256": "cf838d6107fdd9369fd373219db8fc8483518f314d47eeb409f58ca9578bc593",
-          "sizeBytes": 8061,
+          "sha256": "7153e69f0a3a878c61f5818fc2637822f201fb6321cbd3446f91be984a178e20",
+          "sizeBytes": 8062,
           "role": "manifest"
         },
         {
           "path": "src/registry/shadcn/pagination/index.ts",
-          "sha256": "742411569cc8649ff856a6c12a061152bf06d118c4fc80653040dacdb0b613c8",
-          "sizeBytes": 9483,
+          "sha256": "2fa375cbb840122e1fb9c43c2aacb189856e61235b410eec5dc0efb33aca24e2",
+          "sizeBytes": 10219,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/pagination/examples.ts",
-          "sha256": "07c7525bcb57858b4522be9c1c97a10bf31fd4adfb67b8e442237878bde1d92b",
-          "sizeBytes": 5458,
+          "sha256": "43f3f01d4c64bc0b2d34e44c649387bc514d80b396e05d476ee0e3fc00ef3654",
+          "sizeBytes": 6216,
           "role": "source"
         }
       ]

@@ -62,6 +62,7 @@ export type PaginationLinkConfig<Message> = PaginationLinkStyleOptions &
 export type PaginationDirectionLinkConfig<Message> =
   PaginationLinkConfig<Message> &
     Readonly<{
+      dir?: PaginationDirection
       text?: string
     }>
 
@@ -75,6 +76,10 @@ export const paginationEllipsisBaseClassName =
 export const paginationPreviousBaseClassName = 'pl-1.5!'
 
 export const paginationNextBaseClassName = 'pr-1.5!'
+
+export const paginationPreviousRtlBaseClassName = 'ps-1.5!'
+
+export const paginationNextRtlBaseClassName = 'pe-1.5!'
 
 export const paginationClassName = ({
   className,
@@ -97,13 +102,31 @@ export const paginationEllipsisClassName = ({
 
 export const paginationPreviousClassName = ({
   className,
-}: PaginationPartStyleOptions = {}): string =>
-  cn(paginationPreviousBaseClassName, className)
+  dir,
+}: Readonly<{
+  className?: string | undefined
+  dir?: PaginationDirection | undefined
+}> = {}): string =>
+  cn(
+    dir === 'rtl'
+      ? paginationPreviousRtlBaseClassName
+      : paginationPreviousBaseClassName,
+    className,
+  )
 
 export const paginationNextClassName = ({
   className,
-}: PaginationPartStyleOptions = {}): string =>
-  cn(paginationNextBaseClassName, className)
+  dir,
+}: Readonly<{
+  className?: string | undefined
+  dir?: PaginationDirection | undefined
+}> = {}): string =>
+  cn(
+    dir === 'rtl'
+      ? paginationNextRtlBaseClassName
+      : paginationNextBaseClassName,
+    className,
+  )
 
 const optionalStringAttribute = <Message>(
   value: string | undefined,
@@ -274,7 +297,7 @@ export const PaginationLink = <Message>(
     isNativeButton: false,
     isDisabled,
     isFocusableWhenDisabled,
-    onClick,
+    ...(onClick === undefined ? {} : { onClick }),
     toView: attributes =>
       h.a([...attributes.button, ...linkAttributes(h, config)], children),
   })
@@ -284,13 +307,17 @@ export const PaginationPrevious = <Message>(
   config: PaginationDirectionLinkConfig<Message> = {},
 ): Html => {
   const h = html<Message>()
-  const { text = 'Previous', className, children, ...linkConfig } = config
+  const { text = 'Previous', className, children, dir, ...linkConfig } = config
+  const previousClassName =
+    className === undefined
+      ? paginationPreviousClassName({ dir })
+      : paginationPreviousClassName({ className, dir })
 
   return PaginationLink<Message>({
     ...linkConfig,
     ariaLabel: config.ariaLabel ?? 'Go to previous page',
     size: 'default',
-    className: paginationPreviousClassName({ className }),
+    className: previousClassName,
     children: children ?? [
       chevronLeftIcon<Message>([h.DataAttribute('icon', 'inline-start')]),
       h.span([h.Class('hidden sm:block')], [text]),
@@ -302,13 +329,17 @@ export const PaginationNext = <Message>(
   config: PaginationDirectionLinkConfig<Message> = {},
 ): Html => {
   const h = html<Message>()
-  const { text = 'Next', className, children, ...linkConfig } = config
+  const { text = 'Next', className, children, dir, ...linkConfig } = config
+  const nextClassName =
+    className === undefined
+      ? paginationNextClassName({ dir })
+      : paginationNextClassName({ className, dir })
 
   return PaginationLink<Message>({
     ...linkConfig,
     ariaLabel: config.ariaLabel ?? 'Go to next page',
     size: 'default',
-    className: paginationNextClassName({ className }),
+    className: nextClassName,
     children: children ?? [
       h.span([h.Class('hidden sm:block')], [text]),
       chevronRightIcon<Message>([h.DataAttribute('icon', 'inline-end')]),

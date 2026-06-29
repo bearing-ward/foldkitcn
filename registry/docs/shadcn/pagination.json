@@ -4,10 +4,46 @@
   "routePath": "/components/shadcn/pagination",
   "title": "Pagination",
   "description": "Foldkit-native shadcn base-nova Pagination helpers with navigation/list semantics, current-page state, previous and next controls, ellipsis, disabled link state, local inline icons, and local button/field/select composition.",
-  "docsStatus": "missing",
-  "markdownPath": null,
-  "markdown": null,
-  "headings": [],
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/pagination/docs.md",
+  "markdown": "# Pagination\n\n## Overview\n\nPagination is a Foldkit-native port of the shadcn base-nova Pagination helpers. It preserves the origin navigation, list, item, link, previous, next, and ellipsis slots while keeping routing decisions in the parent application model.\n\n## Foldkit Model\n\nPagination is a stateless render helper. It owns no Model, Message, update function, or Command. Parent views decide which page is current, which links are disabled, and which navigation messages should be emitted.\n\n## Usage\n\nImport the helpers from the generated registry source and compose semantic pagination parts directly.\n\n```ts\nPagination<Message>({\n  children: [\n    PaginationContent<Message>({\n      children: [\n        PaginationItem<Message>({\n          children: [PaginationPrevious<Message>({ href: '#previous' })],\n        }),\n        PaginationItem<Message>({\n          children: [\n            PaginationLink<Message>({\n              href: '#page-2',\n              isActive: true,\n              children: ['2'],\n            }),\n          ],\n        }),\n        PaginationItem<Message>({\n          children: [PaginationNext<Message>({ href: '#next' })],\n        }),\n      ],\n    }),\n  ],\n})\n```\n\nUse `isActive` to mark the current page and `isDisabled` when previous or next navigation is unavailable. Keep page changes flowing through Foldkit messages when links are used as app navigation controls.\n\n## Examples\n\nThe registry includes live examples for the default pagination demo, icons-only controls paired with local Field and Select helpers, deterministic RTL content, and a simple numbered pagination layout.\n\n## Accessibility\n\nPagination renders a real `nav` landmark with list semantics. Active page links receive `aria-current=\"page\"`, disabled links receive disabled attributes from the local Button helper, and icon-only or direction controls keep accessible labels.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes React render-element cloning, Lucide React icons, and an app-level language selector. This registry item replaces those with explicit Foldkit anchor rendering, local inline SVG helpers, and deterministic RTL fixture data so the installable source remains Foldkit-native.\n",
+  "headings": [
+    {
+      "id": "pagination",
+      "text": "Pagination",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/pagination",
   "defaultImportPath": "shadcn/pagination",
@@ -124,7 +160,7 @@
       "componentItemId": "shadcn/pagination",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
       "snippet": "export const PaginationDemo = (): Html =>\n  paginationShell([\n    paginationItem([PaginationPrevious<never>({ href: '#' })]),\n    paginationItem([paginationLink('1')]),\n    paginationItem([paginationLink('2', { isActive: true })]),\n    paginationItem([paginationLink('3')]),\n    paginationItem([PaginationEllipsis<never>()]),\n    paginationItem([PaginationNext<never>({ href: '#' })]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "PaginationDemo",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -141,7 +177,7 @@
       "componentItemId": "shadcn/pagination",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
       "snippet": "export const PaginationIconsOnly = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center justify-between gap-4')],\n    [\n      Field<never>({\n        orientation: 'horizontal',\n        className: 'w-fit',\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'select-rows-per-page',\n            children: ['Rows per page'],\n          }),\n          rowsPerPageSelect(),\n        ],\n      }),\n      Pagination<never>({\n        className: 'mx-0 w-auto',\n        children: [\n          PaginationContent<never>({\n            children: [\n              paginationItem([PaginationPrevious<never>({ href: '#' })]),\n              paginationItem([PaginationNext<never>({ href: '#' })]),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "PaginationIconsOnly",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -157,8 +193,8 @@
       "description": "RTL Pagination using local Arabic strings and numerals instead of the origin language selector runtime.",
       "componentItemId": "shadcn/pagination",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
-      "snippet": "export const PaginationRtl = (): Html => {\n  const { dir, values } = arabicPagination\n\n  return paginationShell(\n    [\n      paginationItem([\n        PaginationPrevious<never>({\n          href: '#',\n          text: values.previous,\n        }),\n      ]),\n      paginationItem([paginationLink(toArabicNumerals(1))]),\n      paginationItem([paginationLink(toArabicNumerals(2), { isActive: true })]),\n      paginationItem([paginationLink(toArabicNumerals(3))]),\n      paginationItem([PaginationEllipsis<never>()]),\n      paginationItem([\n        PaginationNext<never>({\n          href: '#',\n          text: values.next,\n        }),\n      ]),\n    ],\n    { dir },\n  )\n}",
-      "previewStatus": "static",
+      "snippet": "export const PaginationRtl = (): Html => {\n  const { dir, values } = arabicPagination\n\n  return paginationShell(\n    [\n      paginationItem([\n        PaginationPrevious<never>({\n          dir,\n          href: '#',\n          text: values.previous,\n        }),\n      ]),\n      paginationItem([paginationLink(toArabicNumerals(1))]),\n      paginationItem([paginationLink(toArabicNumerals(2), { isActive: true })]),\n      paginationItem([paginationLink(toArabicNumerals(3))]),\n      paginationItem([PaginationEllipsis<never>()]),\n      paginationItem([\n        PaginationNext<never>({\n          dir,\n          href: '#',\n          text: values.next,\n        }),\n      ]),\n    ],\n    { dir },\n  )\n}",
+      "previewStatus": "live-ready",
       "previewExportName": "PaginationRtl",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -175,7 +211,7 @@
       "componentItemId": "shadcn/pagination",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
       "snippet": "export const PaginationSimple = (): Html =>\n  paginationShell([\n    paginationItem([paginationLink('1')]),\n    paginationItem([paginationLink('2', { isActive: true })]),\n    paginationItem([paginationLink('3')]),\n    paginationItem([paginationLink('4')]),\n    paginationItem([paginationLink('5')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "PaginationSimple",
       "requiredRegistryItems": [
         "shadcn/button",
