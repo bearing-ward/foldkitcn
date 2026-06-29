@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T14:56:20.021Z",
+  "generatedAt": "2026-06-29T15:29:28.880Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8377,14 +8377,14 @@
         },
         {
           "path": "src/registry/shadcn/calendar/index.ts",
-          "sha256": "d24c491c23e627d207a8b928b32a3906ff9b9b4f48dde5369871ec3b2ba876a0",
-          "sizeBytes": 20643,
+          "sha256": "ed961749d17d4509c82a33f54fee650c751e5ca1d6ee98ab3aa76b332631ea3e",
+          "sizeBytes": 20791,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/calendar/examples.ts",
-          "sha256": "89df3d4d956ca0a5d592286f45b2b325302830e259573de8c22618b516cfe0ca",
-          "sizeBytes": 2159,
+          "sha256": "8b743ad1ef3e6cd65ffc5b50527419571fd2c28a9d71cac2b4d8b4fa266fd09c",
+          "sizeBytes": 3437,
           "role": "source"
         }
       ]

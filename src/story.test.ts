@@ -52,6 +52,7 @@ const model: Model = {
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleRadioGroupValues: {},
+  liveExampleCalendarSelectedDates: {},
   liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),

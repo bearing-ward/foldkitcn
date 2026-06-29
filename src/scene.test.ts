@@ -34,6 +34,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleRadioGroupValues: {},
+  liveExampleCalendarSelectedDates: {},
   liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
@@ -164,7 +165,7 @@ describe(view, () => {
         ),
       ),
       Scene.expect(Scene.role('heading', { name: 'Button' })).toExist(),
-      Scene.expect(Scene.role('heading', { name: 'Overview' })).toExist(),
+      Scene.expect(Scene.selector('#overview')).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Installation' })).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Usage' })).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Examples' })).toExist(),
@@ -451,6 +452,42 @@ describe(view, () => {
     )
   })
 
+  test('Calendar live examples update selected dates', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'calendar' }),
+        ),
+      ),
+      ...[
+        'shadcn-calendar-demo',
+        'shadcn-calendar-basic',
+        'shadcn-calendar-booked-dates',
+        'shadcn-calendar-rtl',
+      ].flatMap(exampleId => [
+        Scene.expect(
+          Scene.within(
+            Scene.selector(`#${exampleId}`),
+            Scene.selector('[data-day="2025-01-09"]'),
+          ),
+        ).toHaveAttr('data-selected-single', 'false'),
+        Scene.click(
+          Scene.within(
+            Scene.selector(`#${exampleId}`),
+            Scene.selector('[data-day="2025-01-09"]'),
+          ),
+        ),
+        Scene.expect(
+          Scene.within(
+            Scene.selector(`#${exampleId}`),
+            Scene.selector('[data-day="2025-01-09"]'),
+          ),
+        ).toHaveAttr('data-selected-single', 'true'),
+      ]),
+    )
+  })
+
   test('Command live examples open their menu dialogs', () => {
     Scene.scene(
       { update, view },
@@ -570,7 +607,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('37 of 38')).toExist(),
-      Scene.expect(Scene.text('49 of 64')).toExist(),
+      Scene.expect(Scene.text('51 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),

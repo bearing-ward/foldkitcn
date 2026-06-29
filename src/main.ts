@@ -130,6 +130,7 @@ export const Model = S.Struct({
   copiedSnippets: S.HashSet(S.String),
   liveExampleInputValues: S.Record(S.String, S.String),
   liveExampleRadioGroupValues: S.Record(S.String, S.String),
+  liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
@@ -161,6 +162,13 @@ export const UpdatedLiveExampleRadioGroupValue = m(
   {
     exampleId: S.String,
     value: S.String,
+  },
+)
+export const SelectedLiveExampleCalendarDate = m(
+  'SelectedLiveExampleCalendarDate',
+  {
+    exampleId: S.String,
+    date: S.String,
   },
 )
 export const ClickedOpenLiveExampleCommandDialog = m(
@@ -199,6 +207,7 @@ export const Message = S.Union([
   HidCopiedIndicator,
   UpdatedLiveExampleInputValue,
   UpdatedLiveExampleRadioGroupValue,
+  SelectedLiveExampleCalendarDate,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
   PressedLiveExampleCommandDialogShortcut,
@@ -220,6 +229,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       copiedSnippets: HashSet.empty(),
       liveExampleInputValues: {},
       liveExampleRadioGroupValues: {},
+      liveExampleCalendarSelectedDates: {},
       liveExampleCommandDialogOpenValues: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
@@ -426,6 +436,12 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       UpdatedLiveExampleRadioGroupValue: ({ exampleId, value }) => [
         evo(model, {
           liveExampleRadioGroupValues: EffectRecord.set(exampleId, value),
+        }),
+        [],
+      ],
+      SelectedLiveExampleCalendarDate: ({ exampleId, date }) => [
+        evo(model, {
+          liveExampleCalendarSelectedDates: EffectRecord.set(exampleId, date),
         }),
         [],
       ],
@@ -1457,6 +1473,7 @@ const examplesSectionView = (
   copiedSnippets: HashSet.HashSet<string>,
   liveExampleInputValues: Readonly<Record<string, string>>,
   liveExampleRadioGroupValues: Readonly<Record<string, string>>,
+  liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
 ): Html => {
   const h = html<Message>()
@@ -1496,6 +1513,22 @@ const examplesSectionView = (
       UpdatedLiveExampleRadioGroupValue({
         exampleId: example.id,
         value: change.value,
+      }),
+    calendarSelectedDateFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(liveExampleCalendarSelectedDates, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onCalendarSelectDate: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ date: string }>,
+    ): Message =>
+      SelectedLiveExampleCalendarDate({
+        exampleId: example.id,
+        date: change.date,
       }),
     commandDialogIsOpenFor: (example: ExampleDocsArtifact): boolean =>
       pipe(
@@ -1746,6 +1779,7 @@ const componentDetailPageView = (
           model.copiedSnippets,
           model.liveExampleInputValues,
           model.liveExampleRadioGroupValues,
+          model.liveExampleCalendarSelectedDates,
           model.liveExampleCommandDialogOpenValues,
         ),
         apiSectionView(),

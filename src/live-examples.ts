@@ -49,6 +49,8 @@ import {
   CalendarDemo,
   CalendarRtl,
 } from './registry/shadcn/calendar/examples'
+import type { CalendarExampleController } from './registry/shadcn/calendar/examples'
+import type { CalendarSelectChange } from './registry/shadcn/calendar/index'
 import {
   CommandBasic,
   CommandDemo,
@@ -152,6 +154,14 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: RadioGroupValueChange,
   ) => Message
+  calendarSelectedDateFor: (
+    example: ExampleDocsArtifact,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  onCalendarSelectDate: (
+    example: ExampleDocsArtifact,
+    change: CalendarSelectChange,
+  ) => Message
   commandDialogIsOpenFor: (example: ExampleDocsArtifact) => boolean
   commandDialogIdFor: (example: ExampleDocsArtifact) => string
   onCommandDialogOpen: (example: ExampleDocsArtifact) => Message
@@ -171,6 +181,10 @@ type InputExampleView = <Message = never>(
 
 type CommandDialogExampleView = <Message = never>(
   controller?: CommandDialogExampleController<Message>,
+) => Html
+
+type CalendarExampleView = <Message = never>(
+  controller?: CalendarExampleController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -224,6 +238,23 @@ const commandDialogExample = (
       onOpenChange: change =>
         context.onCommandDialogOpenChange(example, change),
     }),
+})
+
+const calendarExample = (
+  view: CalendarExampleView,
+  defaultSelectedDate?: string,
+): LiveExampleDefinition => ({
+  render: (example, context) => {
+    const selectedDate = context.calendarSelectedDateFor(
+      example,
+      defaultSelectedDate,
+    )
+
+    return view({
+      ...(selectedDate === undefined ? {} : { selectedDate }),
+      onSelectDate: change => context.onCalendarSelectDate(example, change),
+    })
+  },
 })
 
 const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
@@ -287,14 +318,20 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(ButtonGroupSize),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSplit')]:
     staticExample(ButtonGroupSplit),
-  [liveExampleKey('shadcn/calendar', 'CalendarDemo')]:
-    staticExample(CalendarDemo),
+  [liveExampleKey('shadcn/calendar', 'CalendarDemo')]: calendarExample(
+    CalendarDemo,
+    '2025-01-06',
+  ),
   [liveExampleKey('shadcn/calendar', 'CalendarBasic')]:
-    staticExample(CalendarBasic),
-  [liveExampleKey('shadcn/calendar', 'CalendarBookedDates')]:
-    staticExample(CalendarBookedDates),
-  [liveExampleKey('shadcn/calendar', 'CalendarRtl')]:
-    staticExample(CalendarRtl),
+    calendarExample(CalendarBasic),
+  [liveExampleKey('shadcn/calendar', 'CalendarBookedDates')]: calendarExample(
+    CalendarBookedDates,
+    '2025-01-06',
+  ),
+  [liveExampleKey('shadcn/calendar', 'CalendarRtl')]: calendarExample(
+    CalendarRtl,
+    '2025-01-06',
+  ),
   [liveExampleKey('shadcn/command', 'CommandDemo')]: staticExample(CommandDemo),
   [liveExampleKey('shadcn/command', 'CommandBasic')]:
     commandDialogExample(CommandBasic),
