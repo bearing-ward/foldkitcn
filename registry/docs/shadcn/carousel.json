@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/carousel",
+  "routePath": "/components/shadcn/carousel",
+  "title": "Carousel",
+  "description": "Foldkit-native shadcn base-nova Carousel with local selected-index state, keyboard navigation, controls, examples, and parity fixtures without Embla runtime dependencies.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/carousel",
+  "defaultImportPath": "shadcn/carousel",
+  "sourceRoot": "registry-src/shadcn/carousel",
+  "installableSourcePaths": [
+    "src/registry/shadcn/carousel/index.ts",
+    "src/registry/shadcn/carousel/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Carousel",
+      "docsUrl": "https://ui.shadcn.com/docs/components/carousel",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/carousel.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/carousel.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/carousel.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/carousel.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/carousel.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/carousel-api.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-demo.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-multiple.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-orientation.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-plugin.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-size.tsx",
+        "repos/ui/apps/v4/examples/base/carousel-spacing.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Carousel previous and next controls compose the local shadcn Button registry item."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "registry-local",
+        "target": "shadcn/card",
+        "reason": "Carousel examples compose the local shadcn Card registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Carousel uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, keyboard event, and Command types for the Foldkit-native Carousel helper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals, Match, Array, and Option utilities for Carousel state and messages."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "embla-carousel-react",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin Embla behavior is replaced by local Foldkit selected-index state in installable output."
+      },
+      {
+        "specifier": "embla-carousel-autoplay",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Autoplay/plugin parity needs a broader lifecycle-command foundation and is deferred instead of using timers in view code."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon controls are represented by local inline SVGs in this batch."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local Arabic example constants and origin fixture aliases."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/carousel-demo",
+      "title": "CarouselDemo",
+      "description": "Basic Card Carousel with five square slides and previous/next controls.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselDemo = (): Html =>\n  carousel({\n    className: 'w-full max-w-[12rem] sm:max-w-xs',\n    items: slideItems({\n      contentClassName: 'flex aspect-square items-center justify-center p-6',\n      textClassName: 'text-4xl font-semibold',\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselDemo",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-size",
+      "title": "CarouselSize",
+      "description": "Carousel item sizing example with half-width and third-width responsive slides.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselSize = (): Html =>\n  carousel({\n    className: 'w-full max-w-[12rem] sm:max-w-xs md:max-w-sm',\n    items: slideItems({\n      itemClassName: 'basis-1/2 lg:basis-1/3',\n      contentClassName: 'flex aspect-square items-center justify-center p-6',\n      textClassName: 'text-3xl font-semibold',\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselSize",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-multiple",
+      "title": "CarouselMultiple",
+      "description": "Carousel showing multiple responsive items with breakpoint-gated controls.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselMultiple = (): Html =>\n  carousel({\n    className: 'mx-auto max-w-xs sm:max-w-sm',\n    previousClassName: 'hidden sm:inline-flex',\n    nextClassName: 'hidden sm:inline-flex',\n    items: slideItems({\n      itemClassName: 'sm:basis-1/2 lg:basis-1/3',\n      contentClassName: 'flex aspect-square items-center justify-center p-6',\n      textClassName: 'text-3xl font-semibold',\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselMultiple",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-spacing",
+      "title": "CarouselSpacing",
+      "description": "Carousel custom spacing example using tighter content and item offsets.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselSpacing = (): Html =>\n  carousel({\n    className: 'w-full max-w-[12rem] sm:max-w-xs md:max-w-sm',\n    contentClassName: '-ml-1',\n    items: slideItems({\n      itemClassName: 'basis-1/2 pl-1 lg:basis-1/3',\n      contentClassName: 'flex aspect-square items-center justify-center p-6',\n      textClassName: 'text-2xl font-semibold',\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselSpacing",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-orientation",
+      "title": "CarouselOrientation",
+      "description": "Vertical Carousel orientation with vertical controls and keyboard handling.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselOrientation = (): Html =>\n  carousel({\n    className: 'w-full max-w-xs',\n    orientation: 'vertical',\n    contentClassName: '-mt-1 h-[270px]',\n    items: slideItems({\n      itemClassName: 'basis-1/2 pt-1',\n      contentClassName: 'flex items-center justify-center p-6',\n      textClassName: 'text-3xl font-semibold',\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselOrientation",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-api",
+      "title": "CarouselApi",
+      "description": "Carousel status example rendered from local state as Slide 1 of 5.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselApi = (): Html => {\n  const h = html<never>()\n  const itemCount = 5\n\n  return h.div(\n    [h.Class('mx-auto max-w-[10rem] sm:max-w-xs')],\n    [\n      Carousel<never>({\n        state: carouselState({ itemCount }),\n        className: 'w-full max-w-xs',\n        items: EffectArray.makeBy(itemCount, index => ({\n          children: [\n            slideCard(index, {\n              cardClassName: 'm-px',\n              contentClassName:\n                'flex aspect-square items-center justify-center p-6',\n              textClassName: 'text-4xl font-semibold',\n            }),\n          ],\n        })),\n      }),\n      h.div(\n        [h.Class('py-2 text-center text-sm text-muted-foreground')],\n        [`Slide 1 of ${itemCount}`],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "CarouselApi",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/carousel-rtl",
+      "title": "CarouselRtl",
+      "description": "RTL Carousel using local Arabic numerals instead of the origin language selector.",
+      "componentItemId": "shadcn/carousel",
+      "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+      "snippet": "export const CarouselRtl = (): Html =>\n  carousel({\n    dir: 'rtl',\n    className: 'w-full max-w-[12rem] sm:max-w-xs',\n    items: slideItems({\n      contentClassName: 'flex aspect-square items-center justify-center p-6',\n      textClassName: 'text-4xl font-semibold',\n      toText: index => toArabicNumerals(index + 1),\n      wrapperClassName: 'p-1',\n    }),\n  })",
+      "previewStatus": "static",
+      "previewExportName": "CarouselRtl",
+      "requiredRegistryItems": ["shadcn/button", "shadcn/card", "utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-carousel-local-state",
+        "summary": "Carousel uses local Foldkit selected-index state instead of Embla's runtime API.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot require embla-carousel-react. Local Model and Message helpers preserve selected index, orientation, boundary state, controls, and keyboard navigation within the Foldkit architecture."
+      },
+      {
+        "id": "shadcn-carousel-local-icons",
+        "summary": "Previous and next controls use local inline SVGs instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon DOM role, visual footprint, and RTL rotation classes."
+      },
+      {
+        "id": "shadcn-carousel-local-rtl-data",
+        "summary": "RTL example uses local Arabic numeral formatting instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+      },
+      {
+        "id": "shadcn-carousel-autoplay-deferred",
+        "summary": "Autoplay/plugin example parity is deferred.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The origin plugin example depends on embla-carousel-autoplay. Representing autoplay idiomatically needs a broader lifecycle-command foundation, so this batch intentionally avoids timers in view code."
+      }
+    ]
+  }
+}

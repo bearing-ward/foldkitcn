@@ -1,0 +1,98 @@
+{
+  "batch": ["shadcn/table"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Table",
+      "docsUrl": "https://ui.shadcn.com/docs/components/table",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/table.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/table.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/table.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/table-actions.tsx",
+        "repos/ui/apps/v4/examples/base/table-demo.tsx",
+        "repos/ui/apps/v4/examples/base/table-footer.tsx",
+        "repos/ui/apps/v4/examples/base/table-rtl.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/table.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/table.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/table.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/table.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "lucide-react",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

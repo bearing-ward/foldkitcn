@@ -6,7 +6,10 @@
   "kind": "component",
   "description": "Foldkit-native Base UI Input primitive preserving native form attributes, controlled value changes, and Field control data attributes without internal state.",
   "sourceRoot": "registry-src/base-ui/input",
-  "installableSourcePaths": ["src/registry/base-ui/input/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/base-ui/input/index.ts",
+    "src/registry/base-ui/input/examples.ts"
+  ],
   "consumedThemeTokens": [],
   "originProvenance": [
     {
@@ -62,7 +65,22 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "base-ui/input-demo",
+      "title": "InputDemo",
+      "description": "Default controlled Input with the Base UI hero label and placeholder.",
+      "sourcePath": "src/registry/base-ui/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "base-ui/input-disabled",
+      "title": "InputDisabled",
+      "description": "Disabled Input preserving native disabled behavior and data attributes.",
+      "sourcePath": "src/registry/base-ui/input/examples.ts",
+      "kind": "demo"
+    }
+  ],
   "parity": {
     "itemId": "base-ui/input",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/input.fixture.tsx",
@@ -83,7 +101,7 @@
     "parityStatus": "accepted",
     "driftStatus": "current",
     "availability": "installable",
-    "docsStatus": "missing"
+    "docsStatus": "stub"
   },
   "deviations": []
 }

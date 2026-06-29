@@ -4,15 +4,54 @@
   "routePath": "/components/base-ui/input",
   "title": "Input",
   "description": "Foldkit-native Base UI Input primitive preserving native form attributes, controlled value changes, and Field control data attributes without internal state.",
-  "docsStatus": "missing",
-  "markdownPath": null,
-  "markdown": null,
-  "headings": [],
+  "docsStatus": "stub",
+  "markdownPath": "registry-src/base-ui/input/docs.md",
+  "markdown": "# Input\n\n## Overview\n\nInput is a Foldkit-native Base UI primitive for rendering a controlled native\n`input` element with form attributes, value-change facts, and Field control data\nattributes.\n\n## Foldkit Model\n\nInput does not own state. Keep the current value in the parent model and handle\n`onValueChange` from the parent update function.\n\n## Usage\n\nImport the helper from the generated registry source and call it inside a view\nafter binding `const h = html<Message>()`.\n\n```ts\nInput.view<Message>({\n  value: model.name,\n  placeholder: 'e.g. Colm Tuite',\n  onValueChange: UpdatedName,\n  toView: attributes => h.input([...attributes.input]),\n})\n```\n\n## Examples\n\nThe registry examples cover the Base UI hero input and the disabled state. The\ndefault example is controlled by the docs page so typing into the preview updates\nthe rendered value.\n\n## Accessibility\n\nAssociate inputs with a visible label using `id` plus `for`, or wrap the input in\na label. Disabled and invalid state are forwarded to native and ARIA attributes.\n\n## Foldkit Differences\n\nThe origin Base UI implementation is a React component. This registry item keeps\nthe same native input surface but emits Foldkit messages as facts and leaves all\nstate in the parent model.\n",
+  "headings": [
+    {
+      "id": "input",
+      "text": "Input",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/input",
   "defaultImportPath": "base-ui/input",
   "sourceRoot": "registry-src/base-ui/input",
-  "installableSourcePaths": ["src/registry/base-ui/input/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/base-ui/input/index.ts",
+    "src/registry/base-ui/input/examples.ts"
+  ],
   "originProvenance": [
     {
       "originKind": "base-ui",
@@ -67,7 +106,32 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "base-ui/input-demo",
+      "title": "InputDemo",
+      "description": "Default controlled Input with the Base UI hero label and placeholder.",
+      "componentItemId": "base-ui/input",
+      "sourcePath": "src/registry/base-ui/input/examples.ts",
+      "snippet": "export const InputDemo = <Message = never>({\n  value = '',\n  idPrefix,\n  onValueChange,\n}: InputExampleController<Message> = {}): Html =>\n  inputExample({\n    id: 'name',\n    label: 'Name',\n    value,\n    placeholder: 'e.g. Colm Tuite',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputDemo",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/input-disabled",
+      "title": "InputDisabled",
+      "description": "Disabled Input preserving native disabled behavior and data attributes.",
+      "componentItemId": "base-ui/input",
+      "sourcePath": "src/registry/base-ui/input/examples.ts",
+      "snippet": "export const InputDisabled = <Message = never>({\n  value = 'Colm Tuite',\n  idPrefix,\n}: InputExampleController<Message> = {}): Html =>\n  inputExample({\n    id: 'disabled-name',\n    label: 'Name',\n    value,\n    placeholder: 'e.g. Colm Tuite',\n    isDisabled: true,\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputDisabled",
+      "requiredRegistryItems": [],
+      "notes": []
+    }
+  ],
   "quality": {
     "availability": "installable",
     "implementationStatus": "implemented",

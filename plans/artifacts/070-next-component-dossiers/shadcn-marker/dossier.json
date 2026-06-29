@@ -1,0 +1,114 @@
+{
+  "batch": ["shadcn/marker"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Marker",
+      "docsUrl": "https://ui.shadcn.com/docs/components/marker",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/marker.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/marker.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/marker.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/marker-border.tsx",
+        "repos/ui/apps/v4/examples/base/marker-demo.tsx",
+        "repos/ui/apps/v4/examples/base/marker-icon.tsx",
+        "repos/ui/apps/v4/examples/base/marker-link-button.tsx",
+        "repos/ui/apps/v4/examples/base/marker-separator.tsx",
+        "repos/ui/apps/v4/examples/base/marker-shimmer.tsx",
+        "repos/ui/apps/v4/examples/base/marker-status.tsx",
+        "repos/ui/apps/v4/examples/base/marker-variants.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/marker.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/marker.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/marker.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/marker.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/marker.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": ["shadcn/spinner", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@base-ui/react/merge-props",
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "lucide-react",
+        "react",
+        "sonner"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui/react/merge-props",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/merge-props",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/use-render",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/use-render",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/spinner",
+      "classification": "registry-local",
+      "target": "shadcn/spinner",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "sonner",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

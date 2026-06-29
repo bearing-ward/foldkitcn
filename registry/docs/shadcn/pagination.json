@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/pagination",
+  "routePath": "/components/shadcn/pagination",
+  "title": "Pagination",
+  "description": "Foldkit-native shadcn base-nova Pagination helpers with navigation/list semantics, current-page state, previous and next controls, ellipsis, disabled link state, local inline icons, and local button/field/select composition.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/pagination",
+  "defaultImportPath": "shadcn/pagination",
+  "sourceRoot": "registry-src/shadcn/pagination",
+  "installableSourcePaths": [
+    "src/registry/shadcn/pagination/index.ts",
+    "src/registry/shadcn/pagination/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Pagination",
+      "docsUrl": "https://ui.shadcn.com/docs/components/pagination",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/pagination.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/pagination.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/pagination.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/pagination.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/pagination.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/pagination-demo.tsx",
+        "repos/ui/apps/v4/examples/base/pagination-icons-only.tsx",
+        "repos/ui/apps/v4/examples/base/pagination-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/pagination-simple.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "PaginationLink, PaginationPrevious, and PaginationNext compose the local shadcn Button item for link-like button styling and disabled behavior."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "The icons-only example composes the local shadcn Field item for the rows-per-page label layout."
+      },
+      {
+        "specifier": "shadcn/select",
+        "classification": "registry-local",
+        "target": "shadcn/select",
+        "reason": "The icons-only example composes the local shadcn Select item for the rows-per-page control."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Pagination uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for Foldkit-native helpers and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema metadata for Pagination direction and style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin previous, next, and ellipsis icons are represented by local inline SVG helpers in installable source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic Arabic example data."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/pagination-demo",
+      "title": "PaginationDemo",
+      "description": "Default Pagination with previous, numbered pages, current page, ellipsis, and next controls.",
+      "componentItemId": "shadcn/pagination",
+      "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+      "snippet": "export const PaginationDemo = (): Html =>\n  paginationShell([\n    paginationItem([PaginationPrevious<never>({ href: '#' })]),\n    paginationItem([paginationLink('1')]),\n    paginationItem([paginationLink('2', { isActive: true })]),\n    paginationItem([paginationLink('3')]),\n    paginationItem([PaginationEllipsis<never>()]),\n    paginationItem([PaginationNext<never>({ href: '#' })]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "PaginationDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/select",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/pagination-icons-only",
+      "title": "PaginationIconsOnly",
+      "description": "Pagination paired with local Field and Select rows-per-page controls.",
+      "componentItemId": "shadcn/pagination",
+      "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+      "snippet": "export const PaginationIconsOnly = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center justify-between gap-4')],\n    [\n      Field<never>({\n        orientation: 'horizontal',\n        className: 'w-fit',\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'select-rows-per-page',\n            children: ['Rows per page'],\n          }),\n          rowsPerPageSelect(),\n        ],\n      }),\n      Pagination<never>({\n        className: 'mx-0 w-auto',\n        children: [\n          PaginationContent<never>({\n            children: [\n              paginationItem([PaginationPrevious<never>({ href: '#' })]),\n              paginationItem([PaginationNext<never>({ href: '#' })]),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "PaginationIconsOnly",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/select",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/pagination-rtl",
+      "title": "PaginationRtl",
+      "description": "RTL Pagination using local Arabic strings and numerals instead of the origin language selector runtime.",
+      "componentItemId": "shadcn/pagination",
+      "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+      "snippet": "export const PaginationRtl = (): Html => {\n  const { dir, values } = arabicPagination\n\n  return paginationShell(\n    [\n      paginationItem([\n        PaginationPrevious<never>({\n          href: '#',\n          text: values.previous,\n        }),\n      ]),\n      paginationItem([paginationLink(toArabicNumerals(1))]),\n      paginationItem([paginationLink(toArabicNumerals(2), { isActive: true })]),\n      paginationItem([paginationLink(toArabicNumerals(3))]),\n      paginationItem([PaginationEllipsis<never>()]),\n      paginationItem([\n        PaginationNext<never>({\n          href: '#',\n          text: values.next,\n        }),\n      ]),\n    ],\n    { dir },\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": "PaginationRtl",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/select",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/pagination-simple",
+      "title": "PaginationSimple",
+      "description": "Simple Pagination with numbered page links only.",
+      "componentItemId": "shadcn/pagination",
+      "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+      "snippet": "export const PaginationSimple = (): Html =>\n  paginationShell([\n    paginationItem([paginationLink('1')]),\n    paginationItem([paginationLink('2', { isActive: true })]),\n    paginationItem([paginationLink('3')]),\n    paginationItem([paginationLink('4')]),\n    paginationItem([paginationLink('5')]),\n  ])",
+      "previewStatus": "static",
+      "previewExportName": "PaginationSimple",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/field",
+        "shadcn/select",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-pagination-local-icons",
+        "summary": "Icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the previous, next, ellipsis, and icon placement contracts."
+      },
+      {
+        "id": "shadcn-pagination-local-links",
+        "summary": "Pagination links use explicit Foldkit anchor rendering through the local Button helper instead of React render-element cloning.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source models link rendering through toView and avoids React Slot or Next Link cloning semantics."
+      },
+      {
+        "id": "shadcn-pagination-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin app language selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin language selector. Local constants preserve the default RTL rendered output."
+      },
+      {
+        "id": "shadcn-pagination-local-composed-controls",
+        "summary": "The icons-only example composes local Field and Select helpers for the rows-per-page control.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The selected dependencies are already local registry items and preserve the documented example without introducing upstream runtime dependencies."
+      }
+    ]
+  }
+}

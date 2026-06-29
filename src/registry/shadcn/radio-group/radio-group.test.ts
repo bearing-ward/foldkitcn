@@ -143,19 +143,23 @@ describe('shadcn/radio-group installable source', () => {
       'shadcn/field',
       'shadcn/label',
     ]
-    const [manifestModule, indexModule] = await Promise.all([
+    const [manifestModule, indexModule, examplesModule] = await Promise.all([
       import('../../../../registry-src/shadcn/radio-group/item.json?raw'),
       import('./index.ts?raw'),
+      import('./examples.ts?raw'),
     ])
     const manifest: { readonly installableSourcePaths: ReadonlyArray<string> } =
       JSON.parse(manifestModule.default)
 
     expect(manifest.installableSourcePaths).toStrictEqual([
       'src/registry/shadcn/radio-group/index.ts',
+      'src/registry/shadcn/radio-group/examples.ts',
     ])
+    const installableSource = `${indexModule.default}\n${examplesModule.default}`
+
     expect(
       forbiddenRuntimeSpecifiers.filter(specifier =>
-        indexModule.default.includes(specifier),
+        installableSource.includes(specifier),
       ),
     ).toStrictEqual([])
   })

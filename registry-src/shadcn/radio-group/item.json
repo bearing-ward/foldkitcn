@@ -6,7 +6,10 @@
   "kind": "component",
   "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
   "sourceRoot": "registry-src/shadcn/radio-group",
-  "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/shadcn/radio-group/index.ts",
+    "src/registry/shadcn/radio-group/examples.ts"
+  ],
   "consumedThemeTokens": [
     "--destructive",
     "--input",
@@ -120,7 +123,57 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "shadcn/radio-group-demo",
+      "title": "RadioGroupDemo",
+      "description": "Default Radio Group with labeled density options.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-description",
+      "title": "RadioGroupDescription",
+      "description": "Radio Group options with descriptions.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-choice-card",
+      "title": "RadioGroupChoiceCard",
+      "description": "Radio Group choice-card plan selection.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-disabled",
+      "title": "RadioGroupDisabled",
+      "description": "Radio Group with one disabled item.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-fieldset",
+      "title": "RadioGroupFieldset",
+      "description": "Radio Group nested in a fieldset.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-invalid",
+      "title": "RadioGroupInvalid",
+      "description": "Invalid Radio Group and item states.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/radio-group-rtl",
+      "title": "RadioGroupRtl",
+      "description": "RTL Radio Group using local static Arabic labels.",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "kind": "demo"
+    }
+  ],
   "parity": {
     "itemId": "shadcn/radio-group",
     "originFixturePath": "tests/parity/fixtures/origin/shadcn/radio-group.fixture.ts",
@@ -142,7 +195,7 @@
     "parityStatus": "accepted",
     "driftStatus": "current",
     "availability": "installable",
-    "docsStatus": "missing"
+    "docsStatus": "stub"
   },
   "deviations": [
     {

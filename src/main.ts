@@ -4,6 +4,7 @@ import {
   HashSet,
   Match as M,
   Option,
+  Record as EffectRecord,
   Schema as S,
   String as EffectString,
   pipe,
@@ -125,6 +126,8 @@ export const Model = S.Struct({
   data: DocsData,
   mobileNavigation: MobileNavigation,
   copiedSnippets: S.HashSet(S.String),
+  liveExampleInputValues: S.Record(S.String, S.String),
+  liveExampleRadioGroupValues: S.Record(S.String, S.String),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
 })
@@ -143,6 +146,17 @@ export const SucceededCopySnippet = m('SucceededCopySnippet', {
 })
 export const FailedCopySnippet = m('FailedCopySnippet')
 export const HidCopiedIndicator = m('HidCopiedIndicator', { text: S.String })
+export const UpdatedLiveExampleInputValue = m('UpdatedLiveExampleInputValue', {
+  exampleId: S.String,
+  value: S.String,
+})
+export const UpdatedLiveExampleRadioGroupValue = m(
+  'UpdatedLiveExampleRadioGroupValue',
+  {
+    exampleId: S.String,
+    value: S.String,
+  },
+)
 export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
 export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', {
   results: S.Array(PagefindSearchResult),
@@ -160,6 +174,8 @@ export const Message = S.Union([
   SucceededCopySnippet,
   FailedCopySnippet,
   HidCopiedIndicator,
+  UpdatedLiveExampleInputValue,
+  UpdatedLiveExampleRadioGroupValue,
   UpdatedSearchQuery,
   ReceivedPagefindSearchResults,
   ClickedClearSearch,
@@ -176,6 +192,8 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
     data: docsData,
     mobileNavigation: MobileNavigation({ isOpen: false }),
     copiedSnippets: HashSet.empty(),
+    liveExampleInputValues: {},
+    liveExampleRadioGroupValues: {},
     searchQuery: '',
     pagefindSearch: IdlePagefindSearch(),
   },
@@ -350,6 +368,18 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       HidCopiedIndicator: ({ text }) => [
         evo(model, {
           copiedSnippets: HashSet.remove(text),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleInputValue: ({ exampleId, value }) => [
+        evo(model, {
+          liveExampleInputValues: EffectRecord.set(exampleId, value),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleRadioGroupValue: ({ exampleId, value }) => [
+        evo(model, {
+          liveExampleRadioGroupValues: EffectRecord.set(exampleId, value),
         }),
         [],
       ],
@@ -1245,10 +1275,50 @@ const usageSectionView = (
 const examplesSectionView = (
   component: PublicComponent,
   copiedSnippets: HashSet.HashSet<string>,
+  liveExampleInputValues: Readonly<Record<string, string>>,
+  liveExampleRadioGroupValues: Readonly<Record<string, string>>,
 ): Html => {
   const h = html<Message>()
+  const liveExampleContext = {
+    inputValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(liveExampleInputValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    inputIdPrefixFor: (example: ExampleDocsArtifact): string =>
+      `${example.id.replaceAll(/[^a-z0-9_-]+/giu, '-')}-`,
+    onInputValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      UpdatedLiveExampleInputValue({
+        exampleId: example.id,
+        value: change.value,
+      }),
+    radioGroupValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(liveExampleRadioGroupValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    radioGroupIdPrefixFor: (example: ExampleDocsArtifact): string =>
+      `${example.id.replaceAll(/[^a-z0-9_-]+/giu, '-')}-`,
+    onRadioGroupValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      UpdatedLiveExampleRadioGroupValue({
+        exampleId: example.id,
+        value: change.value,
+      }),
+  }
   const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
-    Option.match(liveExampleViewFor(example), {
+    Option.match(liveExampleViewFor(example, liveExampleContext), {
       onNone: () => h.empty,
       onSome: exampleView =>
         h.div(
@@ -1256,7 +1326,7 @@ const examplesSectionView = (
             h.Class('live-example-preview'),
             h.AriaLabel(`${example.title} live preview`),
           ],
-          [exampleView()],
+          [exampleView],
         ),
     })
 
@@ -1268,21 +1338,25 @@ const examplesSectionView = (
         h.div(
           [h.Class('example-list')],
           artifact.examples.map(example =>
-            h.article([h.Class('example-card')], [
-              h.div([h.Class('example-card-header')], [
-                h.div([], [
-                  h.h3([], [example.title]),
-                  h.p([], [example.description]),
+            h.keyed('article')(
+              example.id,
+              [h.Class('example-card')],
+              [
+                h.div([h.Class('example-card-header')], [
+                  h.div([], [
+                    h.h3([], [example.title]),
+                    h.p([], [example.description]),
+                  ]),
+                  statusBadgeView(example.previewStatus),
                 ]),
-                statusBadgeView(example.previewStatus),
-              ]),
-              liveExamplePreviewView(example),
-              snippetBlockView(
-                example.snippet,
-                `Copy ${example.title} example snippet`,
-                copiedSnippets,
-              ),
-            ]),
+                liveExamplePreviewView(example),
+                snippetBlockView(
+                  example.snippet,
+                  `Copy ${example.title} example snippet`,
+                  copiedSnippets,
+                ),
+              ],
+            ),
           ),
         ),
     }),
@@ -1469,7 +1543,12 @@ const componentDetailPageView = (
         ]),
         installationSectionView(component, model.copiedSnippets),
         usageSectionView(component, model.copiedSnippets),
-        examplesSectionView(component, model.copiedSnippets),
+        examplesSectionView(
+          component,
+          model.copiedSnippets,
+          model.liveExampleInputValues,
+          model.liveExampleRadioGroupValues,
+        ),
         apiSectionView(),
         accessibilitySectionView(),
         qualitySectionView(component),

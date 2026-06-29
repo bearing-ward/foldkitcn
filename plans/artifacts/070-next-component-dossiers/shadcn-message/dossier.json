@@ -1,0 +1,122 @@
+{
+  "batch": ["shadcn/message"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Message",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/message.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/message-actions.tsx",
+        "repos/ui/apps/v4/examples/base/message-attachment.tsx",
+        "repos/ui/apps/v4/examples/base/message-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/message-demo.tsx",
+        "repos/ui/apps/v4/examples/base/message-group.tsx",
+        "repos/ui/apps/v4/examples/base/message-header-footer.tsx",
+        "repos/ui/apps/v4/examples/base/message-markdown.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/message.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/message.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/message.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "shadcn/attachment",
+        "shadcn/avatar",
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/marker",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/markdown",
+        "lucide-react",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/markdown",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/attachment",
+      "classification": "registry-local",
+      "target": "shadcn/attachment",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/avatar",
+      "classification": "registry-local",
+      "target": "shadcn/avatar",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/bubble",
+      "classification": "registry-local",
+      "target": "shadcn/bubble",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/marker",
+      "classification": "registry-local",
+      "target": "shadcn/marker",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

@@ -244,6 +244,61 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/card-spacing.tsx',
     },
     {
+      id: 'item-avatar',
+      title: 'Item avatar',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-avatar.tsx',
+    },
+    {
+      id: 'item-demo',
+      title: 'Item demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-demo.tsx',
+    },
+    {
+      id: 'item-dropdown',
+      title: 'Item dropdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-dropdown.tsx',
+    },
+    {
+      id: 'item-group',
+      title: 'Item group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-group.tsx',
+    },
+    {
+      id: 'item-header',
+      title: 'Item header',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-header.tsx',
+    },
+    {
+      id: 'item-icon',
+      title: 'Item icon',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-icon.tsx',
+    },
+    {
+      id: 'item-image',
+      title: 'Item image',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-image.tsx',
+    },
+    {
+      id: 'item-link',
+      title: 'Item link',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-link.tsx',
+    },
+    {
+      id: 'item-rtl',
+      title: 'Item RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-rtl.tsx',
+    },
+    {
+      id: 'item-size',
+      title: 'Item size',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-size.tsx',
+    },
+    {
+      id: 'item-variant',
+      title: 'Item variant',
+      originFilePath: 'repos/ui/apps/v4/examples/base/item-variant.tsx',
+    },
+    {
       id: 'breadcrumb-basic',
       title: 'Breadcrumb basic',
       originFilePath: 'repos/ui/apps/v4/examples/base/breadcrumb-basic.tsx',
@@ -364,6 +419,27 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'native-select-rtl',
       title: 'Native Select RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/native-select-rtl.tsx',
+    },
+    {
+      id: 'pagination-demo',
+      title: 'Pagination demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/pagination-demo.tsx',
+    },
+    {
+      id: 'pagination-icons-only',
+      title: 'Pagination icons only',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/pagination-icons-only.tsx',
+    },
+    {
+      id: 'pagination-rtl',
+      title: 'Pagination RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/pagination-rtl.tsx',
+    },
+    {
+      id: 'pagination-simple',
+      title: 'Pagination simple',
+      originFilePath: 'repos/ui/apps/v4/examples/base/pagination-simple.tsx',
     },
     {
       id: 'separator-demo',
@@ -666,6 +742,26 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'skeleton-text',
       title: 'Skeleton text',
       originFilePath: 'repos/ui/apps/v4/examples/base/skeleton-text.tsx',
+    },
+    {
+      id: 'table-actions',
+      title: 'Table actions',
+      originFilePath: 'repos/ui/apps/v4/examples/base/table-actions.tsx',
+    },
+    {
+      id: 'table-demo',
+      title: 'Table demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/table-demo.tsx',
+    },
+    {
+      id: 'table-footer',
+      title: 'Table footer',
+      originFilePath: 'repos/ui/apps/v4/examples/base/table-footer.tsx',
+    },
+    {
+      id: 'table-rtl',
+      title: 'Table RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/table-rtl.tsx',
     },
     {
       id: 'textarea-button',

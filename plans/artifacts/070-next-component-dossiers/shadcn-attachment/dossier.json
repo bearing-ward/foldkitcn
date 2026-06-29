@@ -1,0 +1,122 @@
+{
+  "batch": ["shadcn/attachment"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Attachment",
+      "docsUrl": "https://ui.shadcn.com/docs/components/attachment",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/attachment.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/attachment.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/attachment.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/attachment-demo.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-group.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-image.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-states.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-trigger.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/attachment.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/attachment.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/attachment.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/attachment.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@base-ui/react/merge-props",
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "lucide-react",
+        "react"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@base-ui/react/merge-props",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/merge-props",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/use-render",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/use-render",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dialog",
+      "classification": "registry-local",
+      "target": "shadcn/dialog",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/spinner",
+      "classification": "registry-local",
+      "target": "shadcn/spinner",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

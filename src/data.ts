@@ -1,10 +1,10 @@
+/// <reference types="vite/client" />
+
 import { Array, Match as M, Option, Order, Schema as S, pipe } from 'effect'
 import { ts } from 'foldkit/schema'
 
 import progressReportJson from '../docs/component-conversion-checklist.json'
 import docsIndexJson from '../registry/docs/index.json'
-import localExamplePreviewDocsJson from '../registry/docs/local/example-preview.json'
-import shadcnButtonDocsJson from '../registry/docs/shadcn/button.json'
 import registryIndexJson from '../registry/index.json'
 import {
   ComponentDocsArtifact,
@@ -23,8 +23,7 @@ import type {
 export const LoadedDocsData = ts('LoadedDocsData', {
   registry: RegistryIndex,
   docsIndex: ComponentDocsIndex,
-  localExamplePreviewDocs: ComponentDocsArtifact,
-  shadcnButtonDocs: ComponentDocsArtifact,
+  docsArtifacts: S.Array(ComponentDocsArtifact),
   progressReport: OriginComponentProgressReport,
 })
 export const FailedDocsData = ts('FailedDocsData', {
@@ -48,10 +47,41 @@ export type NamespaceGroup = Readonly<{
 export type LoadedDocsDataValue = Readonly<{
   registry: typeof RegistryIndex.Type
   docsIndex: typeof ComponentDocsIndex.Type
-  localExamplePreviewDocs: ComponentDocsArtifactType
-  shadcnButtonDocs: ComponentDocsArtifactType
+  docsArtifacts: ReadonlyArray<ComponentDocsArtifactType>
   progressReport: OriginComponentProgressReportType
 }>
+
+const docsArtifactModules = import.meta.glob<unknown>(
+  '../registry/docs/**/*.json',
+  {
+    eager: true,
+    import: 'default',
+  },
+)
+
+const docsArtifactModulePathFor = (route: ComponentDocsRoute): string =>
+  `../${route.docsArtifactPath}`
+
+const rawDocsArtifactFor = (route: ComponentDocsRoute): unknown => {
+  const modulePath = docsArtifactModulePathFor(route)
+  const rawArtifact = docsArtifactModules[modulePath]
+
+  if (rawArtifact === undefined) {
+    throw new Error(`Generated docs artifact is not importable: ${modulePath}`)
+  }
+
+  return rawArtifact
+}
+
+const decodeDocsArtifacts = (
+  docsIndex: typeof ComponentDocsIndex.Type,
+): ReadonlyArray<ComponentDocsArtifactType> =>
+  pipe(
+    docsIndex.routes,
+    Array.map(route =>
+      S.decodeUnknownSync(ComponentDocsArtifact)(rawDocsArtifactFor(route)),
+    ),
+  )
 
 const namespaceLabels: Readonly<Record<RegistryNamespace, string>> = {
   'base-ui': 'Base UI',
@@ -75,15 +105,12 @@ const namespaceOrder: ReadonlyArray<RegistryNamespace> = [
 
 const decodeDocsData = (): DocsData => {
   try {
+    const docsIndex = S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson)
+
     return LoadedDocsData({
       registry: S.decodeUnknownSync(RegistryIndex)(registryIndexJson),
-      docsIndex: S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson),
-      localExamplePreviewDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
-        localExamplePreviewDocsJson,
-      ),
-      shadcnButtonDocs: S.decodeUnknownSync(ComponentDocsArtifact)(
-        shadcnButtonDocsJson,
-      ),
+      docsIndex,
+      docsArtifacts: decodeDocsArtifacts(docsIndex),
       progressReport: S.decodeUnknownSync(OriginComponentProgressReport)(
         progressReportJson,
       ),
@@ -115,15 +142,12 @@ const docsRouteFor = (
   Array.findFirst(docsIndex.routes, route => route.itemId === itemId)
 
 const docsArtifactFor = (
-  localExamplePreviewDocs: ComponentDocsArtifactType,
-  shadcnButtonDocs: ComponentDocsArtifactType,
+  docsArtifacts: ReadonlyArray<ComponentDocsArtifactType>,
   itemId: string,
 ): Option.Option<ComponentDocsArtifactType> =>
-  M.value(itemId).pipe(
-    M.withReturnType<Option.Option<ComponentDocsArtifactType>>(),
-    M.when('local/example-preview', () => Option.some(localExamplePreviewDocs)),
-    M.when('shadcn/button', () => Option.some(shadcnButtonDocs)),
-    M.orElse(() => Option.none()),
+  pipe(
+    docsArtifacts,
+    Array.findFirst(artifact => artifact.itemId === itemId),
   )
 
 export const publicComponents = (
@@ -133,12 +157,7 @@ export const publicComponents = (
     M.withReturnType<ReadonlyArray<PublicComponent>>(),
     M.tagsExhaustive({
       FailedDocsData: () => [],
-      LoadedDocsData: ({
-        registry,
-        docsIndex,
-        localExamplePreviewDocs,
-        shadcnButtonDocs,
-      }) => {
+      LoadedDocsData: ({ registry, docsIndex, docsArtifacts }) => {
         const initialComponents: Array<PublicComponent> = []
 
         return Array.reduce(registry.items, initialComponents, (acc, entry) => {
@@ -154,8 +173,7 @@ export const publicComponents = (
                 entry,
                 docsRoute,
                 maybeDocsArtifact: docsArtifactFor(
-                  localExamplePreviewDocs,
-                  shadcnButtonDocs,
+                  docsArtifacts,
                   entry.item.id,
                 ),
               },
@@ -214,12 +232,7 @@ export const findRoutedComponent = (
     M.withReturnType<Option.Option<PublicComponent>>(),
     M.tagsExhaustive({
       FailedDocsData: () => Option.none(),
-      LoadedDocsData: ({
-        registry,
-        docsIndex,
-        localExamplePreviewDocs,
-        shadcnButtonDocs,
-      }) => {
+      LoadedDocsData: ({ registry, docsIndex, docsArtifacts }) => {
         const itemId = `${namespace}/${slug}`
 
         return Option.flatMap(
@@ -228,11 +241,7 @@ export const findRoutedComponent = (
             Option.map(docsRouteFor(docsIndex, itemId), docsRoute => ({
               entry,
               docsRoute,
-              maybeDocsArtifact: docsArtifactFor(
-                localExamplePreviewDocs,
-                shadcnButtonDocs,
-                itemId,
-              ),
+              maybeDocsArtifact: docsArtifactFor(docsArtifacts, itemId),
             })),
         )
       },

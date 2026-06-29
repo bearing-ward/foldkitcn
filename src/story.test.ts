@@ -47,6 +47,8 @@ const model: Model = {
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
+  liveExampleInputValues: {},
+  liveExampleRadioGroupValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 }

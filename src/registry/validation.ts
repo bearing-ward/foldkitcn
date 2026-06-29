@@ -31,7 +31,6 @@ export interface ManifestValidationResult {
 }
 
 export const requiredCompleteDocsHeadings = [
-  'Button',
   'Overview',
   'Foldkit Model',
   'Usage',
@@ -398,7 +397,8 @@ const docsReadinessErrors = (
 
   const markdown = readText(docsMarkdownPath)
   const headingTexts = new Set(extractMarkdownHeadingTexts(markdown))
-  const missingHeadings = requiredCompleteDocsHeadings.filter(
+  const requiredHeadings = [manifest.name, ...requiredCompleteDocsHeadings]
+  const missingHeadings = requiredHeadings.filter(
     heading => !headingTexts.has(heading),
   )
   const rawHtmlErrors = rawHtmlPattern.test(markdown)

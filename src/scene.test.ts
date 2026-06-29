@@ -32,6 +32,8 @@ const modelWithRoute = (route: Model['route']): Model => ({
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
+  liveExampleInputValues: {},
+  liveExampleRadioGroupValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
@@ -253,6 +255,154 @@ describe(view, () => {
     )
   })
 
+  test('Item detail renders actual live examples from generated docs', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'item' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Item' })).toExist(),
+      Scene.expect(Scene.text('Example metadata is not loaded.')).not.toExist(),
+      Scene.expect(Scene.role('heading', { name: 'ItemDemo' })).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('button', { name: 'Action' }),
+        ),
+      ).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'ItemAvatar' })).toExist(),
+      Scene.expect(Scene.role('button', { name: 'Invite' })).toExist(),
+      Scene.expect(
+        Scene.text('export const ItemDemo = (): Html => {', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
+    )
+  })
+
+  test('Base UI Button detail renders live example previews and snippets', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'base-ui', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'ButtonDemo' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'ButtonDisabled' })).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'ButtonNonNative' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('button', { name: 'Button' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('export const ButtonDemo = (): Html => {', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
+      Scene.expect(Scene.text('Example metadata is not loaded.')).not.toExist(),
+    )
+  })
+
+  test('Base UI Input detail renders usable live example previews and snippets', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'base-ui', slug: 'input' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'InputDemo' })).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'InputDisabled' })).toExist(),
+      Scene.expect(Scene.selector('#base-ui-input-demo-name')).toHaveValue(''),
+      Scene.type(Scene.selector('#base-ui-input-demo-name'), 'Ada'),
+      Scene.expect(Scene.selector('#base-ui-input-demo-name')).toHaveValue(
+        'Ada',
+      ),
+      Scene.expect(
+        Scene.selector('#base-ui-input-disabled-disabled-name'),
+      ).toHaveAttr('disabled', 'true'),
+      Scene.expect(
+        Scene.text('export const InputDemo = <Message = never>', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
+      Scene.expect(Scene.text('Example metadata is not loaded.')).not.toExist(),
+    )
+  })
+
+  test('Radio Group detail renders live example previews and snippets', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'radio-group' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'RadioGroupDemo' })).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'RadioGroupDescription' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('radio', { name: 'Comfortable' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('export const RadioGroupDemo = <Message = never>', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
+      Scene.expect(Scene.text('Example metadata is not loaded.')).not.toExist(),
+    )
+  })
+
+  test('Radio Group live examples update selected options', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'radio-group' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('radio', { name: 'Default' }),
+        ),
+      ).toHaveAttr('aria-checked', 'false'),
+      Scene.click(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('radio', { name: 'Default' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('radio', { name: 'Default' }),
+        ),
+      ).toHaveAttr('aria-checked', 'true'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('radio', { name: 'Comfortable' }),
+        ),
+      ).toHaveAttr('aria-checked', 'false'),
+    )
+  })
+
   test('Private component detail explains availability without an install command', () => {
     Scene.scene(
       { update, view },
@@ -343,11 +493,10 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('37 of 38')).toExist(),
-      Scene.expect(Scene.text('41 of 64')).toExist(),
+      Scene.expect(Scene.text('45 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
-      Scene.expect(Scene.text('shadcn/attachment')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Blocked categories' }),
       ).toExist(),

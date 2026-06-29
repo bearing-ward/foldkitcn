@@ -54,6 +54,24 @@ import { CardImage } from '../../../../../repos/ui/apps/v4/examples/base/card-im
 import { CardRtl } from '../../../../../repos/ui/apps/v4/examples/base/card-rtl'
 import { CardSmall } from '../../../../../repos/ui/apps/v4/examples/base/card-small'
 import { CardSpacing } from '../../../../../repos/ui/apps/v4/examples/base/card-spacing'
+import CarouselApi from '../../../../../repos/ui/apps/v4/examples/base/carousel-api'
+import CarouselDemo from '../../../../../repos/ui/apps/v4/examples/base/carousel-demo'
+import { CarouselMultiple } from '../../../../../repos/ui/apps/v4/examples/base/carousel-multiple'
+import CarouselOrientation from '../../../../../repos/ui/apps/v4/examples/base/carousel-orientation'
+import { CarouselRtl } from '../../../../../repos/ui/apps/v4/examples/base/carousel-rtl'
+import CarouselSize from '../../../../../repos/ui/apps/v4/examples/base/carousel-size'
+import CarouselSpacing from '../../../../../repos/ui/apps/v4/examples/base/carousel-spacing'
+import { ItemAvatar } from '../../../../../repos/ui/apps/v4/examples/base/item-avatar'
+import { ItemDemo } from '../../../../../repos/ui/apps/v4/examples/base/item-demo'
+import { ItemDropdown } from '../../../../../repos/ui/apps/v4/examples/base/item-dropdown'
+import { ItemGroupExample } from '../../../../../repos/ui/apps/v4/examples/base/item-group'
+import { ItemHeaderDemo } from '../../../../../repos/ui/apps/v4/examples/base/item-header'
+import { ItemIcon } from '../../../../../repos/ui/apps/v4/examples/base/item-icon'
+import { ItemImage } from '../../../../../repos/ui/apps/v4/examples/base/item-image'
+import { ItemLink } from '../../../../../repos/ui/apps/v4/examples/base/item-link'
+import { ItemRtl } from '../../../../../repos/ui/apps/v4/examples/base/item-rtl'
+import { ItemSizeDemo } from '../../../../../repos/ui/apps/v4/examples/base/item-size'
+import { ItemVariant } from '../../../../../repos/ui/apps/v4/examples/base/item-variant'
 import KbdButton from '../../../../../repos/ui/apps/v4/examples/base/kbd-button'
 import KbdDemo from '../../../../../repos/ui/apps/v4/examples/base/kbd-demo'
 import KbdGroupExample from '../../../../../repos/ui/apps/v4/examples/base/kbd-group'
@@ -65,6 +83,10 @@ import { NativeSelectDisabled } from '../../../../../repos/ui/apps/v4/examples/b
 import NativeSelectGroups from '../../../../../repos/ui/apps/v4/examples/base/native-select-groups'
 import { NativeSelectInvalid } from '../../../../../repos/ui/apps/v4/examples/base/native-select-invalid'
 import { NativeSelectRtl } from '../../../../../repos/ui/apps/v4/examples/base/native-select-rtl'
+import PaginationDemo from '../../../../../repos/ui/apps/v4/examples/base/pagination-demo'
+import { PaginationIconsOnly } from '../../../../../repos/ui/apps/v4/examples/base/pagination-icons-only'
+import { PaginationRtl } from '../../../../../repos/ui/apps/v4/examples/base/pagination-rtl'
+import { PaginationSimple } from '../../../../../repos/ui/apps/v4/examples/base/pagination-simple'
 import { ProgressControlled } from '../../../../../repos/ui/apps/v4/examples/base/progress-controlled'
 import ProgressDemo from '../../../../../repos/ui/apps/v4/examples/base/progress-demo'
 import { ProgressWithLabel } from '../../../../../repos/ui/apps/v4/examples/base/progress-label'
@@ -91,6 +113,10 @@ import { SwitchDisabled } from '../../../../../repos/ui/apps/v4/examples/base/sw
 import { SwitchInvalid } from '../../../../../repos/ui/apps/v4/examples/base/switch-invalid'
 import { SwitchRtl } from '../../../../../repos/ui/apps/v4/examples/base/switch-rtl'
 import { SwitchSizes } from '../../../../../repos/ui/apps/v4/examples/base/switch-sizes'
+import { TableActions } from '../../../../../repos/ui/apps/v4/examples/base/table-actions'
+import { TableDemo } from '../../../../../repos/ui/apps/v4/examples/base/table-demo'
+import { TableFooterExample } from '../../../../../repos/ui/apps/v4/examples/base/table-footer'
+import { TableRtl } from '../../../../../repos/ui/apps/v4/examples/base/table-rtl'
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
@@ -312,6 +338,24 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'card-rtl': CardRtl,
   'card-small': CardSmall,
   'card-spacing': CardSpacing,
+  'carousel-api': CarouselApi,
+  'carousel-demo': CarouselDemo,
+  'carousel-multiple': CarouselMultiple,
+  'carousel-orientation': CarouselOrientation,
+  'carousel-rtl': CarouselRtl,
+  'carousel-size': CarouselSize,
+  'carousel-spacing': CarouselSpacing,
+  'item-avatar': ItemAvatar,
+  'item-demo': ItemDemo,
+  'item-dropdown': ItemDropdown,
+  'item-group': ItemGroupExample,
+  'item-header': ItemHeaderDemo,
+  'item-icon': ItemIcon,
+  'item-image': ItemImage,
+  'item-link': ItemLink,
+  'item-rtl': ItemRtl,
+  'item-size': ItemSizeDemo,
+  'item-variant': ItemVariant,
   'breadcrumb-basic': BreadcrumbBasic,
   'breadcrumb-demo': BreadcrumbDemo,
   'breadcrumb-dropdown': BreadcrumbDropdown,
@@ -368,6 +412,10 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'native-select-groups': NativeSelectGroups,
   'native-select-invalid': NativeSelectInvalid,
   'native-select-rtl': NativeSelectRtl,
+  'pagination-demo': PaginationDemo,
+  'pagination-icons-only': PaginationIconsOnly,
+  'pagination-rtl': PaginationRtl,
+  'pagination-simple': PaginationSimple,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
@@ -394,6 +442,10 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'skeleton-rtl': SkeletonRtl,
   'skeleton-table': SkeletonTable,
   'skeleton-text': SkeletonText,
+  'table-actions': TableActions,
+  'table-demo': TableDemo,
+  'table-footer': TableFooterExample,
+  'table-rtl': TableRtl,
   'textarea-button': TextareaButton,
   'textarea-demo': TextareaDemo,
 }

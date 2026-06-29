@@ -1,0 +1,227 @@
+{
+  "batch": ["shadcn/message-scroller"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Message Scroller",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message-scroller",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/message-scroller.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message-scroller.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message-scroller.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/message-scroller-anchoring.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-animation.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-commands.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-demo.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-group-chat.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-load-history.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-opening-position.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-previous-context.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-scrollable.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-state.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-streaming.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-visibility.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message-scroller.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message-scroller.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/message-scroller.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/message-scroller.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/dropdown-menu",
+        "shadcn/empty",
+        "shadcn/hover-card",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "shadcn/select",
+        "shadcn/slider",
+        "shadcn/tabs",
+        "shadcn/toggle-group",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/message-animated",
+        "@/lib/ai",
+        "@/lib/message-animations",
+        "@ai-sdk/react",
+        "@shadcn/react/message-scroller",
+        "lucide-react",
+        "react",
+        "sonner"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/message-animated",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/lib/ai",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/lib/message-animations",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@ai-sdk/react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@shadcn/react/message-scroller",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/bubble",
+      "classification": "registry-local",
+      "target": "shadcn/bubble",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/empty",
+      "classification": "registry-local",
+      "target": "shadcn/empty",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/hover-card",
+      "classification": "registry-local",
+      "target": "shadcn/hover-card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input-group",
+      "classification": "registry-local",
+      "target": "shadcn/input-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/marker",
+      "classification": "registry-local",
+      "target": "shadcn/marker",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/message",
+      "classification": "registry-local",
+      "target": "shadcn/message",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/select",
+      "classification": "registry-local",
+      "target": "shadcn/select",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/slider",
+      "classification": "registry-local",
+      "target": "shadcn/slider",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/tabs",
+      "classification": "registry-local",
+      "target": "shadcn/tabs",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/toggle-group",
+      "classification": "registry-local",
+      "target": "shadcn/toggle-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/tooltip",
+      "classification": "registry-local",
+      "target": "shadcn/tooltip",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "sonner",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

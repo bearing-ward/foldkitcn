@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T21:18:31.140Z",
+  "generatedAt": "2026-06-29T01:06:23.720Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,14 +9,14 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 41,
-      "remaining": 23
+      "imported": 45,
+      "remaining": 19
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
-    "readyForDossierCount": 5,
-    "dossierReadyCount": 14,
+    "readyForDossierCount": 0,
+    "dossierReadyCount": 15,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -1934,7 +1934,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-button-group/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-button-group/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-button-group/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1960,7 +1961,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-calendar/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-calendar/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-calendar/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -1982,23 +1984,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-carousel/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-carousel/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-carousel/dossier.json"
       ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/carousel"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 85",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/command",
@@ -2010,7 +2013,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-command/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-command/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-command/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2035,7 +2039,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-empty/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-empty/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-empty/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2061,7 +2066,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-input-group/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-input-group/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-input-group/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2084,16 +2090,17 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-item/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-item/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-item/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
@@ -2101,7 +2108,7 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/item"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 89",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/pagination",
@@ -2110,23 +2117,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-pagination/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-pagination/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-pagination/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/pagination"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 90",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/resizable",
@@ -2138,7 +2146,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-resizable/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-resizable/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-resizable/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2163,7 +2172,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-sidebar/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-sidebar/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-sidebar/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2189,7 +2199,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-sonner/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-sonner/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-sonner/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2214,7 +2225,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-spinner/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-spinner/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-spinner/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2236,23 +2248,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/shadcn-table/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/shadcn-table/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/shadcn-table/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/table"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 95",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "base-ui/toast",
@@ -2264,7 +2277,8 @@
       "hasRegistryItem": false,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-toast/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-toast/dossier.json",
+        "plans/artifacts/070-next-component-dossiers/base-ui-toast/dossier.json"
       ],
       "paritySlotStatus": "not-started",
       "implementationStatus": "dossier-ready",
@@ -2440,10 +2454,12 @@
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": false,
-      "hasDossier": false,
-      "dossierPaths": [],
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/070-next-component-dossiers/shadcn-attachment/dossier.json"
+      ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "planned",
+      "implementationStatus": "dossier-ready",
       "parityStatus": "not-started",
       "driftStatus": "current",
       "availability": "private",
@@ -2453,7 +2469,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/attachment"],
-      "readiness": "ready-for-dossier"
+      "readiness": "dossier-ready"
     },
     {
       "itemId": "shadcn/bubble",
@@ -2463,10 +2479,12 @@
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": false,
-      "hasDossier": false,
-      "dossierPaths": [],
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/070-next-component-dossiers/shadcn-bubble/dossier.json"
+      ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "planned",
+      "implementationStatus": "dossier-ready",
       "parityStatus": "not-started",
       "driftStatus": "current",
       "availability": "private",
@@ -2476,7 +2494,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/bubble"],
-      "readiness": "ready-for-dossier"
+      "readiness": "dossier-ready"
     },
     {
       "itemId": "shadcn/button",
@@ -2512,10 +2530,12 @@
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": false,
-      "hasDossier": false,
-      "dossierPaths": [],
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/070-next-component-dossiers/shadcn-marker/dossier.json"
+      ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "planned",
+      "implementationStatus": "dossier-ready",
       "parityStatus": "not-started",
       "driftStatus": "current",
       "availability": "private",
@@ -2525,7 +2545,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/marker"],
-      "readiness": "ready-for-dossier"
+      "readiness": "dossier-ready"
     },
     {
       "itemId": "shadcn/message",
@@ -2535,10 +2555,12 @@
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": false,
-      "hasDossier": false,
-      "dossierPaths": [],
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/070-next-component-dossiers/shadcn-message/dossier.json"
+      ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "planned",
+      "implementationStatus": "dossier-ready",
       "parityStatus": "not-started",
       "driftStatus": "current",
       "availability": "private",
@@ -2547,7 +2569,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/message"],
-      "readiness": "ready-for-dossier"
+      "readiness": "dossier-ready"
     },
     {
       "itemId": "shadcn/message-scroller",
@@ -2557,10 +2579,12 @@
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": false,
-      "hasDossier": false,
-      "dossierPaths": [],
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/070-next-component-dossiers/shadcn-message-scroller/dossier.json"
+      ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "planned",
+      "implementationStatus": "dossier-ready",
       "parityStatus": "not-started",
       "driftStatus": "current",
       "availability": "private",
@@ -2571,7 +2595,7 @@
       "recommendedUrls": [
         "https://ui.shadcn.com/docs/components/message-scroller"
       ],
-      "readiness": "ready-for-dossier"
+      "readiness": "dossier-ready"
     }
   ]
 }

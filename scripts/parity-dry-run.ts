@@ -358,6 +358,10 @@ export const shadcnCaseGrep = (itemId: string, maybeGrep?: string): string => {
     return 'card-'
   }
 
+  if (componentName === 'table' && normalizedGrep === 'table') {
+    return 'table-'
+  }
+
   return normalizedGrep
 }
 

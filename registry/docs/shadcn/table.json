@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/table",
+  "routePath": "/components/shadcn/table",
+  "title": "Table",
+  "description": "Foldkit-native shadcn base-nova Table structural helpers with semantic table parts, local class maps, and deterministic examples for demo, footer, actions, and RTL.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/table",
+  "defaultImportPath": "shadcn/table",
+  "sourceRoot": "registry-src/shadcn/table",
+  "installableSourcePaths": [
+    "src/registry/shadcn/table/index.ts",
+    "src/registry/shadcn/table/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Table",
+      "docsUrl": "https://ui.shadcn.com/docs/components/table",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/table.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/table.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/table.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/table.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/table.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/table-actions.tsx",
+        "repos/ui/apps/v4/examples/base/table-demo.tsx",
+        "repos/ui/apps/v4/examples/base/table-footer.tsx",
+        "repos/ui/apps/v4/examples/base/table-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The Table actions example composes the local shadcn Button registry item."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "registry-local",
+        "target": "shadcn/dropdown-menu",
+        "reason": "The Table actions example composes the local shadcn Dropdown Menu registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Table uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals and Array helpers for Table metadata and examples."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Table action icons are represented by local inline SVGs in installable source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local Arabic example constants."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/table-actions",
+      "title": "TableActions",
+      "description": "Product Table with row action menus using local shadcn Button and Dropdown Menu helpers.",
+      "componentItemId": "shadcn/table",
+      "sourcePath": "src/registry/shadcn/table/examples.ts",
+      "snippet": "export const TableActions = (): Html =>\n  Table<never>({\n    children: [\n      TableHeader<never>({\n        children: [\n          TableRow<never>({\n            children: [\n              TableHead<never>({ children: ['Product'] }),\n              TableHead<never>({ children: ['Price'] }),\n              TableHead<never>({\n                className: 'text-right',\n                children: ['Actions'],\n              }),\n            ],\n          }),\n        ],\n      }),\n      TableBody<never>({\n        children: Array.map(products, product =>\n          TableRow<never>({\n            attributes: [html<never>().Key(product.id)],\n            children: [\n              TableCell<never>({\n                className: 'font-medium',\n                children: [product.name],\n              }),\n              TableCell<never>({ children: [product.price] }),\n              TableCell<never>({\n                className: 'text-right',\n                children: [actionMenu(`table-actions-${product.id}`)],\n              }),\n            ],\n          }),\n        ),\n      }),\n    ],\n  })",
+      "previewStatus": "static",
+      "previewExportName": "TableActions",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/table-demo",
+      "title": "TableDemo",
+      "description": "Invoice Table with caption, header, body, and footer.",
+      "componentItemId": "shadcn/table",
+      "sourcePath": "src/registry/shadcn/table/examples.ts",
+      "snippet": "export const TableDemo = (): Html => invoiceTable(defaultInvoiceCopy, invoices)",
+      "previewStatus": "static",
+      "previewExportName": "TableDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/table-footer",
+      "title": "TableFooterExample",
+      "description": "Invoice Table footer example with a subtotal row.",
+      "componentItemId": "shadcn/table",
+      "sourcePath": "src/registry/shadcn/table/examples.ts",
+      "snippet": "export const TableFooterExample = (): Html =>\n  invoiceTable(defaultInvoiceCopy, Array.take(invoices, 3))",
+      "previewStatus": "static",
+      "previewExportName": "TableFooterExample",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/table-rtl",
+      "title": "TableRtl",
+      "description": "RTL invoice Table using local Arabic strings instead of the origin language selector.",
+      "componentItemId": "shadcn/table",
+      "sourcePath": "src/registry/shadcn/table/examples.ts",
+      "snippet": "export const TableRtl = (): Html => invoiceTable(arabicInvoiceCopy, invoices)",
+      "previewStatus": "static",
+      "previewExportName": "TableRtl",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dropdown-menu",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-table-local-icon",
+        "summary": "The Table actions example uses a local inline SVG more icon instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. The inline SVG preserves the action trigger footprint and aria-hidden contract."
+      },
+      {
+        "id": "shadcn-table-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+      },
+      {
+        "id": "shadcn-table-local-dropdown-composition",
+        "summary": "The actions example composes local Foldkit Button and Dropdown Menu helpers instead of the origin React dropdown runtime.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The table primitive remains presentational while the action example demonstrates composition through existing local registry items."
+      }
+    ]
+  }
+}

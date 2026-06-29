@@ -80,6 +80,19 @@ import {
   InputRequired,
 } from '../../../../../src/registry/shadcn/input/examples'
 import {
+  ItemAvatar,
+  ItemDemo,
+  ItemDropdown,
+  ItemGroupExample,
+  ItemHeaderDemo,
+  ItemIcon,
+  ItemImage,
+  ItemLink,
+  ItemRtl,
+  ItemSizeDemo,
+  ItemVariant,
+} from '../../../../../src/registry/shadcn/item/examples'
+import {
   KbdButton,
   KbdDemo,
   KbdGroupExample,
@@ -96,6 +109,12 @@ import {
   NativeSelectRtl,
 } from '../../../../../src/registry/shadcn/native-select/examples'
 import * as NavigationMenuLocal from '../../../../../src/registry/shadcn/navigation-menu'
+import {
+  PaginationDemo,
+  PaginationIconsOnly,
+  PaginationRtl,
+  PaginationSimple,
+} from '../../../../../src/registry/shadcn/pagination/examples'
 import {
   ProgressControlled,
   ProgressDemo,
@@ -132,6 +151,12 @@ import {
   SwitchRtl,
   SwitchSizes,
 } from '../../../../../src/registry/shadcn/switch/examples'
+import {
+  TableActions,
+  TableDemo,
+  TableFooterExample,
+  TableRtl,
+} from '../../../../../src/registry/shadcn/table/examples'
 import {
   TextareaButton,
   TextareaDemo,
@@ -348,6 +373,17 @@ const components: Readonly<Record<string, () => Html>> = {
   'card-rtl': CardRtl,
   'card-small': CardSmall,
   'card-spacing': CardSpacing,
+  'item-avatar': ItemAvatar,
+  'item-demo': ItemDemo,
+  'item-dropdown': ItemDropdown,
+  'item-group': ItemGroupExample,
+  'item-header': ItemHeaderDemo,
+  'item-icon': ItemIcon,
+  'item-image': ItemImage,
+  'item-link': ItemLink,
+  'item-rtl': ItemRtl,
+  'item-size': ItemSizeDemo,
+  'item-variant': ItemVariant,
   'breadcrumb-basic': BreadcrumbBasic,
   'breadcrumb-demo': BreadcrumbDemo,
   'breadcrumb-dropdown': BreadcrumbDropdown,
@@ -404,6 +440,10 @@ const components: Readonly<Record<string, () => Html>> = {
   'native-select-groups': NativeSelectGroups,
   'native-select-invalid': NativeSelectInvalid,
   'native-select-rtl': NativeSelectRtl,
+  'pagination-demo': PaginationDemo,
+  'pagination-icons-only': PaginationIconsOnly,
+  'pagination-rtl': PaginationRtl,
+  'pagination-simple': PaginationSimple,
   'separator-demo': SeparatorDemo,
   'separator-list': SeparatorList,
   'separator-menu': SeparatorMenu,
@@ -430,6 +470,10 @@ const components: Readonly<Record<string, () => Html>> = {
   'skeleton-rtl': SkeletonRtl,
   'skeleton-table': SkeletonTable,
   'skeleton-text': SkeletonText,
+  'table-actions': TableActions,
+  'table-demo': TableDemo,
+  'table-footer': TableFooterExample,
+  'table-rtl': TableRtl,
   'textarea-button': TextareaButton,
   'textarea-demo': TextareaDemo,
 }
@@ -495,8 +539,16 @@ const foldkitSourcePath = (id: string): string => {
     return 'src/registry/shadcn/skeleton/examples.ts'
   }
 
+  if (id.startsWith('table-')) {
+    return 'src/registry/shadcn/table/examples.ts'
+  }
+
   if (id.startsWith('native-select-')) {
     return 'src/registry/shadcn/native-select/examples.ts'
+  }
+
+  if (id.startsWith('pagination-')) {
+    return 'src/registry/shadcn/pagination/examples.ts'
   }
 
   if (id.startsWith('textarea-')) {
@@ -505,6 +557,10 @@ const foldkitSourcePath = (id: string): string => {
 
   if (id.startsWith('card-')) {
     return 'src/registry/shadcn/card/examples.ts'
+  }
+
+  if (id.startsWith('item-')) {
+    return 'src/registry/shadcn/item/examples.ts'
   }
 
   if (id.startsWith('breadcrumb-')) {

@@ -4,15 +4,54 @@
   "routePath": "/components/base-ui/button",
   "title": "Button",
   "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
-  "docsStatus": "missing",
-  "markdownPath": null,
-  "markdown": null,
-  "headings": [],
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/base-ui/button/docs.md",
+  "markdown": "# Button\n\n## Overview\n\nButton is a Foldkit-native Base UI primitive for rendering native and non-native\nbuttons with consistent disabled, focusable disabled, type, and keyboard\nactivation semantics.\n\n## Foldkit Model\n\nButton is a stateless render helper. It does not own model state or commands.\nParent views decide which element to render through `toView`, and parent update\nfunctions handle facts emitted by button events.\n\n## Usage\n\nImport the helper and call it from a view after binding `const h =\nhtml<Message>()`.\n\n```ts\nButton.view<Message>({\n  onClick: ClickedSave(),\n  toView: attributes => h.button([...attributes.button], ['Save']),\n})\n```\n\nUse `isNativeButton: false` when the visual element is not a native `button`.\nThe helper adds role and keyboard activation attributes for the non-native\nshape.\n\n## Examples\n\nThe registry examples cover enabled buttons, disabled and focusable disabled\nbuttons, non-native button rendering, native `button`/`submit`/`reset` types,\nand a disabled busy-state button.\n\nBase UI primitives are unstyled, so example-local classes are only there to make\nthe behavior easy to inspect in the documentation shell.\n\n## Accessibility\n\nPrefer native `button` elements for actions. Use non-native rendering only when\nthe element shape is required, and keep the accessible name visible or provided\nwith ARIA.\n\nDisabled buttons suppress click, mouse, pointer, and synthetic keyboard\nactivation. Focusable disabled buttons remain reachable while still reporting\ndisabled state through ARIA and `data-disabled`.\n\n## Foldkit Differences\n\nThe origin Base UI Button owns React event wiring and accepts a React `render`\nprop. This registry primitive keeps behavior in Foldkit Html attributes and maps\ncustom rendering through `toView`, preserving unidirectional data flow without a\npublic `asChild` API.\n",
+  "headings": [
+    {
+      "id": "button",
+      "text": "Button",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
   "installCommand": null,
   "localInstallPath": "src/registry/base-ui/button",
   "defaultImportPath": "base-ui/button",
   "sourceRoot": "registry-src/base-ui/button",
-  "installableSourcePaths": ["src/registry/base-ui/button/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/base-ui/button/index.ts",
+    "src/registry/base-ui/button/examples.ts"
+  ],
   "originProvenance": [
     {
       "originKind": "base-ui",
@@ -70,7 +109,68 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "base-ui/button-demo",
+      "title": "ButtonDemo",
+      "description": "Enabled native Button example.",
+      "componentItemId": "base-ui/button",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "snippet": "export const ButtonDemo = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    toView: attributes =>\n      h.button([...attributes.button, h.Class(buttonClass)], ['Button']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonDemo",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/button-disabled",
+      "title": "ButtonDisabled",
+      "description": "Disabled and focusable disabled Button examples.",
+      "componentItemId": "base-ui/button",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "snippet": "export const ButtonDisabled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class(groupClass)],\n    [\n      Button<never>({\n        isDisabled: true,\n        toView: attributes =>\n          h.button([...attributes.button, h.Class(buttonClass)], ['Disabled']),\n      }),\n      Button<never>({\n        isDisabled: true,\n        isFocusableWhenDisabled: true,\n        toView: attributes =>\n          h.button(\n            [...attributes.button, h.Class(secondaryButtonClass)],\n            ['Focusable disabled'],\n          ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonDisabled",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/button-non-native",
+      "title": "ButtonNonNative",
+      "description": "Non-native element rendered with button role and keyboard activation semantics.",
+      "componentItemId": "base-ui/button",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "snippet": "export const ButtonNonNative = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    isNativeButton: false,\n    toView: attributes =>\n      h.div([...attributes.button, h.Class(buttonClass)], ['Div button']),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonNonNative",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/button-types",
+      "title": "ButtonTypes",
+      "description": "Native button, submit, and reset type examples.",
+      "componentItemId": "base-ui/button",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "snippet": "export const ButtonTypes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class(groupClass)],\n    [\n      Button<never>({\n        type: 'button',\n        toView: attributes =>\n          h.button([...attributes.button, h.Class(buttonClass)], ['Button']),\n      }),\n      Button<never>({\n        type: 'submit',\n        toView: attributes =>\n          h.button([...attributes.button, h.Class(buttonClass)], ['Submit']),\n      }),\n      Button<never>({\n        type: 'reset',\n        toView: attributes =>\n          h.button([...attributes.button, h.Class(buttonClass)], ['Reset']),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonTypes",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/button-loading",
+      "title": "ButtonLoading",
+      "description": "Disabled busy-state Button example.",
+      "componentItemId": "base-ui/button",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "snippet": "export const ButtonLoading = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    isDisabled: true,\n    toView: attributes =>\n      h.button(\n        [...attributes.button, h.Class(buttonClass), h.AriaBusy(true)],\n        ['Saving...'],\n      ),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "ButtonLoading",
+      "requiredRegistryItems": [],
+      "notes": []
+    }
+  ],
   "quality": {
     "availability": "installable",
     "implementationStatus": "implemented",

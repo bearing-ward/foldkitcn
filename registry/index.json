@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T21:31:35.728Z",
+  "generatedAt": "2026-06-29T09:28:03.266Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -674,7 +674,10 @@
         "kind": "component",
         "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
         "sourceRoot": "registry-src/base-ui/button",
-        "installableSourcePaths": ["src/registry/base-ui/button/index.ts"],
+        "installableSourcePaths": [
+          "src/registry/base-ui/button/index.ts",
+          "src/registry/base-ui/button/examples.ts"
+        ],
         "consumedThemeTokens": [],
         "originProvenance": [
           {
@@ -733,7 +736,43 @@
             }
           ]
         },
-        "examples": [],
+        "examples": [
+          {
+            "id": "base-ui/button-demo",
+            "title": "ButtonDemo",
+            "description": "Enabled native Button example.",
+            "sourcePath": "src/registry/base-ui/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "base-ui/button-disabled",
+            "title": "ButtonDisabled",
+            "description": "Disabled and focusable disabled Button examples.",
+            "sourcePath": "src/registry/base-ui/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "base-ui/button-non-native",
+            "title": "ButtonNonNative",
+            "description": "Non-native element rendered with button role and keyboard activation semantics.",
+            "sourcePath": "src/registry/base-ui/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "base-ui/button-types",
+            "title": "ButtonTypes",
+            "description": "Native button, submit, and reset type examples.",
+            "sourcePath": "src/registry/base-ui/button/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "base-ui/button-loading",
+            "title": "ButtonLoading",
+            "description": "Disabled busy-state Button example.",
+            "sourcePath": "src/registry/base-ui/button/examples.ts",
+            "kind": "demo"
+          }
+        ],
         "parity": {
           "itemId": "base-ui/button",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/button.fixture.tsx",
@@ -755,22 +794,28 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "complete"
         },
         "deviations": []
       },
-      "manifestHash": "e8cd881c528ec2656431dd47acdd7be57f90c9b29dbfbb890150be881a8d58f3",
+      "manifestHash": "28c8d527cbbf1792745549154641c3ba0cc992f74bd8695ed5223113f77e1170",
       "artifacts": [
         {
           "path": "registry-src/base-ui/button/item.json",
-          "sha256": "13de2157260f03856801cfbb32b1bc68b87e76a084cfff584683722c22749e0f",
-          "sizeBytes": 3573,
+          "sha256": "31e8ee30c76f3f0ad065e855e20c41f17e0b3657299aa1d1c9ad037ddfbf7947",
+          "sizeBytes": 4827,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/button/index.ts",
           "sha256": "2cec0e800c23c8b6de929933f5d37c4e4f1cc16111d76c2257c02d9af4454ad5",
           "sizeBytes": 4773,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/base-ui/button/examples.ts",
+          "sha256": "2094e55013c6467c7b0c2c7c93a3983764e1270f0aa172f42054f178b31b6ae5",
+          "sizeBytes": 2691,
           "role": "source"
         }
       ]
@@ -2420,7 +2465,10 @@
         "kind": "component",
         "description": "Foldkit-native Base UI Input primitive preserving native form attributes, controlled value changes, and Field control data attributes without internal state.",
         "sourceRoot": "registry-src/base-ui/input",
-        "installableSourcePaths": ["src/registry/base-ui/input/index.ts"],
+        "installableSourcePaths": [
+          "src/registry/base-ui/input/index.ts",
+          "src/registry/base-ui/input/examples.ts"
+        ],
         "consumedThemeTokens": [],
         "originProvenance": [
           {
@@ -2476,7 +2524,22 @@
             }
           ]
         },
-        "examples": [],
+        "examples": [
+          {
+            "id": "base-ui/input-demo",
+            "title": "InputDemo",
+            "description": "Default controlled Input with the Base UI hero label and placeholder.",
+            "sourcePath": "src/registry/base-ui/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "base-ui/input-disabled",
+            "title": "InputDisabled",
+            "description": "Disabled Input preserving native disabled behavior and data attributes.",
+            "sourcePath": "src/registry/base-ui/input/examples.ts",
+            "kind": "demo"
+          }
+        ],
         "parity": {
           "itemId": "base-ui/input",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/input.fixture.tsx",
@@ -2497,22 +2560,28 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "stub"
         },
         "deviations": []
       },
-      "manifestHash": "a5b9f2958a098ea0e5ba5ebac756df9f6f4f40d78ebbdfd0a53c3630e26b8ee5",
+      "manifestHash": "f2bf0c70dc45c078771cde4e2180d8d4c2b6c5b9b01ccc24b88742e345f4844f",
       "artifacts": [
         {
           "path": "registry-src/base-ui/input/item.json",
-          "sha256": "9f0b42772af6072675473d106dd6301f923ff712a749916f28affe5a92180d82",
-          "sizeBytes": 3237,
+          "sha256": "83ada3cfeb1745f887868d38aa025c74d9ff21128282bebd5dcc26cd7f844cbe",
+          "sizeBytes": 3804,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/input/index.ts",
           "sha256": "a834d5b53d569036fb173567bb8c39518658f34eaff812bb8e042cb3b39fb13d",
           "sizeBytes": 4888,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/base-ui/input/examples.ts",
+          "sha256": "523ef33f22beb998ecbd3b573caed49a33df65465eebe8edbd9774793b1d370f",
+          "sizeBytes": 2666,
           "role": "source"
         }
       ]
@@ -8001,6 +8070,279 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/carousel",
+        "namespace": "shadcn",
+        "name": "Carousel",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Carousel with local selected-index state, keyboard navigation, controls, examples, and parity fixtures without Embla runtime dependencies.",
+        "sourceRoot": "registry-src/shadcn/carousel",
+        "installableSourcePaths": [
+          "src/registry/shadcn/carousel/index.ts",
+          "src/registry/shadcn/carousel/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--card",
+          "--card-foreground",
+          "--card-spacing",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius-lg",
+          "--radius-md",
+          "--ring",
+          "--secondary",
+          "--secondary-foreground",
+          "--spacing"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Carousel",
+            "docsUrl": "https://ui.shadcn.com/docs/components/carousel",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/carousel.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/carousel.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/carousel.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/carousel.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/carousel.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/carousel-api.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-demo.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-multiple.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-orientation.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-plugin.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-size.tsx",
+              "repos/ui/apps/v4/examples/base/carousel-spacing.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Carousel previous and next controls compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "registry-local",
+              "target": "shadcn/card",
+              "reason": "Carousel examples compose the local shadcn Card registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Carousel uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, keyboard event, and Command types for the Foldkit-native Carousel helper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals, Match, Array, and Option utilities for Carousel state and messages."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "embla-carousel-react",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin Embla behavior is replaced by local Foldkit selected-index state in installable output."
+            },
+            {
+              "specifier": "embla-carousel-autoplay",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Autoplay/plugin parity needs a broader lifecycle-command foundation and is deferred instead of using timers in view code."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon controls are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local Arabic example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/carousel-demo",
+            "title": "CarouselDemo",
+            "description": "Basic Card Carousel with five square slides and previous/next controls.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-size",
+            "title": "CarouselSize",
+            "description": "Carousel item sizing example with half-width and third-width responsive slides.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-multiple",
+            "title": "CarouselMultiple",
+            "description": "Carousel showing multiple responsive items with breakpoint-gated controls.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-spacing",
+            "title": "CarouselSpacing",
+            "description": "Carousel custom spacing example using tighter content and item offsets.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-orientation",
+            "title": "CarouselOrientation",
+            "description": "Vertical Carousel orientation with vertical controls and keyboard handling.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-api",
+            "title": "CarouselApi",
+            "description": "Carousel status example rendered from local state as Slide 1 of 5.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/carousel-rtl",
+            "title": "CarouselRtl",
+            "description": "RTL Carousel using local Arabic numerals instead of the origin language selector.",
+            "sourcePath": "src/registry/shadcn/carousel/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/carousel",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-carousel-local-state",
+            "shadcn-carousel-local-icons",
+            "shadcn-carousel-local-rtl-data",
+            "shadcn-carousel-autoplay-deferred"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-carousel-local-state",
+            "summary": "Carousel uses local Foldkit selected-index state instead of Embla's runtime API.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot require embla-carousel-react. Local Model and Message helpers preserve selected index, orientation, boundary state, controls, and keyboard navigation within the Foldkit architecture."
+          },
+          {
+            "id": "shadcn-carousel-local-icons",
+            "summary": "Previous and next controls use local inline SVGs instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the icon DOM role, visual footprint, and RTL rotation classes."
+          },
+          {
+            "id": "shadcn-carousel-local-rtl-data",
+            "summary": "RTL example uses local Arabic numeral formatting instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          },
+          {
+            "id": "shadcn-carousel-autoplay-deferred",
+            "summary": "Autoplay/plugin example parity is deferred.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The origin plugin example depends on embla-carousel-autoplay. Representing autoplay idiomatically needs a broader lifecycle-command foundation, so this batch intentionally avoids timers in view code."
+          }
+        ]
+      },
+      "manifestHash": "941bfdb4b033d50ce4f5ce57b41a14f148dfec0a01aa61b6d7a3375e9beb4300",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/carousel/item.json",
+          "sha256": "cef4338151e21b58e5010755b2766245072a1ad8487c5576683e6dbede55fedd",
+          "sizeBytes": 9439,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/carousel/index.ts",
+          "sha256": "fcaa1ee2ec579d6c3c81bbb572266137710b56409095915fd3d5b347d3414735",
+          "sizeBytes": 16090,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/carousel/examples.ts",
+          "sha256": "50d75b76b21a264d96a1a36384dbc891cb7a3f7b2316b67b1f28e64eb7c24f18",
+          "sizeBytes": 5479,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/checkbox",
         "namespace": "shadcn",
         "name": "Checkbox",
@@ -11176,6 +11518,316 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/item",
+        "namespace": "shadcn",
+        "name": "Item",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Item structural helpers with Schema-backed variant, size, and media metadata plus local class maps.",
+        "sourceRoot": "registry-src/shadcn/item",
+        "installableSourcePaths": [
+          "src/registry/shadcn/item/index.ts",
+          "src/registry/shadcn/item/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--ring",
+          "--spacing"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Item",
+            "docsUrl": "https://ui.shadcn.com/docs/components/item",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/item.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/item.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/item.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/item.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/item.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/item-avatar.tsx",
+              "repos/ui/apps/v4/examples/base/item-demo.tsx",
+              "repos/ui/apps/v4/examples/base/item-dropdown.tsx",
+              "repos/ui/apps/v4/examples/base/item-group.tsx",
+              "repos/ui/apps/v4/examples/base/item-header.tsx",
+              "repos/ui/apps/v4/examples/base/item-icon.tsx",
+              "repos/ui/apps/v4/examples/base/item-image.tsx",
+              "repos/ui/apps/v4/examples/base/item-link.tsx",
+              "repos/ui/apps/v4/examples/base/item-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/item-size.tsx",
+              "repos/ui/apps/v4/examples/base/item-variant.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/avatar",
+              "classification": "registry-local",
+              "target": "shadcn/avatar",
+              "reason": "Item avatar, group, and dropdown examples compose the local shadcn Avatar registry item."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Item action and dropdown trigger examples compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "Origin dropdown example is represented against the local shadcn Dropdown Menu parity surface."
+            },
+            {
+              "specifier": "shadcn/separator",
+              "classification": "registry-local",
+              "target": "shadcn/separator",
+              "reason": "ItemSeparator composes the local shadcn Separator registry item while preserving the origin item-specific slot."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Item uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for Item variant, size, and media metadata."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/merge-props",
+              "reason": "Origin React prop merging is replaced by Foldkit attribute composition."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/use-render",
+              "reason": "Origin render support is represented by Foldkit toView composition."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon examples are represented by local inline SVGs in this batch."
+            },
+            {
+              "specifier": "next/image",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin image examples are represented by plain image shims in this batch."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local Arabic example constants and origin fixture aliases."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/item-demo",
+            "title": "ItemDemo",
+            "description": "Basic Item and render-as-anchor verified Item examples.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-avatar",
+            "title": "ItemAvatar",
+            "description": "Item examples that compose local Avatar and Button helpers.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-dropdown",
+            "title": "ItemDropdown",
+            "description": "Closed dropdown trigger example matching the origin Item dropdown preview root.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-group",
+            "title": "ItemGroupExample",
+            "description": "Grouped people list using ItemGroup, ItemMedia, ItemContent, and ItemActions.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-header",
+            "title": "ItemHeaderDemo",
+            "description": "Card-like Item grid with image headers.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-icon",
+            "title": "ItemIcon",
+            "description": "Icon media Item with an action Button.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-image",
+            "title": "ItemImage",
+            "description": "Linked music list Items with image media and secondary content.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-link",
+            "title": "ItemLink",
+            "description": "Item rendered as internal and external anchors through toView.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-rtl",
+            "title": "ItemRtl",
+            "description": "RTL Item example using local Arabic strings instead of the origin language selector.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-size",
+            "title": "ItemSizeDemo",
+            "description": "Default, small, and extra-small Item size examples.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/item-variant",
+            "title": "ItemVariant",
+            "description": "Default, outline, and muted Item variant examples.",
+            "sourcePath": "src/registry/shadcn/item/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/item",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-item-local-icons",
+            "shadcn-item-local-images",
+            "shadcn-item-local-rtl-data"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-item-local-icons",
+            "summary": "Icon examples use local inline SVGs instead of origin icon packages.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the inline icon DOM role and visual footprint for Item examples without adding icon registry items."
+          },
+          {
+            "id": "shadcn-item-local-images",
+            "summary": "Image examples use plain image shims instead of next/image.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot depend on Next.js. Plain image elements preserve the rendered media footprint and class contract needed by Item examples."
+          },
+          {
+            "id": "shadcn-item-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
+          }
+        ]
+      },
+      "manifestHash": "538f6eaafbd96dd2c402e3c5bf341196d6b9153e38b960519b255e76afaed7e2",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/item/item.json",
+          "sha256": "6c7d76229cd00be81338d4b566bb8f3906b8413e4926f0de0d90bc133d550cc8",
+          "sizeBytes": 10495,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/item/index.ts",
+          "sha256": "46e5396cb91d3e9474281e8b04653cab091ea12703b1677d1c138b106786b883",
+          "sizeBytes": 10892,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/item/examples.ts",
+          "sha256": "85ff9db20c5bd02957ac2dde03eff1f782de0ad67eede9bfdc565ab7b8f5b73c",
+          "sizeBytes": 19794,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/kbd",
         "namespace": "shadcn",
         "name": "Kbd",
@@ -12275,6 +12927,241 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/pagination",
+        "namespace": "shadcn",
+        "name": "Pagination",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Pagination helpers with navigation/list semantics, current-page state, previous and next controls, ellipsis, disabled link state, local inline icons, and local button/field/select composition.",
+        "sourceRoot": "registry-src/shadcn/pagination",
+        "installableSourcePaths": [
+          "src/registry/shadcn/pagination/index.ts",
+          "src/registry/shadcn/pagination/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius-md",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Pagination",
+            "docsUrl": "https://ui.shadcn.com/docs/components/pagination",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/pagination.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/pagination.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/pagination.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/pagination.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/pagination.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/pagination-demo.tsx",
+              "repos/ui/apps/v4/examples/base/pagination-icons-only.tsx",
+              "repos/ui/apps/v4/examples/base/pagination-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/pagination-simple.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "PaginationLink, PaginationPrevious, and PaginationNext compose the local shadcn Button item for link-like button styling and disabled behavior."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "registry-local",
+              "target": "shadcn/field",
+              "reason": "The icons-only example composes the local shadcn Field item for the rows-per-page label layout."
+            },
+            {
+              "specifier": "shadcn/select",
+              "classification": "registry-local",
+              "target": "shadcn/select",
+              "reason": "The icons-only example composes the local shadcn Select item for the rows-per-page control."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Pagination uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for Foldkit-native helpers and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema metadata for Pagination direction and style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin previous, next, and ellipsis icons are represented by local inline SVG helpers in installable source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local deterministic Arabic example data."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/pagination-demo",
+            "title": "PaginationDemo",
+            "description": "Default Pagination with previous, numbered pages, current page, ellipsis, and next controls.",
+            "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/pagination-icons-only",
+            "title": "PaginationIconsOnly",
+            "description": "Pagination paired with local Field and Select rows-per-page controls.",
+            "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/pagination-rtl",
+            "title": "PaginationRtl",
+            "description": "RTL Pagination using local Arabic strings and numerals instead of the origin language selector runtime.",
+            "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/pagination-simple",
+            "title": "PaginationSimple",
+            "description": "Simple Pagination with numbered page links only.",
+            "sourcePath": "src/registry/shadcn/pagination/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/pagination",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-pagination-local-icons",
+            "shadcn-pagination-local-links",
+            "shadcn-pagination-local-rtl-data",
+            "shadcn-pagination-local-composed-controls"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-pagination-local-icons",
+            "summary": "Icons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the previous, next, ellipsis, and icon placement contracts."
+          },
+          {
+            "id": "shadcn-pagination-local-links",
+            "summary": "Pagination links use explicit Foldkit anchor rendering through the local Button helper instead of React render-element cloning.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source models link rendering through toView and avoids React Slot or Next Link cloning semantics."
+          },
+          {
+            "id": "shadcn-pagination-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin app language selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin language selector. Local constants preserve the default RTL rendered output."
+          },
+          {
+            "id": "shadcn-pagination-local-composed-controls",
+            "summary": "The icons-only example composes local Field and Select helpers for the rows-per-page control.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The selected dependencies are already local registry items and preserve the documented example without introducing upstream runtime dependencies."
+          }
+        ]
+      },
+      "manifestHash": "94746abc00f259e6df06653c565c520b76927d5856a870ade9e31b63830456d2",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/pagination/item.json",
+          "sha256": "cf838d6107fdd9369fd373219db8fc8483518f314d47eeb409f58ca9578bc593",
+          "sizeBytes": 8061,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/pagination/index.ts",
+          "sha256": "742411569cc8649ff856a6c12a061152bf06d118c4fc80653040dacdb0b613c8",
+          "sizeBytes": 9483,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/pagination/examples.ts",
+          "sha256": "07c7525bcb57858b4522be9c1c97a10bf31fd4adfb67b8e442237878bde1d92b",
+          "sizeBytes": 5458,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/popover",
         "namespace": "shadcn",
         "name": "Popover",
@@ -12735,7 +13622,10 @@
         "kind": "component",
         "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
         "sourceRoot": "registry-src/shadcn/radio-group",
-        "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+        "installableSourcePaths": [
+          "src/registry/shadcn/radio-group/index.ts",
+          "src/registry/shadcn/radio-group/examples.ts"
+        ],
         "consumedThemeTokens": [
           "--destructive",
           "--input",
@@ -12851,7 +13741,57 @@
             }
           ]
         },
-        "examples": [],
+        "examples": [
+          {
+            "id": "shadcn/radio-group-demo",
+            "title": "RadioGroupDemo",
+            "description": "Default Radio Group with labeled density options.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-description",
+            "title": "RadioGroupDescription",
+            "description": "Radio Group options with descriptions.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-choice-card",
+            "title": "RadioGroupChoiceCard",
+            "description": "Radio Group choice-card plan selection.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-disabled",
+            "title": "RadioGroupDisabled",
+            "description": "Radio Group with one disabled item.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-fieldset",
+            "title": "RadioGroupFieldset",
+            "description": "Radio Group nested in a fieldset.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-invalid",
+            "title": "RadioGroupInvalid",
+            "description": "Invalid Radio Group and item states.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/radio-group-rtl",
+            "title": "RadioGroupRtl",
+            "description": "RTL Radio Group using local static Arabic labels.",
+            "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+            "kind": "demo"
+          }
+        ],
         "parity": {
           "itemId": "shadcn/radio-group",
           "originFixturePath": "tests/parity/fixtures/origin/shadcn/radio-group.fixture.ts",
@@ -12873,7 +13813,7 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "stub"
         },
         "deviations": [
           {
@@ -12885,18 +13825,24 @@
           }
         ]
       },
-      "manifestHash": "57cda157e4671c34cc6d3401ad1e5b7ff4a68bdbcfaaaf600d042360b0ed0173",
+      "manifestHash": "f8eb86578341f3e5d2b3ff2ff2afa3c2c7e8b44dbf437bfe1289f96f8f199eb3",
       "artifacts": [
         {
           "path": "registry-src/shadcn/radio-group/item.json",
-          "sha256": "abe3b370ee869b0d8c4659b2db07f13c26c473e0dcdd1f593ff6cbc45a46ca35",
-          "sizeBytes": 6063,
+          "sha256": "4232898690fe9c630adbbe3a69784ab3f5aebb8babd1dd9a495c2cf33bf4f0f6",
+          "sizeBytes": 7833,
           "role": "manifest"
         },
         {
           "path": "src/registry/shadcn/radio-group/index.ts",
           "sha256": "fefb62985aff034c160bdc6f7c62206354876d448271c509f63083c7a8d16178",
           "sizeBytes": 5372,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/radio-group/examples.ts",
+          "sha256": "6732624f1b3bc26920addc6c6036d7fae49b5884cbc925f54ea352f51398159d",
+          "sizeBytes": 14870,
           "role": "source"
         }
       ]
@@ -14520,6 +15466,220 @@
           "path": "src/registry/shadcn/switch/examples.ts",
           "sha256": "9034c44dcbd44e7a2696370fcd990d14831b150749b00ab6cf13c6250df2794a",
           "sizeBytes": 10938,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/table",
+        "namespace": "shadcn",
+        "name": "Table",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Table structural helpers with semantic table parts, local class maps, and deterministic examples for demo, footer, actions, and RTL.",
+        "sourceRoot": "registry-src/shadcn/table",
+        "installableSourcePaths": [
+          "src/registry/shadcn/table/index.ts",
+          "src/registry/shadcn/table/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--foreground",
+          "--muted",
+          "--muted-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Table",
+            "docsUrl": "https://ui.shadcn.com/docs/components/table",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/table.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/table.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/table.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/table.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/table.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/table-actions.tsx",
+              "repos/ui/apps/v4/examples/base/table-demo.tsx",
+              "repos/ui/apps/v4/examples/base/table-footer.tsx",
+              "repos/ui/apps/v4/examples/base/table-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The Table actions example composes the local shadcn Button registry item."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "The Table actions example composes the local shadcn Dropdown Menu registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Table uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helpers."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals and Array helpers for Table metadata and examples."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin Table action icons are represented by local inline SVGs in installable source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by local Arabic example constants."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/table-actions",
+            "title": "TableActions",
+            "description": "Product Table with row action menus using local shadcn Button and Dropdown Menu helpers.",
+            "sourcePath": "src/registry/shadcn/table/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/table-demo",
+            "title": "TableDemo",
+            "description": "Invoice Table with caption, header, body, and footer.",
+            "sourcePath": "src/registry/shadcn/table/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/table-footer",
+            "title": "TableFooterExample",
+            "description": "Invoice Table footer example with a subtotal row.",
+            "sourcePath": "src/registry/shadcn/table/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/table-rtl",
+            "title": "TableRtl",
+            "description": "RTL invoice Table using local Arabic strings instead of the origin language selector.",
+            "sourcePath": "src/registry/shadcn/table/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/table",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-table-local-icon",
+            "shadcn-table-local-rtl-data",
+            "shadcn-table-local-dropdown-composition"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-table-local-icon",
+            "summary": "The Table actions example uses a local inline SVG more icon instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. The inline SVG preserves the action trigger footprint and aria-hidden contract."
+          },
+          {
+            "id": "shadcn-table-local-rtl-data",
+            "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
+          },
+          {
+            "id": "shadcn-table-local-dropdown-composition",
+            "summary": "The actions example composes local Foldkit Button and Dropdown Menu helpers instead of the origin React dropdown runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The table primitive remains presentational while the action example demonstrates composition through existing local registry items."
+          }
+        ]
+      },
+      "manifestHash": "e1ef5c20ea03c6adf34f8d0e416a0efe76bc9320007cb731f7d757508d3b5d40",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/table/item.json",
+          "sha256": "dd6539c436cfebeaff799538d19e0f684108ac4e303bbdcfa24d4df67e1ccc6f",
+          "sizeBytes": 6912,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/table/index.ts",
+          "sha256": "981f7fa8a125dc2c3fa2deb1ce9aba514c786e847929714face621647a5bc642",
+          "sizeBytes": 6725,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/table/examples.ts",
+          "sha256": "b2ce2f82ff69c3afeab3ecd5d44149bc707b431fca06f49a7870984a6f01c1f4",
+          "sizeBytes": 10088,
           "role": "source"
         }
       ]

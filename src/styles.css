@@ -339,7 +339,9 @@ dt {
 }
 
 .route-frame {
+  width: 100%;
   max-width: 780px;
+  min-width: 0;
 }
 
 .page-header {
@@ -362,6 +364,7 @@ dt {
 
 .content-section,
 .namespace-section {
+  min-width: 0;
   padding: 2rem 0;
   border-bottom: 1px solid var(--shell-border);
 }
@@ -415,6 +418,7 @@ dt {
   display: grid;
   gap: 0.6rem;
   margin: 0;
+  min-width: 0;
 }
 
 .meta-list.wide {
@@ -423,25 +427,39 @@ dt {
 }
 
 .meta-list div {
+  display: grid;
+  grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-width: 0;
   border: 1px solid var(--shell-border);
   background: var(--shell-code);
   padding: 0.55rem 0.65rem;
 }
 
+.meta-list dt {
+  min-width: 0;
+}
+
 .meta-list dd {
+  min-width: 0;
   margin: 0;
   color: var(--shell-text);
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 .snippet-block {
   position: relative;
+  max-width: 100%;
+  min-width: 0;
   margin: 1rem 0;
 }
 
 .code-block {
+  max-width: 100%;
   min-width: 0;
   margin: 0;
   overflow-x: auto;
@@ -484,12 +502,20 @@ dt {
 .example-list {
   display: grid;
   gap: 1rem;
+  justify-items: start;
+  min-width: 0;
 }
 
 .example-card {
+  width: min(100%, calc(100vw - 2rem), 36rem);
+  min-width: 0;
   border: 1px solid var(--shell-border);
   background: var(--shell-surface);
   padding: 1rem;
+}
+
+.example-card .snippet-block {
+  min-width: 0;
 }
 
 .example-card-header {

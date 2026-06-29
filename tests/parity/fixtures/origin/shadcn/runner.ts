@@ -45,6 +45,7 @@ const baseUiUtilsPath = (specifier: string): string => {
 const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
+const carouselShimModuleId = '\0foldkitcn-shadcn-origin-carousel-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
 const nextLinkShimModuleId = '\0foldkitcn-shadcn-origin-next-link-shim'
 const dropdownMenuShimModuleId = '\0foldkitcn-shadcn-origin-dropdown-menu-shim'
@@ -54,6 +55,8 @@ const virtualModuleAliases = new Map([
   ['next/link', nextLinkShimModuleId],
   ['@/styles/base-nova/ui/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
+  ['@/styles/base-nova/ui/carousel', carouselShimModuleId],
+  ['@/styles/base-nova/ui-rtl/carousel', carouselShimModuleId],
   ['@/styles/base-nova/ui/slider', sliderShimModuleId],
   ['@/styles/base-nova/ui/input-group', inputGroupShimModuleId],
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
@@ -109,6 +112,10 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/switch/index.ts')
     }
 
+    if (source === '@base-ui/react/select') {
+      return repoPath('repos/base-ui/packages/react/src/select/index.ts')
+    }
+
     if (source === '@base-ui/react/avatar') {
       return repoPath('repos/base-ui/packages/react/src/avatar/index.ts')
     }
@@ -152,6 +159,184 @@ const originAliasPlugin = (): Plugin => ({
       return `
         export function Slider() {
           return null
+        }
+      `
+    }
+
+    if (id === carouselShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        import { cn } from '@/lib/utils'
+        import { Button } from '@/styles/base-nova/ui/button'
+
+        const CarouselContext = React.createContext({
+          orientation: 'horizontal',
+          dir: undefined,
+          canScrollPrev: false,
+          canScrollNext: true,
+        })
+
+        function isRtl(dir) {
+          return dir === 'rtl'
+        }
+
+        function ChevronIcon({ kind, dir }) {
+          const d = kind === 'left' ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'
+          const className = isRtl(dir) ? 'rtl:rotate-180' : 'cn-rtl-flip'
+
+          return React.createElement(
+            'svg',
+            {
+              xmlns: 'http://www.w3.org/2000/svg',
+              width: '24',
+              height: '24',
+              viewBox: '0 0 24 24',
+              fill: 'none',
+              stroke: 'currentColor',
+              strokeWidth: '2',
+              strokeLinecap: 'round',
+              strokeLinejoin: 'round',
+              className,
+              'aria-hidden': 'true',
+            },
+            React.createElement('path', { d }),
+          )
+        }
+
+        export function Carousel({
+          orientation = 'horizontal',
+          opts: _opts,
+          setApi: _setApi,
+          plugins: _plugins,
+          className,
+          children,
+          dir,
+          ...props
+        }) {
+          return React.createElement(
+            CarouselContext.Provider,
+            {
+              value: {
+                orientation,
+                dir,
+                canScrollPrev: false,
+                canScrollNext: true,
+              },
+            },
+            React.createElement(
+              'div',
+              {
+                ...props,
+                dir,
+                className: cn('relative', className),
+                role: 'region',
+                'aria-roledescription': 'carousel',
+                'data-slot': 'carousel',
+              },
+              children,
+            ),
+          )
+        }
+
+        export function CarouselContent({ className, ...props }) {
+          const { orientation, dir } = React.useContext(CarouselContext)
+          const spacingClassName =
+            orientation === 'horizontal'
+              ? isRtl(dir)
+                ? '-ms-4'
+                : '-ml-4'
+              : '-mt-4 flex-col'
+
+          return React.createElement(
+            'div',
+            {
+              className: 'overflow-hidden',
+              'data-slot': 'carousel-content',
+            },
+            React.createElement('div', {
+              ...props,
+              className: cn('flex', spacingClassName, className),
+            }),
+          )
+        }
+
+        export function CarouselItem({ className, ...props }) {
+          const { orientation, dir } = React.useContext(CarouselContext)
+          const spacingClassName =
+            orientation === 'horizontal'
+              ? isRtl(dir)
+                ? 'ps-4'
+                : 'pl-4'
+              : 'pt-4'
+
+          return React.createElement('div', {
+            ...props,
+            role: 'group',
+            'aria-roledescription': 'slide',
+            'data-slot': 'carousel-item',
+            className: cn(
+              'min-w-0 shrink-0 grow-0 basis-full',
+              spacingClassName,
+              className,
+            ),
+          })
+        }
+
+        export function CarouselPrevious({ className, variant = 'outline', size = 'icon-sm', ...props }) {
+          const { orientation, dir, canScrollPrev } = React.useContext(CarouselContext)
+          const placementClassName =
+            orientation === 'horizontal'
+              ? isRtl(dir)
+                ? 'inset-y-0 -start-12 my-auto'
+                : 'inset-y-0 -left-12 my-auto'
+              : isRtl(dir)
+                ? 'start-1/2 -top-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2'
+                : '-top-12 left-1/2 -translate-x-1/2 rotate-90'
+
+          return React.createElement(
+            Button,
+            {
+              ...props,
+              'data-slot': 'carousel-previous',
+              variant,
+              size,
+              className: cn('absolute touch-manipulation rounded-full', placementClassName, className),
+              disabled: !canScrollPrev,
+            },
+            React.createElement(ChevronIcon, { kind: 'left', dir }),
+            React.createElement('span', { className: 'sr-only' }, 'Previous slide'),
+          )
+        }
+
+        export function CarouselNext({ className, variant = 'outline', size = 'icon-sm', ...props }) {
+          const { orientation, dir, canScrollNext } = React.useContext(CarouselContext)
+          const placementClassName =
+            orientation === 'horizontal'
+              ? isRtl(dir)
+                ? 'inset-y-0 -end-12 my-auto'
+                : 'inset-y-0 -right-12 my-auto'
+              : isRtl(dir)
+                ? 'start-1/2 -bottom-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2'
+                : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90'
+
+          return React.createElement(
+            Button,
+            {
+              ...props,
+              'data-slot': 'carousel-next',
+              variant,
+              size,
+              className: cn('absolute touch-manipulation rounded-full', placementClassName, className),
+              disabled: !canScrollNext,
+            },
+            React.createElement(ChevronIcon, { kind: 'right', dir }),
+            React.createElement('span', { className: 'sr-only' }, 'Next slide'),
+          )
+        }
+
+        export function useCarousel() {
+          return React.useContext(CarouselContext)
         }
       `
     }
@@ -432,6 +617,18 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/select',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/select.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/pagination',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/pagination.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/spinner',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx',
@@ -459,6 +656,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui/switch',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/switch.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/table',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/table.tsx',
           ),
         },
         {
@@ -546,6 +749,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui-rtl/pagination',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/pagination.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui-rtl/spinner',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/spinner.tsx',
@@ -573,6 +782,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/switch',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/switch.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/table',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/table.tsx',
           ),
         },
         {

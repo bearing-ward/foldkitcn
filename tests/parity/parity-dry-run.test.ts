@@ -24,7 +24,9 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/card',
+      'shadcn/item',
       'shadcn/breadcrumb',
+      'shadcn/pagination',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -46,6 +48,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/scroll-area',
       'shadcn/switch',
       'shadcn/skeleton',
+      'shadcn/table',
       'shadcn/textarea',
       'shadcn/dialog',
       'shadcn/drawer',
@@ -68,7 +71,9 @@ describe('parity dry-run helpers', () => {
       'shadcn/badge',
       'shadcn/button',
       'shadcn/card',
+      'shadcn/item',
       'shadcn/breadcrumb',
+      'shadcn/pagination',
       'shadcn/toggle',
       'shadcn/toggle-group',
       'shadcn/kbd',
@@ -90,6 +95,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/scroll-area',
       'shadcn/switch',
       'shadcn/skeleton',
+      'shadcn/table',
       'shadcn/textarea',
       'shadcn/dialog',
       'shadcn/drawer',
@@ -128,6 +134,10 @@ describe('parity dry-run helpers', () => {
 
   test('matches breadcrumb by component grep', () => {
     expect(matchingItemIds('breadcrumb')).toStrictEqual(['shadcn/breadcrumb'])
+  })
+
+  test('matches pagination by component grep', () => {
+    expect(matchingItemIds('pagination')).toStrictEqual(['shadcn/pagination'])
   })
 
   test('matches OTP slots with component grep', () => {

@@ -1,9 +1,14 @@
-import { Console, Effect } from 'effect'
+import { Console, Effect, Schema as S } from 'effect'
 import { chromium } from 'playwright'
 import type { Browser } from 'playwright'
 
-import { docsData } from '../src/data'
-import { routeInventory, routeToOutputPath } from '../src/route-inventory'
+import docsIndexJson from '../registry/docs/index.json'
+import registryIndexJson from '../registry/index.json'
+import { ComponentDocsIndex, RegistryIndex } from '../src/registry/schema'
+import type {
+  RegistryIndexEntry,
+  RegistryNamespace,
+} from '../src/registry/schema'
 
 import { spawn } from 'node:child_process'
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
@@ -19,6 +24,136 @@ const PREVIEW_BASE_URL = `http://${PREVIEW_HOST}:${PREVIEW_PORT}`
 const SERVER_READY_ATTEMPTS = 80
 const SERVER_READY_DELAY_MS = 250
 const titlePattern = /<title>.*?<\/title>/su
+const namespaceLabels: Readonly<Record<RegistryNamespace, string>> = {
+  'base-ui': 'Base UI',
+  shadcn: 'shadcn',
+  utils: 'Utilities',
+  themes: 'Themes',
+  blocks: 'Blocks',
+  charts: 'Charts',
+  local: 'Local',
+}
+const namespaceOrder: ReadonlyArray<RegistryNamespace> = [
+  'base-ui',
+  'shadcn',
+  'utils',
+  'themes',
+  'blocks',
+  'charts',
+  'local',
+]
+
+type RouteSection = 'home' | 'docs' | 'components' | 'registry' | 'roadmap'
+type RouteMetadata = Readonly<{
+  title: string
+  description: string
+  section: RouteSection
+}>
+type RouteInventoryEntry = Readonly<{
+  path: string
+  outputPath: string
+  metadata: RouteMetadata
+}>
+
+const pageTitle = (title: string): string =>
+  title === 'Foldkit CN' ? title : `${title} | Foldkit CN`
+
+const routeToOutputPath = (urlPath: string): string =>
+  urlPath === '/' ? 'index.html' : `${urlPath.slice(1)}/index.html`
+
+const routeEntry = (
+  urlPath: string,
+  metadata: RouteMetadata,
+): RouteInventoryEntry => ({
+  path: urlPath,
+  outputPath: routeToOutputPath(urlPath),
+  metadata,
+})
+
+const canRenderPublicComponent = (entry: RegistryIndexEntry): boolean =>
+  entry.item.kind === 'component' &&
+  (entry.item.lifecycle.availability === 'installable' ||
+    entry.item.lifecycle.availability === 'preview')
+
+const publicComponentEntries = (): ReadonlyArray<RegistryIndexEntry> => {
+  const registry = S.decodeUnknownSync(RegistryIndex)(registryIndexJson)
+  const docsIndex = S.decodeUnknownSync(ComponentDocsIndex)(docsIndexJson)
+  const documentedItemIds = new Set(docsIndex.routes.map(route => route.itemId))
+
+  return registry.items.filter(
+    entry =>
+      canRenderPublicComponent(entry) && documentedItemIds.has(entry.item.id),
+  )
+}
+
+const namespaceEntry = (namespace: RegistryNamespace): RouteInventoryEntry =>
+  routeEntry(`/components/${namespace}`, {
+    title: pageTitle(`${namespaceLabels[namespace]} components`),
+    description:
+      'Public component rows for this registry namespace, generated from registry docs artifacts.',
+    section: 'components',
+  })
+
+const componentEntry = (entry: RegistryIndexEntry): RouteInventoryEntry =>
+  routeEntry(`/components/${entry.item.id}`, {
+    title: pageTitle(entry.item.name),
+    description: entry.item.description,
+    section: 'components',
+  })
+
+const routeInventory = (): ReadonlyArray<RouteInventoryEntry> => {
+  const components = publicComponentEntries()
+  const namespaces = namespaceOrder.filter(namespace =>
+    components.some(component => component.item.namespace === namespace),
+  )
+
+  return [
+    routeEntry('/', {
+      title: 'Foldkit CN',
+      description:
+        'Foldkit-native documentation for installable component registry artifacts.',
+      section: 'home',
+    }),
+    routeEntry('/docs', {
+      title: pageTitle('Documentation overview'),
+      description:
+        'Generated registry data, authored guidance, and stable component docs entry points.',
+      section: 'docs',
+    }),
+    routeEntry('/components', {
+      title: pageTitle('Components'),
+      description:
+        'Installable and preview components from the generated registry and docs indexes.',
+      section: 'components',
+    }),
+    ...namespaces.map(namespaceEntry),
+    ...components.map(componentEntry),
+    routeEntry('/registry', {
+      title: pageTitle('Registry'),
+      description:
+        'Generated registry files are the website boundary for component docs and install metadata.',
+      section: 'registry',
+    }),
+    routeEntry('/registry/schema', {
+      title: pageTitle('Registry Schema'),
+      description:
+        'Schema-backed registry artifacts define what the docs shell can trust.',
+      section: 'registry',
+    }),
+    routeEntry('/registry/lifecycle', {
+      title: pageTitle('Registry Lifecycle'),
+      description:
+        'Lifecycle data explains what can be installed, previewed, documented, or deferred.',
+      section: 'registry',
+    }),
+    routeEntry('/roadmap', {
+      title: pageTitle('Roadmap'),
+      description:
+        'Component availability, next candidates, and blocked work from the structured progress report.',
+      section: 'roadmap',
+    }),
+  ]
+}
 
 const waitForPreviewServerAttempt = async (
   attemptsRemaining: number,
@@ -200,15 +335,13 @@ const prerenderRoute =
         renderedHtml,
         entry.metadata.title,
       )
-      yield* writeRouteHtml(routeToOutputPath(entry.route), html)
+      yield* writeRouteHtml(entry.outputPath, html)
       yield* Console.log(`  ✓ ${entry.path}`)
     })
 
-type RouteInventoryEntry = ReturnType<typeof routeInventory>[number]
-
 const program = Effect.scoped(
   Effect.gen(function* prerenderProgram() {
-    const routes = routeInventory(docsData)
+    const routes = routeInventory()
 
     yield* Console.log(`Prerendering ${routes.length} routes...`)
     const baseHtml = yield* readBaseHtml

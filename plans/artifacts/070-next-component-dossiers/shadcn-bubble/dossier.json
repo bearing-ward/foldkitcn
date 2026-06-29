@@ -1,0 +1,147 @@
+{
+  "batch": ["shadcn/bubble"],
+  "generatedKind": "preview",
+  "createsRegistryItemFolders": false,
+  "resolutions": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Bubble",
+      "docsUrl": "https://ui.shadcn.com/docs/components/bubble",
+      "localRepoPath": "repos/ui",
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "resolutionStatus": "source-backed",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/bubble.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/bubble.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/bubble-alignment.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-link-button.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-markdown.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-popover.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-reactions.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-tooltip.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-variants.tsx"
+      ],
+      "testPaths": [],
+      "specPaths": [],
+      "apiReferencePaths": [
+        "repos/ui/apps/v4/content/docs/components/base/bubble.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/bubble.mdx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/bubble.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/bubble.tsx"
+      ],
+      "publicRegistryPaths": [],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/popover",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/markdown",
+        "@base-ui/react/merge-props",
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "lucide-react",
+        "react",
+        "sonner"
+      ],
+      "blockers": [],
+      "confidence": "medium",
+      "unresolvedQuestions": [
+        "Replace CVA variant handling with Effect Schema literals and pure class maps.",
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ]
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/markdown",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@base-ui/react/merge-props",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/merge-props",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "@base-ui/react/use-render",
+      "classification": "replace-with-foldkit",
+      "target": "base-ui/use-render",
+      "reason": "Replace the upstream React primitive with the local Foldkit registry implementation."
+    },
+    {
+      "specifier": "class-variance-authority",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Replace CVA with Effect Schema literals and pure variant class maps."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/collapsible",
+      "classification": "registry-local",
+      "target": "shadcn/collapsible",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/popover",
+      "classification": "registry-local",
+      "target": "shadcn/popover",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/tooltip",
+      "classification": "registry-local",
+      "target": "shadcn/tooltip",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "sonner",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    }
+  ],
+  "originTestClassification": []
+}

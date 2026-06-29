@@ -153,6 +153,7 @@ describe('parity canonicalizers', () => {
       'base-ui/switch',
       'shadcn/switch',
       'shadcn/skeleton',
+      'shadcn/table',
       'shadcn/textarea',
       'base-ui/dialog',
       'shadcn/dialog',

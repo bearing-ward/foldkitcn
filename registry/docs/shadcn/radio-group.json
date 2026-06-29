@@ -4,15 +4,54 @@
   "routePath": "/components/shadcn/radio-group",
   "title": "Radio Group",
   "description": "Foldkit-native shadcn base-nova Radio Group wrapper composed from the local Base UI Radio Group primitive, shadcn group/item/indicator slots, local indicator dot rendering, and local class canonicalization.",
-  "docsStatus": "missing",
-  "markdownPath": null,
-  "markdown": null,
-  "headings": [],
+  "docsStatus": "stub",
+  "markdownPath": "registry-src/shadcn/radio-group/docs.md",
+  "markdown": "# Radio Group\n\n## Overview\n\nRadio Group is a styled Foldkit wrapper for shadcn's base-nova radio group. It\ncomposes the local Base UI Radio Group primitive, adds shadcn slot classes, and\nrenders the checked indicator dot without importing upstream React primitives.\n\n## Foldkit Model\n\nRadio Group is model-owned. Pass the selected value from the parent model and\nhandle value-change facts in the parent update function.\n\n## Usage\n\nImport the helper from the generated registry source and call it inside a view\nafter binding `const h = html<Message>()`.\n\n```ts\nRadioGroup.view<Message>({\n  value: model.density,\n  items: densityItems,\n  onValueChange: UpdatedDensity,\n})\n```\n\n## Examples\n\nThe registry examples cover the default shadcn radio group, description rows,\nchoice cards, disabled items, fieldset composition, invalid state, and RTL\nlayout.\n\n## Accessibility\n\nEach item receives `role=\"radio\"`, checked state, roving tab index, disabled and\ninvalid state, and a visually hidden input for form participation. Keep labels\nassociated with the generated input or with the visible radio through ARIA.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes React, Base UI React Radio and Radio\nGroup, Field, Label, and CVA-style classes. This registry item keeps behavior in\nthe local Base UI Radio Group primitive, uses pure class maps, and keeps the\nexample Field and Label shapes local to the example source.\n",
+  "headings": [
+    {
+      "id": "radio-group",
+      "text": "Radio Group",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
   "installCommand": null,
   "localInstallPath": "src/registry/shadcn/radio-group",
   "defaultImportPath": "shadcn/radio-group",
   "sourceRoot": "registry-src/shadcn/radio-group",
-  "installableSourcePaths": ["src/registry/shadcn/radio-group/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/shadcn/radio-group/index.ts",
+    "src/registry/shadcn/radio-group/examples.ts"
+  ],
   "originProvenance": [
     {
       "originKind": "shadcn",
@@ -119,7 +158,92 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "shadcn/radio-group-demo",
+      "title": "RadioGroupDemo",
+      "description": "Default Radio Group with labeled density options.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupDemo = <Message = never>({\n  value = 'comfortable',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html =>\n  radioGroup({\n    value,\n    items: densityItems,\n    className: 'w-fit',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupDemo",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-description",
+      "title": "RadioGroupDescription",
+      "description": "Radio Group options with descriptions.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupDescription = <Message = never>({\n  value = 'comfortable',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html =>\n  radioGroup({\n    value,\n    items: densityItems,\n    className: 'w-fit',\n    mode: 'description',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupDescription",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-choice-card",
+      "title": "RadioGroupChoiceCard",
+      "description": "Radio Group choice-card plan selection.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupChoiceCard = <Message = never>({\n  value = 'plus',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html =>\n  radioGroup({\n    value,\n    items: choiceCardItems,\n    className: 'max-w-sm',\n    mode: 'choice-card',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupChoiceCard",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-disabled",
+      "title": "RadioGroupDisabled",
+      "description": "Radio Group with one disabled item.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupDisabled = <Message = never>({\n  value = 'option-2',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html =>\n  radioGroup({\n    value,\n    items: disabledItems,\n    className: 'w-fit',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupDisabled",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-fieldset",
+      "title": "RadioGroupFieldset",
+      "description": "Radio Group nested in a fieldset.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupFieldset = <Message = never>({\n  value = 'monthly',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html => {\n  const h = html<Message>()\n\n  return h.fieldset(\n    [h.Class(fieldSetClassName)],\n    [\n      h.legend([h.Class(fieldLegendClassName)], ['Subscription Plan']),\n      h.p(\n        [h.Class(fieldDescriptionClassName)],\n        ['Yearly and lifetime plans offer significant savings.'],\n      ),\n      radioGroup({\n        value,\n        items: planItems,\n        ...(idPrefix === undefined ? {} : { idPrefix }),\n        ...(onValueChange === undefined ? {} : { onValueChange }),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupFieldset",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-invalid",
+      "title": "RadioGroupInvalid",
+      "description": "Invalid Radio Group and item states.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupInvalid = <Message = never>({\n  value = 'email',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html => {\n  const invalidItems = notificationItems.map(item => ({\n    ...item,\n    isInvalid: true,\n  }))\n\n  return radioGroup({\n    value,\n    items: invalidItems,\n    className: 'w-full max-w-xs',\n    isInvalid: true,\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupInvalid",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/radio-group-rtl",
+      "title": "RadioGroupRtl",
+      "description": "RTL Radio Group using local static Arabic labels.",
+      "componentItemId": "shadcn/radio-group",
+      "sourcePath": "src/registry/shadcn/radio-group/examples.ts",
+      "snippet": "export const RadioGroupRtl = <Message = never>({\n  value = 'comfortable',\n  idPrefix,\n  onValueChange,\n}: RadioGroupExampleController<Message> = {}): Html =>\n  radioGroup({\n    value,\n    items: rtlItems,\n    className: 'w-fit',\n    dir: 'rtl',\n    mode: 'description',\n    ...(idPrefix === undefined ? {} : { idPrefix }),\n    ...(onValueChange === undefined ? {} : { onValueChange }),\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "RadioGroupRtl",
+      "requiredRegistryItems": ["base-ui/radio-group", "utils/cn"],
+      "notes": []
+    }
+  ],
   "quality": {
     "availability": "installable",
     "implementationStatus": "implemented",

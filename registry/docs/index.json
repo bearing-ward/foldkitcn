@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28T21:31:35.728Z",
+  "generatedAt": "2026-06-29T09:28:03.266Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -238,6 +238,11 @@
       "docsArtifactPath": "registry/docs/shadcn/card.json"
     },
     {
+      "itemId": "shadcn/carousel",
+      "routePath": "/components/shadcn/carousel",
+      "docsArtifactPath": "registry/docs/shadcn/carousel.json"
+    },
+    {
       "itemId": "shadcn/checkbox",
       "routePath": "/components/shadcn/checkbox",
       "docsArtifactPath": "registry/docs/shadcn/checkbox.json"
@@ -298,6 +303,11 @@
       "docsArtifactPath": "registry/docs/shadcn/input.json"
     },
     {
+      "itemId": "shadcn/item",
+      "routePath": "/components/shadcn/item",
+      "docsArtifactPath": "registry/docs/shadcn/item.json"
+    },
+    {
       "itemId": "shadcn/kbd",
       "routePath": "/components/shadcn/kbd",
       "docsArtifactPath": "registry/docs/shadcn/kbd.json"
@@ -321,6 +331,11 @@
       "itemId": "shadcn/navigation-menu",
       "routePath": "/components/shadcn/navigation-menu",
       "docsArtifactPath": "registry/docs/shadcn/navigation-menu.json"
+    },
+    {
+      "itemId": "shadcn/pagination",
+      "routePath": "/components/shadcn/pagination",
+      "docsArtifactPath": "registry/docs/shadcn/pagination.json"
     },
     {
       "itemId": "shadcn/popover",
@@ -371,6 +386,11 @@
       "itemId": "shadcn/switch",
       "routePath": "/components/shadcn/switch",
       "docsArtifactPath": "registry/docs/shadcn/switch.json"
+    },
+    {
+      "itemId": "shadcn/table",
+      "routePath": "/components/shadcn/table",
+      "docsArtifactPath": "registry/docs/shadcn/table.json"
     },
     {
       "itemId": "shadcn/tabs",

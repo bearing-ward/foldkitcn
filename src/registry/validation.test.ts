@@ -502,7 +502,7 @@ describe('registry validation', () => {
     expect(result.errors).toStrictEqual([
       {
         path: docsPath,
-        message: 'Complete docs require a "Button" heading.',
+        message: 'Complete docs require a "local/complete" heading.',
       },
       {
         path: docsPath,
@@ -543,7 +543,7 @@ describe('registry validation', () => {
       new Map([
         [
           docsPath,
-          '# Button\n\n## Overview\n\n## Foldkit Model\n\n## Usage\n\n## Examples\n\n## Accessibility\n\n## Foldkit Differences\n\n<div>nope</div>\n',
+          '# local/complete\n\n## Overview\n\n## Foldkit Model\n\n## Usage\n\n## Examples\n\n## Accessibility\n\n## Foldkit Differences\n\n<div>nope</div>\n',
         ],
       ]),
     )

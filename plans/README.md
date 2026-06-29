@@ -53,20 +53,20 @@ honor its STOP conditions, and update your row when done.
 | 043 | Implement Base UI Menu and shadcn Dropdown Menu | P1 | L | 029, 034 | DONE |
 | 044 | Implement Base UI Radio | P1 | M | 026 | DONE |
 | 045 | Implement Base UI and shadcn Alert Dialog | P1 | M | 033 | DONE |
-| 046 | Implement Base UI and shadcn Context Menu | P1 | L | 043 | TODO |
-| 047 | Implement Base UI OTP Field and shadcn Input OTP | P1 | M | 022 | TODO |
-| 048 | Implement Base UI and shadcn Scroll Area | P1 | M | 019 | TODO |
-| 049 | Implement Base UI Toolbar | P1 | M | 022, 029, 030 | TODO |
-| 050 | Implement Base UI Preview Card and shadcn Hover Card | P1 | L | 034, 040 | TODO |
-| 051 | Implement Base UI and shadcn Menubar | P1 | L | 043 | TODO |
-| 052 | Implement Base UI and shadcn Navigation Menu | P1 | L | 043, 050 | TODO |
-| 053 | Implement Base UI and shadcn Combobox | P1 | L | 034, 042 | TODO |
-| 054 | Implement Base UI Autocomplete | P1 | L | 053 | TODO |
-| 055 | Implement Base UI and shadcn Drawer | P1 | L | 033 | TODO |
-| 056 | Implement shadcn Sheet | P1 | M | 033 | TODO |
-| 057 | Implement shadcn Direction | P2 | S | 019 | TODO |
-| 058 | Implement shadcn Card | P1 | S | 019 | TODO |
-| 059 | Implement shadcn Breadcrumb | P1 | S | 019 | TODO |
+| 046 | Implement Base UI and shadcn Context Menu | P1 | L | 043 | DONE |
+| 047 | Implement Base UI OTP Field and shadcn Input OTP | P1 | M | 022 | DONE |
+| 048 | Implement Base UI and shadcn Scroll Area | P1 | M | 019 | DONE |
+| 049 | Implement Base UI Toolbar | P1 | M | 022, 029, 030 | DONE |
+| 050 | Implement Base UI Preview Card and shadcn Hover Card | P1 | L | 034, 040 | DONE |
+| 051 | Implement Base UI and shadcn Menubar | P1 | L | 043 | DONE |
+| 052 | Implement Base UI and shadcn Navigation Menu | P1 | L | 043, 050 | DONE |
+| 053 | Implement Base UI and shadcn Combobox | P1 | L | 034, 042 | DONE |
+| 054 | Implement Base UI Autocomplete | P1 | L | 053 | DONE |
+| 055 | Implement Base UI and shadcn Drawer | P1 | L | 033 | DONE |
+| 056 | Implement shadcn Sheet | P1 | M | 033 | DONE |
+| 057 | Implement shadcn Direction | P2 | S | 019 | DONE |
+| 058 | Implement shadcn Card | P1 | S | 019 | DONE |
+| 059 | Implement shadcn Breadcrumb | P1 | S | 019 | DONE |
 | 060 | Record documentation-site and Effect-native tooling decisions | P1 | S | - | DONE |
 | 061 | Add docs readiness and generated documentation artifacts | P1 | L | 060 | DONE |
 | 062 | Replace the starter app with a Foldkit CN docs shell | P1 | L | 061 | DONE |
@@ -77,6 +77,25 @@ honor its STOP conditions, and update your row when done.
 | 067 | Add structured example docs artifacts | P2 | M | 063 | DONE |
 | 068 | Add live component example runtime | P2 | L | 067 | DONE |
 | 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | DONE |
+| 070 | Implement shadcn Item | P1 | M | 019 | DONE |
+| 071 | Implement shadcn Button Group | P1 | M | 019 | DONE |
+| 072 | Implement shadcn Input Group | P1 | L | 071 | TODO |
+| 073 | Implement shadcn Spinner | P1 | S | 070, 072 | TODO |
+| 074 | Implement shadcn Empty | P1 | M | 070, 072, 073 | TODO |
+| 075 | Implement shadcn Table | P1 | S | 019 | TODO |
+| 076 | Implement shadcn Pagination | P1 | M | 019, 038, 042 | TODO |
+| 077 | Implement shadcn Command | P1 | L | 033, 072 | TODO |
+| 078 | Implement shadcn Calendar | P1 | L | 038, 058, 072 | TODO |
+| 079 | Implement shadcn Carousel | P1 | L | 058 | TODO |
+| 080 | Implement shadcn Resizable | P1 | L | 019 | TODO |
+| 081 | Implement Base UI Toast | P1 | L | 019 | TODO |
+| 082 | Implement shadcn Sonner | P1 | M | 081 | TODO |
+| 083 | Implement shadcn Sidebar | P1 | L | 056, 057, 082 | TODO |
+| 084 | Implement shadcn Attachment | P1 | M | 033, 073 | TODO |
+| 085 | Implement shadcn Bubble | P1 | M | 028, 034, 040, 082 | TODO |
+| 086 | Implement shadcn Marker | P1 | M | 073, 082 | TODO |
+| 087 | Implement shadcn Message | P1 | M | 084, 085, 086 | TODO |
+| 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -135,6 +154,15 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 067 depends on 063 because example docs artifacts should be proven against the existing shadcn Button page before live rendering is attempted.
 - Plan 068 depends on 067 because live previews need the structured example artifact contract and preview status gate.
 - Plan 069 depends on 064 because the installer CLI implements the command contract displayed by docs, but remains a separate product surface with filesystem safety concerns.
+- Plans 070-088 were generated from `plans/artifacts/070-next-component-selection/selection.md`, which came from `bun run origin:components:next -- 20` and selected 19 eligible non-blocked, not-yet-imported rows.
+- Plans 070-074 form the structural shadcn dependency cluster. Item is first, Button Group can start independently, Input Group depends on Button Group, Spinner depends on Item/Input Group, and Empty depends on all three. If plans 071-073 must defer an example because the next local dependency is not landed yet, the dependent plan is responsible for filling the temporary gap.
+- Plans 075 and 076 are lower-risk presentational shadcn rows that can run when an executor needs a smaller component task, subject to their local dependency rows already being DONE.
+- Plans 077 and 078 depend on Input Group plus existing Dialog/Field/Card foundations because Command and Calendar own meaningful Foldkit state and should not import `cmdk`, DayPicker, date-fns, or React-only behavior.
+- Plans 079 and 080 are behavior-heavy rows that must replace Embla and react-resizable-panels with local Foldkit models, messages, and command boundaries.
+- Plan 082 depends on Plan 081 because shadcn Sonner must be a styled wrapper over the local Base UI Toast foundation, not the upstream `sonner` package.
+- Plan 083 waits for Sheet, Direction, and Sonner so Sidebar can compose local mobile, direction, tooltip/notification, and menu affordances without React context, cookies, or hidden global listeners.
+- Plans 084-088 are the chat-family cluster: Attachment, Bubble, and Marker land before Message, and Message Scroller lands last because it composes the local chat parts plus Empty/Input Group.
+- Advanced examples in Plans 078, 079, 085, 087, and 088 may be fixture-only or explicitly deferred when they require new date, autoplay, markdown, AI, animation, or network foundations. Do not install upstream runtime packages to satisfy those examples.
 
 ## Findings considered and rejected
 

@@ -324,6 +324,14 @@ const requiredRegistryItemsForItem = (
 const liveReadyExampleExportsByItemId: Readonly<
   Record<string, ReadonlySet<string>>
 > = {
+  'base-ui/button': new Set([
+    'ButtonDemo',
+    'ButtonDisabled',
+    'ButtonNonNative',
+    'ButtonTypes',
+    'ButtonLoading',
+  ]),
+  'base-ui/input': new Set(['InputDemo', 'InputDisabled']),
   'shadcn/button': new Set([
     'ButtonDefault',
     'ButtonDemo',
@@ -339,6 +347,28 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ButtonSpinner',
     'ButtonRender',
     'ButtonRtl',
+  ]),
+  'shadcn/item': new Set([
+    'ItemAvatar',
+    'ItemDemo',
+    'ItemDropdown',
+    'ItemGroupExample',
+    'ItemHeaderDemo',
+    'ItemIcon',
+    'ItemImage',
+    'ItemLink',
+    'ItemRtl',
+    'ItemSizeDemo',
+    'ItemVariant',
+  ]),
+  'shadcn/radio-group': new Set([
+    'RadioGroupDemo',
+    'RadioGroupDescription',
+    'RadioGroupChoiceCard',
+    'RadioGroupDisabled',
+    'RadioGroupFieldset',
+    'RadioGroupInvalid',
+    'RadioGroupRtl',
   ]),
 }
 

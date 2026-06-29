@@ -6,7 +6,10 @@
   "kind": "component",
   "description": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
   "sourceRoot": "registry-src/base-ui/button",
-  "installableSourcePaths": ["src/registry/base-ui/button/index.ts"],
+  "installableSourcePaths": [
+    "src/registry/base-ui/button/index.ts",
+    "src/registry/base-ui/button/examples.ts"
+  ],
   "consumedThemeTokens": [],
   "originProvenance": [
     {
@@ -65,7 +68,43 @@
       }
     ]
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "base-ui/button-demo",
+      "title": "ButtonDemo",
+      "description": "Enabled native Button example.",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "base-ui/button-disabled",
+      "title": "ButtonDisabled",
+      "description": "Disabled and focusable disabled Button examples.",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "base-ui/button-non-native",
+      "title": "ButtonNonNative",
+      "description": "Non-native element rendered with button role and keyboard activation semantics.",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "base-ui/button-types",
+      "title": "ButtonTypes",
+      "description": "Native button, submit, and reset type examples.",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "base-ui/button-loading",
+      "title": "ButtonLoading",
+      "description": "Disabled busy-state Button example.",
+      "sourcePath": "src/registry/base-ui/button/examples.ts",
+      "kind": "demo"
+    }
+  ],
   "parity": {
     "itemId": "base-ui/button",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/button.fixture.tsx",
@@ -87,7 +126,7 @@
     "parityStatus": "accepted",
     "driftStatus": "current",
     "availability": "installable",
-    "docsStatus": "missing"
+    "docsStatus": "complete"
   },
   "deviations": []
 }
