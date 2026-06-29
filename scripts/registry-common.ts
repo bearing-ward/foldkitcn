@@ -360,6 +360,15 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ButtonGroupSize',
     'ButtonGroupSplit',
   ]),
+  'shadcn/command': new Set([
+    'CommandDemo',
+    'CommandBasic',
+    'CommandDialogDemo',
+    'CommandWithGroups',
+    'CommandManyItems',
+    'CommandRtl',
+    'CommandWithShortcuts',
+  ]),
   'shadcn/input-group': new Set([
     'InputGroupDemo',
     'InputGroupBasic',

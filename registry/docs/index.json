@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T13:10:15.269Z",
+  "generatedAt": "2026-06-29T14:21:55.842Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -261,6 +261,11 @@
       "itemId": "shadcn/combobox",
       "routePath": "/components/shadcn/combobox",
       "docsArtifactPath": "registry/docs/shadcn/combobox.json"
+    },
+    {
+      "itemId": "shadcn/command",
+      "routePath": "/components/shadcn/command",
+      "docsArtifactPath": "registry/docs/shadcn/command.json"
     },
     {
       "itemId": "shadcn/context-menu",

@@ -7,6 +7,7 @@ import {
   Message,
   Model,
   init,
+  subscriptions,
   update,
   view,
 } from './main'
@@ -16,6 +17,7 @@ const application = Runtime.makeApplication({
   init,
   update,
   view,
+  subscriptions,
   container: document.querySelector('#root'),
   routing: {
     onUrlRequest: request => ClickedLink({ request }),

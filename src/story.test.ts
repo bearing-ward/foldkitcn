@@ -20,6 +20,7 @@ import {
   HomeRoute,
   IdlePagefindSearch,
   MobileNavigation,
+  PressedLiveExampleCommandDialogShortcut,
   ReceivedPagefindSearchResults,
   RegistryLifecycleRoute,
   RegistryRoute,
@@ -51,6 +52,7 @@ const model: Model = {
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleRadioGroupValues: {},
+  liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 }
@@ -251,6 +253,32 @@ describe(update, () => {
         Story.message(SucceededCopySnippet({ text })),
         Story.model(nextModel => {
           expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
+        }),
+        Story.Command.expectNone(),
+      )
+    })
+  })
+
+  describe(PressedLiveExampleCommandDialogShortcut, () => {
+    test('toggles the CommandDialogDemo live example', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(PressedLiveExampleCommandDialogShortcut()),
+        Story.model(nextModel => {
+          expect(
+            nextModel.liveExampleCommandDialogOpenValues[
+              'shadcn/command-dialog'
+            ],
+          ).toBe(true)
+        }),
+        Story.message(PressedLiveExampleCommandDialogShortcut()),
+        Story.model(nextModel => {
+          expect(
+            nextModel.liveExampleCommandDialogOpenValues[
+              'shadcn/command-dialog'
+            ],
+          ).toBe(false)
         }),
         Story.Command.expectNone(),
       )

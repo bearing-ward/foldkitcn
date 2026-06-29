@@ -101,6 +101,13 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/button-group-separator.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/button-group-size.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/button-group-split.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-basic.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-dialog.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-groups.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-scrollable.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/command-shortcuts.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-basic.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-block-end.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/input-group-block-start.tsx";
@@ -125,6 +132,8 @@
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/input.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/button-group.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/command.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/command.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/dropdown-menu.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/popover.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/select.tsx";

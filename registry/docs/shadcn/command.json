@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/command",
+  "routePath": "/components/shadcn/command",
+  "title": "Command",
+  "description": "Foldkit-native shadcn base-nova Command helpers with local query state, filtering, keyboard highlight movement, selection, dialog composition, shortcuts, empty state, and deterministic examples.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/command/docs.md",
+  "markdown": "# Command\n\n## Overview\n\nCommand is a Foldkit-native port of the shadcn base-nova Command helpers. It preserves the origin command shell, input, list, empty, group, separator, item, shortcut, and dialog slots while replacing `cmdk` with explicit Foldkit state helpers.\n\n## Foldkit Model\n\nCommand ships with `CommandState`, fact-shaped messages, and `updateWithGroups` for the common query, highlight, keyboard, selection, and dialog-open workflow. Parent programs can use those helpers directly or keep their own model and treat the view helpers as presentational parts.\n\n## Usage\n\nImport the helpers from the generated registry source and drive state through Foldkit messages.\n\n```ts\nCommand<Message>({\n  children: [\n    CommandInput<Message>({\n      ariaLabel: 'Command search',\n      value: model.command.query,\n      onQueryChange: value => UpdatedCommandQuery({ value }),\n      onKeyDown: key => commandKeyMessage(key),\n    }),\n    CommandList<Message>({\n      children: groups.map(group =>\n        CommandGroup<Message>({\n          heading: group.heading,\n          children: group.items.map(item =>\n            CommandItem<Message>({\n              value: item.value,\n              isSelected: item.value === highlightedValue,\n              onSelect: SelectedCommandItem({ value: item.value }),\n              children: [item.label],\n            }),\n          ),\n        }),\n      ),\n    }),\n  ],\n})\n```\n\nUse `filterCommandGroups` to derive visible groups from the query and `highlightedCommandItem` when selecting the current keyboard highlight.\n\n## Examples\n\nThe registry includes live examples for the static command demo, basic closed dialog trigger, keyboard shortcut hint, grouped trigger, scrollable trigger, shortcuts trigger, and deterministic RTL command surface.\n\n## Accessibility\n\nCommand renders a combobox-style input, a `listbox`, and `option` items with `aria-selected`, disabled item attributes, group headings, and shortcut text. Disabled items do not receive selection handlers and keyboard movement skips them.\n\n## Foldkit Differences\n\nThe origin shadcn implementation composes `cmdk`, React state/hooks, Lucide React icons, and an app-level language selector. This registry item uses local Foldkit messages/update helpers, local inline SVGs, local Dialog/Input Group composition, and deterministic RTL strings so the installable source stays Foldkit-native.\n",
+  "headings": [
+    {
+      "id": "command",
+      "text": "Command",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/command",
+  "defaultImportPath": "shadcn/command",
+  "sourceRoot": "registry-src/shadcn/command",
+  "installableSourcePaths": [
+    "src/registry/shadcn/command/index.ts",
+    "src/registry/shadcn/command/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Command",
+      "docsUrl": "https://ui.shadcn.com/docs/components/command",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/command.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/command.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/command.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/command.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/command.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/command-basic.tsx",
+        "repos/ui/apps/v4/examples/base/command-demo.tsx",
+        "repos/ui/apps/v4/examples/base/command-dialog.tsx",
+        "repos/ui/apps/v4/examples/base/command-groups.tsx",
+        "repos/ui/apps/v4/examples/base/command-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/command-scrollable.tsx",
+        "repos/ui/apps/v4/examples/base/command-shortcuts.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Closed dialog examples compose the local shadcn Button trigger."
+      },
+      {
+        "specifier": "shadcn/dialog",
+        "classification": "registry-local",
+        "target": "shadcn/dialog",
+        "reason": "CommandDialog composes the local shadcn Dialog item for modal command palettes."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "CommandInput composes the local shadcn Input Group helper for the search affordance."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Command uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, message, Story, and Foldkit-native view/update APIs."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema metadata, Option, Match, Array, and String helpers."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "cmdk",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin command behavior is represented by local Foldkit state helpers instead of the cmdk runtime."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icons are represented by local inline SVG helpers in installable source."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL example dependency is replaced by local deterministic Arabic example data."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/command-demo",
+      "title": "CommandDemo",
+      "description": "Static Command menu with suggestions, disabled item, settings group, shortcuts, and local inline icons.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandDemo = (): Html =>\n  commandMenu([commandSuggestions, commandSettings])",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-basic",
+      "title": "CommandBasic",
+      "description": "Closed CommandDialog trigger matching the origin default visible surface.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandBasic = <Message = never>(\n  controller?: CommandDialogExampleController<Message>,\n): Html => {\n  const h = html<Message>()\n\n  return h.div(\n    [h.Class('flex flex-col gap-4')],\n    [\n      openMenuButton(controller),\n      commandDialogShell(controller, [\n        commandMenu([\n          {\n            heading: 'Suggestions',\n            items: [\n              { label: 'Calendar' },\n              { label: 'Search Emoji' },\n              { label: 'Calculator' },\n            ],\n          },\n        ]),\n      ]),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandBasic",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-dialog",
+      "title": "CommandDialogDemo",
+      "description": "Keyboard shortcut hint for opening a closed CommandDialog.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandDialogDemo = <Message = never>(\n  controller?: CommandDialogExampleController<Message>,\n): Html => {\n  const h = html<Message>()\n\n  const shortcutHint = h.p(\n    [h.Class('text-sm text-muted-foreground')],\n    [\n      'Press ',\n      h.kbd(\n        [\n          h.Class(\n            'pointer-events-none inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 select-none',\n          ),\n        ],\n        [h.span([h.Class('text-xs')], ['⌘']), 'J'],\n      ),\n    ],\n  )\n\n  if (controller === undefined) {\n    return shortcutHint\n  }\n\n  return h.div(\n    [h.Class('flex flex-col gap-4')],\n    [\n      shortcutHint,\n      commandDialogShell(controller, [\n        commandMenu([commandSuggestions, commandSettings]),\n      ]),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandDialogDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-groups",
+      "title": "CommandWithGroups",
+      "description": "Closed grouped CommandDialog trigger.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandWithGroups = <Message = never>(\n  controller?: CommandDialogExampleController<Message>,\n): Html =>\n  commandButtonDialogExample(\n    controller,\n    commandMenu([commandSuggestions, commandSettings]),\n  )",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandWithGroups",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-scrollable",
+      "title": "CommandManyItems",
+      "description": "Closed scrollable CommandDialog trigger for a many-item command palette.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandManyItems = <Message = never>(\n  controller?: CommandDialogExampleController<Message>,\n): Html => commandButtonDialogExample(controller, CommandManyItemsMenu())",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandManyItems",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-rtl",
+      "title": "CommandRtl",
+      "description": "RTL Command menu using local Arabic strings instead of the origin language selector runtime.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandRtl = (): Html => {\n  const { dir, values } = arabicCommand\n  const groups: ReadonlyArray<CommandGroupDefinition> = [\n    {\n      heading: values.suggestions,\n      items: [\n        { label: values.calendar, icon: 'calendar' },\n        { label: values.searchEmoji, icon: 'smile' },\n        { label: values.calculator, icon: 'calculator', isDisabled: true },\n      ],\n    },\n    {\n      heading: values.settings,\n      items: [\n        { label: values.profile, icon: 'user', shortcut: '⌘P' },\n        { label: values.billing, icon: 'credit-card', shortcut: '⌘B' },\n        { label: values.settings, icon: 'settings', shortcut: '⌘S' },\n      ],\n    },\n  ]\n\n  return commandMenu(groups, {\n    dir,\n    placeholder: values.placeholder,\n    empty: values.empty,\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandRtl",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/command-shortcuts",
+      "title": "CommandWithShortcuts",
+      "description": "Closed shortcut-focused CommandDialog trigger.",
+      "componentItemId": "shadcn/command",
+      "sourcePath": "src/registry/shadcn/command/examples.ts",
+      "snippet": "export const CommandWithShortcuts = <Message = never>(\n  controller?: CommandDialogExampleController<Message>,\n): Html =>\n  commandButtonDialogExample(\n    controller,\n    commandMenu([\n      {\n        heading: 'Settings',\n        items: commandSettings.items,\n      },\n    ]),\n  )",
+      "previewStatus": "live-ready",
+      "previewExportName": "CommandWithShortcuts",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-command-local-state",
+        "summary": "Command query, filtering, highlight, selection, and dialog state use Foldkit messages/update helpers instead of cmdk and React state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source must stay Foldkit-native and cannot depend on the cmdk React runtime."
+      },
+      {
+        "id": "shadcn-command-local-icons",
+        "summary": "Command examples use local inline SVG helpers instead of lucide-react imports.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve icon footprint and class-token affordances."
+      },
+      {
+        "id": "shadcn-command-local-rtl-data",
+        "summary": "RTL example uses local Arabic constants instead of the origin language-selector runtime dependency.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on the origin app language selector. Local constants preserve the default RTL rendered output."
+      },
+      {
+        "id": "shadcn-command-closed-dialog-surface",
+        "summary": "Closed dialog examples render the same visible trigger or keyboard-hint surface as origin while keeping CommandDialog available for open local state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Origin examples initialize CommandDialog as closed. The Foldkit examples preserve that visible default and test open behavior through the component API."
+      }
+    ]
+  }
+}

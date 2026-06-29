@@ -4,13 +4,15 @@ import {
   HashSet,
   Match as M,
   Option,
+  Queue,
   Record as EffectRecord,
   Schema as S,
+  Stream,
   String as EffectString,
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
-import { Command, Dom } from 'foldkit'
+import { Command, Dom, Subscription } from 'foldkit'
 import type { Document, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
@@ -128,10 +130,13 @@ export const Model = S.Struct({
   copiedSnippets: S.HashSet(S.String),
   liveExampleInputValues: S.Record(S.String, S.String),
   liveExampleRadioGroupValues: S.Record(S.String, S.String),
+  liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
 })
 export type Model = typeof Model.Type
+
+const commandDialogDemoExampleId = 'shadcn/command-dialog'
 
 // MESSAGE
 
@@ -158,6 +163,22 @@ export const UpdatedLiveExampleRadioGroupValue = m(
     value: S.String,
   },
 )
+export const ClickedOpenLiveExampleCommandDialog = m(
+  'ClickedOpenLiveExampleCommandDialog',
+  {
+    exampleId: S.String,
+  },
+)
+export const UpdatedLiveExampleCommandDialogOpen = m(
+  'UpdatedLiveExampleCommandDialogOpen',
+  {
+    exampleId: S.String,
+    isOpen: S.Boolean,
+  },
+)
+export const PressedLiveExampleCommandDialogShortcut = m(
+  'PressedLiveExampleCommandDialogShortcut',
+)
 export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
 export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', {
   results: S.Array(PagefindSearchResult),
@@ -178,6 +199,9 @@ export const Message = S.Union([
   HidCopiedIndicator,
   UpdatedLiveExampleInputValue,
   UpdatedLiveExampleRadioGroupValue,
+  ClickedOpenLiveExampleCommandDialog,
+  UpdatedLiveExampleCommandDialogOpen,
+  PressedLiveExampleCommandDialogShortcut,
   UpdatedSearchQuery,
   ReceivedPagefindSearchResults,
   ClickedClearSearch,
@@ -189,18 +213,19 @@ export type Message = typeof Message.Type
 export const init: Runtime.RoutingApplicationInit<Model, Message> = (
   url: Url,
 ) => [
-  {
-    route: urlToAppRoute(url),
-    data: docsData,
-    mobileNavigation: MobileNavigation({ isOpen: false }),
-    copiedSnippets: HashSet.empty(),
-    liveExampleInputValues: {},
-    liveExampleRadioGroupValues: {},
-    searchQuery: '',
-    pagefindSearch: IdlePagefindSearch(),
-  },
-  commandsForUrlHash(url),
-]
+    {
+      route: urlToAppRoute(url),
+      data: docsData,
+      mobileNavigation: MobileNavigation({ isOpen: false }),
+      copiedSnippets: HashSet.empty(),
+      liveExampleInputValues: {},
+      liveExampleRadioGroupValues: {},
+      liveExampleCommandDialogOpenValues: {},
+      searchQuery: '',
+      pagefindSearch: IdlePagefindSearch(),
+    },
+    commandsForUrlHash(url),
+  ]
 
 // UPDATE
 
@@ -380,11 +405,11 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         HashSet.has(model.copiedSnippets, text)
           ? [model, []]
           : [
-              evo(model, {
-                copiedSnippets: HashSet.add(text),
-              }),
-              [HideCopiedIndicator({ text })],
-            ],
+            evo(model, {
+              copiedSnippets: HashSet.add(text),
+            }),
+            [HideCopiedIndicator({ text })],
+          ],
       FailedCopySnippet: () => [model, []],
       HidCopiedIndicator: ({ text }) => [
         evo(model, {
@@ -404,6 +429,40 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      ClickedOpenLiveExampleCommandDialog: ({ exampleId }) => [
+        evo(model, {
+          liveExampleCommandDialogOpenValues: EffectRecord.set(exampleId, true),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleCommandDialogOpen: ({ exampleId, isOpen }) => [
+        evo(model, {
+          liveExampleCommandDialogOpenValues: EffectRecord.set(
+            exampleId,
+            isOpen,
+          ),
+        }),
+        [],
+      ],
+      PressedLiveExampleCommandDialogShortcut: () => {
+        const isOpen = pipe(
+          EffectRecord.get(
+            model.liveExampleCommandDialogOpenValues,
+            commandDialogDemoExampleId,
+          ),
+          Option.getOrElse(() => false),
+        )
+
+        return [
+          evo(model, {
+            liveExampleCommandDialogOpenValues: EffectRecord.set(
+              commandDialogDemoExampleId,
+              !isOpen,
+            ),
+          }),
+          [],
+        ]
+      },
       UpdatedSearchQuery: ({ value }) => {
         if (value === model.searchQuery) {
           return [model, []]
@@ -433,11 +492,11 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       ReceivedPagefindSearchResults: ({ results, query }) =>
         query === model.searchQuery
           ? [
-              evo(model, {
-                pagefindSearch: () => LoadedPagefindSearch({ results }),
-              }),
-              [],
-            ]
+            evo(model, {
+              pagefindSearch: () => LoadedPagefindSearch({ results }),
+            }),
+            [],
+          ]
           : [model, []],
       ClickedClearSearch: () => [
         evo(model, {
@@ -448,6 +507,52 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       ],
     }),
   )
+
+// SUBSCRIPTION
+
+const isCommandComponentRoute = (route: AppRoute): boolean =>
+  route._tag === 'ComponentDetail' &&
+  route.namespace === 'shadcn' &&
+  route.slug === 'command'
+
+const isCommandDialogShortcut = (event: KeyboardEvent): boolean =>
+  (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'j'
+
+export const subscriptions = Subscription.make<Model, Message>()(entry => ({
+  commandDialogShortcut: entry(
+    { isCommandComponentRoute: S.Boolean },
+    {
+      modelToDependencies: model => ({
+        isCommandComponentRoute: isCommandComponentRoute(model.route),
+      }),
+      dependenciesToStream: ({ isCommandComponentRoute }) =>
+        Stream.when(
+          Stream.callback<Message>(queue =>
+            Effect.acquireRelease(
+              Effect.sync(() => {
+                const handler = (event: KeyboardEvent) => {
+                  if (isCommandDialogShortcut(event)) {
+                    event.preventDefault()
+                    Queue.offerUnsafe(
+                      queue,
+                      PressedLiveExampleCommandDialogShortcut(),
+                    )
+                  }
+                }
+                document.addEventListener('keydown', handler)
+                return handler
+              }),
+              handler =>
+                Effect.sync(() =>
+                  document.removeEventListener('keydown', handler),
+                ),
+            ).pipe(Effect.flatMap(() => Effect.never)),
+          ),
+          Effect.sync(() => isCommandComponentRoute),
+        ),
+    },
+  ),
+}))
 
 // VIEW
 
@@ -466,16 +571,16 @@ const navLinks: ReadonlyArray<
     section: PrimaryNavSection
   }>
 > = [
-  { label: 'Home', href: homeRouter({}), section: 'home' },
-  { label: 'Docs', href: docsRouter({}), section: 'docs' },
-  {
-    label: 'Components',
-    href: componentsIndexRouter({}),
-    section: 'components',
-  },
-  { label: 'Registry', href: registryRouter({}), section: 'registry' },
-  { label: 'Roadmap', href: roadmapRouter({}), section: 'roadmap' },
-]
+    { label: 'Home', href: homeRouter({}), section: 'home' },
+    { label: 'Docs', href: docsRouter({}), section: 'docs' },
+    {
+      label: 'Components',
+      href: componentsIndexRouter({}),
+      section: 'components',
+    },
+    { label: 'Registry', href: registryRouter({}), section: 'registry' },
+    { label: 'Roadmap', href: roadmapRouter({}), section: 'roadmap' },
+  ]
 
 const primaryNavSection = (route: AppRoute): PrimaryNavSection =>
   M.value(route).pipe(
@@ -942,15 +1047,15 @@ const tableOfContentsExampleLinksView = (
           Array.isReadonlyArrayEmpty(artifact.examples)
             ? h.empty
             : h.ul(
-                [h.Class('toc-example-list')],
-                artifact.examples.map(example =>
-                  h.li([], [
-                    h.a([h.Href(`#${exampleAnchorId(example)}`)], [
-                      example.title,
-                    ]),
+              [h.Class('toc-example-list')],
+              artifact.examples.map(example =>
+                h.li([], [
+                  h.a([h.Href(`#${exampleAnchorId(example)}`)], [
+                    example.title,
                   ]),
-                ),
+                ]),
               ),
+            ),
       }),
   })
 }
@@ -1352,6 +1457,7 @@ const examplesSectionView = (
   copiedSnippets: HashSet.HashSet<string>,
   liveExampleInputValues: Readonly<Record<string, string>>,
   liveExampleRadioGroupValues: Readonly<Record<string, string>>,
+  liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
 ): Html => {
   const h = html<Message>()
   const liveExampleContext = {
@@ -1390,6 +1496,23 @@ const examplesSectionView = (
       UpdatedLiveExampleRadioGroupValue({
         exampleId: example.id,
         value: change.value,
+      }),
+    commandDialogIsOpenFor: (example: ExampleDocsArtifact): boolean =>
+      pipe(
+        EffectRecord.get(liveExampleCommandDialogOpenValues, example.id),
+        Option.getOrElse(() => false),
+      ),
+    commandDialogIdFor: (example: ExampleDocsArtifact): string =>
+      `${example.id.replaceAll(/[^a-z0-9_-]+/giu, '-')}-dialog`,
+    onCommandDialogOpen: (example: ExampleDocsArtifact): Message =>
+      ClickedOpenLiveExampleCommandDialog({ exampleId: example.id }),
+    onCommandDialogOpenChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleCommandDialogOpen({
+        exampleId: example.id,
+        isOpen: change.open,
       }),
   }
   const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
@@ -1495,8 +1618,8 @@ const qualitySectionView = (component: PublicComponent): Html => {
                     artifact.originProvenance,
                   ),
                   {
-                  onNone: () => 'local registry source',
-                  onSome: origin => origin.originName,
+                    onNone: () => 'local registry source',
+                    onSome: origin => origin.originName,
                   },
                 ),
               ]),
@@ -1612,8 +1735,8 @@ const componentDetailPageView = (
           component.entry.item.description,
         ),
         h.section([h.Id('overview'), h.Class('content-section')], [
-          h.h2([], ['Overview']),
-          h.p([], [component.entry.item.description]),
+          // h.h2([], ['Overview']),
+          // h.p([], [component.entry.item.description]),
           dependenciesPanelView(component),
         ]),
         installationSectionView(component, model.copiedSnippets),
@@ -1623,6 +1746,7 @@ const componentDetailPageView = (
           model.copiedSnippets,
           model.liveExampleInputValues,
           model.liveExampleRadioGroupValues,
+          model.liveExampleCommandDialogOpenValues,
         ),
         apiSectionView(),
         accessibilitySectionView(),
@@ -1720,9 +1844,8 @@ const roadmapRowView = (row: OriginComponentProgressRow): Html => {
     ]),
     h.p([], [
       row.readiness === 'blocked'
-        ? `${row.blockers.length} roadmap blocker${
-            row.blockers.length === 1 ? '' : 's'
-          } tracked in the progress report.`
+        ? `${row.blockers.length} roadmap blocker${row.blockers.length === 1 ? '' : 's'
+        } tracked in the progress report.`
         : 'Origin evidence is available; the next step is a focused dossier.',
     ]),
     h.a([h.Class('source-link'), h.Href(row.docsUrl)], ['Origin docs']),

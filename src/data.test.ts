@@ -2,8 +2,8 @@ import { Array, Option, pipe } from 'effect'
 import { describe, expect, test } from 'vitest'
 
 import { docsData, publicComponents } from './data'
-import { liveExampleViewFor } from './live-examples';
-import type { LiveExampleContext } from './live-examples';
+import { liveExampleViewFor } from './live-examples'
+import type { LiveExampleContext } from './live-examples'
 
 const liveExampleContext: LiveExampleContext<unknown> = {
   inputValueFor: (_example, defaultValue) => defaultValue,
@@ -12,6 +12,10 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   radioGroupValueFor: (_example, defaultValue) => defaultValue,
   radioGroupIdPrefixFor: example => example.id.replaceAll('/', '-'),
   onRadioGroupValueChange: () => ({}),
+  commandDialogIsOpenFor: () => false,
+  commandDialogIdFor: example => `${example.id.replaceAll('/', '-')}-dialog`,
+  onCommandDialogOpen: () => ({}),
+  onCommandDialogOpenChange: () => ({}),
 }
 
 const loadedPublicComponents = () => {

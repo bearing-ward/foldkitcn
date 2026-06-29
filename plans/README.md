@@ -84,7 +84,7 @@ honor its STOP conditions, and update your row when done.
 | 074 | Implement shadcn Empty | P1 | M | 070, 072, 073 | DONE |
 | 075 | Implement shadcn Table | P1 | S | 019 | DONE |
 | 076 | Implement shadcn Pagination | P1 | M | 019, 038, 042 | DONE |
-| 077 | Implement shadcn Command | P1 | L | 033, 072 | TODO |
+| 077 | Implement shadcn Command | P1 | L | 033, 072 | DONE |
 | 078 | Implement shadcn Calendar | P1 | L | 038, 058, 072 | TODO |
 | 079 | Implement shadcn Carousel | P1 | L | 058 | TODO |
 | 080 | Implement shadcn Resizable | P1 | L | 019 | TODO |

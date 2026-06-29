@@ -267,6 +267,41 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/button-group-split.tsx',
     },
     {
+      id: 'command-demo',
+      title: 'Command demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-demo.tsx',
+    },
+    {
+      id: 'command-basic',
+      title: 'Command basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-basic.tsx',
+    },
+    {
+      id: 'command-dialog',
+      title: 'Command dialog',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-dialog.tsx',
+    },
+    {
+      id: 'command-groups',
+      title: 'Command groups',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-groups.tsx',
+    },
+    {
+      id: 'command-scrollable',
+      title: 'Command scrollable',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-scrollable.tsx',
+    },
+    {
+      id: 'command-rtl',
+      title: 'Command RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-rtl.tsx',
+    },
+    {
+      id: 'command-shortcuts',
+      title: 'Command shortcuts',
+      originFilePath: 'repos/ui/apps/v4/examples/base/command-shortcuts.tsx',
+    },
+    {
       id: 'card-demo',
       title: 'Card demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/card-demo.tsx',

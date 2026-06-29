@@ -34,6 +34,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleRadioGroupValues: {},
+  liveExampleCommandDialogOpenValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
@@ -447,6 +448,35 @@ describe(view, () => {
           Scene.role('radio', { name: 'Comfortable' }),
         ),
       ).toHaveAttr('aria-checked', 'false'),
+    )
+  })
+
+  test('Command live examples open their menu dialogs', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'command' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#shadcn-command-basic'),
+          Scene.role('option', { name: 'Calendar' }),
+        ),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          Scene.selector('#shadcn-command-basic'),
+          Scene.role('button', { name: 'Open Menu' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#shadcn-command-basic-dialog'),
+          Scene.role('option', { name: 'Calendar' }),
+        ),
+      ).toExist(),
     )
   })
 

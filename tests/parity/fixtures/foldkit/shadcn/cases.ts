@@ -81,6 +81,15 @@ import {
   CardSmall,
   CardSpacing,
 } from '../../../../../src/registry/shadcn/card/examples'
+import {
+  CommandBasic,
+  CommandDemo,
+  CommandDialogDemo,
+  CommandManyItems,
+  CommandRtl,
+  CommandWithGroups,
+  CommandWithShortcuts,
+} from '../../../../../src/registry/shadcn/command/examples'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import {
@@ -515,6 +524,13 @@ const components: Readonly<Record<string, () => Html>> = {
   'input-group-with-kbd': InputGroupWithKbd,
   'input-group-spinner': InputGroupSpinner,
   'input-group-rtl': InputGroupRtl,
+  'command-demo': CommandDemo,
+  'command-basic': CommandBasic,
+  'command-dialog': CommandDialogDemo,
+  'command-groups': CommandWithGroups,
+  'command-scrollable': CommandManyItems,
+  'command-rtl': CommandRtl,
+  'command-shortcuts': CommandWithShortcuts,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,
@@ -580,6 +596,7 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['avatar-', 'src/registry/shadcn/avatar/examples.ts'],
   ['badge-', 'src/registry/shadcn/badge/examples.ts'],
   ['button-group-', 'src/registry/shadcn/button-group/examples.ts'],
+  ['command-', 'src/registry/shadcn/command/examples.ts'],
   ['dropdown-menu-', 'src/registry/shadcn/dropdown-menu/examples.ts'],
   ['menubar-', 'src/registry/shadcn/menubar/examples.ts'],
   ['navigation-menu-', 'src/registry/shadcn/navigation-menu/examples.ts'],

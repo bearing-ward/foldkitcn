@@ -51,10 +51,16 @@ const carouselShimModuleId = '\0foldkitcn-shadcn-origin-carousel-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
 const nextLinkShimModuleId = '\0foldkitcn-shadcn-origin-next-link-shim'
 const dropdownMenuShimModuleId = '\0foldkitcn-shadcn-origin-dropdown-menu-shim'
+const commandDialogShimModuleId =
+  '\0foldkitcn-shadcn-origin-command-dialog-shim'
+const cmdkShimModuleId = '\0foldkitcn-shadcn-origin-cmdk-shim'
 
 const virtualModuleAliases = new Map([
+  ['cmdk', cmdkShimModuleId],
   ['next/image', nextImageShimModuleId],
   ['next/link', nextLinkShimModuleId],
+  ['@/styles/base-nova/ui/dialog', commandDialogShimModuleId],
+  ['@/styles/base-nova/ui-rtl/dialog', commandDialogShimModuleId],
   ['@/styles/base-nova/ui/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui/carousel', carouselShimModuleId],
@@ -155,6 +161,109 @@ const originAliasPlugin = (): Plugin => ({
 
         export default function Link({ href, children, ...props }) {
           return React.createElement('a', { ...props, href }, children)
+        }
+      `
+    }
+
+    if (id === cmdkShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        function Root({ children, ...props }) {
+          return React.createElement('div', props, children)
+        }
+
+        function Input(props) {
+          return React.createElement('input', props)
+        }
+
+        function List({ children, ...props }) {
+          return React.createElement('div', props, children)
+        }
+
+        function Empty({ children, ...props }) {
+          return React.createElement('div', props, children)
+        }
+
+        function Group({ heading, children, ...props }) {
+          return React.createElement(
+            'div',
+            props,
+            heading === undefined
+              ? null
+              : React.createElement(
+                  'div',
+                  { 'cmdk-group-heading': '' },
+                  heading,
+                ),
+            children,
+          )
+        }
+
+        function Separator(props) {
+          return React.createElement('div', props)
+        }
+
+        function Item({ children, disabled, value, ...props }) {
+          return React.createElement(
+            'div',
+            {
+              ...props,
+              role: 'option',
+              'data-disabled': disabled === true ? 'true' : undefined,
+              'data-value': value,
+            },
+            children,
+          )
+        }
+
+        function Command(props) {
+          return Root(props)
+        }
+
+        Command.Input = Input
+        Command.List = List
+        Command.Empty = Empty
+        Command.Group = Group
+        Command.Separator = Separator
+        Command.Item = Item
+
+        export { Command }
+      `
+    }
+
+    if (id === commandDialogShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const DialogOpenContext = React.createContext(false)
+
+        export function Dialog({ open = false, children }) {
+          return React.createElement(
+            DialogOpenContext.Provider,
+            { value: open },
+            children,
+          )
+        }
+
+        export function DialogContent({ children, className, showCloseButton: _showCloseButton, ...props }) {
+          return React.createElement(DialogOpenContext.Consumer, null, open =>
+            open
+              ? React.createElement('div', { ...props, 'data-slot': 'dialog-content', className }, children)
+              : null,
+          )
+        }
+
+        export function DialogDescription({ children, className, ...props }) {
+          return React.createElement('p', { ...props, 'data-slot': 'dialog-description', className }, children)
+        }
+
+        export function DialogHeader({ children, className, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dialog-header', className }, children)
+        }
+
+        export function DialogTitle({ children, className, ...props }) {
+          return React.createElement('h2', { ...props, 'data-slot': 'dialog-title', className }, children)
         }
       `
     }
@@ -720,6 +829,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/command',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/command.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/input-group',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx',
@@ -871,6 +986,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/button-group',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/button-group.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/command',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/command.tsx',
           ),
         },
         {

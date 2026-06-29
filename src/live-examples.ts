@@ -44,6 +44,16 @@ import {
   ButtonWithIcon,
 } from './registry/shadcn/button/examples'
 import {
+  CommandBasic,
+  CommandDemo,
+  CommandDialogDemo,
+  CommandManyItems,
+  CommandRtl,
+  CommandWithGroups,
+  CommandWithShortcuts,
+} from './registry/shadcn/command/examples'
+import type { CommandDialogExampleController } from './registry/shadcn/command/examples'
+import {
   EmptyAvatar,
   EmptyAvatarGroup,
   EmptyDemo,
@@ -136,6 +146,13 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: RadioGroupValueChange,
   ) => Message
+  commandDialogIsOpenFor: (example: ExampleDocsArtifact) => boolean
+  commandDialogIdFor: (example: ExampleDocsArtifact) => string
+  onCommandDialogOpen: (example: ExampleDocsArtifact) => Message
+  onCommandDialogOpenChange: (
+    example: ExampleDocsArtifact,
+    change: Readonly<{ open: boolean }>,
+  ) => Message
 }>
 
 type RadioGroupExampleView = <Message = never>(
@@ -144,6 +161,10 @@ type RadioGroupExampleView = <Message = never>(
 
 type InputExampleView = <Message = never>(
   controller?: InputExampleController<Message>,
+) => Html
+
+type CommandDialogExampleView = <Message = never>(
+  controller?: CommandDialogExampleController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -183,6 +204,19 @@ const radioGroupExample = (
       value: context.radioGroupValueFor(example, defaultValue),
       idPrefix: context.radioGroupIdPrefixFor(example),
       onValueChange: change => context.onRadioGroupValueChange(example, change),
+    }),
+})
+
+const commandDialogExample = (
+  view: CommandDialogExampleView,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      id: context.commandDialogIdFor(example),
+      isOpen: context.commandDialogIsOpenFor(example),
+      onOpen: context.onCommandDialogOpen(example),
+      onOpenChange: change =>
+        context.onCommandDialogOpenChange(example, change),
     }),
 })
 
@@ -247,6 +281,18 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(ButtonGroupSize),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSplit')]:
     staticExample(ButtonGroupSplit),
+  [liveExampleKey('shadcn/command', 'CommandDemo')]: staticExample(CommandDemo),
+  [liveExampleKey('shadcn/command', 'CommandBasic')]:
+    commandDialogExample(CommandBasic),
+  [liveExampleKey('shadcn/command', 'CommandDialogDemo')]:
+    commandDialogExample(CommandDialogDemo),
+  [liveExampleKey('shadcn/command', 'CommandWithGroups')]:
+    commandDialogExample(CommandWithGroups),
+  [liveExampleKey('shadcn/command', 'CommandManyItems')]:
+    commandDialogExample(CommandManyItems),
+  [liveExampleKey('shadcn/command', 'CommandRtl')]: staticExample(CommandRtl),
+  [liveExampleKey('shadcn/command', 'CommandWithShortcuts')]:
+    commandDialogExample(CommandWithShortcuts),
   [liveExampleKey('shadcn/item', 'ItemAvatar')]: staticExample(ItemAvatar),
   [liveExampleKey('shadcn/item', 'ItemDemo')]: staticExample(ItemDemo),
   [liveExampleKey('shadcn/item', 'ItemDropdown')]: staticExample(ItemDropdown),

@@ -71,6 +71,13 @@ import CarouselOrientation from '../../../../../repos/ui/apps/v4/examples/base/c
 import { CarouselRtl } from '../../../../../repos/ui/apps/v4/examples/base/carousel-rtl'
 import CarouselSize from '../../../../../repos/ui/apps/v4/examples/base/carousel-size'
 import CarouselSpacing from '../../../../../repos/ui/apps/v4/examples/base/carousel-spacing'
+import { CommandBasic } from '../../../../../repos/ui/apps/v4/examples/base/command-basic'
+import { CommandDemo } from '../../../../../repos/ui/apps/v4/examples/base/command-demo'
+import { CommandDialogDemo } from '../../../../../repos/ui/apps/v4/examples/base/command-dialog'
+import { CommandWithGroups } from '../../../../../repos/ui/apps/v4/examples/base/command-groups'
+import { CommandRtl } from '../../../../../repos/ui/apps/v4/examples/base/command-rtl'
+import { CommandManyItems } from '../../../../../repos/ui/apps/v4/examples/base/command-scrollable'
+import { CommandWithShortcuts } from '../../../../../repos/ui/apps/v4/examples/base/command-shortcuts'
 import EmptyAvatar from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar'
 import EmptyAvatarGroup from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar-group'
 import { EmptyMuted } from '../../../../../repos/ui/apps/v4/examples/base/empty-background'
@@ -479,6 +486,13 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'input-group-with-kbd': InputGroupWithKbd,
   'input-group-spinner': InputGroupSpinner,
   'input-group-rtl': InputGroupRtl,
+  'command-demo': CommandDemo,
+  'command-basic': CommandBasic,
+  'command-dialog': CommandDialogDemo,
+  'command-groups': CommandWithGroups,
+  'command-scrollable': CommandManyItems,
+  'command-rtl': CommandRtl,
+  'command-shortcuts': CommandWithShortcuts,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,
