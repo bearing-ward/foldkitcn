@@ -323,6 +323,41 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/calendar-rtl.tsx',
     },
     {
+      id: 'carousel-api',
+      title: 'Carousel API',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-api.tsx',
+    },
+    {
+      id: 'carousel-demo',
+      title: 'Carousel demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-demo.tsx',
+    },
+    {
+      id: 'carousel-multiple',
+      title: 'Carousel multiple',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-multiple.tsx',
+    },
+    {
+      id: 'carousel-orientation',
+      title: 'Carousel orientation',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-orientation.tsx',
+    },
+    {
+      id: 'carousel-rtl',
+      title: 'Carousel RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-rtl.tsx',
+    },
+    {
+      id: 'carousel-size',
+      title: 'Carousel size',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-size.tsx',
+    },
+    {
+      id: 'carousel-spacing',
+      title: 'Carousel spacing',
+      originFilePath: 'repos/ui/apps/v4/examples/base/carousel-spacing.tsx',
+    },
+    {
       id: 'card-demo',
       title: 'Card demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/card-demo.tsx',

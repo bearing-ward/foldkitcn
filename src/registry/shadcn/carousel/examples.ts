@@ -3,7 +3,10 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { Card, CardContent } from '../card'
-import type { CarouselItemConfig, CarouselOrientation } from './index'
+import type {
+  CarouselItemConfig,
+  CarouselOrientation as CarouselOrientationValue,
+} from './index'
 import { carouselState, view as Carousel } from './index'
 
 const arabicNumerals: ReadonlyArray<string> = [
@@ -20,8 +23,7 @@ const arabicNumerals: ReadonlyArray<string> = [
 ]
 
 const toArabicNumerals = (num: number): string =>
-  [...num
-    .toString()]
+  [...num.toString()]
     .map(digit => arabicNumerals[Number.parseInt(digit, 10)] ?? digit)
     .join('')
 
@@ -36,17 +38,15 @@ const slideCard = (
   }>,
 ): Html => {
   const h = html<never>()
+  const text = config.text ?? String(index + 1)
   const card = Card<never>({
-    className: config.cardClassName,
+    ...(config.cardClassName === undefined
+      ? {}
+      : { className: config.cardClassName }),
     children: [
       CardContent<never>({
         className: config.contentClassName,
-        children: [
-          h.span(
-            [h.Class(config.textClassName)],
-            [config.text ?? String(index + 1)],
-          ),
-        ],
+        children: [h.span([h.Class(config.textClassName)], [text])],
       }),
     ],
   })
@@ -65,17 +65,25 @@ const slideItems = (
     wrapperClassName?: string
   }>,
 ): ReadonlyArray<CarouselItemConfig<never>> =>
-  EffectArray.makeBy(5, index => ({
-    className: config.itemClassName,
-    children: [
-      slideCard(index, {
-        contentClassName: config.contentClassName,
-        textClassName: config.textClassName,
-        text: config.toText?.(index),
-        wrapperClassName: config.wrapperClassName,
-      }),
-    ],
-  }))
+  EffectArray.makeBy(5, index => {
+    const text = config.toText?.(index)
+
+    return {
+      ...(config.itemClassName === undefined
+        ? {}
+        : { className: config.itemClassName }),
+      children: [
+        slideCard(index, {
+          contentClassName: config.contentClassName,
+          textClassName: config.textClassName,
+          ...(text === undefined ? {} : { text }),
+          ...(config.wrapperClassName === undefined
+            ? {}
+            : { wrapperClassName: config.wrapperClassName }),
+        }),
+      ],
+    }
+  })
 
 const carousel = (
   config: Readonly<{
@@ -84,7 +92,7 @@ const carousel = (
     dir?: string
     items: ReadonlyArray<CarouselItemConfig<never>>
     nextClassName?: string
-    orientation?: CarouselOrientation
+    orientation?: CarouselOrientationValue
     previousClassName?: string
   }>,
 ): Html =>
@@ -96,9 +104,15 @@ const carousel = (
     }),
     items: config.items,
     className: config.className,
-    contentClassName: config.contentClassName,
-    previousClassName: config.previousClassName,
-    nextClassName: config.nextClassName,
+    ...(config.contentClassName === undefined
+      ? {}
+      : { contentClassName: config.contentClassName }),
+    ...(config.previousClassName === undefined
+      ? {}
+      : { previousClassName: config.previousClassName }),
+    ...(config.nextClassName === undefined
+      ? {}
+      : { nextClassName: config.nextClassName }),
   })
 
 export const CarouselDemo = (): Html =>

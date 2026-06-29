@@ -52,6 +52,15 @@ import {
 import type { CalendarExampleController } from './registry/shadcn/calendar/examples'
 import type { CalendarSelectChange } from './registry/shadcn/calendar/index'
 import {
+  CarouselApi,
+  CarouselDemo,
+  CarouselMultiple,
+  CarouselOrientation,
+  CarouselRtl,
+  CarouselSize,
+  CarouselSpacing,
+} from './registry/shadcn/carousel/examples'
+import {
   CommandBasic,
   CommandDemo,
   CommandDialogDemo,
@@ -332,6 +341,20 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     CalendarRtl,
     '2025-01-06',
   ),
+  [liveExampleKey('shadcn/carousel', 'CarouselDemo')]:
+    staticExample(CarouselDemo),
+  [liveExampleKey('shadcn/carousel', 'CarouselSize')]:
+    staticExample(CarouselSize),
+  [liveExampleKey('shadcn/carousel', 'CarouselMultiple')]:
+    staticExample(CarouselMultiple),
+  [liveExampleKey('shadcn/carousel', 'CarouselSpacing')]:
+    staticExample(CarouselSpacing),
+  [liveExampleKey('shadcn/carousel', 'CarouselOrientation')]:
+    staticExample(CarouselOrientation),
+  [liveExampleKey('shadcn/carousel', 'CarouselApi')]:
+    staticExample(CarouselApi),
+  [liveExampleKey('shadcn/carousel', 'CarouselRtl')]:
+    staticExample(CarouselRtl),
   [liveExampleKey('shadcn/command', 'CommandDemo')]: staticExample(CommandDemo),
   [liveExampleKey('shadcn/command', 'CommandBasic')]:
     commandDialogExample(CommandBasic),

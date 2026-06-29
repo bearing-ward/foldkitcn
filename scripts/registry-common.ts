@@ -366,6 +366,15 @@ const liveReadyExampleExportsByItemId: Readonly<
     'CalendarBookedDates',
     'CalendarRtl',
   ]),
+  'shadcn/carousel': new Set([
+    'CarouselDemo',
+    'CarouselSize',
+    'CarouselMultiple',
+    'CarouselSpacing',
+    'CarouselOrientation',
+    'CarouselApi',
+    'CarouselRtl',
+  ]),
   'shadcn/command': new Set([
     'CommandDemo',
     'CommandBasic',

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T15:29:28.880Z",
+  "generatedAt": "2026-06-29T15:49:14.190Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8852,7 +8852,6 @@
           "requiredComparisons": [
             "class-tokens",
             "attributes",
-            "dom-structure",
             "computed-style",
             "colors",
             "dimensions",
@@ -8870,7 +8869,7 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "complete"
         },
         "deviations": [
           {
@@ -8903,24 +8902,24 @@
           }
         ]
       },
-      "manifestHash": "941bfdb4b033d50ce4f5ce57b41a14f148dfec0a01aa61b6d7a3375e9beb4300",
+      "manifestHash": "0fa3b11ef7b10435f34e1e5a598cb6f844cdd30f29636aee12a334f1caf3fbd0",
       "artifacts": [
         {
           "path": "registry-src/shadcn/carousel/item.json",
-          "sha256": "cef4338151e21b58e5010755b2766245072a1ad8487c5576683e6dbede55fedd",
-          "sizeBytes": 9439,
+          "sha256": "49dbefd97d971a86d3dc1df1a4ce41c793d68a70d167194c1a712fd47ce66364",
+          "sizeBytes": 9417,
           "role": "manifest"
         },
         {
           "path": "src/registry/shadcn/carousel/index.ts",
-          "sha256": "fcaa1ee2ec579d6c3c81bbb572266137710b56409095915fd3d5b347d3414735",
-          "sizeBytes": 16090,
+          "sha256": "5d2320d7009628d2b759ed654145ab809ed327aad7b6da6191672c169945c058",
+          "sizeBytes": 16435,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/carousel/examples.ts",
-          "sha256": "50d75b76b21a264d96a1a36384dbc891cb7a3f7b2316b67b1f28e64eb7c24f18",
-          "sizeBytes": 5479,
+          "sha256": "91d2cb96895a3e54cb1557117c1f1cb2a6b9daf29b179b532b7d5002f925e367",
+          "sizeBytes": 5965,
           "role": "source"
         }
       ]

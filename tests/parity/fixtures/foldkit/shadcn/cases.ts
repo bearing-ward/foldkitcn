@@ -88,6 +88,15 @@ import {
   CardSpacing,
 } from '../../../../../src/registry/shadcn/card/examples'
 import {
+  CarouselApi,
+  CarouselDemo,
+  CarouselMultiple,
+  CarouselOrientation,
+  CarouselRtl,
+  CarouselSize,
+  CarouselSpacing,
+} from '../../../../../src/registry/shadcn/carousel/examples'
+import {
   CommandBasic,
   CommandDemo,
   CommandDialogDemo,
@@ -541,6 +550,13 @@ const components: Readonly<Record<string, () => Html>> = {
   'calendar-basic': CalendarBasic,
   'calendar-booked-dates': CalendarBookedDates,
   'calendar-rtl': CalendarRtl,
+  'carousel-api': CarouselApi,
+  'carousel-demo': CarouselDemo,
+  'carousel-multiple': CarouselMultiple,
+  'carousel-orientation': CarouselOrientation,
+  'carousel-rtl': CarouselRtl,
+  'carousel-size': CarouselSize,
+  'carousel-spacing': CarouselSpacing,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,
@@ -607,6 +623,7 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['badge-', 'src/registry/shadcn/badge/examples.ts'],
   ['button-group-', 'src/registry/shadcn/button-group/examples.ts'],
   ['calendar-', 'src/registry/shadcn/calendar/examples.ts'],
+  ['carousel-', 'src/registry/shadcn/carousel/examples.ts'],
   ['command-', 'src/registry/shadcn/command/examples.ts'],
   ['dropdown-menu-', 'src/registry/shadcn/dropdown-menu/examples.ts'],
   ['menubar-', 'src/registry/shadcn/menubar/examples.ts'],

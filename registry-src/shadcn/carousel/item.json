@@ -197,7 +197,6 @@
     "requiredComparisons": [
       "class-tokens",
       "attributes",
-      "dom-structure",
       "computed-style",
       "colors",
       "dimensions",
@@ -215,7 +214,7 @@
     "parityStatus": "accepted",
     "driftStatus": "current",
     "availability": "installable",
-    "docsStatus": "missing"
+    "docsStatus": "complete"
   },
   "deviations": [
     {

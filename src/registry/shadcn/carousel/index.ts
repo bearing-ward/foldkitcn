@@ -235,6 +235,36 @@ export const carouselNextVerticalRtlClassName =
 
 const isRtl = (dir: string | undefined): boolean => dir === 'rtl'
 
+const carouselContentOrientationClassName = (
+  orientation: CarouselOrientation,
+  dir?: string | undefined,
+): string => {
+  if (orientation === 'vertical') {
+    return carouselContentVerticalClassName
+  }
+
+  if (isRtl(dir)) {
+    return carouselContentHorizontalRtlClassName
+  }
+
+  return carouselContentHorizontalClassName
+}
+
+const carouselItemOrientationClassName = (
+  orientation: CarouselOrientation,
+  dir?: string | undefined,
+): string => {
+  if (orientation === 'vertical') {
+    return carouselItemVerticalClassName
+  }
+
+  if (isRtl(dir)) {
+    return carouselItemHorizontalRtlClassName
+  }
+
+  return carouselItemHorizontalClassName
+}
+
 export const carouselClassName = ({
   className,
 }: Pick<CarouselStyleOptions, 'className'> = {}): string =>
@@ -256,11 +286,7 @@ export const carouselContentClassName = ({
 }> = {}): string =>
   cn(
     carouselContentBaseClassName,
-    orientation === 'horizontal'
-      ? (isRtl(dir)
-        ? carouselContentHorizontalRtlClassName
-        : carouselContentHorizontalClassName)
-      : carouselContentVerticalClassName,
+    carouselContentOrientationClassName(orientation, dir),
     className,
   )
 
@@ -275,11 +301,7 @@ export const carouselItemClassName = ({
 }> = {}): string =>
   cn(
     carouselItemBaseClassName,
-    orientation === 'horizontal'
-      ? (isRtl(dir)
-        ? carouselItemHorizontalRtlClassName
-        : carouselItemHorizontalClassName)
-      : carouselItemVerticalClassName,
+    carouselItemOrientationClassName(orientation, dir),
     className,
   )
 
@@ -354,7 +376,7 @@ const keyboardAttributes = <Message>(
   config: Pick<ViewConfig<Message>, 'toMessage'>,
   state: CarouselState,
 ): ReadonlyArray<Attribute<Message>> => {
-  const {toMessage} = config
+  const { toMessage } = config
 
   if (toMessage === undefined) {
     return []
@@ -444,7 +466,6 @@ const itemAttributes = <Message>(
   config: ViewConfig<Message>,
   state: CarouselState,
   item: CarouselItemConfig<Message>,
-  index: number,
 ): CarouselItemAttributes<Message> => ({
   item,
   root: [
@@ -458,7 +479,6 @@ const itemAttributes = <Message>(
         dir: state.dir,
       }),
     ),
-    h.Attribute('data-index', String(index)),
     ...(item.attributes ?? []),
   ],
 })
@@ -510,7 +530,7 @@ const control = <Message>(
     size: 'icon-sm',
     className,
     isDisabled: !canScroll,
-    onClick,
+    ...(onClick === undefined ? {} : { onClick }),
     toView: attributes =>
       h.button(
         [
@@ -546,9 +566,7 @@ const carouselAttributes = <Message>(
     root: rootAttributes(h, config, state),
     viewport: viewportAttributes(h),
     content: contentAttributes(h, config, state),
-    items: config.items.map((item, index) =>
-      itemAttributes(h, config, state, item, index),
-    ),
+    items: config.items.map(item => itemAttributes(h, config, state, item)),
     previousControl: control(config, state, 'previous'),
     nextControl: control(config, state, 'next'),
   }
