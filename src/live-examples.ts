@@ -107,6 +107,12 @@ import {
   SpinnerRtl,
   SpinnerSize,
 } from './registry/shadcn/spinner/examples'
+import {
+  TableActions,
+  TableDemo,
+  TableFooterExample,
+  TableRtl,
+} from './registry/shadcn/table/examples'
 
 export type LiveExampleContext<Message> = Readonly<{
   inputValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
@@ -307,6 +313,11 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(SpinnerEmpty),
   [liveExampleKey('shadcn/spinner', 'SpinnerRtl')]: staticExample(SpinnerRtl),
   [liveExampleKey('shadcn/spinner', 'SpinnerSize')]: staticExample(SpinnerSize),
+  [liveExampleKey('shadcn/table', 'TableActions')]: staticExample(TableActions),
+  [liveExampleKey('shadcn/table', 'TableDemo')]: staticExample(TableDemo),
+  [liveExampleKey('shadcn/table', 'TableFooterExample')]:
+    staticExample(TableFooterExample),
+  [liveExampleKey('shadcn/table', 'TableRtl')]: staticExample(TableRtl),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',

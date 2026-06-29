@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T12:38:00.148Z",
+  "generatedAt": "2026-06-29T12:56:27.432Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -11114,8 +11114,8 @@
       "artifacts": [
         {
           "path": "registry-src/shadcn/empty/item.json",
-          "sha256": "ec8828bf716c79751b5b708d1dbf520122426d4b0ce57c40f83ba1bcdf23d1ed",
-          "sizeBytes": 8444,
+          "sha256": "9169aeafe010f0fd853b778bc6f0a85d6a9c2d9ae316bb074324d5fdcbc681ff",
+          "sizeBytes": 8416,
           "role": "manifest"
         },
         {
@@ -16490,8 +16490,8 @@
       "artifacts": [
         {
           "path": "registry-src/shadcn/spinner/item.json",
-          "sha256": "3c17f163c12faee07428fb5e717f655673b1d66ebde62fecf410fbf7238201dd",
-          "sizeBytes": 8094,
+          "sha256": "80619a63007921fa6ff364a30ec374c2d7074743406e0fa296741ad4c233e738",
+          "sizeBytes": 8082,
           "role": "manifest"
         },
         {
@@ -16912,7 +16912,7 @@
           "parityStatus": "accepted",
           "driftStatus": "current",
           "availability": "installable",
-          "docsStatus": "missing"
+          "docsStatus": "complete"
         },
         "deviations": [
           {
@@ -16938,12 +16938,12 @@
           }
         ]
       },
-      "manifestHash": "e1ef5c20ea03c6adf34f8d0e416a0efe76bc9320007cb731f7d757508d3b5d40",
+      "manifestHash": "70464853ef52c3ee1fea54c12bbe8de662f2c622f62393b25f4ab90f09c09aba",
       "artifacts": [
         {
           "path": "registry-src/shadcn/table/item.json",
-          "sha256": "dd6539c436cfebeaff799538d19e0f684108ac4e303bbdcfa24d4df67e1ccc6f",
-          "sizeBytes": 6912,
+          "sha256": "7512389d049db0709ca7dc6a8b0089e96d5b77468073cbe9bb585f8d742d4881",
+          "sizeBytes": 6913,
           "role": "manifest"
         },
         {
@@ -16954,8 +16954,8 @@
         },
         {
           "path": "src/registry/shadcn/table/examples.ts",
-          "sha256": "b2ce2f82ff69c3afeab3ecd5d44149bc707b431fca06f49a7870984a6f01c1f4",
-          "sizeBytes": 10088,
+          "sha256": "2d9b7d47d247a94b549e4995510872e5e7b7aba1289d6e05b4bdaa42a32fbdc2",
+          "sizeBytes": 10206,
           "role": "source"
         }
       ]

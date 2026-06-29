@@ -1,4 +1,4 @@
-import { Array } from 'effect'
+import { Array as EffectArray, pipe } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -312,7 +312,7 @@ const invoiceTable = (
         ],
       }),
       TableBody<never>({
-        children: Array.map(visibleInvoices, invoiceRow(copy)),
+        children: pipe(visibleInvoices, EffectArray.map(invoiceRow(copy))),
       }),
       TableFooter<never>({
         children: [
@@ -351,21 +351,24 @@ export const TableActions = (): Html =>
         ],
       }),
       TableBody<never>({
-        children: Array.map(products, product =>
-          TableRow<never>({
-            attributes: [html<never>().Key(product.id)],
-            children: [
-              TableCell<never>({
-                className: 'font-medium',
-                children: [product.name],
-              }),
-              TableCell<never>({ children: [product.price] }),
-              TableCell<never>({
-                className: 'text-right',
-                children: [actionMenu(`table-actions-${product.id}`)],
-              }),
-            ],
-          }),
+        children: pipe(
+          products,
+          EffectArray.map(product =>
+            TableRow<never>({
+              attributes: [html<never>().Key(product.id)],
+              children: [
+                TableCell<never>({
+                  className: 'font-medium',
+                  children: [product.name],
+                }),
+                TableCell<never>({ children: [product.price] }),
+                TableCell<never>({
+                  className: 'text-right',
+                  children: [actionMenu(`table-actions-${product.id}`)],
+                }),
+              ],
+            }),
+          ),
         ),
       }),
     ],
@@ -374,7 +377,7 @@ export const TableActions = (): Html =>
 export const TableDemo = (): Html => invoiceTable(defaultInvoiceCopy, invoices)
 
 export const TableFooterExample = (): Html =>
-  invoiceTable(defaultInvoiceCopy, Array.take(invoices, 3))
+  invoiceTable(defaultInvoiceCopy, pipe(invoices, EffectArray.take(3)))
 
 export const TableRtl = (): Html => invoiceTable(arabicInvoiceCopy, invoices)
 

@@ -413,6 +413,12 @@ const liveReadyExampleExportsByItemId: Readonly<
     'SpinnerRtl',
     'SpinnerSize',
   ]),
+  'shadcn/table': new Set([
+    'TableActions',
+    'TableDemo',
+    'TableFooterExample',
+    'TableRtl',
+  ]),
   'shadcn/radio-group': new Set([
     'RadioGroupDemo',
     'RadioGroupDescription',

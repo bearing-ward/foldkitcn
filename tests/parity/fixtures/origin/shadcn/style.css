@@ -177,6 +177,12 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/skeleton-text.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/skeleton.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/skeleton.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/table-actions.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/table-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/table-footer.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/table-rtl.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/table.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui-rtl/table.tsx";
 
 @custom-variant dark (&:is(.dark *));
 

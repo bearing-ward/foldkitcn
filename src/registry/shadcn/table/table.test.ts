@@ -35,7 +35,7 @@ const update = (model: Model, _message: Message): UpdateReturn => [model, []]
 
 // VIEW
 
-const view = (html: Html) => (): Html => html
+const viewHtml = (renderedHtml: Html) => (): Html => renderedHtml
 
 const tableWithParts = (): Html =>
   Table.Table<never>({
@@ -88,7 +88,7 @@ describe('shadcn/table class helpers', () => {
     expect(Table.tableRowStateValues).toStrictEqual(['selected'])
   })
 
-  test('returns exact base-nova classes for every slot', () => {
+  test('returns exact base-nova classes for table containers', () => {
     expect(Table.tableContainerClassName()).toBe(
       Table.tableContainerBaseClassName,
     )
@@ -96,21 +96,21 @@ describe('shadcn/table class helpers', () => {
     expect(Table.tableHeaderClassName()).toBe(Table.tableHeaderBaseClassName)
     expect(Table.tableBodyClassName()).toBe(Table.tableBodyBaseClassName)
     expect(Table.tableFooterClassName()).toBe(Table.tableFooterBaseClassName)
+  })
+
+  test('returns exact base-nova classes for table parts', () => {
     expect(Table.tableRowClassName()).toBe(Table.tableRowBaseClassName)
     expect(Table.tableHeadClassName()).toBe(Table.tableHeadBaseClassName)
     expect(Table.tableCellClassName()).toBe(Table.tableCellBaseClassName)
     expect(Table.tableCaptionClassName()).toBe(Table.tableCaptionBaseClassName)
   })
 
-  test('canonicalizes custom classes through local cn', () => {
+  test('canonicalizes table and head classes through local cn', () => {
     const tableClassName = Table.tableClassName({
       className: 'text-xs text-sm custom-table',
     })
     const headClassName = Table.tableHeadClassName({
       className: 'text-left text-right w-[120px]',
-    })
-    const cellClassName = Table.tableCellClassName({
-      className: 'p-1 p-4 font-medium',
     })
 
     expect(tableClassName).toContain('text-sm')
@@ -118,6 +118,13 @@ describe('shadcn/table class helpers', () => {
     expect(tableClassName).not.toContain('text-xs')
     expect(headClassName).toContain('text-right')
     expect(headClassName).not.toContain('text-left')
+  })
+
+  test('canonicalizes cell classes through local cn', () => {
+    const cellClassName = Table.tableCellClassName({
+      className: 'p-1 p-4 font-medium',
+    })
+
     expect(cellClassName).toContain('p-4')
     expect(cellClassName).not.toContain('p-1')
   })
@@ -127,7 +134,7 @@ describe('shadcn/table view', () => {
   test('renders semantic table structure, slots, and row state attributes', () => {
     expect(() => {
       Scene.scene(
-        { update, view: view(tableWithParts()) },
+        { update, view: viewHtml(tableWithParts()) },
         Scene.with(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="table-container"]'),
@@ -167,7 +174,7 @@ describe('shadcn/table view', () => {
       Scene.scene(
         {
           update,
-          view: view(
+          view: viewHtml(
             Table.Table<never>({
               dir: 'rtl',
               attributes: [html<never>().Id('table-root')],
