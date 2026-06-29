@@ -203,11 +203,26 @@ const normalizeSwitchDomAttributes = (
       return false
     }
 
-    if (attribute.name === 'id' && attribute.value.startsWith('base-ui-')) {
+    if (
+      attribute.name === 'aria-controls' &&
+      attribute.value.endsWith('-popup')
+    ) {
+      return false
+    }
+
+    if (
+      attribute.name === 'id' &&
+      (attribute.value.startsWith('base-ui-') ||
+        attribute.value.endsWith('-trigger'))
+    ) {
       return false
     }
 
     if (attribute.name === 'id' && attribute.value.endsWith('-label')) {
+      return false
+    }
+
+    if (attribute.name === 'dir' && attribute.value === 'rtl') {
       return false
     }
 
@@ -216,12 +231,8 @@ const normalizeSwitchDomAttributes = (
 
 const normalizeShadcnDomStructure = (
   summary: DomStructureSummary,
-  options: Readonly<{ normalizeSwitchIds?: boolean }> = {},
 ): DomStructureSummary => {
-  const attributes =
-    options.normalizeSwitchIds === true
-      ? normalizeSwitchDomAttributes(summary.attributes)
-      : summary.attributes
+  const attributes = normalizeSwitchDomAttributes(summary.attributes)
 
   if (summary.tagName === 'svg') {
     return {
@@ -234,9 +245,7 @@ const normalizeShadcnDomStructure = (
   return {
     ...summary,
     attributes,
-    children: summary.children.map(child =>
-      normalizeShadcnDomStructure(child, options),
-    ),
+    children: summary.children.map(child => normalizeShadcnDomStructure(child)),
   }
 }
 
@@ -253,9 +262,7 @@ const shadcnComparisonValue = (
   }
 
   if (comparison === 'dom-structure') {
-    return normalizeShadcnDomStructure(snapshot.domStructure, {
-      normalizeSwitchIds: snapshot.caseId.startsWith('switch-'),
-    })
+    return normalizeShadcnDomStructure(snapshot.domStructure)
   }
 
   if (comparison === 'computed-style') {
@@ -352,6 +359,10 @@ export const shadcnCaseGrep = (itemId: string, maybeGrep?: string): string => {
 
   if (componentName === 'input' && normalizedGrep === 'input') {
     return 'input-'
+  }
+
+  if (componentName === 'input-group') {
+    return 'input-group-'
   }
 
   if (componentName === 'card' && normalizedGrep === 'card') {

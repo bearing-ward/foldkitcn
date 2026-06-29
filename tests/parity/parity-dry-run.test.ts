@@ -23,8 +23,10 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/button-group',
       'shadcn/card',
       'shadcn/item',
+      'shadcn/input-group',
       'shadcn/breadcrumb',
       'shadcn/pagination',
       'shadcn/toggle',
@@ -70,8 +72,10 @@ describe('parity dry-run helpers', () => {
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
+      'shadcn/button-group',
       'shadcn/card',
       'shadcn/item',
+      'shadcn/input-group',
       'shadcn/breadcrumb',
       'shadcn/pagination',
       'shadcn/toggle',
@@ -113,10 +117,14 @@ describe('parity dry-run helpers', () => {
   })
 
   test('preserves scoped and item-id grep behavior', () => {
-    expect(matchingItemIds('shadcn/button')).toStrictEqual(['shadcn/button'])
+    expect(matchingItemIds('shadcn/button')).toStrictEqual([
+      'shadcn/button',
+      'shadcn/button-group',
+    ])
     expect(matchingItemIds('button')).toStrictEqual([
       'base-ui/button',
       'shadcn/button',
+      'shadcn/button-group',
     ])
     expect(matchingItemIds('toggle')).toStrictEqual([
       'base-ui/toggle',
@@ -125,6 +133,7 @@ describe('parity dry-run helpers', () => {
       'shadcn/toggle-group',
     ])
     expect(matchingItemIds('input')).toStrictEqual([
+      'shadcn/input-group',
       'base-ui/input',
       'shadcn/input',
       'shadcn/input-otp',

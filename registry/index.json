@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T09:28:03.266Z",
+  "generatedAt": "2026-06-29T11:06:38.870Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -7519,6 +7519,347 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/button-group",
+        "namespace": "shadcn",
+        "name": "Button Group",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Button Group helper with Effect Schema orientation options, origin slot class helpers, text and separator affordances, and local examples composed from existing shadcn registry controls.",
+        "sourceRoot": "registry-src/shadcn/button-group",
+        "installableSourcePaths": [
+          "src/registry/shadcn/button-group/index.ts",
+          "src/registry/shadcn/button-group/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--radius",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Button Group",
+            "docsUrl": "https://ui.shadcn.com/docs/components/button-group",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/button-group.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/button-group.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/button-group.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/button-group.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/button-group.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/button-group-demo.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-dropdown.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-input-group.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-input.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-nested.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-orientation.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-popover.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-select.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-separator.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-size.tsx",
+              "repos/ui/apps/v4/examples/base/button-group-split.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Button Group examples compose local shadcn Button controls."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "Dropdown-oriented examples compose local Dropdown Menu trigger attributes without importing upstream React."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "registry-local",
+              "target": "shadcn/field",
+              "reason": "Popover form examples compose local Field affordances."
+            },
+            {
+              "specifier": "shadcn/input",
+              "classification": "registry-local",
+              "target": "shadcn/input",
+              "reason": "Input examples compose the local shadcn Input control."
+            },
+            {
+              "specifier": "shadcn/popover",
+              "classification": "registry-local",
+              "target": "shadcn/popover",
+              "reason": "Popover examples compose local Popover trigger attributes."
+            },
+            {
+              "specifier": "shadcn/select",
+              "classification": "registry-local",
+              "target": "shadcn/select",
+              "reason": "Select examples compose local Select trigger attributes."
+            },
+            {
+              "specifier": "shadcn/separator",
+              "classification": "registry-local",
+              "target": "shadcn/separator",
+              "reason": "Button Group Separator composes local shadcn Separator semantics and classes."
+            },
+            {
+              "specifier": "shadcn/textarea",
+              "classification": "registry-local",
+              "target": "shadcn/textarea",
+              "reason": "Popover form examples compose local Textarea affordances."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Button Group replaces CVA with local class canonicalization helpers."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for orientation options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin mergeProps usage is replaced by explicit Foldkit attribute construction."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin useRender support is represented by Foldkit toView-style helpers."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "@tabler/icons-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Local input-group is not implemented yet, so input-group-dependent Button Group examples are deferred to plan 072."
+            },
+            {
+              "specifier": "shadcn/tooltip",
+              "classification": "registry-local",
+              "target": "shadcn/tooltip",
+              "reason": "Deferred input-group examples will compose the local Tooltip item once input-group unlocks them."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/button-group-demo",
+            "title": "ButtonGroupDemo",
+            "description": "Nested Button Groups for archive, report, snooze, and more actions.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-dropdown",
+            "title": "ButtonGroupDropdown",
+            "description": "Button Group with a local dropdown trigger affordance.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-input",
+            "title": "ButtonGroupInput",
+            "description": "Button Group with local Input and search Button.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-orientation",
+            "title": "ButtonGroupOrientation",
+            "description": "Vertical media controls Button Group.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-popover",
+            "title": "ButtonGroupPopover",
+            "description": "Button Group with a local Popover trigger affordance.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-rtl",
+            "title": "ButtonGroupRtl",
+            "description": "RTL Button Group with deterministic local Arabic labels.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-select",
+            "title": "ButtonGroupSelect",
+            "description": "Button Group with local Select trigger, Input, and send Button.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-separator",
+            "title": "ButtonGroupSeparatorDemo",
+            "description": "Button Group with local separator affordance.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-size",
+            "title": "ButtonGroupSize",
+            "description": "Small, default, and large Button Group rows.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/button-group-split",
+            "title": "ButtonGroupSplit",
+            "description": "Split secondary Button Group with separator and icon action.",
+            "sourcePath": "src/registry/shadcn/button-group/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/button-group",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-button-group-local-class-helper",
+            "shadcn-button-group-local-icons-and-rtl",
+            "shadcn-button-group-input-group-deferred"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-button-group-local-class-helper",
+            "summary": "CVA, useRender, and mergeProps are replaced by Effect Schema orientation and explicit Foldkit attribute helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must stay Effect-native and must not import React, CVA, or upstream Base UI React helpers."
+          },
+          {
+            "id": "shadcn-button-group-local-icons-and-rtl",
+            "summary": "Icon examples and RTL labels use local inline SVGs and deterministic strings instead of origin icon packages and language selector runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react, @tabler/icons-react, or the origin app language selector."
+          },
+          {
+            "id": "shadcn-button-group-input-group-deferred",
+            "summary": "The button-group-input-group and button-group-nested examples are deferred until shadcn/input-group is available.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The core Button Group item remains installable without importing upstream input-group source. Plan 072 will unlock the two input-group-composed examples."
+          }
+        ]
+      },
+      "manifestHash": "254d31ace3c83f2f792440bc9ea3e954e69215b912cf6c78cb29ef2488de086e",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/button-group/item.json",
+          "sha256": "a06c23c1a40b3dac18f4e2ca9125aa58ba32da1ee2652a6676e4703d8713d414",
+          "sizeBytes": 12079,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/button-group/index.ts",
+          "sha256": "cd19049883b8ab88dc0ada22f1e6b6e381b722575403a14015fb582c824c6f61",
+          "sizeBytes": 7898,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/button-group/examples.ts",
+          "sha256": "b406edcb54a3cb65690abb0ded84c17d66446bcf425a41939cfd0f5eb7170fb2",
+          "sizeBytes": 11343,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/button",
         "namespace": "shadcn",
         "name": "Button",
@@ -11025,6 +11366,431 @@
           "path": "src/registry/shadcn/hover-card/examples.ts",
           "sha256": "668965ae27ea0cc3d49b9f2b6cc515416c0fb5803583ce13b93648b5d0b9e349",
           "sizeBytes": 4367,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/input-group",
+        "namespace": "shadcn",
+        "name": "Input Group",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Input Group helper with Effect Schema addon alignment, grouped controls, text, buttons, input and textarea affordances, and local examples composed from existing shadcn registry controls.",
+        "sourceRoot": "registry-src/shadcn/input-group",
+        "installableSourcePaths": [
+          "src/registry/shadcn/input-group/index.ts",
+          "src/registry/shadcn/input-group/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--radius",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Input Group",
+            "docsUrl": "https://ui.shadcn.com/docs/components/input-group",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/input-group.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/input-group.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/input-group.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/input-group.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/input-group-basic.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-block-end.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-block-start.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-button-group.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-button.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-custom.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-demo.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-dropdown.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-icon.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-in-card.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-inline-end.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-inline-start.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-kbd.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-label.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-spinner.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-text.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-textarea-examples.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-textarea.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-tooltip.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-with-addons.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-with-buttons.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-with-kbd.tsx",
+              "repos/ui/apps/v4/examples/base/input-group-with-tooltip.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Input Group buttons compose local shadcn Button controls."
+            },
+            {
+              "specifier": "shadcn/button-group",
+              "classification": "registry-local",
+              "target": "shadcn/button-group",
+              "reason": "Input Group examples compose the local Button Group item."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "registry-local",
+              "target": "shadcn/card",
+              "reason": "Card examples compose the local Card item."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "Dropdown-oriented examples compose local Dropdown Menu trigger attributes without importing upstream React."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "registry-local",
+              "target": "shadcn/field",
+              "reason": "Form examples compose local Field affordances."
+            },
+            {
+              "specifier": "shadcn/input",
+              "classification": "registry-local",
+              "target": "shadcn/input",
+              "reason": "Input Group Input composes the local shadcn Input control."
+            },
+            {
+              "specifier": "shadcn/kbd",
+              "classification": "registry-local",
+              "target": "shadcn/kbd",
+              "reason": "Keyboard shortcut examples compose the local Kbd item."
+            },
+            {
+              "specifier": "shadcn/label",
+              "classification": "registry-local",
+              "target": "shadcn/label",
+              "reason": "Label examples compose the local Label item."
+            },
+            {
+              "specifier": "shadcn/textarea",
+              "classification": "registry-local",
+              "target": "shadcn/textarea",
+              "reason": "Input Group Textarea composes the local shadcn Textarea control."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Input Group replaces CVA with local class canonicalization helpers."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for addon alignment and button size options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "@tabler/icons-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
+            },
+            {
+              "specifier": "@/hooks/use-copy-to-clipboard",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Clipboard behavior belongs in parent Foldkit messages and commands, not this stateless render helper."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "react-textarea-autosize",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Autosize behavior is not required for the core helper and is replaced by static textarea sizing in examples."
+            },
+            {
+              "specifier": "shadcn/spinner",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Local spinner is not implemented yet, so spinner-specific examples are deferred to plan 073."
+            },
+            {
+              "specifier": "sonner",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Toast behavior waits for the local toast or sonner foundation instead of importing the upstream runtime."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/input-group-demo",
+            "title": "InputGroupDemo",
+            "description": "Search Input Group with start and end addons.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-basic",
+            "title": "InputGroupBasic",
+            "description": "Basic, disabled, and invalid Input Group states.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-inline-start",
+            "title": "InputGroupInlineStart",
+            "description": "Inline-start icon addon.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-inline-end",
+            "title": "InputGroupInlineEnd",
+            "description": "Inline-end icon addon.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-block-start",
+            "title": "InputGroupBlockStart",
+            "description": "Block-start input and textarea addons.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-block-end",
+            "title": "InputGroupBlockEnd",
+            "description": "Block-end input and textarea addons.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-with-buttons",
+            "title": "InputGroupWithButtons",
+            "description": "Input Group controls with inline buttons.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-button-group",
+            "title": "InputGroupButtonGroup",
+            "description": "Input Group nested inside Button Group text affordances.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-dropdown",
+            "title": "InputGroupDropdown",
+            "description": "Input Group with local dropdown trigger affordances.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-icon",
+            "title": "InputGroupIcon",
+            "description": "Input Groups with icon addons.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-kbd",
+            "title": "InputGroupKbd",
+            "description": "Input Group with Kbd addon.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-label",
+            "title": "InputGroupLabel",
+            "description": "Input Group with inline and block labels.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-text",
+            "title": "InputGroupTextExample",
+            "description": "Text addons around inputs and textareas.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-textarea",
+            "title": "InputGroupTextareaExample",
+            "description": "Textarea Input Group with block header and footer controls.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-in-card",
+            "title": "InputGroupInCard",
+            "description": "Input Group composed inside a local Card.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-with-kbd",
+            "title": "InputGroupWithKbd",
+            "description": "Input Group with keyboard shortcut groups.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group-rtl",
+            "title": "InputGroupRtl",
+            "description": "RTL Input Group with deterministic local labels.",
+            "sourcePath": "src/registry/shadcn/input-group/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/input-group",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-input-group-local-class-helper",
+            "shadcn-input-group-local-icons-and-rtl",
+            "shadcn-input-group-spinner-deferred",
+            "shadcn-input-group-toast-and-clipboard-deferred",
+            "shadcn-input-group-static-textarea-sizing"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-input-group-local-class-helper",
+            "summary": "CVA is replaced by Effect Schema addon alignment and button size options plus explicit Foldkit attribute helpers.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source must stay Effect-native and must not import React or CVA."
+          },
+          {
+            "id": "shadcn-input-group-local-icons-and-rtl",
+            "summary": "Icon examples and RTL labels use local inline SVGs and deterministic strings instead of origin icon packages and language selector runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react, @tabler/icons-react, or the origin app language selector."
+          },
+          {
+            "id": "shadcn-input-group-spinner-deferred",
+            "summary": "Spinner-specific input group examples are deferred until shadcn/spinner is available.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Plan 073 owns the local spinner item, so this plan preserves the core Input Group helper without importing an upstream spinner."
+          },
+          {
+            "id": "shadcn-input-group-toast-and-clipboard-deferred",
+            "summary": "Toast and copy-to-clipboard behavior is represented as static controls until local command/toast foundations are available.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Side effects belong in parent Foldkit messages and commands; this stateless helper must not import sonner or React clipboard hooks."
+          },
+          {
+            "id": "shadcn-input-group-static-textarea-sizing",
+            "summary": "Textarea examples use static Foldkit textarea sizing instead of react-textarea-autosize.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Autosize behavior is not required for the installable Input Group contract and would need a separate local behavior foundation."
+          }
+        ]
+      },
+      "manifestHash": "add1b2db9dabd5888771156ca43f7f351442edae9330d896dc0128f0b64f454f",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/input-group/item.json",
+          "sha256": "5934a8800e942f898afa68a0759ee8289b2623b79621ce42755bf7cb5bfcbba8",
+          "sizeBytes": 15483,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/input-group/index.ts",
+          "sha256": "362ea7daa3145713fb442a6d95314c37e444d72bf1d48842ee93af528d1d6fad",
+          "sizeBytes": 13984,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/input-group/examples.ts",
+          "sha256": "185520ec896236f0eebb2b8dd1e10b8130b3b46695dcf9587f3996c6a2e2960b",
+          "sizeBytes": 37051,
           "role": "source"
         }
       ]

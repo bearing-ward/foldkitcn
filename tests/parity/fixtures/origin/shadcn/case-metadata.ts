@@ -214,6 +214,59 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/button-rtl.tsx',
     },
     {
+      id: 'button-group-demo',
+      title: 'Button Group demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-demo.tsx',
+    },
+    {
+      id: 'button-group-dropdown',
+      title: 'Button Group dropdown',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/button-group-dropdown.tsx',
+    },
+    {
+      id: 'button-group-input',
+      title: 'Button Group input',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-input.tsx',
+    },
+    {
+      id: 'button-group-orientation',
+      title: 'Button Group orientation',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/button-group-orientation.tsx',
+    },
+    {
+      id: 'button-group-popover',
+      title: 'Button Group popover',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-popover.tsx',
+    },
+    {
+      id: 'button-group-rtl',
+      title: 'Button Group RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-rtl.tsx',
+    },
+    {
+      id: 'button-group-select',
+      title: 'Button Group select',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-select.tsx',
+    },
+    {
+      id: 'button-group-separator',
+      title: 'Button Group separator',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/button-group-separator.tsx',
+    },
+    {
+      id: 'button-group-size',
+      title: 'Button Group size',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-size.tsx',
+    },
+    {
+      id: 'button-group-split',
+      title: 'Button Group split',
+      originFilePath: 'repos/ui/apps/v4/examples/base/button-group-split.tsx',
+    },
+    {
       id: 'card-demo',
       title: 'Card demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/card-demo.tsx',
@@ -392,6 +445,97 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'input-required',
       title: 'Input required',
       originFilePath: 'repos/ui/apps/v4/examples/base/input-required.tsx',
+    },
+    {
+      id: 'input-group-demo',
+      title: 'Input Group demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-demo.tsx',
+    },
+    {
+      id: 'input-group-basic',
+      title: 'Input Group basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-basic.tsx',
+    },
+    {
+      id: 'input-group-inline-start',
+      title: 'Input Group inline start',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-inline-start.tsx',
+    },
+    {
+      id: 'input-group-inline-end',
+      title: 'Input Group inline end',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-inline-end.tsx',
+    },
+    {
+      id: 'input-group-block-start',
+      title: 'Input Group block start',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-block-start.tsx',
+    },
+    {
+      id: 'input-group-block-end',
+      title: 'Input Group block end',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-block-end.tsx',
+    },
+    {
+      id: 'input-group-with-buttons',
+      title: 'Input Group with buttons',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-with-buttons.tsx',
+    },
+    {
+      id: 'input-group-button-group',
+      title: 'Input Group button group',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/input-group-button-group.tsx',
+    },
+    {
+      id: 'input-group-dropdown',
+      title: 'Input Group dropdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-dropdown.tsx',
+    },
+    {
+      id: 'input-group-icon',
+      title: 'Input Group icon',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-icon.tsx',
+    },
+    {
+      id: 'input-group-kbd',
+      title: 'Input Group kbd',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-kbd.tsx',
+    },
+    {
+      id: 'input-group-label',
+      title: 'Input Group label',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-label.tsx',
+    },
+    {
+      id: 'input-group-text',
+      title: 'Input Group text',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-text.tsx',
+    },
+    {
+      id: 'input-group-textarea',
+      title: 'Input Group textarea',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-textarea.tsx',
+    },
+    {
+      id: 'input-group-in-card',
+      title: 'Input Group in card',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-in-card.tsx',
+    },
+    {
+      id: 'input-group-with-kbd',
+      title: 'Input Group with kbd',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-with-kbd.tsx',
+    },
+    {
+      id: 'input-group-rtl',
+      title: 'Input Group RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/input-group-rtl.tsx',
     },
     {
       id: 'native-select-demo',

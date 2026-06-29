@@ -10,7 +10,7 @@ import {
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
-import { Command } from 'foldkit'
+import { Command, Dom } from 'foldkit'
 import type { Document, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
@@ -137,6 +137,7 @@ export type Model = typeof Model.Type
 
 export const CompletedNavigateInternal = m('CompletedNavigateInternal')
 export const CompletedLoadExternal = m('CompletedLoadExternal')
+export const CompletedScrollToAnchor = m('CompletedScrollToAnchor')
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
@@ -167,6 +168,7 @@ export const ClickedClearSearch = m('ClickedClearSearch')
 export const Message = S.Union([
   CompletedNavigateInternal,
   CompletedLoadExternal,
+  CompletedScrollToAnchor,
   ClickedLink,
   ChangedUrl,
   ClickedToggleMobileNavigation,
@@ -197,7 +199,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
     searchQuery: '',
     pagefindSearch: IdlePagefindSearch(),
   },
-  [],
+  commandsForUrlHash(url),
 ]
 
 // UPDATE
@@ -213,6 +215,24 @@ const LoadExternal = Command.define(
   { href: S.String },
   CompletedLoadExternal,
 )(({ href }) => load(href).pipe(Effect.as(CompletedLoadExternal())))
+
+export const ScrollToAnchor = Command.define(
+  'ScrollToAnchor',
+  { hash: S.String },
+  CompletedScrollToAnchor,
+)(({ hash }) =>
+  Effect.gen(function* () {
+    const target = `#${CSS.escape(hash)}`
+    yield* Dom.scrollIntoViewAfterPaint(target, { block: 'start' })
+    yield* Dom.focus(target, { preventScroll: true, makeFocusable: true })
+  }).pipe(Effect.ignore, Effect.as(CompletedScrollToAnchor())),
+)
+
+const commandsForUrlHash = (url: Url): ReadonlyArray<Command.Command<Message>> =>
+  Option.match(url.hash, {
+    onNone: () => [],
+    onSome: hash => [ScrollToAnchor({ hash })],
+  })
 
 const MAX_PAGEFIND_RESULTS = 6
 const PAGEFIND_PATH = '/pagefind/pagefind.js'
@@ -329,6 +349,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
     M.tagsExhaustive({
       CompletedNavigateInternal: () => [model, []],
       CompletedLoadExternal: () => [model, []],
+      CompletedScrollToAnchor: () => [model, []],
       ClickedLink: ({ request }) =>
         M.value(request).pipe(
           withUpdateReturn,
@@ -345,7 +366,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           route: () => urlToAppRoute(url),
           mobileNavigation: () => MobileNavigation({ isOpen: false }),
         }),
-        [],
+        commandsForUrlHash(url),
       ],
       ClickedToggleMobileNavigation: () => [
         evo(model, {
@@ -884,8 +905,59 @@ const sidebarView = (
   )
 }
 
-const tableOfContentsView = (): Html => {
+const exampleAnchorId = (example: ExampleDocsArtifact): string =>
+  example.id.replaceAll(/[^a-z0-9_-]+/giu, '-')
+
+const tableOfContentsComponent = (
+  model: Model,
+): Option.Option<PublicComponent> =>
+  M.value(model.route).pipe(
+    M.withReturnType<Option.Option<PublicComponent>>(),
+    M.tagsExhaustive({
+      Home: () => Option.none(),
+      Docs: () => Option.none(),
+      ComponentsIndex: () => Option.none(),
+      ComponentsNamespace: () => Option.none(),
+      ComponentDetail: ({ namespace, slug }) =>
+        findRoutedComponent(model.data, namespace, slug),
+      Registry: () => Option.none(),
+      RegistrySchema: () => Option.none(),
+      RegistryLifecycle: () => Option.none(),
+      Roadmap: () => Option.none(),
+      NotFound: () => Option.none(),
+    }),
+  )
+
+const tableOfContentsExampleLinksView = (
+  maybeComponent: Option.Option<PublicComponent>,
+): Html => {
   const h = html<Message>()
+
+  return Option.match(maybeComponent, {
+    onNone: () => h.empty,
+    onSome: component =>
+      Option.match(component.maybeDocsArtifact, {
+        onNone: () => h.empty,
+        onSome: artifact =>
+          Array.isReadonlyArrayEmpty(artifact.examples)
+            ? h.empty
+            : h.ul(
+                [h.Class('toc-example-list')],
+                artifact.examples.map(example =>
+                  h.li([], [
+                    h.a([h.Href(`#${exampleAnchorId(example)}`)], [
+                      example.title,
+                    ]),
+                  ]),
+                ),
+              ),
+      }),
+  })
+}
+
+const tableOfContentsView = (model: Model): Html => {
+  const h = html<Message>()
+  const maybeComponent = tableOfContentsComponent(model)
 
   return h.aside(
     [
@@ -898,7 +970,10 @@ const tableOfContentsView = (): Html => {
       h.a([h.Href('#overview')], ['Overview']),
       h.a([h.Href('#installation')], ['Installation']),
       h.a([h.Href('#usage')], ['Usage']),
-      h.a([h.Href('#examples')], ['Examples']),
+      h.div([h.Class('toc-group')], [
+        h.a([h.Href('#examples')], ['Examples']),
+        tableOfContentsExampleLinksView(maybeComponent),
+      ]),
       h.a([h.Href('#api')], ['API']),
       h.a([h.Href('#accessibility')], ['Accessibility']),
       h.a([h.Href('#quality')], ['Quality']),
@@ -931,7 +1006,7 @@ const shellView = (model: Model, content: Html): Html => {
           ),
         ],
       ),
-      tableOfContentsView(),
+      tableOfContentsView(model),
     ]),
   ])
 }
@@ -1340,7 +1415,7 @@ const examplesSectionView = (
           artifact.examples.map(example =>
             h.keyed('article')(
               example.id,
-              [h.Class('example-card')],
+              [h.Id(exampleAnchorId(example)), h.Class('example-card')],
               [
                 h.div([h.Class('example-card-header')], [
                   h.div([], [

@@ -16,6 +16,18 @@ import {
 import type { InputExampleController } from './registry/base-ui/input/examples'
 import type { ExampleDocsArtifact } from './registry/schema'
 import {
+  ButtonGroupDemo,
+  ButtonGroupDropdown,
+  ButtonGroupInput,
+  ButtonGroupOrientation,
+  ButtonGroupPopover,
+  ButtonGroupRtl,
+  ButtonGroupSelect,
+  ButtonGroupSeparatorDemo,
+  ButtonGroupSize,
+  ButtonGroupSplit,
+} from './registry/shadcn/button-group/examples'
+import {
   ButtonDefault,
   ButtonDemo,
   ButtonDestructive,
@@ -31,6 +43,25 @@ import {
   ButtonSpinner,
   ButtonWithIcon,
 } from './registry/shadcn/button/examples'
+import {
+  InputGroupBasic,
+  InputGroupBlockEnd,
+  InputGroupBlockStart,
+  InputGroupButtonGroup,
+  InputGroupDemo,
+  InputGroupDropdown,
+  InputGroupIcon,
+  InputGroupInCard,
+  InputGroupInlineEnd,
+  InputGroupInlineStart,
+  InputGroupKbd,
+  InputGroupLabel,
+  InputGroupRtl,
+  InputGroupTextExample,
+  InputGroupTextareaExample,
+  InputGroupWithButtons,
+  InputGroupWithKbd,
+} from './registry/shadcn/input-group/examples'
 import {
   ItemAvatar,
   ItemDemo,
@@ -163,6 +194,26 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/button', 'ButtonRender')]:
     staticExample(ButtonRender),
   [liveExampleKey('shadcn/button', 'ButtonRtl')]: staticExample(ButtonRtl),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupDemo')]:
+    staticExample(ButtonGroupDemo),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupDropdown')]:
+    staticExample(ButtonGroupDropdown),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupInput')]:
+    staticExample(ButtonGroupInput),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupOrientation')]:
+    staticExample(ButtonGroupOrientation),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupPopover')]:
+    staticExample(ButtonGroupPopover),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupRtl')]:
+    staticExample(ButtonGroupRtl),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupSelect')]:
+    staticExample(ButtonGroupSelect),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupSeparatorDemo')]:
+    staticExample(ButtonGroupSeparatorDemo),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupSize')]:
+    staticExample(ButtonGroupSize),
+  [liveExampleKey('shadcn/button-group', 'ButtonGroupSplit')]:
+    staticExample(ButtonGroupSplit),
   [liveExampleKey('shadcn/item', 'ItemAvatar')]: staticExample(ItemAvatar),
   [liveExampleKey('shadcn/item', 'ItemDemo')]: staticExample(ItemDemo),
   [liveExampleKey('shadcn/item', 'ItemDropdown')]: staticExample(ItemDropdown),
@@ -176,6 +227,40 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/item', 'ItemRtl')]: staticExample(ItemRtl),
   [liveExampleKey('shadcn/item', 'ItemSizeDemo')]: staticExample(ItemSizeDemo),
   [liveExampleKey('shadcn/item', 'ItemVariant')]: staticExample(ItemVariant),
+  [liveExampleKey('shadcn/input-group', 'InputGroupDemo')]:
+    staticExample(InputGroupDemo),
+  [liveExampleKey('shadcn/input-group', 'InputGroupBasic')]:
+    staticExample(InputGroupBasic),
+  [liveExampleKey('shadcn/input-group', 'InputGroupInlineStart')]:
+    staticExample(InputGroupInlineStart),
+  [liveExampleKey('shadcn/input-group', 'InputGroupInlineEnd')]:
+    staticExample(InputGroupInlineEnd),
+  [liveExampleKey('shadcn/input-group', 'InputGroupBlockStart')]:
+    staticExample(InputGroupBlockStart),
+  [liveExampleKey('shadcn/input-group', 'InputGroupBlockEnd')]:
+    staticExample(InputGroupBlockEnd),
+  [liveExampleKey('shadcn/input-group', 'InputGroupWithButtons')]:
+    staticExample(InputGroupWithButtons),
+  [liveExampleKey('shadcn/input-group', 'InputGroupButtonGroup')]:
+    staticExample(InputGroupButtonGroup),
+  [liveExampleKey('shadcn/input-group', 'InputGroupDropdown')]:
+    staticExample(InputGroupDropdown),
+  [liveExampleKey('shadcn/input-group', 'InputGroupIcon')]:
+    staticExample(InputGroupIcon),
+  [liveExampleKey('shadcn/input-group', 'InputGroupKbd')]:
+    staticExample(InputGroupKbd),
+  [liveExampleKey('shadcn/input-group', 'InputGroupLabel')]:
+    staticExample(InputGroupLabel),
+  [liveExampleKey('shadcn/input-group', 'InputGroupTextExample')]:
+    staticExample(InputGroupTextExample),
+  [liveExampleKey('shadcn/input-group', 'InputGroupTextareaExample')]:
+    staticExample(InputGroupTextareaExample),
+  [liveExampleKey('shadcn/input-group', 'InputGroupInCard')]:
+    staticExample(InputGroupInCard),
+  [liveExampleKey('shadcn/input-group', 'InputGroupWithKbd')]:
+    staticExample(InputGroupWithKbd),
+  [liveExampleKey('shadcn/input-group', 'InputGroupRtl')]:
+    staticExample(InputGroupRtl),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',

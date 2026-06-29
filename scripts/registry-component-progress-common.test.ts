@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 41,
-      remaining: 23,
+      imported: 47,
+      remaining: 17,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -92,6 +92,7 @@ describe('origin component progress', () => {
       'shadcn/badge',
       'shadcn/breadcrumb',
       'shadcn/button',
+      'shadcn/button-group',
       'shadcn/card',
       'shadcn/checkbox',
       'shadcn/collapsible',
@@ -108,6 +109,7 @@ describe('origin component progress', () => {
       'shadcn/kbd',
       'shadcn/label',
       'shadcn/input',
+      'shadcn/input-group',
       'shadcn/input-otp',
       'shadcn/field',
       'shadcn/native-select',
@@ -152,10 +154,10 @@ describe('origin component progress', () => {
   test('selects a deterministic next row with recommended URLs', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('shadcn/button-group')
+    expect(nextRow?.itemId).toBe('shadcn/calendar')
     expect(nextRow?.readiness).toBe('dossier-ready')
     expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://ui.shadcn.com/docs/components/button-group',
+      'https://ui.shadcn.com/docs/components/calendar',
     ])
   })
 

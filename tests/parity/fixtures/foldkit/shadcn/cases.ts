@@ -46,6 +46,18 @@ import {
   BreadcrumbSeparatorDemo,
 } from '../../../../../src/registry/shadcn/breadcrumb/examples'
 import {
+  ButtonGroupDemo,
+  ButtonGroupDropdown,
+  ButtonGroupInput,
+  ButtonGroupOrientation,
+  ButtonGroupPopover,
+  ButtonGroupRtl,
+  ButtonGroupSelect,
+  ButtonGroupSeparatorDemo,
+  ButtonGroupSize,
+  ButtonGroupSplit,
+} from '../../../../../src/registry/shadcn/button-group/examples'
+import {
   ButtonDefault,
   ButtonDemo,
   ButtonDestructive,
@@ -71,6 +83,25 @@ import {
 } from '../../../../../src/registry/shadcn/card/examples'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
+import {
+  InputGroupBasic,
+  InputGroupBlockEnd,
+  InputGroupBlockStart,
+  InputGroupButtonGroup,
+  InputGroupDemo,
+  InputGroupDropdown,
+  InputGroupIcon,
+  InputGroupInCard,
+  InputGroupInlineEnd,
+  InputGroupInlineStart,
+  InputGroupKbd,
+  InputGroupLabel,
+  InputGroupRtl,
+  InputGroupTextExample,
+  InputGroupTextareaExample,
+  InputGroupWithButtons,
+  InputGroupWithKbd,
+} from '../../../../../src/registry/shadcn/input-group/examples'
 import {
   InputBasic,
   InputDemo,
@@ -367,6 +398,16 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'button-group-demo': ButtonGroupDemo,
+  'button-group-dropdown': ButtonGroupDropdown,
+  'button-group-input': ButtonGroupInput,
+  'button-group-orientation': ButtonGroupOrientation,
+  'button-group-popover': ButtonGroupPopover,
+  'button-group-rtl': ButtonGroupRtl,
+  'button-group-select': ButtonGroupSelect,
+  'button-group-separator': ButtonGroupSeparatorDemo,
+  'button-group-size': ButtonGroupSize,
+  'button-group-split': ButtonGroupSplit,
   'card-demo': CardDemo,
   'card-edge-to-edge': CardEdgeToEdge,
   'card-image': CardImage,
@@ -435,6 +476,23 @@ const components: Readonly<Record<string, () => Html>> = {
   'input-invalid': InputInvalid,
   'input-file': InputFile,
   'input-required': InputRequired,
+  'input-group-demo': InputGroupDemo,
+  'input-group-basic': InputGroupBasic,
+  'input-group-inline-start': InputGroupInlineStart,
+  'input-group-inline-end': InputGroupInlineEnd,
+  'input-group-block-start': InputGroupBlockStart,
+  'input-group-block-end': InputGroupBlockEnd,
+  'input-group-with-buttons': InputGroupWithButtons,
+  'input-group-button-group': InputGroupButtonGroup,
+  'input-group-dropdown': InputGroupDropdown,
+  'input-group-icon': InputGroupIcon,
+  'input-group-kbd': InputGroupKbd,
+  'input-group-label': InputGroupLabel,
+  'input-group-text': InputGroupTextExample,
+  'input-group-textarea': InputGroupTextareaExample,
+  'input-group-in-card': InputGroupInCard,
+  'input-group-with-kbd': InputGroupWithKbd,
+  'input-group-rtl': InputGroupRtl,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,
@@ -478,97 +536,36 @@ const components: Readonly<Record<string, () => Html>> = {
   'textarea-demo': TextareaDemo,
 }
 
-const foldkitSourcePath = (id: string): string => {
-  if (id.startsWith('aspect-ratio-')) {
-    return 'src/registry/shadcn/aspect-ratio/examples.ts'
-  }
+const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
+  ['aspect-ratio-', 'src/registry/shadcn/aspect-ratio/examples.ts'],
+  ['alert-', 'src/registry/shadcn/alert/examples.ts'],
+  ['avatar-', 'src/registry/shadcn/avatar/examples.ts'],
+  ['badge-', 'src/registry/shadcn/badge/examples.ts'],
+  ['button-group-', 'src/registry/shadcn/button-group/examples.ts'],
+  ['dropdown-menu-', 'src/registry/shadcn/dropdown-menu/examples.ts'],
+  ['menubar-', 'src/registry/shadcn/menubar/examples.ts'],
+  ['navigation-menu-', 'src/registry/shadcn/navigation-menu/examples.ts'],
+  ['context-menu-', 'src/registry/shadcn/context-menu/examples.ts'],
+  ['separator-', 'src/registry/shadcn/separator/examples.ts'],
+  ['scroll-area-', 'src/registry/shadcn/scroll-area/examples.ts'],
+  ['progress-', 'src/registry/shadcn/progress/examples.ts'],
+  ['switch-', 'src/registry/shadcn/switch/examples.ts'],
+  ['kbd-', 'src/registry/shadcn/kbd/examples.ts'],
+  ['input-group-', 'src/registry/shadcn/input-group/examples.ts'],
+  ['input-', 'src/registry/shadcn/input/examples.ts'],
+  ['skeleton-', 'src/registry/shadcn/skeleton/examples.ts'],
+  ['table-', 'src/registry/shadcn/table/examples.ts'],
+  ['native-select-', 'src/registry/shadcn/native-select/examples.ts'],
+  ['pagination-', 'src/registry/shadcn/pagination/examples.ts'],
+  ['textarea-', 'src/registry/shadcn/textarea/examples.ts'],
+  ['card-', 'src/registry/shadcn/card/examples.ts'],
+  ['item-', 'src/registry/shadcn/item/examples.ts'],
+  ['breadcrumb-', 'src/registry/shadcn/breadcrumb/examples.ts'],
+]
 
-  if (id.startsWith('alert-')) {
-    return 'src/registry/shadcn/alert/examples.ts'
-  }
-
-  if (id.startsWith('avatar-')) {
-    return 'src/registry/shadcn/avatar/examples.ts'
-  }
-
-  if (id.startsWith('badge-')) {
-    return 'src/registry/shadcn/badge/examples.ts'
-  }
-
-  if (id.startsWith('dropdown-menu-')) {
-    return 'src/registry/shadcn/dropdown-menu/examples.ts'
-  }
-
-  if (id.startsWith('menubar-')) {
-    return 'src/registry/shadcn/menubar/examples.ts'
-  }
-
-  if (id.startsWith('navigation-menu-')) {
-    return 'src/registry/shadcn/navigation-menu/examples.ts'
-  }
-
-  if (id.startsWith('context-menu-')) {
-    return 'src/registry/shadcn/context-menu/examples.ts'
-  }
-
-  if (id.startsWith('separator-')) {
-    return 'src/registry/shadcn/separator/examples.ts'
-  }
-
-  if (id.startsWith('scroll-area-')) {
-    return 'src/registry/shadcn/scroll-area/examples.ts'
-  }
-
-  if (id.startsWith('progress-')) {
-    return 'src/registry/shadcn/progress/examples.ts'
-  }
-
-  if (id.startsWith('switch-')) {
-    return 'src/registry/shadcn/switch/examples.ts'
-  }
-
-  if (id.startsWith('kbd-')) {
-    return 'src/registry/shadcn/kbd/examples.ts'
-  }
-
-  if (id.startsWith('input-')) {
-    return 'src/registry/shadcn/input/examples.ts'
-  }
-
-  if (id.startsWith('skeleton-')) {
-    return 'src/registry/shadcn/skeleton/examples.ts'
-  }
-
-  if (id.startsWith('table-')) {
-    return 'src/registry/shadcn/table/examples.ts'
-  }
-
-  if (id.startsWith('native-select-')) {
-    return 'src/registry/shadcn/native-select/examples.ts'
-  }
-
-  if (id.startsWith('pagination-')) {
-    return 'src/registry/shadcn/pagination/examples.ts'
-  }
-
-  if (id.startsWith('textarea-')) {
-    return 'src/registry/shadcn/textarea/examples.ts'
-  }
-
-  if (id.startsWith('card-')) {
-    return 'src/registry/shadcn/card/examples.ts'
-  }
-
-  if (id.startsWith('item-')) {
-    return 'src/registry/shadcn/item/examples.ts'
-  }
-
-  if (id.startsWith('breadcrumb-')) {
-    return 'src/registry/shadcn/breadcrumb/examples.ts'
-  }
-
-  return 'src/registry/shadcn/button/examples.ts'
-}
+const foldkitSourcePath = (id: string): string =>
+  foldkitSourcePrefixes.find(([prefix]) => id.startsWith(prefix))?.[1] ??
+  'src/registry/shadcn/button/examples.ts'
 
 export const shadcnFoldkitCases: ReadonlyArray<ShadcnFoldkitCase> =
   shadcnOriginCaseMetadata.map(metadata => {

@@ -8,6 +8,7 @@ import {
   ChangedUrl,
   ClickedClearSearch,
   ClickedCopySnippet,
+  CompletedScrollToAnchor,
   ComponentDetailRoute,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -25,6 +26,7 @@ import {
   RegistrySchemaRoute,
   RoadmapRoute,
   SearchPagefind,
+  ScrollToAnchor,
   SucceededCopySnippet,
   UpdatedSearchQuery,
   componentDetailRouter,
@@ -148,6 +150,33 @@ describe(update, () => {
         Story.model(nextModel => {
           expect(nextModel.route._tag).toBe('NotFound')
         }),
+      )
+    })
+
+    test('scrolls to URL hash targets after route changes', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(
+          ChangedUrl({
+            url: urlOrThrow(
+              'http://localhost/components/shadcn/input-group#quality',
+            ),
+          }),
+        ),
+        Story.model(nextModel => {
+          expect(nextModel.route).toStrictEqual(
+            ComponentDetailRoute({
+              namespace: 'shadcn',
+              slug: 'input-group',
+            }),
+          )
+        }),
+        Story.Command.expectExact(ScrollToAnchor({ hash: 'quality' })),
+        Story.Command.resolve(
+          ScrollToAnchor({ hash: 'quality' }),
+          CompletedScrollToAnchor(),
+        ),
       )
     })
   })

@@ -678,6 +678,32 @@ dt {
   font-size: 0.9rem;
 }
 
+.content-section,
+.example-card {
+  scroll-margin-top: 5.5rem;
+}
+
+.toc-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.toc-example-list {
+  display: grid;
+  gap: 0.35rem;
+  margin: -0.1rem 0 0;
+  padding: 0 0 0 0.8rem;
+  border-left: 1px solid var(--shell-border);
+  list-style: none;
+}
+
+.toc-example-list a {
+  display: block;
+  color: color-mix(in srgb, var(--shell-muted) 82%, transparent);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
 .data-error {
   border: 1px solid color-mix(in srgb, #d84a4a 60%, var(--shell-border));
   background: color-mix(in srgb, #d84a4a 10%, var(--shell-surface));

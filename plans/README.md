@@ -79,7 +79,7 @@ honor its STOP conditions, and update your row when done.
 | 069 | Add the Effect-native foldkitcn installer CLI | P2 | L | 064 | DONE |
 | 070 | Implement shadcn Item | P1 | M | 019 | DONE |
 | 071 | Implement shadcn Button Group | P1 | M | 019 | DONE |
-| 072 | Implement shadcn Input Group | P1 | L | 071 | TODO |
+| 072 | Implement shadcn Input Group | P1 | L | 071 | DONE |
 | 073 | Implement shadcn Spinner | P1 | S | 070, 072 | TODO |
 | 074 | Implement shadcn Empty | P1 | M | 070, 072, 073 | TODO |
 | 075 | Implement shadcn Table | P1 | S | 019 | TODO |

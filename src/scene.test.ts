@@ -255,6 +255,24 @@ describe(view, () => {
     )
   })
 
+  test('Component detail table of contents links to individual examples', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.docs-toc'),
+          Scene.selector('a[href="#shadcn-button-demo"]'),
+        ),
+      ).toHaveText('ButtonDemo'),
+      Scene.expect(Scene.selector('#shadcn-button-demo')).toExist(),
+    )
+  })
+
   test('Item detail renders actual live examples from generated docs', () => {
     Scene.scene(
       { update, view },
@@ -276,6 +294,35 @@ describe(view, () => {
       Scene.expect(Scene.role('button', { name: 'Invite' })).toExist(),
       Scene.expect(
         Scene.text('export const ItemDemo = (): Html => {', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(Scene.text('live ready')).toExist(),
+    )
+  })
+
+  test('Button Group detail renders actual live examples from generated docs', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button-group' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Button Group' })).toExist(),
+      Scene.expect(Scene.text('Example metadata is not loaded.')).not.toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'ButtonGroupDemo' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.live-example-preview'),
+          Scene.role('button', { name: 'Archive' }),
+        ),
+      ).toExist(),
+      Scene.expect(Scene.role('button', { name: 'Follow' })).toExist(),
+      Scene.expect(
+        Scene.text('export const ButtonGroupDemo = (): Html =>', {
           exact: false,
         }),
       ).toExist(),
@@ -493,7 +540,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('37 of 38')).toExist(),
-      Scene.expect(Scene.text('45 of 64')).toExist(),
+      Scene.expect(Scene.text('47 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),

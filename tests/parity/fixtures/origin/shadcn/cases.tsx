@@ -38,6 +38,16 @@ import ButtonDefault from '../../../../../repos/ui/apps/v4/examples/base/button-
 import ButtonDemo from '../../../../../repos/ui/apps/v4/examples/base/button-demo'
 import ButtonDestructive from '../../../../../repos/ui/apps/v4/examples/base/button-destructive'
 import ButtonGhost from '../../../../../repos/ui/apps/v4/examples/base/button-ghost'
+import ButtonGroupDemo from '../../../../../repos/ui/apps/v4/examples/base/button-group-demo'
+import ButtonGroupDropdown from '../../../../../repos/ui/apps/v4/examples/base/button-group-dropdown'
+import ButtonGroupInput from '../../../../../repos/ui/apps/v4/examples/base/button-group-input'
+import ButtonGroupOrientation from '../../../../../repos/ui/apps/v4/examples/base/button-group-orientation'
+import ButtonGroupPopover from '../../../../../repos/ui/apps/v4/examples/base/button-group-popover'
+import { ButtonGroupRtl } from '../../../../../repos/ui/apps/v4/examples/base/button-group-rtl'
+import ButtonGroupSelect from '../../../../../repos/ui/apps/v4/examples/base/button-group-select'
+import ButtonGroupSeparatorDemo from '../../../../../repos/ui/apps/v4/examples/base/button-group-separator'
+import ButtonGroupSize from '../../../../../repos/ui/apps/v4/examples/base/button-group-size'
+import ButtonGroupSplit from '../../../../../repos/ui/apps/v4/examples/base/button-group-split'
 import ButtonIcon from '../../../../../repos/ui/apps/v4/examples/base/button-icon'
 import ButtonLink from '../../../../../repos/ui/apps/v4/examples/base/button-link'
 import ButtonOutline from '../../../../../repos/ui/apps/v4/examples/base/button-outline'
@@ -61,6 +71,23 @@ import CarouselOrientation from '../../../../../repos/ui/apps/v4/examples/base/c
 import { CarouselRtl } from '../../../../../repos/ui/apps/v4/examples/base/carousel-rtl'
 import CarouselSize from '../../../../../repos/ui/apps/v4/examples/base/carousel-size'
 import CarouselSpacing from '../../../../../repos/ui/apps/v4/examples/base/carousel-spacing'
+import { InputGroupBasic } from '../../../../../repos/ui/apps/v4/examples/base/input-group-basic'
+import { InputGroupBlockEnd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-block-end'
+import { InputGroupBlockStart } from '../../../../../repos/ui/apps/v4/examples/base/input-group-block-start'
+import InputGroupButtonGroup from '../../../../../repos/ui/apps/v4/examples/base/input-group-button-group'
+import { InputGroupDemo } from '../../../../../repos/ui/apps/v4/examples/base/input-group-demo'
+import { InputGroupDropdown } from '../../../../../repos/ui/apps/v4/examples/base/input-group-dropdown'
+import InputGroupIcon from '../../../../../repos/ui/apps/v4/examples/base/input-group-icon'
+import { InputGroupInCard } from '../../../../../repos/ui/apps/v4/examples/base/input-group-in-card'
+import { InputGroupInlineEnd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-inline-end'
+import { InputGroupInlineStart } from '../../../../../repos/ui/apps/v4/examples/base/input-group-inline-start'
+import { InputGroupKbd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-kbd'
+import InputGroupLabel from '../../../../../repos/ui/apps/v4/examples/base/input-group-label'
+import { InputGroupRtl } from '../../../../../repos/ui/apps/v4/examples/base/input-group-rtl'
+import InputGroupTextExample from '../../../../../repos/ui/apps/v4/examples/base/input-group-text'
+import InputGroupTextareaExample from '../../../../../repos/ui/apps/v4/examples/base/input-group-textarea'
+import { InputGroupWithButtons } from '../../../../../repos/ui/apps/v4/examples/base/input-group-with-buttons'
+import { InputGroupWithKbd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-with-kbd'
 import { ItemAvatar } from '../../../../../repos/ui/apps/v4/examples/base/item-avatar'
 import { ItemDemo } from '../../../../../repos/ui/apps/v4/examples/base/item-demo'
 import { ItemDropdown } from '../../../../../repos/ui/apps/v4/examples/base/item-dropdown'
@@ -332,6 +359,16 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'button-group-demo': ButtonGroupDemo,
+  'button-group-dropdown': ButtonGroupDropdown,
+  'button-group-input': ButtonGroupInput,
+  'button-group-orientation': ButtonGroupOrientation,
+  'button-group-popover': ButtonGroupPopover,
+  'button-group-rtl': ButtonGroupRtl,
+  'button-group-select': ButtonGroupSelect,
+  'button-group-separator': ButtonGroupSeparatorDemo,
+  'button-group-size': ButtonGroupSize,
+  'button-group-split': ButtonGroupSplit,
   'card-demo': CardDemo,
   'card-edge-to-edge': CardEdgeToEdge,
   'card-image': CardImage,
@@ -407,6 +444,23 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'input-invalid': InputInvalid,
   'input-file': InputFile,
   'input-required': InputRequired,
+  'input-group-demo': InputGroupDemo,
+  'input-group-basic': InputGroupBasic,
+  'input-group-inline-start': InputGroupInlineStart,
+  'input-group-inline-end': InputGroupInlineEnd,
+  'input-group-block-start': InputGroupBlockStart,
+  'input-group-block-end': InputGroupBlockEnd,
+  'input-group-with-buttons': InputGroupWithButtons,
+  'input-group-button-group': InputGroupButtonGroup,
+  'input-group-dropdown': InputGroupDropdown,
+  'input-group-icon': InputGroupIcon,
+  'input-group-kbd': InputGroupKbd,
+  'input-group-label': InputGroupLabel,
+  'input-group-text': InputGroupTextExample,
+  'input-group-textarea': InputGroupTextareaExample,
+  'input-group-in-card': InputGroupInCard,
+  'input-group-with-kbd': InputGroupWithKbd,
+  'input-group-rtl': InputGroupRtl,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,

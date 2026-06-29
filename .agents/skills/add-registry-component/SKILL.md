@@ -9,7 +9,7 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 
 ## Contract
 
-- Accept `status`, `next [count]`, or one or more origin docs or registry URLs.
+- Accept `status`, `next [count]`, `backlog [many] [limit <number>]`, `backlog [many] [<number>]`, or one or more origin docs or registry URLs.
 - Resolve origin evidence from pinned local repositories first with `bun run origin:resolve -- <url>`.
 - Treat live docs pages as discovery inputs, not parity oracles.
 - Write an improve-compatible dossier and plan preview, not implementation code.
@@ -20,6 +20,7 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - Create no `registry-src/<namespace>/<item>/` folders during planning.
 - Use Effect Schema and Foldkit-native conventions in every generated plan.
 - Treat historical queue artifacts as priority hints only. The live component progress tracker is authoritative because it derives from pinned origins plus `registry-src`.
+- For backlog execution, `plans/README.md` is the authoritative implementation backlog. Pick the oldest ready plan in execution order, not the newest generated dossier.
 
 ## Invocation Modes
 
@@ -43,6 +44,22 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - After writing the selection and dossier previews, report their paths and ask: "Would you like me to compile implementation plans from this selection with `[$improve] plan ...`?" Use the concrete selection path in the suggested command.
 - If the user says yes, invoke the `improve` plan flow with a prompt like: `create implementation plans for all rows in <selection-path>`.
 - If the original request already asks to compile implementation plans, skip the question and proceed directly to the `improve` plan flow after the dossier previews are written and validated.
+
+### `backlog [many] [limit <number>]`
+
+- Use when the user asks to process existing implementation backlog instead of creating new dossier previews.
+- Read `plans/README.md` first and identify the oldest plan whose status is `TODO` or stale `IN PROGRESS`, whose dependencies are `DONE`, and whose title/notes do not mark it `BLOCKED`, held, rejected, or gated by missing infrastructure.
+- Confirm the selected plan file exists (`plans/<number>-*.md`) and read it fully before dispatching work.
+- If no ready plan exists, report the first blocked or dependency-gated row and the concrete dependency/blocker.
+- For `backlog` without `many`, process exactly one oldest ready plan.
+- For `backlog many`, select every currently ready plan in oldest-first order, but preserve dependency boundaries: do not select a plan whose dependency is also selected unless the dependency will complete first.
+- If a numeric limit is provided as `limit <number>` or as a bare number, treat it as the maximum number of concurrent worker processes/subagents. Default concurrency is 1 for `backlog` and 3 for `backlog many`.
+- Do not exceed the concurrency limit. Start at most that many workers, wait for completions, then launch the next ready plan if `many` still has pending selections.
+- Use subagents for `backlog many` when multi-agent tools are available. Give each worker one plan file, the plan text, relevant dossier paths, and the Foldkit/Effect guardrails. Keep worker branches/worktrees separate.
+- The main agent remains the reviewer. After each worker finishes, inspect the diff, rerun the plan's required gates or the closest focused gates, and merge/commit only work that is complete and verified.
+- If a worker reports a blocker, leave that plan unmerged, record the blocker in the status report, and continue with independent ready plans when possible.
+- Never create new dossier previews in backlog mode unless the selected plan explicitly requires refreshed evidence before implementation.
+- End with the processed plan IDs, worker outcomes, verification commands, and the next oldest ready plan if one remains.
 
 ### `<origin URL> [...origin URL]`
 

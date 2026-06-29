@@ -44,6 +44,8 @@ const baseUiUtilsPath = (specifier: string): string => {
 
 const tooltipShimModuleId = '\0foldkitcn-shadcn-origin-tooltip-shim'
 const inputGroupShimModuleId = '\0foldkitcn-shadcn-origin-input-group-shim'
+const popoverShimModuleId = '\0foldkitcn-shadcn-origin-popover-shim'
+const selectShimModuleId = '\0foldkitcn-shadcn-origin-select-shim'
 const sliderShimModuleId = '\0foldkitcn-shadcn-origin-slider-shim'
 const carouselShimModuleId = '\0foldkitcn-shadcn-origin-carousel-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
@@ -57,8 +59,10 @@ const virtualModuleAliases = new Map([
   ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui/carousel', carouselShimModuleId],
   ['@/styles/base-nova/ui-rtl/carousel', carouselShimModuleId],
+  ['@/styles/base-nova/ui/popover', popoverShimModuleId],
+  ['@/styles/base-nova/ui-rtl/popover', popoverShimModuleId],
+  ['@/styles/base-nova/ui/select', selectShimModuleId],
   ['@/styles/base-nova/ui/slider', sliderShimModuleId],
-  ['@/styles/base-nova/ui/input-group', inputGroupShimModuleId],
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
 ])
 
@@ -449,6 +453,123 @@ const originAliasPlugin = (): Plugin => ({
       `
     }
 
+    if (id === popoverShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        export function Popover({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function PopoverTrigger({ render, children, ...props }) {
+          if (React.isValidElement(render)) {
+            return React.cloneElement(render, {
+              ...props,
+              'data-slot': 'popover-trigger',
+              'aria-haspopup': 'dialog',
+              'aria-expanded': false,
+            }, children)
+          }
+
+          return React.createElement(
+            'button',
+            {
+              ...props,
+              'data-slot': 'popover-trigger',
+              'aria-haspopup': 'dialog',
+              'aria-expanded': false,
+            },
+            children,
+          )
+        }
+
+        export function PopoverContent() {
+          return null
+        }
+
+        export function PopoverDescription() {
+          return null
+        }
+
+        export function PopoverHeader() {
+          return null
+        }
+
+        export function PopoverTitle() {
+          return null
+        }
+      `
+    }
+
+    if (id === selectShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const triggerClassName = "flex h-8 w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm whitespace-nowrap shadow-none transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4"
+
+        export function Select({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function SelectTrigger({ children, className, ...props }) {
+          return React.createElement(
+            'button',
+            {
+              ...props,
+              type: 'button',
+              'data-slot': 'select-trigger',
+              'aria-haspopup': 'listbox',
+              'aria-expanded': false,
+              className: [triggerClassName, className].filter(Boolean).join(' '),
+            },
+            React.createElement('span', { 'data-slot': 'select-value' }, children),
+            React.createElement(
+              'svg',
+              {
+                xmlns: 'http://www.w3.org/2000/svg',
+                width: '24',
+                height: '24',
+                viewBox: '0 0 24 24',
+                fill: 'none',
+                stroke: 'currentColor',
+                strokeWidth: '2',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                className: 'lucide lucide-chevron-down-icon',
+                'aria-hidden': 'true',
+                'data-slot': 'select-icon',
+              },
+              React.createElement('path', { d: 'm6 9 6 6 6-6' }),
+            ),
+          )
+        }
+
+        export function SelectContent() {
+          return null
+        }
+
+        export function SelectGroup({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function SelectItem() {
+          return null
+        }
+
+        export function SelectValue({ children, placeholder }) {
+          return React.createElement('span', { 'data-slot': 'select-value' }, children ?? placeholder ?? '')
+        }
+
+        export function SelectLabel({ children, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'select-label' }, children)
+        }
+
+        export function SelectSeparator(props) {
+          return React.createElement('div', { ...props, 'data-slot': 'select-separator', role: 'separator' })
+        }
+      `
+    }
+
     if (id === dropdownMenuShimModuleId) {
       return `
         import * as React from 'react'
@@ -480,16 +601,8 @@ const originAliasPlugin = (): Plugin => ({
           )
         }
 
-        export function DropdownMenuContent({ children, className, ...props }) {
-          return React.createElement(
-            'div',
-            {
-              ...props,
-              'data-slot': 'dropdown-menu-content',
-              className: cx('hidden rounded-lg border border-border bg-background p-1 text-sm shadow-sm', className),
-            },
-            children,
-          )
+        export function DropdownMenuContent() {
+          return null
         }
 
         export function DropdownMenuGroup({ children, ...props }) {
@@ -512,6 +625,36 @@ const originAliasPlugin = (): Plugin => ({
 
         export function DropdownMenuSeparator(props) {
           return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-separator', role: 'separator' })
+        }
+
+        export function DropdownMenuRadioGroup({ children, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-radio-group', role: 'group' }, children)
+        }
+
+        export function DropdownMenuRadioItem({ children, value, ...props }) {
+          return React.createElement(
+            'div',
+            {
+              ...props,
+              'data-slot': 'dropdown-menu-radio-item',
+              role: 'menuitemradio',
+              'data-value': value,
+              'aria-checked': false,
+            },
+            children,
+          )
+        }
+
+        export function DropdownMenuSub({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function DropdownMenuSubContent() {
+          return null
+        }
+
+        export function DropdownMenuSubTrigger({ children, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-sub-trigger', role: 'menuitem' }, children)
         }
       `
     }
@@ -577,9 +720,21 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/input-group',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/input-group.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/card',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/card.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/item',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/item.tsx',
           ),
         },
         {
@@ -614,12 +769,6 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui/native-select',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/native-select.tsx',
-          ),
-        },
-        {
-          find: '@/styles/base-nova/ui/select',
-          replacement: repoPath(
-            'repos/ui/apps/v4/styles/base-nova/ui/select.tsx',
           ),
         },
         {
@@ -713,9 +862,21 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui-rtl/button-group',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/button-group.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui-rtl/card',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/card.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/item',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/item.tsx',
           ),
         },
         {
@@ -728,6 +889,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/input',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/input.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/input-group',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/input-group.tsx',
           ),
         },
         {
@@ -806,6 +973,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/skeleton',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/skeleton.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/textarea',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/textarea.tsx',
           ),
         },
         {

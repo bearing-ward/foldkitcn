@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T09:28:03.266Z",
+  "generatedAt": "2026-06-29T11:06:38.870Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -228,6 +228,11 @@
       "docsArtifactPath": "registry/docs/shadcn/breadcrumb.json"
     },
     {
+      "itemId": "shadcn/button-group",
+      "routePath": "/components/shadcn/button-group",
+      "docsArtifactPath": "registry/docs/shadcn/button-group.json"
+    },
+    {
       "itemId": "shadcn/button",
       "routePath": "/components/shadcn/button",
       "docsArtifactPath": "registry/docs/shadcn/button.json"
@@ -291,6 +296,11 @@
       "itemId": "shadcn/hover-card",
       "routePath": "/components/shadcn/hover-card",
       "docsArtifactPath": "registry/docs/shadcn/hover-card.json"
+    },
+    {
+      "itemId": "shadcn/input-group",
+      "routePath": "/components/shadcn/input-group",
+      "docsArtifactPath": "registry/docs/shadcn/input-group.json"
     },
     {
       "itemId": "shadcn/input-otp",
