@@ -44,6 +44,16 @@ import {
   ButtonWithIcon,
 } from './registry/shadcn/button/examples'
 import {
+  EmptyAvatar,
+  EmptyAvatarGroup,
+  EmptyDemo,
+  EmptyInCard,
+  EmptyInputGroup,
+  EmptyMuted,
+  EmptyOutline,
+  EmptyRtl,
+} from './registry/shadcn/empty/examples'
+import {
   InputGroupBasic,
   InputGroupBlockEnd,
   InputGroupBlockStart,
@@ -92,6 +102,7 @@ import {
   SpinnerButton,
   SpinnerCustom,
   SpinnerDemo,
+  SpinnerEmpty,
   SpinnerInputGroup,
   SpinnerRtl,
   SpinnerSize,
@@ -273,6 +284,16 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(InputGroupSpinner),
   [liveExampleKey('shadcn/input-group', 'InputGroupRtl')]:
     staticExample(InputGroupRtl),
+  [liveExampleKey('shadcn/empty', 'EmptyAvatarGroup')]:
+    staticExample(EmptyAvatarGroup),
+  [liveExampleKey('shadcn/empty', 'EmptyAvatar')]: staticExample(EmptyAvatar),
+  [liveExampleKey('shadcn/empty', 'EmptyMuted')]: staticExample(EmptyMuted),
+  [liveExampleKey('shadcn/empty', 'EmptyInCard')]: staticExample(EmptyInCard),
+  [liveExampleKey('shadcn/empty', 'EmptyDemo')]: staticExample(EmptyDemo),
+  [liveExampleKey('shadcn/empty', 'EmptyInputGroup')]:
+    staticExample(EmptyInputGroup),
+  [liveExampleKey('shadcn/empty', 'EmptyOutline')]: staticExample(EmptyOutline),
+  [liveExampleKey('shadcn/empty', 'EmptyRtl')]: staticExample(EmptyRtl),
   [liveExampleKey('shadcn/spinner', 'SpinnerDemo')]: staticExample(SpinnerDemo),
   [liveExampleKey('shadcn/spinner', 'SpinnerBadge')]:
     staticExample(SpinnerBadge),
@@ -282,6 +303,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(SpinnerCustom),
   [liveExampleKey('shadcn/spinner', 'SpinnerInputGroup')]:
     staticExample(SpinnerInputGroup),
+  [liveExampleKey('shadcn/spinner', 'SpinnerEmpty')]:
+    staticExample(SpinnerEmpty),
   [liveExampleKey('shadcn/spinner', 'SpinnerRtl')]: staticExample(SpinnerRtl),
   [liveExampleKey('shadcn/spinner', 'SpinnerSize')]: staticExample(SpinnerSize),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(

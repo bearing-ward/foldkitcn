@@ -122,6 +122,7 @@ describe('parity canonicalizers', () => {
       'shadcn/item',
       'shadcn/input-group',
       'shadcn/spinner',
+      'shadcn/empty',
       'shadcn/breadcrumb',
       'shadcn/pagination',
       'shadcn/toggle',

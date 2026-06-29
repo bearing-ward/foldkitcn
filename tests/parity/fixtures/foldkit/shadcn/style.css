@@ -31,6 +31,8 @@
 @source "../../../../../src/registry/shadcn/kbd/examples.ts";
 @source "../../../../../src/registry/shadcn/spinner/index.ts";
 @source "../../../../../src/registry/shadcn/spinner/examples.ts";
+@source "../../../../../src/registry/shadcn/empty/index.ts";
+@source "../../../../../src/registry/shadcn/empty/examples.ts";
 @source "../../../../../src/registry/shadcn/label/index.ts";
 @source "../../../../../src/registry/shadcn/label/examples.ts";
 @source "../../../../../src/registry/shadcn/native-select/index.ts";

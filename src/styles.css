@@ -75,13 +75,15 @@ body {
   color: var(--shell-text);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-a:hover {
-  color: var(--shell-accent-strong);
+  a:hover {
+    color: var(--shell-accent-strong);
+  }
 }
 
 .app-shell {

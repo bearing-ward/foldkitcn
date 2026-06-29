@@ -726,6 +726,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           ),
         },
         {
+          find: '@/styles/base-nova/ui/empty',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/empty.tsx',
+          ),
+        },
+        {
           find: '@/styles/base-nova/ui/card',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/card.tsx',
@@ -895,6 +901,12 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui-rtl/input-group',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui-rtl/input-group.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui-rtl/empty',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui-rtl/empty.tsx',
           ),
         },
         {

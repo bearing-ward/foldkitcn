@@ -71,6 +71,14 @@ import CarouselOrientation from '../../../../../repos/ui/apps/v4/examples/base/c
 import { CarouselRtl } from '../../../../../repos/ui/apps/v4/examples/base/carousel-rtl'
 import CarouselSize from '../../../../../repos/ui/apps/v4/examples/base/carousel-size'
 import CarouselSpacing from '../../../../../repos/ui/apps/v4/examples/base/carousel-spacing'
+import EmptyAvatar from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar'
+import EmptyAvatarGroup from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar-group'
+import { EmptyMuted } from '../../../../../repos/ui/apps/v4/examples/base/empty-background'
+import { EmptyInCard } from '../../../../../repos/ui/apps/v4/examples/base/empty-card'
+import EmptyDemo from '../../../../../repos/ui/apps/v4/examples/base/empty-demo'
+import EmptyInputGroup from '../../../../../repos/ui/apps/v4/examples/base/empty-input-group'
+import EmptyOutline from '../../../../../repos/ui/apps/v4/examples/base/empty-outline'
+import { EmptyRtl } from '../../../../../repos/ui/apps/v4/examples/base/empty-rtl'
 import { InputGroupBasic } from '../../../../../repos/ui/apps/v4/examples/base/input-group-basic'
 import { InputGroupBlockEnd } from '../../../../../repos/ui/apps/v4/examples/base/input-group-block-end'
 import { InputGroupBlockStart } from '../../../../../repos/ui/apps/v4/examples/base/input-group-block-start'
@@ -138,6 +146,7 @@ import { SpinnerBadge } from '../../../../../repos/ui/apps/v4/examples/base/spin
 import { SpinnerButton } from '../../../../../repos/ui/apps/v4/examples/base/spinner-button'
 import { SpinnerCustom } from '../../../../../repos/ui/apps/v4/examples/base/spinner-custom'
 import { SpinnerDemo } from '../../../../../repos/ui/apps/v4/examples/base/spinner-demo'
+import { SpinnerEmpty } from '../../../../../repos/ui/apps/v4/examples/base/spinner-empty'
 import { SpinnerInputGroup } from '../../../../../repos/ui/apps/v4/examples/base/spinner-input-group'
 import { SpinnerRtl } from '../../../../../repos/ui/apps/v4/examples/base/spinner-rtl'
 import { SpinnerSize } from '../../../../../repos/ui/apps/v4/examples/base/spinner-size'
@@ -475,8 +484,17 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'spinner-button': SpinnerButton,
   'spinner-custom': SpinnerCustom,
   'spinner-input-group': SpinnerInputGroup,
+  'spinner-empty': SpinnerEmpty,
   'spinner-rtl': SpinnerRtl,
   'spinner-size': SpinnerSize,
+  'empty-avatar-group': EmptyAvatarGroup,
+  'empty-avatar': EmptyAvatar,
+  'empty-background': EmptyMuted,
+  'empty-card': EmptyInCard,
+  'empty-demo': EmptyDemo,
+  'empty-input-group': EmptyInputGroup,
+  'empty-outline': EmptyOutline,
+  'empty-rtl': EmptyRtl,
   'native-select-demo': NativeSelectDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,

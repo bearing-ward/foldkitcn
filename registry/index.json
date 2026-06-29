@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T12:02:20.047Z",
+  "generatedAt": "2026-06-29T12:38:00.148Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -10872,6 +10872,269 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/empty",
+        "namespace": "shadcn",
+        "name": "Empty",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Empty helper with media, header, title, description, content slots, and local examples for avatar, buttons, input groups, kbd, spinner, and RTL states.",
+        "sourceRoot": "registry-src/shadcn/empty",
+        "installableSourcePaths": [
+          "src/registry/shadcn/empty/index.ts",
+          "src/registry/shadcn/empty/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Empty",
+            "docsUrl": "https://ui.shadcn.com/docs/components/empty",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/empty.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/empty.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/empty.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/empty.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/empty-avatar-group.tsx",
+              "repos/ui/apps/v4/examples/base/empty-avatar.tsx",
+              "repos/ui/apps/v4/examples/base/empty-background.tsx",
+              "repos/ui/apps/v4/examples/base/empty-card.tsx",
+              "repos/ui/apps/v4/examples/base/empty-demo.tsx",
+              "repos/ui/apps/v4/examples/base/empty-input-group.tsx",
+              "repos/ui/apps/v4/examples/base/empty-outline.tsx",
+              "repos/ui/apps/v4/examples/base/empty-rtl.tsx",
+              "repos/ui/apps/v4/examples/base/spinner-empty.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/avatar",
+              "classification": "registry-local",
+              "target": "shadcn/avatar",
+              "reason": "Empty avatar examples compose the local shadcn Avatar registry item."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Empty examples compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "registry-local",
+              "target": "shadcn/input-group",
+              "reason": "Empty search example composes the local shadcn Input Group registry item."
+            },
+            {
+              "specifier": "shadcn/kbd",
+              "classification": "registry-local",
+              "target": "shadcn/kbd",
+              "reason": "Empty search example composes the local shadcn Kbd registry item."
+            },
+            {
+              "specifier": "shadcn/spinner",
+              "classification": "registry-local",
+              "target": "shadcn/spinner",
+              "reason": "SpinnerEmpty composes the local shadcn Spinner registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Empty uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema style option metadata for Empty."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@tabler/icons-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin Tabler icon usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin Lucide icon usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin CVA variants are represented by local Effect Schema literals and class helpers."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/empty-avatar-group",
+            "title": "EmptyAvatarGroup",
+            "description": "Empty state with an avatar group and invite action.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-avatar",
+            "title": "EmptyAvatar",
+            "description": "Empty state using a single Avatar as media.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-background",
+            "title": "EmptyMuted",
+            "description": "Muted Empty background with an icon media variant.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-card",
+            "title": "EmptyInCard",
+            "description": "Project empty state composed for card-like surfaces.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-demo",
+            "title": "EmptyDemo",
+            "description": "Default Empty demo with primary, outline, and link actions.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-input-group",
+            "title": "EmptyInputGroup",
+            "description": "Search-oriented Empty state composed with Input Group and Kbd.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-outline",
+            "title": "EmptyOutline",
+            "description": "Dashed-outline Empty state with upload action.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/empty-rtl",
+            "title": "EmptyRtl",
+            "description": "RTL Empty example using deterministic Arabic strings.",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/empty",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-empty-local-icons-and-rtl"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-empty-local-icons-and-rtl",
+            "summary": "Icons and RTL labels use local inline SVGs and deterministic strings instead of Tabler, Lucide, and the origin language selector runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on React icon packages or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Empty examples."
+          }
+        ]
+      },
+      "manifestHash": "ca1870a20363e61bf89adc1fe984632db40d25381d4ca2aca1a62ded235109d3",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/empty/item.json",
+          "sha256": "ec8828bf716c79751b5b708d1dbf520122426d4b0ce57c40f83ba1bcdf23d1ed",
+          "sizeBytes": 8444,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/empty/index.ts",
+          "sha256": "6c6af93ec4ca08dfb6cc8059d1ce7f0f327d6ff17a1b8a8595d4690556af17c5",
+          "sizeBytes": 6778,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/empty/examples.ts",
+          "sha256": "6cc6753ff5c3c59c77e15c78544d0747b4dacd6da0b8f40ecccb0cc134213d5c",
+          "sizeBytes": 13535,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/field",
         "namespace": "shadcn",
         "name": "Field",
@@ -16068,6 +16331,12 @@
               "reason": "Spinner Input Group examples compose the local shadcn Input Group registry item."
             },
             {
+              "specifier": "shadcn/empty",
+              "classification": "registry-local",
+              "target": "shadcn/empty",
+              "reason": "SpinnerEmpty composes the local shadcn Empty registry item now that plan 074 provides it."
+            },
+            {
               "specifier": "shadcn/item",
               "classification": "registry-local",
               "target": "shadcn/item",
@@ -16120,12 +16389,6 @@
               "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
             },
             {
-              "specifier": "shadcn/empty",
-              "classification": "reject-or-defer",
-              "target": "",
-              "reason": "The origin Empty example waits for plan 074, which owns local shadcn Empty."
-            },
-            {
               "specifier": "react",
               "classification": "dev-or-fixture-only",
               "target": "",
@@ -16170,6 +16433,13 @@
             "kind": "demo"
           },
           {
+            "id": "shadcn/spinner-empty",
+            "title": "SpinnerEmpty",
+            "description": "Empty state composed with Spinner media and a cancel action.",
+            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "kind": "demo"
+          },
+          {
             "id": "shadcn/spinner-rtl",
             "title": "SpinnerRtl",
             "description": "RTL Item row using deterministic local Arabic strings.",
@@ -16197,10 +16467,7 @@
             "dimensions",
             "bounding-box"
           ],
-          "acceptedDeviationIds": [
-            "shadcn-spinner-local-icons-and-rtl",
-            "shadcn-spinner-empty-deferred"
-          ]
+          "acceptedDeviationIds": ["shadcn-spinner-local-icons-and-rtl"]
         },
         "lifecycle": {
           "implementationStatus": "implemented",
@@ -16216,22 +16483,15 @@
             "required": true,
             "status": "accepted",
             "rationale": "Installable source cannot depend on lucide-react or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Spinner examples."
-          },
-          {
-            "id": "shadcn-spinner-empty-deferred",
-            "summary": "The origin SpinnerEmpty example is deferred until local shadcn Empty exists.",
-            "required": true,
-            "status": "accepted",
-            "rationale": "Plan 074 owns the local Empty item. Deferring this example avoids importing upstream Empty code into installable Spinner source."
           }
         ]
       },
-      "manifestHash": "1cdd9edf5c2c5fa8b751b9b0fc9f3004a0b85b0d9f23ff7a5c9dc1b404ce1d95",
+      "manifestHash": "b48f54cd69c10a125b68f47317e1cad1c53d04c20177432677b2403fb27986ff",
       "artifacts": [
         {
           "path": "registry-src/shadcn/spinner/item.json",
-          "sha256": "cb38868a77f9189b8323c32abcf6b4e7ebbc7b4bbef40e63eef763beef0e8800",
-          "sizeBytes": 8216,
+          "sha256": "3c17f163c12faee07428fb5e717f655673b1d66ebde62fecf410fbf7238201dd",
+          "sizeBytes": 8094,
           "role": "manifest"
         },
         {
@@ -16242,8 +16502,8 @@
         },
         {
           "path": "src/registry/shadcn/spinner/examples.ts",
-          "sha256": "1bf014a01b2e1181e5a53f962af04573fd58fd4b3d7121a9ab679ac721fdf7e3",
-          "sizeBytes": 6793,
+          "sha256": "4b1bdf158b10b819fd84cdfb1d1dcaea96174460ef7902e1a87d0a8529c3b551",
+          "sizeBytes": 6843,
           "role": "source"
         }
       ]

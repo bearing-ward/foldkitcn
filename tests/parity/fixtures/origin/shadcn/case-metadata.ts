@@ -568,6 +568,11 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/spinner-input-group.tsx',
     },
     {
+      id: 'spinner-empty',
+      title: 'Spinner empty',
+      originFilePath: 'repos/ui/apps/v4/examples/base/spinner-empty.tsx',
+    },
+    {
       id: 'spinner-rtl',
       title: 'Spinner RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/spinner-rtl.tsx',
@@ -576,6 +581,46 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'spinner-size',
       title: 'Spinner size',
       originFilePath: 'repos/ui/apps/v4/examples/base/spinner-size.tsx',
+    },
+    {
+      id: 'empty-avatar-group',
+      title: 'Empty avatar group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-avatar-group.tsx',
+    },
+    {
+      id: 'empty-avatar',
+      title: 'Empty avatar',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-avatar.tsx',
+    },
+    {
+      id: 'empty-background',
+      title: 'Empty background',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-background.tsx',
+    },
+    {
+      id: 'empty-card',
+      title: 'Empty card',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-card.tsx',
+    },
+    {
+      id: 'empty-demo',
+      title: 'Empty demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-demo.tsx',
+    },
+    {
+      id: 'empty-input-group',
+      title: 'Empty input group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-input-group.tsx',
+    },
+    {
+      id: 'empty-outline',
+      title: 'Empty outline',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-outline.tsx',
+    },
+    {
+      id: 'empty-rtl',
+      title: 'Empty RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/empty-rtl.tsx',
     },
     {
       id: 'native-select-demo',

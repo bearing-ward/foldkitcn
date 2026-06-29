@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/empty",
+  "routePath": "/components/shadcn/empty",
+  "title": "Empty",
+  "description": "Foldkit-native shadcn base-nova Empty helper with media, header, title, description, content slots, and local examples for avatar, buttons, input groups, kbd, spinner, and RTL states.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/empty/docs.md",
+  "markdown": "# Empty\n\n## Overview\n\nEmpty is a Foldkit-native port of the shadcn base-nova Empty helper. It provides the origin empty-state slots for root, header, media, title, description, and content while keeping composition local to Foldkit Html.\n\n## Foldkit Model\n\nEmpty is a stateless render helper. It owns no Model, Message, update function, or Command. Parent views decide when a collection or workflow is empty and render Empty as a fact of that state.\n\n## Usage\n\nImport the helpers from the generated registry source and compose the slots directly.\n\n```ts\nEmpty<Message>({\n  children: [\n    EmptyHeader<Message>({\n      children: [\n        EmptyMedia<Message>({ variant: 'icon', children: [icon] }),\n        EmptyTitle<Message>({ children: ['No projects yet'] }),\n        EmptyDescription<Message>({ children: ['Create your first project.'] }),\n      ],\n    }),\n    EmptyContent<Message>({ children: [action] }),\n  ],\n})\n```\n\nUse `className` on any slot for local layout adjustments. Use `dir` on `Empty` for RTL surfaces.\n\n## Examples\n\nThe registry includes live examples for avatar media, avatar groups, muted and outlined empty states, card-like action groups, search with Input Group and Kbd, RTL content, and SpinnerEmpty composition.\n\n## Accessibility\n\nEmpty preserves semantic content as normal Html nodes. Pair titles, descriptions, and controls in the slot order shown by the examples so screen readers encounter the same context before actions.\n\n## Foldkit Differences\n\nThe origin shadcn examples import Tabler and Lucide React icons and use a runtime language selector for RTL. This registry item replaces those with local inline SVGs and deterministic Arabic RTL strings so installable source stays Foldkit-native while preserving the rendered footprint.\n",
+  "headings": [
+    {
+      "id": "empty",
+      "text": "Empty",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/empty",
+  "defaultImportPath": "shadcn/empty",
+  "sourceRoot": "registry-src/shadcn/empty",
+  "installableSourcePaths": [
+    "src/registry/shadcn/empty/index.ts",
+    "src/registry/shadcn/empty/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Empty",
+      "docsUrl": "https://ui.shadcn.com/docs/components/empty",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/empty.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/empty.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/empty.tsx"
+      ],
+      "docsPaths": ["repos/ui/apps/v4/content/docs/components/base/empty.mdx"],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/empty-avatar-group.tsx",
+        "repos/ui/apps/v4/examples/base/empty-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/empty-background.tsx",
+        "repos/ui/apps/v4/examples/base/empty-card.tsx",
+        "repos/ui/apps/v4/examples/base/empty-demo.tsx",
+        "repos/ui/apps/v4/examples/base/empty-input-group.tsx",
+        "repos/ui/apps/v4/examples/base/empty-outline.tsx",
+        "repos/ui/apps/v4/examples/base/empty-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/spinner-empty.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/avatar",
+        "classification": "registry-local",
+        "target": "shadcn/avatar",
+        "reason": "Empty avatar examples compose the local shadcn Avatar registry item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Empty examples compose the local shadcn Button registry item."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "Empty search example composes the local shadcn Input Group registry item."
+      },
+      {
+        "specifier": "shadcn/kbd",
+        "classification": "registry-local",
+        "target": "shadcn/kbd",
+        "reason": "Empty search example composes the local shadcn Kbd registry item."
+      },
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "SpinnerEmpty composes the local shadcn Spinner registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Empty uses local class canonicalization and Tailwind conflict handling."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema style option metadata for Empty."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@tabler/icons-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Tabler icon usage is replaced by local inline SVGs."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Lucide icon usage is replaced by local inline SVGs."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin CVA variants are represented by local Effect Schema literals and class helpers."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/empty-avatar-group",
+      "title": "EmptyAvatarGroup",
+      "description": "Empty state with an avatar group and invite action.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyAvatarGroup = (): Html =>\n  Empty<never>({\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({ children: [avatarGroup()] }),\n          EmptyTitle<never>({ children: ['No Team Members'] }),\n          EmptyDescription<never>({\n            children: ['Invite your team to collaborate on this project.'],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [\n          button([icon('plus'), 'Invite Members'], {\n            size: 'sm',\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyAvatarGroup",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-avatar",
+      "title": "EmptyAvatar",
+      "description": "Empty state using a single Avatar as media.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyAvatar = (): Html =>\n  Empty<never>({\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'default',\n            children: [\n              avatar(\n                {\n                  ...shadcnProfile,\n                  alt: '',\n                  fallback: 'LR',\n                },\n                { className: 'size-12', imageClassName: 'grayscale' },\n              ),\n            ],\n          }),\n          EmptyTitle<never>({ children: ['User Offline'] }),\n          EmptyDescription<never>({\n            children: [\n              'This user is currently offline. You can leave a message to notify them or try again later.',\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [button(['Leave Message'], { size: 'sm' })],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyAvatar",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-background",
+      "title": "EmptyMuted",
+      "description": "Muted Empty background with an icon media variant.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyMuted = (): Html =>\n  Empty<never>({\n    className: 'h-full bg-muted/30',\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'icon',\n            children: [icon('bell')],\n          }),\n          EmptyTitle<never>({ children: ['No Notifications'] }),\n          EmptyDescription<never>({\n            className: 'max-w-xs text-pretty',\n            children: [\n              \"You're all caught up. New notifications will appear here.\",\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [\n          button(\n            [\n              icon('refreshCcw', [\n                html<never>().DataAttribute('icon', 'inline-start'),\n              ]),\n              'Refresh',\n            ],\n            {\n              variant: 'outline',\n            },\n          ),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyMuted",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-card",
+      "title": "EmptyInCard",
+      "description": "Project empty state composed for card-like surfaces.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyInCard = (): Html =>\n  Empty<never>({\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'icon',\n            children: [icon('folder')],\n          }),\n          EmptyTitle<never>({ children: ['No projects yet'] }),\n          EmptyDescription<never>({\n            children: [\n              \"You haven't created any projects yet. Get started by creating your first project.\",\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [\n          html<never>().div(\n            [html<never>().Class('flex gap-2')],\n            [\n              button(['Create project'], { href: '#' }),\n              button(['Import project'], { variant: 'outline' }),\n            ],\n          ),\n          button(['Learn more ', icon('arrowUpRight')], {\n            variant: 'link',\n            className: 'text-muted-foreground',\n            href: '#',\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyInCard",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-demo",
+      "title": "EmptyDemo",
+      "description": "Default Empty demo with primary, outline, and link actions.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyDemo = (): Html =>\n  Empty<never>({\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'icon',\n            children: [icon('folderCode')],\n          }),\n          EmptyTitle<never>({ children: ['No Projects Yet'] }),\n          EmptyDescription<never>({\n            children: [\n              \"You haven't created any projects yet. Get started by creating your first project.\",\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        className: 'flex-row justify-center gap-2',\n        children: [\n          button(['Create Project']),\n          button(['Import Project'], { variant: 'outline' }),\n        ],\n      }),\n      button(['Learn More ', icon('arrowUpRight')], {\n        variant: 'link',\n        className: 'text-muted-foreground',\n        size: 'sm',\n        href: '#',\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyDemo",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-input-group",
+      "title": "EmptyInputGroup",
+      "description": "Search-oriented Empty state composed with Input Group and Kbd.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyInputGroup = (): Html => {\n  const h = html<never>()\n\n  return Empty<never>({\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyTitle<never>({ children: ['404 - Not Found'] }),\n          EmptyDescription<never>({\n            children: [\n              \"The page you're looking for doesn't exist. Try searching for what you need below.\",\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [\n          InputGroup<never>({\n            className: 'sm:w-3/4',\n            children: [\n              InputGroupInput<never>({\n                placeholder: 'Try searching for pages...',\n              }),\n              InputGroupAddon<never>({\n                children: [icon('search')],\n              }),\n              InputGroupAddon<never>({\n                align: 'inline-end',\n                children: [kbd(['/'])],\n              }),\n            ],\n          }),\n          EmptyDescription<never>({\n            children: ['Need help? ', h.a([h.Href('#')], ['Contact support'])],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyInputGroup",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-outline",
+      "title": "EmptyOutline",
+      "description": "Dashed-outline Empty state with upload action.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyOutline = (): Html =>\n  Empty<never>({\n    className: 'border border-dashed',\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'icon',\n            children: [icon('cloud')],\n          }),\n          EmptyTitle<never>({ children: ['Cloud Storage Empty'] }),\n          EmptyDescription<never>({\n            children: [\n              'Upload files to your cloud storage to access them anywhere.',\n            ],\n          }),\n        ],\n      }),\n      EmptyContent<never>({\n        children: [\n          button(['Upload Files'], {\n            variant: 'outline',\n            size: 'sm',\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyOutline",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/empty-rtl",
+      "title": "EmptyRtl",
+      "description": "RTL Empty example using deterministic Arabic strings.",
+      "componentItemId": "shadcn/empty",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
+      "snippet": "export const EmptyRtl = (): Html => {\n  const { dir, values } = arabicEmptyRtl\n\n  return Empty<never>({\n    dir,\n    children: [\n      EmptyHeader<never>({\n        children: [\n          EmptyMedia<never>({\n            variant: 'icon',\n            children: [icon('folderCode')],\n          }),\n          EmptyTitle<never>({ children: [values.title] }),\n          EmptyDescription<never>({ children: [values.description] }),\n        ],\n      }),\n      EmptyContent<never>({\n        className: 'flex-row justify-center gap-2',\n        children: [\n          button([values.createProject]),\n          button([values.importProject], { variant: 'outline' }),\n        ],\n      }),\n      button(\n        [\n          values.learnMore,\n          ' ',\n          icon(\n            'arrowUpRight',\n            [html<never>().DataAttribute('icon', 'inline-end')],\n            'rtl:rotate-270',\n          ),\n        ],\n        {\n          variant: 'link',\n          className: 'text-muted-foreground',\n          size: 'sm',\n          href: '#',\n        },\n      ),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "EmptyRtl",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/kbd",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-empty-local-icons-and-rtl",
+        "summary": "Icons and RTL labels use local inline SVGs and deterministic strings instead of Tabler, Lucide, and the origin language selector runtime.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on React icon packages or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Empty examples."
+      }
+    ]
+  }
+}

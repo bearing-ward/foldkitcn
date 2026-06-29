@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T12:02:20.047Z",
+  "generatedAt": "2026-06-29T12:38:00.148Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -286,6 +286,11 @@
       "itemId": "shadcn/dropdown-menu",
       "routePath": "/components/shadcn/dropdown-menu",
       "docsArtifactPath": "registry/docs/shadcn/dropdown-menu.json"
+    },
+    {
+      "itemId": "shadcn/empty",
+      "routePath": "/components/shadcn/empty",
+      "docsArtifactPath": "registry/docs/shadcn/empty.json"
     },
     {
       "itemId": "shadcn/field",

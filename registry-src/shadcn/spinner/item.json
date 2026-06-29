@@ -68,6 +68,12 @@
         "reason": "Spinner Input Group examples compose the local shadcn Input Group registry item."
       },
       {
+        "specifier": "shadcn/empty",
+        "classification": "registry-local",
+        "target": "shadcn/empty",
+        "reason": "SpinnerEmpty composes the local shadcn Empty registry item now that plan 074 provides it."
+      },
+      {
         "specifier": "shadcn/item",
         "classification": "registry-local",
         "target": "shadcn/item",
@@ -120,12 +126,6 @@
         "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
       },
       {
-        "specifier": "shadcn/empty",
-        "classification": "reject-or-defer",
-        "target": "",
-        "reason": "The origin Empty example waits for plan 074, which owns local shadcn Empty."
-      },
-      {
         "specifier": "react",
         "classification": "dev-or-fixture-only",
         "target": "",
@@ -170,6 +170,13 @@
       "kind": "demo"
     },
     {
+      "id": "shadcn/spinner-empty",
+      "title": "SpinnerEmpty",
+      "description": "Empty state composed with Spinner media and a cancel action.",
+      "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+      "kind": "demo"
+    },
+    {
       "id": "shadcn/spinner-rtl",
       "title": "SpinnerRtl",
       "description": "RTL Item row using deterministic local Arabic strings.",
@@ -197,10 +204,7 @@
       "dimensions",
       "bounding-box"
     ],
-    "acceptedDeviationIds": [
-      "shadcn-spinner-local-icons-and-rtl",
-      "shadcn-spinner-empty-deferred"
-    ]
+    "acceptedDeviationIds": ["shadcn-spinner-local-icons-and-rtl"]
   },
   "lifecycle": {
     "implementationStatus": "implemented",
@@ -216,13 +220,6 @@
       "required": true,
       "status": "accepted",
       "rationale": "Installable source cannot depend on lucide-react or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Spinner examples."
-    },
-    {
-      "id": "shadcn-spinner-empty-deferred",
-      "summary": "The origin SpinnerEmpty example is deferred until local shadcn Empty exists.",
-      "required": true,
-      "status": "accepted",
-      "rationale": "Plan 074 owns the local Empty item. Deferring this example avoids importing upstream Empty code into installable Spinner source."
     }
   ]
 }

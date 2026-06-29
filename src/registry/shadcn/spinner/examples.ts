@@ -13,6 +13,8 @@ import {
 import { Item, ItemContent, ItemMedia, ItemTitle } from '../item'
 import { view as Spinner } from './index'
 
+export { SpinnerEmpty } from '../empty/examples'
+
 type Child = Html | string
 
 const loaderIconPaths: ReadonlyArray<string> = [

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T11:59:19.893Z",
+  "generatedAt": "2026-06-29T12:36:06.299Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,14 +9,14 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 48,
-      "remaining": 16
+      "imported": 49,
+      "remaining": 15
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 12,
+    "dossierReadyCount": 11,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -2037,17 +2037,17 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/shadcn-empty/dossier.json",
         "plans/artifacts/070-next-component-dossiers/shadcn-empty/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
@@ -2055,7 +2055,7 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/empty"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 87",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/input-group",

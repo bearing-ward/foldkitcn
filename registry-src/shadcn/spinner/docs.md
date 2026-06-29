@@ -22,9 +22,7 @@ Use `attributes` for extra SVG attributes such as `data-icon="inline-start"` whe
 
 ## Examples
 
-The registry includes live examples for basic Item composition, badges, disabled buttons, custom loader icons, Input Group composition, RTL content, and size overrides.
-
-The origin Empty example remains deferred until the local shadcn Empty item is available. Plan 074 owns that follow-up.
+The registry includes live examples for basic Item composition, badges, disabled buttons, custom loader icons, Input Group composition, Empty composition, RTL content, and size overrides.
 
 ## Accessibility
 

@@ -6,7 +6,7 @@
   "description": "Foldkit-native shadcn base-nova Spinner helper with local inline SVG rendering, status semantics, and examples across badges, buttons, items, input groups, RTL, custom icons, and sizes.",
   "docsStatus": "complete",
   "markdownPath": "registry-src/shadcn/spinner/docs.md",
-  "markdown": "# Spinner\n\n## Overview\n\nSpinner is a Foldkit-native port of the shadcn base-nova Spinner helper. It renders the origin loader-circle SVG footprint with `data-slot=\"spinner\"`, status semantics, and the `size-4 animate-spin` class contract.\n\n## Foldkit Model\n\nSpinner is a stateless render helper. It owns no Model, Message, update function, or Command. Parent views decide when loading is true and render Spinner as a fact of that state.\n\n## Usage\n\nImport the helper from the generated registry source and render it directly or through the `toView` seam.\n\n```ts\nSpinner<Message>({\n  className: 'size-6',\n})\n```\n\nUse `attributes` for extra SVG attributes such as `data-icon=\"inline-start\"` when composing inside Button, Badge, Item, or Input Group examples.\n\n## Examples\n\nThe registry includes live examples for basic Item composition, badges, disabled buttons, custom loader icons, Input Group composition, RTL content, and size overrides.\n\nThe origin Empty example remains deferred until the local shadcn Empty item is available. Plan 074 owns that follow-up.\n\n## Accessibility\n\nSpinner renders `role=\"status\"` and `aria-label=\"Loading\"` by default. Use the optional `ariaLabel` when a parent needs more specific loading copy.\n\n## Foldkit Differences\n\nThe origin shadcn implementation imports `Loader2Icon` from `lucide-react`. This registry item replaces that dependency with a local inline SVG path so installable source stays Foldkit-native while preserving the same root attributes and visual footprint.\n",
+  "markdown": "# Spinner\n\n## Overview\n\nSpinner is a Foldkit-native port of the shadcn base-nova Spinner helper. It renders the origin loader-circle SVG footprint with `data-slot=\"spinner\"`, status semantics, and the `size-4 animate-spin` class contract.\n\n## Foldkit Model\n\nSpinner is a stateless render helper. It owns no Model, Message, update function, or Command. Parent views decide when loading is true and render Spinner as a fact of that state.\n\n## Usage\n\nImport the helper from the generated registry source and render it directly or through the `toView` seam.\n\n```ts\nSpinner<Message>({\n  className: 'size-6',\n})\n```\n\nUse `attributes` for extra SVG attributes such as `data-icon=\"inline-start\"` when composing inside Button, Badge, Item, or Input Group examples.\n\n## Examples\n\nThe registry includes live examples for basic Item composition, badges, disabled buttons, custom loader icons, Input Group composition, Empty composition, RTL content, and size overrides.\n\n## Accessibility\n\nSpinner renders `role=\"status\"` and `aria-label=\"Loading\"` by default. Use the optional `ariaLabel` when a parent needs more specific loading copy.\n\n## Foldkit Differences\n\nThe origin shadcn implementation imports `Loader2Icon` from `lucide-react`. This registry item replaces that dependency with a local inline SVG path so installable source stays Foldkit-native while preserving the same root attributes and visual footprint.\n",
   "headings": [
     {
       "id": "spinner",
@@ -103,6 +103,12 @@
         "reason": "Spinner Input Group examples compose the local shadcn Input Group registry item."
       },
       {
+        "specifier": "shadcn/empty",
+        "classification": "registry-local",
+        "target": "shadcn/empty",
+        "reason": "SpinnerEmpty composes the local shadcn Empty registry item now that plan 074 provides it."
+      },
+      {
         "specifier": "shadcn/item",
         "classification": "registry-local",
         "target": "shadcn/item",
@@ -155,12 +161,6 @@
         "reason": "Origin RTL language selector usage is replaced by deterministic local RTL labels."
       },
       {
-        "specifier": "shadcn/empty",
-        "classification": "reject-or-defer",
-        "target": "",
-        "reason": "The origin Empty example waits for plan 074, which owns local shadcn Empty."
-      },
-      {
         "specifier": "react",
         "classification": "dev-or-fixture-only",
         "target": "",
@@ -182,6 +182,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -200,6 +201,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -218,6 +220,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -236,6 +239,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -254,6 +258,26 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
+        "shadcn/item",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/spinner-empty",
+      "title": "SpinnerEmpty",
+      "description": "Empty state composed with Spinner media and a cancel action.",
+      "componentItemId": "shadcn/spinner",
+      "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+      "snippet": "import type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { view as Badge } from '../badge'\nimport { view as Button } from '../button'\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from '../input-group'\nimport { Item, ItemContent, ItemMedia, ItemTitle } from '../item'\nimport { view as Spinner } from './index'\n\nexport { SpinnerEmpty } from '../empty/examples'\n\ntype Child = Html | string\n\nconst loaderIconPaths: ReadonlyArray<string> = [\n  'M12 2v4',\n  'm16.2 7.8 2.9-2.9',\n  'M18 12h4',\n  'm16.2 16.2 2.9 2.9',\n  'M12 18v4',\n  'm4.9 19.1 2.9-2.9',\n  'M2 12h4',\n  'm4.9 4.9 2.9 2.9',\n]\n\nconst spinner = (\n  attributes: ReadonlyArray<Attribute<never>> = [],\n  className?: string,\n): Html =>\n  Spinner<never>({\n    className,\n    attributes,\n  })\n\nconst badge = (\n  children: ReadonlyArray<Child>,\n  variant?: 'default' | 'secondary' | 'outline',\n): Html => {\n  const h = html<never>()\n\n  return Badge<never>({\n    variant,\n    toView: attributes => h.span([...attributes.badge], children),\n  })\n}\n\nconst button = (\n  children: ReadonlyArray<Child>,\n  config: Readonly<{\n    variant?: 'outline' | 'secondary'\n    size?: 'sm'\n    disabled?: boolean\n  }> = {},\n): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: config.variant,\n    size: config.size,\n    isDisabled: config.disabled,\n    toView: attributes => h.button([...attributes.button], children),\n  })\n}\n\nconst arrowUpIcon = (): Html => {\n  const h = html<never>()\n\n  return h.svg(\n    [\n      h.Xmlns('http://www.w3.org/2000/svg'),\n      h.Width('24'),\n      h.Height('24'),\n      h.ViewBox('0 0 24 24'),\n      h.Fill('none'),\n      h.Stroke('currentColor'),\n      h.StrokeWidth('2'),\n      h.StrokeLinecap('round'),\n      h.StrokeLinejoin('round'),\n      h.Class('lucide lucide-arrow-up-icon'),\n      h.AriaHidden(true),\n    ],\n    [h.path([h.D('m5 12 7-7 7 7')], []), h.path([h.D('M12 19V5')], [])],\n  )\n}\n\nexport const SpinnerDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full max-w-xs flex-col gap-4 [--radius:1rem]')],\n    [\n      Item<never>({\n        variant: 'muted',\n        children: [\n          ItemMedia<never>({\n            children: [spinner()],\n          }),\n          ItemContent<never>({\n            children: [\n              ItemTitle<never>({\n                className: 'line-clamp-1',\n                children: ['Processing payment...'],\n              }),\n            ],\n          }),\n          ItemContent<never>({\n            className: 'flex-none justify-end',\n            children: [h.span([h.Class('text-sm tabular-nums')], ['$100.00'])],\n          }),\n        ],\n      }),\n    ],\n  )\n}\n\nexport const SpinnerBadge = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center gap-4 [--radius:1.2rem]')],\n    [\n      badge([spinner([h.DataAttribute('icon', 'inline-start')]), 'Syncing']),\n      badge(\n        [spinner([h.DataAttribute('icon', 'inline-start')]), 'Updating'],\n        'secondary',\n      ),\n      badge(\n        [spinner([h.DataAttribute('icon', 'inline-start')]), 'Processing'],\n        'outline',\n      ),\n    ],\n  )\n}\n\nexport const SpinnerButton = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-col items-center gap-4')],\n    [\n      button(\n        [spinner([h.DataAttribute('icon', 'inline-start')]), 'Loading...'],\n        {\n          disabled: true,\n          size: 'sm',\n        },\n      ),\n      button(\n        [spinner([h.DataAttribute('icon', 'inline-start')]), 'Please wait'],\n        {\n          disabled: true,\n          size: 'sm',\n          variant: 'outline',\n        },\n      ),\n      button(\n        [spinner([h.DataAttribute('icon', 'inline-start')]), 'Processing'],\n        {\n          disabled: true,\n          size: 'sm',\n          variant: 'secondary',\n        },\n      ),\n    ],\n  )\n}\n\nexport const SpinnerCustom = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center gap-4')],\n    [\n      h.svg(\n        [\n          h.Xmlns('http://www.w3.org/2000/svg'),\n          h.Width('24'),\n          h.Height('24'),\n          h.ViewBox('0 0 24 24'),\n          h.Fill('none'),\n          h.Stroke('currentColor'),\n          h.StrokeWidth('2'),\n          h.StrokeLinecap('round'),\n          h.StrokeLinejoin('round'),\n          h.Role('status'),\n          h.AriaLabel('Loading'),\n          h.Class('lucide lucide-loader-icon size-4 animate-spin'),\n        ],\n        loaderIconPaths.map(path => h.path([h.D(path)], [])),\n      ),\n    ],\n  )\n}\n\nexport const SpinnerInputGroup = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex w-full max-w-md flex-col gap-4')],\n    [\n      InputGroup<never>({\n        children: [\n          InputGroupInput<never>({\n            placeholder: 'Send a message...',\n            isDisabled: true,\n          }),\n          InputGroupAddon<never>({\n            align: 'inline-end',\n            children: [spinner()],\n          }),\n        ],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupTextarea<never>({\n            placeholder: 'Send a message...',\n            isDisabled: true,\n          }),\n          InputGroupAddon<never>({\n            align: 'block-end',\n            children: [\n              spinner(),\n              ' Validating...',\n              InputGroupButton<never>({\n                className: 'ml-auto',\n                variant: 'default',\n                children: [\n                  arrowUpIcon(),\n                  h.span([h.Class('sr-only')], ['Send']),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}\n\nexport const SpinnerRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [\n      h.Class('flex w-full max-w-xs flex-col gap-4 [--radius:1rem]'),\n      h.Dir('rtl'),\n    ],\n    [\n      Item<never>({\n        variant: 'muted',\n        dir: 'rtl',\n        children: [\n          ItemMedia<never>({\n            children: [spinner()],\n          }),\n          ItemContent<never>({\n            children: [\n              ItemTitle<never>({\n                className: 'line-clamp-1',\n                children: ['جاري معالجة الدفع...'],\n              }),\n            ],\n          }),\n          ItemContent<never>({\n            className: 'flex-none justify-end',\n            children: [\n              h.span([h.Class('text-sm tabular-nums')], ['١٠٠.٠٠ دولار']),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}\n\nexport const SpinnerSize = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center gap-6')],\n    [\n      spinner([], 'size-3'),\n      spinner([], 'size-4'),\n      spinner([], 'size-6'),\n      spinner([], 'size-8'),\n    ],\n  )\n}",
+      "previewStatus": "static",
+      "previewExportName": null,
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -272,6 +296,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -290,6 +315,7 @@
         "shadcn/badge",
         "shadcn/button",
         "shadcn/input-group",
+        "shadcn/empty",
         "shadcn/item",
         "utils/cn"
       ],
@@ -308,13 +334,6 @@
         "required": true,
         "status": "accepted",
         "rationale": "Installable source cannot depend on lucide-react or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Spinner examples."
-      },
-      {
-        "id": "shadcn-spinner-empty-deferred",
-        "summary": "The origin SpinnerEmpty example is deferred until local shadcn Empty exists.",
-        "required": true,
-        "status": "accepted",
-        "rationale": "Plan 074 owns the local Empty item. Deferring this example avoids importing upstream Empty code into installable Spinner source."
       }
     ]
   }
