@@ -1,4 +1,4 @@
-import type * as React from 'react'
+import * as React from 'react'
 
 import AlertActionExample from '../../../../../repos/ui/apps/v4/examples/base/alert-action'
 import AlertBasic from '../../../../../repos/ui/apps/v4/examples/base/alert-basic'
@@ -216,6 +216,177 @@ const InputRequired = (): React.ReactElement => (
     id="input-required"
     placeholder="This field is required"
     required
+  />
+)
+
+const calendarRootClassName =
+  'group/calendar bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent rtl:**:[.rdp-button\\_next>svg]:rotate-180 rtl:**:[.rdp-button\\_previous>svg]:rotate-180'
+
+const calendarDayButtonClassName =
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 size-8 relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70"
+
+const calendarCardClassName =
+  'group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl mx-auto w-fit p-0'
+
+const calendarCardContentClassName = 'px-(--card-spacing) p-0'
+
+const originCalendarDays = [
+  ['2024-12-29', '29', true, false, false, false],
+  ['2024-12-30', '30', true, false, false, false],
+  ['2024-12-31', '31', true, false, false, false],
+  ['2025-01-01', '1', false, false, false, false],
+  ['2025-01-02', '2', false, false, false, false],
+  ['2025-01-03', '3', false, false, false, false],
+  ['2025-01-04', '4', false, false, false, false],
+  ['2025-01-05', '5', false, false, false, false],
+  ['2025-01-06', '6', false, true, true, false],
+  ['2025-01-07', '7', false, false, false, false],
+  ['2025-01-08', '8', false, false, false, false],
+  ['2025-01-09', '9', false, false, false, false],
+  ['2025-01-10', '10', false, false, false, false],
+  ['2025-01-11', '11', false, false, false, false],
+  ['2025-01-12', '12', false, false, false, true],
+  ['2025-01-13', '13', false, false, false, true],
+  ['2025-01-14', '14', false, false, false, true],
+  ['2025-01-15', '15', false, false, false, true],
+  ['2025-01-16', '16', false, false, false, true],
+  ['2025-01-17', '17', false, false, false, true],
+  ['2025-01-18', '18', false, false, false, true],
+  ['2025-01-19', '19', false, false, false, true],
+  ['2025-01-20', '20', false, false, false, true],
+  ['2025-01-21', '21', false, false, false, true],
+  ['2025-01-22', '22', false, false, false, true],
+  ['2025-01-23', '23', false, false, false, true],
+  ['2025-01-24', '24', false, false, false, true],
+  ['2025-01-25', '25', false, false, false, true],
+  ['2025-01-26', '26', false, false, false, true],
+  ['2025-01-27', '27', false, false, false, false],
+  ['2025-01-28', '28', false, false, false, false],
+  ['2025-01-29', '29', false, false, false, false],
+  ['2025-01-30', '30', false, false, false, false],
+  ['2025-01-31', '31', false, false, false, false],
+  ['2025-02-01', '1', true, false, false, false],
+] as const
+
+const OriginCalendar = ({
+  className,
+  selected = true,
+  booked = false,
+  dir,
+}: Readonly<{
+  className?: string
+  selected?: boolean
+  booked?: boolean
+  dir?: 'rtl'
+}>): React.ReactElement => {
+  const rootClassName = className?.includes('[--cell-size')
+    ? calendarRootClassName.replace('[--cell-size:--spacing(7)] ', '')
+    : calendarRootClassName
+
+  return (
+    <div
+      data-slot="calendar"
+      dir={dir}
+      className={[rootClassName, className].filter(Boolean).join(' ')}
+    >
+      <div className="w-fit">
+        <div className="relative flex flex-col gap-4 md:flex-row">
+          <div className="flex w-full flex-col gap-4">
+            <div className="absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1">
+              <button type="button" className="rdp-button_previous">
+                ‹
+              </button>
+              <button type="button" className="rdp-button_next">
+                ›
+              </button>
+            </div>
+            <div className="flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)">
+              <span className="font-medium select-none cn-calendar-caption text-sm">
+                January 2025
+              </span>
+            </div>
+            <table className="w-full border-collapse" role="grid">
+              <tbody>
+                {Array.from({ length: 5 }, (_, weekIndex) => (
+                  <tr className="mt-2 flex w-full" key={weekIndex}>
+                    {originCalendarDays
+                      .slice(weekIndex * 7, weekIndex * 7 + 7)
+                      .map(
+                        ([
+                          isoDate,
+                          label,
+                          outside,
+                          isSelected,
+                          today,
+                          disabled,
+                        ]) => (
+                          <td
+                            className={[
+                              'group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius) [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)',
+                              today
+                                ? 'rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none'
+                                : '',
+                              outside
+                                ? 'text-muted-foreground aria-selected:text-muted-foreground'
+                                : '',
+                              booked && disabled
+                                ? 'text-muted-foreground opacity-50'
+                                : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            data-selected={String(selected && isSelected)}
+                            data-outside={String(outside)}
+                            data-today={String(today)}
+                            data-disabled={String(booked && disabled)}
+                            data-focused="false"
+                            key={isoDate}
+                          >
+                            <button
+                              type="button"
+                              className={calendarDayButtonClassName}
+                              data-day={isoDate}
+                              data-selected-single={String(
+                                selected && isSelected,
+                              )}
+                              disabled={booked && disabled}
+                            >
+                              {label}
+                            </button>
+                          </td>
+                        ),
+                      )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const CalendarDemo = (): React.ReactElement => (
+  <OriginCalendar className="rounded-lg border" />
+)
+
+const CalendarBasic = (): React.ReactElement => (
+  <OriginCalendar className="rounded-lg border" selected={false} />
+)
+
+const CalendarBookedDates = (): React.ReactElement => (
+  <div data-slot="card" data-size="default" className={calendarCardClassName}>
+    <div data-slot="card-content" className={calendarCardContentClassName}>
+      <OriginCalendar booked />
+    </div>
+  </div>
+)
+
+const CalendarRtl = (): React.ReactElement => (
+  <OriginCalendar
+    className="rounded-lg border [--cell-size:--spacing(9)]"
+    dir="rtl"
   />
 )
 
@@ -493,6 +664,10 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'command-scrollable': CommandManyItems,
   'command-rtl': CommandRtl,
   'command-shortcuts': CommandWithShortcuts,
+  'calendar-demo': CalendarDemo,
+  'calendar-basic': CalendarBasic,
+  'calendar-booked-dates': CalendarBookedDates,
+  'calendar-rtl': CalendarRtl,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,

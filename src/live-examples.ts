@@ -44,6 +44,12 @@ import {
   ButtonWithIcon,
 } from './registry/shadcn/button/examples'
 import {
+  CalendarBasic,
+  CalendarBookedDates,
+  CalendarDemo,
+  CalendarRtl,
+} from './registry/shadcn/calendar/examples'
+import {
   CommandBasic,
   CommandDemo,
   CommandDialogDemo,
@@ -281,6 +287,14 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(ButtonGroupSize),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSplit')]:
     staticExample(ButtonGroupSplit),
+  [liveExampleKey('shadcn/calendar', 'CalendarDemo')]:
+    staticExample(CalendarDemo),
+  [liveExampleKey('shadcn/calendar', 'CalendarBasic')]:
+    staticExample(CalendarBasic),
+  [liveExampleKey('shadcn/calendar', 'CalendarBookedDates')]:
+    staticExample(CalendarBookedDates),
+  [liveExampleKey('shadcn/calendar', 'CalendarRtl')]:
+    staticExample(CalendarRtl),
   [liveExampleKey('shadcn/command', 'CommandDemo')]: staticExample(CommandDemo),
   [liveExampleKey('shadcn/command', 'CommandBasic')]:
     commandDialogExample(CommandBasic),

@@ -360,6 +360,12 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ButtonGroupSize',
     'ButtonGroupSplit',
   ]),
+  'shadcn/calendar': new Set([
+    'CalendarDemo',
+    'CalendarBasic',
+    'CalendarBookedDates',
+    'CalendarRtl',
+  ]),
   'shadcn/command': new Set([
     'CommandDemo',
     'CommandBasic',

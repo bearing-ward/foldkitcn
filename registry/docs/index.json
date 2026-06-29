@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T14:21:55.842Z",
+  "generatedAt": "2026-06-29T14:56:20.021Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -236,6 +236,11 @@
       "itemId": "shadcn/button",
       "routePath": "/components/shadcn/button",
       "docsArtifactPath": "registry/docs/shadcn/button.json"
+    },
+    {
+      "itemId": "shadcn/calendar",
+      "routePath": "/components/shadcn/calendar",
+      "docsArtifactPath": "registry/docs/shadcn/calendar.json"
     },
     {
       "itemId": "shadcn/card",

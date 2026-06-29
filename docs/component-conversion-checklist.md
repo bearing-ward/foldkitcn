@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-29T13:40:37.775Z
+Generated at: 2026-06-29T14:55:07.255Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
 | Base UI docs |       37 |    38 |         1 |
-| shadcn docs  |       50 |    64 |        14 |
+| shadcn docs  |       51 |    64 |        13 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 10
+- Dossier-ready rows: 9
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -21,10 +21,10 @@ Generated at: 2026-06-29T13:40:37.775Z
 
 | Item               | Readiness     | Parity      | URLs                                                      | Blockers |
 | ------------------ | ------------- | ----------- | --------------------------------------------------------- | -------- |
-| `shadcn/calendar`  | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/calendar)  |          |
 | `shadcn/resizable` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/resizable) |          |
 | `shadcn/sidebar`   | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sidebar)   |          |
 | `shadcn/sonner`    | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sonner)    |          |
+| `base-ui/toast`    | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toast)      |          |
 
 ## Imported Items
 
@@ -106,6 +106,7 @@ Generated at: 2026-06-29T13:40:37.775Z
 - `shadcn/card`
 - `shadcn/breadcrumb`
 - `shadcn/button-group`
+- `shadcn/calendar`
 - `shadcn/carousel`
 - `shadcn/command`
 - `shadcn/empty`
@@ -124,7 +125,6 @@ None.
 
 | Item                      | Readiness     | Parity      | URLs                                                             | Blockers |
 | ------------------------- | ------------- | ----------- | ---------------------------------------------------------------- | -------- |
-| `shadcn/calendar`         | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/calendar)         |          |
 | `shadcn/resizable`        | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/resizable)        |          |
 | `shadcn/sidebar`          | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sidebar)          |          |
 | `shadcn/sonner`           | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sonner)           |          |

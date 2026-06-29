@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T14:21:55.842Z",
+  "generatedAt": "2026-06-29T14:56:20.021Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8141,6 +8141,250 @@
           "path": "src/registry/shadcn/button/examples.ts",
           "sha256": "b9a07fe3c2a24c944f8f5369f814677706d70a9e9da0f0cd37198a8c709bd18f",
           "sizeBytes": 8507,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/calendar",
+        "namespace": "shadcn",
+        "name": "Calendar",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Calendar helper with local ISO date-grid generation, single-date selection, disabled dates, outside-month state, month navigation, keyboard focus movement, RTL rendering, and deterministic examples.",
+        "sourceRoot": "registry-src/shadcn/calendar",
+        "installableSourcePaths": [
+          "src/registry/shadcn/calendar/index.ts",
+          "src/registry/shadcn/calendar/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius-md",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Calendar",
+            "docsUrl": "https://ui.shadcn.com/docs/components/calendar",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/calendar.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/calendar.tsx",
+              "repos/ui/apps/v4/styles/base-nova/ui-rtl/calendar.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/calendar.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/calendar.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/calendar-basic.tsx",
+              "repos/ui/apps/v4/examples/base/calendar-booked-dates.tsx",
+              "repos/ui/apps/v4/examples/base/calendar-demo.tsx",
+              "repos/ui/apps/v4/examples/base/calendar-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Calendar day and navigation buttons compose the local shadcn Button class contract."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "registry-local",
+              "target": "shadcn/card",
+              "reason": "Booked dates example composes the local shadcn Card item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Calendar uses local class canonicalization and Tailwind conflict handling."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, message, Scene, and Foldkit-native view/update APIs."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Option, Match, and Array helpers."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "react-day-picker",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin calendar behavior is represented by local Foldkit date-grid helpers instead of the React DayPicker runtime."
+            },
+            {
+              "specifier": "date-fns",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Supported examples use local UTC-safe date arithmetic instead of date-fns."
+            },
+            {
+              "specifier": "react-day-picker/locale",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "RTL example uses deterministic locale strings through native Intl formatting."
+            },
+            {
+              "specifier": "react-day-picker/persian",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Persian/Hijri calendar behavior is deferred until a reusable local date foundation exists."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin chevrons are represented by local inline SVG helpers in installable source."
+            },
+            {
+              "specifier": "@/components/language-selector",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin RTL example dependency is replaced by deterministic local RTL data."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/calendar-demo",
+            "title": "CalendarDemo",
+            "description": "Single-date Calendar with selected date, today state, border, and dropdown-style caption.",
+            "sourcePath": "src/registry/shadcn/calendar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/calendar-basic",
+            "title": "CalendarBasic",
+            "description": "Basic single-month Calendar with outside days and base-nova border surface.",
+            "sourcePath": "src/registry/shadcn/calendar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/calendar-booked-dates",
+            "title": "CalendarBookedDates",
+            "description": "Calendar inside a local Card with deterministic disabled booked dates.",
+            "sourcePath": "src/registry/shadcn/calendar/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/calendar-rtl",
+            "title": "CalendarRtl",
+            "description": "RTL Calendar using local direction and Intl locale data instead of the origin language selector runtime.",
+            "sourcePath": "src/registry/shadcn/calendar/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/calendar",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": ["class-tokens", "attributes", "colors"],
+          "acceptedDeviationIds": [
+            "shadcn-calendar-local-date-grid",
+            "shadcn-calendar-local-icons",
+            "shadcn-calendar-local-rtl-data",
+            "shadcn-calendar-deferred-advanced-examples"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-calendar-local-date-grid",
+            "summary": "Calendar uses local ISO date-grid helpers and Foldkit messages instead of react-day-picker and React state.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source must stay Foldkit-native and cannot depend on the React DayPicker runtime."
+          },
+          {
+            "id": "shadcn-calendar-local-icons",
+            "summary": "Calendar navigation and caption chevrons use local inline SVG helpers instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local SVGs preserve the chevron footprint and class-token affordances."
+          },
+          {
+            "id": "shadcn-calendar-local-rtl-data",
+            "summary": "RTL example uses local direction and native Intl formatting instead of the origin language-selector runtime.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on the origin app language selector. Local deterministic data preserves the rendered RTL surface."
+          },
+          {
+            "id": "shadcn-calendar-deferred-advanced-examples",
+            "summary": "Range, multiple-date, Persian/Hijri, presets, time, custom-day, caption-select, and week-number examples are deferred.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Those examples need a larger reusable local date foundation. This slice lands the supported single-month and single-date surface without upstream runtime packages."
+          }
+        ]
+      },
+      "manifestHash": "1dd6f90ee8991346a0e3ac45338e0646691a7ea789db92b6afd335720aec3bf9",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/calendar/item.json",
+          "sha256": "27d6b7ab3ed742c70a02e833256127211a204d9df6e5ae8dfee705e251023e01",
+          "sizeBytes": 8508,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/calendar/index.ts",
+          "sha256": "d24c491c23e627d207a8b928b32a3906ff9b9b4f48dde5369871ec3b2ba876a0",
+          "sizeBytes": 20643,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/calendar/examples.ts",
+          "sha256": "89df3d4d956ca0a5d592286f45b2b325302830e259573de8c22618b516cfe0ca",
+          "sizeBytes": 2159,
           "role": "source"
         }
       ]

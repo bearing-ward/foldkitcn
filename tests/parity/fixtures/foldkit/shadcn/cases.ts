@@ -74,6 +74,12 @@ import {
   ButtonWithIcon,
 } from '../../../../../src/registry/shadcn/button/examples'
 import {
+  CalendarBasic,
+  CalendarBookedDates,
+  CalendarDemo,
+  CalendarRtl,
+} from '../../../../../src/registry/shadcn/calendar/examples'
+import {
   CardDemo,
   CardEdgeToEdge,
   CardImage,
@@ -531,6 +537,10 @@ const components: Readonly<Record<string, () => Html>> = {
   'command-scrollable': CommandManyItems,
   'command-rtl': CommandRtl,
   'command-shortcuts': CommandWithShortcuts,
+  'calendar-demo': CalendarDemo,
+  'calendar-basic': CalendarBasic,
+  'calendar-booked-dates': CalendarBookedDates,
+  'calendar-rtl': CalendarRtl,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,
@@ -596,6 +606,7 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['avatar-', 'src/registry/shadcn/avatar/examples.ts'],
   ['badge-', 'src/registry/shadcn/badge/examples.ts'],
   ['button-group-', 'src/registry/shadcn/button-group/examples.ts'],
+  ['calendar-', 'src/registry/shadcn/calendar/examples.ts'],
   ['command-', 'src/registry/shadcn/command/examples.ts'],
   ['dropdown-menu-', 'src/registry/shadcn/dropdown-menu/examples.ts'],
   ['menubar-', 'src/registry/shadcn/menubar/examples.ts'],

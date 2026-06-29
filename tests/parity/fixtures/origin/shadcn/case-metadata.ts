@@ -302,6 +302,27 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/command-shortcuts.tsx',
     },
     {
+      id: 'calendar-demo',
+      title: 'Calendar demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/calendar-demo.tsx',
+    },
+    {
+      id: 'calendar-basic',
+      title: 'Calendar basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/calendar-basic.tsx',
+    },
+    {
+      id: 'calendar-booked-dates',
+      title: 'Calendar booked dates',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/calendar-booked-dates.tsx',
+    },
+    {
+      id: 'calendar-rtl',
+      title: 'Calendar RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/calendar-rtl.tsx',
+    },
+    {
       id: 'card-demo',
       title: 'Card demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/card-demo.tsx',
