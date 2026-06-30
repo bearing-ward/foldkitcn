@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29T17:34:15.118Z",
+  "generatedAt": "2026-06-30T09:30:11.996Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -15561,14 +15561,14 @@
         },
         {
           "path": "src/registry/shadcn/resizable/index.ts",
-          "sha256": "29d9cbf2336071695082984fa008f002d49e7be34cc529aba12217db2b27c754",
-          "sizeBytes": 21346,
+          "sha256": "65caac8566f15738456c1331e4a9b57362e0d4b1b3c2370519d7d8f1f8662d54",
+          "sizeBytes": 21993,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/resizable/examples.ts",
-          "sha256": "c560fedfd78db2672c1f6e04013ad523bffcfcf518439298e897415b8478e993",
-          "sizeBytes": 4295,
+          "sha256": "2a3f809b7661e6afce61f25f0f7d233212d36f906f5a568c36b95b28eb3467db",
+          "sizeBytes": 5751,
           "role": "source"
         }
       ]

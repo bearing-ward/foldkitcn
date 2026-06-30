@@ -137,7 +137,6 @@ import { ProgressRtl } from '../../../../../repos/ui/apps/v4/examples/base/progr
 import ResizableDemo from '../../../../../repos/ui/apps/v4/examples/base/resizable-demo'
 import ResizableHandleDemo from '../../../../../repos/ui/apps/v4/examples/base/resizable-handle'
 import { ResizableRtl } from '../../../../../repos/ui/apps/v4/examples/base/resizable-rtl'
-import { ResizableVertical } from '../../../../../repos/ui/apps/v4/examples/base/resizable-vertical'
 import { ScrollAreaDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-demo'
 import { ScrollAreaHorizontalDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo'
 import { ScrollAreaRtl } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-rtl'
@@ -175,6 +174,11 @@ import { TableRtl } from '../../../../../repos/ui/apps/v4/examples/base/table-rt
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/resizable'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
@@ -185,6 +189,25 @@ import { shadcnOriginCaseMetadata } from './case-metadata'
 export interface ShadcnOriginCase extends ShadcnOriginCaseMetadata {
   readonly Component: () => React.ReactElement
 }
+
+const ResizableVertical = () => (
+  <ResizablePanelGroup
+    orientation="vertical"
+    className="min-h-[200px] max-w-sm rounded-lg border"
+  >
+    <ResizablePanel defaultSize="25%">
+      <div className="flex h-full items-center justify-center p-6">
+        <span className="font-semibold">Header</span>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel defaultSize="75%">
+      <div className="flex h-full items-center justify-center p-6">
+        <span className="font-semibold">Content</span>
+      </div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+)
 
 const InputDemo = (): React.ReactElement => (
   <InputPrimitive

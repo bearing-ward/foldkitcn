@@ -196,6 +196,7 @@ export type LiveExampleContext<Message> = Readonly<{
   ) => Message
   resizableStateFor: (
     example: ExampleDocsArtifact,
+    groupId: string,
   ) => Option.Option<ResizableState>
   onResizableMessage: (
     example: ExampleDocsArtifact,
@@ -328,9 +329,11 @@ const resizableExample = (
     const onResizableMessage = (change: ResizableExampleMessageChange) =>
       context.onResizableMessage(example, change)
 
-    return Option.match(context.resizableStateFor(example), {
-      onNone: () => view<Message>({ onResizableMessage }),
-      onSome: state => view<Message>({ state, onResizableMessage }),
+    return view<Message>({
+      exampleId: example.id,
+      stateFor: groupId => context.resizableStateFor(example, groupId),
+      onResizableMessage,
+      externalPointerTracking: true,
     })
   },
 })

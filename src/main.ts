@@ -75,6 +75,8 @@ import {
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
 import {
+  EndedResizableDrag,
+  MovedResizablePointer,
   ResizableMessage,
   ResizableState,
   update as updateResizableState,
@@ -151,6 +153,47 @@ export const Model = S.Struct({
 export type Model = typeof Model.Type
 
 const commandDialogDemoExampleId = 'shadcn/command-dialog'
+const liveExampleResizableStateKey = (
+  exampleId: string,
+  groupId: string,
+): string => `${exampleId}#${groupId}`
+
+const LiveExampleResizableActiveDrag = S.Struct({
+  exampleId: S.String,
+  groupId: S.String,
+})
+type LiveExampleResizableActiveDrag =
+  typeof LiveExampleResizableActiveDrag.Type
+
+const liveExampleResizableStateKeyParts = (
+  key: string,
+): Option.Option<LiveExampleResizableActiveDrag> => {
+  const separatorIndex = key.lastIndexOf('#')
+
+  if (separatorIndex < 0) {
+    return Option.none()
+  }
+
+  return Option.some({
+    exampleId: key.slice(0, separatorIndex),
+    groupId: key.slice(separatorIndex + 1),
+  })
+}
+
+const liveExampleResizableActiveDrags = (
+  states: Readonly<Record<string, ResizableState>>,
+): ReadonlyArray<LiveExampleResizableActiveDrag> =>
+  pipe(
+    Object.entries(states),
+    Array.flatMap(([key, state]) =>
+      Option.isNone(state.maybeActiveDrag)
+        ? []
+        : Option.match(liveExampleResizableStateKeyParts(key), {
+            onNone: () => [],
+            onSome: activeDrag => [activeDrag],
+          }),
+    ),
+  )
 
 // MESSAGE
 
@@ -198,7 +241,8 @@ export const GotLiveExampleResizableMessage = m(
   'GotLiveExampleResizableMessage',
   {
     exampleId: S.String,
-    defaultState: ResizableState,
+    groupId: S.String,
+    defaultState: S.optional(ResizableState),
     message: ResizableMessage,
   },
 )
@@ -513,18 +557,34 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       },
       GotLiveExampleResizableMessage: ({
         exampleId,
+        groupId,
         defaultState,
         message,
       }) => {
-        const state = pipe(
-          EffectRecord.get(model.liveExampleResizableStates, exampleId),
-          Option.getOrElse(() => defaultState),
+        const stateKey = liveExampleResizableStateKey(exampleId, groupId)
+        const maybeExistingState = EffectRecord.get(
+          model.liveExampleResizableStates,
+          stateKey,
         )
+
+        if (Option.isNone(maybeExistingState) && defaultState === undefined) {
+          return [model, []]
+        }
+
+        const state = Option.match(maybeExistingState, {
+          onNone: () => defaultState,
+          onSome: existingState => existingState,
+        })
+
+        if (state === undefined) {
+          return [model, []]
+        }
+
         const [nextState] = updateResizableState(state, message)
 
         return [
           evo(model, {
-            liveExampleResizableStates: EffectRecord.set(exampleId, nextState),
+            liveExampleResizableStates: EffectRecord.set(stateKey, nextState),
           }),
           [],
         ]
@@ -649,6 +709,69 @@ export const subscriptions = Subscription.make<Model, Message>()(entry => ({
             ).pipe(Effect.flatMap(() => Effect.never)),
           ),
           Effect.sync(() => isCommandComponentRoute),
+      ),
+    },
+  ),
+  liveExampleResizablePointer: entry(
+    { activeDrags: S.Array(LiveExampleResizableActiveDrag) },
+    {
+      modelToDependencies: model => ({
+        activeDrags: liveExampleResizableActiveDrags(
+          model.liveExampleResizableStates,
+        ),
+      }),
+      dependenciesToStream: ({ activeDrags }) =>
+        Stream.when(
+          Stream.callback<Message>(queue =>
+            Effect.acquireRelease(
+              Effect.sync(() => {
+                const offerToActiveDrags = (message: ResizableMessage): void => {
+                  activeDrags.map(activeDrag =>
+                    Queue.offerUnsafe(
+                      queue,
+                      GotLiveExampleResizableMessage({
+                        exampleId: activeDrag.exampleId,
+                        groupId: activeDrag.groupId,
+                        message,
+                      }),
+                    ),
+                  )
+                }
+
+                const handlePointerMove = (event: PointerEvent) => {
+                  offerToActiveDrags(
+                    MovedResizablePointer({
+                      screenX: event.screenX,
+                      screenY: event.screenY,
+                    }),
+                  )
+                }
+                const handlePointerEnd = () => {
+                  offerToActiveDrags(EndedResizableDrag())
+                }
+
+                document.addEventListener('pointermove', handlePointerMove)
+                document.addEventListener('pointerup', handlePointerEnd)
+                document.addEventListener('pointercancel', handlePointerEnd)
+                window.addEventListener('blur', handlePointerEnd)
+
+                return () => {
+                  document.removeEventListener(
+                    'pointermove',
+                    handlePointerMove,
+                  )
+                  document.removeEventListener('pointerup', handlePointerEnd)
+                  document.removeEventListener(
+                    'pointercancel',
+                    handlePointerEnd,
+                  )
+                  window.removeEventListener('blur', handlePointerEnd)
+                }
+              }),
+              cleanup => Effect.sync(cleanup),
+            ).pipe(Effect.flatMap(() => Effect.never)),
+          ),
+          Effect.sync(() => activeDrags.length > 0),
         ),
     },
   ),
@@ -1644,17 +1767,23 @@ const examplesSectionView = (
       }),
     resizableStateFor: (
       example: ExampleDocsArtifact,
+      groupId: string,
     ): Option.Option<ResizableState> =>
-      EffectRecord.get(liveExampleResizableStates, example.id),
+      EffectRecord.get(
+        liveExampleResizableStates,
+        liveExampleResizableStateKey(example.id, groupId),
+      ),
     onResizableMessage: (
       example: ExampleDocsArtifact,
       change: Readonly<{
+        groupId: string
         defaultState: ResizableState
         message: ResizableMessage
       }>,
     ): Message =>
       GotLiveExampleResizableMessage({
         exampleId: example.id,
+        groupId: change.groupId,
         defaultState: change.defaultState,
         message: change.message,
       }),

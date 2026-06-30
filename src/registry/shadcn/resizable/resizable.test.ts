@@ -189,13 +189,13 @@ describe('shadcn/resizable update', () => {
           handleIndex: 0,
           screenX: 100,
           screenY: 0,
+          groupSizePx: 400,
         }),
       ),
       Story.message(
         Resizable.MovedResizablePointer({
           screenX: 200,
           screenY: 0,
-          groupSizePx: 400,
         }),
       ),
       Story.model(model => {
@@ -228,7 +228,7 @@ describe('shadcn/resizable view', () => {
         Scene.expect(Scene.role('separator')).toHaveAttr('aria-valuenow', '25'),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel"]'),
-        ).toHaveAttr('style', 'flex-basis: 25%;'),
+        ).toHaveAttr('style', 'flex: 25 1 0px; overflow: hidden;'),
         Scene.expect(
           Scene.selector('[data-slot="resizable-handle"] div'),
         ).toHaveAttr('class', Resizable.resizableHandleIconClassName()),
@@ -244,9 +244,32 @@ describe('shadcn/resizable view', () => {
         Scene.keydown(Scene.role('separator'), 'ArrowRight'),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel"]'),
-        ).toHaveAttr('style', 'flex-basis: 35%;'),
+        ).toHaveAttr('style', 'flex: 35 1 0px; overflow: hidden;'),
       )
     }).not.toThrow()
+  })
+
+  test('external pointer tracking keeps handle start and delegates document moves', () => {
+    const h = html<Message>()
+
+    Resizable.view<Message>({
+      state: initialModel().resizable,
+      panels,
+      pointerTracking: 'external',
+      toMessage: message => GotResizableMessage({ message }),
+      toView: attributes => {
+        const rootTags = attributes.root.map(attribute => attribute._tag)
+        const handleTags = attributes.handles[0]?.root.map(
+          attribute => attribute._tag,
+        )
+
+        expect(rootTags).not.toContain('OnPointerMove')
+        expect(handleTags).toContain('OnKeyDownPreventDefault')
+        expect(handleTags).toContain('OnPointerDown')
+
+        return h.div([], [])
+      },
+    })
   })
 
   test('vertical and RTL examples preserve origin structure', () => {

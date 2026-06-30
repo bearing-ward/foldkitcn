@@ -570,6 +570,46 @@ dt {
   padding: 1rem;
 }
 
+.live-example-preview [data-slot='resizable-handle'] {
+  background: transparent;
+  touch-action: none;
+  user-select: none;
+}
+
+.live-example-preview [data-slot='resizable-handle']::after {
+  background: var(--border);
+}
+
+.live-example-preview
+  [data-slot='resizable-handle'][aria-orientation='vertical'] {
+  min-width: 0.75rem;
+  margin-inline: -0.375rem;
+  cursor: col-resize;
+}
+
+.live-example-preview
+  [data-slot='resizable-handle'][aria-orientation='horizontal'] {
+  min-height: 0.75rem;
+  margin-block: -0.375rem;
+  cursor: row-resize;
+}
+
+.live-example-preview
+  [data-slot='resizable-handle'][aria-orientation='vertical']::after {
+  right: auto;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.live-example-preview
+  [data-slot='resizable-handle'][aria-orientation='horizontal']::after {
+  top: 50%;
+  bottom: auto;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
 .status-badge {
   display: inline-flex;
   align-items: center;

@@ -37,6 +37,7 @@ export const ResizableActiveDrag = S.Struct({
   handleIndex: S.Number,
   startScreenX: S.Number,
   startScreenY: S.Number,
+  groupSizePx: S.Number,
   startSizes: S.Array(S.Number),
 })
 export type ResizableActiveDrag = typeof ResizableActiveDrag.Type
@@ -273,11 +274,12 @@ export const StartedResizableDrag = m('StartedResizableDrag', {
   handleIndex: S.Number,
   screenX: S.Number,
   screenY: S.Number,
+  groupSizePx: S.Number,
 })
 export const MovedResizablePointer = m('MovedResizablePointer', {
   screenX: S.Number,
   screenY: S.Number,
-  groupSizePx: S.Number,
+  groupSizePx: S.optional(S.Number),
 })
 export const EndedResizableDrag = m('EndedResizableDrag')
 export const PressedResizableKey = m('PressedResizableKey', {
@@ -340,9 +342,8 @@ const pointerDelta = (
   drag: ResizableActiveDrag,
   screenX: number,
   screenY: number,
-  groupSizePx: number,
 ): number => {
-  const size = Math.max(1, groupSizePx)
+  const size = Math.max(1, drag.groupSizePx)
   const rawDelta =
     state.orientation === 'vertical'
       ? screenY - drag.startScreenY
@@ -360,7 +361,6 @@ const draggedState = (
   drag: ResizableActiveDrag,
   screenX: number,
   screenY: number,
-  groupSizePx: number,
 ): ResizableState => {
   const baseState = {
     ...state,
@@ -373,7 +373,7 @@ const draggedState = (
   return resizedState(
     baseState,
     drag.handleIndex,
-    pointerDelta(state, drag, screenX, screenY, groupSizePx),
+    pointerDelta(state, drag, screenX, screenY),
   )
 }
 
@@ -384,13 +384,19 @@ export const update = (
   M.value(message).pipe(
     withUpdateReturn,
     M.tagsExhaustive({
-      StartedResizableDrag: ({ handleIndex, screenX, screenY }) => [
+      StartedResizableDrag: ({
+        handleIndex,
+        screenX,
+        screenY,
+        groupSizePx,
+      }) => [
         {
           ...state,
           maybeActiveDrag: Option.some({
             handleIndex,
             startScreenX: screenX,
             startScreenY: screenY,
+            groupSizePx,
             startSizes: state.panels.map(panel => panel.size),
           }),
         },
@@ -400,7 +406,12 @@ export const update = (
         Option.match(state.maybeActiveDrag, {
           onNone: () => state,
           onSome: drag =>
-            draggedState(state, drag, screenX, screenY, groupSizePx),
+            draggedState(
+              state,
+              groupSizePx === undefined ? drag : { ...drag, groupSizePx },
+              screenX,
+              screenY,
+            ),
         }),
         [],
       ],
@@ -459,10 +470,12 @@ export type ViewConfig<Message> = ResizableStyleOptions &
   Readonly<{
     state: ResizableState
     panels: ReadonlyArray<ResizablePanelConfig<Message>>
+    attributes?: ReadonlyArray<Attribute<Message>>
     toMessage?: (message: ResizableMessage) => Message
     toView?: (attributes: ResizableAttributes<Message>) => Html
     groupSizePx?: number
     withHandle?: boolean
+    pointerTracking?: 'root' | 'external'
   }>
 
 export const resizablePanelGroupBaseClassName =
@@ -518,12 +531,19 @@ const hasKeyboardModifier = (modifiers: KeyboardModifiers): boolean =>
 
 const pointerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
-  config: Pick<ViewConfig<Message>, 'groupSizePx' | 'toMessage'>,
+  config: Pick<
+    ViewConfig<Message>,
+    'groupSizePx' | 'pointerTracking' | 'toMessage'
+  >,
   state: ResizableState,
 ): ReadonlyArray<Attribute<Message>> => {
   const { toMessage } = config
 
-  if (toMessage === undefined || Option.isNone(state.maybeActiveDrag)) {
+  if (
+    toMessage === undefined ||
+    config.pointerTracking === 'external' ||
+    Option.isNone(state.maybeActiveDrag)
+  ) {
     return []
   }
 
@@ -534,7 +554,9 @@ const pointerAttributes = <Message>(
           MovedResizablePointer({
             screenX,
             screenY,
-            groupSizePx: config.groupSizePx ?? defaultGroupSizePx,
+            ...(config.groupSizePx === undefined
+              ? {}
+              : { groupSizePx: config.groupSizePx }),
           }),
         ),
       ),
@@ -553,11 +575,12 @@ const rootAttributes = <Message>(
   h.AriaOrientation(config.state.orientation),
   h.Class(resizablePanelGroupClassName({ className: config.className })),
   ...optionalDir(h, config.state.dir),
+  ...(config.attributes ?? []),
   ...pointerAttributes(h, config, config.state),
 ]
 
 export const panelStyle = (state: Pick<ResizablePanelState, 'size'>): string =>
-  `flex-basis: ${state.size}%;`
+  `flex: ${state.size} 1 0px; overflow: hidden;`
 
 const panelAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
@@ -628,7 +651,14 @@ const handlePointerAttributes = <Message>(
     h.OnPointerDown((_pointerType, button, screenX, screenY) =>
       button === 0
         ? Option.some(
-            toMessage(StartedResizableDrag({ handleIndex, screenX, screenY })),
+            toMessage(
+              StartedResizableDrag({
+                handleIndex,
+                screenX,
+                screenY,
+                groupSizePx: config.groupSizePx ?? defaultGroupSizePx,
+              }),
+            ),
           )
         : Option.none(),
     ),

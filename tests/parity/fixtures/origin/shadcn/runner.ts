@@ -331,9 +331,9 @@ const originAliasPlugin = (): Plugin => ({
           })
 
         const sizeStyle = defaultSize =>
-          defaultSize === undefined
+          numericSize(defaultSize) === undefined
             ? undefined
-            : { flexBasis: typeof defaultSize === 'number' ? defaultSize + '%' : defaultSize }
+            : { flex: numericSize(defaultSize) + ' 1 0px', overflow: 'hidden' }
 
         export function Group({ children, orientation = 'horizontal', ...props }) {
           return React.createElement(

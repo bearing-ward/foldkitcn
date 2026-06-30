@@ -50,10 +50,10 @@ const carouselLiveExampleInteractions = [
 ] as const
 
 const resizableLiveExampleInteractions = [
-  ['ResizableDemo', 'ArrowRight', 'flex-basis: 60%;'],
-  ['ResizableHandleDemo', 'ArrowRight', 'flex-basis: 35%;'],
-  ['ResizableVertical', 'ArrowDown', 'flex-basis: 35%;'],
-  ['ResizableRtl', 'ArrowRight', 'flex-basis: 40%;'],
+  ['ResizableDemo', 'ArrowRight', 'flex: 60 1 0px; overflow: hidden;'],
+  ['ResizableHandleDemo', 'ArrowRight', 'flex: 35 1 0px; overflow: hidden;'],
+  ['ResizableVertical', 'ArrowDown', 'flex: 35 1 0px; overflow: hidden;'],
+  ['ResizableRtl', 'ArrowRight', 'flex: 40 1 0px; overflow: hidden;'],
 ] as const
 
 const modelWithRoute = (route: Model['route']): Model => ({
@@ -256,6 +256,122 @@ describe(view, () => {
       )
     },
   )
+
+  test('ResizableDemo live preview resizes root and nested groups independently', () => {
+    const preview = Scene.label('ResizableDemo live preview')
+    const nestedGroup = Scene.within(
+      preview,
+      Scene.selector(
+        '[data-slot="resizable-panel-group"][aria-orientation="vertical"]',
+      ),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
+        ),
+      ),
+      Scene.keydown(
+        Scene.within(preview, Scene.role('separator')),
+        'ArrowRight',
+      ),
+      Scene.expect(
+        Scene.within(preview, Scene.selector('[data-slot="resizable-panel"]')),
+      ).toHaveAttr('style', 'flex: 60 1 0px; overflow: hidden;'),
+      Scene.keydown(
+        Scene.within(nestedGroup, Scene.role('separator')),
+        'ArrowDown',
+      ),
+      Scene.expect(
+        Scene.within(
+          nestedGroup,
+          Scene.selector('[data-slot="resizable-panel"]'),
+        ),
+      ).toHaveAttr('style', 'flex: 35 1 0px; overflow: hidden;'),
+    )
+  })
+
+  test('ResizableVertical live preview resizes along the vertical axis', () => {
+    const preview = Scene.label('ResizableVertical live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          preview,
+          Scene.selector('[data-slot="resizable-panel-group"]'),
+        ),
+      ).toHaveAttr('aria-orientation', 'vertical'),
+      Scene.expect(Scene.within(preview, Scene.role('separator'))).toHaveAttr(
+        'aria-orientation',
+        'horizontal',
+      ),
+      Scene.expect(
+        Scene.within(
+          preview,
+          Scene.selector('[data-slot="resizable-handle"] div'),
+        ),
+      ).toExist(),
+      Scene.keydown(
+        Scene.within(preview, Scene.role('separator')),
+        'ArrowDown',
+      ),
+      Scene.expect(
+        Scene.within(preview, Scene.selector('[data-slot="resizable-panel"]')),
+      ).toHaveAttr('style', 'flex: 35 1 0px; overflow: hidden;'),
+    )
+  })
+
+  test('ResizableRtl live preview resizes root and nested groups in their directions', () => {
+    const preview = Scene.label('ResizableRtl live preview')
+    const rootGroup = Scene.within(
+      preview,
+      Scene.selector('[data-slot="resizable-panel-group"]'),
+    )
+    const nestedGroup = Scene.within(
+      preview,
+      Scene.selector(
+        '[data-slot="resizable-panel-group"][aria-orientation="vertical"]',
+      ),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
+        ),
+      ),
+      Scene.expect(rootGroup).toHaveAttr('dir', 'rtl'),
+      Scene.keydown(
+        Scene.within(preview, Scene.role('separator')),
+        'ArrowRight',
+      ),
+      Scene.expect(
+        Scene.within(
+          rootGroup,
+          Scene.selector('[data-slot="resizable-panel"]'),
+        ),
+      ).toHaveAttr('style', 'flex: 40 1 0px; overflow: hidden;'),
+      Scene.keydown(
+        Scene.within(nestedGroup, Scene.role('separator')),
+        'ArrowDown',
+      ),
+      Scene.expect(
+        Scene.within(
+          nestedGroup,
+          Scene.selector('[data-slot="resizable-panel"]'),
+        ),
+      ).toHaveAttr('style', 'flex: 35 1 0px; overflow: hidden;'),
+    )
+  })
 
   test('documentation search filters public generated records and clears', () => {
     Scene.scene(
