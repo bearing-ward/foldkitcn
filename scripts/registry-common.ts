@@ -332,6 +332,15 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ButtonLoading',
   ]),
   'base-ui/input': new Set(['InputDemo', 'InputDisabled']),
+  'base-ui/toast': new Set([
+    'ToastAnchored',
+    'ToastCustomPosition',
+    'ToastUndoAction',
+    'ToastPromise',
+    'ToastCustom',
+    'ToastDeduplicated',
+    'ToastVaryingHeights',
+  ]),
   'shadcn/button': new Set([
     'ButtonDefault',
     'ButtonDemo',

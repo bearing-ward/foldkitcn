@@ -1,19 +1,19 @@
 # Component Conversion Checklist
 
-Generated at: 2026-06-29T16:54:35.043Z
+Generated at: 2026-06-30T10:05:07.410Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
-| Base UI docs |       37 |    38 |         1 |
+| Base UI docs |       38 |    38 |         0 |
 | shadcn docs  |       52 |    64 |        12 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
 - Blocked rows: 5
 - Ready-for-dossier rows: 0
-- Dossier-ready rows: 8
+- Dossier-ready rows: 7
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
 - shadcn pinned ref: `40c7064532185f5556f6cbff7dca3544987c0fe1`
 
@@ -23,8 +23,8 @@ Generated at: 2026-06-29T16:54:35.043Z
 | ------------------- | ------------- | ----------- | ---------------------------------------------------------- | -------- |
 | `shadcn/sidebar`    | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sidebar)    |          |
 | `shadcn/sonner`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sonner)     |          |
-| `base-ui/toast`     | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toast)       |          |
 | `shadcn/attachment` | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/attachment) |          |
+| `shadcn/bubble`     | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/bubble)     |          |
 
 ## Imported Items
 
@@ -116,6 +116,7 @@ Generated at: 2026-06-29T16:54:35.043Z
 - `shadcn/resizable`
 - `shadcn/spinner`
 - `shadcn/table`
+- `base-ui/toast`
 - `shadcn/button`
 
 ## Ready For Dossier
@@ -128,7 +129,6 @@ None.
 | ------------------------- | ------------- | ----------- | ---------------------------------------------------------------- | -------- |
 | `shadcn/sidebar`          | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sidebar)          |          |
 | `shadcn/sonner`           | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/sonner)           |          |
-| `base-ui/toast`           | dossier-ready | not-started | [origin](https://base-ui.com/react/components/toast)             |          |
 | `shadcn/attachment`       | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/attachment)       |          |
 | `shadcn/bubble`           | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/bubble)           |          |
 | `shadcn/marker`           | dossier-ready | not-started | [origin](https://ui.shadcn.com/docs/components/marker)           |          |

@@ -74,6 +74,11 @@ import {
   carouselState,
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
+import * as ToastPrimitive from './registry/base-ui/toast'
+import {
+  ToastExampleMessage,
+  type ToastExampleMessage as ToastExampleMessageType,
+} from './registry/base-ui/toast/examples'
 import {
   EndedResizableDrag,
   MovedResizablePointer,
@@ -147,6 +152,7 @@ export const Model = S.Struct({
   liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
   liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
 })
@@ -193,6 +199,186 @@ const liveExampleResizableActiveDrags = (
             onSome: activeDrag => [activeDrag],
           }),
     ),
+  )
+
+const initialLiveExampleToastState = (
+  _exampleId: string,
+): ToastPrimitive.ToastState =>
+  ToastPrimitive.createToastState({ limit: 3 })
+
+const activeToastCount = (state: ToastPrimitive.ToastState): number =>
+  state.toasts.filter(toast => toast.transitionStatus !== 'ending').length
+
+const showToast = (
+  state: ToastPrimitive.ToastState,
+  options: ToastPrimitive.ToastAddOptions,
+): ToastPrimitive.ToastState => ToastPrimitive.addToast(state, options).state
+
+const varyingHeightDescriptions: ReadonlyArray<string> = [
+  'Short message.',
+  'A bit longer message that spans two lines.',
+  'This is a longer description that intentionally takes more vertical space to demonstrate stacking with varying heights.',
+  'An even longer description that should span multiple lines so the collapsed stack and expanded viewport remain stable.',
+]
+
+const showActionUndoneToast = (
+  state: ToastPrimitive.ToastState,
+  id: string,
+): ToastPrimitive.ToastState =>
+  showToast(
+    ToastPrimitive.closeToast(
+      state,
+      ToastPrimitive.closeRequest(id, 'manager-close'),
+    ),
+    {
+      id: 'action-undone',
+      title: 'Action undone',
+      timeout: 5000,
+      height: 64,
+    },
+  )
+
+const updateLiveExampleToastState = (
+  state: ToastPrimitive.ToastState,
+  exampleId: string,
+  message: ToastExampleMessageType,
+): readonly [
+  ToastPrimitive.ToastState,
+  ReadonlyArray<Command.Command<Message>>,
+] =>
+  M.value(message).pipe(
+    M.withReturnType<
+      readonly [
+        ToastPrimitive.ToastState,
+        ReadonlyArray<Command.Command<Message>>,
+      ]
+    >(),
+    M.tagsExhaustive({
+      ClickedCopyToClipboard: () =>
+        [
+          showToast(state, {
+            id: 'copied',
+            description: 'Copied',
+            timeout: 1500,
+            height: 48,
+            position: {
+              side: 'top',
+              align: 'center',
+              sideOffset: 10,
+              arrowWidth: 12,
+              arrowHeight: 6,
+            },
+          }),
+          [],
+        ],
+      ClickedCreateStackedToast: () =>
+        [
+          showToast(state, {
+            description: 'Copied',
+            priority: 'low',
+            timeout: 5000,
+            height: 64,
+          }),
+          [],
+        ],
+      ClickedCreatePositionToast: () =>
+        [
+          showToast(state, {
+            title: `Toast ${activeToastCount(state) + 1} created`,
+            description: 'This is a toast notification.',
+            priority: 'low',
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ],
+      ClickedPerformAction: () =>
+        [
+          showToast(state, {
+            id: `undo-${activeToastCount(state) + 1}`,
+            title: `Action ${activeToastCount(state) + 1} performed`,
+            description: 'You can undo this action.',
+            type: 'success',
+            actionLabel: 'Undo',
+            timeout: 10_000,
+            height: 96,
+          }),
+          [],
+        ],
+      ClickedRunPromiseToast: () => {
+        const change = ToastPrimitive.startPromiseToast(state, {
+          loading: 'Waiting for result...',
+        })
+
+        return [
+          change.state,
+          [CompleteLiveExampleToastWait({ exampleId, toastId: change.id })],
+        ]
+      },
+      ClickedCreateCustomToast: () =>
+        [
+          showToast(state, {
+            title: `Toast with custom data ${activeToastCount(state) + 1}`,
+            description: 'data.userId is 123',
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ],
+      ClickedSaveDraft: () =>
+        {
+          const existing = state.toasts.find(
+            toast =>
+              toast.id === 'save-status' &&
+              toast.transitionStatus !== 'ending',
+          )
+          const replayCount =
+            existing === undefined ? 0 : (existing.updateKey ?? 0) + 1
+          const description =
+            replayCount === 0
+              ? 'Click again while it is visible to replay the pulse.'
+              : `Pulse replayed ${replayCount} time`
+
+          return [
+            showToast(state, {
+              id: 'save-status',
+              title: 'Draft saved',
+              description,
+              timeout: 5000,
+              height: 84,
+            }),
+            [],
+          ]
+        },
+      ClickedCreateVaryingHeightToast: () => {
+        const count = activeToastCount(state)
+        const description =
+          varyingHeightDescriptions[count % varyingHeightDescriptions.length] ??
+          'Short message.'
+
+        return [
+          showToast(state, {
+            title: `Toast ${count + 1} created`,
+            description,
+            timeout: 5000,
+            height: 84 + description.length,
+          }),
+          [],
+        ]
+      },
+      PressedToastAction: ({ press }) =>
+        [
+          press.id.startsWith('undo-')
+            ? showActionUndoneToast(state, press.id)
+            : ToastPrimitive.closeToast(
+                state,
+                ToastPrimitive.closeRequest(press.id, 'manager-close'),
+              ),
+          [],
+        ],
+      RequestedToastClose: ({ request }) =>
+        [ToastPrimitive.closeToast(state, request), []],
+    }),
   )
 
 // MESSAGE
@@ -259,6 +445,17 @@ export const UpdatedLiveExampleCommandDialogOpen = m(
     isOpen: S.Boolean,
   },
 )
+export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
+  exampleId: S.String,
+  message: ToastExampleMessage,
+})
+export const CompletedLiveExampleToastWait = m(
+  'CompletedLiveExampleToastWait',
+  {
+    exampleId: S.String,
+    toastId: S.String,
+  },
+)
 export const PressedLiveExampleCommandDialogShortcut = m(
   'PressedLiveExampleCommandDialogShortcut',
 )
@@ -287,6 +484,8 @@ export const Message = S.Union([
   GotLiveExampleResizableMessage,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
+  GotLiveExampleToastMessage,
+  CompletedLiveExampleToastWait,
   PressedLiveExampleCommandDialogShortcut,
   UpdatedSearchQuery,
   ReceivedPagefindSearchResults,
@@ -310,6 +509,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleCarouselSelectedIndexes: {},
       liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
+      liveExampleToastStates: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
     },
@@ -439,6 +639,16 @@ export const HideCopiedIndicator = Command.define(
 )(({ text }) =>
   Effect.sleep(COPY_INDICATOR_DURATION).pipe(
     Effect.as(HidCopiedIndicator({ text })),
+  ),
+)
+
+export const CompleteLiveExampleToastWait = Command.define(
+  'CompleteLiveExampleToastWait',
+  { exampleId: S.String, toastId: S.String },
+  CompletedLiveExampleToastWait,
+)(({ exampleId, toastId }) =>
+  Effect.sleep('800 millis').pipe(
+    Effect.as(CompletedLiveExampleToastWait({ exampleId, toastId })),
   ),
 )
 
@@ -604,6 +814,48 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      GotLiveExampleToastMessage: ({ exampleId, message }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleToastStates, exampleId),
+          Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
+        )
+        const [nextState, commands] = updateLiveExampleToastState(
+          state,
+          exampleId,
+          message,
+        )
+
+        return [
+          evo(model, {
+            liveExampleToastStates: EffectRecord.set(exampleId, nextState),
+          }),
+          commands,
+        ]
+      },
+      CompletedLiveExampleToastWait: ({ exampleId, toastId }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleToastStates, exampleId),
+          Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
+        )
+
+        return [
+          evo(model, {
+            liveExampleToastStates: EffectRecord.set(
+              exampleId,
+              ToastPrimitive.resolvePromiseToast(
+                state,
+                toastId,
+                ToastPrimitive.ToastPromiseSucceeded({
+                  title: 'Result received',
+                  description: 'The effect completed successfully.',
+                  timeout: 5000,
+                }),
+              ),
+            ),
+          }),
+          [],
+        ]
+      },
       PressedLiveExampleCommandDialogShortcut: () => {
         const isOpen = pipe(
           EffectRecord.get(
@@ -1684,6 +1936,7 @@ const examplesSectionView = (
   liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
   liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
 ): Html => {
   const h = html<Message>()
   const liveExampleContext = {
@@ -1803,6 +2056,19 @@ const examplesSectionView = (
       UpdatedLiveExampleCommandDialogOpen({
         exampleId: example.id,
         isOpen: change.open,
+      }),
+    toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
+      pipe(
+        EffectRecord.get(liveExampleToastStates, example.id),
+        Option.getOrElse(() => initialLiveExampleToastState(example.id)),
+      ),
+    onToastMessage: (
+      example: ExampleDocsArtifact,
+      message: ToastExampleMessageType,
+    ): Message =>
+      GotLiveExampleToastMessage({
+        exampleId: example.id,
+        message,
       }),
   }
   const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
@@ -2040,6 +2306,7 @@ const componentDetailPageView = (
           model.liveExampleCarouselSelectedIndexes,
           model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,
+          model.liveExampleToastStates,
         ),
         apiSectionView(),
         accessibilitySectionView(),

@@ -4,6 +4,7 @@ import { describe, expect, test } from 'vitest'
 import { docsData, publicComponents } from './data'
 import { liveExampleViewFor } from './live-examples'
 import type { LiveExampleContext } from './live-examples'
+import * as ToastPrimitive from './registry/base-ui/toast'
 
 const liveExampleContext: LiveExampleContext<unknown> = {
   inputValueFor: (_example, defaultValue) => defaultValue,
@@ -22,6 +23,8 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   commandDialogIdFor: example => `${example.id.replaceAll('/', '-')}-dialog`,
   onCommandDialogOpen: () => ({}),
   onCommandDialogOpenChange: () => ({}),
+  toastStateFor: () => ToastPrimitive.createToastState(),
+  onToastMessage: () => ({}),
 }
 
 const loadedPublicComponents = () => {
@@ -100,5 +103,45 @@ describe('generated docs data', () => {
     )
     expect(completeWithoutLiveExamples).toStrictEqual([])
     expect(missingLiveExampleRenderers).toStrictEqual([])
+  })
+
+  test('base-ui Toast docs preserve the origin example set', () => {
+    const maybeToastArtifact = pipe(
+      loadedPublicComponents(),
+      Array.findFirst(component => component.entry.item.id === 'base-ui/toast'),
+      Option.flatMap(component => component.maybeDocsArtifact),
+    )
+
+    expect(
+      Option.match(maybeToastArtifact, {
+        onNone: () => [],
+        onSome: artifact => artifact.examples.map(example => example.title),
+      }),
+    ).toStrictEqual([
+      'Anchored toasts',
+      'Custom position',
+      'Undo action',
+      'Waiting for result',
+      'Custom',
+      'Deduplicated toast',
+      'Varying heights',
+    ])
+    expect(
+      Option.match(maybeToastArtifact, {
+        onNone: () => [],
+        onSome: artifact =>
+          artifact.examples.map(example =>
+            Option.getOrNull(example.previewExportName),
+          ),
+      }),
+    ).toStrictEqual([
+      'ToastAnchored',
+      'ToastCustomPosition',
+      'ToastUndoAction',
+      'ToastPromise',
+      'ToastCustom',
+      'ToastDeduplicated',
+      'ToastVaryingHeights',
+    ])
   })
 })

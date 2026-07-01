@@ -5,6 +5,7 @@ import { describe, expect, test } from 'vitest'
 import { docsData, publicComponents } from './data'
 import {
   ComponentDetailRoute,
+  CompleteLiveExampleToastWait,
   CopySnippet,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -67,6 +68,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
+  liveExampleToastStates: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
@@ -547,6 +549,277 @@ describe(view, () => {
     )
   })
 
+  test('Toast live examples start inactive and open from their trigger', () => {
+    const anchoredPreview = Scene.label('Anchored toasts live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'base-ui', slug: 'toast' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.role('heading', { name: 'Anchored toasts' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Custom position' }),
+      ).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Undo action' })).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Waiting for result' }),
+      ).toExist(),
+      Scene.expect(Scene.role('heading', { name: 'Custom' })).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Deduplicated toast' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.role('heading', { name: 'Varying heights' }),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          anchoredPreview,
+          Scene.role('button', { name: 'Copy to clipboard' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          anchoredPreview,
+          Scene.role('button', { name: 'Stacked toast' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(anchoredPreview, Scene.text('Copied')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          anchoredPreview,
+          Scene.role('button', { name: 'Copy to clipboard' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(anchoredPreview, Scene.text('Copied')),
+      ).toExist(),
+    )
+  })
+
+  test('Toast live examples handle repeats, actions, results, and dismissals', () => {
+    const customPositionPreview = Scene.label('Custom position live preview')
+    const undoPreview = Scene.label('Undo action live preview')
+    const waitingPreview = Scene.label('Waiting for result live preview')
+    const customPreview = Scene.label('Custom live preview')
+    const deduplicatedPreview = Scene.label('Deduplicated toast live preview')
+    const varyingHeightsPreview = Scene.label('Varying heights live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'base-ui', slug: 'toast' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          customPositionPreview,
+          Scene.role('button', { name: 'Create toast' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          customPositionPreview,
+          Scene.role('button', { name: 'Create toast' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(customPositionPreview, Scene.text('Toast 1 created')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(customPositionPreview, Scene.text('Toast 2 created')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          customPositionPreview,
+          Scene.role('dialog', { name: 'Toast 2 created' }),
+        ),
+      ).toHaveAttr('data-stacking-strategy', 'foldkit-push'),
+      Scene.expect(
+        Scene.within(
+          customPositionPreview,
+          Scene.role('region', { name: 'Notifications' }),
+        ),
+      ).toHaveAttr('data-position', 'top-center'),
+      Scene.click(
+        Scene.within(
+          customPositionPreview,
+          Scene.role('button', { name: 'Dismiss' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(customPositionPreview, Scene.text('Toast 2 created')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          undoPreview,
+          Scene.role('button', { name: 'Perform action' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          undoPreview,
+          Scene.role('button', { name: 'Perform action' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(undoPreview, Scene.text('Action 1 performed')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(undoPreview, Scene.text('Action 2 performed')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(undoPreview, Scene.role('button', { name: 'Undo' })),
+      ),
+      Scene.expect(
+        Scene.within(undoPreview, Scene.text('Action undone')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(undoPreview, Scene.text('You can undo this action.')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          waitingPreview,
+          Scene.role('button', { name: 'Run effect' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(waitingPreview, Scene.text('Waiting for result...')),
+      ).toExist(),
+      Scene.Command.resolve(
+        CompleteLiveExampleToastWait({
+          exampleId: 'base-ui/toast-promise',
+          toastId: 'toast-1',
+        }),
+        {
+          _tag: 'CompletedLiveExampleToastWait',
+          exampleId: 'base-ui/toast-promise',
+          toastId: 'toast-1',
+        },
+      ),
+      Scene.expect(
+        Scene.within(waitingPreview, Scene.text('Result received')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          waitingPreview,
+          Scene.role('button', { name: 'Run effect' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(waitingPreview, Scene.text('Waiting for result...')),
+      ).toExist(),
+      Scene.Command.resolve(
+        CompleteLiveExampleToastWait({
+          exampleId: 'base-ui/toast-promise',
+          toastId: 'toast-2',
+        }),
+        {
+          _tag: 'CompletedLiveExampleToastWait',
+          exampleId: 'base-ui/toast-promise',
+          toastId: 'toast-2',
+        },
+      ),
+      Scene.click(
+        Scene.within(waitingPreview, Scene.role('button', { name: 'Dismiss' })),
+      ),
+      Scene.click(
+        Scene.within(waitingPreview, Scene.role('button', { name: 'Dismiss' })),
+      ),
+      Scene.expect(
+        Scene.within(waitingPreview, Scene.text('Result received')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          customPreview,
+          Scene.role('button', { name: 'Create custom toast' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          customPreview,
+          Scene.role('button', { name: 'Create custom toast' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(customPreview, Scene.text('Toast with custom data 1')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(customPreview, Scene.text('Toast with custom data 2')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(customPreview, Scene.role('button', { name: 'Dismiss' })),
+      ),
+      Scene.expect(
+        Scene.within(customPreview, Scene.text('Toast with custom data 2')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          deduplicatedPreview,
+          Scene.role('button', { name: 'Save draft' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          deduplicatedPreview,
+          Scene.role('button', { name: 'Save draft' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(deduplicatedPreview, Scene.text('Pulse replayed 1 time')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          deduplicatedPreview,
+          Scene.role('button', { name: 'Dismiss' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(deduplicatedPreview, Scene.text('Draft saved')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          varyingHeightsPreview,
+          Scene.role('button', { name: 'Create varying height toast' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          varyingHeightsPreview,
+          Scene.role('button', { name: 'Create varying height toast' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(varyingHeightsPreview, Scene.text('Short message.')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          varyingHeightsPreview,
+          Scene.text('A bit longer message that spans two lines.'),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          varyingHeightsPreview,
+          Scene.role('button', { name: 'Dismiss' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          varyingHeightsPreview,
+          Scene.text('A bit longer message that spans two lines.'),
+        ),
+      ).not.toExist(),
+    )
+  })
+
   test('Component detail table of contents links to individual examples', () => {
     Scene.scene(
       { update, view },
@@ -896,7 +1169,7 @@ describe(view, () => {
       { update, view },
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
-      Scene.expect(Scene.text('37 of 38')).toExist(),
+      Scene.expect(Scene.text('38 of 38')).toExist(),
       Scene.expect(Scene.text('52 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),

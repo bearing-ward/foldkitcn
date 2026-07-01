@@ -33,8 +33,8 @@ describe('origin component progress', () => {
   test('summarizes pinned origin and registry surfaces', () => {
     expect(report.summary.baseUi).toStrictEqual({
       total: 38,
-      imported: 37,
-      remaining: 1,
+      imported: 38,
+      remaining: 0,
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
@@ -84,6 +84,7 @@ describe('origin component progress', () => {
       'base-ui/toggle',
       'base-ui/toggle-group',
       'base-ui/toolbar',
+      'base-ui/toast',
       'shadcn/alert',
       'shadcn/accordion',
       'shadcn/alert-dialog',

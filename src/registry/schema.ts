@@ -242,6 +242,7 @@ export const ExampleManifest = S.Struct({
   title: S.String,
   description: S.String,
   sourcePath: S.String,
+  previewExportName: S.optional(S.String),
   kind: S.Union([
     S.Literal('origin-fixture'),
     S.Literal('foldkit-fixture'),

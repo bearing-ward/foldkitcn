@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-30T09:30:11.996Z",
+  "generatedAt": "2026-06-30T14:10:32.133Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -166,6 +166,11 @@
       "itemId": "base-ui/tabs",
       "routePath": "/components/base-ui/tabs",
       "docsArtifactPath": "registry/docs/base-ui/tabs.json"
+    },
+    {
+      "itemId": "base-ui/toast",
+      "routePath": "/components/base-ui/toast",
+      "docsArtifactPath": "registry/docs/base-ui/toast.json"
     },
     {
       "itemId": "base-ui/toggle-group",

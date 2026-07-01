@@ -56,6 +56,7 @@ const model: Model = {
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
+  liveExampleToastStates: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 }

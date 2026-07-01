@@ -48,6 +48,12 @@ export const ToastViewportPosition = S.Union([
 ])
 export type ToastViewportPosition = typeof ToastViewportPosition.Type
 
+export const ToastViewportPositioning = S.Union([
+  S.Literal('fixed'),
+  S.Literal('absolute'),
+])
+export type ToastViewportPositioning = typeof ToastViewportPositioning.Type
+
 export const ToastSwipeDirection = S.Union([
   S.Literal('up'),
   S.Literal('down'),
@@ -55,6 +61,12 @@ export const ToastSwipeDirection = S.Union([
   S.Literal('right'),
 ])
 export type ToastSwipeDirection = typeof ToastSwipeDirection.Type
+
+export const ToastStackingStrategy = S.Union([
+  S.Literal('base-ui-shuffle'),
+  S.Literal('foldkit-push'),
+])
+export type ToastStackingStrategy = typeof ToastStackingStrategy.Type
 
 export const ToastSwipeStatus = S.Union([
   S.Literal('idle'),
@@ -77,11 +89,13 @@ export const ToastPromiseSucceeded = ts('ToastPromiseSucceeded', {
   title: S.optional(S.String),
   description: S.optional(S.String),
   duration: S.optional(S.Number),
+  timeout: S.optional(S.Number),
 })
 export const ToastPromiseFailed = ts('ToastPromiseFailed', {
   title: S.optional(S.String),
   description: S.optional(S.String),
   duration: S.optional(S.Number),
+  timeout: S.optional(S.Number),
 })
 
 export const ToastPromiseState = S.Union([
@@ -94,6 +108,7 @@ export type ToastPromiseState = typeof ToastPromiseState.Type
 export const ToastSwipeState = S.Struct({
   status: ToastSwipeStatus,
   direction: S.optional(ToastSwipeDirection),
+  pointerType: S.optional(S.String),
   movementX: S.Number,
   movementY: S.Number,
 })
@@ -217,6 +232,7 @@ export type ToastStateOptions = Readonly<{
   toasts?: ReadonlyArray<ToastItem>
   limit?: number
   defaultDuration?: number
+  timeout?: number
   isHovered?: boolean
   isFocused?: boolean
   isWindowFocused?: boolean
@@ -231,6 +247,8 @@ export type ToastAddOptions = Readonly<{
   type?: string
   priority?: ToastPriority
   duration?: number
+  timeout?: number
+  height?: number
   actionLabel?: string
   position?: ToastPosition
   promiseState?: ToastPromiseState
@@ -253,7 +271,8 @@ export type ToastUpdateOptions = Partial<
     | 'transitionStatus'
     | 'type'
   >
->
+> &
+  Readonly<{ timeout?: number }>
 
 export type ToastStateChange = Readonly<{
   id: string
@@ -316,6 +335,13 @@ const withToasts = (
 const generatedToastId = (state: Pick<ToastState, 'nextId'>): string =>
   `toast-${state.nextId}`
 
+const resolvedTimeout = (
+  options: Readonly<{
+    duration?: number | undefined
+    timeout?: number | undefined
+  }>,
+): number | undefined => options.timeout ?? options.duration
+
 const timerStatusForToast = (
   state: Pick<
     ToastState,
@@ -342,7 +368,7 @@ const newToast = (
   id: string,
   options: ToastAddOptions,
 ): ToastItem => {
-  const duration = options.duration ?? state.defaultDuration
+  const duration = resolvedTimeout(options) ?? state.defaultDuration
   const timerStatus = timerStatusForToast(state, {
     duration,
     type: options.type,
@@ -358,6 +384,7 @@ const newToast = (
     ...(options.priority === undefined ? {} : { priority: options.priority }),
     duration,
     remainingDuration: duration,
+    ...(options.height === undefined ? {} : { height: options.height }),
     timerStatus,
     transitionStatus: 'starting',
     updateKey: 0,
@@ -377,7 +404,8 @@ export const createToastState = (
   const state = {
     toasts: options.toasts ?? [],
     limit: options.limit ?? defaultLimit,
-    defaultDuration: options.defaultDuration ?? defaultDuration,
+    defaultDuration:
+      options.timeout ?? options.defaultDuration ?? defaultDuration,
     isHovered: options.isHovered ?? false,
     isFocused: options.isFocused ?? false,
     isWindowFocused: options.isWindowFocused ?? true,
@@ -410,6 +438,40 @@ export const isExpanded = (
   state: Pick<ToastState, 'isFocused' | 'isHovered'>,
 ): boolean => state.isHovered || state.isFocused
 
+export const updateToast = (
+  state: ToastState,
+  id: string,
+  updates: ToastUpdateOptions,
+): ToastState => {
+  const existing = state.toasts.find(toast => toast.id === id)
+
+  if (existing === undefined || !activeToast(existing)) {
+    return state
+  }
+
+  const { timeout: _timeout, ...toastUpdates } = updates
+  const nextTimeout = resolvedTimeout(updates)
+  const nextToast = {
+    ...existing,
+    ...toastUpdates,
+    ...(nextTimeout === undefined
+      ? {}
+      : { duration: nextTimeout, remainingDuration: nextTimeout }),
+    updateKey: (existing.updateKey ?? 0) + 1,
+  }
+
+  const nextTimerStatus = timerStatusForToast(state, nextToast)
+  const withTimer = {
+    ...nextToast,
+    timerStatus: updates.timerStatus ?? nextTimerStatus,
+  }
+
+  return withToasts(
+    state,
+    state.toasts.map(toast => (toast.id === id ? withTimer : toast)),
+  )
+}
+
 export const addToast = (
   state: ToastState,
   options: ToastAddOptions,
@@ -419,6 +481,8 @@ export const addToast = (
   const nextId = options.id === undefined ? state.nextId + 1 : state.nextId
 
   if (existing !== undefined && activeToast(existing)) {
+    const nextTimeout = resolvedTimeout(options)
+
     return {
       id,
       state: updateToast({ ...state, nextId }, id, {
@@ -430,11 +494,11 @@ export const addToast = (
         ...(options.priority === undefined
           ? {}
           : { priority: options.priority }),
-        ...(options.duration === undefined
+        ...(nextTimeout === undefined
           ? {}
           : {
-              duration: options.duration,
-              remainingDuration: options.duration,
+              duration: nextTimeout,
+              remainingDuration: nextTimeout,
             }),
         ...(options.actionLabel === undefined
           ? {}
@@ -460,35 +524,6 @@ export const addToast = (
       ...withoutEndingDuplicate,
     ]),
   }
-}
-
-export const updateToast = (
-  state: ToastState,
-  id: string,
-  updates: ToastUpdateOptions,
-): ToastState => {
-  const existing = state.toasts.find(toast => toast.id === id)
-
-  if (existing === undefined || !activeToast(existing)) {
-    return state
-  }
-
-  const nextToast = {
-    ...existing,
-    ...updates,
-    updateKey: (existing.updateKey ?? 0) + 1,
-  }
-
-  const nextTimerStatus = timerStatusForToast(state, nextToast)
-  const withTimer = {
-    ...nextToast,
-    timerStatus: updates.timerStatus ?? nextTimerStatus,
-  }
-
-  return withToasts(
-    state,
-    state.toasts.map(toast => (toast.id === id ? withTimer : toast)),
-  )
 }
 
 export const closeRequest = (
@@ -601,7 +636,7 @@ export const startPromiseToast = (
     ...(options.id === undefined ? {} : { id: options.id }),
     description: options.loading,
     type: 'loading',
-    duration: 0,
+    timeout: 0,
     promiseState: ToastPromiseLoading({ label: options.loading }),
   })
 
@@ -610,24 +645,34 @@ const promiseUpdates = (result: ToastPromiseState): ToastUpdateOptions =>
     M.tagsExhaustive({
       ToastPromiseLoading: ({ label }) => ({
         description: label,
-        duration: 0,
+        timeout: 0,
         promiseState: result,
         type: 'loading',
       }),
-      ToastPromiseSucceeded: ({ description, duration, title }) => ({
-        ...(title === undefined ? {} : { title }),
-        ...(description === undefined ? {} : { description }),
-        ...(duration === undefined ? {} : { duration }),
-        promiseState: result,
-        type: 'success',
-      }),
-      ToastPromiseFailed: ({ description, duration, title }) => ({
-        ...(title === undefined ? {} : { title }),
-        ...(description === undefined ? {} : { description }),
-        ...(duration === undefined ? {} : { duration }),
-        promiseState: result,
-        type: 'error',
-      }),
+      ToastPromiseSucceeded: ({ description, duration, timeout, title }) => {
+        const nextTimeout = resolvedTimeout({ duration, timeout })
+
+        return {
+          ...(title === undefined ? {} : { title }),
+          ...(description === undefined ? {} : { description }),
+          ...(nextTimeout === undefined ? {} : { timeout: nextTimeout }),
+          transitionStatus: undefined,
+          promiseState: result,
+          type: 'success',
+        }
+      },
+      ToastPromiseFailed: ({ description, duration, timeout, title }) => {
+        const nextTimeout = resolvedTimeout({ duration, timeout })
+
+        return {
+          ...(title === undefined ? {} : { title }),
+          ...(description === undefined ? {} : { description }),
+          ...(nextTimeout === undefined ? {} : { timeout: nextTimeout }),
+          transitionStatus: undefined,
+          promiseState: result,
+          type: 'error',
+        }
+      },
     }),
   )
 
@@ -645,6 +690,7 @@ export const updateSwipe = (
     change.phase === 'end' ? 'dismissed' : 'swiping'
   const swipe = {
     status,
+    pointerType: change.pointerType,
     movementX: change.x,
     movementY: change.y,
   }
@@ -698,7 +744,9 @@ export type ViewConfig<Message> = Readonly<{
   state: ToastState
   label?: string
   forceMount?: boolean
+  stackingStrategy?: ToastStackingStrategy
   viewportPosition?: ToastViewportPosition
+  viewportPositioning?: ToastViewportPositioning
   swipeDirections?: ReadonlyArray<ToastSwipeDirection>
   toView: (attributes: ToastAttributes<Message>) => Html
   onAction?: (press: ToastActionPress) => Message
@@ -792,6 +840,30 @@ const expandedDataAttribute = <Message>(
 ): ReadonlyArray<Attribute<Message>> =>
   expanded ? [h.DataAttribute('expanded', '')] : []
 
+const foldkitPushTransform = (
+  position: ToastViewportPosition | undefined,
+): string =>
+  position === 'top-left' ||
+  position === 'top-center' ||
+  position === 'top-right'
+    ? 'translateY(var(--toast-offset-y))'
+    : 'translateY(calc(var(--toast-offset-y) * -1))'
+
+const foldkitPushAnchorsFromTop = (
+  position: ToastViewportPosition | undefined,
+): boolean =>
+  position === 'top-left' ||
+  position === 'top-center' ||
+  position === 'top-right'
+
+const rootPlacementStyle = (
+  config: Pick<ViewConfig<unknown>, 'stackingStrategy' | 'viewportPosition'>,
+): Readonly<Record<'bottom' | 'top', string>> =>
+  config.stackingStrategy === 'foldkit-push' &&
+  foldkitPushAnchorsFromTop(config.viewportPosition)
+    ? { top: '0', bottom: 'auto' }
+    : { top: 'auto', bottom: '0' }
+
 const providerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -859,7 +931,7 @@ const viewportAttributes = <Message>(
     ),
     ...expandedDataAttribute(h, expanded),
     h.Style({
-      position: 'fixed',
+      position: config.viewportPositioning ?? 'fixed',
       display: 'grid',
       gap: '0.5rem',
       zIndex: '2147483647',
@@ -887,7 +959,7 @@ const viewportAttributes = <Message>(
     ...(Predicate.isNotUndefined(config.onViewportInteraction)
       ? [
           h.OnPointerDown(pointerType => {
-            const {onViewportInteraction} = config
+            const { onViewportInteraction } = config
 
             return pointerType === 'touch' &&
               Predicate.isNotUndefined(onViewportInteraction)
@@ -895,7 +967,7 @@ const viewportAttributes = <Message>(
               : Option.none()
           }),
           h.OnPointerUp((_screenX, _screenY, pointerType) => {
-            const {onViewportInteraction} = config
+            const { onViewportInteraction } = config
 
             return pointerType === 'touch' &&
               Predicate.isNotUndefined(onViewportInteraction)
@@ -951,11 +1023,13 @@ const rootAttributes = <Message>(
   ...(toast.description === undefined
     ? []
     : [h.Attribute('aria-describedby', descriptionId(config, toast))]),
-  ...(toast.priority === 'high' && !config.state.isFocused
-    ? [h.AriaHidden(true)]
-    : []),
+  ...(toast.priority === 'high' && !expanded ? [h.AriaHidden(true)] : []),
   ...expandedDataAttribute(h, expanded),
   ...booleanDataAttribute(h, 'limited', toast.limited),
+  h.DataAttribute(
+    'stacking-strategy',
+    config.stackingStrategy ?? 'base-ui-shuffle',
+  ),
   ...typeDataAttribute(h, toast),
   ...booleanDataAttribute(h, 'swiping', toast.swipe?.status === 'swiping'),
   ...(toast.swipe?.direction === undefined
@@ -969,6 +1043,12 @@ const rootAttributes = <Message>(
     '--toast-height': `${toast.height ?? 0}px`,
     '--toast-swipe-movement-x': `${toast.swipe?.movementX ?? 0}px`,
     '--toast-swipe-movement-y': `${toast.swipe?.movementY ?? 0}px`,
+    zIndex: String(1000 - Math.max(metadata.visibleIndex, 0)),
+    ...rootPlacementStyle(config),
+    transform:
+      config.stackingStrategy === 'foldkit-push'
+        ? foldkitPushTransform(config.viewportPosition)
+        : 'translateY(calc(var(--toast-index) * -20%)) scale(calc(1 - (var(--toast-index) * 0.05)))',
   }),
   ...optionalMessageAttribute(
     closeMessage(config, closeRequest(toast.id, 'escape-key')),
@@ -1032,7 +1112,12 @@ const contentAttributes = <Message>(
 ): ReadonlyArray<Attribute<Message>> => [
   h.Id(contentId(config, toast)),
   ...expandedDataAttribute(h, expanded),
-  ...booleanDataAttribute(h, 'behind', metadata.visibleIndex > 0),
+  ...booleanDataAttribute(
+    h,
+    'behind',
+    (config.stackingStrategy ?? 'base-ui-shuffle') === 'base-ui-shuffle' &&
+      metadata.visibleIndex > 0,
+  ),
 ]
 
 const titleAttributes = <Message>(
@@ -1070,10 +1155,9 @@ const closeAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
   toast: ToastItem,
-  expanded: boolean,
+  _expanded: boolean,
 ): ReadonlyArray<Attribute<Message>> => [
   h.Type('button'),
-  h.AriaHidden(!expanded),
   ...typeDataAttribute(h, toast),
   ...optionalMessageAttribute(
     closeMessage(config, closeRequest(toast.id, 'close-button')),

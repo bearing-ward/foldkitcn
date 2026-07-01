@@ -14,6 +14,20 @@ import {
   InputDisabled as BaseInputDisabled,
 } from './registry/base-ui/input/examples'
 import type { InputExampleController } from './registry/base-ui/input/examples'
+import type { ToastState } from './registry/base-ui/toast'
+import {
+  ToastAnchored as BaseToastAnchored,
+  ToastCustom as BaseToastCustom,
+  ToastCustomPosition as BaseToastCustomPosition,
+  ToastDeduplicated as BaseToastDeduplicated,
+  ToastPromise as BaseToastPromise,
+  ToastUndoAction as BaseToastUndoAction,
+  ToastVaryingHeights as BaseToastVaryingHeights,
+} from './registry/base-ui/toast/examples'
+import type {
+  ToastExampleController,
+  ToastExampleMessage,
+} from './registry/base-ui/toast/examples'
 import type { ExampleDocsArtifact } from './registry/schema'
 import {
   ButtonGroupDemo,
@@ -209,6 +223,11 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: Readonly<{ open: boolean }>,
   ) => Message
+  toastStateFor: (example: ExampleDocsArtifact) => ToastState
+  onToastMessage: (
+    example: ExampleDocsArtifact,
+    message: ToastExampleMessage,
+  ) => Message
 }>
 
 type RadioGroupExampleView = <Message = never>(
@@ -233,6 +252,10 @@ type CarouselExampleView = <Message = never>(
 
 type ResizableExampleView = <Message = never>(
   controller?: ResizableExampleController<Message>,
+) => Html
+
+type ToastExampleView = <Message = never>(
+  controller?: ToastExampleController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -338,6 +361,14 @@ const resizableExample = (
   },
 })
 
+const toastExample = (view: ToastExampleView): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      state: context.toastStateFor(example),
+      onToastMessage: message => context.onToastMessage(example, message),
+    }),
+})
+
 const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('base-ui/button', 'ButtonDemo')]:
     staticExample(BaseButtonDemo),
@@ -356,6 +387,23 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('base-ui/input', 'InputDisabled')]: inputExample(
     BaseInputDisabled,
     'Colm Tuite',
+  ),
+  [liveExampleKey('base-ui/toast', 'ToastAnchored')]:
+    toastExample(BaseToastAnchored),
+  [liveExampleKey('base-ui/toast', 'ToastCustomPosition')]: toastExample(
+    BaseToastCustomPosition,
+  ),
+  [liveExampleKey('base-ui/toast', 'ToastUndoAction')]:
+    toastExample(BaseToastUndoAction),
+  [liveExampleKey('base-ui/toast', 'ToastPromise')]:
+    toastExample(BaseToastPromise),
+  [liveExampleKey('base-ui/toast', 'ToastCustom')]:
+    toastExample(BaseToastCustom),
+  [liveExampleKey('base-ui/toast', 'ToastDeduplicated')]: toastExample(
+    BaseToastDeduplicated,
+  ),
+  [liveExampleKey('base-ui/toast', 'ToastVaryingHeights')]: toastExample(
+    BaseToastVaryingHeights,
   ),
   [liveExampleKey('shadcn/button', 'ButtonDefault')]:
     staticExample(ButtonDefault),

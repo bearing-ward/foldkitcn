@@ -156,20 +156,22 @@ export const exportedExampleNameFromSource = (
   source: string,
   example: ExampleManifest,
 ): string | undefined => {
-  const escapedTitle = example.title.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
+  const name = example.previewExportName ?? example.title
+  const escapedTitle = name.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
   const exportPattern = new RegExp(
     `(?:^|\\n)export\\s+const\\s+(${escapedTitle})\\b`,
     'u',
   )
 
-  return exportPattern.test(source) ? example.title : undefined
+  return exportPattern.test(source) ? name : undefined
 }
 
 export const extractExampleSnippet = (
   source: string,
   example: ExampleManifest,
 ): string => {
-  const escapedTitle = example.title.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
+  const name = example.previewExportName ?? example.title
+  const escapedTitle = name.replaceAll(/[.*+?^${}()|[\]\\]/gu, '\\$&')
   const exportPattern = new RegExp(
     `(?:^|\\n)export\\s+const\\s+${escapedTitle}\\b`,
     'u',

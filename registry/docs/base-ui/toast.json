@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "itemId": "base-ui/toast",
+  "routePath": "/components/base-ui/toast",
+  "title": "Toast",
+  "description": "Foldkit-native Base UI Toast primitive preserving notification lifecycle, viewport positioning, actions, close controls, pause and resume behavior, swipe state, and promise result state data attributes.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/base-ui/toast/docs.md",
+  "markdown": "# Toast\n\n## Overview\n\nToast is a Foldkit-native Base UI primitive for unstyled notification surfaces.\nIt models the lifecycle of transient notices, their viewport position, stacking\norder, pause and resume state, swipe dismissal, and promise-driven status\nupdates.\n\n## Foldkit Model\n\nToast is a stateful primitive with a pure state model and helper functions for\nadding, updating, closing, pausing, resuming, and removing toasts. The model\nstores the toast list, viewport timing state, and the counters needed to keep\ntoast ids deterministic.\n\n## Usage\n\nCreate toast state in the parent and render the primitive through `toView`.\nThe caller chooses how to lay out the provider, portal, viewport, and toast\nparts.\n\n```ts\nconst state = Toast.createToastState({\n  toasts: [\n    {\n      id: 'saved',\n      title: 'Saved',\n      description: 'Your changes were stored.',\n      type: 'success',\n    },\n  ],\n})\n\nToast.view<Message>({\n  id: 'notifications',\n  state,\n  onClose: request => ClosedToast(request),\n  onAction: press => PressedToastAction(press),\n  onViewportInteraction: interaction => ChangedViewport(interaction),\n  toView: attributes =>\n    h.div(\n      [...attributes.provider],\n      [\n        h.div(\n          [...attributes.portal],\n          [h.div([...attributes.viewport.root], [])],\n        ),\n      ],\n    ),\n})\n```\n\nThe primitive also exposes `positioner` and `arrow` part renderers for anchored\nlayouts. Keep them unstyled here; later wrappers can layer visual treatment on\ntop.\n\n## Examples\n\nThe registry examples start with origin-style trigger buttons and an empty\nviewport. They mirror the origin example set: Anchored toasts, Custom position,\nUndo action, Waiting for result, Custom, Deduplicated toast, and Varying\nheights.\n\nThe example-local classes only make the notification surface easier to inspect\nin the docs shell. The primitive itself stays unstyled.\n\n## Accessibility\n\nThe viewport is a live region. Toast roots use dialog semantics, high-priority\ntoasts escalate to `alertdialog`, and close or action buttons remain standard\nbuttons. Toasts stay keyboard-focusable, support Escape-to-close, and expose the\nexpected `aria-labelledby` and `aria-describedby` relationships when title and\ndescription parts are rendered.\n\n## Foldkit Differences\n\nThe origin Base UI Toast implementation uses React context, hooks, and a toast\nmanager store. This registry item keeps the notification model explicit in\nFoldkit state, messages, and pure helper functions, so no hidden global manager\nis needed.\n",
+  "headings": [
+    {
+      "id": "toast",
+      "text": "Toast",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/base-ui/toast",
+  "defaultImportPath": "base-ui/toast",
+  "sourceRoot": "registry-src/base-ui/toast",
+  "installableSourcePaths": [
+    "src/registry/base-ui/toast/index.ts",
+    "src/registry/base-ui/toast/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "base-ui",
+      "originName": "Base UI Toast",
+      "docsUrl": "https://base-ui.com/react/components/toast",
+      "sourceUrl": "https://github.com/mui/base-ui/tree/ea3818dec91923d4287b38be21322d2e5068d347/packages/react/src/toast",
+      "localRepoPath": "repos/base-ui",
+      "gitRef": "ea3818dec91923d4287b38be21322d2e5068d347",
+      "inventoryHash": "b707941b675f5ade5c9c072e26a471518efa43abaa33de6cc82a6d279b26fbf1",
+      "sourcePaths": [
+        "repos/base-ui/packages/react/src/toast/action/ToastAction.tsx",
+        "repos/base-ui/packages/react/src/toast/action/ToastActionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrow.tsx",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrowDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/close/ToastClose.tsx",
+        "repos/base-ui/packages/react/src/toast/close/ToastCloseDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/content/ToastContent.tsx",
+        "repos/base-ui/packages/react/src/toast/content/ToastContentDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/createToastManager.ts",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescription.tsx",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescriptionDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/index.parts.ts",
+        "repos/base-ui/packages/react/src/toast/index.ts",
+        "repos/base-ui/packages/react/src/toast/portal/ToastPortal.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositioner.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerContext.ts",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositionerDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/provider/ToastProvider.tsx",
+        "repos/base-ui/packages/react/src/toast/provider/ToastProviderContext.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRoot.tsx",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootContext.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/root/ToastRootDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/store.ts",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitle.tsx",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitleDataAttributes.ts",
+        "repos/base-ui/packages/react/src/toast/useToastManager.ts",
+        "repos/base-ui/packages/react/src/toast/utils/focusVisible.ts",
+        "repos/base-ui/packages/react/src/toast/utils/resolvePromiseOptions.ts",
+        "repos/base-ui/packages/react/src/toast/utils/test-utils.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewport.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewportCssVars.ts",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewportDataAttributes.ts"
+      ],
+      "docsPaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/page.mdx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.md",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/types.ts"
+      ],
+      "examplePaths": [
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/anchored/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/custom/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/deduplicate/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/hero/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/position/tailwind/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/promise/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/undo/index.ts",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/css-modules/index.module.css",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/css-modules/index.tsx",
+        "repos/base-ui/docs/src/app/(docs)/react/components/toast/demos/varying-heights/index.ts"
+      ],
+      "testPaths": [
+        "repos/base-ui/packages/react/src/toast/action/ToastAction.test.tsx",
+        "repos/base-ui/packages/react/src/toast/arrow/ToastArrow.test.tsx",
+        "repos/base-ui/packages/react/src/toast/close/ToastClose.test.tsx",
+        "repos/base-ui/packages/react/src/toast/content/ToastContent.test.tsx",
+        "repos/base-ui/packages/react/src/toast/createToastManager.test.tsx",
+        "repos/base-ui/packages/react/src/toast/description/ToastDescription.test.tsx",
+        "repos/base-ui/packages/react/src/toast/portal/ToastPortal.test.tsx",
+        "repos/base-ui/packages/react/src/toast/positioner/ToastPositioner.test.tsx",
+        "repos/base-ui/packages/react/src/toast/root/ToastRoot.test.tsx",
+        "repos/base-ui/packages/react/src/toast/store.test.ts",
+        "repos/base-ui/packages/react/src/toast/title/ToastTitle.test.tsx",
+        "repos/base-ui/packages/react/src/toast/useToastManager.test.tsx",
+        "repos/base-ui/packages/react/src/toast/viewport/ToastViewport.test.tsx"
+      ]
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native toast view helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema, Match, Option, and Array helpers for toast lifecycle and serializable event state."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui-components/react/toast",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin React runtime is evidence only; installable source is Foldkit-native."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "base-ui/toast-anchored-toasts",
+      "title": "Anchored toasts",
+      "description": "Origin anchored toast demo with contextual copy feedback and a stacked toast trigger.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastAnchored = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => anchoredToastExample(controller)",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastAnchored",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-custom-position",
+      "title": "Custom position",
+      "description": "Top-center toast viewport matching the origin custom-position example.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastCustomPosition = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html =>\n  toastExample('Create toast', ClickedCreatePositionToast(), controller, {\n    stackingStrategy: 'foldkit-push',\n    viewportPosition: 'top-center',\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastCustomPosition",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-undo-action",
+      "title": "Undo action",
+      "description": "Action toast that exposes an Undo button and closes through Foldkit state.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastUndoAction = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => toastExample('Perform action', ClickedPerformAction(), controller)",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastUndoAction",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-promise",
+      "title": "Waiting for result",
+      "description": "Effect-backed waiting toast that transitions to a received result.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastPromise = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => toastExample('Run effect', ClickedRunPromiseToast(), controller)",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastPromise",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-custom",
+      "title": "Custom",
+      "description": "Custom-data toast that renders the userId value in the toast body.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastCustom = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html =>\n  toastExample('Create custom toast', ClickedCreateCustomToast(), controller)",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastCustom",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-deduplicated-toast",
+      "title": "Deduplicated toast",
+      "description": "Same-id save draft toast that updates in place to exercise updateKey behavior.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastDeduplicated = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => toastExample('Save draft', ClickedSaveDraft(), controller)",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastDeduplicated",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "base-ui/toast-varying-heights",
+      "title": "Varying heights",
+      "description": "Varying-height toast stack with different message lengths.",
+      "componentItemId": "base-ui/toast",
+      "sourcePath": "src/registry/base-ui/toast/examples.ts",
+      "snippet": "export const ToastVaryingHeights = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html =>\n  toastExample(\n    'Create varying height toast',\n    ClickedCreateVaryingHeightToast(),\n    controller,\n  )",
+      "previewStatus": "live-ready",
+      "previewExportName": "ToastVaryingHeights",
+      "requiredRegistryItems": [],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}
