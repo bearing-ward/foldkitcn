@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-01T16:21:38.741Z",
+  "generatedAt": "2026-07-01T17:43:23.636Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -9131,14 +9131,14 @@
       "artifacts": [
         {
           "path": "registry-src/shadcn/calendar/item.json",
-          "sha256": "27d6b7ab3ed742c70a02e833256127211a204d9df6e5ae8dfee705e251023e01",
-          "sizeBytes": 8508,
+          "sha256": "29b97b5219bfae5c2f185f2dd4b398ca6d3b818b5741981e0ef47d2cbc04ff09",
+          "sizeBytes": 8484,
           "role": "manifest"
         },
         {
           "path": "src/registry/shadcn/calendar/index.ts",
-          "sha256": "ed961749d17d4509c82a33f54fee650c751e5ca1d6ee98ab3aa76b332631ea3e",
-          "sizeBytes": 20791,
+          "sha256": "bc1621b2272a22c62557649b202297b0baf09b86a95344c4633134ceac657e2d",
+          "sizeBytes": 20519,
           "role": "source"
         },
         {

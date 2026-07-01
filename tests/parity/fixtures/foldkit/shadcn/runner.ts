@@ -12,7 +12,10 @@ const transparentPixelPng = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
   'base64',
 )
-const parityRandomSeed = 123456789
+const parityRandomSeed = 123_456_789
+const parityRandomMultiplier = 1_664_525
+const parityRandomIncrement = 1_013_904_223
+const parityRandomModulus = 4_294_967_296
 
 export interface CaptureShadcnFoldkitSnapshotsOptions {
   readonly grep?: string
@@ -92,13 +95,21 @@ export const captureShadcnFoldkitSnapshots = async (
     const page = await browser.newPage({
       viewport: { width: 800, height: 400 },
     })
-    await page.addInitScript(({ seed }) => {
-      let state = seed >>> 0
-      Math.random = () => {
-        state = (1664525 * state + 1013904223) >>> 0
-        return state / 4294967296
-      }
-    }, { seed: parityRandomSeed })
+    await page.addInitScript(
+      ({ increment, modulus, multiplier, seed }) => {
+        let state = Math.trunc(seed) % modulus
+        Math.random = () => {
+          state = (multiplier * state + increment) % modulus
+          return state / modulus
+        }
+      },
+      {
+        increment: parityRandomIncrement,
+        modulus: parityRandomModulus,
+        multiplier: parityRandomMultiplier,
+        seed: parityRandomSeed,
+      },
+    )
     const pageErrors: Array<string> = []
     page.on('pageerror', error => {
       pageErrors.push(error.message)

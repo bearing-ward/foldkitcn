@@ -96,7 +96,7 @@ honor its STOP conditions, and update your row when done.
 | 086 | Implement shadcn Marker | P1 | M | 073, 082 | DONE |
 | 087 | Implement shadcn Message | P1 | M | 084, 085, 086 | DONE |
 | 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | DONE |
-| 089 | Inventory docs example cards without live previews | P1 | S | 068 | BLOCKED (repo-wide check fails on pre-existing calendar/parity/item lint) |
+| 089 | Inventory docs example cards without live previews | P1 | S | 068 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 

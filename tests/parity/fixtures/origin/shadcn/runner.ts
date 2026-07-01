@@ -14,6 +14,9 @@ const transparentPixelPng = Buffer.from(
   'base64',
 )
 const parityRandomSeed = 123_456_789
+const parityRandomMultiplier = 1_664_525
+const parityRandomIncrement = 1_013_904_223
+const parityRandomModulus = 4_294_967_296
 
 export interface CaptureShadcnOriginSnapshotsOptions {
   readonly grep?: string
@@ -99,163 +102,135 @@ const virtualModuleAliases = new Map([
   ['@/components/markdown', markdownShimModuleId],
 ])
 
-const originAliasPlugin = (): Plugin => ({
-  name: 'foldkitcn-shadcn-origin-aliases',
-  enforce: 'pre',
-  resolveId(source) {
-    const virtualModuleId = virtualModuleAliases.get(source)
+const sourcePathAliases = new Map([
+  [
+    '@base-ui/react/merge-props',
+    'repos/base-ui/packages/react/src/merge-props/index.ts',
+  ],
+  [
+    '@base-ui/react/use-render',
+    'repos/base-ui/packages/react/src/use-render/index.ts',
+  ],
+  [
+    '@base-ui/react/direction-provider',
+    'repos/base-ui/packages/react/src/direction-provider/index.ts',
+  ],
+  ['@/hooks/use-mobile', 'repos/ui/apps/v4/hooks/use-mobile.ts'],
+  [
+    '@/styles/base-nova/ui/collapsible',
+    'repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/collapsible',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui/direction',
+    'repos/ui/apps/v4/styles/base-nova/ui/direction.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/direction',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui/sheet',
+    'repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/sheet',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/sheet.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui/sidebar',
+    'repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/sidebar',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/sidebar.tsx',
+  ],
+  ['@base-ui/react/button', 'repos/base-ui/packages/react/src/button/index.ts'],
+  ['@base-ui/react/dialog', 'repos/base-ui/packages/react/src/dialog/index.ts'],
+  [
+    '@base-ui/react/popover',
+    'repos/base-ui/packages/react/src/popover/index.ts',
+  ],
+  [
+    '@base-ui/react/collapsible',
+    'repos/base-ui/packages/react/src/collapsible/index.ts',
+  ],
+  [
+    '@base-ui/react/floating-ui-react',
+    'repos/base-ui/packages/react/src/floating-ui-react/index.ts',
+  ],
+  ['@base-ui/react/toggle', 'repos/base-ui/packages/react/src/toggle/index.ts'],
+  [
+    '@base-ui/react/toggle-group',
+    'repos/base-ui/packages/react/src/toggle-group/index.ts',
+  ],
+  ['@base-ui/react/input', 'repos/base-ui/packages/react/src/input/index.ts'],
+  [
+    '@base-ui/react/separator',
+    'repos/base-ui/packages/react/src/separator/index.ts',
+  ],
+  [
+    '@base-ui/react/progress',
+    'repos/base-ui/packages/react/src/progress/index.ts',
+  ],
+  [
+    '@base-ui/react/scroll-area',
+    'repos/base-ui/packages/react/src/scroll-area/index.ts',
+  ],
+  ['@base-ui/react/switch', 'repos/base-ui/packages/react/src/switch/index.ts'],
+  ['@base-ui/react/select', 'repos/base-ui/packages/react/src/select/index.ts'],
+  ['@base-ui/react/avatar', 'repos/base-ui/packages/react/src/avatar/index.ts'],
+  [
+    '@base-ui/react/tooltip',
+    'repos/base-ui/packages/react/src/tooltip/index.ts',
+  ],
+  [
+    '#formatErrorMessage',
+    'repos/base-ui/packages/utils/src/formatErrorMessage.ts',
+  ],
+])
 
-    if (virtualModuleId !== undefined) {
-      return virtualModuleId
-    }
+const sourcePathAlias = (source: string): string | null => {
+  const sourcePath = sourcePathAliases.get(source)
 
-    if (source === '@base-ui/react/merge-props') {
-      return repoPath('repos/base-ui/packages/react/src/merge-props/index.ts')
-    }
+  if (sourcePath !== undefined) {
+    return repoPath(sourcePath)
+  }
 
-    if (source === '@base-ui/react/use-render') {
-      return repoPath('repos/base-ui/packages/react/src/use-render/index.ts')
-    }
+  if (source.startsWith('@base-ui/utils/')) {
+    return baseUiUtilsPath(source)
+  }
 
-    if (source === '@base-ui/react/direction-provider') {
-      return repoPath(
-        'repos/base-ui/packages/react/src/direction-provider/index.ts',
-      )
-    }
+  return null
+}
 
-    if (source === '@/hooks/use-mobile') {
-      return repoPath('repos/ui/apps/v4/hooks/use-mobile.ts')
-    }
-
-    if (source === '@/styles/base-nova/ui/collapsible') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui-rtl/collapsible') {
-      return repoPath(
-        'repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx',
-      )
-    }
-
-    if (source === '@/styles/base-nova/ui/direction') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/direction.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui-rtl/direction') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui/sheet') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui-rtl/sheet') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/sheet.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui/sidebar') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx')
-    }
-
-    if (source === '@/styles/base-nova/ui-rtl/sidebar') {
-      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/sidebar.tsx')
-    }
-
-    if (source === '@base-ui/react/button') {
-      return repoPath('repos/base-ui/packages/react/src/button/index.ts')
-    }
-
-    if (source === '@base-ui/react/dialog') {
-      return repoPath('repos/base-ui/packages/react/src/dialog/index.ts')
-    }
-
-    if (source === '@base-ui/react/popover') {
-      return repoPath('repos/base-ui/packages/react/src/popover/index.ts')
-    }
-
-    if (source === '@base-ui/react/collapsible') {
-      return repoPath('repos/base-ui/packages/react/src/collapsible/index.ts')
-    }
-
-    if (source === '@base-ui/react/floating-ui-react') {
-      return repoPath(
-        'repos/base-ui/packages/react/src/floating-ui-react/index.ts',
-      )
-    }
-
-    if (source === '@base-ui/react/toggle') {
-      return repoPath('repos/base-ui/packages/react/src/toggle/index.ts')
-    }
-
-    if (source === '@base-ui/react/toggle-group') {
-      return repoPath('repos/base-ui/packages/react/src/toggle-group/index.ts')
-    }
-
-    if (source === '@base-ui/react/input') {
-      return repoPath('repos/base-ui/packages/react/src/input/index.ts')
-    }
-
-    if (source === '@base-ui/react/separator') {
-      return repoPath('repos/base-ui/packages/react/src/separator/index.ts')
-    }
-
-    if (source === '@base-ui/react/progress') {
-      return repoPath('repos/base-ui/packages/react/src/progress/index.ts')
-    }
-
-    if (source === '@base-ui/react/scroll-area') {
-      return repoPath('repos/base-ui/packages/react/src/scroll-area/index.ts')
-    }
-
-    if (source === '@base-ui/react/switch') {
-      return repoPath('repos/base-ui/packages/react/src/switch/index.ts')
-    }
-
-    if (source === '@base-ui/react/select') {
-      return repoPath('repos/base-ui/packages/react/src/select/index.ts')
-    }
-
-    if (source === '@base-ui/react/avatar') {
-      return repoPath('repos/base-ui/packages/react/src/avatar/index.ts')
-    }
-
-    if (source === '@base-ui/react/tooltip') {
-      return repoPath('repos/base-ui/packages/react/src/tooltip/index.ts')
-    }
-
-    if (source === '#formatErrorMessage') {
-      return repoPath('repos/base-ui/packages/utils/src/formatErrorMessage.ts')
-    }
-
-    if (source.startsWith('@base-ui/utils/')) {
-      return baseUiUtilsPath(source)
-    }
-
-    return null
-  },
-  load(id) {
-    if (id === nextImageShimModuleId) {
-      return `
+const staticShimSources = new Map([
+  [
+    nextImageShimModuleId,
+    `
         import * as React from 'react'
 
         export default function Image({ fill, priority, ...props }) {
           return React.createElement('img', props)
         }
-      `
-    }
-
-    if (id === nextLinkShimModuleId) {
-      return `
+      `,
+  ],
+  [
+    nextLinkShimModuleId,
+    `
         import * as React from 'react'
 
         export default function Link({ href, children, ...props }) {
           return React.createElement('a', { ...props, href }, children)
         }
-      `
-    }
-
-    if (id === nextThemesShimModuleId) {
-      return `
+      `,
+  ],
+  [
+    nextThemesShimModuleId,
+    `
         import * as React from 'react'
 
         export function ThemeProvider({ children }) {
@@ -268,7 +243,24 @@ const originAliasPlugin = (): Plugin => ({
             setTheme: () => {},
           }
         }
-        `
+        `,
+  ],
+])
+
+const staticShimSource = (id: string): string | null =>
+  staticShimSources.get(id) ?? null
+
+const originAliasPlugin = (): Plugin => ({
+  name: 'foldkitcn-shadcn-origin-aliases',
+  enforce: 'pre',
+  resolveId(source) {
+    return virtualModuleAliases.get(source) ?? sourcePathAlias(source)
+  },
+  load(id) {
+    const maybeStaticShim = staticShimSource(id)
+
+    if (maybeStaticShim !== null) {
+      return maybeStaticShim
     }
 
     if (id === markdownShimModuleId) {
@@ -1683,14 +1675,19 @@ export const captureShadcnOriginSnapshots = async (
       viewport: { width: 800, height: 400 },
     })
     await page.addInitScript(
-      ({ seed }) => {
-        let state = seed >>> 0
+      ({ increment, modulus, multiplier, seed }) => {
+        let state = Math.trunc(seed) % modulus
         Math.random = () => {
-          state = (1_664_525 * state + 1_013_904_223) >>> 0
-          return state / 4_294_967_296
+          state = (multiplier * state + increment) % modulus
+          return state / modulus
         }
       },
-      { seed: parityRandomSeed },
+      {
+        increment: parityRandomIncrement,
+        modulus: parityRandomModulus,
+        multiplier: parityRandomMultiplier,
+        seed: parityRandomSeed,
+      },
     )
     const pageErrors: Array<string> = []
     page.on('pageerror', error => {

@@ -2,7 +2,8 @@
 
 import { Option, Schema as S } from 'effect'
 import { Scene, Story } from 'foldkit'
-import { html, type Html } from 'foldkit/html'
+import type { Html } from 'foldkit/html'
+import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
 
 import {

@@ -173,11 +173,7 @@
     "itemId": "shadcn/calendar",
     "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
     "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
-    "requiredComparisons": [
-      "class-tokens",
-      "attributes",
-      "colors"
-    ],
+    "requiredComparisons": ["class-tokens", "attributes", "colors"],
     "acceptedDeviationIds": [
       "shadcn-calendar-local-date-grid",
       "shadcn-calendar-local-icons",

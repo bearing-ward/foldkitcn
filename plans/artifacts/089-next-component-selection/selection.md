@@ -17,8 +17,8 @@ preview under `plans/artifacts/089-next-component-dossiers`.
 
 ## Rows
 
-|   # | Row               | Readiness     | Origin URLs                                      | Dossier                                                                |
-| --: | ----------------- | ------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
+|   # | Row               | Readiness     | Origin URLs                                      | Dossier                                                                    |
+| --: | ----------------- | ------------- | ------------------------------------------------ | -------------------------------------------------------------------------- |
 |   1 | `shadcn/calendar` | dossier-ready | `https://ui.shadcn.com/docs/components/calendar` | `plans/artifacts/089-next-component-dossiers/shadcn-calendar/dossier.json` |
 
 ## Improve Planning Prompt

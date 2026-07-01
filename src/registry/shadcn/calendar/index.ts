@@ -8,8 +8,6 @@ import { buttonVariants } from '../button'
 
 // MODEL
 
-type Child = Html | string
-
 export const CalendarDirection = S.Union([S.Literal('ltr'), S.Literal('rtl')])
 export type CalendarDirection = typeof CalendarDirection.Type
 
@@ -183,30 +181,27 @@ export const calendarMonthDays = (
   const leadingDays = (firstWeekday - weekStartsOn + 7) % 7
   const currentMonthDays = daysInMonth(year, month)
   const totalSlots = Math.ceil((leadingDays + currentMonthDays) / 7) * 7
-  const disabledDates = new Set(config.disabledDates ?? [])
+  const disabledDates = new Set(config.disabledDates)
   const showOutsideDays = config.showOutsideDays ?? true
 
-  return pipe(
-    Array.makeBy(totalSlots, index => {
-      const date = dateFromParts(year, month, index - leadingDays + 1)
-      const parts = partsFromDate(date)
-      const isoDate = isoDateFromParts(parts.year, parts.month, parts.day)
-      const isOutside = parts.month !== month
+  return Array.makeBy(totalSlots, index => {
+    const date = dateFromParts(year, month, index - leadingDays + 1)
+    const parts = partsFromDate(date)
+    const isoDate = isoDateFromParts(parts.year, parts.month, parts.day)
+    const isOutside = parts.month !== month
 
-      return {
-        isoDate,
-        year: parts.year,
-        month: parts.month,
-        day: parts.day,
-        weekday: date.getUTCDay(),
-        isOutside,
-        isToday: isoDate === config.today,
-        isSelected: isoDate === config.selectedDate,
-        isDisabled:
-          disabledDates.has(isoDate) || (!showOutsideDays && isOutside),
-      }
-    }),
-  )
+    return {
+      isoDate,
+      year: parts.year,
+      month: parts.month,
+      day: parts.day,
+      weekday: date.getUTCDay(),
+      isOutside,
+      isToday: isoDate === config.today,
+      isSelected: isoDate === config.selectedDate,
+      isDisabled: disabledDates.has(isoDate) || (!showOutsideDays && isOutside),
+    }
+  })
 }
 
 export const updateCalendarState = (
@@ -375,12 +370,11 @@ const calendarChevronIcon = <Message>(
   direction: 'left' | 'right' | 'down',
 ): Html => {
   const h = html<Message>()
-  const path =
-    direction === 'left'
-      ? 'm15 18-6-6 6-6'
-      : direction === 'right'
-        ? 'm9 18 6-6-6-6'
-        : 'm6 9 6 6 6-6'
+  const pathByDirection: Readonly<Record<'left' | 'right' | 'down', string>> = {
+    down: 'm6 9 6 6 6-6',
+    left: 'm15 18-6-6 6-6',
+    right: 'm9 18 6-6-6-6',
+  }
 
   return h.svg(
     [
@@ -396,7 +390,7 @@ const calendarChevronIcon = <Message>(
       h.AriaHidden(true),
       h.Class(direction === 'down' ? 'size-4' : 'cn-rtl-flip size-4'),
     ],
-    [h.path([h.D(path)], [])],
+    [h.path([h.D(pathByDirection[direction])], [])],
   )
 }
 
@@ -587,32 +581,26 @@ export const Calendar = <Message>(
                         [
                           h.tr(
                             [h.Class(calendarWeekdaysBaseClassName)],
-                            [
-                              ...weekdayLabels(config.locale, weekStartsOn).map(
-                                label =>
-                                  h.th(
-                                    [h.Class(calendarWeekdayBaseClassName)],
-                                    [label],
-                                  ),
-                              ),
-                            ],
+                            weekdayLabels(config.locale, weekStartsOn).map(
+                              label =>
+                                h.th(
+                                  [h.Class(calendarWeekdayBaseClassName)],
+                                  [label],
+                                ),
+                            ),
                           ),
                         ],
                       ),
                       h.tbody(
                         [],
-                        [
-                          ...chunkWeeks(days).map(week =>
-                            h.tr(
-                              [h.Class(calendarWeekBaseClassName)],
-                              [
-                                ...week.map(day =>
-                                  dayCell(day, config.focusedDate, config),
-                                ),
-                              ],
+                        chunkWeeks(days).map(week =>
+                          h.tr(
+                            [h.Class(calendarWeekBaseClassName)],
+                            week.map(day =>
+                              dayCell(day, config.focusedDate, config),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),

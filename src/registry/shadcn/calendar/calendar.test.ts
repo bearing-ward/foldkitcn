@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import { Option } from 'effect'
+import { Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import { describe, expect, test } from 'vitest'
 
@@ -26,6 +26,9 @@ import {
 } from './index'
 
 const update = (state: unknown) => [state, []] as const
+const CalendarManifest = S.Struct({
+  examples: S.Array(S.Struct({ id: S.String, title: S.String })),
+})
 
 describe('shadcn/calendar date model', () => {
   test('builds a single-month grid with outside, today, selected, and disabled states', () => {
@@ -39,9 +42,9 @@ describe('shadcn/calendar date model', () => {
 
     expect(days).toHaveLength(35)
     expect(days[0]?.isoDate).toBe('2024-12-29')
-    expect(selected?.isSelected).toBe(true)
-    expect(selected?.isToday).toBe(true)
-    expect(disabled?.isDisabled).toBe(true)
+    expect(selected?.isSelected).toBeTruthy()
+    expect(selected?.isToday).toBeTruthy()
+    expect(disabled?.isDisabled).toBeTruthy()
   })
 
   test('updates selected date, visible month, and keyboard focus', () => {
@@ -80,18 +83,20 @@ describe('shadcn/calendar date model', () => {
 
 describe('shadcn/calendar view', () => {
   test('renders the base-nova calendar surface and day buttons', () => {
-    Scene.scene(
-      { update, view: () => CalendarDemo() },
-      Scene.with({}),
-      Scene.expect(Scene.selector('[data-slot="calendar"]')).toHaveAttr(
-        'class',
-        calendarClassName({ className: 'rounded-lg border' }),
-      ),
-      Scene.expect(Scene.role('grid')).toExist(),
-      Scene.expect(
-        Scene.role('button', { name: 'Monday, January 6, 2025' }),
-      ).toExist(),
-    )
+    expect(() => {
+      Scene.scene(
+        { update, view: () => CalendarDemo() },
+        Scene.with({}),
+        Scene.expect(Scene.selector('[data-slot="calendar"]')).toHaveAttr(
+          'class',
+          calendarClassName({ className: 'rounded-lg border' }),
+        ),
+        Scene.expect(Scene.role('grid')).toExist(),
+        Scene.expect(
+          Scene.role('button', { name: 'Monday, January 6, 2025' }),
+        ).toExist(),
+      )
+    }).not.toThrow()
   })
 
   test('renders basic, booked, and RTL examples', () => {
@@ -141,13 +146,11 @@ describe('shadcn/calendar view', () => {
   })
 
   test('keeps manifest examples aligned with exported examples', async () => {
-    const manifestModule =
-      (await import('../../../../registry-src/shadcn/calendar/item.json?raw')) as Readonly<{
-        default: string
-      }>
-    const manifest = JSON.parse(manifestModule.default) as Readonly<{
-      examples: ReadonlyArray<Readonly<{ id: string; title: string }>>
-    }>
+    const manifestModule: Readonly<{ default: string }> =
+      await import('../../../../registry-src/shadcn/calendar/item.json?raw')
+    const manifest = S.decodeUnknownSync(CalendarManifest)(
+      JSON.parse(manifestModule.default),
+    )
 
     expect(manifest.examples.map(example => example.id)).toStrictEqual(
       calendarExampleViews.map(example => example.id),

@@ -34,9 +34,9 @@ const update = (model: Model, _message: Message): UpdateReturn => [model, []]
 // VIEW
 
 const viewOf =
-  (html: Html) =>
+  (body: Html) =>
   (_model: Model): Html =>
-    html
+    body
 
 describe('shadcn/item class helpers', () => {
   test('exports Effect Schema literals for variants, sizes, and media variants', () => {
@@ -86,30 +86,27 @@ describe('shadcn/item class helpers', () => {
   )
 
   test('exports exact structural part class helpers', () => {
-    expect(ItemRegistry.itemGroupClassName()).toBe(
-      ItemRegistry.itemGroupBaseClassName,
-    )
-    expect(ItemRegistry.itemSeparatorClassName()).toContain(
-      ItemRegistry.itemSeparatorBaseClassName,
-    )
-    expect(ItemRegistry.itemContentClassName()).toBe(
-      ItemRegistry.itemContentBaseClassName,
-    )
-    expect(ItemRegistry.itemTitleClassName()).toBe(
-      ItemRegistry.itemTitleBaseClassName,
-    )
-    expect(ItemRegistry.itemDescriptionClassName()).toBe(
-      ItemRegistry.itemDescriptionBaseClassName,
-    )
-    expect(ItemRegistry.itemActionsClassName()).toBe(
-      ItemRegistry.itemActionsBaseClassName,
-    )
-    expect(ItemRegistry.itemHeaderClassName()).toBe(
-      ItemRegistry.itemHeaderBaseClassName,
-    )
-    expect(ItemRegistry.itemFooterClassName()).toBe(
-      ItemRegistry.itemFooterBaseClassName,
-    )
+    expect({
+      group: ItemRegistry.itemGroupClassName(),
+      separatorIncludesBase: ItemRegistry.itemSeparatorClassName().includes(
+        ItemRegistry.itemSeparatorBaseClassName,
+      ),
+      content: ItemRegistry.itemContentClassName(),
+      title: ItemRegistry.itemTitleClassName(),
+      description: ItemRegistry.itemDescriptionClassName(),
+      actions: ItemRegistry.itemActionsClassName(),
+      header: ItemRegistry.itemHeaderClassName(),
+      footer: ItemRegistry.itemFooterClassName(),
+    }).toStrictEqual({
+      group: ItemRegistry.itemGroupBaseClassName,
+      separatorIncludesBase: true,
+      content: ItemRegistry.itemContentBaseClassName,
+      title: ItemRegistry.itemTitleBaseClassName,
+      description: ItemRegistry.itemDescriptionBaseClassName,
+      actions: ItemRegistry.itemActionsBaseClassName,
+      header: ItemRegistry.itemHeaderBaseClassName,
+      footer: ItemRegistry.itemFooterBaseClassName,
+    })
   })
 
   test('preserves custom classes through local cn canonicalization', () => {
