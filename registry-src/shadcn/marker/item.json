@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/marker",
+  "namespace": "shadcn",
+  "name": "Marker",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Marker helper with local inline SVG icons, spinner-backed status examples, separator and border variants, link-button rendering seams, and deterministic parity fixtures.",
+  "sourceRoot": "registry-src/shadcn/marker",
+  "installableSourcePaths": [
+    "src/registry/shadcn/marker/index.ts",
+    "src/registry/shadcn/marker/examples.ts"
+  ],
+  "consumedThemeTokens": ["--border", "--foreground", "--muted-foreground"],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Marker",
+      "docsUrl": "https://ui.shadcn.com/docs/components/marker",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/marker.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/marker.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/marker.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/marker.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/marker-border.tsx",
+        "repos/ui/apps/v4/examples/base/marker-demo.tsx",
+        "repos/ui/apps/v4/examples/base/marker-icon.tsx",
+        "repos/ui/apps/v4/examples/base/marker-link-button.tsx",
+        "repos/ui/apps/v4/examples/base/marker-separator.tsx",
+        "repos/ui/apps/v4/examples/base/marker-shimmer.tsx",
+        "repos/ui/apps/v4/examples/base/marker-status.tsx",
+        "repos/ui/apps/v4/examples/base/marker-variants.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "Marker status examples compose the local shadcn Spinner registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Marker uses local class canonicalization instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for the marker variant contract."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin React mergeProps usage is fixture evidence only and is replaced by explicit Foldkit attribute construction."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin useRender support is fixture evidence only and is represented by Foldkit toView composition seams."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon usage is replaced by local inline SVGs in the installable examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "sonner",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin notification example usage is fixture evidence only; the installable source uses local static rendering seams."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/marker-demo",
+      "title": "MarkerDemo",
+      "description": "Default markers with inline icons, spinner status, and a separator row.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-status",
+      "title": "MarkerStatus",
+      "description": "Status markers that announce loading with Spinner icons.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-variants",
+      "title": "MarkerVariants",
+      "description": "Default, separator, and border marker variants.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-icon",
+      "title": "MarkerIconDemo",
+      "description": "Markers with inline icons and a stacked icon layout.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-border",
+      "title": "MarkerBorder",
+      "description": "Bordered markers for row boundaries and implementation notes.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-separator",
+      "title": "MarkerSeparator",
+      "description": "Labeled separator markers for dates and section breaks.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-shimmer",
+      "title": "MarkerShimmer",
+      "description": "Streaming markers with shimmer text treatment.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/marker-link-button",
+      "title": "MarkerLinkButton",
+      "description": "Markers rendered as anchor and button controls through the local toView seam.",
+      "sourcePath": "src/registry/shadcn/marker/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/marker",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": ["shadcn-marker-local-icons"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-marker-local-icons",
+      "summary": "The installable examples use local inline SVG icons instead of lucide-react and keep the notification example deterministic.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react or a client-side toast runtime. Local SVGs and static rendering seams preserve the visible marker footprint needed by the demos."
+    }
+  ]
+}

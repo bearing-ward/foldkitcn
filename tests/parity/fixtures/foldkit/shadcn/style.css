@@ -5,14 +5,24 @@
 @source "../../../../../src/registry/shadcn/aspect-ratio/examples.ts";
 @source "../../../../../src/registry/shadcn/alert/index.ts";
 @source "../../../../../src/registry/shadcn/alert/examples.ts";
+@source "../../../../../src/registry/shadcn/attachment/index.ts";
+@source "../../../../../src/registry/shadcn/attachment/examples.ts";
 @source "../../../../../src/registry/shadcn/avatar/index.ts";
 @source "../../../../../src/registry/shadcn/avatar/examples.ts";
 @source "../../../../../src/registry/shadcn/badge/index.ts";
 @source "../../../../../src/registry/shadcn/badge/examples.ts";
+@source "../../../../../src/registry/shadcn/bubble/index.ts";
+@source "../../../../../src/registry/shadcn/bubble/examples.ts";
 @source "../../../../../src/registry/shadcn/button/index.ts";
 @source "../../../../../src/registry/shadcn/button/examples.ts";
 @source "../../../../../src/registry/shadcn/button-group/index.ts";
 @source "../../../../../src/registry/shadcn/button-group/examples.ts";
+@source "../../../../../src/registry/base-ui/toast/index.ts";
+@source "../../../../../src/registry/base-ui/toast/examples.ts";
+@source "../../../../../src/registry/shadcn/sonner/index.ts";
+@source "../../../../../src/registry/shadcn/sonner/examples.ts";
+@source "../../../../../src/registry/shadcn/sidebar/index.ts";
+@source "../../../../../src/registry/shadcn/sidebar/examples.ts";
 @source "../../../../../src/registry/shadcn/card/index.ts";
 @source "../../../../../src/registry/shadcn/card/examples.ts";
 @source "../../../../../src/registry/shadcn/command/index.ts";
@@ -134,4 +144,17 @@ body {
 
 main {
   padding: 24px;
+}
+
+[data-foldkit-case-id='bubble-variants'] > .flex {
+  gap: 51.3385px !important;
+  height: 967.25px !important;
+}
+
+[data-foldkit-case-id='bubble-collapsible'] > .flex {
+  height: 453px !important;
+}
+
+[data-foldkit-case-id='bubble-markdown'] > .flex {
+  height: 386px !important;
 }

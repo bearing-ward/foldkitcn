@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "docs:prerender": "bun run scripts/prerender.ts",
+    "docs:live-preview-gaps": "bun run scripts/report-docs-live-preview-gaps.ts",
     "docs:search": "pagefind",
     "typecheck": "tsc --noEmit",
     "format": "oxfmt --write .",

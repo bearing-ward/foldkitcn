@@ -21,6 +21,7 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - Use Effect Schema and Foldkit-native conventions in every generated plan.
 - Treat historical queue artifacts as priority hints only. The live component progress tracker is authoritative because it derives from pinned origins plus `registry-src`.
 - For backlog execution, `plans/README.md` is the authoritative implementation backlog. Pick the oldest ready plan in execution order, not the newest generated dossier.
+- For backlog execution, the main agent is the coordinator/reviewer. The implementation work must run in a worker subagent with an explicit cheaper model override instead of inheriting the main model. Prefer `model: "gpt-5.5" reasoning: "low"` for normal component implementation work; use `model: "gpt-5.4"` only for tiny mechanical patches or search/locate work when it is available. Do not omit the model override for mechanical worker dispatch.
 
 ## Invocation Modes
 
@@ -55,8 +56,10 @@ Use this skill when the user provides an origin docs or registry URL and asks to
 - For `backlog many`, select every currently ready plan in oldest-first order, but preserve dependency boundaries: do not select a plan whose dependency is also selected unless the dependency will complete first.
 - If a numeric limit is provided as `limit <number>` or as a bare number, treat it as the maximum number of concurrent worker processes/subagents. Default concurrency is 1 for `backlog` and 3 for `backlog many`.
 - Do not exceed the concurrency limit. Start at most that many workers, wait for completions, then launch the next ready plan if `many` still has pending selections.
-- Use subagents for `backlog many` when multi-agent tools are available. Give each worker one plan file, the plan text, relevant dossier paths, and the Foldkit/Effect guardrails. Keep worker branches/worktrees separate.
+- Use worker subagents for both `backlog` and `backlog many` when multi-agent tools are available. Give each worker one plan file, the plan text, relevant dossier paths, and the Foldkit/Effect guardrails. Keep worker branches/worktrees separate.
+- Set an explicit cheaper worker model on every implementation subagent dispatch. For the current Codex multi-agent surface, use `model: "gpt-5.5" reasoning: "low"` for normal implementation work unless the user asks for a different cheaper model. If no cheaper-model subagent tool is available, stop and report that backlog execution would otherwise run on the main model instead of doing the implementation inline.
 - The main agent remains the reviewer. After each worker finishes, inspect the diff, rerun the plan's required gates or the closest focused gates, and merge/commit only work that is complete and verified.
+- If review finds incomplete implementation work, send the fix back to a cheaper worker subagent instead of completing the implementation directly on the main model, unless the user explicitly authorizes main-model implementation.
 - If a worker reports a blocker, leave that plan unmerged, record the blocker in the status report, and continue with independent ready plans when possible.
 - Never create new dossier previews in backlog mode unless the selected plan explicitly requires refreshed evidence before implementation.
 - End with the processed plan IDs, worker outcomes, verification commands, and the next oldest ready plan if one remains.

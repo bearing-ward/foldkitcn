@@ -1,0 +1,2324 @@
+[
+  {
+    "routePath": "/components/base-ui/avatar",
+    "itemId": "base-ui/avatar",
+    "exampleId": "base-ui/avatar-hero",
+    "title": "AvatarHero",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/field",
+    "itemId": "base-ui/field",
+    "exampleId": "base-ui/field-foldkit-fixture",
+    "title": "FieldFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/field",
+    "itemId": "base-ui/field",
+    "exampleId": "base-ui/field-origin-fixture",
+    "title": "FieldOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/fieldset",
+    "itemId": "base-ui/fieldset",
+    "exampleId": "base-ui/fieldset-foldkit-fixture",
+    "title": "FieldsetFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/fieldset",
+    "itemId": "base-ui/fieldset",
+    "exampleId": "base-ui/fieldset-origin-fixture",
+    "title": "FieldsetOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/form",
+    "itemId": "base-ui/form",
+    "exampleId": "base-ui/form-foldkit-fixture",
+    "title": "FormFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/form",
+    "itemId": "base-ui/form",
+    "exampleId": "base-ui/form-origin-fixture",
+    "title": "FormOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/number-field",
+    "itemId": "base-ui/number-field",
+    "exampleId": "base-ui/number-field-foldkit-fixture",
+    "title": "NumberFieldFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/number-field",
+    "itemId": "base-ui/number-field",
+    "exampleId": "base-ui/number-field-origin-fixture",
+    "title": "NumberFieldOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/otp-field",
+    "itemId": "base-ui/otp-field",
+    "exampleId": "base-ui/otp-field-foldkit-fixture",
+    "title": "OTPFieldFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/base-ui/otp-field",
+    "itemId": "base-ui/otp-field",
+    "exampleId": "base-ui/otp-field-origin-fixture",
+    "title": "OTPFieldOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/accordion",
+    "itemId": "shadcn/accordion",
+    "exampleId": "shadcn/accordion-basic",
+    "title": "AccordionBasic",
+    "previewExportName": "AccordionBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/accordion",
+    "itemId": "shadcn/accordion",
+    "exampleId": "shadcn/accordion-card",
+    "title": "AccordionCard",
+    "previewExportName": "AccordionCard",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/accordion",
+    "itemId": "shadcn/accordion",
+    "exampleId": "shadcn/accordion-disabled",
+    "title": "AccordionDisabled",
+    "previewExportName": "AccordionDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/accordion",
+    "itemId": "shadcn/accordion",
+    "exampleId": "shadcn/accordion-multiple",
+    "title": "AccordionMultiple",
+    "previewExportName": "AccordionMultiple",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/accordion",
+    "itemId": "shadcn/accordion",
+    "exampleId": "shadcn/accordion-rtl",
+    "title": "AccordionRtl",
+    "previewExportName": "AccordionRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-action",
+    "title": "AlertActionExample",
+    "previewExportName": "AlertActionExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-basic",
+    "title": "AlertBasic",
+    "previewExportName": "AlertBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-colors",
+    "title": "AlertColors",
+    "previewExportName": "AlertColors",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-demo",
+    "title": "AlertDemo",
+    "previewExportName": "AlertDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-destructive",
+    "title": "AlertDestructive",
+    "previewExportName": "AlertDestructive",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert",
+    "itemId": "shadcn/alert",
+    "exampleId": "shadcn/alert-rtl",
+    "title": "AlertRtl",
+    "previewExportName": "AlertRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-basic",
+    "title": "AlertDialogBasic",
+    "previewExportName": "AlertDialogBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-demo",
+    "title": "AlertDialogDemo",
+    "previewExportName": "AlertDialogDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-destructive",
+    "title": "AlertDialogDestructive",
+    "previewExportName": "AlertDialogDestructive",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-media",
+    "title": "AlertDialogWithMedia",
+    "previewExportName": "AlertDialogWithMedia",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-rtl",
+    "title": "AlertDialogRtl",
+    "previewExportName": "AlertDialogRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-small",
+    "title": "AlertDialogSmall",
+    "previewExportName": "AlertDialogSmall",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/alert-dialog",
+    "itemId": "shadcn/alert-dialog",
+    "exampleId": "shadcn/alert-dialog-small-media",
+    "title": "AlertDialogSmallWithMedia",
+    "previewExportName": "AlertDialogSmallWithMedia",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/aspect-ratio",
+    "itemId": "shadcn/aspect-ratio",
+    "exampleId": "shadcn/aspect-ratio-demo",
+    "title": "AspectRatioDemo",
+    "previewExportName": "AspectRatioDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/aspect-ratio",
+    "itemId": "shadcn/aspect-ratio",
+    "exampleId": "shadcn/aspect-ratio-portrait",
+    "title": "AspectRatioPortrait",
+    "previewExportName": "AspectRatioPortrait",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/aspect-ratio",
+    "itemId": "shadcn/aspect-ratio",
+    "exampleId": "shadcn/aspect-ratio-rtl",
+    "title": "AspectRatioRtl",
+    "previewExportName": "AspectRatioRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/aspect-ratio",
+    "itemId": "shadcn/aspect-ratio",
+    "exampleId": "shadcn/aspect-ratio-square",
+    "title": "AspectRatioSquare",
+    "previewExportName": "AspectRatioSquare",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/attachment",
+    "itemId": "shadcn/attachment",
+    "exampleId": "shadcn/attachment-workflow-demo",
+    "title": "AttachmentWorkflowDemo",
+    "previewExportName": "AttachmentWorkflowDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-badge",
+    "title": "AvatarWithBadge",
+    "previewExportName": "AvatarWithBadge",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-badge-icon",
+    "title": "AvatarBadgeIconExample",
+    "previewExportName": "AvatarBadgeIconExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-basic",
+    "title": "AvatarBasic",
+    "previewExportName": "AvatarBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-demo",
+    "title": "AvatarDemo",
+    "previewExportName": "AvatarDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-dropdown",
+    "title": "AvatarDropdown",
+    "previewExportName": "AvatarDropdown",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-group",
+    "title": "AvatarGroupExample",
+    "previewExportName": "AvatarGroupExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-group-count",
+    "title": "AvatarGroupCountExample",
+    "previewExportName": "AvatarGroupCountExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-group-count-icon",
+    "title": "AvatarGroupCountIconExample",
+    "previewExportName": "AvatarGroupCountIconExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-rtl",
+    "title": "AvatarRtl",
+    "previewExportName": "AvatarRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/avatar",
+    "itemId": "shadcn/avatar",
+    "exampleId": "shadcn/avatar-size",
+    "title": "AvatarSizeExample",
+    "previewExportName": "AvatarSizeExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-colors",
+    "title": "BadgeColors",
+    "previewExportName": "BadgeColors",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-demo",
+    "title": "BadgeDemo",
+    "previewExportName": "BadgeDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-icon",
+    "title": "BadgeIcon",
+    "previewExportName": "BadgeIcon",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-link",
+    "title": "BadgeLink",
+    "previewExportName": "BadgeLink",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-rtl",
+    "title": "BadgeRtl",
+    "previewExportName": "BadgeRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-spinner",
+    "title": "BadgeSpinner",
+    "previewExportName": "BadgeSpinner",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/badge",
+    "itemId": "shadcn/badge",
+    "exampleId": "shadcn/badge-variants",
+    "title": "BadgeVariants",
+    "previewExportName": "BadgeVariants",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-basic",
+    "title": "BreadcrumbBasic",
+    "previewExportName": "BreadcrumbBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-demo",
+    "title": "BreadcrumbDemo",
+    "previewExportName": "BreadcrumbDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-dropdown",
+    "title": "BreadcrumbDropdown",
+    "previewExportName": "BreadcrumbDropdown",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-ellipsis",
+    "title": "BreadcrumbEllipsisDemo",
+    "previewExportName": "BreadcrumbEllipsisDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-link",
+    "title": "BreadcrumbLinkDemo",
+    "previewExportName": "BreadcrumbLinkDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-rtl",
+    "title": "BreadcrumbRtl",
+    "previewExportName": "BreadcrumbRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/breadcrumb",
+    "itemId": "shadcn/breadcrumb",
+    "exampleId": "shadcn/breadcrumb-separator",
+    "title": "BreadcrumbSeparatorDemo",
+    "previewExportName": "BreadcrumbSeparatorDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-demo",
+    "title": "CardDemo",
+    "previewExportName": "CardDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-edge-to-edge",
+    "title": "CardEdgeToEdge",
+    "previewExportName": "CardEdgeToEdge",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-image",
+    "title": "CardImage",
+    "previewExportName": "CardImage",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-rtl",
+    "title": "CardRtl",
+    "previewExportName": "CardRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-small",
+    "title": "CardSmall",
+    "previewExportName": "CardSmall",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/card",
+    "itemId": "shadcn/card",
+    "exampleId": "shadcn/card-spacing",
+    "title": "CardSpacing",
+    "previewExportName": "CardSpacing",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-basic",
+    "title": "CheckboxBasic",
+    "previewExportName": "CheckboxBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-demo",
+    "title": "CheckboxDemo",
+    "previewExportName": "CheckboxDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-description",
+    "title": "CheckboxDescription",
+    "previewExportName": "CheckboxDescription",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-disabled",
+    "title": "CheckboxDisabled",
+    "previewExportName": "CheckboxDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-group",
+    "title": "CheckboxGroup",
+    "previewExportName": "CheckboxGroup",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-invalid",
+    "title": "CheckboxInvalid",
+    "previewExportName": "CheckboxInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-rtl",
+    "title": "CheckboxRtl",
+    "previewExportName": "CheckboxRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/checkbox",
+    "itemId": "shadcn/checkbox",
+    "exampleId": "shadcn/checkbox-table",
+    "title": "CheckboxInTable",
+    "previewExportName": "CheckboxInTable",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/collapsible",
+    "itemId": "shadcn/collapsible",
+    "exampleId": "shadcn/collapsible-basic",
+    "title": "CollapsibleBasic",
+    "previewExportName": "CollapsibleBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/collapsible",
+    "itemId": "shadcn/collapsible",
+    "exampleId": "shadcn/collapsible-demo",
+    "title": "CollapsibleDemo",
+    "previewExportName": "CollapsibleDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/collapsible",
+    "itemId": "shadcn/collapsible",
+    "exampleId": "shadcn/collapsible-file-tree",
+    "title": "CollapsibleFileTree",
+    "previewExportName": "CollapsibleFileTree",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/collapsible",
+    "itemId": "shadcn/collapsible",
+    "exampleId": "shadcn/collapsible-rtl",
+    "title": "CollapsibleRtl",
+    "previewExportName": "CollapsibleRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/collapsible",
+    "itemId": "shadcn/collapsible",
+    "exampleId": "shadcn/collapsible-settings",
+    "title": "CollapsibleSettings",
+    "previewExportName": "CollapsibleSettings",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-auto-highlight",
+    "title": "ComboboxAutoHighlight",
+    "previewExportName": "ComboboxAutoHighlight",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-basic",
+    "title": "ComboboxBasic",
+    "previewExportName": "ComboboxBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-clear",
+    "title": "ComboboxWithClear",
+    "previewExportName": "ComboboxWithClear",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-custom",
+    "title": "ComboboxWithCustomItems",
+    "previewExportName": "ComboboxWithCustomItems",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-disabled",
+    "title": "ComboboxDisabled",
+    "previewExportName": "ComboboxDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-groups",
+    "title": "ComboboxWithGroupsAndSeparator",
+    "previewExportName": "ComboboxWithGroupsAndSeparator",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-input-group",
+    "title": "ComboxboxInputGroup",
+    "previewExportName": "ComboxboxInputGroup",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-invalid",
+    "title": "ComboboxInvalid",
+    "previewExportName": "ComboboxInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-multiple",
+    "title": "ComboboxMultiple",
+    "previewExportName": "ComboboxMultiple",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-popup",
+    "title": "ComboboxPopup",
+    "previewExportName": "ComboboxPopup",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/combobox",
+    "itemId": "shadcn/combobox",
+    "exampleId": "shadcn/combobox-rtl",
+    "title": "ComboboxRtl",
+    "previewExportName": "ComboboxRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-basic",
+    "title": "ContextMenuBasic",
+    "previewExportName": "ContextMenuBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-checkboxes",
+    "title": "ContextMenuCheckboxes",
+    "previewExportName": "ContextMenuCheckboxes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-demo",
+    "title": "ContextMenuDemo",
+    "previewExportName": "ContextMenuDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-destructive",
+    "title": "ContextMenuDestructive",
+    "previewExportName": "ContextMenuDestructive",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-groups",
+    "title": "ContextMenuGroups",
+    "previewExportName": "ContextMenuGroups",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-icons",
+    "title": "ContextMenuIcons",
+    "previewExportName": "ContextMenuIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-radio",
+    "title": "ContextMenuRadio",
+    "previewExportName": "ContextMenuRadio",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-rtl",
+    "title": "ContextMenuRtl",
+    "previewExportName": "ContextMenuRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-shortcuts",
+    "title": "ContextMenuShortcuts",
+    "previewExportName": "ContextMenuShortcuts",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-sides",
+    "title": "ContextMenuSides",
+    "previewExportName": "ContextMenuSides",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/context-menu",
+    "itemId": "shadcn/context-menu",
+    "exampleId": "shadcn/context-menu-submenu",
+    "title": "ContextMenuSubmenu",
+    "previewExportName": "ContextMenuSubmenu",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-close-button",
+    "title": "DialogCloseButton",
+    "previewExportName": "DialogCloseButton",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-demo",
+    "title": "DialogDemo",
+    "previewExportName": "DialogDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-no-close-button",
+    "title": "DialogNoCloseButton",
+    "previewExportName": "DialogNoCloseButton",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-rtl",
+    "title": "DialogRtl",
+    "previewExportName": "DialogRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-scrollable-content",
+    "title": "DialogScrollableContent",
+    "previewExportName": "DialogScrollableContent",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dialog",
+    "itemId": "shadcn/dialog",
+    "exampleId": "shadcn/dialog-sticky-footer",
+    "title": "DialogStickyFooter",
+    "previewExportName": "DialogStickyFooter",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/direction",
+    "itemId": "shadcn/direction",
+    "exampleId": "shadcn/direction-demo",
+    "title": "DirectionDemo",
+    "previewExportName": "DirectionDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/direction",
+    "itemId": "shadcn/direction",
+    "exampleId": "shadcn/direction-rtl-card",
+    "title": "DirectionRtlCard",
+    "previewExportName": "DirectionRtlCard",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/drawer",
+    "itemId": "shadcn/drawer",
+    "exampleId": "shadcn/drawer-demo",
+    "title": "DrawerDemo",
+    "previewExportName": "DrawerDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/drawer",
+    "itemId": "shadcn/drawer",
+    "exampleId": "shadcn/drawer-rtl",
+    "title": "DrawerRtl",
+    "previewExportName": "DrawerRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/drawer",
+    "itemId": "shadcn/drawer",
+    "exampleId": "shadcn/drawer-scrollable-content",
+    "title": "DrawerScrollableContent",
+    "previewExportName": "DrawerScrollableContent",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/drawer",
+    "itemId": "shadcn/drawer",
+    "exampleId": "shadcn/drawer-sides",
+    "title": "DrawerWithSides",
+    "previewExportName": "DrawerWithSides",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-avatar",
+    "title": "DropdownMenuAvatar",
+    "previewExportName": "DropdownMenuAvatar",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-basic",
+    "title": "DropdownMenuBasic",
+    "previewExportName": "DropdownMenuBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-checkboxes",
+    "title": "DropdownMenuCheckboxes",
+    "previewExportName": "DropdownMenuCheckboxes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-checkboxes-icons",
+    "title": "DropdownMenuCheckboxesIcons",
+    "previewExportName": "DropdownMenuCheckboxesIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-complex",
+    "title": "DropdownMenuComplex",
+    "previewExportName": "DropdownMenuComplex",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-demo",
+    "title": "DropdownMenuDemo",
+    "previewExportName": "DropdownMenuDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-destructive",
+    "title": "DropdownMenuDestructive",
+    "previewExportName": "DropdownMenuDestructive",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-icons",
+    "title": "DropdownMenuIcons",
+    "previewExportName": "DropdownMenuIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-radio-group",
+    "title": "DropdownMenuRadioGroup",
+    "previewExportName": "DropdownMenuRadioGroup",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-radio-icons",
+    "title": "DropdownMenuRadioIcons",
+    "previewExportName": "DropdownMenuRadioIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-rtl",
+    "title": "DropdownMenuRtl",
+    "previewExportName": "DropdownMenuRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-shortcuts",
+    "title": "DropdownMenuShortcuts",
+    "previewExportName": "DropdownMenuShortcuts",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/dropdown-menu",
+    "itemId": "shadcn/dropdown-menu",
+    "exampleId": "shadcn/dropdown-menu-submenu",
+    "title": "DropdownMenuSubmenu",
+    "previewExportName": "DropdownMenuSubmenu",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-checkbox",
+    "title": "FieldCheckbox",
+    "previewExportName": "FieldCheckbox",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-foldkit-fixture",
+    "title": "FieldFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-input",
+    "title": "FieldInput",
+    "previewExportName": "FieldInput",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-origin-fixture",
+    "title": "FieldOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-responsive",
+    "title": "FieldResponsive",
+    "previewExportName": "FieldResponsive",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-rtl",
+    "title": "FieldRtl",
+    "previewExportName": "FieldRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/field",
+    "itemId": "shadcn/field",
+    "exampleId": "shadcn/field-textarea",
+    "title": "FieldTextarea",
+    "previewExportName": "FieldTextarea",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/hover-card",
+    "itemId": "shadcn/hover-card",
+    "exampleId": "shadcn/hover-card-demo",
+    "title": "HoverCardDemo",
+    "previewExportName": "HoverCardDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/hover-card",
+    "itemId": "shadcn/hover-card",
+    "exampleId": "shadcn/hover-card-rtl",
+    "title": "HoverCardRtl",
+    "previewExportName": "HoverCardRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/hover-card",
+    "itemId": "shadcn/hover-card",
+    "exampleId": "shadcn/hover-card-sides",
+    "title": "HoverCardSides",
+    "previewExportName": "HoverCardSides",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-basic",
+    "title": "InputBasic",
+    "previewExportName": "InputBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-demo",
+    "title": "InputDemo",
+    "previewExportName": "InputDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-disabled",
+    "title": "InputDisabled",
+    "previewExportName": "InputDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-file",
+    "title": "InputFile",
+    "previewExportName": "InputFile",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-invalid",
+    "title": "InputInvalid",
+    "previewExportName": "InputInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input",
+    "itemId": "shadcn/input",
+    "exampleId": "shadcn/input-required",
+    "title": "InputRequired",
+    "previewExportName": "InputRequired",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-alphanumeric",
+    "title": "InputOTPAlphanumeric",
+    "previewExportName": "InputOTPAlphanumeric",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-controlled",
+    "title": "InputOTPControlled",
+    "previewExportName": "InputOTPControlled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-demo",
+    "title": "InputOTPDemo",
+    "previewExportName": "InputOTPDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-disabled",
+    "title": "InputOTPDisabled",
+    "previewExportName": "InputOTPDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-foldkit-fixture",
+    "title": "InputOTPFoldkitFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-form",
+    "title": "InputOTPForm",
+    "previewExportName": "InputOTPForm",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-four-digits",
+    "title": "InputOTPFourDigits",
+    "previewExportName": "InputOTPFourDigits",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-invalid",
+    "title": "InputOTPInvalid",
+    "previewExportName": "InputOTPInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-origin-fixture",
+    "title": "InputOTPOriginFixture",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-pattern",
+    "title": "InputOTPPattern",
+    "previewExportName": "InputOTPPattern",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-rtl",
+    "title": "InputOTPRtl",
+    "previewExportName": "InputOTPRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/input-otp",
+    "itemId": "shadcn/input-otp",
+    "exampleId": "shadcn/input-otp-separator",
+    "title": "InputOTPSeparatorExample",
+    "previewExportName": "InputOTPSeparatorExample",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-button",
+    "title": "KbdButton",
+    "previewExportName": "KbdButton",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-demo",
+    "title": "KbdDemo",
+    "previewExportName": "KbdDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-group",
+    "title": "KbdGroup",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-input-group",
+    "title": "KbdInputGroup",
+    "previewExportName": "KbdInputGroup",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-rtl",
+    "title": "KbdRtl",
+    "previewExportName": "KbdRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/kbd",
+    "itemId": "shadcn/kbd",
+    "exampleId": "shadcn/kbd-tooltip",
+    "title": "KbdTooltip",
+    "previewExportName": "KbdTooltip",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/label",
+    "itemId": "shadcn/label",
+    "exampleId": "shadcn/label-demo",
+    "title": "LabelDemo",
+    "previewExportName": "LabelDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/label",
+    "itemId": "shadcn/label",
+    "exampleId": "shadcn/label-rtl",
+    "title": "LabelRtl",
+    "previewExportName": "LabelRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-checkbox",
+    "title": "MenubarCheckbox",
+    "previewExportName": "MenubarCheckbox",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-demo",
+    "title": "MenubarDemo",
+    "previewExportName": "MenubarDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-icons",
+    "title": "MenubarIcons",
+    "previewExportName": "MenubarIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-radio",
+    "title": "MenubarRadio",
+    "previewExportName": "MenubarRadio",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-rtl",
+    "title": "MenubarRtl",
+    "previewExportName": "MenubarRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/menubar",
+    "itemId": "shadcn/menubar",
+    "exampleId": "shadcn/menubar-submenu",
+    "title": "MenubarSubmenu",
+    "previewExportName": "MenubarSubmenu",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/native-select",
+    "itemId": "shadcn/native-select",
+    "exampleId": "shadcn/native-select-demo",
+    "title": "NativeSelectDemo",
+    "previewExportName": "NativeSelectDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/native-select",
+    "itemId": "shadcn/native-select",
+    "exampleId": "shadcn/native-select-disabled",
+    "title": "NativeSelectDisabled",
+    "previewExportName": "NativeSelectDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/native-select",
+    "itemId": "shadcn/native-select",
+    "exampleId": "shadcn/native-select-groups",
+    "title": "NativeSelectGroups",
+    "previewExportName": "NativeSelectGroups",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/native-select",
+    "itemId": "shadcn/native-select",
+    "exampleId": "shadcn/native-select-invalid",
+    "title": "NativeSelectInvalid",
+    "previewExportName": "NativeSelectInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/native-select",
+    "itemId": "shadcn/native-select",
+    "exampleId": "shadcn/native-select-rtl",
+    "title": "NativeSelectRtl",
+    "previewExportName": "NativeSelectRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/navigation-menu",
+    "itemId": "shadcn/navigation-menu",
+    "exampleId": "shadcn/navigation-menu-demo",
+    "title": "NavigationMenuDemo",
+    "previewExportName": "NavigationMenuDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/navigation-menu",
+    "itemId": "shadcn/navigation-menu",
+    "exampleId": "shadcn/navigation-menu-rtl",
+    "title": "NavigationMenuRtl",
+    "previewExportName": "NavigationMenuRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/popover",
+    "itemId": "shadcn/popover",
+    "exampleId": "shadcn/popover-alignments",
+    "title": "PopoverAlignments",
+    "previewExportName": "PopoverAlignments",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/popover",
+    "itemId": "shadcn/popover",
+    "exampleId": "shadcn/popover-basic",
+    "title": "PopoverBasic",
+    "previewExportName": "PopoverBasic",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/popover",
+    "itemId": "shadcn/popover",
+    "exampleId": "shadcn/popover-demo",
+    "title": "PopoverDemo",
+    "previewExportName": "PopoverDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/popover",
+    "itemId": "shadcn/popover",
+    "exampleId": "shadcn/popover-form",
+    "title": "PopoverForm",
+    "previewExportName": "PopoverForm",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/popover",
+    "itemId": "shadcn/popover",
+    "exampleId": "shadcn/popover-rtl",
+    "title": "PopoverRtl",
+    "previewExportName": "PopoverRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/progress",
+    "itemId": "shadcn/progress",
+    "exampleId": "shadcn/progress-controlled",
+    "title": "ProgressControlled",
+    "previewExportName": "ProgressControlled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/progress",
+    "itemId": "shadcn/progress",
+    "exampleId": "shadcn/progress-demo",
+    "title": "ProgressDemo",
+    "previewExportName": "ProgressDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/progress",
+    "itemId": "shadcn/progress",
+    "exampleId": "shadcn/progress-label",
+    "title": "ProgressWithLabel",
+    "previewExportName": "ProgressWithLabel",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/progress",
+    "itemId": "shadcn/progress",
+    "exampleId": "shadcn/progress-rtl",
+    "title": "ProgressRtl",
+    "previewExportName": "ProgressRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/scroll-area",
+    "itemId": "shadcn/scroll-area",
+    "exampleId": "shadcn/scroll-area-demo",
+    "title": "ScrollAreaDemo",
+    "previewExportName": "ScrollAreaDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/scroll-area",
+    "itemId": "shadcn/scroll-area",
+    "exampleId": "shadcn/scroll-area-horizontal-demo",
+    "title": "ScrollAreaHorizontalDemo",
+    "previewExportName": "ScrollAreaHorizontalDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/scroll-area",
+    "itemId": "shadcn/scroll-area",
+    "exampleId": "shadcn/scroll-area-rtl",
+    "title": "ScrollAreaRtl",
+    "previewExportName": "ScrollAreaRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-align-item",
+    "title": "SelectAlignItem",
+    "previewExportName": "SelectAlignItem",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-demo",
+    "title": "SelectDemo",
+    "previewExportName": "SelectDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-disabled",
+    "title": "SelectDisabled",
+    "previewExportName": "SelectDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-groups",
+    "title": "SelectGroups",
+    "previewExportName": "SelectGroups",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-invalid",
+    "title": "SelectInvalid",
+    "previewExportName": "SelectInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-rtl",
+    "title": "SelectRtl",
+    "previewExportName": "SelectRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/select",
+    "itemId": "shadcn/select",
+    "exampleId": "shadcn/select-scrollable",
+    "title": "SelectScrollable",
+    "previewExportName": "SelectScrollable",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/separator",
+    "itemId": "shadcn/separator",
+    "exampleId": "shadcn/separator-demo",
+    "title": "SeparatorDemo",
+    "previewExportName": "SeparatorDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/separator",
+    "itemId": "shadcn/separator",
+    "exampleId": "shadcn/separator-list",
+    "title": "SeparatorList",
+    "previewExportName": "SeparatorList",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/separator",
+    "itemId": "shadcn/separator",
+    "exampleId": "shadcn/separator-menu",
+    "title": "SeparatorMenu",
+    "previewExportName": "SeparatorMenu",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/separator",
+    "itemId": "shadcn/separator",
+    "exampleId": "shadcn/separator-rtl",
+    "title": "SeparatorRtl",
+    "previewExportName": "SeparatorRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/separator",
+    "itemId": "shadcn/separator",
+    "exampleId": "shadcn/separator-vertical",
+    "title": "SeparatorVertical",
+    "previewExportName": "SeparatorVertical",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sheet",
+    "itemId": "shadcn/sheet",
+    "exampleId": "shadcn/sheet-demo",
+    "title": "SheetDemo",
+    "previewExportName": "SheetDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sheet",
+    "itemId": "shadcn/sheet",
+    "exampleId": "shadcn/sheet-no-close-button",
+    "title": "SheetNoCloseButton",
+    "previewExportName": "SheetNoCloseButton",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sheet",
+    "itemId": "shadcn/sheet",
+    "exampleId": "shadcn/sheet-rtl",
+    "title": "SheetRtl",
+    "previewExportName": "SheetRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sheet",
+    "itemId": "shadcn/sheet",
+    "exampleId": "shadcn/sheet-side",
+    "title": "SheetSide",
+    "previewExportName": "SheetSide",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-avatar",
+    "title": "SkeletonAvatar",
+    "previewExportName": "SkeletonAvatar",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-card",
+    "title": "SkeletonCard",
+    "previewExportName": "SkeletonCard",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-demo",
+    "title": "SkeletonDemo",
+    "previewExportName": "SkeletonDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-form",
+    "title": "SkeletonForm",
+    "previewExportName": "SkeletonForm",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-rtl",
+    "title": "SkeletonRtl",
+    "previewExportName": "SkeletonRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-table",
+    "title": "SkeletonTable",
+    "previewExportName": "SkeletonTable",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/skeleton",
+    "itemId": "shadcn/skeleton",
+    "exampleId": "shadcn/skeleton-text",
+    "title": "SkeletonText",
+    "previewExportName": "SkeletonText",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-controlled",
+    "title": "SliderControlled",
+    "previewExportName": "SliderControlled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-demo",
+    "title": "SliderDemo",
+    "previewExportName": "SliderDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-disabled",
+    "title": "SliderDisabled",
+    "previewExportName": "SliderDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-multiple",
+    "title": "SliderMultiple",
+    "previewExportName": "SliderMultiple",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-range",
+    "title": "SliderRange",
+    "previewExportName": "SliderRange",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-rtl",
+    "title": "SliderRtl",
+    "previewExportName": "SliderRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/slider",
+    "itemId": "shadcn/slider",
+    "exampleId": "shadcn/slider-vertical",
+    "title": "SliderVertical",
+    "previewExportName": "SliderVertical",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sonner",
+    "itemId": "shadcn/sonner",
+    "exampleId": "shadcn/sonner-demo",
+    "title": "SonnerDemo",
+    "previewExportName": "SonnerDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sonner",
+    "itemId": "shadcn/sonner",
+    "exampleId": "shadcn/sonner-description",
+    "title": "SonnerDescription",
+    "previewExportName": "SonnerDescription",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sonner",
+    "itemId": "shadcn/sonner",
+    "exampleId": "shadcn/sonner-position",
+    "title": "SonnerPosition",
+    "previewExportName": "SonnerPosition",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/sonner",
+    "itemId": "shadcn/sonner",
+    "exampleId": "shadcn/sonner-types",
+    "title": "SonnerTypes",
+    "previewExportName": "SonnerTypes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/spinner",
+    "itemId": "shadcn/spinner",
+    "exampleId": "shadcn/spinner-empty",
+    "title": "SpinnerEmpty",
+    "previewExportName": null,
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-choice-card",
+    "title": "SwitchChoiceCard",
+    "previewExportName": "SwitchChoiceCard",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-demo",
+    "title": "SwitchDemo",
+    "previewExportName": "SwitchDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-description",
+    "title": "SwitchDescription",
+    "previewExportName": "SwitchDescription",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-disabled",
+    "title": "SwitchDisabled",
+    "previewExportName": "SwitchDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-invalid",
+    "title": "SwitchInvalid",
+    "previewExportName": "SwitchInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-rtl",
+    "title": "SwitchRtl",
+    "previewExportName": "SwitchRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/switch",
+    "itemId": "shadcn/switch",
+    "exampleId": "shadcn/switch-sizes",
+    "title": "SwitchSizes",
+    "previewExportName": "SwitchSizes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-demo",
+    "title": "TabsDemo",
+    "previewExportName": "TabsDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-disabled",
+    "title": "TabsDisabled",
+    "previewExportName": "TabsDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-icons",
+    "title": "TabsIcons",
+    "previewExportName": "TabsIcons",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-line",
+    "title": "TabsLine",
+    "previewExportName": "TabsLine",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-rtl",
+    "title": "TabsRtl",
+    "previewExportName": "TabsRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tabs",
+    "itemId": "shadcn/tabs",
+    "exampleId": "shadcn/tabs-vertical",
+    "title": "TabsVertical",
+    "previewExportName": "TabsVertical",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-button",
+    "title": "TextareaButton",
+    "previewExportName": "TextareaButton",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-demo",
+    "title": "TextareaDemo",
+    "previewExportName": "TextareaDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-disabled",
+    "title": "TextareaDisabled",
+    "previewExportName": "TextareaDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-field",
+    "title": "TextareaField",
+    "previewExportName": "TextareaField",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-invalid",
+    "title": "TextareaInvalid",
+    "previewExportName": "TextareaInvalid",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/textarea",
+    "itemId": "shadcn/textarea",
+    "exampleId": "shadcn/textarea-rtl",
+    "title": "TextareaRtl",
+    "previewExportName": "TextareaRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-demo",
+    "title": "ToggleDemo",
+    "previewExportName": "ToggleDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-disabled",
+    "title": "ToggleDisabled",
+    "previewExportName": "ToggleDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-outline",
+    "title": "ToggleOutline",
+    "previewExportName": "ToggleOutline",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-rtl",
+    "title": "ToggleRtl",
+    "previewExportName": "ToggleRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-sizes",
+    "title": "ToggleSizes",
+    "previewExportName": "ToggleSizes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle",
+    "itemId": "shadcn/toggle",
+    "exampleId": "shadcn/toggle-text",
+    "title": "ToggleText",
+    "previewExportName": "ToggleText",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-demo",
+    "title": "ToggleGroupDemo",
+    "previewExportName": "ToggleGroupDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-disabled",
+    "title": "ToggleGroupDisabled",
+    "previewExportName": "ToggleGroupDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-font-weight-selector",
+    "title": "ToggleGroupFontWeightSelector",
+    "previewExportName": "ToggleGroupFontWeightSelector",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-outline",
+    "title": "ToggleGroupOutline",
+    "previewExportName": "ToggleGroupOutline",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-rtl",
+    "title": "ToggleGroupRtl",
+    "previewExportName": "ToggleGroupRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-sizes",
+    "title": "ToggleGroupSizes",
+    "previewExportName": "ToggleGroupSizes",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-spacing",
+    "title": "ToggleGroupSpacing",
+    "previewExportName": "ToggleGroupSpacing",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/toggle-group",
+    "itemId": "shadcn/toggle-group",
+    "exampleId": "shadcn/toggle-group-vertical",
+    "title": "ToggleGroupVertical",
+    "previewExportName": "ToggleGroupVertical",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tooltip",
+    "itemId": "shadcn/tooltip",
+    "exampleId": "shadcn/tooltip-demo",
+    "title": "TooltipDemo",
+    "previewExportName": "TooltipDemo",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tooltip",
+    "itemId": "shadcn/tooltip",
+    "exampleId": "shadcn/tooltip-disabled",
+    "title": "TooltipDisabled",
+    "previewExportName": "TooltipDisabled",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tooltip",
+    "itemId": "shadcn/tooltip",
+    "exampleId": "shadcn/tooltip-keyboard",
+    "title": "TooltipKeyboard",
+    "previewExportName": "TooltipKeyboard",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tooltip",
+    "itemId": "shadcn/tooltip",
+    "exampleId": "shadcn/tooltip-rtl",
+    "title": "TooltipRtl",
+    "previewExportName": "TooltipRtl",
+    "previewStatus": "static",
+    "reason": "static-status"
+  },
+  {
+    "routePath": "/components/shadcn/tooltip",
+    "itemId": "shadcn/tooltip",
+    "exampleId": "shadcn/tooltip-sides",
+    "title": "TooltipSides",
+    "previewExportName": "TooltipSides",
+    "previewStatus": "static",
+    "reason": "static-status"
+  }
+]

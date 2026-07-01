@@ -68,6 +68,54 @@ const expectLiveReadyCardsRenderPreviews = async (page: Page) => {
   )
 }
 
+const expectPreviewDescendantsStayInsidePreview = async (
+  preview: Locator,
+  selector: string,
+) => {
+  const previewBox = await preview.boundingBox()
+  const elements = preview.locator(selector)
+  const count = await elements.count()
+
+  playwrightExpect(previewBox).not.toBeNull()
+  playwrightExpect(count).toBeGreaterThan(0)
+
+  await Promise.all(
+    Array.from({ length: count }, async (_, index) => {
+      const elementBox = await elements.nth(index).boundingBox()
+
+      playwrightExpect(elementBox).not.toBeNull()
+
+      if (previewBox !== null && elementBox !== null) {
+        playwrightExpect(elementBox.x).toBeGreaterThanOrEqual(previewBox.x - 1)
+        playwrightExpect(elementBox.x + elementBox.width).toBeLessThanOrEqual(
+          previewBox.x + previewBox.width + 1,
+        )
+        playwrightExpect(elementBox.y).toBeGreaterThanOrEqual(previewBox.y - 1)
+        playwrightExpect(elementBox.y + elementBox.height).toBeLessThanOrEqual(
+          previewBox.y + previewBox.height + 1,
+        )
+      }
+    }),
+  )
+}
+
+const expectElementAbove = async (
+  element: Locator,
+  anchor: Locator,
+): Promise<void> => {
+  const elementBox = await element.boundingBox()
+  const anchorBox = await anchor.boundingBox()
+
+  playwrightExpect(elementBox).not.toBeNull()
+  playwrightExpect(anchorBox).not.toBeNull()
+
+  if (elementBox !== null && anchorBox !== null) {
+    playwrightExpect(elementBox.y + elementBox.height).toBeLessThanOrEqual(
+      anchorBox.y + 1,
+    )
+  }
+}
+
 const expectElementsStayInsideMainColumn = async (
   page: Page,
   selector: string,
@@ -491,6 +539,88 @@ playwrightTest('item docs show bounded actual examples', async ({ page }) => {
   await playwrightExpect(page.locator('#main-content')).toBeVisible()
   await expectUsageContentStaysInsideMainColumn(page)
 })
+
+playwrightTest(
+  'sidebar docs contain shell examples inside previews',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/sidebar')
+
+    await playwrightExpect(
+      page.getByRole('heading', { exact: true, level: 1, name: 'Sidebar' }),
+    ).toBeVisible()
+
+    await expectExampleCardsStayInsideMainColumn(page)
+    await expectLiveReadyCardsRenderPreviews(page)
+    await expectPreviewDescendantsStayInsidePreview(
+      page.getByLabel('SidebarControlled live preview'),
+      '[data-slot="sidebar-container"]',
+    )
+
+    const sidebarDemo = page.getByLabel('SidebarDemo live preview')
+
+    await sidebarDemo.getByRole('button', { name: /Acme Inc/u }).click()
+    await playwrightExpect(sidebarDemo.getByText('Acme Corp.')).toBeVisible()
+    await sidebarDemo.getByText('Acme Corp.').click()
+    await playwrightExpect(sidebarDemo.getByText('Startup')).toBeVisible()
+
+    await playwrightExpect(sidebarDemo.getByText('History')).toBeVisible()
+    await sidebarDemo.getByRole('button', { name: 'Playground' }).click()
+    await playwrightExpect(sidebarDemo.getByText('History')).not.toBeVisible()
+    await sidebarDemo.getByRole('button', { name: 'Playground' }).click()
+
+    await sidebarDemo.getByRole('link', { name: 'Design Engineering' }).hover()
+    await sidebarDemo
+      .getByRole('button', { name: 'More Design Engineering' })
+      .click()
+    await playwrightExpect(sidebarDemo.getByText('View Project')).toBeVisible()
+
+    const userMenuTrigger = sidebarDemo.getByRole('button', { name: /shadcn/u })
+    const userMenuContent = sidebarDemo.locator(
+      '[data-slot="dropdown-menu-content"][data-side="top"]',
+    )
+
+    await userMenuTrigger.click()
+    await playwrightExpect(
+      sidebarDemo.getByText('Upgrade to Pro'),
+    ).toBeVisible()
+    await playwrightExpect(userMenuContent).toBeVisible()
+    await expectElementAbove(userMenuContent, userMenuTrigger)
+
+    const sidebarTogglePreviews = [
+      'SidebarControlled',
+      'SidebarDemo',
+      'SidebarFooter',
+      'SidebarHeader',
+      'SidebarRtl',
+    ] as const
+
+    await sidebarTogglePreviews.reduce(async (previous, exampleTitle) => {
+      await previous
+      const preview = page.getByLabel(`${exampleTitle} live preview`)
+      const toggle =
+        exampleTitle === 'SidebarControlled'
+          ? preview.getByRole('button', { name: 'Close Sidebar' })
+          : preview.locator('[data-slot="sidebar-trigger"]')
+
+      await toggle.click()
+
+      await playwrightExpect(
+        preview.locator('[data-slot="sidebar"]'),
+      ).toHaveAttribute('data-state', 'collapsed')
+    }, Promise.resolve())
+
+    await playwrightExpect(
+      page
+        .getByLabel('SidebarControlled live preview')
+        .getByRole('button', { name: 'Open Sidebar' }),
+    ).toBeVisible()
+    await expectPreviewDescendantsStayInsidePreview(
+      page.getByLabel('SidebarRtl live preview'),
+      '[data-slot="sidebar-container"]',
+    )
+  },
+)
 
 playwrightTest(
   'toast docs render repeated fixed foldkit-push toasts as distinct visible instances',

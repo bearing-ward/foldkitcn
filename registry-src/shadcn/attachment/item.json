@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/attachment",
+  "namespace": "shadcn",
+  "name": "Attachment",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Attachment helper with Effect Schema state, size, orientation, and media variants, local part renderers, dialog-trigger examples, a FileDrop-backed attachment workflow demo, and deterministic inline SVG example icons.",
+  "sourceRoot": "registry-src/shadcn/attachment",
+  "installableSourcePaths": [
+    "src/registry/shadcn/attachment/index.ts",
+    "src/registry/shadcn/attachment/examples.ts",
+    "src/registry/shadcn/attachment/workflow.ts"
+  ],
+  "consumedThemeTokens": [
+    "--border",
+    "--card",
+    "--card-foreground",
+    "--destructive",
+    "--foreground",
+    "--muted",
+    "--muted-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Attachment",
+      "docsUrl": "https://ui.shadcn.com/docs/components/attachment",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/attachment.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/attachment.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/attachment.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/attachment.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/attachment-demo.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-group.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-image.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-states.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-trigger.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Attachment actions reuse the local shadcn Button class helper."
+      },
+      {
+        "specifier": "shadcn/dialog",
+        "classification": "registry-local",
+        "target": "shadcn/dialog",
+        "reason": "Attachment trigger examples compose the local shadcn Dialog helper."
+      },
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "Attachment uploading examples compose the local shadcn Spinner helper."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Attachment replaces CVA and merge-props helpers with local class canonicalization."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for state, size, orientation, and media variants."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "@foldkit/ui",
+        "classification": "allowed-runtime",
+        "target": "npm:@foldkit/ui",
+        "reason": "Provides the headless FileDrop Submodel used by the attachment workflow demo for drag state and file-arrival handling."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin mergeProps usage is replaced by explicit Foldkit attribute construction."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin useRender support is represented by Foldkit toView-style helpers."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon package usage is replaced by deterministic inline SVGs in the local examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/attachment-demo",
+      "title": "AttachmentDemo",
+      "description": "Attachment demo with image rows, upload progress, and file actions.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-group-demo",
+      "title": "AttachmentGroupDemo",
+      "description": "Scrollable attachment group with multiple file types and remove actions.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-image",
+      "title": "AttachmentImage",
+      "description": "Image attachments with overlay preview triggers and external links.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-sizes",
+      "title": "AttachmentSizes",
+      "description": "Default, small, and extra-small attachment rows.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-states",
+      "title": "AttachmentStates",
+      "description": "Idle, uploading, processing, error, and done attachment states.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-workflow-demo",
+      "title": "AttachmentWorkflowDemo",
+      "description": "FileDrop-backed attachment workflow with accepted file rows.",
+      "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/attachment-trigger-demo",
+      "title": "AttachmentTriggerDemo",
+      "description": "Attachment preview trigger integrated with a dialog-backed preview.",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/attachment",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box"
+    ],
+    "acceptedDeviationIds": ["shadcn-attachment-local-icons"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "partial",
+    "driftStatus": "current",
+    "availability": "preview",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-attachment-local-icons",
+      "summary": "The installable examples use local inline SVG icons instead of lucide-react.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable source cannot depend on lucide-react. Local inline SVGs preserve the rendered footprint needed by the attachment demos."
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/sidebar",
+  "namespace": "shadcn",
+  "name": "Sidebar",
+  "kind": "component",
+  "description": "Foldkit-native shadcn sidebar shell built from local shell, menu, tooltip, collapsible, sheet, avatar, and input primitives with explicit parent-controlled state.",
+  "sourceRoot": "registry-src/shadcn/sidebar",
+  "installableSourcePaths": [
+    "src/registry/shadcn/sidebar/index.ts",
+    "src/registry/shadcn/sidebar/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--foreground",
+    "--input",
+    "--muted",
+    "--muted-foreground",
+    "--popover",
+    "--popover-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--radius",
+    "--sidebar",
+    "--sidebar-accent",
+    "--sidebar-accent-foreground",
+    "--sidebar-border",
+    "--sidebar-foreground",
+    "--sidebar-primary",
+    "--sidebar-primary-foreground",
+    "--sidebar-ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sidebar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sidebar",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sidebar.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sidebar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sidebar.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/sidebar-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-footer.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group-action.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-header.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-action.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-badge.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-sub.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-rsc.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/avatar",
+        "classification": "registry-local",
+        "target": "shadcn/avatar",
+        "reason": "Sidebar footer and demo examples compose the local Avatar wrapper."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Sidebar trigger and controlled example actions compose the local Button wrapper."
+      },
+      {
+        "specifier": "shadcn/collapsible",
+        "classification": "registry-local",
+        "target": "shadcn/collapsible",
+        "reason": "Sidebar group and submenu examples use the local Collapsible wrapper."
+      },
+      {
+        "specifier": "shadcn/direction",
+        "classification": "registry-local",
+        "target": "shadcn/direction",
+        "reason": "Sidebar examples include explicit RTL composition and direction-aware class helpers."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "registry-local",
+        "target": "shadcn/dropdown-menu",
+        "reason": "Sidebar footer and action examples use the local Dropdown Menu wrapper."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Sidebar header examples use the local Input wrapper for search."
+      },
+      {
+        "specifier": "shadcn/separator",
+        "classification": "registry-local",
+        "target": "shadcn/separator",
+        "reason": "Sidebar uses the local Separator wrapper for section dividers."
+      },
+      {
+        "specifier": "shadcn/sheet",
+        "classification": "registry-local",
+        "target": "shadcn/sheet",
+        "reason": "Sidebar mobile branch composes the local Sheet wrapper."
+      },
+      {
+        "specifier": "shadcn/skeleton",
+        "classification": "registry-local",
+        "target": "shadcn/skeleton",
+        "reason": "Sidebar menu skeleton helper composes the local Skeleton wrapper."
+      },
+      {
+        "specifier": "shadcn/tooltip",
+        "classification": "registry-local",
+        "target": "shadcn/tooltip",
+        "reason": "Sidebar demo examples include tooltip composition for collapsed-style affordances."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Sidebar class helpers use the local cn canonicalizer."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for sidebar variants, states, and style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin sidebar source and fixtures are React-based; installable source stays Foldkit-native."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin sidebar examples use lucide-react icons; installable source uses local inline SVGs."
+      },
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/merge-props",
+        "reason": "Origin React helper is replaced by local Foldkit composition."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/use-render",
+        "reason": "Origin React helper is replaced by local Foldkit composition."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin sidebar CVA variant handling is replaced by explicit Schema literals and class maps."
+      },
+      {
+        "specifier": "@/hooks/use-mobile",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Sidebar mobility is represented explicitly in the parent model instead of a hidden media-query hook."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/sidebar-controlled",
+      "title": "SidebarControlled",
+      "description": "Controlled sidebar shell example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarControlled"
+    },
+    {
+      "id": "shadcn/sidebar-demo",
+      "title": "SidebarDemo",
+      "description": "Full sidebar shell with groups, badges, tooltip, and footer account menu.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarDemo"
+    },
+    {
+      "id": "shadcn/sidebar-footer",
+      "title": "SidebarFooter",
+      "description": "Footer-focused sidebar shell example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarFooter"
+    },
+    {
+      "id": "shadcn/sidebar-group-action",
+      "title": "SidebarGroupAction",
+      "description": "Sidebar group action example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarGroupAction"
+    },
+    {
+      "id": "shadcn/sidebar-group-collapsible",
+      "title": "SidebarGroupCollapsible",
+      "description": "Collapsible sidebar group example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarGroupCollapsible"
+    },
+    {
+      "id": "shadcn/sidebar-header",
+      "title": "SidebarHeader",
+      "description": "Header-focused sidebar shell example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarHeader"
+    },
+    {
+      "id": "shadcn/sidebar-menu-action",
+      "title": "SidebarMenuAction",
+      "description": "Menu action example with a dropdown menu trigger.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarMenuAction"
+    },
+    {
+      "id": "shadcn/sidebar-menu-badge",
+      "title": "SidebarMenuBadge",
+      "description": "Menu badge example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarMenuBadge"
+    },
+    {
+      "id": "shadcn/sidebar-menu-collapsible",
+      "title": "SidebarMenuCollapsible",
+      "description": "Collapsible menu and submenu example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarMenuCollapsible"
+    },
+    {
+      "id": "shadcn/sidebar-menu-sub",
+      "title": "SidebarMenuSub",
+      "description": "Nested submenu example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarMenuSub"
+    },
+    {
+      "id": "shadcn/sidebar-menu",
+      "title": "SidebarMenu",
+      "description": "Basic sidebar menu example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarMenu"
+    },
+    {
+      "id": "shadcn/sidebar-rsc",
+      "title": "SidebarRsc",
+      "description": "Server-style sidebar example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarRsc"
+    },
+    {
+      "id": "shadcn/sidebar-rtl",
+      "title": "SidebarRtl",
+      "description": "RTL sidebar example.",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "kind": "demo",
+      "previewExportName": "SidebarRtl"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/sidebar",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": [
+      "sidebar-controlled-state-boundary",
+      "sidebar-no-hidden-global-shortcut-listener"
+    ]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "sidebar-controlled-state-boundary",
+      "summary": "Open, collapsed, mobile, and active item state are explicit parent-controlled facts instead of a hidden React context or cookie-backed provider.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Foldkit keeps state in the model and avoids hidden browser storage or ambient React context."
+    },
+    {
+      "id": "sidebar-no-hidden-global-shortcut-listener",
+      "summary": "The installable source does not install a hidden global keyboard listener for cmd/ctrl+b.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Global listeners hidden in view code are forbidden here. Keyboard shortcut facts must be explicit model or command boundary events."
+    }
+  ]
+}

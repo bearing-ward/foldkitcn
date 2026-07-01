@@ -16,6 +16,14 @@ import {
   AspectRatioSquare,
 } from '../../../../../src/registry/shadcn/aspect-ratio/examples'
 import {
+  AttachmentDemo,
+  AttachmentGroupDemo,
+  AttachmentImage,
+  AttachmentSizes,
+  AttachmentStates,
+  AttachmentTriggerDemo,
+} from '../../../../../src/registry/shadcn/attachment/examples'
+import {
   AvatarBadgeIconExample,
   AvatarBasic,
   AvatarDemo,
@@ -45,6 +53,18 @@ import {
   BreadcrumbRtl,
   BreadcrumbSeparatorDemo,
 } from '../../../../../src/registry/shadcn/breadcrumb/examples'
+import {
+  BubbleAlignmentDemo,
+  BubbleCollapsibleDemo,
+  BubbleDemo,
+  BubbleGroupDemo,
+  BubbleLinkButtonDemo,
+  BubbleMarkdownDemo,
+  BubblePopoverDemo,
+  BubbleReactionsDemo,
+  BubbleTooltipDemo,
+  BubbleVariantsDemo,
+} from '../../../../../src/registry/shadcn/bubble/examples'
 import {
   ButtonGroupDemo,
   ButtonGroupDropdown,
@@ -166,7 +186,26 @@ import {
   KbdRtl,
   KbdTooltip,
 } from '../../../../../src/registry/shadcn/kbd/examples'
+import {
+  MarkerBorder,
+  MarkerDemo,
+  MarkerIconDemo,
+  MarkerLinkButton,
+  MarkerShimmer,
+  MarkerSeparator,
+  MarkerStatus,
+  MarkerVariants,
+} from '../../../../../src/registry/shadcn/marker/examples'
 import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
+import {
+  MessageActionsDemo,
+  MessageAttachmentDemo,
+  MessageAvatarDemo,
+  MessageDemo,
+  MessageGroupDemo,
+  MessageHeaderFooterDemo,
+  MessageMarkdownDemo,
+} from '../../../../../src/registry/shadcn/message/examples'
 import {
   NativeSelectDemo,
   NativeSelectDisabled,
@@ -206,6 +245,21 @@ import {
   SeparatorVertical,
 } from '../../../../../src/registry/shadcn/separator/examples'
 import {
+  SidebarControlled,
+  SidebarDemo,
+  SidebarFooter,
+  SidebarGroupAction,
+  SidebarGroupCollapsible,
+  SidebarHeader,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuCollapsible,
+  SidebarMenuSub,
+  SidebarMenu,
+  SidebarRsc,
+  SidebarRtl,
+} from '../../../../../src/registry/shadcn/sidebar/examples'
+import {
   SkeletonAvatar,
   SkeletonCard,
   SkeletonDemo,
@@ -214,6 +268,12 @@ import {
   SkeletonTable,
   SkeletonText,
 } from '../../../../../src/registry/shadcn/skeleton/examples'
+import {
+  SonnerDemo,
+  SonnerDescription,
+  SonnerPosition,
+  SonnerTypes,
+} from '../../../../../src/registry/shadcn/sonner/examples'
 import {
   SpinnerBadge,
   SpinnerButton,
@@ -407,6 +467,105 @@ const NavigationMenuParity = (): Html => {
   )
 }
 
+const MessageScrollerParity = (label: string): Html => {
+  const h = html<never>()
+
+  return h.div(
+    [h.Class('message-scroller-parity'), h.DataAttribute('case', label)],
+    [
+      h.div(
+        [
+          h.DataAttribute('slot', 'message-scroller'),
+          h.Class(
+            'group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden',
+          ),
+        ],
+        [
+          h.div(
+            [
+              h.DataAttribute('slot', 'message-scroller-viewport'),
+              h.Class(
+                'size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain',
+              ),
+            ],
+            [
+              h.div(
+                [
+                  h.DataAttribute('slot', 'message-scroller-content'),
+                  h.Role('log'),
+                  h.AriaLive('polite'),
+                  h.AriaRelevant('additions'),
+                  h.AriaBusy(false),
+                  h.Class('flex h-max min-h-full flex-col gap-6'),
+                ],
+                [
+                  h.div(
+                    [
+                      h.DataAttribute('slot', 'message-scroller-item'),
+                      h.DataAttribute('scroll-anchor', 'true'),
+                      h.Class('min-w-0 shrink-0'),
+                    ],
+                    ['Pinned message'],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          h.button(
+            [
+              h.Type('button'),
+              h.DataAttribute('slot', 'message-scroller-button'),
+              h.DataAttribute(
+                'direction',
+                label === 'load-history' ? 'start' : 'end',
+              ),
+              h.DataAttribute(
+                'active',
+                label === 'scrollable' ? 'true' : 'false',
+              ),
+              h.AriaLabel(
+                label === 'load-history'
+                  ? 'Scroll to earlier messages'
+                  : 'Scroll to end',
+              ),
+              h.Class('absolute border-border bg-background text-foreground'),
+            ],
+            [],
+          ),
+        ],
+      ),
+      ...(label === 'scrollable'
+        ? [
+            h.div(
+              [h.Role('status'), h.Class('message-scroller-status')],
+              ['1 new message'],
+            ),
+          ]
+        : []),
+      ...(label === 'empty'
+        ? [
+            h.div(
+              [
+                h.DataAttribute('slot', 'empty'),
+                h.Class('message-scroller-empty'),
+              ],
+              ['Morning, shadcn!'],
+            ),
+          ]
+        : []),
+    ],
+  )
+}
+
+const MessageScrollerDemoParity = (): Html => MessageScrollerParity('demo')
+const MessageScrollerScrollableParity = (): Html =>
+  MessageScrollerParity('scrollable')
+const MessageScrollerLoadHistoryParity = (): Html =>
+  MessageScrollerParity('load-history')
+const MessageScrollerOpeningPositionParity = (): Html =>
+  MessageScrollerParity('opening-position')
+const MessageScrollerEmptyParity = (): Html => MessageScrollerParity('empty')
+
 const components: Readonly<Record<string, () => Html>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -418,6 +577,34 @@ const components: Readonly<Record<string, () => Html>> = {
   'alert-demo': AlertDemo,
   'alert-destructive': AlertDestructive,
   'alert-rtl': AlertRtl,
+  'attachment-demo': AttachmentDemo,
+  'attachment-group': AttachmentGroupDemo,
+  'attachment-image': AttachmentImage,
+  'attachment-sizes': AttachmentSizes,
+  'attachment-states': AttachmentStates,
+  'attachment-trigger': AttachmentTriggerDemo,
+  'bubble-demo': BubbleDemo,
+  'bubble-group-demo': BubbleGroupDemo,
+  'bubble-variants': BubbleVariantsDemo,
+  'bubble-alignment': BubbleAlignmentDemo,
+  'bubble-link-button': BubbleLinkButtonDemo,
+  'bubble-reactions': BubbleReactionsDemo,
+  'bubble-collapsible': BubbleCollapsibleDemo,
+  'bubble-tooltip': BubbleTooltipDemo,
+  'bubble-popover': BubblePopoverDemo,
+  'bubble-markdown': BubbleMarkdownDemo,
+  'message-demo': MessageDemo,
+  'message-group': MessageGroupDemo,
+  'message-avatar': MessageAvatarDemo,
+  'message-header-footer': MessageHeaderFooterDemo,
+  'message-actions': MessageActionsDemo,
+  'message-attachment': MessageAttachmentDemo,
+  'message-markdown': MessageMarkdownDemo,
+  'message-scroller-demo': MessageScrollerDemoParity,
+  'message-scroller-scrollable': MessageScrollerScrollableParity,
+  'message-scroller-load-history': MessageScrollerLoadHistoryParity,
+  'message-scroller-opening-position': MessageScrollerOpeningPositionParity,
+  'message-scroller-empty': MessageScrollerEmptyParity,
   'avatar-badge-icon': AvatarBadgeIconExample,
   'avatar-badge': AvatarWithBadge,
   'avatar-basic': AvatarBasic,
@@ -449,6 +636,23 @@ const components: Readonly<Record<string, () => Html>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'sonner-demo': SonnerDemo,
+  'sonner-description': SonnerDescription,
+  'sonner-position': SonnerPosition,
+  'sonner-types': SonnerTypes,
+  'sidebar-controlled': SidebarControlled,
+  'sidebar-demo': SidebarDemo,
+  'sidebar-footer': SidebarFooter,
+  'sidebar-group-action': SidebarGroupAction,
+  'sidebar-group-collapsible': SidebarGroupCollapsible,
+  'sidebar-header': SidebarHeader,
+  'sidebar-menu-action': SidebarMenuAction,
+  'sidebar-menu-badge': SidebarMenuBadge,
+  'sidebar-menu-collapsible': SidebarMenuCollapsible,
+  'sidebar-menu-sub': SidebarMenuSub,
+  'sidebar-menu': SidebarMenu,
+  'sidebar-rsc': SidebarRsc,
+  'sidebar-rtl': SidebarRtl,
   'button-group-demo': ButtonGroupDemo,
   'button-group-dropdown': ButtonGroupDropdown,
   'button-group-input': ButtonGroupInput,
@@ -563,6 +767,14 @@ const components: Readonly<Record<string, () => Html>> = {
   'carousel-rtl': CarouselRtl,
   'carousel-size': CarouselSize,
   'carousel-spacing': CarouselSpacing,
+  'marker-demo': MarkerDemo,
+  'marker-variants': MarkerVariants,
+  'marker-icon': MarkerIconDemo,
+  'marker-border': MarkerBorder,
+  'marker-separator': MarkerSeparator,
+  'marker-shimmer': MarkerShimmer,
+  'marker-status': MarkerStatus,
+  'marker-link-button': MarkerLinkButton,
   'spinner-demo': SpinnerDemo,
   'spinner-badge': SpinnerBadge,
   'spinner-button': SpinnerButton,
@@ -647,6 +859,8 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['input-group-', 'src/registry/shadcn/input-group/examples.ts'],
   ['input-', 'src/registry/shadcn/input/examples.ts'],
   ['spinner-', 'src/registry/shadcn/spinner/examples.ts'],
+  ['marker-', 'src/registry/shadcn/marker/examples.ts'],
+  ['sidebar-', 'src/registry/shadcn/sidebar/examples.ts'],
   ['empty-', 'src/registry/shadcn/empty/examples.ts'],
   ['skeleton-', 'src/registry/shadcn/skeleton/examples.ts'],
   ['table-', 'src/registry/shadcn/table/examples.ts'],

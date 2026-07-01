@@ -570,6 +570,34 @@ dt {
   padding: 1rem;
 }
 
+.live-example-preview [data-slot='sidebar-wrapper'] {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  min-height: 28rem;
+  overflow: hidden;
+}
+
+.live-example-preview [data-slot='sidebar-wrapper'] [data-slot='sidebar'] {
+  min-height: 0;
+}
+
+.live-example-preview
+  [data-slot='sidebar-wrapper']
+  [data-slot='sidebar-container'] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  max-height: 100%;
+}
+
+.live-example-preview
+  [data-slot='sidebar-wrapper']
+  [data-slot='sidebar-inset'] {
+  min-height: 0;
+}
+
 .live-example-preview [data-slot='resizable-handle'] {
   background: transparent;
   touch-action: none;

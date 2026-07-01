@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-30T14:10:32.133Z",
+  "generatedAt": "2026-07-01T16:21:38.741Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -6965,6 +6965,260 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/attachment",
+        "namespace": "shadcn",
+        "name": "Attachment",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Attachment helper with Effect Schema state, size, orientation, and media variants, local part renderers, dialog-trigger examples, a FileDrop-backed attachment workflow demo, and deterministic inline SVG example icons.",
+        "sourceRoot": "registry-src/shadcn/attachment",
+        "installableSourcePaths": [
+          "src/registry/shadcn/attachment/index.ts",
+          "src/registry/shadcn/attachment/examples.ts",
+          "src/registry/shadcn/attachment/workflow.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--card",
+          "--card-foreground",
+          "--destructive",
+          "--foreground",
+          "--muted",
+          "--muted-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Attachment",
+            "docsUrl": "https://ui.shadcn.com/docs/components/attachment",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/attachment.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/attachment.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/attachment.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/attachment.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/attachment-demo.tsx",
+              "repos/ui/apps/v4/examples/base/attachment-group.tsx",
+              "repos/ui/apps/v4/examples/base/attachment-image.tsx",
+              "repos/ui/apps/v4/examples/base/attachment-sizes.tsx",
+              "repos/ui/apps/v4/examples/base/attachment-states.tsx",
+              "repos/ui/apps/v4/examples/base/attachment-trigger.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Attachment actions reuse the local shadcn Button class helper."
+            },
+            {
+              "specifier": "shadcn/dialog",
+              "classification": "registry-local",
+              "target": "shadcn/dialog",
+              "reason": "Attachment trigger examples compose the local shadcn Dialog helper."
+            },
+            {
+              "specifier": "shadcn/spinner",
+              "classification": "registry-local",
+              "target": "shadcn/spinner",
+              "reason": "Attachment uploading examples compose the local shadcn Spinner helper."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Attachment replaces CVA and merge-props helpers with local class canonicalization."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for state, size, orientation, and media variants."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "@foldkit/ui",
+              "classification": "allowed-runtime",
+              "target": "npm:@foldkit/ui",
+              "reason": "Provides the headless FileDrop Submodel used by the attachment workflow demo for drag state and file-arrival handling."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin mergeProps usage is replaced by explicit Foldkit attribute construction."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin useRender support is represented by Foldkit toView-style helpers."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon package usage is replaced by deterministic inline SVGs in the local examples."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/attachment-demo",
+            "title": "AttachmentDemo",
+            "description": "Attachment demo with image rows, upload progress, and file actions.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-group-demo",
+            "title": "AttachmentGroupDemo",
+            "description": "Scrollable attachment group with multiple file types and remove actions.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-image",
+            "title": "AttachmentImage",
+            "description": "Image attachments with overlay preview triggers and external links.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-sizes",
+            "title": "AttachmentSizes",
+            "description": "Default, small, and extra-small attachment rows.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-states",
+            "title": "AttachmentStates",
+            "description": "Idle, uploading, processing, error, and done attachment states.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-workflow-demo",
+            "title": "AttachmentWorkflowDemo",
+            "description": "FileDrop-backed attachment workflow with accepted file rows.",
+            "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/attachment-trigger-demo",
+            "title": "AttachmentTriggerDemo",
+            "description": "Attachment preview trigger integrated with a dialog-backed preview.",
+            "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/attachment",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-attachment-local-icons"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "partial",
+          "driftStatus": "current",
+          "availability": "preview",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-attachment-local-icons",
+            "summary": "The installable examples use local inline SVG icons instead of lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react. Local inline SVGs preserve the rendered footprint needed by the attachment demos."
+          }
+        ]
+      },
+      "manifestHash": "a7215fc0271efda6df0ca8f25dc59aaf4765247b89adf3ea95969fbd08d5de19",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/attachment/item.json",
+          "sha256": "2556ba3faba8611f19f80acae3c0d3d6d60322eb186f0c48da325b4e86dc94fd",
+          "sizeBytes": 8181,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/attachment/index.ts",
+          "sha256": "f5589c1ab8115e608bb9cbb486c2fa9e9e9cf970e77fe20e080ea76b0f8f8c8c",
+          "sizeBytes": 18494,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/attachment/examples.ts",
+          "sha256": "27d41bd36c4963306a4502a28d2a9f6b0fe8a41c1e5ff0ba59ea96282e61a4ba",
+          "sizeBytes": 16348,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/attachment/workflow.ts",
+          "sha256": "c34192be7a64ba568b7b4b2ee72306953838617af6688e02908f744aaf529264",
+          "sizeBytes": 5824,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/avatar",
         "namespace": "shadcn",
         "name": "Avatar",
@@ -7751,6 +8005,273 @@
           "path": "src/registry/shadcn/breadcrumb/examples.ts",
           "sha256": "1ab5ec56857a40ad9faff555028eababd81958d9e85aa30bcf57ee4568ab2efb",
           "sizeBytes": 8545,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/bubble",
+        "namespace": "shadcn",
+        "name": "Bubble",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Bubble wrapper with Effect Schema variants, grouped message layouts, reaction rows, clickable bubble content, and static fixture-only markdown, collapsible, tooltip, and popover examples.",
+        "sourceRoot": "registry-src/shadcn/bubble",
+        "installableSourcePaths": [
+          "src/registry/shadcn/bubble/index.ts",
+          "src/registry/shadcn/bubble/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--card",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius",
+          "--secondary",
+          "--secondary-foreground",
+          "--ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Bubble",
+            "docsUrl": "https://ui.shadcn.com/docs/components/bubble",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/bubble.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/bubble.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/bubble.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/bubble-alignment.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-collapsible.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-demo.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-group-demo.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-link-button.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-markdown.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-popover.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-reactions.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-tooltip.tsx",
+              "repos/ui/apps/v4/examples/base/bubble-variants.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Bubble uses local class canonicalization instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for variant, alignment, and reaction options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin mergeProps usage is replaced by explicit Foldkit Html composition."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "",
+              "reason": "Origin useRender usage is represented by Foldkit toView helpers."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon usage is replaced by inline SVGs in the local examples."
+            },
+            {
+              "specifier": "markdown",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "The installable source uses static markdown-style markup instead of a markdown runtime."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "sonner",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin toast feedback is not mounted in the static installable example."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/bubble-demo",
+            "title": "BubbleDemo",
+            "description": "Basic bubble conversation with grouped messages and reactions.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-group-demo",
+            "title": "BubbleGroupDemo",
+            "description": "Grouped bubble conversation from the same sender.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-variants",
+            "title": "BubbleVariantsDemo",
+            "description": "Default, secondary, muted, tinted, outline, ghost, and destructive bubble variants.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-alignment",
+            "title": "BubbleAlignmentDemo",
+            "description": "Start and end bubble alignment examples.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-link-button",
+            "title": "BubbleLinkButtonDemo",
+            "description": "Clickable bubble content rendered as static buttons.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-reactions",
+            "title": "BubbleReactionsDemo",
+            "description": "Reactions and action buttons anchored to the bubble edge.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-collapsible",
+            "title": "BubbleCollapsibleDemo",
+            "description": "Static collapsed long-content preview.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-tooltip",
+            "title": "BubbleTooltipDemo",
+            "description": "Static bubble metadata trigger.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-popover",
+            "title": "BubblePopoverDemo",
+            "description": "Static failed-action bubble with an error-details trigger.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/bubble-markdown",
+            "title": "BubbleMarkdownDemo",
+            "description": "Static markdown-style assistant copy inside a ghost bubble.",
+            "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/bubble",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-bubble-foldkit-toView-and-static-markup"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-bubble-foldkit-toView-and-static-markup",
+            "summary": "BubbleContent uses Foldkit toView composition, and the markdown example is rendered as static markup.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot use React asChild/render props or a markdown runtime. The local examples preserve the bubble surfaces with pure Foldkit Html and static markdown-style content."
+          }
+        ]
+      },
+      "manifestHash": "e89c97fb35244f7d780f65d5532d2a3e80791901b89780108354a0288e61671a",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/bubble/item.json",
+          "sha256": "b82e5e6f0a4a3c27b0e9bdd0b4221335edfb6731bfdc66646384b67591d443f3",
+          "sizeBytes": 8611,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/bubble/index.ts",
+          "sha256": "1da91fd739d99f80f30bfbda26154042ccfb01092b7b07a43adedcb77a462c77",
+          "sizeBytes": 10495,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/bubble/examples.ts",
+          "sha256": "45e540a4238eb1deaf626a142b7206358f4bb9c4141350b216e8a703db2464cf",
+          "sizeBytes": 14705,
           "role": "source"
         }
       ]
@@ -14019,6 +14540,243 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/marker",
+        "namespace": "shadcn",
+        "name": "Marker",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Marker helper with local inline SVG icons, spinner-backed status examples, separator and border variants, link-button rendering seams, and deterministic parity fixtures.",
+        "sourceRoot": "registry-src/shadcn/marker",
+        "installableSourcePaths": [
+          "src/registry/shadcn/marker/index.ts",
+          "src/registry/shadcn/marker/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--border",
+          "--foreground",
+          "--muted-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Marker",
+            "docsUrl": "https://ui.shadcn.com/docs/components/marker",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/marker.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/marker.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/marker.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/marker.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/marker-border.tsx",
+              "repos/ui/apps/v4/examples/base/marker-demo.tsx",
+              "repos/ui/apps/v4/examples/base/marker-icon.tsx",
+              "repos/ui/apps/v4/examples/base/marker-link-button.tsx",
+              "repos/ui/apps/v4/examples/base/marker-separator.tsx",
+              "repos/ui/apps/v4/examples/base/marker-shimmer.tsx",
+              "repos/ui/apps/v4/examples/base/marker-status.tsx",
+              "repos/ui/apps/v4/examples/base/marker-variants.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/spinner",
+              "classification": "registry-local",
+              "target": "shadcn/spinner",
+              "reason": "Marker status examples compose the local shadcn Spinner registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Marker uses local class canonicalization instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for the marker variant contract."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin React mergeProps usage is fixture evidence only and is replaced by explicit Foldkit attribute construction."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin useRender support is fixture evidence only and is represented by Foldkit toView composition seams."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon usage is replaced by local inline SVGs in the installable examples."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "sonner",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin notification example usage is fixture evidence only; the installable source uses local static rendering seams."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/marker-demo",
+            "title": "MarkerDemo",
+            "description": "Default markers with inline icons, spinner status, and a separator row.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-status",
+            "title": "MarkerStatus",
+            "description": "Status markers that announce loading with Spinner icons.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-variants",
+            "title": "MarkerVariants",
+            "description": "Default, separator, and border marker variants.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-icon",
+            "title": "MarkerIconDemo",
+            "description": "Markers with inline icons and a stacked icon layout.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-border",
+            "title": "MarkerBorder",
+            "description": "Bordered markers for row boundaries and implementation notes.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-separator",
+            "title": "MarkerSeparator",
+            "description": "Labeled separator markers for dates and section breaks.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-shimmer",
+            "title": "MarkerShimmer",
+            "description": "Streaming markers with shimmer text treatment.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/marker-link-button",
+            "title": "MarkerLinkButton",
+            "description": "Markers rendered as anchor and button controls through the local toView seam.",
+            "sourcePath": "src/registry/shadcn/marker/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/marker",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box"
+          ],
+          "acceptedDeviationIds": ["shadcn-marker-local-icons"]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-marker-local-icons",
+            "summary": "The installable examples use local inline SVG icons instead of lucide-react and keep the notification example deterministic.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source cannot depend on lucide-react or a client-side toast runtime. Local SVGs and static rendering seams preserve the visible marker footprint needed by the demos."
+          }
+        ]
+      },
+      "manifestHash": "964d55ad6292338b5bd483b527e9033f60494696b4ba60175cc4fb690e48975c",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/marker/item.json",
+          "sha256": "30f9d4e1112b90606d6b4b16ef06b362d255ac28c1b3341536bf92c21fc9efdd",
+          "sizeBytes": 7808,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/marker/index.ts",
+          "sha256": "65429df4567cd2e462b5cd4c63f6d257515c4de9c4c8dcc0b3d67546e3ee8d2c",
+          "sizeBytes": 5120,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/marker/examples.ts",
+          "sha256": "87bdb817b75c62ff7bdda61cefe44a213f17d27ceab1ad7a43207082848868b9",
+          "sizeBytes": 8083,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/menubar",
         "namespace": "shadcn",
         "name": "Menubar",
@@ -14268,6 +15026,510 @@
           "path": "src/registry/shadcn/menubar/examples.ts",
           "sha256": "ae13d1a8c90bc72bbe0b1ed61c1007544b33e9a3831b57f2079fc0b03fa9fc77",
           "sizeBytes": 12130,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/message-scroller",
+        "namespace": "shadcn",
+        "name": "Message Scroller",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Message Scroller with model-owned pinned/unread state, explicit scroll commands, chat viewport slots, deterministic examples, and local Message/Bubble/Input Group/Empty composition.",
+        "sourceRoot": "registry-src/shadcn/message-scroller",
+        "installableSourcePaths": [
+          "src/registry/shadcn/message-scroller/index.ts",
+          "src/registry/shadcn/message-scroller/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--card",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius",
+          "--ring",
+          "--secondary",
+          "--secondary-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Message Scroller",
+            "docsUrl": "https://ui.shadcn.com/docs/components/message-scroller",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/message-scroller.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [
+              "repos/ui/apps/v4/styles/base-nova/ui/message-scroller.tsx"
+            ],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/message-scroller.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/message-scroller.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/message-scroller-anchoring.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-animation.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-commands.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-demo.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-group-chat.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-load-history.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-opening-position.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-previous-context.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-scrollable.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-state.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-streaming.tsx",
+              "repos/ui/apps/v4/examples/base/message-scroller-visibility.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/bubble",
+              "classification": "registry-local",
+              "target": "shadcn/bubble",
+              "reason": "Message Scroller examples render assistant and user content in local Bubble helpers."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "The scroll affordance and load-history control compose the local Button item."
+            },
+            {
+              "specifier": "shadcn/card",
+              "classification": "registry-local",
+              "target": "shadcn/card",
+              "reason": "Examples preserve the origin framed chat demo with local Card helpers."
+            },
+            {
+              "specifier": "shadcn/empty",
+              "classification": "registry-local",
+              "target": "shadcn/empty",
+              "reason": "The empty conversation example composes the local Empty item."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "registry-local",
+              "target": "shadcn/input-group",
+              "reason": "The demo composer uses the local Input Group item."
+            },
+            {
+              "specifier": "shadcn/marker",
+              "classification": "registry-local",
+              "target": "shadcn/marker",
+              "reason": "Unread status examples use the local Marker item."
+            },
+            {
+              "specifier": "shadcn/message",
+              "classification": "registry-local",
+              "target": "shadcn/message",
+              "reason": "Message Scroller items wrap local Message rows."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Message Scroller uses local class canonicalization."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Command, Dom, message, and struct APIs for Foldkit-native state and side effects."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema, Match, and Effect helpers for typed contracts and commands."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@ai-sdk/react",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin streaming demos are represented by deterministic static fixtures."
+            },
+            {
+              "specifier": "@shadcn/react/message-scroller",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Installable source uses Foldkit model/update/commands instead of React primitive hooks."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icons are replaced by local inline SVGs."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "sonner",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin toast usage is not required for deterministic Message Scroller fixtures."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/message-scroller-demo",
+            "title": "MessageScrollerDemo",
+            "description": "Basic pinned chat viewport with deterministic turns and composer.",
+            "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-scroller-scrollable",
+            "title": "MessageScrollerScrollable",
+            "description": "Unpinned reader state with unread marker and active scroll button.",
+            "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-scroller-load-history",
+            "title": "MessageScrollerLoadHistory",
+            "description": "Previous context and start-direction scroll affordance.",
+            "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-scroller-opening-position",
+            "title": "MessageScrollerOpeningPosition",
+            "description": "Opening-position fixture with the most recent exchange in view.",
+            "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-scroller-empty",
+            "title": "MessageScrollerEmpty",
+            "description": "Empty conversation state using local Empty helpers.",
+            "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/message-scroller",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-message-scroller-foldkit-state-and-static-fixtures"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-message-scroller-foldkit-state-and-static-fixtures",
+            "summary": "Message Scroller replaces React primitive hooks, AI streaming, animation helpers, sonner, and lucide-react with Foldkit state, explicit commands, deterministic fixtures, and inline SVGs.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot depend on React interop, AI SDK network behavior, or animation runtime. The local item preserves origin slots and user-visible states while keeping scroll side effects in commands."
+          }
+        ]
+      },
+      "manifestHash": "0bd662269415840f8890eaf9d92b330941b3f05981449807332806cf7d45fb27",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/message-scroller/item.json",
+          "sha256": "ebc568ec852660a0f9f2bf1d81b112b5a31177366a1325602a3097447db88a7c",
+          "sizeBytes": 8991,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/message-scroller/index.ts",
+          "sha256": "ba05c96f19ae100634f520c77b3712a4f206a93016b1543733ee7e94acbc82fe",
+          "sizeBytes": 13915,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/message-scroller/examples.ts",
+          "sha256": "4522fb0ec7c0fff4d4b80b90103aa216d6936c0b889a1a8d22563cfa145700e5",
+          "sizeBytes": 9665,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/message",
+        "namespace": "shadcn",
+        "name": "Message",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Message composition over local Attachment, Avatar, Bubble, Button, Marker, and cn helpers with grouped rows, avatar placement, metadata, actions, attachments, and static markdown-style examples.",
+        "sourceRoot": "registry-src/shadcn/message",
+        "installableSourcePaths": [
+          "src/registry/shadcn/message/index.ts",
+          "src/registry/shadcn/message/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--card",
+          "--destructive",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius",
+          "--ring",
+          "--secondary",
+          "--secondary-foreground"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Message",
+            "docsUrl": "https://ui.shadcn.com/docs/components/message",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/message.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/message.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/message.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/message.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/message-actions.tsx",
+              "repos/ui/apps/v4/examples/base/message-attachment.tsx",
+              "repos/ui/apps/v4/examples/base/message-avatar.tsx",
+              "repos/ui/apps/v4/examples/base/message-demo.tsx",
+              "repos/ui/apps/v4/examples/base/message-group.tsx",
+              "repos/ui/apps/v4/examples/base/message-header-footer.tsx",
+              "repos/ui/apps/v4/examples/base/message-markdown.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/attachment",
+              "classification": "registry-local",
+              "target": "shadcn/attachment",
+              "reason": "Message attachment examples compose the local shadcn Attachment item."
+            },
+            {
+              "specifier": "shadcn/avatar",
+              "classification": "registry-local",
+              "target": "shadcn/avatar",
+              "reason": "Message avatar examples compose the local shadcn Avatar item."
+            },
+            {
+              "specifier": "shadcn/bubble",
+              "classification": "registry-local",
+              "target": "shadcn/bubble",
+              "reason": "Message body examples compose the local shadcn Bubble item."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Message footer actions compose the local shadcn Button item."
+            },
+            {
+              "specifier": "shadcn/marker",
+              "classification": "registry-local",
+              "target": "shadcn/marker",
+              "reason": "Message demo composes the local shadcn Marker item for typing status."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Message uses local class canonicalization."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for the message alignment, role, and avatar placement contracts."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "@/components/markdown",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "The installable source uses static markdown-style markup instead of a markdown runtime."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon usage is replaced by local inline SVGs in the installable examples."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/message-demo",
+            "title": "MessageDemo",
+            "description": "Basic conversation with avatars, bubbles, grouped replies, footer metadata, and a typing marker.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-group",
+            "title": "MessageGroupDemo",
+            "description": "Grouped consecutive messages from the same sender.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-avatar",
+            "title": "MessageAvatarDemo",
+            "description": "Messages with sender avatars and grouped assistant responses.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-header-footer",
+            "title": "MessageHeaderFooterDemo",
+            "description": "Header and footer metadata around message bubbles.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-actions",
+            "title": "MessageActionsDemo",
+            "description": "Footer action buttons for copy, feedback, and retry controls.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-attachment",
+            "title": "MessageAttachmentDemo",
+            "description": "Message composition with image and document attachments.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/message-markdown",
+            "title": "MessageMarkdownDemo",
+            "description": "Static markdown-style assistant response inside a ghost bubble.",
+            "sourcePath": "src/registry/shadcn/message/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/message",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-message-local-icons-and-static-markdown"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-message-local-icons-and-static-markdown",
+            "summary": "Message examples use local inline SVG icons and static markdown-style markup.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot use lucide-react or the origin Markdown runtime. The local examples preserve the message surfaces with pure Foldkit Html, local primitives, inline SVGs, and static markdown-style content."
+          }
+        ]
+      },
+      "manifestHash": "235cde8cf55a8717f075a5e763db309e9a5131bec4e3788f6eaa7f1a0cd83eb1",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/message/item.json",
+          "sha256": "8551b04ca4b856afb0d0835d6ef3f7327e9501d05feadee5a065e35af837c053",
+          "sizeBytes": 7883,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/message/index.ts",
+          "sha256": "3a4a8cc565d99b5dd7fd2e7c3228e15619318fd634dd3f3f371b19b76ea50c55",
+          "sizeBytes": 9942,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/message/examples.ts",
+          "sha256": "d1a807a0fbc69105aa26396c7d9f3c130812b4a7670437e8c25f55281df74c9f",
+          "sizeBytes": 18315,
           "role": "source"
         }
       ]
@@ -16764,6 +18026,378 @@
     {
       "item": {
         "schemaVersion": 1,
+        "id": "shadcn/sidebar",
+        "namespace": "shadcn",
+        "name": "Sidebar",
+        "kind": "component",
+        "description": "Foldkit-native shadcn sidebar shell built from local shell, menu, tooltip, collapsible, sheet, avatar, and input primitives with explicit parent-controlled state.",
+        "sourceRoot": "registry-src/shadcn/sidebar",
+        "installableSourcePaths": [
+          "src/registry/shadcn/sidebar/index.ts",
+          "src/registry/shadcn/sidebar/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius",
+          "--sidebar",
+          "--sidebar-accent",
+          "--sidebar-accent-foreground",
+          "--sidebar-border",
+          "--sidebar-foreground",
+          "--sidebar-primary",
+          "--sidebar-primary-foreground",
+          "--sidebar-ring"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Sidebar",
+            "docsUrl": "https://ui.shadcn.com/docs/components/sidebar",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sidebar.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/sidebar.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/sidebar.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/sidebar-controlled.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-demo.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-footer.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-group-action.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-group-collapsible.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-group.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-header.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-menu-action.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-menu-badge.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-menu-collapsible.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-menu-sub.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-menu.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-rsc.tsx",
+              "repos/ui/apps/v4/examples/base/sidebar-rtl.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "shadcn/avatar",
+              "classification": "registry-local",
+              "target": "shadcn/avatar",
+              "reason": "Sidebar footer and demo examples compose the local Avatar wrapper."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Sidebar trigger and controlled example actions compose the local Button wrapper."
+            },
+            {
+              "specifier": "shadcn/collapsible",
+              "classification": "registry-local",
+              "target": "shadcn/collapsible",
+              "reason": "Sidebar group and submenu examples use the local Collapsible wrapper."
+            },
+            {
+              "specifier": "shadcn/direction",
+              "classification": "registry-local",
+              "target": "shadcn/direction",
+              "reason": "Sidebar examples include explicit RTL composition and direction-aware class helpers."
+            },
+            {
+              "specifier": "shadcn/dropdown-menu",
+              "classification": "registry-local",
+              "target": "shadcn/dropdown-menu",
+              "reason": "Sidebar footer and action examples use the local Dropdown Menu wrapper."
+            },
+            {
+              "specifier": "shadcn/input",
+              "classification": "registry-local",
+              "target": "shadcn/input",
+              "reason": "Sidebar header examples use the local Input wrapper for search."
+            },
+            {
+              "specifier": "shadcn/separator",
+              "classification": "registry-local",
+              "target": "shadcn/separator",
+              "reason": "Sidebar uses the local Separator wrapper for section dividers."
+            },
+            {
+              "specifier": "shadcn/sheet",
+              "classification": "registry-local",
+              "target": "shadcn/sheet",
+              "reason": "Sidebar mobile branch composes the local Sheet wrapper."
+            },
+            {
+              "specifier": "shadcn/skeleton",
+              "classification": "registry-local",
+              "target": "shadcn/skeleton",
+              "reason": "Sidebar menu skeleton helper composes the local Skeleton wrapper."
+            },
+            {
+              "specifier": "shadcn/tooltip",
+              "classification": "registry-local",
+              "target": "shadcn/tooltip",
+              "reason": "Sidebar demo examples include tooltip composition for collapsed-style affordances."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "Sidebar class helpers use the local cn canonicalizer."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for sidebar variants, states, and style options."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin sidebar source and fixtures are React-based; installable source stays Foldkit-native."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin sidebar examples use lucide-react icons; installable source uses local inline SVGs."
+            },
+            {
+              "specifier": "@base-ui/react/merge-props",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/merge-props",
+              "reason": "Origin React helper is replaced by local Foldkit composition."
+            },
+            {
+              "specifier": "@base-ui/react/use-render",
+              "classification": "replace-with-foldkit",
+              "target": "base-ui/use-render",
+              "reason": "Origin React helper is replaced by local Foldkit composition."
+            },
+            {
+              "specifier": "class-variance-authority",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Origin sidebar CVA variant handling is replaced by explicit Schema literals and class maps."
+            },
+            {
+              "specifier": "@/hooks/use-mobile",
+              "classification": "reject-or-defer",
+              "target": "",
+              "reason": "Sidebar mobility is represented explicitly in the parent model instead of a hidden media-query hook."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/sidebar-controlled",
+            "title": "SidebarControlled",
+            "description": "Controlled sidebar shell example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarControlled",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-demo",
+            "title": "SidebarDemo",
+            "description": "Full sidebar shell with groups, badges, tooltip, and footer account menu.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarDemo",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-footer",
+            "title": "SidebarFooter",
+            "description": "Footer-focused sidebar shell example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarFooter",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-group-action",
+            "title": "SidebarGroupAction",
+            "description": "Sidebar group action example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarGroupAction",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-group-collapsible",
+            "title": "SidebarGroupCollapsible",
+            "description": "Collapsible sidebar group example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarGroupCollapsible",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-header",
+            "title": "SidebarHeader",
+            "description": "Header-focused sidebar shell example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarHeader",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-menu-action",
+            "title": "SidebarMenuAction",
+            "description": "Menu action example with a dropdown menu trigger.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarMenuAction",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-menu-badge",
+            "title": "SidebarMenuBadge",
+            "description": "Menu badge example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarMenuBadge",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-menu-collapsible",
+            "title": "SidebarMenuCollapsible",
+            "description": "Collapsible menu and submenu example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarMenuCollapsible",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-menu-sub",
+            "title": "SidebarMenuSub",
+            "description": "Nested submenu example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarMenuSub",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-menu",
+            "title": "SidebarMenu",
+            "description": "Basic sidebar menu example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarMenu",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-rsc",
+            "title": "SidebarRsc",
+            "description": "Server-style sidebar example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarRsc",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sidebar-rtl",
+            "title": "SidebarRtl",
+            "description": "RTL sidebar example.",
+            "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+            "previewExportName": "SidebarRtl",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/sidebar",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "sidebar-controlled-state-boundary",
+            "sidebar-no-hidden-global-shortcut-listener"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "sidebar-controlled-state-boundary",
+            "summary": "Open, collapsed, mobile, and active item state are explicit parent-controlled facts instead of a hidden React context or cookie-backed provider.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Foldkit keeps state in the model and avoids hidden browser storage or ambient React context."
+          },
+          {
+            "id": "sidebar-no-hidden-global-shortcut-listener",
+            "summary": "The installable source does not install a hidden global keyboard listener for cmd/ctrl+b.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Global listeners hidden in view code are forbidden here. Keyboard shortcut facts must be explicit model or command boundary events."
+          }
+        ]
+      },
+      "manifestHash": "514abbb04c235f0387685916c2156bc491e3e64de117582f46a97c525c1bd63f",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/sidebar/item.json",
+          "sha256": "998327b6bfe6185aa160dd2b43197f5d7768c49f37072449770c7aca6ea8f2cf",
+          "sizeBytes": 12609,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/sidebar/index.ts",
+          "sha256": "2197602b50a14c063c96aa830002d6cd5c0511d880f1525e046e65fc574e5509",
+          "sizeBytes": 42821,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/sidebar/examples.ts",
+          "sha256": "6c00970ddbc9b568c11c1a88a5ef27b7f1ed3ff236f27af3fa0071005c01b687",
+          "sizeBytes": 81038,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
         "id": "shadcn/skeleton",
         "namespace": "shadcn",
         "name": "Skeleton",
@@ -17197,6 +18831,216 @@
           "path": "src/registry/shadcn/slider/examples.ts",
           "sha256": "86636df8481354e8f180a752d2a5ef47a378160e092137fbbd7f44b5ae7dff79",
           "sizeBytes": 2466,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/sonner",
+        "namespace": "shadcn",
+        "name": "Sonner",
+        "kind": "component",
+        "description": "Foldkit-native shadcn base-nova Sonner wrapper built on the local Base UI Toast primitive with local classes, theme handling, inline SVG icons, and interactive examples.",
+        "sourceRoot": "registry-src/shadcn/sonner",
+        "installableSourcePaths": [
+          "src/registry/shadcn/sonner/index.ts",
+          "src/registry/shadcn/sonner/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground",
+          "--primary",
+          "--primary-foreground",
+          "--radius"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Sonner",
+            "docsUrl": "https://ui.shadcn.com/docs/components/sonner",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sonner.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sonner.tsx"],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/sonner.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/sonner.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/sonner-demo.tsx",
+              "repos/ui/apps/v4/examples/base/sonner-description.tsx",
+              "repos/ui/apps/v4/examples/base/sonner-position.tsx",
+              "repos/ui/apps/v4/examples/base/sonner-types.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/toast",
+              "classification": "registry-local",
+              "target": "base-ui/toast",
+              "reason": "shadcn Sonner composes the local Base UI Toast primitive."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Sonner examples compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Sonner uses local class canonicalization instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for the Sonner theme option and local data shaping."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "sonner",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin Sonner runtime is fixture evidence only and is replaced by the local Base UI Toast primitive."
+            },
+            {
+              "specifier": "next-themes",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin theme lookup is replaced by an explicit Effect Schema theme option."
+            },
+            {
+              "specifier": "lucide-react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Origin icon usage is replaced by local inline SVGs."
+            },
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/sonner-demo",
+            "title": "SonnerDemo",
+            "description": "Basic Sonner trigger example.",
+            "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sonner-description",
+            "title": "SonnerDescription",
+            "description": "Sonner trigger with description text.",
+            "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sonner-position",
+            "title": "SonnerPosition",
+            "description": "Sonner triggers for each viewport position.",
+            "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/sonner-types",
+            "title": "SonnerTypes",
+            "description": "Sonner triggers for default, semantic, and promise toast states.",
+            "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/sonner",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-sonner-local-icons-and-theme-attribute"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-sonner-local-icons-and-theme-attribute",
+            "summary": "The wrapper uses an explicit theme attribute and local inline SVG icons instead of next-themes and lucide-react.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable Foldkit source cannot depend on the upstream Sonner runtime, next-themes, or lucide-react. The local theme attribute and icons preserve the visible notification surface and keep the wrapper installable."
+          }
+        ]
+      },
+      "manifestHash": "5d676341515bb3137783d666824486a1a1ac6672fd49882115046bc951bcbe87",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/sonner/item.json",
+          "sha256": "b283df4d5675ac8e19d7df1713dfe9c2635254e8dffc8155be8e11136bcb7656",
+          "sizeBytes": 6357,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/sonner/index.ts",
+          "sha256": "064297c69869625e8d41c1f7047994eed91743b8f8f965dcba779cc1c12a195d",
+          "sizeBytes": 13708,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/sonner/examples.ts",
+          "sha256": "2d07f9b735212617bac6902d577ab0e3f1661b1320d7467a40c279b3cbd66c3e",
+          "sizeBytes": 6412,
           "role": "source"
         }
       ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-30T10:05:07.410Z",
+  "generatedAt": "2026-07-01T16:14:09.172Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,14 +9,14 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 52,
-      "remaining": 12
+      "imported": 59,
+      "remaining": 5
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
     "blockedCount": 5,
     "readyForDossierCount": 0,
-    "dossierReadyCount": 7,
+    "dossierReadyCount": 0,
     "sourceRefs": {
       "baseUiPinnedRef": "ea3818dec91923d4287b38be21322d2e5068d347",
       "shadcnPinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
@@ -2170,17 +2170,17 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/shadcn-sidebar/dossier.json",
         "plans/artifacts/070-next-component-dossiers/shadcn-sidebar/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
@@ -2188,7 +2188,7 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/sidebar"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 92",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/sonner",
@@ -2197,24 +2197,24 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/007-remaining-component-dossiers/shadcn-sonner/dossier.json",
         "plans/artifacts/070-next-component-dossiers/shadcn-sonner/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/sonner"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 93",
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/spinner",
@@ -2454,23 +2454,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/070-next-component-dossiers/shadcn-attachment/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "partial",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "preview",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/attachment"],
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/bubble",
@@ -2479,23 +2479,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/070-next-component-dossiers/shadcn-bubble/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/bubble"],
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/button",
@@ -2530,23 +2530,23 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/070-next-component-dossiers/shadcn-marker/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Replace CVA variant handling with Effect Schema literals and pure class maps.",
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/marker"],
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/message",
@@ -2555,22 +2555,22 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/070-next-component-dossiers/shadcn-message/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/message"],
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/message-scroller",
@@ -2579,16 +2579,16 @@
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/070-next-component-dossiers/shadcn-message-scroller/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [
         "Select the first shadcn style pack for Foldkit parity fixtures."
@@ -2596,7 +2596,7 @@
       "recommendedUrls": [
         "https://ui.shadcn.com/docs/components/message-scroller"
       ],
-      "readiness": "dossier-ready"
+      "readiness": "imported"
     }
   ]
 }

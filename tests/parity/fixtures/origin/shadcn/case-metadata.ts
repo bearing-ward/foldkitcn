@@ -58,6 +58,192 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/alert-rtl.tsx',
     },
     {
+      id: 'attachment-demo',
+      title: 'Attachment demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-demo.tsx',
+    },
+    {
+      id: 'attachment-group',
+      title: 'Attachment group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-group.tsx',
+    },
+    {
+      id: 'attachment-image',
+      title: 'Attachment image',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-image.tsx',
+    },
+    {
+      id: 'attachment-sizes',
+      title: 'Attachment sizes',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-sizes.tsx',
+    },
+    {
+      id: 'attachment-states',
+      title: 'Attachment states',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-states.tsx',
+    },
+    {
+      id: 'attachment-trigger',
+      title: 'Attachment trigger',
+      originFilePath: 'repos/ui/apps/v4/examples/base/attachment-trigger.tsx',
+    },
+    {
+      id: 'bubble-demo',
+      title: 'Bubble demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-demo.tsx',
+    },
+    {
+      id: 'bubble-group-demo',
+      title: 'Bubble group demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-group-demo.tsx',
+    },
+    {
+      id: 'bubble-variants',
+      title: 'Bubble variants',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-variants.tsx',
+    },
+    {
+      id: 'bubble-alignment',
+      title: 'Bubble alignment',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-alignment.tsx',
+    },
+    {
+      id: 'bubble-link-button',
+      title: 'Bubble link button',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-link-button.tsx',
+    },
+    {
+      id: 'bubble-reactions',
+      title: 'Bubble reactions',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-reactions.tsx',
+    },
+    {
+      id: 'bubble-collapsible',
+      title: 'Bubble collapsible',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-collapsible.tsx',
+    },
+    {
+      id: 'bubble-tooltip',
+      title: 'Bubble tooltip',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-tooltip.tsx',
+    },
+    {
+      id: 'bubble-popover',
+      title: 'Bubble popover',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-popover.tsx',
+    },
+    {
+      id: 'bubble-markdown',
+      title: 'Bubble markdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/bubble-markdown.tsx',
+    },
+    {
+      id: 'message-demo',
+      title: 'Message demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-demo.tsx',
+    },
+    {
+      id: 'message-group',
+      title: 'Message group',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-group.tsx',
+    },
+    {
+      id: 'message-avatar',
+      title: 'Message avatar',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-avatar.tsx',
+    },
+    {
+      id: 'message-header-footer',
+      title: 'Message header footer',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-header-footer.tsx',
+    },
+    {
+      id: 'message-actions',
+      title: 'Message actions',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-actions.tsx',
+    },
+    {
+      id: 'message-attachment',
+      title: 'Message attachment',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-attachment.tsx',
+    },
+    {
+      id: 'message-markdown',
+      title: 'Message markdown',
+      originFilePath: 'repos/ui/apps/v4/examples/base/message-markdown.tsx',
+    },
+    {
+      id: 'message-scroller-demo',
+      title: 'Message scroller demo',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-scroller-demo.tsx',
+    },
+    {
+      id: 'message-scroller-scrollable',
+      title: 'Message scroller scrollable',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-scroller-scrollable.tsx',
+    },
+    {
+      id: 'message-scroller-load-history',
+      title: 'Message scroller load history',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-scroller-load-history.tsx',
+    },
+    {
+      id: 'message-scroller-opening-position',
+      title: 'Message scroller opening position',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-scroller-opening-position.tsx',
+    },
+    {
+      id: 'message-scroller-empty',
+      title: 'Message scroller empty',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/message-scroller-demo.tsx',
+    },
+    {
+      id: 'marker-demo',
+      title: 'Marker demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-demo.tsx',
+    },
+    {
+      id: 'marker-variants',
+      title: 'Marker variants',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-variants.tsx',
+    },
+    {
+      id: 'marker-icon',
+      title: 'Marker icon',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-icon.tsx',
+    },
+    {
+      id: 'marker-border',
+      title: 'Marker border',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-border.tsx',
+    },
+    {
+      id: 'marker-separator',
+      title: 'Marker separator',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-separator.tsx',
+    },
+    {
+      id: 'marker-shimmer',
+      title: 'Marker shimmer',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-shimmer.tsx',
+    },
+    {
+      id: 'marker-status',
+      title: 'Marker status',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-status.tsx',
+    },
+    {
+      id: 'marker-link-button',
+      title: 'Marker link button',
+      originFilePath: 'repos/ui/apps/v4/examples/base/marker-link-button.tsx',
+    },
+    {
       id: 'avatar-badge-icon',
       title: 'Avatar badge icon',
       originFilePath: 'repos/ui/apps/v4/examples/base/avatar-badge-icon.tsx',
@@ -212,6 +398,93 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       id: 'button-rtl',
       title: 'Button RTL',
       originFilePath: 'repos/ui/apps/v4/examples/base/button-rtl.tsx',
+    },
+    {
+      id: 'sonner-demo',
+      title: 'Sonner demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sonner-demo.tsx',
+    },
+    {
+      id: 'sonner-description',
+      title: 'Sonner description',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sonner-description.tsx',
+    },
+    {
+      id: 'sonner-position',
+      title: 'Sonner position',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sonner-position.tsx',
+    },
+    {
+      id: 'sonner-types',
+      title: 'Sonner types',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sonner-types.tsx',
+    },
+    {
+      id: 'sidebar-controlled',
+      title: 'Sidebar controlled',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-controlled.tsx',
+    },
+    {
+      id: 'sidebar-demo',
+      title: 'Sidebar demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-demo.tsx',
+    },
+    {
+      id: 'sidebar-footer',
+      title: 'Sidebar footer',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-footer.tsx',
+    },
+    {
+      id: 'sidebar-group-action',
+      title: 'Sidebar group action',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-group-action.tsx',
+    },
+    {
+      id: 'sidebar-group-collapsible',
+      title: 'Sidebar group collapsible',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/sidebar-group-collapsible.tsx',
+    },
+    {
+      id: 'sidebar-header',
+      title: 'Sidebar header',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-header.tsx',
+    },
+    {
+      id: 'sidebar-menu-action',
+      title: 'Sidebar menu action',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-menu-action.tsx',
+    },
+    {
+      id: 'sidebar-menu-badge',
+      title: 'Sidebar menu badge',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-menu-badge.tsx',
+    },
+    {
+      id: 'sidebar-menu-collapsible',
+      title: 'Sidebar menu collapsible',
+      originFilePath:
+        'repos/ui/apps/v4/examples/base/sidebar-menu-collapsible.tsx',
+    },
+    {
+      id: 'sidebar-menu-sub',
+      title: 'Sidebar menu sub',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-menu-sub.tsx',
+    },
+    {
+      id: 'sidebar-menu',
+      title: 'Sidebar menu',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-menu.tsx',
+    },
+    {
+      id: 'sidebar-rsc',
+      title: 'Sidebar RSC',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-rsc.tsx',
+    },
+    {
+      id: 'sidebar-rtl',
+      title: 'Sidebar RTL',
+      originFilePath: 'repos/ui/apps/v4/examples/base/sidebar-rtl.tsx',
     },
     {
       id: 'button-group-demo',

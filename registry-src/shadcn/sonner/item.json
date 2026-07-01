@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/sonner",
+  "namespace": "shadcn",
+  "name": "Sonner",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Sonner wrapper built on the local Base UI Toast primitive with local classes, theme handling, inline SVG icons, and interactive examples.",
+  "sourceRoot": "registry-src/shadcn/sonner",
+  "installableSourcePaths": [
+    "src/registry/shadcn/sonner/index.ts",
+    "src/registry/shadcn/sonner/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--foreground",
+    "--input",
+    "--muted",
+    "--muted-foreground",
+    "--popover",
+    "--popover-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--radius"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sonner",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sonner",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sonner.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sonner.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sonner.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sonner.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/sonner-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-description.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-position.tsx",
+        "repos/ui/apps/v4/examples/base/sonner-types.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "base-ui/toast",
+        "classification": "registry-local",
+        "target": "base-ui/toast",
+        "reason": "shadcn Sonner composes the local Base UI Toast primitive."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Sonner examples compose the local shadcn Button registry item."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Sonner uses local class canonicalization instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for the Sonner theme option and local data shaping."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "sonner",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin Sonner runtime is fixture evidence only and is replaced by the local Base UI Toast primitive."
+      },
+      {
+        "specifier": "next-themes",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin theme lookup is replaced by an explicit Effect Schema theme option."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon usage is replaced by local inline SVGs."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/sonner-demo",
+      "title": "SonnerDemo",
+      "description": "Basic Sonner trigger example.",
+      "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/sonner-description",
+      "title": "SonnerDescription",
+      "description": "Sonner trigger with description text.",
+      "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/sonner-position",
+      "title": "SonnerPosition",
+      "description": "Sonner triggers for each viewport position.",
+      "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/sonner-types",
+      "title": "SonnerTypes",
+      "description": "Sonner triggers for default, semantic, and promise toast states.",
+      "sourcePath": "src/registry/shadcn/sonner/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/sonner",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": ["shadcn-sonner-local-icons-and-theme-attribute"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-sonner-local-icons-and-theme-attribute",
+      "summary": "The wrapper uses an explicit theme attribute and local inline SVG icons instead of next-themes and lucide-react.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source cannot depend on the upstream Sonner runtime, next-themes, or lucide-react. The local theme attribute and icons preserve the visible notification surface and keep the wrapper installable."
+    }
+  ]
+}

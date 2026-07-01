@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/message",
+  "namespace": "shadcn",
+  "name": "Message",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Message composition over local Attachment, Avatar, Bubble, Button, Marker, and cn helpers with grouped rows, avatar placement, metadata, actions, attachments, and static markdown-style examples.",
+  "sourceRoot": "registry-src/shadcn/message",
+  "installableSourcePaths": [
+    "src/registry/shadcn/message/index.ts",
+    "src/registry/shadcn/message/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--card",
+    "--destructive",
+    "--foreground",
+    "--input",
+    "--muted",
+    "--muted-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--radius",
+    "--ring",
+    "--secondary",
+    "--secondary-foreground"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Message",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/message.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/message.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/message-actions.tsx",
+        "repos/ui/apps/v4/examples/base/message-attachment.tsx",
+        "repos/ui/apps/v4/examples/base/message-avatar.tsx",
+        "repos/ui/apps/v4/examples/base/message-demo.tsx",
+        "repos/ui/apps/v4/examples/base/message-group.tsx",
+        "repos/ui/apps/v4/examples/base/message-header-footer.tsx",
+        "repos/ui/apps/v4/examples/base/message-markdown.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/attachment",
+        "classification": "registry-local",
+        "target": "shadcn/attachment",
+        "reason": "Message attachment examples compose the local shadcn Attachment item."
+      },
+      {
+        "specifier": "shadcn/avatar",
+        "classification": "registry-local",
+        "target": "shadcn/avatar",
+        "reason": "Message avatar examples compose the local shadcn Avatar item."
+      },
+      {
+        "specifier": "shadcn/bubble",
+        "classification": "registry-local",
+        "target": "shadcn/bubble",
+        "reason": "Message body examples compose the local shadcn Bubble item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Message footer actions compose the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/marker",
+        "classification": "registry-local",
+        "target": "shadcn/marker",
+        "reason": "Message demo composes the local shadcn Marker item for typing status."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Message uses local class canonicalization."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for the message alignment, role, and avatar placement contracts."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@/components/markdown",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The installable source uses static markdown-style markup instead of a markdown runtime."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon usage is replaced by local inline SVGs in the installable examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/message-demo",
+      "title": "MessageDemo",
+      "description": "Basic conversation with avatars, bubbles, grouped replies, footer metadata, and a typing marker.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-group",
+      "title": "MessageGroupDemo",
+      "description": "Grouped consecutive messages from the same sender.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-avatar",
+      "title": "MessageAvatarDemo",
+      "description": "Messages with sender avatars and grouped assistant responses.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-header-footer",
+      "title": "MessageHeaderFooterDemo",
+      "description": "Header and footer metadata around message bubbles.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-actions",
+      "title": "MessageActionsDemo",
+      "description": "Footer action buttons for copy, feedback, and retry controls.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-attachment",
+      "title": "MessageAttachmentDemo",
+      "description": "Message composition with image and document attachments.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/message-markdown",
+      "title": "MessageMarkdownDemo",
+      "description": "Static markdown-style assistant response inside a ghost bubble.",
+      "sourcePath": "src/registry/shadcn/message/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/message",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": ["class-tokens", "attributes", "dom-structure"],
+    "acceptedDeviationIds": ["shadcn-message-local-icons-and-static-markdown"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-message-local-icons-and-static-markdown",
+      "summary": "Message examples use local inline SVG icons and static markdown-style markup.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source cannot use lucide-react or the origin Markdown runtime. The local examples preserve the message surfaces with pure Foldkit Html, local primitives, inline SVGs, and static markdown-style content."
+    }
+  ]
+}

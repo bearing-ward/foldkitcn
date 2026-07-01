@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/bubble",
+  "routePath": "/components/shadcn/bubble",
+  "title": "Bubble",
+  "description": "Foldkit-native shadcn base-nova Bubble wrapper with Effect Schema variants, grouped message layouts, reaction rows, clickable bubble content, and static fixture-only markdown, collapsible, tooltip, and popover examples.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/bubble/docs.md",
+  "markdown": "# Bubble\n\n## Overview\n\nBubble is a Foldkit-native shadcn wrapper for conversational message surfaces.\nIt preserves the grouped bubble layout, reaction row, alignment variants, and\nthe same lightweight composition points as the origin component while keeping\nthe installable source Effect- and Foldkit-native.\n\n## Foldkit Model\n\nBubble is a stateless view helper. It owns no application state, messages, or\ncommands. Parent views decide which bubbles exist, where they align, and which\ncontent or reactions each bubble renders.\n\n## Usage\n\nCompose the bubble parts from a Foldkit view after binding `const h =\nhtml<Message>()`.\n\n```ts\nBubble<Message>({\n  align: 'end',\n  variant: 'muted',\n  children: [\n    BubbleContent<Message>({\n      children: ['I checked the registry output and removed the stale route.'],\n    }),\n  ],\n})\n```\n\nUse `BubbleContent` for the message body, `BubbleReactions` for the anchored\nreaction row, and `BubbleGroup` to cluster consecutive bubbles from the same\nsender.\n\n## Examples\n\nThe registry includes demos for the base conversation layout, grouped\nmessages, variants, alignment, clickable bubble content, reactions,\ncollapsible long content, tooltip metadata, popover details, and a\nstatic markdown-style ghost bubble.\n\nThe markdown, collapsible, tooltip, and popover examples are static fixture\nmarkup. They preserve the visible Bubble surfaces without adding a markdown\nruntime, upstream `sonner`, or extra interactive dependencies to this item.\n\n## Accessibility\n\nBubble parts carry `data-slot` attributes for every surface. Keep reaction\nbuttons labeled, keep tooltip and popover triggers visible, and use the bubble\ntext itself as the accessible name for clickable bubble content.\n\n## Foldkit Differences\n\nThe origin shadcn component uses React, CVA, Base UI render helpers, and a\nmarkdown runtime for one example. This registry item replaces those pieces with\nEffect Schema literals, pure class maps, Foldkit `toView` composition, local\nstatic controls, and static markdown-style markup in the installable example.\n\nThose differences are intentional. They keep the bubble wrapper installable in\nthe local Foldkit ecosystem while preserving the same visible component shape.\n",
+  "headings": [
+    {
+      "id": "bubble",
+      "text": "Bubble",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/bubble",
+  "defaultImportPath": "shadcn/bubble",
+  "sourceRoot": "registry-src/shadcn/bubble",
+  "installableSourcePaths": [
+    "src/registry/shadcn/bubble/index.ts",
+    "src/registry/shadcn/bubble/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Bubble",
+      "docsUrl": "https://ui.shadcn.com/docs/components/bubble",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/bubble.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/bubble.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/bubble.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/bubble-alignment.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-link-button.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-markdown.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-popover.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-reactions.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-tooltip.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-variants.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Bubble uses local class canonicalization instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant, alignment, and reaction options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin mergeProps usage is replaced by explicit Foldkit Html composition."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin useRender usage is represented by Foldkit toView helpers."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon usage is replaced by inline SVGs in the local examples."
+      },
+      {
+        "specifier": "markdown",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The installable source uses static markdown-style markup instead of a markdown runtime."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "sonner",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin toast feedback is not mounted in the static installable example."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/bubble-demo",
+      "title": "BubbleDemo",
+      "description": "Basic bubble conversation with grouped messages and reactions.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleDemo = (): Html =>\n  bubbleStack([\n    Bubble<never>({\n      align: 'end',\n      children: [BubbleContent<never>({ children: [\"Hey there! what's up?\"] })],\n    }),\n    BubbleGroup<never>({\n      children: [\n        Bubble<never>({\n          variant: 'muted',\n          children: [\n            BubbleContent<never>({\n              children: ['Hey! Want to see chat bubbles?'],\n            }),\n          ],\n        }),\n        Bubble<never>({\n          variant: 'muted',\n          children: [\n            BubbleContent<never>({\n              children: [\n                'I can group messages, switch sides, and keep the whole thread easy to scan.',\n              ],\n            }),\n            BubbleReactions<never>({\n              attributes: [\n                html<never>().Role('img'),\n                html<never>().AriaLabel('Reaction: thumbs up'),\n              ],\n              children: reactions(['👍']),\n            }),\n          ],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: ['Sure. Hit me with your best demo.'],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'Yes. You are reading a demo that is demoing itself. Very meta. Very on-brand.',\n          ],\n        }),\n        BubbleReactions<never>({\n          attributes: [\n            html<never>().Role('img'),\n            html<never>().AriaLabel(\n              'Reactions: thumbs up, fire, eyes, and 2 more',\n            ),\n          ],\n          children: reactions(['👍', '🔥', '👀', '+2']),\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-group-demo",
+      "title": "BubbleGroupDemo",
+      "description": "Grouped bubble conversation from the same sender.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleGroupDemo = (): Html =>\n  bubbleStack([\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\"Can you tell me what's the issue?\"],\n        }),\n      ],\n    }),\n    BubbleGroup<never>({\n      children: [\n        Bubble<never>({\n          align: 'end',\n          children: [BubbleContent<never>({ children: ['You tell me!'] })],\n        }),\n        Bubble<never>({\n          align: 'end',\n          children: [\n            BubbleContent<never>({\n              children: ['It worked yesterday. You broke it!'],\n            }),\n          ],\n        }),\n        Bubble<never>({\n          align: 'end',\n          children: [\n            BubbleContent<never>({ children: ['Find the bug and fix it.'] }),\n            BubbleReactions<never>({\n              align: 'start',\n              attributes: [html<never>().AriaLabel('Reactions: eyes')],\n              children: reactions(['👀']),\n            }),\n          ],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\n            \"Want me to diff yesterday's you against today's you? It's a bit embarrassing.\",\n          ],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleGroupDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-variants",
+      "title": "BubbleVariantsDemo",
+      "description": "Default, secondary, muted, tinted, outline, ghost, and destructive bubble variants.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleVariantsDemo = (): Html =>\n  roomyBubbleStack([\n    Bubble<never>({\n      children: [\n        BubbleContent<never>({\n          children: ['This is the default primary bubble.'],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'secondary',\n      align: 'end',\n      children: [\n        BubbleContent<never>({ children: ['This is the secondary variant.'] }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'This one is muted. It uses a lower emphasis color for the chat bubble.',\n          ],\n        }),\n        bareReaction('👍', 'Reaction: thumbs up'),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'tinted',\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'This one is tinted. The tint is a softer color derived from the primary color.',\n          ],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'outline',\n      children: [\n        BubbleContent<never>({\n          children: ['We can also use an outlined variant.'],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'destructive',\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: ['Or a destructive variant with a reaction.'],\n        }),\n        bareReaction('🔥', 'Reaction: fire'),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'ghost',\n      children: [\n        BubbleContent<never>({\n          children: [\n            markdownBlock(\n              'Ghost bubbles work for assistant text, markdown, and other content that should not be framed.',\n            ),\n          ],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleVariantsDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-alignment",
+      "title": "BubbleAlignmentDemo",
+      "description": "Start and end bubble alignment examples.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleAlignmentDemo = (): Html =>\n  bubbleStack([\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'This bubble is aligned to the start. This is the default alignment.',\n          ],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'This bubble is aligned to the end. Use this for user messages.',\n          ],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleAlignmentDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-link-button",
+      "title": "BubbleLinkButtonDemo",
+      "description": "Clickable bubble content rendered as static buttons.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleLinkButtonDemo = (): Html =>\n  bubbleStack([\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({ children: ['How can I help you today?'] }),\n      ],\n    }),\n    BubbleGroup<never>({\n      children: [\n        Bubble<never>({\n          variant: 'tinted',\n          align: 'end',\n          children: [bubbleContentButton('I forgot my password')],\n        }),\n        Bubble<never>({\n          variant: 'tinted',\n          align: 'end',\n          children: [bubbleContentButton('I need help with my subscription')],\n        }),\n        Bubble<never>({\n          variant: 'tinted',\n          align: 'end',\n          children: [bubbleContentButton('Something else. Talk to a human.')],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleLinkButtonDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-reactions",
+      "title": "BubbleReactionsDemo",
+      "description": "Reactions and action buttons anchored to the bubble edge.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleReactionsDemo = (): Html =>\n  roomyBubbleStack([\n    Bubble<never>({\n      variant: 'muted',\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: [\"I don't need tests, I know my code works.\"],\n        }),\n        BubbleReactions<never>({\n          align: 'start',\n          attributes: [\n            html<never>().Role('img'),\n            html<never>().AriaLabel('Reactions: thumbs up, surprised'),\n          ],\n          children: reactions(['👍', '😮']),\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: [\n            \"Bold. Fine I'll add some tests. I'll let you know when they're done.\",\n          ],\n        }),\n        BubbleReactions<never>({\n          attributes: [\n            html<never>().Role('img'),\n            html<never>().AriaLabel('Reactions: eyes, rocket, and 2 more'),\n          ],\n          children: reactions(['👀', '🚀', '+2']),\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'default',\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: [\n            'Tests passed on the first try. All 142 of them. Looking good!',\n          ],\n        }),\n        BubbleReactions<never>({\n          side: 'top',\n          align: 'start',\n          attributes: [\n            html<never>().Role('img'),\n            html<never>().AriaLabel('Reactions: party popper, clapping hands'),\n          ],\n          children: reactions(['🎉', '👏']),\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'destructive',\n      children: [\n        BubbleContent<never>({\n          children: ['Are you sure I can run this command?'],\n        }),\n        BubbleReactions<never>({\n          children: [button('Yes, run it')],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleReactionsDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-collapsible",
+      "title": "BubbleCollapsibleDemo",
+      "description": "Static collapsed long-content preview.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleCollapsibleDemo = (): Html => {\n  const h = html<never>()\n  const preview =\n    'The accessibility review found two focus states that were visually too subtle in dark mode.\\n\\nI checked the dialog, menu, and drawer paths because each one renders focusable controls inside a layered surface.\\n\\nThe dialog and drawer are fine. The menu needs the hover and focus tokens split so keyboard focus stays visible when the pointer is not involved.'\n\n  return bubbleStack([\n    Bubble<never>({\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({ children: ['How can I help you today?'] }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'muted',\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          className: 'whitespace-pre-line',\n          toView: attributes =>\n            h.div(\n              [...attributes.content],\n              [\n                h.div([], [preview]),\n                h.button(\n                  [\n                    h.Type('button'),\n                    h.Class(\n                      'mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground',\n                    ),\n                  ],\n                  ['Show more'],\n                ),\n              ],\n            ),\n        }),\n      ],\n    }),\n  ])\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleCollapsibleDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-tooltip",
+      "title": "BubbleTooltipDemo",
+      "description": "Static bubble metadata trigger.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleTooltipDemo = (): Html => {\n  const h = html<never>()\n\n  return compactBubbleStack([\n    Bubble<never>({\n      variant: 'secondary',\n      children: [\n        BubbleContent<never>({\n          children: ['Did you remove the stale route?'],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      align: 'end',\n      children: [\n        BubbleContent<never>({\n          children: ['Yes, removed it from the registry.'],\n        }),\n        bareReactions([\n          h.button(\n            [\n              h.Type('button'),\n              h.AriaLabel('Read on Jan 5, 2026 at 4:32 PM'),\n              h.Class(\n                'inline-flex size-7 items-center justify-center rounded-full bg-transparent',\n              ),\n            ],\n            ['✓'],\n          ),\n        ]),\n      ],\n    }),\n  ])\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleTooltipDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-popover",
+      "title": "BubblePopoverDemo",
+      "description": "Static failed-action bubble with an error-details trigger.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubblePopoverDemo = (): Html => {\n  const h = html<never>()\n\n  return compactBubbleStack([\n    Bubble<never>({\n      align: 'end',\n      children: [BubbleContent<never>({ children: ['Run the build script.'] })],\n    }),\n    Bubble<never>({\n      variant: 'destructive',\n      children: [\n        BubbleContent<never>({ children: ['Failed to run the command.'] }),\n        bareReactions([\n          h.button(\n            [\n              h.Type('button'),\n              h.AriaLabel('Show error details'),\n              h.Class(\n                'inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive',\n              ),\n            ],\n            ['i'],\n          ),\n        ]),\n      ],\n    }),\n  ])\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubblePopoverDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    },
+    {
+      "id": "shadcn/bubble-markdown",
+      "title": "BubbleMarkdownDemo",
+      "description": "Static markdown-style assistant copy inside a ghost bubble.",
+      "componentItemId": "shadcn/bubble",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "snippet": "export const BubbleMarkdownDemo = (): Html =>\n  bubbleStack([\n    Bubble<never>({\n      align: 'end',\n      variant: 'muted',\n      children: [\n        BubbleContent<never>({\n          children: ['Hello! Are you actually thinking?'],\n        }),\n      ],\n    }),\n    Bubble<never>({\n      variant: 'ghost',\n      children: [\n        BubbleContent<never>({\n          children: [\n            markdownBlock(\n              'Ghost bubbles work for assistant text, bold emphasis, and other content that should not be framed.',\n            ),\n          ],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "BubbleMarkdownDemo",
+      "requiredRegistryItems": ["utils/cn"],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-bubble-foldkit-toView-and-static-markup",
+        "summary": "BubbleContent uses Foldkit toView composition, and the markdown example is rendered as static markup.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source cannot use React asChild/render props or a markdown runtime. The local examples preserve the bubble surfaces with pure Foldkit Html and static markdown-style content."
+      }
+    ]
+  }
+}

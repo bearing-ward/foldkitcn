@@ -13,6 +13,7 @@ const transparentPixelPng = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
   'base64',
 )
+const parityRandomSeed = 123_456_789
 
 export interface CaptureShadcnOriginSnapshotsOptions {
   readonly grep?: string
@@ -52,15 +53,28 @@ const resizablePanelsShimModuleId =
 const carouselShimModuleId = '\0foldkitcn-shadcn-origin-carousel-shim'
 const nextImageShimModuleId = '\0foldkitcn-shadcn-origin-next-image-shim'
 const nextLinkShimModuleId = '\0foldkitcn-shadcn-origin-next-link-shim'
+const nextThemesShimModuleId = '\0foldkitcn-shadcn-origin-next-themes-shim'
+const floatingUiReactDomShimModuleId =
+  '\0foldkitcn-shadcn-origin-floating-ui-react-dom-shim'
+const cvaShimModuleId = '\0foldkitcn-shadcn-origin-cva-shim'
+const reselectShimModuleId = '\0foldkitcn-shadcn-origin-reselect-shim'
+const useSyncExternalStoreShimModuleId =
+  '\0foldkitcn-shadcn-origin-use-sync-external-store-shim'
+const useSyncExternalStoreWithSelectorShimModuleId =
+  '\0foldkitcn-shadcn-origin-use-sync-external-store-with-selector-shim'
+const sonnerShimModuleId = '\0foldkitcn-shadcn-origin-sonner-shim'
 const dropdownMenuShimModuleId = '\0foldkitcn-shadcn-origin-dropdown-menu-shim'
 const commandDialogShimModuleId =
   '\0foldkitcn-shadcn-origin-command-dialog-shim'
 const cmdkShimModuleId = '\0foldkitcn-shadcn-origin-cmdk-shim'
+const markdownShimModuleId = '\0foldkitcn-shadcn-origin-markdown-shim'
 
 const virtualModuleAliases = new Map([
   ['cmdk', cmdkShimModuleId],
   ['next/image', nextImageShimModuleId],
   ['next/link', nextLinkShimModuleId],
+  ['next-themes', nextThemesShimModuleId],
+  ['sonner', sonnerShimModuleId],
   ['react-resizable-panels', resizablePanelsShimModuleId],
   ['@/styles/base-nova/ui/dialog', commandDialogShimModuleId],
   ['@/styles/base-nova/ui-rtl/dialog', commandDialogShimModuleId],
@@ -68,11 +82,21 @@ const virtualModuleAliases = new Map([
   ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui/carousel', carouselShimModuleId],
   ['@/styles/base-nova/ui-rtl/carousel', carouselShimModuleId],
+  ['@floating-ui/react-dom', floatingUiReactDomShimModuleId],
+  ['class-variance-authority', cvaShimModuleId],
+  ['reselect', reselectShimModuleId],
+  ['use-sync-external-store/shim', useSyncExternalStoreShimModuleId],
+  [
+    'use-sync-external-store/shim/with-selector',
+    useSyncExternalStoreWithSelectorShimModuleId,
+  ],
   ['@/styles/base-nova/ui/popover', popoverShimModuleId],
   ['@/styles/base-nova/ui-rtl/popover', popoverShimModuleId],
   ['@/styles/base-nova/ui/select', selectShimModuleId],
   ['@/styles/base-nova/ui/slider', sliderShimModuleId],
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
+  ['@/styles/base-nova/ui-rtl/tooltip', tooltipShimModuleId],
+  ['@/components/markdown', markdownShimModuleId],
 ])
 
 const originAliasPlugin = (): Plugin => ({
@@ -93,8 +117,70 @@ const originAliasPlugin = (): Plugin => ({
       return repoPath('repos/base-ui/packages/react/src/use-render/index.ts')
     }
 
+    if (source === '@base-ui/react/direction-provider') {
+      return repoPath(
+        'repos/base-ui/packages/react/src/direction-provider/index.ts',
+      )
+    }
+
+    if (source === '@/hooks/use-mobile') {
+      return repoPath('repos/ui/apps/v4/hooks/use-mobile.ts')
+    }
+
+    if (source === '@/styles/base-nova/ui/collapsible') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui-rtl/collapsible') {
+      return repoPath(
+        'repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx',
+      )
+    }
+
+    if (source === '@/styles/base-nova/ui/direction') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/direction.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui-rtl/direction') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/direction.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui/sheet') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/sheet.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui-rtl/sheet') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/sheet.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui/sidebar') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx')
+    }
+
+    if (source === '@/styles/base-nova/ui-rtl/sidebar') {
+      return repoPath('repos/ui/apps/v4/styles/base-nova/ui-rtl/sidebar.tsx')
+    }
+
     if (source === '@base-ui/react/button') {
       return repoPath('repos/base-ui/packages/react/src/button/index.ts')
+    }
+
+    if (source === '@base-ui/react/dialog') {
+      return repoPath('repos/base-ui/packages/react/src/dialog/index.ts')
+    }
+
+    if (source === '@base-ui/react/popover') {
+      return repoPath('repos/base-ui/packages/react/src/popover/index.ts')
+    }
+
+    if (source === '@base-ui/react/collapsible') {
+      return repoPath('repos/base-ui/packages/react/src/collapsible/index.ts')
+    }
+
+    if (source === '@base-ui/react/floating-ui-react') {
+      return repoPath(
+        'repos/base-ui/packages/react/src/floating-ui-react/index.ts',
+      )
     }
 
     if (source === '@base-ui/react/toggle') {
@@ -164,6 +250,256 @@ const originAliasPlugin = (): Plugin => ({
 
         export default function Link({ href, children, ...props }) {
           return React.createElement('a', { ...props, href }, children)
+        }
+      `
+    }
+
+    if (id === nextThemesShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        export function ThemeProvider({ children }) {
+          return React.createElement(React.Fragment, null, children)
+        }
+
+        export function useTheme() {
+          return {
+            theme: 'system',
+            setTheme: () => {},
+          }
+        }
+        `
+    }
+
+    if (id === markdownShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const inlineNodes = text =>
+          text.split(/(\\*\\*[^*]+\\*\\*|\`[^\`]+\`)/g).filter(Boolean).map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+              return React.createElement('strong', { key: index }, part.slice(2, -2))
+            }
+
+            if (part.startsWith('\`') && part.endsWith('\`')) {
+              return React.createElement('code', { key: index }, part.slice(1, -1))
+            }
+
+            return part
+          })
+
+        export function Markdown({ children }) {
+          const text = String(children ?? '').trim()
+          const lines = text.split('\\n').map(line => line.trim()).filter(Boolean)
+          const listItems = lines.filter(line => /^\\d+\\.\\s/u.test(line))
+          const intro = lines.filter(line => !/^\\d+\\.\\s/u.test(line))
+
+          return React.createElement(
+            'div',
+            { className: 'space-y-4' },
+            ...intro.map((line, index) => React.createElement('p', { key: 'p-' + index }, inlineNodes(line))),
+            ...(listItems.length === 0
+              ? []
+              : [
+                  React.createElement(
+                    'ol',
+                    { key: 'ol', className: 'list-decimal space-y-1 pl-5' },
+                    ...listItems.map((line, index) =>
+                      React.createElement('li', { key: index }, inlineNodes(line.replace(/^\\d+\\.\\s/u, ''))),
+                    ),
+                  ),
+                ]),
+          )
+        }
+      `
+    }
+
+    if (id === floatingUiReactDomShimModuleId) {
+      return `
+        const platformValue = {
+          getClippingRect: state => state?.rects?.reference ?? state?.rects?.floating,
+          convertOffsetParentRelativeRectToViewportRelativeRect: state =>
+            state?.rects?.reference ?? state?.rects?.floating,
+          getOffsetParent: element => element?.parentNode ?? null,
+          getDimensions: element => ({
+            width: element?.offsetWidth ?? 0,
+            height: element?.offsetHeight ?? 0,
+          }),
+          getClientRects: element => element?.getClientRects?.() ?? [],
+          getWindow: element => element?.ownerDocument?.defaultView ?? window,
+          getDocumentElement: element => element?.ownerDocument?.documentElement ?? null,
+          getInnerBoundingClientRect: element => element?.getBoundingClientRect?.() ?? { x: 0, y: 0, width: 0, height: 0 },
+          getVisualOffsets: () => ({ x: 0, y: 0 }),
+          getRectRelativeToOffsetParent: ({ rect }) => rect ?? { x: 0, y: 0, width: 0, height: 0 },
+          isElement: value => value !== null && value !== undefined,
+          getViewportRect: element => ({
+            x: 0,
+            y: 0,
+            width: element?.ownerDocument?.documentElement?.clientWidth ?? 0,
+            height: element?.ownerDocument?.documentElement?.clientHeight ?? 0,
+          }),
+        }
+
+        const middlewareRecord = (name, options = {}) => ({
+          name,
+          options,
+          fn: () => ({ data: {} }),
+        })
+
+        export const arrow = options => middlewareRecord('arrow', options)
+        export const autoPlacement = options =>
+          middlewareRecord('autoPlacement', options)
+        export const flip = options => middlewareRecord('flip', options)
+        export const hide = options => middlewareRecord('hide', options)
+        export const inline = options => middlewareRecord('inline', options)
+        export const limitShift = options => middlewareRecord('limitShift', options)
+        export const offset = options => middlewareRecord('offset', options)
+        export const shift = options => middlewareRecord('shift', options)
+        export const size = options => middlewareRecord('size', options)
+
+        export const computePosition = async () => ({
+          x: 0,
+          y: 0,
+          placement: 'bottom',
+          strategy: 'absolute',
+          middlewareData: {},
+          rects: {
+            reference: { x: 0, y: 0, width: 0, height: 0 },
+            floating: { x: 0, y: 0, width: 0, height: 0 },
+          },
+        })
+
+        export const autoUpdate = (_reference, _floating, update) => {
+          const scheduleId = setTimeout(update, 0)
+          return () => clearTimeout(scheduleId)
+        }
+
+        export const getOverflowAncestors = () => []
+        export const platform = platformValue
+
+        export const detectOverflow = (_state, _options = {}) => ({})
+
+        export const useFloating = () => ({
+          x: 0,
+          y: 0,
+          strategy: 'absolute',
+          placement: 'bottom',
+          middlewareData: {},
+          refs: {
+            reference: { current: null },
+            floating: { current: null },
+            domReference: { current: null },
+            setReference: () => {},
+            setFloating: () => {},
+            setPositionReference: () => {},
+          },
+          elements: {
+            reference: null,
+            floating: null,
+            domReference: null,
+          },
+          data: {},
+          update: () => Promise.resolve(),
+        })
+      `
+    }
+
+    if (id === cvaShimModuleId) {
+      return `
+        export const cva = (base, config = {}) => (options = {}) => {
+          const variants = config.variants ?? {}
+          const defaultVariants = config.defaultVariants ?? {}
+          const classes = [base]
+
+          for (const key of Object.keys(variants)) {
+            const value = options[key] ?? defaultVariants[key]
+            if (value !== undefined) {
+              const variantMap = variants[key]
+              const className = variantMap[value]
+              if (className !== undefined) {
+                classes.push(className)
+              }
+            }
+          }
+
+          return classes.filter(Boolean).join(' ')
+        }
+      `
+    }
+
+    if (id === reselectShimModuleId) {
+      return `
+        const identityMemoize = next => (arg1, ...rest) => next(arg1, ...rest)
+
+        export const lruMemoize = identityMemoize
+
+        export const createSelectorCreator = () => {
+          return (...selectors) => {
+            const deps = selectors.slice(0, -1)
+            const combiner = selectors.at(-1)
+            return function selector(state) {
+              const selected = deps.map(selectorValue => selectorValue(state))
+              return combiner(state, ...selected)
+            }
+          }
+        }
+
+        const defaultCreator = createSelectorCreator()
+        export const createSelector = (...selectors) =>
+          defaultCreator(...selectors)
+      `
+    }
+
+    if (id === useSyncExternalStoreShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        export const useSyncExternalStore = React.useSyncExternalStore
+      `
+    }
+
+    if (id === useSyncExternalStoreWithSelectorShimModuleId) {
+      return `
+        import { useSyncExternalStore } from 'use-sync-external-store/shim'
+
+        export const useSyncExternalStoreWithSelector = (
+          subscribe,
+          getSnapshot,
+          getServerSnapshot,
+          selector,
+        ) =>
+          useSyncExternalStore(
+            subscribe,
+            () => selector(getSnapshot()),
+            () => selector(getServerSnapshot()),
+          )
+      `
+    }
+
+    if (id === sonnerShimModuleId) {
+      return `
+        import * as React from 'react'
+
+        const createToast = () => ({
+          dismiss: () => {},
+        })
+
+        export const toast = Object.assign(
+          (message, options) => createToast(message, options),
+          {
+            success: (message, options) => createToast(message, options),
+            info: (message, options) => createToast(message, options),
+            warning: (message, options) => createToast(message, options),
+            error: (message, options) => createToast(message, options),
+            promise: (promise, options) => createToast(promise, options),
+          },
+        )
+
+        export function Toaster(props) {
+          return React.createElement('div', {
+            ...props,
+            'data-sonner-toaster': '',
+          })
         }
       `
     }
@@ -824,8 +1160,16 @@ const originAliasPlugin = (): Plugin => ({
           )
         }
 
+        export function DropdownMenuLabel({ children, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-label' }, children)
+        }
+
         export function DropdownMenuSeparator(props) {
           return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-separator', role: 'separator' })
+        }
+
+        export function DropdownMenuShortcut({ children, ...props }) {
+          return React.createElement('span', { ...props, 'data-slot': 'dropdown-menu-shortcut' }, children)
         }
 
         export function DropdownMenuRadioGroup({ children, ...props }) {
@@ -900,6 +1244,54 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui/alert',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/alert.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/bubble',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/bubble.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/avatar',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/avatar.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/attachment',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/attachment.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/button',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/button.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/dialog',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/dialog.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/spinner',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/spinner.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/marker',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/marker.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-rhea/ui/message',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-rhea/ui/message.tsx',
           ),
         },
         {
@@ -1290,6 +1682,16 @@ export const captureShadcnOriginSnapshots = async (
     const page = await browser.newPage({
       viewport: { width: 800, height: 400 },
     })
+    await page.addInitScript(
+      ({ seed }) => {
+        let state = seed >>> 0
+        Math.random = () => {
+          state = (1_664_525 * state + 1_013_904_223) >>> 0
+          return state / 4_294_967_296
+        }
+      },
+      { seed: parityRandomSeed },
+    )
     const pageErrors: Array<string> = []
     page.on('pageerror', error => {
       pageErrors.push(error.message)

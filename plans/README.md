@@ -89,13 +89,14 @@ honor its STOP conditions, and update your row when done.
 | 079 | Implement shadcn Carousel | P1 | L | 058 | DONE |
 | 080 | Implement shadcn Resizable | P1 | L | 019 | DONE |
 | 081 | Implement Base UI Toast | P1 | L | 019 | DONE |
-| 082 | Implement shadcn Sonner | P1 | M | 081 | TODO |
-| 083 | Implement shadcn Sidebar | P1 | L | 056, 057, 082 | TODO |
-| 084 | Implement shadcn Attachment | P1 | M | 033, 073 | TODO |
-| 085 | Implement shadcn Bubble | P1 | M | 028, 034, 040, 082 | TODO |
-| 086 | Implement shadcn Marker | P1 | M | 073, 082 | TODO |
-| 087 | Implement shadcn Message | P1 | M | 084, 085, 086 | TODO |
-| 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | TODO |
+| 082 | Implement shadcn Sonner | P1 | M | 081 | DONE |
+| 083 | Implement shadcn Sidebar | P1 | L | 056, 057, 082 | DONE |
+| 084 | Implement shadcn Attachment | P1 | M | 033, 073 | DONE |
+| 085 | Implement shadcn Bubble | P1 | M | 028, 034, 040, 082 | DONE |
+| 086 | Implement shadcn Marker | P1 | M | 073, 082 | DONE |
+| 087 | Implement shadcn Message | P1 | M | 084, 085, 086 | DONE |
+| 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | DONE |
+| 089 | Inventory docs example cards without live previews | P1 | S | 068 | BLOCKED (repo-wide check fails on pre-existing calendar/parity/item lint) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -163,6 +164,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 083 waits for Sheet, Direction, and Sonner so Sidebar can compose local mobile, direction, tooltip/notification, and menu affordances without React context, cookies, or hidden global listeners.
 - Plans 084-088 are the chat-family cluster: Attachment, Bubble, and Marker land before Message, and Message Scroller lands last because it composes the local chat parts plus Empty/Input Group.
 - Advanced examples in Plans 078, 079, 085, 087, and 088 may be fixture-only or explicitly deferred when they require new date, autoplay, markdown, AI, animation, or network foundations. Do not install upstream runtime packages to satisfy those examples.
+- Plan 089 follows the docs live-preview runtime from Plan 068 and creates the explicit backlog for every generated example card that still lacks `.live-example-preview`; it is an inventory/gate plan, not an implementation batch for all missing previews.
 
 ## Findings considered and rejected
 

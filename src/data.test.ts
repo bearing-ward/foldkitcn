@@ -1,6 +1,10 @@
 import { Array, Option, pipe } from 'effect'
 import { describe, expect, test } from 'vitest'
 
+import {
+  createLivePreviewGapReport,
+  readLivePreviewGapArtifact,
+} from '../scripts/report-docs-live-preview-gaps'
 import { docsData, publicComponents } from './data'
 import { liveExampleViewFor } from './live-examples'
 import type { LiveExampleContext } from './live-examples'
@@ -25,6 +29,12 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   onCommandDialogOpenChange: () => ({}),
   toastStateFor: () => ToastPrimitive.createToastState(),
   onToastMessage: () => ({}),
+  sidebarIsOpenFor: (_example, defaultOpen) => defaultOpen,
+  onSidebarOpenChange: () => ({}),
+  sidebarPanelIsOpenFor: (_example, _panelId, defaultOpen) => defaultOpen,
+  onSidebarPanelOpenChange: () => ({}),
+  sidebarSelectedValueFor: (_example, _panelId, defaultValue) => defaultValue,
+  onSidebarSelectedValueChange: () => ({}),
 }
 
 const loadedPublicComponents = () => {
@@ -33,6 +43,14 @@ const loadedPublicComponents = () => {
   }
 
   return publicComponents(docsData)
+}
+
+const loadedDocsArtifacts = () => {
+  if (docsData._tag === 'FailedDocsData') {
+    throw new Error(docsData.message)
+  }
+
+  return docsData.docsArtifacts
 }
 
 const optionText = (value: Option.Option<string>): string =>
@@ -69,17 +87,6 @@ describe('generated docs data', () => {
         }),
       ),
     )
-    const completeWithoutLiveExamples = pipe(
-      completeArtifacts,
-      Array.filter(
-        artifact =>
-          artifact.examples.length > 0 &&
-          !artifact.examples.some(
-            example => example.previewStatus === 'live-ready',
-          ),
-      ),
-      Array.map(artifact => artifact.itemId),
-    )
     const missingLiveExampleRenderers = pipe(
       completeArtifacts,
       Array.flatMap(artifact =>
@@ -101,8 +108,23 @@ describe('generated docs data', () => {
     expect(completeArtifacts.map(artifact => artifact.itemId)).toContain(
       'shadcn/item',
     )
-    expect(completeWithoutLiveExamples).toStrictEqual([])
     expect(missingLiveExampleRenderers).toStrictEqual([])
+  })
+
+  test('docs live preview gaps match the checked-in inventory', async () => {
+    const currentReport = createLivePreviewGapReport(
+      loadedDocsArtifacts(),
+      liveExampleViewFor,
+      liveExampleContext,
+    )
+    const checkedInRows = await readLivePreviewGapArtifact()
+    const currentRows = currentReport.rows
+    const missingLiveRenderers = currentRows.filter(
+      row => row.reason === 'missing-live-renderer',
+    )
+
+    expect(missingLiveRenderers).toStrictEqual([])
+    expect(currentRows).toStrictEqual(checkedInRows)
   })
 
   test('base-ui Toast docs preserve the origin example set', () => {

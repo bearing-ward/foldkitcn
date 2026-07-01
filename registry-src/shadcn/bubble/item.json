@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/bubble",
+  "namespace": "shadcn",
+  "name": "Bubble",
+  "kind": "component",
+  "description": "Foldkit-native shadcn base-nova Bubble wrapper with Effect Schema variants, grouped message layouts, reaction rows, clickable bubble content, and static fixture-only markdown, collapsible, tooltip, and popover examples.",
+  "sourceRoot": "registry-src/shadcn/bubble",
+  "installableSourcePaths": [
+    "src/registry/shadcn/bubble/index.ts",
+    "src/registry/shadcn/bubble/examples.ts"
+  ],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--card",
+    "--destructive",
+    "--foreground",
+    "--input",
+    "--muted",
+    "--muted-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--radius",
+    "--secondary",
+    "--secondary-foreground",
+    "--ring"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Bubble",
+      "docsUrl": "https://ui.shadcn.com/docs/components/bubble",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/bubble.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/bubble.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/bubble.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/bubble-alignment.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-group-demo.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-link-button.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-markdown.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-popover.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-reactions.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-tooltip.tsx",
+        "repos/ui/apps/v4/examples/base/bubble-variants.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Bubble uses local class canonicalization instead of CVA."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for variant, alignment, and reaction options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin mergeProps usage is replaced by explicit Foldkit Html composition."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin useRender usage is represented by Foldkit toView helpers."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon usage is replaced by inline SVGs in the local examples."
+      },
+      {
+        "specifier": "markdown",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "The installable source uses static markdown-style markup instead of a markdown runtime."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "sonner",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin toast feedback is not mounted in the static installable example."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/bubble-demo",
+      "title": "BubbleDemo",
+      "description": "Basic bubble conversation with grouped messages and reactions.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-group-demo",
+      "title": "BubbleGroupDemo",
+      "description": "Grouped bubble conversation from the same sender.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-variants",
+      "title": "BubbleVariantsDemo",
+      "description": "Default, secondary, muted, tinted, outline, ghost, and destructive bubble variants.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-alignment",
+      "title": "BubbleAlignmentDemo",
+      "description": "Start and end bubble alignment examples.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-link-button",
+      "title": "BubbleLinkButtonDemo",
+      "description": "Clickable bubble content rendered as static buttons.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-reactions",
+      "title": "BubbleReactionsDemo",
+      "description": "Reactions and action buttons anchored to the bubble edge.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-collapsible",
+      "title": "BubbleCollapsibleDemo",
+      "description": "Static collapsed long-content preview.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-tooltip",
+      "title": "BubbleTooltipDemo",
+      "description": "Static bubble metadata trigger.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-popover",
+      "title": "BubblePopoverDemo",
+      "description": "Static failed-action bubble with an error-details trigger.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/bubble-markdown",
+      "title": "BubbleMarkdownDemo",
+      "description": "Static markdown-style assistant copy inside a ghost bubble.",
+      "sourcePath": "src/registry/shadcn/bubble/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/bubble",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [
+      "class-tokens",
+      "attributes",
+      "dom-structure",
+      "computed-style",
+      "colors",
+      "dimensions",
+      "bounding-box",
+      "keyboard-behavior"
+    ],
+    "acceptedDeviationIds": ["shadcn-bubble-foldkit-toView-and-static-markup"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-bubble-foldkit-toView-and-static-markup",
+      "summary": "BubbleContent uses Foldkit toView composition, and the markdown example is rendered as static markup.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "Installable Foldkit source cannot use React asChild/render props or a markdown runtime. The local examples preserve the bubble surfaces with pure Foldkit Html and static markdown-style content."
+    }
+  ]
+}

@@ -79,6 +79,31 @@ with local open/collapse/mobile state, examples, docs artifacts, and parity.
   - `bun run check`
   - `bun run build`
 
+## Known Follow-Up: Incomplete Live Examples
+
+The sidebar registry entry is present, but the following live examples need
+focused follow-up before they should be treated as complete. They either have
+static controls, missing Foldkit-owned interaction state, weak placement/overlay
+behavior, or insufficient browser assertions for the behavior the origin example
+is meant to demonstrate.
+
+- `SidebarFooter`: `/components/shadcn/sidebar#shadcn-sidebar-footer`
+- `SidebarGroupAction`: `/components/shadcn/sidebar#shadcn-sidebar-group-action`
+- `SidebarGroupCollapsible`: `/components/shadcn/sidebar#shadcn-sidebar-group-collapsible`
+- `SidebarHeader`: `/components/shadcn/sidebar#shadcn-sidebar-header`
+- `SidebarMenuAction`: `/components/shadcn/sidebar#shadcn-sidebar-menu-action`
+- `SidebarMenuBadge`: `/components/shadcn/sidebar#shadcn-sidebar-menu-badge`
+- `SidebarMenuCollapsible`: `/components/shadcn/sidebar#shadcn-sidebar-menu-collapsible`
+- `SidebarMenuSub`: `/components/shadcn/sidebar#shadcn-sidebar-menu-sub`
+- `SidebarMenu`: `/components/shadcn/sidebar#shadcn-sidebar-menu`
+- `SidebarRsc`: `/components/shadcn/sidebar#shadcn-sidebar-rsc`
+- `SidebarRtl`: `/components/shadcn/sidebar#shadcn-sidebar-rtl`
+
+When circling back, verify each listed example with the same standard now used
+for `SidebarDemo`: the preview should show the benefit of the component through
+working controls, and the browser test should assert actual rendered behavior,
+not only static DOM presence or `data-*` attributes.
+
 ## STOP Conditions
 
 - Stop if the implementation would require React context, cookies,

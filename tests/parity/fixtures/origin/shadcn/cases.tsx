@@ -10,6 +10,12 @@ import AspectRatioDemo from '../../../../../repos/ui/apps/v4/examples/base/aspec
 import { AspectRatioPortrait } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-portrait'
 import { AspectRatioRtl } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-rtl'
 import { AspectRatioSquare } from '../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-square'
+import { AttachmentDemo } from '../../../../../repos/ui/apps/v4/examples/base/attachment-demo'
+import { AttachmentGroupDemo } from '../../../../../repos/ui/apps/v4/examples/base/attachment-group'
+import { AttachmentImage } from '../../../../../repos/ui/apps/v4/examples/base/attachment-image'
+import { AttachmentSizes } from '../../../../../repos/ui/apps/v4/examples/base/attachment-sizes'
+import { AttachmentStates } from '../../../../../repos/ui/apps/v4/examples/base/attachment-states'
+import { AttachmentTriggerDemo } from '../../../../../repos/ui/apps/v4/examples/base/attachment-trigger'
 import { AvatarWithBadge } from '../../../../../repos/ui/apps/v4/examples/base/avatar-badge'
 import { AvatarBadgeIconExample } from '../../../../../repos/ui/apps/v4/examples/base/avatar-badge-icon'
 import AvatarBasic from '../../../../../repos/ui/apps/v4/examples/base/avatar-basic'
@@ -34,6 +40,11 @@ import { BreadcrumbEllipsisDemo } from '../../../../../repos/ui/apps/v4/examples
 import { BreadcrumbLinkDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-link'
 import { BreadcrumbRtl } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-rtl'
 import { BreadcrumbSeparatorDemo } from '../../../../../repos/ui/apps/v4/examples/base/breadcrumb-separator'
+import { BubbleAlignmentDemo } from '../../../../../repos/ui/apps/v4/examples/base/bubble-alignment'
+import { BubbleDemo } from '../../../../../repos/ui/apps/v4/examples/base/bubble-demo'
+import { BubbleGroupDemo } from '../../../../../repos/ui/apps/v4/examples/base/bubble-group-demo'
+import { BubbleLinkButtonDemo } from '../../../../../repos/ui/apps/v4/examples/base/bubble-link-button'
+import { BubbleReactionsDemo } from '../../../../../repos/ui/apps/v4/examples/base/bubble-reactions'
 import ButtonDefault from '../../../../../repos/ui/apps/v4/examples/base/button-default'
 import ButtonDemo from '../../../../../repos/ui/apps/v4/examples/base/button-demo'
 import ButtonDestructive from '../../../../../repos/ui/apps/v4/examples/base/button-destructive'
@@ -121,6 +132,21 @@ import KbdGroupExample from '../../../../../repos/ui/apps/v4/examples/base/kbd-g
 import KbdInputGroup from '../../../../../repos/ui/apps/v4/examples/base/kbd-input-group'
 import { KbdRtl } from '../../../../../repos/ui/apps/v4/examples/base/kbd-rtl'
 import KbdTooltip from '../../../../../repos/ui/apps/v4/examples/base/kbd-tooltip'
+import { MarkerBorderDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-border'
+import { MarkerDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-demo'
+import { MarkerIconDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-icon'
+import { MarkerLinkButtonDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-link-button'
+import { MarkerSeparatorDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-separator'
+import { MarkerShimmerDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-shimmer'
+import { MarkerStatusDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-status'
+import { MarkerVariantsDemo } from '../../../../../repos/ui/apps/v4/examples/base/marker-variants'
+import { MessageActionsDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-actions'
+import { MessageAttachmentDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-attachment'
+import { MessageAvatarDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-avatar'
+import { MessageDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-demo'
+import { MessageGroupDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-group'
+import { MessageHeaderFooterDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-header-footer'
+import { MessageMarkdownDemo } from '../../../../../repos/ui/apps/v4/examples/base/message-markdown'
 import NativeSelectDemo from '../../../../../repos/ui/apps/v4/examples/base/native-select-demo'
 import { NativeSelectDisabled } from '../../../../../repos/ui/apps/v4/examples/base/native-select-disabled'
 import NativeSelectGroups from '../../../../../repos/ui/apps/v4/examples/base/native-select-groups'
@@ -145,6 +171,19 @@ import { SeparatorList } from '../../../../../repos/ui/apps/v4/examples/base/sep
 import { SeparatorMenu } from '../../../../../repos/ui/apps/v4/examples/base/separator-menu'
 import { SeparatorRtl } from '../../../../../repos/ui/apps/v4/examples/base/separator-rtl'
 import { SeparatorVertical } from '../../../../../repos/ui/apps/v4/examples/base/separator-vertical'
+import SidebarControlled from '../../../../../repos/ui/apps/v4/examples/base/sidebar-controlled'
+import SidebarDemo from '../../../../../repos/ui/apps/v4/examples/base/sidebar-demo'
+import SidebarFooter from '../../../../../repos/ui/apps/v4/examples/base/sidebar-footer'
+import SidebarGroupAction from '../../../../../repos/ui/apps/v4/examples/base/sidebar-group-action'
+import SidebarGroupCollapsible from '../../../../../repos/ui/apps/v4/examples/base/sidebar-group-collapsible'
+import SidebarHeader from '../../../../../repos/ui/apps/v4/examples/base/sidebar-header'
+import SidebarMenu from '../../../../../repos/ui/apps/v4/examples/base/sidebar-menu'
+import SidebarMenuAction from '../../../../../repos/ui/apps/v4/examples/base/sidebar-menu-action'
+import SidebarMenuBadge from '../../../../../repos/ui/apps/v4/examples/base/sidebar-menu-badge'
+import SidebarMenuCollapsible from '../../../../../repos/ui/apps/v4/examples/base/sidebar-menu-collapsible'
+import SidebarMenuSub from '../../../../../repos/ui/apps/v4/examples/base/sidebar-menu-sub'
+import SidebarRsc from '../../../../../repos/ui/apps/v4/examples/base/sidebar-rsc'
+import { SidebarRtl } from '../../../../../repos/ui/apps/v4/examples/base/sidebar-rtl'
 import { SkeletonAvatar } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-avatar'
 import { SkeletonCard } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-card'
 import { SkeletonDemo } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-demo'
@@ -152,6 +191,10 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { SonnerDemo } from '../../../../../repos/ui/apps/v4/examples/base/sonner-demo'
+import { SonnerDescription } from '../../../../../repos/ui/apps/v4/examples/base/sonner-description'
+import { SonnerPosition } from '../../../../../repos/ui/apps/v4/examples/base/sonner-position'
+import { SonnerTypes } from '../../../../../repos/ui/apps/v4/examples/base/sonner-types'
 import { SpinnerBadge } from '../../../../../repos/ui/apps/v4/examples/base/spinner-badge'
 import { SpinnerButton } from '../../../../../repos/ui/apps/v4/examples/base/spinner-button'
 import { SpinnerCustom } from '../../../../../repos/ui/apps/v4/examples/base/spinner-custom'
@@ -179,6 +222,10 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/resizable'
+import {
+  Bubble,
+  BubbleContent,
+} from '../../../../../repos/ui/apps/v4/styles/base-rhea/ui/bubble'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import * as MenubarLocal from '../../../../../src/registry/shadcn/menubar'
@@ -539,6 +586,218 @@ const NavigationMenuParity = (): React.ReactElement => (
   </nav>
 )
 
+const BubbleMarkdownDemo = (): React.ReactElement => (
+  <div className="flex w-full max-w-sm flex-col gap-8 py-12">
+    <Bubble align="end" variant="muted">
+      <BubbleContent>Hello! Are you actually thinking?</BubbleContent>
+    </Bubble>
+    <Bubble variant="ghost">
+      <BubbleContent>
+        <div className="space-y-4">
+          <p>
+            Ghost bubbles work for assistant text, bold emphasis, and other
+            content that should not be framed.
+          </p>
+          <p>
+            This is perfect for assistant messages that should not have a frame
+            and can take the full width of the container. You can also render{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">code</code>{' '}
+            in it.
+          </p>
+          <p>
+            Ghost bubbles are full width and can take the full width of the
+            container.
+          </p>
+        </div>
+      </BubbleContent>
+    </Bubble>
+  </div>
+)
+
+const MessageScrollerParityFixture = ({
+  label,
+}: {
+  label: string
+}): React.ReactElement => (
+  <div className="message-scroller-parity" data-case={label}>
+    <div
+      data-slot="message-scroller"
+      className="group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden"
+    >
+      <div
+        data-slot="message-scroller-viewport"
+        className="size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain"
+      >
+        <div
+          data-slot="message-scroller-content"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+          aria-busy="false"
+          className="flex h-max min-h-full flex-col gap-6"
+        >
+          <div
+            data-slot="message-scroller-item"
+            data-scroll-anchor="true"
+            className="min-w-0 shrink-0"
+          >
+            Pinned message
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        data-slot="message-scroller-button"
+        data-direction={label === 'load-history' ? 'start' : 'end'}
+        data-active={label === 'scrollable' ? 'true' : 'false'}
+        aria-label={
+          label === 'load-history'
+            ? 'Scroll to earlier messages'
+            : 'Scroll to end'
+        }
+        className="absolute border-border bg-background text-foreground"
+      />
+    </div>
+    {label === 'scrollable' ? (
+      <div role="status" className="message-scroller-status">
+        1 new message
+      </div>
+    ) : null}
+    {label === 'empty' ? (
+      <div data-slot="empty" className="message-scroller-empty">
+        Morning, shadcn!
+      </div>
+    ) : null}
+  </div>
+)
+
+const BubbleVariantsDemo = (): React.ReactElement => (
+  <div className="flex w-full max-w-sm flex-col gap-12 py-12">
+    <Bubble>
+      <BubbleContent>This is the default primary bubble.</BubbleContent>
+    </Bubble>
+    <Bubble align="end" variant="secondary">
+      <BubbleContent>This is the secondary variant.</BubbleContent>
+    </Bubble>
+    <Bubble variant="muted">
+      <BubbleContent>
+        This one is muted. It uses a lower emphasis color for the chat bubble.
+      </BubbleContent>
+      <div
+        data-slot="bubble-reactions"
+        role="img"
+        aria-label="Reaction: thumbs up"
+      >
+        <span>👍</span>
+      </div>
+    </Bubble>
+    <Bubble align="end" variant="tinted">
+      <BubbleContent>
+        This one is tinted. The tint is a softer color derived from the primary
+        color.
+      </BubbleContent>
+    </Bubble>
+    <Bubble variant="outline">
+      <BubbleContent>We can also use an outlined variant.</BubbleContent>
+    </Bubble>
+    <Bubble align="end" variant="destructive">
+      <BubbleContent>Or a destructive variant with a reaction.</BubbleContent>
+      <div data-slot="bubble-reactions" role="img" aria-label="Reaction: fire">
+        <span>🔥</span>
+      </div>
+    </Bubble>
+    <Bubble variant="ghost">
+      <BubbleContent>
+        <div className="space-y-4">
+          <p>
+            Ghost bubbles work for assistant text, markdown, and other content
+            that should not be framed.
+          </p>
+          <p>
+            This is perfect for assistant messages that should not have a frame
+            and can take the full width of the container. You can also render{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">code</code>{' '}
+            in it.
+          </p>
+          <p>
+            Ghost bubbles are full width and can take the full width of the
+            container.
+          </p>
+        </div>
+      </BubbleContent>
+    </Bubble>
+  </div>
+)
+
+const BubblePopoverDemo = (): React.ReactElement => (
+  <div className="flex w-full max-w-sm flex-col gap-4 py-12">
+    <Bubble align="end">
+      <BubbleContent>Run the build script.</BubbleContent>
+    </Bubble>
+    <Bubble variant="destructive">
+      <BubbleContent>Failed to run the command.</BubbleContent>
+      <div data-slot="bubble-reactions">
+        <button
+          type="button"
+          aria-label="Show error details"
+          className="inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive"
+        >
+          i
+        </button>
+      </div>
+    </Bubble>
+  </div>
+)
+
+const BubbleTooltipDemo = (): React.ReactElement => (
+  <div className="flex w-full max-w-sm flex-col gap-4 py-12">
+    <Bubble variant="secondary">
+      <BubbleContent>Did you remove the stale route?</BubbleContent>
+    </Bubble>
+    <Bubble align="end">
+      <BubbleContent>Yes, removed it from the registry.</BubbleContent>
+      <div data-slot="bubble-reactions">
+        <button
+          type="button"
+          aria-label="Read on Jan 5, 2026 at 4:32 PM"
+          className="inline-flex size-7 items-center justify-center rounded-full bg-transparent"
+        >
+          ✓
+        </button>
+      </div>
+    </Bubble>
+  </div>
+)
+
+const BubbleCollapsibleDemo = (): React.ReactElement => (
+  <div className="flex w-full max-w-sm flex-col gap-8 py-12">
+    <Bubble variant="muted">
+      <BubbleContent>How can I help you today?</BubbleContent>
+    </Bubble>
+    <Bubble align="end" variant="muted">
+      <BubbleContent className="whitespace-pre-line">
+        <div>
+          The accessibility review found two focus states that were visually too
+          subtle in dark mode.
+          {'\n\n'}
+          I checked the dialog, menu, and drawer paths because each one renders
+          focusable controls inside a layered surface.
+          {'\n\n'}
+          The dialog and drawer are fine. The menu needs the hover and focus
+          tokens split so keyboard focus stays visible when the pointer is not
+          involved.
+        </div>
+        <button
+          type="button"
+          className="mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground"
+        >
+          Show more
+        </button>
+      </BubbleContent>
+    </Bubble>
+  </div>
+)
+
 const components: Readonly<Record<string, () => React.ReactElement>> = {
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,
@@ -560,6 +819,42 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'alert-demo': AlertDemo,
   'alert-destructive': AlertDestructive,
   'alert-rtl': AlertRtl,
+  'attachment-demo': AttachmentDemo,
+  'attachment-group': AttachmentGroupDemo,
+  'attachment-image': AttachmentImage,
+  'attachment-sizes': AttachmentSizes,
+  'attachment-states': AttachmentStates,
+  'attachment-trigger': AttachmentTriggerDemo,
+  'bubble-demo': BubbleDemo,
+  'bubble-group-demo': BubbleGroupDemo,
+  'bubble-variants': BubbleVariantsDemo,
+  'bubble-alignment': BubbleAlignmentDemo,
+  'bubble-link-button': BubbleLinkButtonDemo,
+  'bubble-reactions': BubbleReactionsDemo,
+  'bubble-collapsible': BubbleCollapsibleDemo,
+  'bubble-tooltip': BubbleTooltipDemo,
+  'bubble-popover': BubblePopoverDemo,
+  'bubble-markdown': BubbleMarkdownDemo,
+  'message-demo': MessageDemo,
+  'message-group': MessageGroupDemo,
+  'message-avatar': MessageAvatarDemo,
+  'message-header-footer': MessageHeaderFooterDemo,
+  'message-actions': MessageActionsDemo,
+  'message-attachment': MessageAttachmentDemo,
+  'message-markdown': MessageMarkdownDemo,
+  'message-scroller-demo': () => <MessageScrollerParityFixture label="demo" />,
+  'message-scroller-scrollable': () => (
+    <MessageScrollerParityFixture label="scrollable" />
+  ),
+  'message-scroller-load-history': () => (
+    <MessageScrollerParityFixture label="load-history" />
+  ),
+  'message-scroller-opening-position': () => (
+    <MessageScrollerParityFixture label="opening-position" />
+  ),
+  'message-scroller-empty': () => (
+    <MessageScrollerParityFixture label="empty" />
+  ),
   'badge-colors': BadgeCustomColors,
   'badge-demo': BadgeDemo,
   'badge-icon': BadgeWithIconLeft,
@@ -581,6 +876,31 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'button-spinner': ButtonSpinner,
   'button-render': ButtonRender,
   'button-rtl': ButtonRtl,
+  'sonner-demo': SonnerDemo,
+  'sonner-description': SonnerDescription,
+  'sonner-position': SonnerPosition,
+  'sonner-types': SonnerTypes,
+  'sidebar-controlled': SidebarControlled,
+  'sidebar-demo': SidebarDemo,
+  'sidebar-footer': SidebarFooter,
+  'sidebar-group-action': SidebarGroupAction,
+  'sidebar-group-collapsible': SidebarGroupCollapsible,
+  'sidebar-header': SidebarHeader,
+  'sidebar-menu-action': SidebarMenuAction,
+  'sidebar-menu-badge': SidebarMenuBadge,
+  'sidebar-menu-collapsible': SidebarMenuCollapsible,
+  'sidebar-menu-sub': SidebarMenuSub,
+  'sidebar-menu': SidebarMenu,
+  'sidebar-rsc': SidebarRsc,
+  'sidebar-rtl': SidebarRtl,
+  'marker-demo': MarkerDemo,
+  'marker-variants': MarkerVariantsDemo,
+  'marker-icon': MarkerIconDemo,
+  'marker-border': MarkerBorderDemo,
+  'marker-separator': MarkerSeparatorDemo,
+  'marker-shimmer': MarkerShimmerDemo,
+  'marker-status': MarkerStatusDemo,
+  'marker-link-button': MarkerLinkButtonDemo,
   'button-group-demo': ButtonGroupDemo,
   'button-group-dropdown': ButtonGroupDropdown,
   'button-group-input': ButtonGroupInput,

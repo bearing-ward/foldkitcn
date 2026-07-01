@@ -30,6 +30,27 @@ import type {
 } from './registry/base-ui/toast/examples'
 import type { ExampleDocsArtifact } from './registry/schema'
 import {
+  AttachmentDemo,
+  AttachmentGroupDemo,
+  AttachmentImage,
+  AttachmentSizes,
+  AttachmentStates,
+  AttachmentTriggerDemo,
+} from './registry/shadcn/attachment/examples'
+import { AttachmentWorkflowDemo } from './registry/shadcn/attachment/workflow'
+import {
+  BubbleAlignmentDemo,
+  BubbleCollapsibleDemo,
+  BubbleDemo,
+  BubbleGroupDemo,
+  BubbleLinkButtonDemo,
+  BubbleMarkdownDemo,
+  BubblePopoverDemo,
+  BubbleReactionsDemo,
+  BubbleTooltipDemo,
+  BubbleVariantsDemo,
+} from './registry/shadcn/bubble/examples'
+import {
   ButtonGroupDemo,
   ButtonGroupDropdown,
   ButtonGroupInput,
@@ -132,6 +153,32 @@ import {
   ItemVariant,
 } from './registry/shadcn/item/examples'
 import {
+  MarkerBorder,
+  MarkerDemo,
+  MarkerIconDemo,
+  MarkerLinkButton,
+  MarkerSeparator,
+  MarkerShimmer,
+  MarkerStatus,
+  MarkerVariants,
+} from './registry/shadcn/marker/examples'
+import {
+  MessageScrollerDemo,
+  MessageScrollerEmpty,
+  MessageScrollerLoadHistory,
+  MessageScrollerOpeningPosition,
+  MessageScrollerScrollable,
+} from './registry/shadcn/message-scroller/examples'
+import {
+  MessageActionsDemo,
+  MessageAttachmentDemo,
+  MessageAvatarDemo,
+  MessageDemo,
+  MessageGroupDemo,
+  MessageHeaderFooterDemo,
+  MessageMarkdownDemo,
+} from './registry/shadcn/message/examples'
+import {
   PaginationDemo,
   PaginationIconsOnly,
   PaginationRtl,
@@ -159,6 +206,33 @@ import type {
   ResizableExampleMessageChange,
 } from './registry/shadcn/resizable/examples'
 import type { ResizableState } from './registry/shadcn/resizable/index'
+import {
+  SidebarControlled,
+  SidebarDemo,
+  SidebarFooter,
+  SidebarGroupAction,
+  SidebarGroupCollapsible,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuCollapsible,
+  SidebarMenuSub,
+  SidebarRsc,
+  SidebarRtl,
+} from './registry/shadcn/sidebar/examples'
+import type {
+  SidebarController,
+  SidebarOpenChange,
+  SidebarPanelOpenChange,
+  SidebarSelectedValueChange,
+} from './registry/shadcn/sidebar/examples'
+import {
+  SonnerDemo as ShadcnSonnerDemo,
+  SonnerDescription as ShadcnSonnerDescription,
+  SonnerPosition as ShadcnSonnerPosition,
+  SonnerTypes as ShadcnSonnerTypes,
+} from './registry/shadcn/sonner/examples'
 import {
   SpinnerBadge,
   SpinnerButton,
@@ -228,6 +302,32 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     message: ToastExampleMessage,
   ) => Message
+  sidebarIsOpenFor: (
+    example: ExampleDocsArtifact,
+    defaultOpen: boolean,
+  ) => boolean
+  onSidebarOpenChange: (
+    example: ExampleDocsArtifact,
+    change: SidebarOpenChange,
+  ) => Message
+  sidebarPanelIsOpenFor: (
+    example: ExampleDocsArtifact,
+    panelId: string,
+    defaultOpen: boolean,
+  ) => boolean
+  onSidebarPanelOpenChange: (
+    example: ExampleDocsArtifact,
+    change: SidebarPanelOpenChange,
+  ) => Message
+  sidebarSelectedValueFor: (
+    example: ExampleDocsArtifact,
+    panelId: string,
+    defaultValue: string,
+  ) => string
+  onSidebarSelectedValueChange: (
+    example: ExampleDocsArtifact,
+    change: SidebarSelectedValueChange,
+  ) => Message
 }>
 
 type RadioGroupExampleView = <Message = never>(
@@ -256,6 +356,10 @@ type ResizableExampleView = <Message = never>(
 
 type ToastExampleView = <Message = never>(
   controller?: ToastExampleController<Message>,
+) => Html
+
+type SidebarExampleView = <Message = never>(
+  controller?: SidebarController<Message>,
 ) => Html
 
 type LiveExampleDefinition = Readonly<{
@@ -369,6 +473,25 @@ const toastExample = (view: ToastExampleView): LiveExampleDefinition => ({
     }),
 })
 
+const sidebarExample = (
+  view: SidebarExampleView,
+  defaultOpen = true,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      open: context.sidebarIsOpenFor(example, defaultOpen),
+      onOpenChange: change => context.onSidebarOpenChange(example, change),
+      panelIsOpen: (panelId, panelDefaultOpen) =>
+        context.sidebarPanelIsOpenFor(example, panelId, panelDefaultOpen),
+      onPanelOpenChange: change =>
+        context.onSidebarPanelOpenChange(example, change),
+      selectedValueFor: (panelId, defaultValue) =>
+        context.sidebarSelectedValueFor(example, panelId, defaultValue),
+      onSelectedValueChange: change =>
+        context.onSidebarSelectedValueChange(example, change),
+    }),
+})
+
 const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('base-ui/button', 'ButtonDemo')]:
     staticExample(BaseButtonDemo),
@@ -427,6 +550,75 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/button', 'ButtonRender')]:
     staticExample(ButtonRender),
   [liveExampleKey('shadcn/button', 'ButtonRtl')]: staticExample(ButtonRtl),
+  [liveExampleKey('shadcn/attachment', 'AttachmentDemo')]:
+    staticExample(AttachmentDemo),
+  [liveExampleKey('shadcn/attachment', 'AttachmentGroupDemo')]:
+    staticExample(AttachmentGroupDemo),
+  [liveExampleKey('shadcn/attachment', 'AttachmentImage')]:
+    staticExample(AttachmentImage),
+  [liveExampleKey('shadcn/attachment', 'AttachmentSizes')]:
+    staticExample(AttachmentSizes),
+  [liveExampleKey('shadcn/attachment', 'AttachmentStates')]:
+    staticExample(AttachmentStates),
+  [liveExampleKey('shadcn/attachment', 'AttachmentWorkflowDemo')]:
+    staticExample(AttachmentWorkflowDemo),
+  [liveExampleKey('shadcn/attachment', 'AttachmentTriggerDemo')]: staticExample(
+    AttachmentTriggerDemo,
+  ),
+  [liveExampleKey('shadcn/bubble', 'BubbleDemo')]: staticExample(BubbleDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleGroupDemo')]:
+    staticExample(BubbleGroupDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleVariantsDemo')]:
+    staticExample(BubbleVariantsDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleAlignmentDemo')]:
+    staticExample(BubbleAlignmentDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleLinkButtonDemo')]:
+    staticExample(BubbleLinkButtonDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleReactionsDemo')]:
+    staticExample(BubbleReactionsDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleCollapsibleDemo')]: staticExample(
+    BubbleCollapsibleDemo,
+  ),
+  [liveExampleKey('shadcn/bubble', 'BubbleTooltipDemo')]:
+    staticExample(BubbleTooltipDemo),
+  [liveExampleKey('shadcn/bubble', 'BubblePopoverDemo')]:
+    staticExample(BubblePopoverDemo),
+  [liveExampleKey('shadcn/bubble', 'BubbleMarkdownDemo')]:
+    staticExample(BubbleMarkdownDemo),
+  [liveExampleKey('shadcn/message', 'MessageDemo')]: staticExample(MessageDemo),
+  [liveExampleKey('shadcn/message', 'MessageGroupDemo')]:
+    staticExample(MessageGroupDemo),
+  [liveExampleKey('shadcn/message', 'MessageAvatarDemo')]:
+    staticExample(MessageAvatarDemo),
+  [liveExampleKey('shadcn/message', 'MessageHeaderFooterDemo')]: staticExample(
+    MessageHeaderFooterDemo,
+  ),
+  [liveExampleKey('shadcn/message', 'MessageActionsDemo')]:
+    staticExample(MessageActionsDemo),
+  [liveExampleKey('shadcn/message', 'MessageAttachmentDemo')]: staticExample(
+    MessageAttachmentDemo,
+  ),
+  [liveExampleKey('shadcn/message', 'MessageMarkdownDemo')]:
+    staticExample(MessageMarkdownDemo),
+  [liveExampleKey('shadcn/message-scroller', 'MessageScrollerDemo')]:
+    staticExample(MessageScrollerDemo),
+  [liveExampleKey('shadcn/message-scroller', 'MessageScrollerScrollable')]:
+    staticExample(MessageScrollerScrollable),
+  [liveExampleKey('shadcn/message-scroller', 'MessageScrollerLoadHistory')]:
+    staticExample(MessageScrollerLoadHistory),
+  [liveExampleKey('shadcn/message-scroller', 'MessageScrollerOpeningPosition')]:
+    staticExample(MessageScrollerOpeningPosition),
+  [liveExampleKey('shadcn/message-scroller', 'MessageScrollerEmpty')]:
+    staticExample(MessageScrollerEmpty),
+  [liveExampleKey('shadcn/sonner', 'SonnerDemo')]:
+    staticExample(ShadcnSonnerDemo),
+  [liveExampleKey('shadcn/sonner', 'SonnerDescription')]: staticExample(
+    ShadcnSonnerDescription,
+  ),
+  [liveExampleKey('shadcn/sonner', 'SonnerPosition')]:
+    staticExample(ShadcnSonnerPosition),
+  [liveExampleKey('shadcn/sonner', 'SonnerTypes')]:
+    staticExample(ShadcnSonnerTypes),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDemo')]:
     staticExample(ButtonGroupDemo),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDropdown')]:
@@ -500,6 +692,21 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/item', 'ItemRtl')]: staticExample(ItemRtl),
   [liveExampleKey('shadcn/item', 'ItemSizeDemo')]: staticExample(ItemSizeDemo),
   [liveExampleKey('shadcn/item', 'ItemVariant')]: staticExample(ItemVariant),
+  [liveExampleKey('shadcn/marker', 'MarkerDemo')]: staticExample(MarkerDemo),
+  [liveExampleKey('shadcn/marker', 'MarkerStatus')]:
+    staticExample(MarkerStatus),
+  [liveExampleKey('shadcn/marker', 'MarkerVariants')]:
+    staticExample(MarkerVariants),
+  [liveExampleKey('shadcn/marker', 'MarkerIconDemo')]:
+    staticExample(MarkerIconDemo),
+  [liveExampleKey('shadcn/marker', 'MarkerBorder')]:
+    staticExample(MarkerBorder),
+  [liveExampleKey('shadcn/marker', 'MarkerSeparator')]:
+    staticExample(MarkerSeparator),
+  [liveExampleKey('shadcn/marker', 'MarkerShimmer')]:
+    staticExample(MarkerShimmer),
+  [liveExampleKey('shadcn/marker', 'MarkerLinkButton')]:
+    staticExample(MarkerLinkButton),
   [liveExampleKey('shadcn/input-group', 'InputGroupDemo')]:
     staticExample(InputGroupDemo),
   [liveExampleKey('shadcn/input-group', 'InputGroupBasic')]:
@@ -580,6 +787,31 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     resizableExample(ResizableVertical),
   [liveExampleKey('shadcn/resizable', 'ResizableRtl')]:
     resizableExample(ResizableRtl),
+  [liveExampleKey('shadcn/sidebar', 'SidebarControlled')]:
+    sidebarExample(SidebarControlled),
+  [liveExampleKey('shadcn/sidebar', 'SidebarDemo')]:
+    sidebarExample(SidebarDemo),
+  [liveExampleKey('shadcn/sidebar', 'SidebarFooter')]:
+    sidebarExample(SidebarFooter),
+  [liveExampleKey('shadcn/sidebar', 'SidebarGroupAction')]:
+    staticExample(SidebarGroupAction),
+  [liveExampleKey('shadcn/sidebar', 'SidebarGroupCollapsible')]: staticExample(
+    SidebarGroupCollapsible,
+  ),
+  [liveExampleKey('shadcn/sidebar', 'SidebarHeader')]:
+    sidebarExample(SidebarHeader),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenuAction')]:
+    staticExample(SidebarMenuAction),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenuBadge')]:
+    staticExample(SidebarMenuBadge),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenuCollapsible')]: staticExample(
+    SidebarMenuCollapsible,
+  ),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenuSub')]:
+    staticExample(SidebarMenuSub),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenu')]: staticExample(SidebarMenu),
+  [liveExampleKey('shadcn/sidebar', 'SidebarRsc')]: staticExample(SidebarRsc),
+  [liveExampleKey('shadcn/sidebar', 'SidebarRtl')]: sidebarExample(SidebarRtl),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,
     'comfortable',

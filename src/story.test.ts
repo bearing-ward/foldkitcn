@@ -57,6 +57,9 @@ const model: Model = {
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
   liveExampleToastStates: {},
+  liveExampleSidebarOpenValues: {},
+  liveExampleSidebarPanelOpenValues: {},
+  liveExampleSidebarSelectedValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 }

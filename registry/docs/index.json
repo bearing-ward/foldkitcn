@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-30T14:10:32.133Z",
+  "generatedAt": "2026-07-01T16:21:38.741Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -218,6 +218,11 @@
       "docsArtifactPath": "registry/docs/shadcn/aspect-ratio.json"
     },
     {
+      "itemId": "shadcn/attachment",
+      "routePath": "/components/shadcn/attachment",
+      "docsArtifactPath": "registry/docs/shadcn/attachment.json"
+    },
+    {
       "itemId": "shadcn/avatar",
       "routePath": "/components/shadcn/avatar",
       "docsArtifactPath": "registry/docs/shadcn/avatar.json"
@@ -231,6 +236,11 @@
       "itemId": "shadcn/breadcrumb",
       "routePath": "/components/shadcn/breadcrumb",
       "docsArtifactPath": "registry/docs/shadcn/breadcrumb.json"
+    },
+    {
+      "itemId": "shadcn/bubble",
+      "routePath": "/components/shadcn/bubble",
+      "docsArtifactPath": "registry/docs/shadcn/bubble.json"
     },
     {
       "itemId": "shadcn/button-group",
@@ -348,9 +358,24 @@
       "docsArtifactPath": "registry/docs/shadcn/label.json"
     },
     {
+      "itemId": "shadcn/marker",
+      "routePath": "/components/shadcn/marker",
+      "docsArtifactPath": "registry/docs/shadcn/marker.json"
+    },
+    {
       "itemId": "shadcn/menubar",
       "routePath": "/components/shadcn/menubar",
       "docsArtifactPath": "registry/docs/shadcn/menubar.json"
+    },
+    {
+      "itemId": "shadcn/message-scroller",
+      "routePath": "/components/shadcn/message-scroller",
+      "docsArtifactPath": "registry/docs/shadcn/message-scroller.json"
+    },
+    {
+      "itemId": "shadcn/message",
+      "routePath": "/components/shadcn/message",
+      "docsArtifactPath": "registry/docs/shadcn/message.json"
     },
     {
       "itemId": "shadcn/native-select",
@@ -408,6 +433,11 @@
       "docsArtifactPath": "registry/docs/shadcn/sheet.json"
     },
     {
+      "itemId": "shadcn/sidebar",
+      "routePath": "/components/shadcn/sidebar",
+      "docsArtifactPath": "registry/docs/shadcn/sidebar.json"
+    },
+    {
       "itemId": "shadcn/skeleton",
       "routePath": "/components/shadcn/skeleton",
       "docsArtifactPath": "registry/docs/shadcn/skeleton.json"
@@ -416,6 +446,11 @@
       "itemId": "shadcn/slider",
       "routePath": "/components/shadcn/slider",
       "docsArtifactPath": "registry/docs/shadcn/slider.json"
+    },
+    {
+      "itemId": "shadcn/sonner",
+      "routePath": "/components/shadcn/sonner",
+      "docsArtifactPath": "registry/docs/shadcn/sonner.json"
     },
     {
       "itemId": "shadcn/spinner",

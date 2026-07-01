@@ -153,6 +153,9 @@ export const Model = S.Struct({
   liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
+  liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleSidebarSelectedValues: S.Record(S.String, S.String),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
 })
@@ -163,6 +166,11 @@ const liveExampleResizableStateKey = (
   exampleId: string,
   groupId: string,
 ): string => `${exampleId}#${groupId}`
+
+const liveExampleSidebarStateKey = (
+  exampleId: string,
+  panelId: string,
+): string => `${exampleId}#${panelId}`
 
 const LiveExampleResizableActiveDrag = S.Struct({
   exampleId: S.String,
@@ -449,6 +457,29 @@ export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
   message: ToastExampleMessage,
 })
+export const UpdatedLiveExampleSidebarOpen = m(
+  'UpdatedLiveExampleSidebarOpen',
+  {
+    exampleId: S.String,
+    open: S.Boolean,
+  },
+)
+export const UpdatedLiveExampleSidebarPanelOpen = m(
+  'UpdatedLiveExampleSidebarPanelOpen',
+  {
+    exampleId: S.String,
+    panelId: S.String,
+    open: S.Boolean,
+  },
+)
+export const SelectedLiveExampleSidebarValue = m(
+  'SelectedLiveExampleSidebarValue',
+  {
+    exampleId: S.String,
+    panelId: S.String,
+    value: S.String,
+  },
+)
 export const CompletedLiveExampleToastWait = m(
   'CompletedLiveExampleToastWait',
   {
@@ -485,6 +516,9 @@ export const Message = S.Union([
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
   GotLiveExampleToastMessage,
+  UpdatedLiveExampleSidebarOpen,
+  UpdatedLiveExampleSidebarPanelOpen,
+  SelectedLiveExampleSidebarValue,
   CompletedLiveExampleToastWait,
   PressedLiveExampleCommandDialogShortcut,
   UpdatedSearchQuery,
@@ -510,6 +544,9 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
       liveExampleToastStates: {},
+      liveExampleSidebarOpenValues: {},
+      liveExampleSidebarPanelOpenValues: {},
+      liveExampleSidebarSelectedValues: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
     },
@@ -832,6 +869,34 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           commands,
         ]
       },
+      UpdatedLiveExampleSidebarOpen: ({ exampleId, open }) => [
+        evo(model, {
+          liveExampleSidebarOpenValues: EffectRecord.set(exampleId, open),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleSidebarPanelOpen: ({ exampleId, panelId, open }) => [
+        evo(model, {
+          liveExampleSidebarPanelOpenValues: EffectRecord.set(
+            liveExampleSidebarStateKey(exampleId, panelId),
+            open,
+          ),
+        }),
+        [],
+      ],
+      SelectedLiveExampleSidebarValue: ({ exampleId, panelId, value }) => [
+        evo(model, {
+          liveExampleSidebarSelectedValues: EffectRecord.set(
+            liveExampleSidebarStateKey(exampleId, panelId),
+            value,
+          ),
+          liveExampleSidebarPanelOpenValues: EffectRecord.set(
+            liveExampleSidebarStateKey(exampleId, panelId),
+            false,
+          ),
+        }),
+        [],
+      ],
       CompletedLiveExampleToastWait: ({ exampleId, toastId }) => {
         const state = pipe(
           EffectRecord.get(model.liveExampleToastStates, exampleId),
@@ -1937,6 +2002,9 @@ const examplesSectionView = (
   liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
+  liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleSidebarSelectedValues: Readonly<Record<string, string>>,
 ): Html => {
   const h = html<Message>()
   const liveExampleContext = {
@@ -2069,6 +2137,64 @@ const examplesSectionView = (
       GotLiveExampleToastMessage({
         exampleId: example.id,
         message,
+      }),
+    sidebarIsOpenFor: (
+      example: ExampleDocsArtifact,
+      defaultOpen: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(liveExampleSidebarOpenValues, example.id),
+        Option.getOrElse(() => defaultOpen),
+      ),
+    onSidebarOpenChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleSidebarOpen({
+        exampleId: example.id,
+        open: change.open,
+      }),
+    sidebarPanelIsOpenFor: (
+      example: ExampleDocsArtifact,
+      panelId: string,
+      defaultOpen: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleSidebarPanelOpenValues,
+          liveExampleSidebarStateKey(example.id, panelId),
+        ),
+        Option.getOrElse(() => defaultOpen),
+      ),
+    onSidebarPanelOpenChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ panelId: string; open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleSidebarPanelOpen({
+        exampleId: example.id,
+        panelId: change.panelId,
+        open: change.open,
+      }),
+    sidebarSelectedValueFor: (
+      example: ExampleDocsArtifact,
+      panelId: string,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(
+          liveExampleSidebarSelectedValues,
+          liveExampleSidebarStateKey(example.id, panelId),
+        ),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onSidebarSelectedValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ panelId: string; value: string }>,
+    ): Message =>
+      SelectedLiveExampleSidebarValue({
+        exampleId: example.id,
+        panelId: change.panelId,
+        value: change.value,
       }),
   }
   const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
@@ -2307,6 +2433,9 @@ const componentDetailPageView = (
           model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,
           model.liveExampleToastStates,
+          model.liveExampleSidebarOpenValues,
+          model.liveExampleSidebarPanelOpenValues,
+          model.liveExampleSidebarSelectedValues,
         ),
         apiSectionView(),
         accessibilitySectionView(),

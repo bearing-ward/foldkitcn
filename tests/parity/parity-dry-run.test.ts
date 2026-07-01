@@ -19,7 +19,10 @@ describe('parity dry-run helpers', () => {
   test('matches all shadcn slots with namespace grep', () => {
     expect(matchingItemIds('shadcn')).toStrictEqual([
       'shadcn/aspect-ratio',
+      'shadcn/sonner',
       'shadcn/alert',
+      'shadcn/attachment',
+      'shadcn/bubble',
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',
@@ -74,7 +77,10 @@ describe('parity dry-run helpers', () => {
 
     expect(matchingItemIds('shadcn/')).toStrictEqual([
       'shadcn/aspect-ratio',
+      'shadcn/sonner',
       'shadcn/alert',
+      'shadcn/attachment',
+      'shadcn/bubble',
       'shadcn/avatar',
       'shadcn/badge',
       'shadcn/button',

@@ -57,6 +57,30 @@ const resizableLiveExampleInteractions = [
   ['ResizableRtl', 'ArrowRight', 'flex: 40 1 0px; overflow: hidden;'],
 ] as const
 
+const sidebarLiveExampleTitles = [
+  'SidebarControlled',
+  'SidebarDemo',
+  'SidebarFooter',
+  'SidebarGroupAction',
+  'SidebarGroupCollapsible',
+  'SidebarHeader',
+  'SidebarMenuAction',
+  'SidebarMenuBadge',
+  'SidebarMenuCollapsible',
+  'SidebarMenuSub',
+  'SidebarMenu',
+  'SidebarRsc',
+  'SidebarRtl',
+] as const
+
+const sidebarToggleLiveExampleTitles = [
+  'SidebarControlled',
+  'SidebarDemo',
+  'SidebarFooter',
+  'SidebarHeader',
+  'SidebarRtl',
+] as const
+
 const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
@@ -69,6 +93,9 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
   liveExampleToastStates: {},
+  liveExampleSidebarOpenValues: {},
+  liveExampleSidebarPanelOpenValues: {},
+  liveExampleSidebarSelectedValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
@@ -108,6 +135,28 @@ const documentedResizableLiveExampleTitles = (): ReadonlyArray<string> => {
   const artifact = Option.getOrThrowWith(
     component.maybeDocsArtifact,
     () => new Error('Missing shadcn/resizable docs artifact.'),
+  )
+
+  return pipe(
+    artifact.examples,
+    Array.filter(example => example.previewStatus === 'live-ready'),
+    Array.map(example => example.title),
+  )
+}
+
+const documentedSidebarLiveExampleTitles = (): ReadonlyArray<string> => {
+  const component = pipe(
+    publicComponents(docsData),
+    Array.findFirst(
+      publicComponent => publicComponent.entry.item.id === 'shadcn/sidebar',
+    ),
+    Option.getOrThrowWith(
+      () => new Error('Missing public shadcn/sidebar component docs.'),
+    ),
+  )
+  const artifact = Option.getOrThrowWith(
+    component.maybeDocsArtifact,
+    () => new Error('Missing shadcn/sidebar docs artifact.'),
   )
 
   return pipe(
@@ -234,6 +283,152 @@ describe(view, () => {
     expect(
       resizableLiveExampleInteractions.map(([title]) => title),
     ).toStrictEqual(documentedResizableLiveExampleTitles())
+  })
+
+  test('live preview validation covers every documented Sidebar example', () => {
+    expect([...sidebarLiveExampleTitles]).toStrictEqual(
+      documentedSidebarLiveExampleTitles(),
+    )
+  })
+
+  test.each(sidebarLiveExampleTitles)(
+    '%s docs example renders a live sidebar preview',
+    exampleTitle => {
+      const preview = Scene.label(`${exampleTitle} live preview`)
+
+      Scene.scene(
+        { update, view },
+        Scene.with(
+          modelWithRoute(
+            ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+          ),
+        ),
+        Scene.expect(preview).toExist(),
+        Scene.expect(
+          Scene.within(
+            preview,
+            Scene.selector('[data-slot="sidebar-wrapper"]'),
+          ),
+        ).toExist(),
+      )
+    },
+  )
+
+  test.each(sidebarToggleLiveExampleTitles)(
+    '%s live preview toggles open state',
+    exampleTitle => {
+      const preview = Scene.label(`${exampleTitle} live preview`)
+      const toggle =
+        exampleTitle === 'SidebarControlled'
+          ? Scene.role('button', { name: 'Close Sidebar' })
+          : Scene.selector('[data-slot="sidebar-trigger"]')
+
+      Scene.scene(
+        { update, view },
+        Scene.with(
+          modelWithRoute(
+            ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+          ),
+        ),
+        Scene.expect(
+          Scene.within(preview, Scene.selector('[data-slot="sidebar"]')),
+        ).toHaveAttr('data-state', 'expanded'),
+        Scene.click(Scene.within(preview, toggle)),
+        Scene.expect(
+          Scene.within(preview, Scene.selector('[data-slot="sidebar"]')),
+        ).toHaveAttr('data-state', 'collapsed'),
+      )
+    },
+  )
+
+  test('SidebarControlled live preview switches its button label', () => {
+    const preview = Scene.label('SidebarControlled live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: 'Close Sidebar' })),
+      ),
+      Scene.expect(
+        Scene.within(preview, Scene.role('button', { name: 'Open Sidebar' })),
+      ).toExist(),
+    )
+  })
+
+  test('SidebarDemo live preview collapses nested navigation groups', () => {
+    const preview = Scene.label('SidebarDemo live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('History'))).toExist(),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: /Playground/ })),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('History'))).not.toExist(),
+    )
+  })
+
+  test('SidebarDemo live preview opens the team switcher and selects a team', () => {
+    const preview = Scene.label('SidebarDemo live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: /Acme Inc/ })),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('Acme Corp.'))).toExist(),
+      Scene.click(Scene.within(preview, Scene.text('Acme Corp.'))),
+      Scene.expect(Scene.within(preview, Scene.text('Startup'))).toExist(),
+    )
+  })
+
+  test('SidebarDemo live preview opens project and user menus', () => {
+    const preview = Scene.label('SidebarDemo live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          preview,
+          Scene.role('button', { name: 'More Design Engineering' }),
+        ),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('View Project'))).toExist(),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: /shadcn/ })),
+      ),
+      Scene.expect(
+        Scene.within(preview, Scene.text('Upgrade to Pro')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          preview,
+          Scene.selector(
+            '[data-slot="dropdown-menu-content"][data-side="top"]',
+          ),
+        ),
+      ).toExist(),
+    )
   })
 
   test.each(resizableLiveExampleInteractions)(
@@ -1170,7 +1365,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
-      Scene.expect(Scene.text('52 of 64')).toExist(),
+      Scene.expect(Scene.text('54 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),

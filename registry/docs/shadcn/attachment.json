@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/attachment",
+  "routePath": "/components/shadcn/attachment",
+  "title": "Attachment",
+  "description": "Foldkit-native shadcn base-nova Attachment helper with Effect Schema state, size, orientation, and media variants, local part renderers, dialog-trigger examples, a FileDrop-backed attachment workflow demo, and deterministic inline SVG example icons.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/attachment/docs.md",
+  "markdown": "# Attachment\n\n## Overview\n\nAttachment is a Foldkit-native port of the shadcn base-nova Attachment helper. It renders the origin attachment card structure with root, media, content, title, description, actions, action, trigger, and group slots while preserving the size, orientation, and state styling contracts.\n\n## Foldkit Model\n\nAttachment is a stateless render helper. It owns no Model, Message, update function, or Command. Parent views decide which attachment rows exist, which state each row shows, and when a trigger should open a dialog or preview.\n\nThe installable registry also includes a FileDrop-backed attachment workflow example that uses `FileDrop.init()`, delegates through `FileDrop.update()`, renders with `FileDrop.view()`, and stores `ReceivedFiles` in parent-owned model state.\n\n## Usage\n\nImport the helper from the generated registry source and compose the parts inside a Foldkit view after binding the Html factory.\n\n```ts\nAttachment<Message>({\n  state: 'uploading',\n  size: 'default',\n  orientation: 'horizontal',\n  children: [\n    AttachmentMedia<Message>({\n      children: [Spinner<Message>({})],\n    }),\n    AttachmentContent<Message>({\n      children: [\n        AttachmentTitle<Message>({\n          children: ['sales-dashboard.pdf'],\n        }),\n        AttachmentDescription<Message>({\n          children: ['Uploading · 64%'],\n        }),\n      ],\n    }),\n  ],\n})\n```\n\nUse `AttachmentTrigger` for the absolute overlay trigger slot, `AttachmentAction` for icon-only actions, and `AttachmentGroup` for scrollable attachment rows.\n\nFor the real file-arrival workflow, use the FileDrop-backed attachment example as the parent-owned Submodel pattern: keep the FileDrop model in parent state, embed `FileDrop.Message` in the parent Message union, and render accepted files as Attachment rows below the drop zone.\n\n## Examples\n\nThe registry includes live examples for the basic demo stack, grouped files, image cards, size variations, idle/uploading/processing/error/done states, a dialog-backed preview trigger demo, and a FileDrop-backed attachment workflow demo.\n\n## Accessibility\n\nAttachment renders slot attributes for every subpart and state attributes on the root. Keep icon-only actions labelled, keep the trigger overlay labelled, and use the dialog preview example as a pattern for interactive previews.\n\nThe FileDrop workflow example is the reference for actual file arrival handling inside a Foldkit parent model.\n\n## Foldkit Differences\n\nThe origin shadcn implementation imports React, CVA, Base UI render hooks, merge-props helpers, and lucide-react. This registry item replaces those pieces with Foldkit Html, Effect Schema variants, local shadcn button/dialog/spinner helpers, and deterministic inline SVGs in the examples so installable source stays Foldkit-native.\n\nThose differences are accepted because the installable source must stay in the local Foldkit ecosystem while preserving the origin structure and visual footprint.\n",
+  "headings": [
+    {
+      "id": "attachment",
+      "text": "Attachment",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/attachment",
+  "defaultImportPath": "shadcn/attachment",
+  "sourceRoot": "registry-src/shadcn/attachment",
+  "installableSourcePaths": [
+    "src/registry/shadcn/attachment/index.ts",
+    "src/registry/shadcn/attachment/examples.ts",
+    "src/registry/shadcn/attachment/workflow.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Attachment",
+      "docsUrl": "https://ui.shadcn.com/docs/components/attachment",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/attachment.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/attachment.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/attachment.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/attachment.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/attachment-demo.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-group.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-image.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-sizes.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-states.tsx",
+        "repos/ui/apps/v4/examples/base/attachment-trigger.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Attachment actions reuse the local shadcn Button class helper."
+      },
+      {
+        "specifier": "shadcn/dialog",
+        "classification": "registry-local",
+        "target": "shadcn/dialog",
+        "reason": "Attachment trigger examples compose the local shadcn Dialog helper."
+      },
+      {
+        "specifier": "shadcn/spinner",
+        "classification": "registry-local",
+        "target": "shadcn/spinner",
+        "reason": "Attachment uploading examples compose the local shadcn Spinner helper."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Attachment replaces CVA and merge-props helpers with local class canonicalization."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native helper and examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for state, size, orientation, and media variants."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "@foldkit/ui",
+        "classification": "allowed-runtime",
+        "target": "npm:@foldkit/ui",
+        "reason": "Provides the headless FileDrop Submodel used by the attachment workflow demo for drag state and file-arrival handling."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin mergeProps usage is replaced by explicit Foldkit attribute construction."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "",
+        "reason": "Origin useRender support is represented by Foldkit toView-style helpers."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin CVA usage is replaced by Effect Schema literals and pure local class maps."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icon package usage is replaced by deterministic inline SVGs in the local examples."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/attachment-demo",
+      "title": "AttachmentDemo",
+      "description": "Attachment demo with image rows, upload progress, and file actions.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto flex w-full max-w-sm flex-col gap-3 py-12')],\n    [\n      AttachmentGroup<never>({\n        children: imageEntries.map(entry =>\n          attachmentCard(entry, {\n            orientation: 'vertical',\n          }),\n        ),\n      }),\n      attachmentCard(\n        {\n          name: 'sales-dashboard.pdf',\n          meta: 'Uploading · 64%',\n          icon: spinnerIcon,\n        },\n        {\n          state: 'uploading',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Cancel upload')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n      attachmentCard(\n        {\n          name: 'message-renderer.tsx',\n          meta: 'TypeScript · 12 KB',\n          icon: fileCodeIcon,\n        },\n        {\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove message-renderer.tsx')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-group-demo",
+      "title": "AttachmentGroupDemo",
+      "description": "Scrollable attachment group with multiple file types and remove actions.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentGroupDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto w-full max-w-sm py-12')],\n    [\n      AttachmentGroup<never>({\n        className: 'w-full',\n        children: groupEntries.map(entry =>\n          attachmentCard(entry, {\n            className: 'w-64',\n            actions: [\n              AttachmentActions<never>({\n                toView: actionsAttributes =>\n                  h.div(\n                    [...actionsAttributes.actions],\n                    [\n                      AttachmentAction<never>({\n                        attributes: [h.AriaLabel(`Remove ${entry.name}`)],\n                        children: [xIcon()],\n                      }),\n                    ],\n                  ),\n              }),\n            ],\n          }),\n        ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentGroupDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-image",
+      "title": "AttachmentImage",
+      "description": "Image attachments with overlay preview triggers and external links.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentImage = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto w-full max-w-sm py-12')],\n    [\n      AttachmentGroup<never>({\n        className: 'w-full',\n        children: imageEntries.map(entry =>\n          attachmentCard(entry, {\n            orientation: 'vertical',\n            actions: [\n              AttachmentActions<never>({\n                toView: actionsAttributes =>\n                  h.div(\n                    [...actionsAttributes.actions],\n                    [\n                      AttachmentAction<never>({\n                        attributes: [h.AriaLabel(`Remove ${entry.name}`)],\n                        children: [xIcon()],\n                      }),\n                    ],\n                  ),\n              }),\n            ],\n            trigger: AttachmentTrigger<never>({\n              attributes: [h.AriaLabel(`Open ${entry.name}`)],\n              toView: triggerAttributes =>\n                h.a(\n                  [\n                    ...triggerAttributes.trigger,\n                    h.Href(entry.src ?? '#'),\n                    h.Target('_blank'),\n                    h.Rel('noreferrer'),\n                  ],\n                  [],\n                ),\n            }),\n          }),\n        ),\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentImage",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-sizes",
+      "title": "AttachmentSizes",
+      "description": "Default, small, and extra-small attachment rows.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentSizes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto flex w-full max-w-sm flex-col gap-3 py-12')],\n    [\n      attachmentCard(\n        {\n          name: 'Default attachment',\n          meta: 'PDF · 2.4 MB',\n          icon: fileTextIcon,\n        },\n        { className: 'w-full' },\n      ),\n      attachmentCard(\n        {\n          name: 'Small attachment',\n          meta: 'PDF · 2.4 MB',\n          icon: fileTextIcon,\n        },\n        { size: 'sm', className: 'w-full' },\n      ),\n      attachmentCard(\n        {\n          name: 'Extra small attachment',\n          meta: '',\n          icon: fileTextIcon,\n        },\n        { size: 'xs', className: 'w-full' },\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentSizes",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-states",
+      "title": "AttachmentStates",
+      "description": "Idle, uploading, processing, error, and done attachment states.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentStates = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto flex w-full max-w-sm flex-col gap-2 py-12')],\n    [\n      attachmentCard(\n        {\n          name: 'selected-file.pdf',\n          meta: 'Ready to upload',\n          icon: clockIcon,\n        },\n        {\n          state: 'idle',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove selected-file.pdf')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n      attachmentCard(\n        {\n          name: 'design-system.zip',\n          meta: 'Uploading · 64%',\n          icon: spinnerIcon,\n        },\n        {\n          state: 'uploading',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Cancel upload')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n      attachmentCard(\n        {\n          name: 'market-research.pdf',\n          meta: 'Processing document',\n          icon: fileTextIcon,\n        },\n        {\n          state: 'processing',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove market-research.pdf')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n      attachmentCard(\n        {\n          name: 'financial-model.xlsx',\n          meta: 'Upload failed. Try again.',\n          icon: fileWarningIcon,\n        },\n        {\n          state: 'error',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Retry upload')],\n                      children: [refreshIcon()],\n                    }),\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove financial-model.xlsx')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n      attachmentCard(\n        {\n          name: 'uploaded-report.pdf',\n          meta: 'Uploaded · 1.8 MB',\n          icon: checkIcon,\n        },\n        {\n          state: 'done',\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove uploaded-report.pdf')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n        },\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentStates",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-workflow-demo",
+      "title": "AttachmentWorkflowDemo",
+      "description": "FileDrop-backed attachment workflow with accepted file rows.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
+      "snippet": "export const AttachmentWorkflowDemo = (): Html => view(init())",
+      "previewStatus": "static",
+      "previewExportName": "AttachmentWorkflowDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/attachment-trigger-demo",
+      "title": "AttachmentTriggerDemo",
+      "description": "Attachment preview trigger integrated with a dialog-backed preview.",
+      "componentItemId": "shadcn/attachment",
+      "sourcePath": "src/registry/shadcn/attachment/examples.ts",
+      "snippet": "export const AttachmentTriggerDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto w-full max-w-sm py-12')],\n    [\n      attachmentCard(\n        {\n          name: 'research-summary.pdf',\n          meta: 'Open preview dialog',\n          icon: fileSearchIcon,\n        },\n        {\n          className: 'w-full',\n          actions: [\n            AttachmentActions<never>({\n              toView: actionsAttributes =>\n                h.div(\n                  [...actionsAttributes.actions],\n                  [\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Copy link')],\n                      children: [copyIcon()],\n                    }),\n                    AttachmentAction<never>({\n                      attributes: [h.AriaLabel('Remove research-summary.pdf')],\n                      children: [xIcon()],\n                    }),\n                  ],\n                ),\n            }),\n          ],\n          trigger: AttachmentTrigger<never>({\n            attributes: [h.AriaLabel('Preview research-summary.pdf')],\n            toView: triggerAttributes =>\n              h.button(\n                [\n                  ...withoutSlotAttributes(triggerAttributes.trigger),\n                  h.AriaExpanded(false),\n                  h.AriaHasPopup('dialog'),\n                  h.DataAttribute('base-ui-click-trigger', ''),\n                  h.DataAttribute('slot', 'dialog-trigger'),\n                  h.Tabindex(0),\n                  h.Type('button'),\n                ],\n                [],\n              ),\n          }),\n        },\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "AttachmentTriggerDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/dialog",
+        "shadcn/spinner",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "preview",
+    "implementationStatus": "implemented",
+    "parityStatus": "partial",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-attachment-local-icons",
+        "summary": "The installable examples use local inline SVG icons instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on lucide-react. Local inline SVGs preserve the rendered footprint needed by the attachment demos."
+      }
+    ]
+  }
+}

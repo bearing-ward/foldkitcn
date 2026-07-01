@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/message-scroller",
+  "routePath": "/components/shadcn/message-scroller",
+  "title": "Message Scroller",
+  "description": "Foldkit-native shadcn base-nova Message Scroller with model-owned pinned/unread state, explicit scroll commands, chat viewport slots, deterministic examples, and local Message/Bubble/Input Group/Empty composition.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/message-scroller/docs.md",
+  "markdown": "# Message Scroller\n\n## Overview\n\nMessage Scroller is a Foldkit-native shadcn chat viewport. It preserves the\norigin root, viewport, content, item, and button slots while moving scroll\nintent into a Schema-backed model, Foldkit messages, and explicit DOM commands.\n\n## Foldkit Model\n\nThe model stores whether the viewport is pinned to the end, whether unread\nmessages are waiting below the reader, the current message count, and the last\nscroll direction. Appending messages is pure update logic. When the view is\nalready pinned, update returns `ScrollMessagesToEnd`; when the reader has\nscrolled away, update preserves their place and activates the scroll button.\n\n## Usage\n\nRender `MessageScroller`, `MessageScrollerViewport`, `MessageScrollerContent`,\n`MessageScrollerItem`, and `MessageScrollerButton` from a Foldkit view. Parent\napps can use the exported `init` and `update` helpers directly or embed the\nstate in a larger model.\n\n```ts\nconst state = MessageScroller.init('chat-thread', messages.length)\n\nMessageScroller<Message>({\n  children: [\n    MessageScrollerViewport<Message>({\n      children: [\n        MessageScrollerContent<Message>({\n          children: messages.map(message =>\n            MessageScrollerItem<Message>({\n              scrollAnchor: message.role === 'user',\n              children: [renderMessage(message)],\n            }),\n          ),\n        }),\n      ],\n    }),\n    MessageScrollerButton<Message>({\n      isActive: shouldShowScrollButton(state),\n      ariaLabel: 'Scroll to new messages',\n    }),\n  ],\n})\n```\n\n## Examples\n\nThe registry includes deterministic examples for a basic chat, unread\nmessages, loading earlier context, opening position, and the empty state. These\nexamples compose local Message, Bubble, Marker, Input Group, Empty, Card, and\nButton helpers.\n\n## Accessibility\n\n`MessageScrollerContent` renders as a polite log with `aria-relevant=\"additions\"`\nand `aria-busy` support. Scroll buttons are real buttons with labels and are\nremoved from the tab order when inactive.\n\n## Foldkit Differences\n\nThe origin shadcn demos rely on `@shadcn/react/message-scroller`, AI SDK\nstreaming, animation helpers, React hooks, sonner, and lucide-react. This\nregistry item replaces those dependencies with local static fixtures, inline\nSVGs, local registry primitives, and Foldkit commands for scroll side effects.\n\nThe examples are fixture-only where origin behavior depends on live AI\ntransport or animation runtime. That difference is intentional so the component\nremains installable and deterministic in the Foldkit registry.\n",
+  "headings": [
+    {
+      "id": "message-scroller",
+      "text": "Message Scroller",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/message-scroller",
+  "defaultImportPath": "shadcn/message-scroller",
+  "sourceRoot": "registry-src/shadcn/message-scroller",
+  "installableSourcePaths": [
+    "src/registry/shadcn/message-scroller/index.ts",
+    "src/registry/shadcn/message-scroller/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Message Scroller",
+      "docsUrl": "https://ui.shadcn.com/docs/components/message-scroller",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/message-scroller.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [
+        "repos/ui/apps/v4/styles/base-nova/ui/message-scroller.tsx"
+      ],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/message-scroller.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/message-scroller.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/message-scroller-anchoring.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-animation.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-commands.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-demo.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-group-chat.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-load-history.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-opening-position.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-previous-context.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-scrollable.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-state.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-streaming.tsx",
+        "repos/ui/apps/v4/examples/base/message-scroller-visibility.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/bubble",
+        "classification": "registry-local",
+        "target": "shadcn/bubble",
+        "reason": "Message Scroller examples render assistant and user content in local Bubble helpers."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "The scroll affordance and load-history control compose the local Button item."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "registry-local",
+        "target": "shadcn/card",
+        "reason": "Examples preserve the origin framed chat demo with local Card helpers."
+      },
+      {
+        "specifier": "shadcn/empty",
+        "classification": "registry-local",
+        "target": "shadcn/empty",
+        "reason": "The empty conversation example composes the local Empty item."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "The demo composer uses the local Input Group item."
+      },
+      {
+        "specifier": "shadcn/marker",
+        "classification": "registry-local",
+        "target": "shadcn/marker",
+        "reason": "Unread status examples use the local Marker item."
+      },
+      {
+        "specifier": "shadcn/message",
+        "classification": "registry-local",
+        "target": "shadcn/message",
+        "reason": "Message Scroller items wrap local Message rows."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Message Scroller uses local class canonicalization."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html, Command, Dom, message, and struct APIs for Foldkit-native state and side effects."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema, Match, and Effect helpers for typed contracts and commands."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@ai-sdk/react",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin streaming demos are represented by deterministic static fixtures."
+      },
+      {
+        "specifier": "@shadcn/react/message-scroller",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Installable source uses Foldkit model/update/commands instead of React primitive hooks."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin icons are replaced by local inline SVGs."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "sonner",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin toast usage is not required for deterministic Message Scroller fixtures."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/message-scroller-demo",
+      "title": "MessageScrollerDemo",
+      "description": "Basic pinned chat viewport with deterministic turns and composer.",
+      "componentItemId": "shadcn/message-scroller",
+      "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+      "snippet": "export const MessageScrollerDemo = (): Html =>\n  shell([\n    scrollerCard('New Chat', [\n      renderTranscript(\n        {\n          id: 'message-scroller-demo',\n          isPinnedToEnd: true,\n          hasUnreadMessages: false,\n          messageCount: messages.length,\n          lastScrollDirection: 'end',\n        },\n        messages,\n      ),\n    ]),\n    InputGroup<never>({\n      children: [\n        hMessagePreview('Ask about scroll anchoring'),\n        InputGroupAddon<never>({\n          align: 'block-end',\n          children: [\n            InputGroupButton<never>({\n              ariaLabel: 'Send message',\n              children: [arrowUpIcon()],\n            }),\n          ],\n        }),\n      ],\n    }),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "MessageScrollerDemo",
+      "requiredRegistryItems": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/empty",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/message-scroller-scrollable",
+      "title": "MessageScrollerScrollable",
+      "description": "Unpinned reader state with unread marker and active scroll button.",
+      "componentItemId": "shadcn/message-scroller",
+      "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+      "snippet": "export const MessageScrollerScrollable = (): Html =>\n  shell([\n    scrollerCard('Scrollable Thread', [\n      renderTranscript(\n        {\n          id: 'message-scroller-scrollable',\n          isPinnedToEnd: false,\n          hasUnreadMessages: true,\n          messageCount: messages.length + 1,\n          lastScrollDirection: 'start',\n        },\n        [\n          ...messages,\n          {\n            id: 'msg-005',\n            role: 'assistant',\n            author: 'Foldkit CN',\n            body: 'One new response is waiting below your current reading position.',\n            time: '9:43 AM',\n          },\n        ],\n      ),\n      Marker<never>({\n        className:\n          'absolute bottom-16 left-1/2 w-fit -translate-x-1/2 rounded-full bg-background px-3 py-1 shadow-sm',\n        attributes: [html<never>().Role('status')],\n        children: [MarkerContent<never>({ children: ['1 new message'] })],\n      }),\n    ]),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "MessageScrollerScrollable",
+      "requiredRegistryItems": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/empty",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/message-scroller-load-history",
+      "title": "MessageScrollerLoadHistory",
+      "description": "Previous context and start-direction scroll affordance.",
+      "componentItemId": "shadcn/message-scroller",
+      "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+      "snippet": "export const MessageScrollerLoadHistory = (): Html =>\n  shell([\n    scrollerCard('Previous Context', [\n      MessageScroller<never>({\n        children: [\n          MessageScrollerViewport<never>({\n            children: [\n              MessageScrollerContent<never>({\n                className: 'p-(--card-spacing)',\n                children: [\n                  MessageScrollerItem<never>({\n                    children: [\n                      Button<never>({\n                        variant: 'outline',\n                        size: 'sm',\n                        toView: attributes =>\n                          html<never>().button(\n                            [...attributes.button],\n                            ['Load earlier messages'],\n                          ),\n                      }),\n                    ],\n                  }),\n                  ...messages.slice(1).map(message =>\n                    MessageScrollerItem<never>({\n                      scrollAnchor: message.scrollAnchor,\n                      children: [renderMessage(message)],\n                    }),\n                  ),\n                ],\n              }),\n            ],\n          }),\n          MessageScrollerButton<never>({\n            direction: 'start',\n            isActive: true,\n            ariaLabel: 'Scroll to earlier messages',\n          }),\n        ],\n      }),\n    ]),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "MessageScrollerLoadHistory",
+      "requiredRegistryItems": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/empty",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/message-scroller-opening-position",
+      "title": "MessageScrollerOpeningPosition",
+      "description": "Opening-position fixture with the most recent exchange in view.",
+      "componentItemId": "shadcn/message-scroller",
+      "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+      "snippet": "export const MessageScrollerOpeningPosition = (): Html =>\n  shell([\n    scrollerCard('Opening Position', [\n      renderTranscript(\n        {\n          id: 'message-scroller-opening',\n          isPinnedToEnd: true,\n          hasUnreadMessages: false,\n          messageCount: 2,\n          lastScrollDirection: 'end',\n        },\n        messages.slice(2),\n      ),\n    ]),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "MessageScrollerOpeningPosition",
+      "requiredRegistryItems": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/empty",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/message-scroller-empty",
+      "title": "MessageScrollerEmpty",
+      "description": "Empty conversation state using local Empty helpers.",
+      "componentItemId": "shadcn/message-scroller",
+      "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
+      "snippet": "export const MessageScrollerEmpty = (): Html =>\n  shell([\n    scrollerCard('Empty Conversation', [\n      Empty<never>({\n        className: 'h-full border-0',\n        children: [\n          EmptyHeader<never>({\n            children: [\n              EmptyMedia<never>({\n                variant: 'icon',\n                children: [messageCircleIcon()],\n              }),\n              EmptyTitle<never>({ children: ['Morning, shadcn!'] }),\n              EmptyDescription<never>({\n                children: [\n                  'What are we working on today? Press send to start a new conversation.',\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ]),\n  ])",
+      "previewStatus": "live-ready",
+      "previewExportName": "MessageScrollerEmpty",
+      "requiredRegistryItems": [
+        "shadcn/bubble",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/empty",
+        "shadcn/input-group",
+        "shadcn/marker",
+        "shadcn/message",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-message-scroller-foldkit-state-and-static-fixtures",
+        "summary": "Message Scroller replaces React primitive hooks, AI streaming, animation helpers, sonner, and lucide-react with Foldkit state, explicit commands, deterministic fixtures, and inline SVGs.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable Foldkit source cannot depend on React interop, AI SDK network behavior, or animation runtime. The local item preserves origin slots and user-visible states while keeping scroll side effects in commands."
+      }
+    ]
+  }
+}

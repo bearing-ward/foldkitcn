@@ -221,7 +221,6 @@ export const selectRegistryGeneratedAt = (
 
 export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   const result = checkRegistry()
-  const generatedAt = options.generatedAt ?? new Date().toISOString()
   const manifestById = new Map(
     result.entries.map(entry =>
       isRecord(entry.rawManifest) && typeof entry.rawManifest.id === 'string'
@@ -258,7 +257,7 @@ export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   })
   const index = {
     schemaVersion: 1,
-    generatedAt,
+    generatedAt: options.generatedAt ?? new Date().toISOString(),
     sourceRoot: registrySourceRoot,
     items,
   }
@@ -268,8 +267,8 @@ export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   return {
     ...decodedIndex,
     generatedAt: selectRegistryGeneratedAt(decodedIndex, {
-      ...options,
-      generatedAt,
+      previousIndex: options.previousIndex,
+      generatedAt: options.generatedAt,
     }),
   }
 }
@@ -369,6 +368,34 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ButtonGroupSize',
     'ButtonGroupSplit',
   ]),
+  'shadcn/bubble': new Set([
+    'BubbleDemo',
+    'BubbleGroupDemo',
+    'BubbleVariantsDemo',
+    'BubbleAlignmentDemo',
+    'BubbleLinkButtonDemo',
+    'BubbleReactionsDemo',
+    'BubbleCollapsibleDemo',
+    'BubbleTooltipDemo',
+    'BubblePopoverDemo',
+    'BubbleMarkdownDemo',
+  ]),
+  'shadcn/message': new Set([
+    'MessageDemo',
+    'MessageGroupDemo',
+    'MessageAvatarDemo',
+    'MessageHeaderFooterDemo',
+    'MessageActionsDemo',
+    'MessageAttachmentDemo',
+    'MessageMarkdownDemo',
+  ]),
+  'shadcn/message-scroller': new Set([
+    'MessageScrollerDemo',
+    'MessageScrollerScrollable',
+    'MessageScrollerLoadHistory',
+    'MessageScrollerOpeningPosition',
+    'MessageScrollerEmpty',
+  ]),
   'shadcn/calendar': new Set([
     'CalendarDemo',
     'CalendarBasic',
@@ -436,6 +463,16 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ItemSizeDemo',
     'ItemVariant',
   ]),
+  'shadcn/marker': new Set([
+    'MarkerDemo',
+    'MarkerStatus',
+    'MarkerVariants',
+    'MarkerIconDemo',
+    'MarkerBorder',
+    'MarkerSeparator',
+    'MarkerShimmer',
+    'MarkerLinkButton',
+  ]),
   'shadcn/spinner': new Set([
     'SpinnerDemo',
     'SpinnerBadge',
@@ -464,6 +501,21 @@ const liveReadyExampleExportsByItemId: Readonly<
     'ResizableVertical',
     'ResizableRtl',
   ]),
+  'shadcn/sidebar': new Set([
+    'SidebarControlled',
+    'SidebarDemo',
+    'SidebarFooter',
+    'SidebarGroupAction',
+    'SidebarGroupCollapsible',
+    'SidebarHeader',
+    'SidebarMenuAction',
+    'SidebarMenuBadge',
+    'SidebarMenuCollapsible',
+    'SidebarMenuSub',
+    'SidebarMenu',
+    'SidebarRsc',
+    'SidebarRtl',
+  ]),
   'shadcn/radio-group': new Set([
     'RadioGroupDemo',
     'RadioGroupDescription',
@@ -472,6 +524,14 @@ const liveReadyExampleExportsByItemId: Readonly<
     'RadioGroupFieldset',
     'RadioGroupInvalid',
     'RadioGroupRtl',
+  ]),
+  'shadcn/attachment': new Set([
+    'AttachmentDemo',
+    'AttachmentGroupDemo',
+    'AttachmentImage',
+    'AttachmentSizes',
+    'AttachmentStates',
+    'AttachmentTriggerDemo',
   ]),
 }
 

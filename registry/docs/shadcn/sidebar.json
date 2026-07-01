@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/sidebar",
+  "routePath": "/components/shadcn/sidebar",
+  "title": "Sidebar",
+  "description": "Foldkit-native shadcn sidebar shell built from local shell, menu, tooltip, collapsible, sheet, avatar, and input primitives with explicit parent-controlled state.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/sidebar/docs.md",
+  "markdown": "# Sidebar\n\n## Overview\n\nSidebar is a Foldkit-native shadcn shell for app navigation. It composes the\nlocal Sheet, Collapsible, Dropdown Menu, Tooltip, Avatar, Input, Separator,\nSkeleton, Button, and Direction registry items so the installable source stays\nEffect- and Foldkit-native while preserving the origin surface.\n\n## Foldkit Model\n\nSidebar is a controlled shell composition. The parent model owns the facts for\ndesktop open state, collapsed state, mobile sheet state, active item state, and\ndirection. There is no hidden React context, cookie-backed persistence, media\nquery hook, or ambient keyboard listener in the installable source.\n\n## Usage\n\nBind `const h = html<Message>()` in the parent view and pass explicit sidebar\nstate into the shell helpers.\n\n```ts\nSidebar.SidebarProvider<Message>({\n  dir: model.direction,\n  children: [\n    Sidebar.Sidebar<Message>({\n      id: 'app-sidebar',\n      open: model.open,\n      mobileOpen: model.mobileOpen,\n      isMobile: model.isMobile,\n      collapsible: 'offcanvas',\n      children: [...],\n    }),\n    Sidebar.SidebarInset<Message>({\n      children: [...],\n    }),\n  ],\n})\n```\n\nUse the message layer to express user intent such as toggling the sidebar,\nopening the mobile sheet, or selecting a navigation item. Keep persistence and\nkeyboard shortcuts explicit in the parent update function.\n\n## Examples\n\nThe registry includes demo, controlled, footer, group action, group collapsible,\nheader, menu action, menu badge, menu collapsible, menu sub, menu, RSC, and RTL\nexamples. The examples cover the shell, grouped navigation, mobile sheet branch,\nsubmenu composition, account menu composition, badges, and direction-aware\nlayout.\n\n## Accessibility\n\nThe shell preserves button, link, list, and dialog semantics through local\nFoldkit primitives. Use visible text for navigation items, keep the trigger and\nrail buttons labeled, and provide descriptive submenu labels so collapsed or\nmobile layouts still remain usable.\n\n## Foldkit Differences\n\nThe origin shadcn sidebar relies on React context, a `useMobile` hook, cookies,\nand a global keyboard shortcut. This registry item replaces those pieces with an\nexplicit parent-controlled model, local Foldkit primitives, and local class\nhelpers.\n\nThose differences are intentional. They keep the installable source aligned with\nFoldkit architecture while preserving the origin visual contract and the\nsupported example set.\n",
+  "headings": [
+    {
+      "id": "sidebar",
+      "text": "Sidebar",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/sidebar",
+  "defaultImportPath": "shadcn/sidebar",
+  "sourceRoot": "registry-src/shadcn/sidebar",
+  "installableSourcePaths": [
+    "src/registry/shadcn/sidebar/index.ts",
+    "src/registry/shadcn/sidebar/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Sidebar",
+      "docsUrl": "https://ui.shadcn.com/docs/components/sidebar",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/sidebar.tsx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/sidebar.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/sidebar.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/sidebar.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/sidebar-controlled.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-demo.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-footer.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group-action.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-group.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-header.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-action.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-badge.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-collapsible.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu-sub.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-menu.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-rsc.tsx",
+        "repos/ui/apps/v4/examples/base/sidebar-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/avatar",
+        "classification": "registry-local",
+        "target": "shadcn/avatar",
+        "reason": "Sidebar footer and demo examples compose the local Avatar wrapper."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Sidebar trigger and controlled example actions compose the local Button wrapper."
+      },
+      {
+        "specifier": "shadcn/collapsible",
+        "classification": "registry-local",
+        "target": "shadcn/collapsible",
+        "reason": "Sidebar group and submenu examples use the local Collapsible wrapper."
+      },
+      {
+        "specifier": "shadcn/direction",
+        "classification": "registry-local",
+        "target": "shadcn/direction",
+        "reason": "Sidebar examples include explicit RTL composition and direction-aware class helpers."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "registry-local",
+        "target": "shadcn/dropdown-menu",
+        "reason": "Sidebar footer and action examples use the local Dropdown Menu wrapper."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Sidebar header examples use the local Input wrapper for search."
+      },
+      {
+        "specifier": "shadcn/separator",
+        "classification": "registry-local",
+        "target": "shadcn/separator",
+        "reason": "Sidebar uses the local Separator wrapper for section dividers."
+      },
+      {
+        "specifier": "shadcn/sheet",
+        "classification": "registry-local",
+        "target": "shadcn/sheet",
+        "reason": "Sidebar mobile branch composes the local Sheet wrapper."
+      },
+      {
+        "specifier": "shadcn/skeleton",
+        "classification": "registry-local",
+        "target": "shadcn/skeleton",
+        "reason": "Sidebar menu skeleton helper composes the local Skeleton wrapper."
+      },
+      {
+        "specifier": "shadcn/tooltip",
+        "classification": "registry-local",
+        "target": "shadcn/tooltip",
+        "reason": "Sidebar demo examples include tooltip composition for collapsed-style affordances."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Sidebar class helpers use the local cn canonicalizer."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html and html factory APIs for the Foldkit-native wrapper."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Effect Schema literals for sidebar variants, states, and style options."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the local utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the local utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin sidebar source and fixtures are React-based; installable source stays Foldkit-native."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin sidebar examples use lucide-react icons; installable source uses local inline SVGs."
+      },
+      {
+        "specifier": "@base-ui/react/merge-props",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/merge-props",
+        "reason": "Origin React helper is replaced by local Foldkit composition."
+      },
+      {
+        "specifier": "@base-ui/react/use-render",
+        "classification": "replace-with-foldkit",
+        "target": "base-ui/use-render",
+        "reason": "Origin React helper is replaced by local Foldkit composition."
+      },
+      {
+        "specifier": "class-variance-authority",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Origin sidebar CVA variant handling is replaced by explicit Schema literals and class maps."
+      },
+      {
+        "specifier": "@/hooks/use-mobile",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Sidebar mobility is represented explicitly in the parent model instead of a hidden media-query hook."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/sidebar-controlled",
+      "title": "SidebarControlled",
+      "description": "Controlled sidebar shell example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarControlled = <Message = never>(\n  controller?: SidebarController<Message>,\n): Html => {\n  const h = html<Message>()\n  const isOpen = sidebarIsOpen(controller)\n\n  return controlledShell<Message>({\n    id: 'sidebar-controlled',\n    open: isOpen,\n    sidebarChildren: [\n      Sidebar.SidebarContent<Message>({\n        children: [\n          simpleGroup('Projects', [\n            Sidebar.SidebarMenu<Message>({\n              children: [\n                Sidebar.SidebarMenuItem<Message>({\n                  children: [\n                    Sidebar.SidebarMenuButton<Message>({\n                      href: '#',\n                      children: [\n                        frameIcon(),\n                        h.span([], ['Design Engineering']),\n                      ],\n                    }),\n                  ],\n                }),\n                Sidebar.SidebarMenuItem<Message>({\n                  children: [\n                    Sidebar.SidebarMenuButton<Message>({\n                      href: '#',\n                      children: [\n                        pieChartIcon(),\n                        h.span([], ['Sales & Marketing']),\n                      ],\n                    }),\n                  ],\n                }),\n                Sidebar.SidebarMenuItem<Message>({\n                  children: [\n                    Sidebar.SidebarMenuButton<Message>({\n                      href: '#',\n                      children: [mapIcon(), h.span([], ['Travel'])],\n                    }),\n                  ],\n                }),\n                Sidebar.SidebarMenuItem<Message>({\n                  children: [\n                    Sidebar.SidebarMenuButton<Message>({\n                      href: '#',\n                      children: [lifeBuoyIcon(), h.span([], ['Support'])],\n                    }),\n                  ],\n                }),\n                Sidebar.SidebarMenuItem<Message>({\n                  children: [\n                    Sidebar.SidebarMenuButton<Message>({\n                      href: '#',\n                      children: [sendIcon(), h.span([], ['Feedback'])],\n                    }),\n                  ],\n                }),\n              ],\n            }),\n          ]),\n        ],\n      }),\n    ],\n    insetChildren: [\n      h.header(\n        [h.Class('flex h-12 items-center justify-between px-4')],\n        [\n          Button.view<Message>({\n            variant: 'ghost',\n            size: 'sm',\n            toView: attributes =>\n              h.button(\n                [...attributes.button, ...sidebarToggleAttributes(controller)],\n                [\n                  isOpen ? panelLeftCloseIcon() : panelLeftOpenIcon(),\n                  h.span([], [isOpen ? 'Close Sidebar' : 'Open Sidebar']),\n                ],\n              ),\n          }),\n        ],\n      ),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarControlled",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-demo",
+      "title": "SidebarDemo",
+      "description": "Full sidebar shell with groups, badges, tooltip, and footer account menu.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarDemo = <Message = never>(\n  controller?: SidebarController<Message>,\n): Html => {\n  const h = html<Message>()\n\n  return Sidebar.SidebarProvider<Message>({\n    children: [\n      Sidebar.Sidebar<Message>({\n        id: 'sidebar-demo',\n        open: sidebarIsOpen(controller),\n        collapsible: 'icon',\n        children: [\n          Sidebar.SidebarHeader<Message>({\n            children: [sidebarDemoTeamSwitcher(controller)],\n          }),\n          Sidebar.SidebarContent<Message>({\n            children: [\n              sidebarDemoNavMain(controller),\n              sidebarDemoProjects(controller),\n            ],\n          }),\n          Sidebar.SidebarFooter<Message>({\n            children: [sidebarDemoUser(controller)],\n          }),\n          sidebarRail(controller),\n        ],\n      }),\n      Sidebar.SidebarInset<Message>({\n        children: [\n          h.header(\n            [\n              h.Class(\n                'flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12',\n              ),\n            ],\n            [\n              h.div(\n                [h.Class('flex items-center gap-2 px-4')],\n                [sidebarTrigger(controller)],\n              ),\n            ],\n          ),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarDemo",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-footer",
+      "title": "SidebarFooter",
+      "description": "Footer-focused sidebar shell example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarFooter = <Message = never>(\n  controller?: SidebarController<Message>,\n): Html => {\n  const h = html<Message>()\n\n  return Sidebar.SidebarProvider<Message>({\n    children: [\n      Sidebar.Sidebar<Message>({\n        id: 'sidebar-footer',\n        open: sidebarIsOpen(controller),\n        children: [\n          Sidebar.SidebarHeader<Message>({ children: [] }),\n          Sidebar.SidebarContent<Message>({ children: [] }),\n          Sidebar.SidebarFooter<Message>({\n            children: [\n              Sidebar.SidebarMenu<Message>({\n                children: [\n                  Sidebar.SidebarMenuItem<Message>({\n                    children: [\n                      Sidebar.SidebarMenuButton<Message>({\n                        className:\n                          'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',\n                        attributes: [\n                          h.AriaExpanded(false),\n                          h.AriaHasPopup('menu'),\n                        ],\n                        children: ['Username', icon('chevronUp', 'ml-auto')],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n      Sidebar.SidebarInset<Message>({\n        children: [\n          h.header(\n            [h.Class('flex h-12 items-center justify-between px-4')],\n            [sidebarTrigger(controller)],\n          ),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarFooter",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-group-action",
+      "title": "SidebarGroupAction",
+      "description": "Sidebar group action example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarGroupAction = (): Html => {\n  const h = html<never>()\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      h.div(\n        [\n          h.DataAttribute('sonner-toaster', ''),\n          h.Attribute('position', 'bottom-left'),\n          h.Attribute('toastoptions', '[object Object]'),\n        ],\n        [],\n      ),\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-group-action',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),\n                  ' ',\n                  Sidebar.SidebarGroupAction<never>({\n                    attributes: [h.Title('Add Project')],\n                    children: [\n                      icon('plus'),\n                      h.span([h.Class('sr-only')], ['Add Project']),\n                    ],\n                  }),\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: [\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                children: [\n                                  frameIcon(),\n                                  h.span([], ['Design Engineering']),\n                                ],\n                              }),\n                            ],\n                          }),\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                children: [\n                                  pieChartIcon(),\n                                  h.span([], ['Sales & Marketing']),\n                                ],\n                              }),\n                            ],\n                          }),\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                children: [mapIcon(), h.span([], ['Travel'])],\n                              }),\n                            ],\n                          }),\n                        ],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarGroupAction",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-group-collapsible",
+      "title": "SidebarGroupCollapsible",
+      "description": "Collapsible sidebar group example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarGroupCollapsible = (): Html => {\n  const h = html<never>()\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-group-collapsible',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Collapsible.view<never>({\n                open: true,\n                className: 'group/collapsible',\n                panel: {\n                  id: 'base-ui-_r_0_',\n                  label: 'Help',\n                },\n                toView: attributes =>\n                  h.div(\n                    [...attributes.root],\n                    [\n                      Sidebar.SidebarGroup<never>({\n                        children: [\n                          h.button(\n                            [\n                              ...attributes.trigger,\n                              h.DataAttribute('sidebar', 'group-label'),\n                              h.DataAttribute('slot', 'sidebar-group-label'),\n                              h.Class(\n                                Sidebar.sidebarGroupLabelClassName({\n                                  className:\n                                    'text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',\n                                }),\n                              ),\n                              h.Attribute('aria-disabled', 'false'),\n                              h.Tabindex(0),\n                            ],\n                            [\n                              'Help',\n                              icon(\n                                'chevronDown',\n                                'ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180',\n                              ),\n                            ],\n                          ),\n                          attributes.panel.isMounted\n                            ? h.div(\n                                [\n                                  ...attributes.panel.root,\n                                  h.Attribute(\n                                    'style',\n                                    '--collapsible-panel-height: auto; --collapsible-panel-width: auto; animation-name: none;',\n                                  ),\n                                ],\n                                [\n                                  Sidebar.SidebarGroupContent<never>({\n                                    children: [\n                                      Sidebar.SidebarMenu<never>({\n                                        children: [\n                                          Sidebar.SidebarMenuItem<never>({\n                                            children: [\n                                              Sidebar.SidebarMenuButton<never>({\n                                                children: [\n                                                  lifeBuoyIcon(),\n                                                  'Support',\n                                                ],\n                                              }),\n                                            ],\n                                          }),\n                                          Sidebar.SidebarMenuItem<never>({\n                                            children: [\n                                              Sidebar.SidebarMenuButton<never>({\n                                                children: [\n                                                  sendIcon(),\n                                                  'Feedback',\n                                                ],\n                                              }),\n                                            ],\n                                          }),\n                                        ],\n                                      }),\n                                    ],\n                                  }),\n                                ],\n                              )\n                            : h.empty,\n                        ],\n                      }),\n                    ],\n                  ),\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarGroupCollapsible",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-header",
+      "title": "SidebarHeader",
+      "description": "Header-focused sidebar shell example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarHeader = <Message = never>(\n  controller?: SidebarController<Message>,\n): Html => {\n  const h = html<Message>()\n\n  return Sidebar.SidebarProvider<Message>({\n    children: [\n      Sidebar.Sidebar<Message>({\n        id: 'sidebar-header',\n        open: sidebarIsOpen(controller),\n        children: [\n          Sidebar.SidebarHeader<Message>({\n            children: [\n              Sidebar.SidebarMenu<Message>({\n                children: [\n                  Sidebar.SidebarMenuItem<Message>({\n                    children: [\n                      Sidebar.SidebarMenuButton<Message>({\n                        className:\n                          'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',\n                        attributes: [\n                          h.AriaExpanded(false),\n                          h.AriaHasPopup('menu'),\n                        ],\n                        children: [\n                          'Select Workspace',\n                          icon('chevronDown', 'ml-auto'),\n                        ],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n      Sidebar.SidebarInset<Message>({\n        children: [\n          h.header(\n            [h.Class('flex h-12 items-center justify-between px-4')],\n            [sidebarTrigger(controller)],\n          ),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarHeader",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-menu-action",
+      "title": "SidebarMenuAction",
+      "description": "Menu action example with a dropdown menu trigger.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarMenuAction = (): Html => {\n  const h = html<never>()\n  const projects = [\n    { name: 'Design Engineering', icon: frameIcon },\n    { name: 'Sales & Marketing', icon: pieChartIcon },\n    { name: 'Travel', icon: mapIcon },\n    { name: 'Support', icon: lifeBuoyIcon },\n    { name: 'Feedback', icon: sendIcon },\n  ] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-menu-action',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: projects.map(project =>\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                className:\n                                  'group-has-[[data-state=open]]/menu-item:bg-sidebar-accent',\n                                children: [\n                                  project.icon(),\n                                  h.span([], [project.name]),\n                                ],\n                              }),\n                              Sidebar.SidebarMenuAction<never>({\n                                attributes: [\n                                  h.AriaExpanded(false),\n                                  h.AriaHasPopup('menu'),\n                                ],\n                                children: [\n                                  icon('moreHorizontal'),\n                                  h.span([h.Class('sr-only')], ['More']),\n                                ],\n                              }),\n                            ],\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarMenuAction",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-menu-badge",
+      "title": "SidebarMenuBadge",
+      "description": "Menu badge example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarMenuBadge = (): Html => {\n  const h = html<never>()\n  const projects = [\n    { name: 'Design Engineering', icon: frameIcon, badge: '24' },\n    { name: 'Sales & Marketing', icon: pieChartIcon, badge: '12' },\n    { name: 'Travel', icon: mapIcon, badge: '3' },\n    { name: 'Support', icon: lifeBuoyIcon, badge: '21' },\n    { name: 'Feedback', icon: sendIcon, badge: '8' },\n  ] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-menu-badge',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: projects.map(project =>\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                className:\n                                  'group-has-[[data-state=open]]/menu-item:bg-sidebar-accent',\n                                children: [\n                                  project.icon(),\n                                  h.span([], [project.name]),\n                                ],\n                              }),\n                              Sidebar.SidebarMenuBadge<never>({\n                                children: [project.badge],\n                              }),\n                            ],\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarMenuBadge",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-menu-collapsible",
+      "title": "SidebarMenuCollapsible",
+      "description": "Collapsible menu and submenu example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarMenuCollapsible = (): Html => {\n  const h = html<never>()\n\n  const items = [\n    {\n      title: 'Getting Started',\n      items: ['Installation', 'Project Structure'],\n    },\n    { title: 'Build Your Application', items: [] },\n    { title: 'API Reference', items: [] },\n    { title: 'Architecture', items: [] },\n  ] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-menu-collapsible',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: items.map((item, index) =>\n                          Collapsible.view<never>({\n                            open: index === 0,\n                            className: 'group/collapsible',\n                            panel:\n                              index === 0\n                                ? {\n                                    id: 'base-ui-_r_0_',\n                                    label: item.title,\n                                  }\n                                : undefined,\n                            toView: attributes =>\n                              h.div(\n                                [...attributes.root],\n                                [\n                                  Sidebar.SidebarMenuItem<never>({\n                                    children: [\n                                      h.button(\n                                        [\n                                          ...attributes.trigger,\n                                          h.DataAttribute(\n                                            'sidebar',\n                                            'menu-button',\n                                          ),\n                                          h.DataAttribute('size', 'default'),\n                                          h.Class(\n                                            Sidebar.sidebarMenuButtonClassName(),\n                                          ),\n                                          h.Attribute('aria-disabled', 'false'),\n                                          h.Tabindex(0),\n                                        ],\n                                        [\n                                          h.span([], [item.title]),\n                                          icon(\n                                            'chevronRight',\n                                            'ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90',\n                                          ),\n                                        ],\n                                      ),\n                                      attributes.panel.isMounted\n                                        ? h.div(\n                                            [\n                                              ...attributes.panel.root,\n                                              h.Attribute(\n                                                'style',\n                                                '--collapsible-panel-height: auto; --collapsible-panel-width: auto; animation-name: none;',\n                                              ),\n                                            ],\n                                            [\n                                              Sidebar.SidebarMenuSub<never>({\n                                                children: item.items.map(\n                                                  subItem =>\n                                                    Sidebar.SidebarMenuSubItem<never>(\n                                                      {\n                                                        children: [\n                                                          Sidebar.SidebarMenuSubButton<never>(\n                                                            {\n                                                              href: '#',\n                                                              children: [\n                                                                h.span(\n                                                                  [],\n                                                                  [subItem],\n                                                                ),\n                                                              ],\n                                                            },\n                                                          ),\n                                                        ],\n                                                      },\n                                                    ),\n                                                ),\n                                              }),\n                                            ],\n                                          )\n                                        : h.empty,\n                                    ],\n                                  }),\n                                ],\n                              ),\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarMenuCollapsible",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-menu-sub",
+      "title": "SidebarMenuSub",
+      "description": "Nested submenu example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarMenuSub = (): Html => {\n  const h = html<never>()\n\n  const items = [\n    {\n      title: 'Getting Started',\n      items: ['Installation', 'Project Structure'],\n    },\n    {\n      title: 'Build Your Application',\n      items: [\n        'Routing',\n        'Data Fetching',\n        'Rendering',\n        'Caching',\n        'Styling',\n        'Optimizing',\n        'Configuring',\n        'Testing',\n        'Authentication',\n        'Deploying',\n        'Upgrading',\n        'Examples',\n      ],\n    },\n    {\n      title: 'API Reference',\n      items: [\n        'Components',\n        'File Conventions',\n        'Functions',\n        'next.config.js Options',\n        'CLI',\n        'Edge Runtime',\n      ],\n    },\n    {\n      title: 'Architecture',\n      items: [\n        'Accessibility',\n        'Fast Refresh',\n        'Next.js Compiler',\n        'Supported Browsers',\n        'Turbopack',\n      ],\n    },\n  ] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-menu-sub',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: items.map(item =>\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                children: [h.span([], [item.title])],\n                              }),\n                              Sidebar.SidebarMenuSub<never>({\n                                children: item.items.map(subItem =>\n                                  Sidebar.SidebarMenuSubItem<never>({\n                                    children: [\n                                      Sidebar.SidebarMenuSubButton<never>({\n                                        href: '#',\n                                        children: [h.span([], [subItem])],\n                                      }),\n                                    ],\n                                  }),\n                                ),\n                              }),\n                            ],\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarMenuSub",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-menu",
+      "title": "SidebarMenu",
+      "description": "Basic sidebar menu example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarMenu = (): Html => {\n  const h = html<never>()\n  const projects = [\n    { name: 'Design Engineering', icon: frameIcon },\n    { name: 'Sales & Marketing', icon: pieChartIcon },\n    { name: 'Travel', icon: mapIcon },\n    { name: 'Support', icon: lifeBuoyIcon },\n    { name: 'Feedback', icon: sendIcon },\n  ] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-menu',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: projects.map(project =>\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuButton<never>({\n                                href: '#',\n                                children: [\n                                  project.icon(),\n                                  h.span([], [project.name]),\n                                ],\n                              }),\n                            ],\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarMenu",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-rsc",
+      "title": "SidebarRsc",
+      "description": "Server-style sidebar example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarRsc = (): Html => {\n  const widths = ['70%', '63%', '71%', '64%', '61%'] as const\n\n  return Sidebar.SidebarProvider<never>({\n    children: [\n      Sidebar.Sidebar<never>({\n        id: 'sidebar-rsc',\n        children: [\n          Sidebar.SidebarContent<never>({\n            children: [\n              Sidebar.SidebarGroup<never>({\n                children: [\n                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),\n                  Sidebar.SidebarGroupContent<never>({\n                    children: [\n                      Sidebar.SidebarMenu<never>({\n                        children: widths.map(width =>\n                          Sidebar.SidebarMenuItem<never>({\n                            children: [\n                              Sidebar.SidebarMenuSkeleton<never>({\n                                showIcon: true,\n                                width,\n                              }),\n                            ],\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n            ],\n          }),\n        ],\n      }),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarRsc",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/sidebar-rtl",
+      "title": "SidebarRtl",
+      "description": "RTL sidebar example.",
+      "componentItemId": "shadcn/sidebar",
+      "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
+      "snippet": "export const SidebarRtl = <Message = never>(\n  controller?: SidebarController<Message>,\n): Html => {\n  const h = html<Message>()\n  const team = { name: 'شركة أكمي', plan: 'المؤسسة' }\n  const navMain: ReadonlyArray<\n    Readonly<{\n      title: string\n      icon: (className?: string) => Html\n      isActive?: boolean\n      items: ReadonlyArray<string>\n    }>\n  > = [\n    {\n      title: 'ملعب',\n      icon: squareTerminalLucideIcon,\n      isActive: true,\n      items: ['السجل', 'المميز', 'الإعدادات'],\n    },\n    {\n      title: 'النماذج',\n      icon: botLucideIcon,\n      items: ['جينيسيس', 'إكسبلورر', 'كوانتوم'],\n    },\n    {\n      title: 'التوثيق',\n      icon: bookOpenLucideIcon,\n      items: ['مقدمة', 'ابدأ', 'الدروس', 'سجل التغييرات'],\n    },\n    {\n      title: 'الإعدادات',\n      icon: settings2LucideIcon,\n      items: ['عام', 'الفريق', 'الفوترة', 'الحدود'],\n    },\n  ] as const\n  const projects = [\n    { name: 'هندسة التصميم', icon: frameLucideIcon },\n    { name: 'المبيعات والتسويق', icon: pieChartLucideIcon },\n    { name: 'السفر', icon: mapLucideIcon },\n  ] as const\n\n  return h.div(\n    [h.Class('relative'), h.Dir('rtl')],\n    [\n      h.span([h.DataAttribute('name', 'language-selector')], ['ar']),\n      Sidebar.SidebarProvider<Message>({\n        children: [\n          Sidebar.Sidebar<Message>({\n            id: 'sidebar-rtl',\n            open: sidebarIsOpen(controller),\n            side: 'right',\n            variant: 'floating',\n            collapsible: 'icon',\n            children: [\n              Sidebar.SidebarHeader<Message>({\n                children: [\n                  Sidebar.SidebarMenu<Message>({\n                    children: [\n                      Sidebar.SidebarMenuItem<Message>({\n                        children: [\n                          Sidebar.SidebarMenuButton<Message>({\n                            href: '#',\n                            size: 'lg',\n                            dir: 'rtl',\n                            children: [\n                              h.div(\n                                [\n                                  h.Class(\n                                    'flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground',\n                                  ),\n                                ],\n                                [galleryVerticalEndLucideIcon()],\n                              ),\n                              h.div(\n                                [h.Class('flex flex-col gap-0.5 leading-none')],\n                                [\n                                  h.span([h.Class('font-medium')], [team.name]),\n                                  h.span(\n                                    [h.Attribute('class', '')],\n                                    [team.plan],\n                                  ),\n                                ],\n                              ),\n                            ],\n                          }),\n                        ],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n              Sidebar.SidebarContent<Message>({\n                children: [\n                  Sidebar.SidebarGroup<Message>({\n                    children: [\n                      Sidebar.SidebarGroupLabel<Message>({\n                        children: ['المنصة'],\n                      }),\n                      Sidebar.SidebarMenu<Message>({\n                        children: navMain.map(item =>\n                          Collapsible.view<never>({\n                            open: item.isActive ?? false,\n                            className: 'group/collapsible',\n                            panel:\n                              item.isActive === true\n                                ? { id: 'base-ui-_r_0_', label: item.title }\n                                : undefined,\n                            toView: attributes =>\n                              h.div(\n                                [...attributes.root],\n                                [\n                                  Sidebar.SidebarMenuItem<never>({\n                                    children: [\n                                      h.button(\n                                        [\n                                          ...attributes.trigger,\n                                          h.DataAttribute(\n                                            'sidebar',\n                                            'menu-button',\n                                          ),\n                                          h.DataAttribute('size', 'default'),\n                                          h.Class(\n                                            Sidebar.sidebarMenuButtonClassName({\n                                              dir: 'rtl',\n                                            }),\n                                          ),\n                                          h.Attribute('aria-disabled', 'false'),\n                                          h.Tabindex(0),\n                                        ],\n                                        [\n                                          item.icon(),\n                                          h.span([], [item.title]),\n                                          chevronRightLucideIcon(\n                                            'ms-auto transition-transform duration-200 group-data-open/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-open/collapsible:rotate-90',\n                                          ),\n                                        ],\n                                      ),\n                                      sidebarTooltip(item.title),\n                                      attributes.panel.isMounted\n                                        ? h.div(\n                                            [\n                                              ...attributes.panel.root,\n                                              h.Attribute(\n                                                'style',\n                                                '--collapsible-panel-height: auto; --collapsible-panel-width: auto; animation-name: none;',\n                                              ),\n                                            ],\n                                            [\n                                              Sidebar.SidebarMenuSub<never>({\n                                                dir: 'rtl',\n                                                children: item.items.map(\n                                                  subItem =>\n                                                    Sidebar.SidebarMenuSubItem<never>(\n                                                      {\n                                                        children: [\n                                                          Sidebar.SidebarMenuSubButton<never>(\n                                                            {\n                                                              href: '#',\n                                                              dir: 'rtl',\n                                                              children: [\n                                                                h.span(\n                                                                  [],\n                                                                  [subItem],\n                                                                ),\n                                                              ],\n                                                            },\n                                                          ),\n                                                        ],\n                                                      },\n                                                    ),\n                                                ),\n                                              }),\n                                            ],\n                                          )\n                                        : h.empty,\n                                    ],\n                                  }),\n                                ],\n                              ),\n                          }),\n                        ),\n                      }),\n                    ],\n                  }),\n                  Sidebar.SidebarGroup<Message>({\n                    className: 'group-data-[collapsible=icon]:hidden',\n                    children: [\n                      Sidebar.SidebarGroupLabel<Message>({\n                        children: ['المشاريع'],\n                      }),\n                      Sidebar.SidebarMenu<Message>({\n                        children: [\n                          ...projects.map(project =>\n                            Sidebar.SidebarMenuItem<Message>({\n                              children: [\n                                Sidebar.SidebarMenuButton<Message>({\n                                  href: '#',\n                                  dir: 'rtl',\n                                  children: [\n                                    project.icon(),\n                                    h.span([], [project.name]),\n                                  ],\n                                }),\n                                Sidebar.SidebarMenuAction<Message>({\n                                  showOnHover: true,\n                                  dir: 'rtl',\n                                  attributes: [\n                                    h.AriaExpanded(false),\n                                    h.AriaHasPopup('menu'),\n                                  ],\n                                  children: [\n                                    moreHorizontalLucideIcon(),\n                                    h.span([h.Class('sr-only')], ['المزيد']),\n                                  ],\n                                }),\n                              ],\n                            }),\n                          ),\n                          Sidebar.SidebarMenuItem<Message>({\n                            children: [\n                              Sidebar.SidebarMenuButton<Message>({\n                                dir: 'rtl',\n                                className: 'text-sidebar-foreground/70',\n                                children: [\n                                  moreHorizontalLucideIcon(\n                                    'text-sidebar-foreground/70',\n                                  ),\n                                  h.span([], ['المزيد']),\n                                ],\n                              }),\n                            ],\n                          }),\n                        ],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n              Sidebar.SidebarFooter<Message>({\n                children: [\n                  Sidebar.SidebarMenu<Message>({\n                    children: [\n                      Sidebar.SidebarMenuItem<Message>({\n                        children: [\n                          Sidebar.SidebarMenuButton<Message>({\n                            size: 'lg',\n                            dir: 'rtl',\n                            className:\n                              'data-open:bg-sidebar-accent data-open:text-sidebar-accent-foreground',\n                            attributes: [\n                              h.AriaExpanded(false),\n                              h.AriaHasPopup('menu'),\n                            ],\n                            children: [\n                              rtlDemoAvatar(),\n                              h.div(\n                                [\n                                  h.Class(\n                                    'grid flex-1 text-start text-sm leading-tight',\n                                  ),\n                                ],\n                                [\n                                  h.span(\n                                    [h.Class('truncate font-medium')],\n                                    ['shadcn'],\n                                  ),\n                                  h.span(\n                                    [h.Class('truncate text-xs')],\n                                    ['m@example.com'],\n                                  ),\n                                ],\n                              ),\n                              chevronsUpDownLucideIcon('ms-auto size-4'),\n                            ],\n                          }),\n                        ],\n                      }),\n                    ],\n                  }),\n                ],\n              }),\n              sidebarRail(controller, { dir: 'rtl' }),\n            ],\n          }),\n          Sidebar.SidebarInset<Message>({\n            dir: 'rtl',\n            children: [\n              h.header(\n                [\n                  h.Dir('rtl'),\n                  h.Class(\n                    'flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12',\n                  ),\n                ],\n                [\n                  h.div(\n                    [h.Class('flex items-center gap-2 px-4')],\n                    [sidebarTrigger(controller)],\n                  ),\n                ],\n              ),\n            ],\n          }),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "SidebarRtl",
+      "requiredRegistryItems": [
+        "shadcn/avatar",
+        "shadcn/button",
+        "shadcn/collapsible",
+        "shadcn/direction",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/separator",
+        "shadcn/sheet",
+        "shadcn/skeleton",
+        "shadcn/tooltip",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "sidebar-controlled-state-boundary",
+        "summary": "Open, collapsed, mobile, and active item state are explicit parent-controlled facts instead of a hidden React context or cookie-backed provider.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Foldkit keeps state in the model and avoids hidden browser storage or ambient React context."
+      },
+      {
+        "id": "sidebar-no-hidden-global-shortcut-listener",
+        "summary": "The installable source does not install a hidden global keyboard listener for cmd/ctrl+b.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Global listeners hidden in view code are forbidden here. Keyboard shortcut facts must be explicit model or command boundary events."
+      }
+    ]
+  }
+}
