@@ -51,6 +51,9 @@ const PressedToastAction = m('PressedToastAction', {
 const RequestedToastClose = m('RequestedToastClose', {
   request: ToastPrimitive.ToastCloseRequest,
 })
+const ChangedToastViewport = m('ChangedToastViewport', {
+  interaction: ToastPrimitive.ToastViewportInteraction,
+})
 const ResolvedPromiseToast = m('ResolvedPromiseToast', {
   id: S.String,
   result: ToastPrimitive.ToastPromiseState,
@@ -63,6 +66,7 @@ const TestMessage = S.Union([
   ClickedShowTypeToast,
   PressedToastAction,
   RequestedToastClose,
+  ChangedToastViewport,
   ResolvedPromiseToast,
 ])
 type Message = typeof TestMessage.Type
@@ -176,6 +180,13 @@ const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      ChangedToastViewport: ({ interaction }) => [
+        evo(model, {
+          state: () =>
+            ToastPrimitive.applyViewportInteraction(model.state, interaction),
+        }),
+        [],
+      ],
       ResolvedPromiseToast: ({ id, result }) => [
         evo(model, {
           state: () =>
@@ -217,6 +228,8 @@ const toasterView =
             : { viewportPosition: options.viewportPosition }),
           onAction: press => PressedToastAction({ press }),
           onClose: request => RequestedToastClose({ request }),
+          onViewportInteraction: interaction =>
+            ChangedToastViewport({ interaction }),
         }),
         h.p([], [`Action ${model.actionPresses}`]),
         h.p([], [`Close ${model.closePresses}`]),
@@ -249,7 +262,15 @@ describe('shadcn/sonner class helpers', () => {
   test('exports the theme schema and class canonicalization helpers', () => {
     expect(S.decodeUnknownSync(Sonner.SonnerTheme)('dark')).toBe('dark')
     expect(Sonner.sonnerProviderClassName()).toContain('toaster')
+    expect(Sonner.sonnerViewportClassName()).toContain('pointer-events-auto')
+    expect(Sonner.sonnerToastClassName()).toContain('absolute')
     expect(Sonner.sonnerToastClassName()).toContain('rounded-2xl')
+  })
+
+  test('exports the sonner action class vocabulary', () => {
+    expect(Sonner.sonnerToastClassName()).not.toContain(
+      'data-starting-style:opacity-0',
+    )
     expect(Sonner.sonnerActionClassName()).toContain('border-input')
     expect(Sonner.sonnerCloseClassName()).toContain('size-8')
   })
@@ -279,6 +300,9 @@ describe('shadcn/sonner view', () => {
         Scene.expect(
           Scene.selector('[data-slot="sonner-provider"]'),
         ).toHaveAttr('data-theme', 'dark'),
+        Scene.expect(
+          Scene.selector('[data-slot="sonner-viewport"]'),
+        ).toHaveClass('min-h-[var(--toast-frontmost-height)]'),
         Scene.expect(Scene.selector('[data-slot="sonner-toast"]')).toHaveAttr(
           'class',
           Sonner.sonnerToastClassName(),
@@ -315,8 +339,126 @@ describe('shadcn/sonner view', () => {
         Scene.click(Scene.role('button', { name: 'Undo' })),
         Scene.expect(Scene.text('Action 1')).toExist(),
         Scene.click(Scene.role('button', { name: 'Dismiss notification' })),
-        Scene.expect(Scene.role('dialog', { name: 'Saved' })).not.toExist(),
+        Scene.expect(Scene.selector('#notifications-saved')).toHaveAttr(
+          'data-ending-style',
+        ),
         Scene.expect(Scene.text('Close 1')).toExist(),
+      )
+    }).not.toThrow()
+  })
+
+  test('renders a collapsed stack without pushing the bottom viewport upward', () => {
+    const state = ToastPrimitive.createToastState({
+      toasts: [
+        {
+          id: 'latest',
+          title: 'Latest',
+          description: 'Visible front toast.',
+          height: 88,
+        },
+        {
+          id: 'middle',
+          title: 'Middle',
+          description: 'Hidden behind while collapsed.',
+          height: 88,
+        },
+        {
+          id: 'oldest',
+          title: 'Oldest',
+          description: 'Hidden furthest back while collapsed.',
+          height: 88,
+        },
+      ],
+    })
+
+    expect(() => {
+      Scene.scene(
+        { update, view: toasterView() },
+        Scene.with(initialModel(state)),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).not.toHaveAttr('data-expanded'),
+        Scene.expect(Scene.selector('#notifications-latest')).toHaveAttr(
+          'data-stacking-strategy',
+          'base-ui-shuffle',
+        ),
+        Scene.expect(Scene.selector('#notifications-latest')).toHaveClass(
+          'absolute',
+        ),
+        Scene.expect(
+          Scene.selector('#notifications-middle [data-slot="sonner-content"]'),
+        ).toHaveAttr('data-behind'),
+      )
+    }).not.toThrow()
+  })
+
+  test('expands the stack on hover and reveals background toast content', () => {
+    const state = ToastPrimitive.createToastState({
+      toasts: [
+        {
+          id: 'latest',
+          title: 'Latest',
+          description: 'Visible front toast.',
+          height: 88,
+        },
+        {
+          id: 'middle',
+          title: 'Middle',
+          description: 'Revealed when expanded.',
+          height: 88,
+        },
+      ],
+    })
+
+    expect(() => {
+      Scene.scene(
+        { update, view: toasterView() },
+        Scene.with(initialModel(state)),
+        Scene.hover(Scene.role('region', { name: 'Notifications' })),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveAttr('data-expanded'),
+        Scene.expect(Scene.selector('#notifications-middle')).toHaveAttr(
+          'data-expanded',
+        ),
+        Scene.expect(
+          Scene.selector('#notifications-middle [data-slot="sonner-content"]'),
+        ).toHaveAttr('data-expanded'),
+      )
+    }).not.toThrow()
+  })
+
+  test('keeps the viewport height anchored to the first active toast while the front exits', () => {
+    const state = ToastPrimitive.createToastState({
+      toasts: [
+        {
+          id: 'closing',
+          title: 'Closing',
+          height: 0,
+          transitionStatus: 'ending',
+        },
+        {
+          id: 'next',
+          title: 'Next',
+          height: 88,
+        },
+      ],
+    })
+
+    expect(() => {
+      Scene.scene(
+        { update, view: toasterView() },
+        Scene.with(initialModel(state)),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('--toast-frontmost-height', '88px'),
+        Scene.expect(Scene.selector('#notifications-closing')).toHaveAttr(
+          'data-ending-style',
+        ),
+        Scene.expect(Scene.selector('#notifications-next')).toHaveAttr(
+          'data-visible-index',
+          '0',
+        ),
       )
     }).not.toThrow()
   })
@@ -338,6 +480,24 @@ describe('shadcn/sonner view', () => {
         },
         Scene.with(initialModel(ToastPrimitive.createToastState())),
         Scene.click(Scene.role('button', { name: 'Top Left' })),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveAttr('data-position', 'top-left'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('position', 'absolute'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('top', '1rem'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('bottom', 'auto'),
+        Scene.expect(
+          Scene.role('dialog', { name: 'Event has been created' }),
+        ).toHaveStyle('top', '0'),
+        Scene.expect(
+          Scene.role('dialog', { name: 'Event has been created' }),
+        ).toHaveStyle('bottom', 'auto'),
         Scene.expect(Scene.selector('[data-slot="sonner-toast"]')).toExist(),
       )
       Scene.scene(
@@ -349,6 +509,34 @@ describe('shadcn/sonner view', () => {
         Scene.expect(Scene.selector('svg.animate-spin')).toExist(),
       )
     }).not.toThrow()
+  })
+
+  test('positions the demo viewport from the latest Sonner position toast', () => {
+    const expectPositionButton = (
+      buttonLabel: string,
+      position: ToastPrimitive.ToastViewportPosition,
+    ) => {
+      expect(() => {
+        Scene.scene(
+          {
+            update,
+            view: exampleWithToaster(SonnerExamples.SonnerPosition),
+          },
+          Scene.with(initialModel(ToastPrimitive.createToastState())),
+          Scene.click(Scene.role('button', { name: buttonLabel })),
+          Scene.expect(
+            Scene.role('region', { name: 'Notifications' }),
+          ).toHaveAttr('data-position', position),
+        )
+      }).not.toThrow()
+    }
+
+    expectPositionButton('Top Left', 'top-left')
+    expectPositionButton('Top Center', 'top-center')
+    expectPositionButton('Top Right', 'top-right')
+    expectPositionButton('Bottom Left', 'bottom-left')
+    expectPositionButton('Bottom Center', 'bottom-center')
+    expectPositionButton('Bottom Right', 'bottom-right')
   })
 })
 

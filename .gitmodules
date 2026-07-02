@@ -10,3 +10,6 @@
 [submodule "repos/components.build"]
 	path = repos/components.build
 	url = https://github.com/vercel/components.build.git
+[submodule "repos/sonner"]
+	path = repos/sonner
+	url = https://github.com/emilkowalski/sonner.git

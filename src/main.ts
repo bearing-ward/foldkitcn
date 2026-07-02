@@ -273,10 +273,76 @@ const toastIdForExample = (exampleId: string): string =>
 const activeToastCount = (state: ToastPrimitive.ToastState): number =>
   state.toasts.filter(toast => toast.transitionStatus !== 'ending').length
 
+const activeToast = (toast: ToastPrimitive.ToastItem): boolean =>
+  toast.transitionStatus !== 'ending'
+
 const showToast = (
   state: ToastPrimitive.ToastState,
   options: ToastPrimitive.ToastAddOptions,
 ): ToastPrimitive.ToastState => ToastPrimitive.addToast(state, options).state
+
+const toastById = (
+  state: ToastPrimitive.ToastState,
+  id: string,
+): Option.Option<ToastPrimitive.ToastItem> =>
+  Option.fromNullishOr(state.toasts.find(toast => toast.id === id))
+
+const shouldScheduleToastTimeout = (
+  previous: ToastPrimitive.ToastItem | undefined,
+  toast: ToastPrimitive.ToastItem,
+): boolean =>
+  activeToast(toast) &&
+  toast.timerStatus === 'running' &&
+  (toast.remainingDuration ?? toast.duration ?? 0) > 0 &&
+  (previous === undefined ||
+    previous.timerStatus !== 'running' ||
+    previous.updateKey !== toast.updateKey)
+
+const scheduleLiveExampleToastTimeouts = (
+  previousState: ToastPrimitive.ToastState,
+  nextState: ToastPrimitive.ToastState,
+  exampleId: string,
+): ReadonlyArray<Command.Command<Message>> =>
+  nextState.toasts.flatMap(toast =>
+    shouldScheduleToastTimeout(
+      previousState.toasts.find(previousToast => previousToast.id === toast.id),
+      toast,
+    )
+      ? [
+          TimeoutLiveExampleToast({
+            exampleId,
+            toastId: toast.id,
+            updateKey: toast.updateKey ?? 0,
+            durationMillis: toast.remainingDuration ?? toast.duration ?? 0,
+          }),
+        ]
+      : [],
+  )
+
+const scheduleLiveExampleToastRemovals = (
+  previousState: ToastPrimitive.ToastState,
+  nextState: ToastPrimitive.ToastState,
+  exampleId: string,
+): ReadonlyArray<Command.Command<Message>> =>
+  nextState.toasts.flatMap(toast => {
+    const previous = previousState.toasts.find(
+      previousToast => previousToast.id === toast.id,
+    )
+
+    return toast.transitionStatus === 'ending' &&
+      previous?.transitionStatus !== 'ending'
+      ? [RemoveLiveExampleToast({ exampleId, toastId: toast.id })]
+      : []
+  })
+
+const scheduleLiveExampleToastLifecycle = (
+  previousState: ToastPrimitive.ToastState,
+  nextState: ToastPrimitive.ToastState,
+  exampleId: string,
+): ReadonlyArray<Command.Command<Message>> => [
+  ...scheduleLiveExampleToastTimeouts(previousState, nextState, exampleId),
+  ...scheduleLiveExampleToastRemovals(previousState, nextState, exampleId),
+]
 
 const varyingHeightDescriptions: ReadonlyArray<string> = [
   'Short message.',
@@ -813,6 +879,21 @@ export const CompletedLiveExampleToastWait = m(
     toastId: S.String,
   },
 )
+export const CompletedTimeoutLiveExampleToast = m(
+  'CompletedTimeoutLiveExampleToast',
+  {
+    exampleId: S.String,
+    toastId: S.String,
+    updateKey: S.Number,
+  },
+)
+export const CompletedRemoveLiveExampleToast = m(
+  'CompletedRemoveLiveExampleToast',
+  {
+    exampleId: S.String,
+    toastId: S.String,
+  },
+)
 export const PressedLiveExampleCommandDialogShortcut = m(
   'PressedLiveExampleCommandDialogShortcut',
 )
@@ -864,6 +945,8 @@ export const Message = S.Union([
   UpdatedLiveExampleSidebarPanelOpen,
   SelectedLiveExampleSidebarValue,
   CompletedLiveExampleToastWait,
+  CompletedTimeoutLiveExampleToast,
+  CompletedRemoveLiveExampleToast,
   PressedLiveExampleCommandDialogShortcut,
   UpdatedSearchQuery,
   ReceivedPagefindSearchResults,
@@ -1050,6 +1133,35 @@ export const CompleteLiveExampleToastWait = Command.define(
 )(({ exampleId, toastId }) =>
   Effect.sleep('800 millis').pipe(
     Effect.as(CompletedLiveExampleToastWait({ exampleId, toastId })),
+  ),
+)
+
+export const TimeoutLiveExampleToast = Command.define(
+  'TimeoutLiveExampleToast',
+  {
+    exampleId: S.String,
+    toastId: S.String,
+    updateKey: S.Number,
+    durationMillis: S.Number,
+  },
+  CompletedTimeoutLiveExampleToast,
+)(({ durationMillis, exampleId, toastId, updateKey }) =>
+  Effect.sleep(`${durationMillis} millis`).pipe(
+    Effect.as(
+      CompletedTimeoutLiveExampleToast({ exampleId, toastId, updateKey }),
+    ),
+  ),
+)
+
+const TOAST_EXIT_ANIMATION_DURATION = '300 millis'
+
+export const RemoveLiveExampleToast = Command.define(
+  'RemoveLiveExampleToast',
+  { exampleId: S.String, toastId: S.String },
+  CompletedRemoveLiveExampleToast,
+)(({ exampleId, toastId }) =>
+  Effect.sleep(TOAST_EXIT_ANIMATION_DURATION).pipe(
+    Effect.as(CompletedRemoveLiveExampleToast({ exampleId, toastId })),
   ),
 )
 
@@ -1432,7 +1544,10 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           evo(model, {
             liveExampleToastStates: EffectRecord.set(exampleId, nextState),
           }),
-          commands,
+          [
+            ...commands,
+            ...scheduleLiveExampleToastLifecycle(state, nextState, exampleId),
+          ],
         ]
       },
       UpdatedLiveExampleSidebarOpen: ({ exampleId, open }) => [
@@ -1468,20 +1583,63 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           EffectRecord.get(model.liveExampleToastStates, exampleId),
           Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
         )
+        const nextState = ToastPrimitive.resolvePromiseToast(
+          state,
+          toastId,
+          ToastPrimitive.ToastPromiseSucceeded({
+            title: 'Result received',
+            description: 'The effect completed successfully.',
+            timeout: 5000,
+          }),
+        )
+
+        return [
+          evo(model, {
+            liveExampleToastStates: EffectRecord.set(exampleId, nextState),
+          }),
+          scheduleLiveExampleToastLifecycle(state, nextState, exampleId),
+        ]
+      },
+      CompletedTimeoutLiveExampleToast: ({ exampleId, toastId, updateKey }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleToastStates, exampleId),
+          Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
+        )
+        const maybeToast = toastById(state, toastId)
+
+        return Option.match(maybeToast, {
+          onNone: () => [model, []],
+          onSome: toast => {
+            if (
+              !activeToast(toast) ||
+              toast.timerStatus !== 'running' ||
+              (toast.updateKey ?? 0) !== updateKey
+            ) {
+              return [model, []]
+            }
+
+            const nextState = ToastPrimitive.timeoutToast(state, toastId)
+
+            return [
+              evo(model, {
+                liveExampleToastStates: EffectRecord.set(exampleId, nextState),
+              }),
+              scheduleLiveExampleToastRemovals(state, nextState, exampleId),
+            ]
+          },
+        })
+      },
+      CompletedRemoveLiveExampleToast: ({ exampleId, toastId }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleToastStates, exampleId),
+          Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
+        )
 
         return [
           evo(model, {
             liveExampleToastStates: EffectRecord.set(
               exampleId,
-              ToastPrimitive.resolvePromiseToast(
-                state,
-                toastId,
-                ToastPrimitive.ToastPromiseSucceeded({
-                  title: 'Result received',
-                  description: 'The effect completed successfully.',
-                  timeout: 5000,
-                }),
-              ),
+              ToastPrimitive.removeToast(state, toastId),
             ),
           }),
           [],

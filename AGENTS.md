@@ -14,6 +14,8 @@ If `./repos/foldkit` exists, it contains the full Foldkit repository, vendored i
 
 Treat the subtree as read-only reference: never import from `repos/foldkit/` in your project source. Imports must come from the `foldkit` npm package.
 
+For Sonner-specific behavior, `./repos/sonner` is available as a read-only reference submodule from `emilkowalski/sonner`. Use it when implementing or debugging `shadcn/sonner` parity, especially stack placement, hover expansion, multiple toasters, timing, and viewport positioning. Do not import from `repos/sonner/` in project source; translate the behavior into native Foldkit/Effect code.
+
 If `./repos/foldkit` does not exist and the line below says `subtree_prompted: false`, offer to run `git subtree add --prefix=repos/foldkit https://github.com/foldkit/foldkit.git main --squash`. This gives you access to the full source, examples, and docs. Whether the user accepts or declines, update the value to `true` so it isn't asked again.
 
 subtree_prompted: false

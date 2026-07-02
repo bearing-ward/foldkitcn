@@ -859,10 +859,16 @@ const foldkitPushAnchorsFromTop = (
 const rootPlacementStyle = (
   config: Pick<ViewConfig<unknown>, 'stackingStrategy' | 'viewportPosition'>,
 ): Readonly<Record<'bottom' | 'top', string>> =>
-  config.stackingStrategy === 'foldkit-push' &&
   foldkitPushAnchorsFromTop(config.viewportPosition)
     ? { top: '0', bottom: 'auto' }
     : { top: 'auto', bottom: '0' }
+
+const baseUiShuffleTransform = (
+  position: ToastViewportPosition | undefined,
+): string =>
+  foldkitPushAnchorsFromTop(position)
+    ? 'translateY(calc(var(--toast-index) * 20%)) scale(calc(1 - (var(--toast-index) * 0.05)))'
+    : 'translateY(calc(var(--toast-index) * -20%)) scale(calc(1 - (var(--toast-index) * 0.05)))'
 
 const providerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
@@ -882,26 +888,62 @@ const viewportPlacementStyle = (
   position: ToastViewportPosition,
 ): Record<string, string> => {
   if (position === 'top-left') {
-    return { top: '1rem', left: '1rem' }
+    return {
+      top: '1rem',
+      right: 'auto',
+      bottom: 'auto',
+      left: '1rem',
+      transform: 'none',
+    }
   }
 
   if (position === 'top-center') {
-    return { top: '1rem', left: '50%', transform: 'translateX(-50%)' }
+    return {
+      top: '1rem',
+      right: 'auto',
+      bottom: 'auto',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    }
   }
 
   if (position === 'top-right') {
-    return { top: '1rem', right: '1rem' }
+    return {
+      top: '1rem',
+      right: '1rem',
+      bottom: 'auto',
+      left: 'auto',
+      transform: 'none',
+    }
   }
 
   if (position === 'bottom-left') {
-    return { bottom: '1rem', left: '1rem' }
+    return {
+      top: 'auto',
+      right: 'auto',
+      bottom: '1rem',
+      left: '1rem',
+      transform: 'none',
+    }
   }
 
   if (position === 'bottom-center') {
-    return { bottom: '1rem', left: '50%', transform: 'translateX(-50%)' }
+    return {
+      top: 'auto',
+      right: 'auto',
+      bottom: '1rem',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    }
   }
 
-  return { bottom: '1rem', right: '1rem' }
+  return {
+    top: 'auto',
+    right: '1rem',
+    bottom: '1rem',
+    left: 'auto',
+    transform: 'none',
+  }
 }
 
 const viewportInteractionMessage = <Message>(
@@ -935,7 +977,9 @@ const viewportAttributes = <Message>(
       display: 'grid',
       gap: '0.5rem',
       zIndex: '2147483647',
-      '--toast-frontmost-height': `${config.state.toasts[0]?.height ?? 0}px`,
+      '--toast-frontmost-height': `${
+        config.state.toasts.find(activeToast)?.height ?? 0
+      }px`,
       ...viewportPlacementStyle(
         config.viewportPosition ?? defaultViewportPosition,
       ),
@@ -1048,7 +1092,7 @@ const rootAttributes = <Message>(
     transform:
       config.stackingStrategy === 'foldkit-push' || expanded
         ? foldkitPushTransform(config.viewportPosition)
-        : 'translateY(calc(var(--toast-index) * -20%)) scale(calc(1 - (var(--toast-index) * 0.05)))',
+        : baseUiShuffleTransform(config.viewportPosition),
   }),
   ...optionalMessageAttribute(
     closeMessage(config, closeRequest(toast.id, 'escape-key')),

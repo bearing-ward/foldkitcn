@@ -1777,10 +1777,16 @@ const sonnerExample = (view: SonnerExampleView): LiveExampleDefinition => ({
     return h.div(
       [
         h.Class(
-          'relative flex min-h-44 w-full flex-col items-center justify-center overflow-hidden',
+          'relative flex min-h-44 w-full flex-col items-center justify-center self-stretch overflow-hidden',
         ),
       ],
-      [view(controller), renderSonnerDemoToaster(controller)],
+      [
+        view(controller),
+        h.div(
+          [h.Class('pointer-events-none absolute inset-0')],
+          [renderSonnerDemoToaster(controller)],
+        ),
+      ],
     )
   },
 })

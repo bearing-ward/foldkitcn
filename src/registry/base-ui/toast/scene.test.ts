@@ -199,6 +199,12 @@ describe('base-ui/toast view', () => {
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).toHaveAttr('data-position', 'bottom-right'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('top', 'auto'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('left', 'auto'),
         Scene.expect(Scene.role('dialog', { name: 'Saved' })).toHaveAttr(
           'tabIndex',
           '0',
@@ -416,6 +422,15 @@ describe('base-ui/toast view', () => {
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).toHaveAttr('data-position', 'top-center'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('top', '1rem'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('bottom', 'auto'),
+        Scene.expect(
+          Scene.role('region', { name: 'Notifications' }),
+        ).toHaveStyle('transform', 'translateX(-50%)'),
         Scene.expect(Scene.text('This is a toast notification.')).not.toExist(),
       )
       Scene.scene(

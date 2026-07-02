@@ -30,6 +30,9 @@ const PressedToastAction = m('PressedToastAction', {
 const RequestedToastClose = m('RequestedToastClose', {
   request: ToastPrimitive.ToastCloseRequest,
 })
+const ChangedToastViewport = m('ChangedToastViewport', {
+  interaction: ToastPrimitive.ToastViewportInteraction,
+})
 
 export const ToastExampleMessage = S.Union([
   ClickedShowToast,
@@ -38,6 +41,7 @@ export const ToastExampleMessage = S.Union([
   ClickedShowTypeToast,
   PressedToastAction,
   RequestedToastClose,
+  ChangedToastViewport,
 ])
 export type ToastExampleMessage = typeof ToastExampleMessage.Type
 
@@ -191,6 +195,41 @@ export const toastViewportPositionFromPosition = (
   position: ToastPrimitive.ToastViewportPosition,
 ): ToastPrimitive.ToastPosition => toastPositionMap[position]
 
+const toastViewportPositionFromToast = (
+  toast: ToastPrimitive.ToastItem,
+): ToastPrimitive.ToastViewportPosition => {
+  if (toast.position?.side === 'top' && toast.position.align === 'start') {
+    return 'top-left'
+  }
+
+  if (toast.position?.side === 'top' && toast.position.align === 'center') {
+    return 'top-center'
+  }
+
+  if (toast.position?.side === 'top' && toast.position.align === 'end') {
+    return 'top-right'
+  }
+
+  if (toast.position?.side === 'bottom' && toast.position.align === 'start') {
+    return 'bottom-left'
+  }
+
+  if (toast.position?.side === 'bottom' && toast.position.align === 'center') {
+    return 'bottom-center'
+  }
+
+  return 'bottom-right'
+}
+
+const activeToastViewportPosition = (
+  state: ToastPrimitive.ToastState,
+): ToastPrimitive.ToastViewportPosition =>
+  toastViewportPositionFromToast(
+    state.toasts.find(toast => toast.transitionStatus !== 'ending') ?? {
+      id: 'default',
+    },
+  )
+
 export const renderSonnerDemoToaster = <Message>(
   controller: ToastExampleController<Message>,
   options: Readonly<{
@@ -204,9 +243,9 @@ export const renderSonnerDemoToaster = <Message>(
     id: 'notifications',
     state,
     theme: options.theme ?? 'system',
-    ...(options.viewportPosition === undefined
-      ? {}
-      : { viewportPosition: options.viewportPosition }),
+    viewportPosition:
+      options.viewportPosition ?? activeToastViewportPosition(state),
+    viewportPositioning: 'absolute',
     ...(onToastMessage === undefined
       ? {}
       : {
@@ -218,6 +257,8 @@ export const renderSonnerDemoToaster = <Message>(
       : {
           onClose: (request: ToastPrimitive.ToastCloseRequest) =>
             onToastMessage(RequestedToastClose({ request })),
+          onViewportInteraction: interaction =>
+            onToastMessage(ChangedToastViewport({ interaction })),
         }),
   })
 }

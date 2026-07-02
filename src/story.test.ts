@@ -9,6 +9,8 @@ import {
   ClickedClearSearch,
   ClickedCopySnippet,
   CompletedScrollToAnchor,
+  CompletedRemoveLiveExampleToast,
+  CompletedTimeoutLiveExampleToast,
   ComponentDetailRoute,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -28,8 +30,10 @@ import {
   RegistrySchemaRoute,
   RoadmapRoute,
   SearchPagefind,
+  RemoveLiveExampleToast,
   ScrollToAnchor,
   SucceededCopySnippet,
+  TimeoutLiveExampleToast,
   UpdatedSearchQuery,
   componentDetailRouter,
   componentsIndexRouter,
@@ -382,6 +386,82 @@ describe(update, () => {
 
   describe(GotLiveExampleToastMessage, () => {
     test('shadcn toast examples start empty and repeated clicks update non-stacked examples', () => {
+      const [afterFirst, firstCommands] = update(
+        model,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-demo',
+          message: ClickedShowShadcnToast(),
+        }),
+      )
+      const firstState = afterFirst.liveExampleToastStates['shadcn/toast-demo']
+      const [afterSecond, secondCommands] = update(
+        afterFirst,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-demo',
+          message: ClickedShowShadcnToast(),
+        }),
+      )
+      const secondState =
+        afterSecond.liveExampleToastStates['shadcn/toast-demo']
+
+      expect(firstState?.toasts).toHaveLength(1)
+      expect(firstState?.toasts[0]?.id).toBe('shadcn-toast-demo-toast')
+      expect(firstState?.toasts[0]?.title).toBe('Scheduled: Catch up')
+      expect(firstState?.toasts[0]?.description).toBe(
+        'Friday, February 10, 2023 at 5:57 PM',
+      )
+      expect(firstState?.toasts[0]?.actionLabel).toBe('Undo')
+      expect(firstCommands).toHaveLength(1)
+      expect(firstCommands[0]?.name).toBe('TimeoutLiveExampleToast')
+      expect(firstCommands[0]?.args).toStrictEqual({
+        exampleId: 'shadcn/toast-demo',
+        toastId: 'shadcn-toast-demo-toast',
+        updateKey: 0,
+        durationMillis: 5000,
+      })
+      expect(secondState?.toasts).toHaveLength(1)
+      expect(secondState?.toasts[0]?.updateKey).toBe(1)
+      expect(secondCommands).toHaveLength(1)
+      expect(secondCommands[0]?.name).toBe('TimeoutLiveExampleToast')
+      expect(secondCommands[0]?.args).toStrictEqual({
+        exampleId: 'shadcn/toast-demo',
+        toastId: 'shadcn-toast-demo-toast',
+        updateKey: 1,
+        durationMillis: 5000,
+      })
+    })
+
+    test('shadcn stacked toast is the only shadcn toast example that accumulates a compact stack', () => {
+      const [afterFirst] = update(
+        model,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-stacked',
+          message: ClickedCreateShadcnStackedToast(),
+        }),
+      )
+      const [afterSecond] = update(
+        afterFirst,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-stacked',
+          message: ClickedCreateShadcnStackedToast(),
+        }),
+      )
+      const [afterThird] = update(
+        afterSecond,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-stacked',
+          message: ClickedCreateShadcnStackedToast(),
+        }),
+      )
+      const state = afterThird.liveExampleToastStates['shadcn/toast-stacked']
+
+      expect(state?.toasts).toHaveLength(3)
+      expect(state?.toasts[0]?.title).toBe('Stacked toast 3')
+      expect(state?.toasts[1]?.title).toBe('Stacked toast 2')
+      expect(state?.toasts[2]?.title).toBe('Stacked toast 1')
+    })
+
+    test('live example toasts close on timeout and are removed after the exit animation', () => {
       Story.story(
         update,
         Story.with(model),
@@ -391,103 +471,86 @@ describe(update, () => {
             message: ClickedShowShadcnToast(),
           }),
         ),
-        Story.model(nextModel => {
-          const state = nextModel.liveExampleToastStates['shadcn/toast-demo']
-
-          expect(state?.toasts).toHaveLength(1)
-          expect(state?.toasts[0]?.id).toBe('shadcn-toast-demo-toast')
-          expect(state?.toasts[0]?.title).toBe('Scheduled: Catch up')
-          expect(state?.toasts[0]?.description).toBe(
-            'Friday, February 10, 2023 at 5:57 PM',
-          )
-          expect(state?.toasts[0]?.actionLabel).toBe('Undo')
-        }),
-        Story.message(
-          GotLiveExampleToastMessage({
+        Story.Command.expectExact(
+          TimeoutLiveExampleToast({
             exampleId: 'shadcn/toast-demo',
-            message: ClickedShowShadcnToast(),
+            toastId: 'shadcn-toast-demo-toast',
+            updateKey: 0,
+            durationMillis: 5000,
+          }),
+        ),
+        Story.Command.resolve(
+          TimeoutLiveExampleToast({
+            exampleId: 'shadcn/toast-demo',
+            toastId: 'shadcn-toast-demo-toast',
+            updateKey: 0,
+            durationMillis: 5000,
+          }),
+          CompletedTimeoutLiveExampleToast({
+            exampleId: 'shadcn/toast-demo',
+            toastId: 'shadcn-toast-demo-toast',
+            updateKey: 0,
           }),
         ),
         Story.model(nextModel => {
-          const state = nextModel.liveExampleToastStates['shadcn/toast-demo']
+          const toast =
+            nextModel.liveExampleToastStates['shadcn/toast-demo']?.toasts[0]
 
-          expect(state?.toasts).toHaveLength(1)
-          expect(state?.toasts[0]?.updateKey).toBe(1)
+          expect(toast?.transitionStatus).toBe('ending')
         }),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-simple',
-            message: ClickedShowShadcnToastDescription(),
+        Story.Command.expectExact(
+          RemoveLiveExampleToast({
+            exampleId: 'shadcn/toast-demo',
+            toastId: 'shadcn-toast-demo-toast',
           }),
         ),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-with-title',
-            message: ClickedShowShadcnToast(),
+        Story.Command.resolve(
+          RemoveLiveExampleToast({
+            exampleId: 'shadcn/toast-demo',
+            toastId: 'shadcn-toast-demo-toast',
           }),
-        ),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-with-action',
-            message: ClickedPerformShadcnToastAction(),
-          }),
-        ),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-destructive',
-            message: ClickedShowShadcnToastType({ variant: 'error' }),
+          CompletedRemoveLiveExampleToast({
+            exampleId: 'shadcn/toast-demo',
+            toastId: 'shadcn-toast-demo-toast',
           }),
         ),
         Story.model(nextModel => {
           expect(
-            nextModel.liveExampleToastStates['shadcn/toast-simple']?.toasts,
-          ).toHaveLength(1)
-          expect(
-            nextModel.liveExampleToastStates['shadcn/toast-with-title']?.toasts,
-          ).toHaveLength(1)
-          expect(
-            nextModel.liveExampleToastStates['shadcn/toast-with-action']
-              ?.toasts,
-          ).toHaveLength(1)
-          expect(
-            nextModel.liveExampleToastStates['shadcn/toast-destructive']
-              ?.toasts,
-          ).toHaveLength(1)
+            nextModel.liveExampleToastStates['shadcn/toast-demo']?.toasts,
+          ).toStrictEqual([])
         }),
       )
     })
 
-    test('shadcn stacked toast is the only shadcn toast example that accumulates a compact stack', () => {
-      Story.story(
-        update,
-        Story.with(model),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-stacked',
-            message: ClickedCreateShadcnStackedToast(),
-          }),
-        ),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-stacked',
-            message: ClickedCreateShadcnStackedToast(),
-          }),
-        ),
-        Story.message(
-          GotLiveExampleToastMessage({
-            exampleId: 'shadcn/toast-stacked',
-            message: ClickedCreateShadcnStackedToast(),
-          }),
-        ),
-        Story.model(nextModel => {
-          const state = nextModel.liveExampleToastStates['shadcn/toast-stacked']
-
-          expect(state?.toasts).toHaveLength(3)
-          expect(state?.toasts[0]?.title).toBe('Stacked toast 3')
-          expect(state?.toasts[1]?.title).toBe('Stacked toast 2')
-          expect(state?.toasts[2]?.title).toBe('Stacked toast 1')
+    test('stale live example timeout completions do not close updated toasts', () => {
+      const [afterFirst] = update(
+        model,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-demo',
+          message: ClickedShowShadcnToast(),
         }),
       )
+      const [afterSecond] = update(
+        afterFirst,
+        GotLiveExampleToastMessage({
+          exampleId: 'shadcn/toast-demo',
+          message: ClickedShowShadcnToast(),
+        }),
+      )
+      const [afterStaleTimeout, commands] = update(
+        afterSecond,
+        CompletedTimeoutLiveExampleToast({
+          exampleId: 'shadcn/toast-demo',
+          toastId: 'shadcn-toast-demo-toast',
+          updateKey: 0,
+        }),
+      )
+      const toast =
+        afterStaleTimeout.liveExampleToastStates['shadcn/toast-demo']?.toasts[0]
+
+      expect(toast?.transitionStatus).not.toBe('ending')
+      expect(toast?.updateKey).toBe(1)
+      expect(commands).toStrictEqual([])
     })
   })
 })

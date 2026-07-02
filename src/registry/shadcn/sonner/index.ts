@@ -62,12 +62,13 @@ export type ViewConfig<Message> = Omit<
 const providerBaseClassName = 'toaster group'
 
 const viewportBaseClassName =
-  'pointer-events-none z-50 flex w-[calc(100vw-2rem)] max-w-sm flex-col gap-2 text-sm text-foreground sm:w-90'
+  'pointer-events-auto z-50 box-border flex min-h-[var(--toast-frontmost-height)] w-[calc(100vw-2rem)] max-w-sm flex-col gap-2 text-sm text-foreground sm:w-90 data-[expanded]:gap-3'
 
 const toastBaseClassName =
-  'pointer-events-auto flex w-full items-start gap-3 rounded-2xl border border-border bg-popover px-4 py-3 text-popover-foreground shadow-lg'
+  'pointer-events-none absolute bottom-0 right-0 box-border flex w-full min-w-0 items-start gap-3 rounded-2xl border border-border bg-popover px-4 py-3 text-popover-foreground shadow-lg transition-[transform,opacity,box-shadow] duration-300 ease-out data-[visible-index=0]:pointer-events-auto data-[expanded]:pointer-events-auto data-[limited]:opacity-0 data-ending-style:opacity-0'
 
-const contentBaseClassName = 'flex min-w-0 flex-1 items-start gap-3'
+const contentBaseClassName =
+  'flex min-w-0 flex-1 items-start gap-3 transition-opacity duration-200 data-[behind]:opacity-0 data-[expanded]:opacity-100'
 
 const textBaseClassName = 'flex min-w-0 flex-1 flex-col gap-1'
 
@@ -258,10 +259,21 @@ const renderToast = <Message>(
   toast: ToastPrimitive.ToastItemAttributes<Message>,
 ): Html => {
   const maybeIcon = toastIcon(toast.toast)
+  const viewportInteractionAttributes =
+    config.onViewportInteraction === undefined
+      ? []
+      : [
+          h.OnMouseEnter(config.onViewportInteraction({ type: 'hover-start' })),
+          h.OnMouseLeave(config.onViewportInteraction({ type: 'hover-end' })),
+          h.OnFocus(config.onViewportInteraction({ type: 'focus-start' })),
+          h.OnBlur(config.onViewportInteraction({ type: 'focus-end' })),
+        ]
 
   return h.div(
     [
       ...toast.root,
+      ...viewportInteractionAttributes,
+      h.DataAttribute('visible-index', String(toast.metadata.visibleIndex)),
       ...slotAttributes(
         h,
         'sonner-toast',
@@ -391,7 +403,7 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
     ...(config.forceMount === undefined
       ? {}
       : { forceMount: config.forceMount }),
-    stackingStrategy: config.stackingStrategy ?? 'foldkit-push',
+    stackingStrategy: config.stackingStrategy ?? 'base-ui-shuffle',
     ...(config.viewportPosition === undefined
       ? {}
       : { viewportPosition: config.viewportPosition }),
@@ -444,7 +456,7 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
                         announcement => announcementAttributes(h, announcement),
                       ),
                       ...attributes.toasts.flatMap(toast =>
-                        toast.isOpen ? [renderToast(h, config, toast)] : [],
+                        toast.isMounted ? [renderToast(h, config, toast)] : [],
                       ),
                     ],
                   ),
