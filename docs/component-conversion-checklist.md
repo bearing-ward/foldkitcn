@@ -1,17 +1,17 @@
 # Component Conversion Checklist
 
-Generated at: 2026-07-02T00:36:16.078Z
+Generated at: 2026-07-02T21:41:14.022Z
 
 ## Summary
 
 | Surface      | Imported | Total | Remaining |
 | ------------ | -------: | ----: | --------: |
 | Base UI docs |       38 |    38 |         0 |
-| shadcn docs  |       60 |    64 |         4 |
+| shadcn docs  |       61 |    64 |         3 |
 
 - shadcn source-backed files: 60
 - shadcn docs/example-only rows: 4
-- Blocked rows: 4
+- Blocked rows: 3
 - Ready-for-dossier rows: 0
 - Dossier-ready rows: 0
 - Base UI pinned ref: `ea3818dec91923d4287b38be21322d2e5068d347`
@@ -115,6 +115,7 @@ None.
 - `shadcn/table`
 - `base-ui/toast`
 - `shadcn/toast`
+- `shadcn/typography`
 - `shadcn/attachment`
 - `shadcn/bubble`
 - `shadcn/button`
@@ -136,5 +137,4 @@ None.
 | -------------------- | --------- | ----------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `shadcn/data-table`  | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/data-table)  | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>A local table/query/sorting/filtering/pagination foundation must replace TanStack React Table semantics.<br>Dashboard examples require local chart, drawer, tabs, toast, and drag-and-drop dependency decisions before parity can be accepted. |
 | `shadcn/date-picker` | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/date-picker) | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>Local calendar/date behavior, popover, field, and input foundations must exist before installable source.<br>Range, time, locale, and natural-language parsing decisions must be modeled without React DayPicker runtime source.               |
-| `shadcn/typography`  | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/typography)  | No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.<br>Typography is docs/examples plus local style primitive evidence, not a single installable behavior component yet.<br>@/components/language-selector and react are origin fixture evidence only, not installable runtime dependencies.          |
 | `shadcn/chart`       | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/chart)       | ADR 0001 gates charts on an explicit native chart foundation.<br>Recharts and React are origin evidence only unless a later architecture decision accepts a runtime chart dependency.<br>The chart namespace and chart example parity harness must exist before chart items become implementation-ready.                                            |

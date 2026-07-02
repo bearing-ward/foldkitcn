@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-02T00:36:16.078Z",
+  "generatedAt": "2026-07-02T21:41:14.022Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,12 +9,12 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 60,
-      "remaining": 4
+      "imported": 61,
+      "remaining": 3
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
-    "blockedCount": 4,
+    "blockedCount": 3,
     "readyForDossierCount": 0,
     "dossierReadyCount": 0,
     "sourceRefs": {
@@ -2395,7 +2395,7 @@
       "originResolutionStatus": "docs-example-only",
       "hasOriginDocs": true,
       "hasOriginSource": false,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/008-outstanding-held-component-dossiers/dossier.json",
@@ -2403,10 +2403,10 @@
         "plans/artifacts/098-blocked-component-foundation-preview/dossier.json"
       ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "implementationStatus": "implemented",
+      "parityStatus": "waived",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "preview",
       "blockers": [
         "No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.",
         "Typography is docs/examples plus local style primitive evidence, not a single installable behavior component yet.",
@@ -2418,7 +2418,7 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/typography"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 100",
-      "readiness": "blocked"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/chart",

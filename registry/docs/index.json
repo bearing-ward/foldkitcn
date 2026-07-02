@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-02T01:44:41.883Z",
+  "generatedAt": "2026-07-02T21:50:21.760Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -496,6 +496,11 @@
       "itemId": "shadcn/tooltip",
       "routePath": "/components/shadcn/tooltip",
       "docsArtifactPath": "registry/docs/shadcn/tooltip.json"
+    },
+    {
+      "itemId": "shadcn/typography",
+      "routePath": "/components/shadcn/typography",
+      "docsArtifactPath": "registry/docs/shadcn/typography.json"
     },
     {
       "itemId": "utils/cn",

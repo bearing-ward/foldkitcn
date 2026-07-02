@@ -570,6 +570,23 @@ import {
   TooltipSides,
 } from './registry/shadcn/tooltip/examples'
 import type { TooltipExampleController } from './registry/shadcn/tooltip/examples'
+import {
+  TypographyBlockquote,
+  TypographyDemo,
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyInlineCode,
+  TypographyLarge,
+  TypographyLead,
+  TypographyList,
+  TypographyMuted,
+  TypographyP,
+  TypographyRtl,
+  TypographySmall,
+  TypographyTable,
+} from './registry/shadcn/typography/examples'
 
 export type LiveExampleContext<Message> = Readonly<{
   inputValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
@@ -2665,6 +2682,36 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/table', 'TableFooterExample')]:
     staticExample(TableFooterExample),
   [liveExampleKey('shadcn/table', 'TableRtl')]: staticExample(TableRtl),
+  [liveExampleKey('shadcn/typography', 'TypographyBlockquote')]:
+    staticExample(TypographyBlockquote),
+  [liveExampleKey('shadcn/typography', 'TypographyDemo')]:
+    staticExample(TypographyDemo),
+  [liveExampleKey('shadcn/typography', 'TypographyH1')]:
+    staticExample(TypographyH1),
+  [liveExampleKey('shadcn/typography', 'TypographyH2')]:
+    staticExample(TypographyH2),
+  [liveExampleKey('shadcn/typography', 'TypographyH3')]:
+    staticExample(TypographyH3),
+  [liveExampleKey('shadcn/typography', 'TypographyH4')]:
+    staticExample(TypographyH4),
+  [liveExampleKey('shadcn/typography', 'TypographyInlineCode')]:
+    staticExample(TypographyInlineCode),
+  [liveExampleKey('shadcn/typography', 'TypographyLarge')]:
+    staticExample(TypographyLarge),
+  [liveExampleKey('shadcn/typography', 'TypographyLead')]:
+    staticExample(TypographyLead),
+  [liveExampleKey('shadcn/typography', 'TypographyList')]:
+    staticExample(TypographyList),
+  [liveExampleKey('shadcn/typography', 'TypographyMuted')]:
+    staticExample(TypographyMuted),
+  [liveExampleKey('shadcn/typography', 'TypographyP')]:
+    staticExample(TypographyP),
+  [liveExampleKey('shadcn/typography', 'TypographyRtl')]:
+    staticExample(TypographyRtl),
+  [liveExampleKey('shadcn/typography', 'TypographySmall')]:
+    staticExample(TypographySmall),
+  [liveExampleKey('shadcn/typography', 'TypographyTable')]:
+    staticExample(TypographyTable),
   [liveExampleKey('shadcn/tabs', 'TabsDemo')]: tabsExample(TabsDemo),
   [liveExampleKey('shadcn/tabs', 'TabsDisabled')]: tabsExample(TabsDisabled),
   [liveExampleKey('shadcn/tabs', 'TabsIcons')]: tabsExample(TabsIcons),

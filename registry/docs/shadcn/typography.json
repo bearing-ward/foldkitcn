@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/typography",
+  "routePath": "/components/shadcn/typography",
+  "title": "Typography",
+  "description": "Docs-only shadcn Typography examples showing utility classes applied directly to semantic HTML; Foldkit CN does not ship default prose styles or an installable Typography helper.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/typography/docs.md",
+  "markdown": "# Typography\n\n## Overview\n\nFoldkit CN does not ship default typography styles or a Typography component.\nThis page demonstrates utility classes applied directly to semantic HTML, which\nmatches the origin guidance that prose styles are not included by default.\n\nUse these examples as copyable markup patterns for headings, paragraphs,\nblockquote content, tables, lists, inline code, supporting copy, and RTL text.\n\n## Foldkit Model\n\nTypography has no Model, Message, update function, Command, or installable\nhelper. Parent views own their semantic markup and choose the utility classes\nthat fit the surrounding page.\n\n## Usage\n\nBind the Foldkit Html factory inside your view, then apply utility classes\ndirectly to the semantic element you render:\n\n```ts\nconst h = html<Message>()\n\nh.h1(\n  [h.Class('scroll-m-20 text-4xl font-extrabold tracking-tight')],\n  ['Taxing Laughter: The Joke Tax Chronicles'],\n)\n```\n\nDo not import from `shadcn/typography`; there is no generated helper module for\nthis docs-only row.\n\n## Examples\n\nThe examples cover each origin Typography specimen with deterministic local\ncopy: h1, h2, h3, h4, paragraph, blockquote, table, list, inline code, lead,\nlarge, small, muted, and RTL.\n\n## Accessibility\n\nKeep the semantic element that matches the content. Use heading levels in page\norder, reserve blockquotes for quoted material, keep tables for tabular data,\nand preserve readable contrast when using muted text.\n\n## Foldkit Differences\n\nReact and the origin language selector are fixture evidence only. The Foldkit\nexamples render direct Html values and the local RTL example uses deterministic\ntext instead of importing the origin app language selector.\n",
+  "headings": [
+    {
+      "id": "typography",
+      "text": "Typography",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "registry-src/shadcn/typography",
+  "defaultImportPath": "shadcn/typography",
+  "sourceRoot": "registry-src/shadcn/typography",
+  "installableSourcePaths": [],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Typography",
+      "docsUrl": "https://ui.shadcn.com/docs/components/typography",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/content/docs/components/base/typography.mdx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/typography.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/typography.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/typography-demo.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h1.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h2.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h3.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h4.tsx",
+        "repos/ui/apps/v4/examples/base/typography-p.tsx",
+        "repos/ui/apps/v4/examples/base/typography-blockquote.tsx",
+        "repos/ui/apps/v4/examples/base/typography-table.tsx",
+        "repos/ui/apps/v4/examples/base/typography-list.tsx",
+        "repos/ui/apps/v4/examples/base/typography-inline-code.tsx",
+        "repos/ui/apps/v4/examples/base/typography-lead.tsx",
+        "repos/ui/apps/v4/examples/base/typography-large.tsx",
+        "repos/ui/apps/v4/examples/base/typography-small.tsx",
+        "repos/ui/apps/v4/examples/base/typography-muted.tsx",
+        "repos/ui/apps/v4/examples/base/typography-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [],
+    "development": [
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only; Typography examples render as Foldkit Html in local docs previews."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The origin RTL example uses the app language selector as fixture evidence; local docs use deterministic RTL copy instead."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/typography-demo",
+      "title": "TypographyDemo",
+      "description": "A semantic article specimen with headings, paragraphs, blockquote, list, and table utility classes.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyDemo = (): Html => {\n  const h = html<never>()\n\n  return h.article(\n    [h.Class('max-w-3xl')],\n    [\n      h1View(h),\n      paragraphView(h),\n      h2View(h),\n      paragraphView(h),\n      h3View(h),\n      blockquoteView(h),\n      h4View(h),\n      listView(h),\n      tableView(h),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyDemo",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-h1",
+      "title": "TypographyH1",
+      "description": "Heading level one utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyH1 = (): Html => {\n  const h = html<never>()\n\n  return h1View(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyH1",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-h2",
+      "title": "TypographyH2",
+      "description": "Heading level two utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyH2 = (): Html => {\n  const h = html<never>()\n\n  return h2View(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyH2",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-h3",
+      "title": "TypographyH3",
+      "description": "Heading level three utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyH3 = (): Html => {\n  const h = html<never>()\n\n  return h3View(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyH3",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-h4",
+      "title": "TypographyH4",
+      "description": "Heading level four utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyH4 = (): Html => {\n  const h = html<never>()\n\n  return h4View(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyH4",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-p",
+      "title": "TypographyP",
+      "description": "Paragraph utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyP = (): Html => {\n  const h = html<never>()\n\n  return paragraphView(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyP",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-blockquote",
+      "title": "TypographyBlockquote",
+      "description": "Blockquote utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyBlockquote = (): Html => {\n  const h = html<never>()\n\n  return blockquoteView(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyBlockquote",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-table",
+      "title": "TypographyTable",
+      "description": "Semantic table utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyTable = (): Html => {\n  const h = html<never>()\n\n  return tableView(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyTable",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-list",
+      "title": "TypographyList",
+      "description": "Unordered list utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyList = (): Html => {\n  const h = html<never>()\n\n  return listView(h)\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyList",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-inline-code",
+      "title": "TypographyInlineCode",
+      "description": "Inline code utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyInlineCode = (): Html => {\n  const h = html<never>()\n\n  return h.p(\n    [h.Class('leading-7')],\n    [\n      'Use ',\n      h.code(\n        [\n          h.Class(\n            'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',\n          ),\n        ],\n        ['h.code'],\n      ),\n      ' for inline code.',\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyInlineCode",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-lead",
+      "title": "TypographyLead",
+      "description": "Lead paragraph utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyLead = (): Html => {\n  const h = html<never>()\n\n  return h.p(\n    [h.Class('text-xl text-muted-foreground')],\n    [\n      'A modal dialog that interrupts the user with important content and expects a response.',\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyLead",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-large",
+      "title": "TypographyLarge",
+      "description": "Large text utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyLarge = (): Html => {\n  const h = html<never>()\n\n  return h.div([h.Class('text-lg font-semibold')], ['Are you absolutely sure?'])\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyLarge",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-small",
+      "title": "TypographySmall",
+      "description": "Small text utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographySmall = (): Html => {\n  const h = html<never>()\n\n  return h.small(\n    [h.Class('text-sm leading-none font-medium')],\n    ['Email address'],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographySmall",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-muted",
+      "title": "TypographyMuted",
+      "description": "Muted text utility-class example.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyMuted = (): Html => {\n  const h = html<never>()\n\n  return h.p(\n    [h.Class('text-sm text-muted-foreground')],\n    ['Enter your email address.'],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyMuted",
+      "requiredRegistryItems": [],
+      "notes": []
+    },
+    {
+      "id": "shadcn/typography-rtl",
+      "title": "TypographyRtl",
+      "description": "RTL utility-class example using deterministic local copy.",
+      "componentItemId": "shadcn/typography",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "snippet": "export const TypographyRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Dir('rtl'), h.Class('space-y-4 text-right')],\n    [\n      h.h3(\n        [h.Class('scroll-m-20 text-2xl font-semibold tracking-tight')],\n        ['دليل الضحك المنظم'],\n      ),\n      h.p(\n        [h.Class('leading-7')],\n        [\n          'هذا المثال يستخدم نصا عربيا ثابتا لعرض اتجاه القراءة من اليمين إلى اليسار.',\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "TypographyRtl",
+      "requiredRegistryItems": [],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "preview",
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-typography-docs-only",
+        "summary": "Typography is published as docs and examples without an installable helper.",
+        "required": true,
+        "status": "waived",
+        "rationale": "Origin Typography is documentation and utility-class examples, not a shipped component source file. Foldkit CN mirrors that stance instead of inventing a runtime Typography API."
+      }
+    ]
+  }
+}

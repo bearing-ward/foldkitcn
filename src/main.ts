@@ -2583,6 +2583,14 @@ const importSnippetFor = (component: PublicComponent): string =>
     component.entry.item.id,
   )}'`
 
+const isDocsOnlyComponent = (component: PublicComponent): boolean =>
+  component.entry.item.lifecycle.availability === 'preview' &&
+  Option.match(component.maybeDocsArtifact, {
+    onNone: () => false,
+    onSome: artifact =>
+      Array.isReadonlyArrayEmpty(artifact.installableSourcePaths),
+  })
+
 const snippetBlockView = (
   text: string,
   ariaLabel: string,
@@ -2647,35 +2655,57 @@ const installationSectionView = (
 
   return h.section([h.Id('installation'), h.Class('content-section')], [
     h.h2([], ['Installation']),
-    M.value(availability).pipe(
-      M.withReturnType<Html>(),
-      M.when('installable', () =>
-        h.div([], [
-          h.p([], [
-            'Install the component into your app, then import it from the generated local namespace.',
-          ]),
-          snippetBlockView(
-            installCommandFor(component.entry.item.id),
-            `Copy ${component.entry.item.name} install command`,
-            copiedSnippets,
+    isDocsOnlyComponent(component)
+      ? h.p([], [
+          'This docs-only page has no installable component. Foldkit CN does not ship default typography styles or a Typography helper.',
+        ])
+      : M.value(availability).pipe(
+          M.withReturnType<Html>(),
+          M.when('installable', () =>
+            h.div([], [
+              h.p([], [
+                'Install the component into your app, then import it from the generated local namespace.',
+              ]),
+              snippetBlockView(
+                installCommandFor(component.entry.item.id),
+                `Copy ${component.entry.item.name} install command`,
+                copiedSnippets,
+              ),
+            ]),
           ),
+          M.when('preview', () =>
+            h.p([], [
+              'This component is in preview. The public install command is not enabled for this row yet.',
+            ]),
+          ),
+          M.when('private', () =>
+            h.p([], [
+              'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
+            ]),
+          ),
+          M.orElse(() =>
+            h.p([], [
+              'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
+            ]),
+          ),
+        ),
+  ])
+}
+
+const docsOnlyUsageView = (): Html => {
+  const h = html<Message>()
+
+  return h.div([], [
+    h.p([], [
+      'Apply utility classes directly to semantic HTML inside your Foldkit views. There is no generated Typography import for this docs-only row.',
+    ]),
+    h.pre(
+      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
+      [
+        h.code([], [
+          "h.h1([h.Class('scroll-m-20 text-4xl font-extrabold tracking-tight')], ['Taxing Laughter: The Joke Tax Chronicles'])",
         ]),
-      ),
-      M.when('preview', () =>
-        h.p([], [
-          'This component is in preview. The public install command is not enabled for this row yet.',
-        ]),
-      ),
-      M.when('private', () =>
-        h.p([], [
-          'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
-        ]),
-      ),
-      M.orElse(() =>
-        h.p([], [
-          'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
-        ]),
-      ),
+      ],
     ),
   ])
 }
@@ -2688,31 +2718,35 @@ const usageSectionView = (
 
   return h.section([h.Id('usage'), h.Class('content-section')], [
     h.h2([], ['Usage']),
-    Option.match(component.maybeDocsArtifact, {
-      onNone: () =>
-        h.p([], ['Usage guidance is waiting for the generated docs artifact.']),
-      onSome: artifact =>
-        h.div([], [
-          h.p([], [
-            'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
-          ]),
-          snippetBlockView(
-            importSnippetFor(component),
-            `Copy ${component.entry.item.name} import snippet`,
-            copiedSnippets,
-          ),
-          h.dl([h.Class('meta-list wide')], [
-            h.div([], [
-              h.dt([], ['Default physical path']),
-              h.dd([], [physicalInstallPathFor(artifact.itemId)]),
+    isDocsOnlyComponent(component)
+      ? docsOnlyUsageView()
+      : Option.match(component.maybeDocsArtifact, {
+          onNone: () =>
+            h.p([], [
+              'Usage guidance is waiting for the generated docs artifact.',
             ]),
+          onSome: artifact =>
             h.div([], [
-              h.dt([], ['Default alias']),
-              h.dd([], [aliasImportPathFor(artifact.itemId)]),
+              h.p([], [
+                'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
+              ]),
+              snippetBlockView(
+                importSnippetFor(component),
+                `Copy ${component.entry.item.name} import snippet`,
+                copiedSnippets,
+              ),
+              h.dl([h.Class('meta-list wide')], [
+                h.div([], [
+                  h.dt([], ['Default physical path']),
+                  h.dd([], [physicalInstallPathFor(artifact.itemId)]),
+                ]),
+                h.div([], [
+                  h.dt([], ['Default alias']),
+                  h.dd([], [aliasImportPathFor(artifact.itemId)]),
+                ]),
+              ]),
             ]),
-          ]),
-        ]),
-    }),
+        }),
   ])
 }
 
@@ -3384,14 +3418,18 @@ const examplesSectionView = (
   ])
 }
 
-const apiSectionView = (): Html => {
+const apiSectionView = (component: PublicComponent): Html => {
   const h = html<Message>()
 
   return h.section([h.Id('api'), h.Class('content-section')], [
     h.h2([], ['API']),
-    h.p([], [
-      'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
-    ]),
+    isDocsOnlyComponent(component)
+      ? h.p([], [
+          'There is no Typography component API. Parent views render semantic HTML and apply utility classes directly.',
+        ])
+      : h.p([], [
+          'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
+        ]),
   ])
 }
 
@@ -3495,12 +3533,16 @@ const sourceSectionView = (component: PublicComponent): Html => {
               h.dd([], [artifact.sourceRoot]),
             ]),
           ]),
-          h.ul(
-            [h.Class('compact-list')],
-            artifact.installableSourcePaths.map(sourcePath =>
-              h.li([], [h.code([], [sourcePath])]),
-            ),
-          ),
+          Array.isReadonlyArrayEmpty(artifact.installableSourcePaths)
+            ? h.p([], [
+                'This docs-only row has no installable source files. Its local source is sidecar documentation plus deterministic examples.',
+              ])
+            : h.ul(
+                [h.Class('compact-list')],
+                artifact.installableSourcePaths.map(sourcePath =>
+                  h.li([], [h.code([], [sourcePath])]),
+                ),
+              ),
         ]),
     }),
   ])
@@ -3513,9 +3555,13 @@ const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
     [h.Id('foldkit-differences'), h.Class('content-section')],
     [
       h.h2([], ['Foldkit Differences']),
-      h.p([], [
-        'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
-      ]),
+      isDocsOnlyComponent(component)
+        ? h.p([], [
+            'Typography mirrors the origin docs-only stance: Foldkit CN does not ship default prose styles, React is fixture evidence only, and the RTL example uses deterministic local text instead of the origin language selector.',
+          ])
+        : h.p([], [
+            'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
+          ]),
       Option.match(component.maybeDocsArtifact, {
         onNone: () => h.empty,
         onSome: artifact => {
@@ -3598,7 +3644,7 @@ const componentDetailPageView = (
           model.liveExampleSidebarPanelOpenValues,
           model.liveExampleSidebarSelectedValues,
         ),
-        apiSectionView(),
+        apiSectionView(component),
         accessibilitySectionView(),
         qualitySectionView(component),
         sourceSectionView(component),
