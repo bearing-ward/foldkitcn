@@ -121,7 +121,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto grid w-full max-w-xs gap-3')],\n    [\n      h.div(\n        [h.Class('flex items-center justify-between gap-2')],\n        [\n          h.span([h.Id('slider-demo-temperature')], ['Temperature']),\n          h.span([h.Class('text-sm text-muted-foreground')], ['0.3, 0.7']),\n        ],\n      ),\n      Slider<never>({\n        id: 'slider-demo-temperature',\n        values: [0.3, 0.7],\n        min: 0,\n        max: 1,\n        step: 0.1,\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderControlled",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -133,7 +133,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderDemo = (): Html =>\n  slider({\n    values: [75],\n    max: 100,\n    step: 1,\n    className: 'mx-auto w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderDemo",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -145,7 +145,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderDisabled = (): Html =>\n  slider({\n    values: [50],\n    max: 100,\n    step: 1,\n    isDisabled: true,\n    className: 'mx-auto w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderDisabled",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -157,7 +157,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderMultiple = (): Html =>\n  slider({\n    values: [10, 20, 70],\n    max: 100,\n    step: 10,\n    className: 'mx-auto w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderMultiple",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -169,7 +169,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderRange = (): Html =>\n  slider({\n    values: [25, 50],\n    max: 100,\n    step: 5,\n    className: 'mx-auto w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderRange",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -181,7 +181,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderRtl = (): Html =>\n  slider({\n    values: [75],\n    max: 100,\n    step: 1,\n    dir: 'rtl',\n    className: 'mx-auto w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderRtl",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []
@@ -193,7 +193,7 @@
       "componentItemId": "shadcn/slider",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
       "snippet": "export const SliderVertical = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto flex w-full max-w-xs items-center justify-center gap-6')],\n    [\n      slider({\n        values: [50],\n        max: 100,\n        step: 1,\n        orientation: 'vertical',\n        className: 'h-40',\n      }),\n      slider({\n        values: [25],\n        max: 100,\n        step: 1,\n        orientation: 'vertical',\n        className: 'h-40',\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SliderVertical",
       "requiredRegistryItems": ["base-ui/slider", "utils/cn"],
       "notes": []

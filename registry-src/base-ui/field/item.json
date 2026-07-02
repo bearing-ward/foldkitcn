@@ -96,22 +96,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/field-origin-fixture",
-      "title": "FieldOriginFixture",
-      "description": "Static origin-evidence fixture derived from deterministic Base UI Field relationships and data attributes.",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/field.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "base-ui/field-foldkit-fixture",
-      "title": "FieldFoldkitFixture",
-      "description": "Foldkit parity fixture exercising root, label, control, description, error, disabled, valid, invalid, touched, dirty, and ARIA relationships.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/field.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/field",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/field.fixture.ts",

@@ -1046,7 +1046,7 @@ const rootAttributes = <Message>(
     zIndex: String(1000 - Math.max(metadata.visibleIndex, 0)),
     ...rootPlacementStyle(config),
     transform:
-      config.stackingStrategy === 'foldkit-push'
+      config.stackingStrategy === 'foldkit-push' || expanded
         ? foldkitPushTransform(config.viewportPosition)
         : 'translateY(calc(var(--toast-index) * -20%)) scale(calc(1 - (var(--toast-index) * 0.05)))',
   }),

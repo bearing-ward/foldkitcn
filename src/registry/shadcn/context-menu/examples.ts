@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -17,6 +18,25 @@ type ExampleDefinition = Readonly<{
 }>
 
 type ExampleChild = Html | string
+
+export type ContextMenuExampleController<Message> = Readonly<{
+  contextPointFor: (
+    menuId: string,
+  ) => Option.Option<ContextMenu.ContextMenuPoint>
+  isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
+  openSubmenuValuesFor: (
+    menuId: string,
+    defaultValues: ReadonlyArray<string>,
+  ) => ReadonlyArray<string>
+  onContextPointChange: (
+    menuId: string,
+    point: ContextMenu.ContextMenuPoint,
+  ) => Message
+  onOpenChange: (
+    menuId: string,
+    change: ContextMenu.ContextMenuOpenChange,
+  ) => Message
+}>
 
 const triggerClassName =
   'flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm'
@@ -267,11 +287,11 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
-const itemContent = (
+const itemContent = <Message>(
   source: ExampleItem,
-  itemAttributes: ContextMenu.MenuItemAttributes<never>,
+  itemAttributes: ContextMenu.MenuItemAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
   const kind = ContextMenu.itemKind(itemAttributes.item)
   const indicator =
     kind === 'checkbox' || kind === 'radio'
@@ -296,11 +316,11 @@ const itemContent = (
   ]
 }
 
-const popupView = (
+const popupView = <Message>(
   items: ReadonlyArray<ExampleItem>,
-  popup: ContextMenu.MenuPopupAttributes<never>,
+  popup: ContextMenu.MenuPopupAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
 
   if (!popup.isMounted) {
     return []
@@ -334,25 +354,49 @@ const popupView = (
   ]
 }
 
-const contextMenuExample = (
+const contextMenuExampleWithController = <Message = never>(
   id: string,
   items: ReadonlyArray<ExampleItem>,
-  options: Partial<ContextMenu.ViewConfig<never>> &
+  options: Partial<ContextMenu.ViewConfig<Message>> &
     Readonly<{
       trigger?: ReadonlyArray<ExampleChild>
       triggerLabel?: string
+      defaultOpen?: boolean
+      defaultOpenSubmenuValues?: ReadonlyArray<string>
     }> = {},
+  controller?: ContextMenuExampleController<Message>,
 ): Html => {
-  const h = html<never>()
-  const { trigger, triggerLabel, ...viewOptions } = options
+  const h = html<Message>()
+  const {
+    defaultOpen = true,
+    defaultOpenSubmenuValues = [],
+    trigger,
+    triggerLabel,
+    ...viewOptions
+  } = options
+  const fallbackOpen = controller === undefined ? defaultOpen : false
+  const open = controller?.isOpenFor(id, fallbackOpen) ?? fallbackOpen
+  const openSubmenuValues =
+    controller?.openSubmenuValuesFor(id, defaultOpenSubmenuValues) ??
+    defaultOpenSubmenuValues
 
-  return ContextMenu.view<never>({
+  return ContextMenu.view<Message>({
     id,
     items,
-    open: true,
-    contextPoint: ContextMenu.contextPoint(24, 32, 24, 32, 'mouse'),
+    open,
+    contextPoint:
+      controller === undefined
+        ? ContextMenu.contextPoint(24, 32, 24, 32, 'mouse')
+        : Option.getOrUndefined(controller.contextPointFor(id)),
     highlightedValue: items.find(item => item.parentValue === undefined)?.value,
+    openSubmenuValues,
     triggerClassName,
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: change => controller.onOpenChange(id, change),
+          onPointerChange: point => controller.onContextPointChange(id, point),
+        }),
     ...viewOptions,
     toView: attributes =>
       h.div(
@@ -376,47 +420,112 @@ const contextMenuExample = (
   })
 }
 
-export const ContextMenuBasic = (): Html =>
-  contextMenuExample('context-menu-basic', basicItems)
+export const ContextMenuBasic = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-basic',
+    basicItems,
+    { defaultOpen: controller === undefined },
+    controller,
+  )
 
-export const ContextMenuCheckboxes = (): Html =>
-  contextMenuExample('context-menu-checkboxes', checkboxItems)
+export const ContextMenuCheckboxes = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-checkboxes',
+    checkboxItems,
+    {},
+    controller,
+  )
 
-export const ContextMenuDemo = (): Html =>
-  contextMenuExample('context-menu-demo', demoItems, {
-    contentClassName: 'w-48',
-    highlightedValue: 'more-tools',
-    openSubmenuValues: ['more-tools'],
-  })
+export const ContextMenuDemo = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-demo',
+    demoItems,
+    {
+      contentClassName: 'w-48',
+      highlightedValue: 'more-tools',
+      defaultOpenSubmenuValues: ['more-tools'],
+    },
+    controller,
+  )
 
-export const ContextMenuDestructive = (): Html =>
-  contextMenuExample('context-menu-destructive', destructiveItems, {
-    variant: 'destructive',
-  })
+export const ContextMenuDestructive = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-destructive',
+    destructiveItems,
+    {
+      variant: 'destructive',
+    },
+    controller,
+  )
 
-export const ContextMenuGroups = (): Html =>
-  contextMenuExample('context-menu-groups', groupItems)
+export const ContextMenuGroups = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-groups',
+    groupItems,
+    {},
+    controller,
+  )
 
-export const ContextMenuIcons = (): Html =>
-  contextMenuExample('context-menu-icons', iconItems)
+export const ContextMenuIcons = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-icons',
+    iconItems,
+    {},
+    controller,
+  )
 
-export const ContextMenuRadio = (): Html =>
-  contextMenuExample('context-menu-radio', radioItems)
+export const ContextMenuRadio = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-radio',
+    radioItems,
+    {},
+    controller,
+  )
 
-export const ContextMenuRtl = (): Html =>
-  contextMenuExample('context-menu-rtl', rtlItems, {
-    contentClassName: 'w-48',
-    dir: 'rtl',
-    highlightedValue: 'navigation',
-    openSubmenuValues: ['navigation', 'more-tools'],
-    trigger: triggerContent('انقر بزر الماوس الأيمن هنا'),
-  })
+export const ContextMenuRtl = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-rtl',
+    rtlItems,
+    {
+      contentClassName: 'w-48',
+      dir: 'rtl',
+      highlightedValue: 'navigation',
+      defaultOpenSubmenuValues: ['navigation', 'more-tools'],
+      trigger: triggerContent('انقر بزر الماوس الأيمن هنا'),
+    },
+    controller,
+  )
 
-export const ContextMenuShortcuts = (): Html =>
-  contextMenuExample('context-menu-shortcuts', shortcutItems)
+export const ContextMenuShortcuts = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-shortcuts',
+    shortcutItems,
+    {},
+    controller,
+  )
 
-export const ContextMenuSides = (): Html => {
-  const h = html<never>()
+export const ContextMenuSides = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html => {
+  const h = html<Message>()
   const sides: ReadonlyArray<ContextMenu.MenuSide> = [
     'top',
     'right',
@@ -427,19 +536,31 @@ export const ContextMenuSides = (): Html => {
   return h.div(
     [h.Class('grid w-full max-w-sm grid-cols-2 gap-4')],
     sides.map(side =>
-      contextMenuExample(`context-menu-sides-${side}`, basicItems, {
-        side,
-        triggerLabel: `Right click (${side})`,
-      }),
+      contextMenuExampleWithController(
+        `context-menu-sides-${side}`,
+        basicItems,
+        {
+          side,
+          triggerLabel: `Right click (${side})`,
+        },
+        controller,
+      ),
     ),
   )
 }
 
-export const ContextMenuSubmenu = (): Html =>
-  contextMenuExample('context-menu-submenu', submenuItems, {
-    highlightedValue: 'more-tools',
-    openSubmenuValues: ['more-tools'],
-  })
+export const ContextMenuSubmenu = <Message = never>(
+  controller?: ContextMenuExampleController<Message>,
+): Html =>
+  contextMenuExampleWithController(
+    'context-menu-submenu',
+    submenuItems,
+    {
+      highlightedValue: 'more-tools',
+      defaultOpenSubmenuValues: ['more-tools'],
+    },
+    controller,
+  )
 
 export const contextMenuExampleViews: ReadonlyArray<ExampleDefinition> = [
   {

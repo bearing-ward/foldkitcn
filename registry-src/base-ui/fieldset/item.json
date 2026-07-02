@@ -78,22 +78,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/fieldset-origin-fixture",
-      "title": "FieldsetOriginFixture",
-      "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "base-ui/fieldset-foldkit-fixture",
-      "title": "FieldsetFoldkitFixture",
-      "description": "Foldkit parity fixture exercising root, legend, disabled, and explicit legend id behavior.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/fieldset",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",

@@ -110,7 +110,7 @@
       "componentItemId": "shadcn/separator",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
       "snippet": "export const SeparatorDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex max-w-sm flex-col gap-4 text-sm')],\n    [\n      h.div(\n        [h.Class('flex flex-col gap-1.5')],\n        [\n          h.div([h.Class('leading-none font-medium')], ['shadcn/ui']),\n          h.div(\n            [h.Class('text-muted-foreground')],\n            ['The Foundation for your Design System'],\n          ),\n        ],\n      ),\n      Separator<never>({\n        toView: attributes => h.div([...attributes.separator], []),\n      }),\n      h.div(\n        [],\n        [\n          'A set of beautifully designed components that you can customize, extend, and build on.',\n        ],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SeparatorDemo",
       "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
       "notes": []
@@ -122,7 +122,7 @@
       "componentItemId": "shadcn/separator",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
       "snippet": "export const SeparatorList = (): Html => {\n  const h = html<never>()\n  const row = (item: string, value: string): Html =>\n    h.dl(\n      [h.Class('flex items-center justify-between')],\n      [h.dt([], [item]), h.dd([h.Class('text-muted-foreground')], [value])],\n    )\n  const separator = (): Html =>\n    Separator<never>({\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex w-full max-w-sm flex-col gap-2 text-sm')],\n    [\n      row('Item 1', 'Value 1'),\n      separator(),\n      row('Item 2', 'Value 2'),\n      separator(),\n      row('Item 3', 'Value 3'),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SeparatorList",
       "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
       "notes": []
@@ -134,7 +134,7 @@
       "componentItemId": "shadcn/separator",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
       "snippet": "export const SeparatorMenu = (): Html => {\n  const h = html<never>()\n  const group = (\n    title: string,\n    description: string,\n    className = 'flex flex-col gap-1',\n  ): Html =>\n    h.div(\n      [h.Class(className)],\n      [\n        h.span([h.Class('font-medium')], [title]),\n        h.span([h.Class('text-xs text-muted-foreground')], [description]),\n      ],\n    )\n  const verticalSeparator = (className?: string): Html =>\n    Separator<never>({\n      orientation: 'vertical',\n      className,\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex items-center gap-2 text-sm md:gap-4')],\n    [\n      group('Settings', 'Manage preferences'),\n      verticalSeparator(),\n      group('Account', 'Profile & security'),\n      verticalSeparator('hidden md:block'),\n      group('Help', 'Support & docs', 'hidden flex-col gap-1 md:flex'),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SeparatorMenu",
       "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
       "notes": []
@@ -146,7 +146,7 @@
       "componentItemId": "shadcn/separator",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
       "snippet": "export const SeparatorVertical = (): Html => {\n  const h = html<never>()\n  const verticalSeparator = (): Html =>\n    Separator<never>({\n      orientation: 'vertical',\n      toView: attributes => h.div([...attributes.separator], []),\n    })\n\n  return h.div(\n    [h.Class('flex h-5 items-center gap-4 text-sm')],\n    [\n      h.div([], ['Blog']),\n      verticalSeparator(),\n      h.div([], ['Docs']),\n      verticalSeparator(),\n      h.div([], ['Source']),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SeparatorVertical",
       "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
       "notes": []
@@ -158,7 +158,7 @@
       "componentItemId": "shadcn/separator",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
       "snippet": "export const SeparatorRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicSeparatorRtl\n\n  return h.div(\n    [h.Class('flex max-w-sm flex-col gap-4 text-sm'), h.Dir(dir)],\n    [\n      h.div(\n        [h.Class('flex flex-col gap-1.5')],\n        [\n          h.div([h.Class('leading-none font-medium')], [values.title]),\n          h.div([h.Class('text-muted-foreground')], [values.subtitle]),\n        ],\n      ),\n      Separator<never>({\n        toView: attributes => h.div([...attributes.separator], []),\n      }),\n      h.div([], [values.description]),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SeparatorRtl",
       "requiredRegistryItems": ["base-ui/separator", "utils/cn"],
       "notes": []

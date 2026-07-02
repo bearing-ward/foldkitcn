@@ -1,0 +1,548 @@
+{
+  "batch": [
+    "shadcn/data-table",
+    "shadcn/date-picker",
+    "shadcn/toast",
+    "shadcn/typography",
+    "shadcn/chart"
+  ],
+  "generatedKind": "blocked-outstanding-preview",
+  "createsRegistryItemFolders": false,
+  "plannedAtCommit": "2a905b7c",
+  "sourceQueue": "plans/artifacts/007-remaining-component-dossiers/hold-rows.md",
+  "rows": [
+    {
+      "itemId": "shadcn/data-table",
+      "status": "blocked",
+      "docsUrl": "https://ui.shadcn.com/docs/components/data-table",
+      "localRepoPath": "repos/ui",
+      "resolutionStatus": "docs-example-only",
+      "missingPrimarySourcePath": "repos/ui/apps/v4/styles/base-nova/ui/data-table.tsx",
+      "sourcePaths": [],
+      "confidence": "low",
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/data-table.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/data-table.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/data-table-demo.tsx",
+        "repos/ui/apps/v4/examples/base/data-table-rtl.tsx",
+        "repos/ui/apps/v4/examples/radix/data-table-demo.tsx",
+        "repos/ui/apps/v4/examples/radix/data-table-rtl.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-column-header.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-faceted-filter.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-pagination.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-row-actions.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-toolbar.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-view-options.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/dashboard/components/data-table.tsx"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [
+        "repos/ui/apps/v4/public/r/styles/default/data-table-demo.json"
+      ],
+      "registryDependencyHints": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/checkbox",
+        "shadcn/command",
+        "shadcn/drawer",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/label",
+        "shadcn/popover",
+        "shadcn/select",
+        "shadcn/separator",
+        "shadcn/table",
+        "shadcn/tabs",
+        "utils/cn"
+      ],
+      "runtimeDependencyHints": [
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "@tanstack/react-table",
+        "lucide-react",
+        "react",
+        "recharts",
+        "sonner",
+        "zod"
+      ],
+      "blockers": [
+        "No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.",
+        "A local table/query/sorting/filtering/pagination foundation must replace TanStack React Table semantics.",
+        "Dashboard examples require local chart, drawer, tabs, toast, and drag-and-drop dependency decisions before parity can be accepted."
+      ],
+      "unresolvedQuestions": [
+        "What Foldkit table/query model should own sorting, filtering, pagination, row selection, and drag-and-drop?",
+        "Which dashboard dependencies should become local primitives before data-table can be planned as installable source?"
+      ],
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
+    },
+    {
+      "itemId": "shadcn/date-picker",
+      "status": "blocked",
+      "docsUrl": "https://ui.shadcn.com/docs/components/date-picker",
+      "localRepoPath": "repos/ui",
+      "resolutionStatus": "docs-example-only",
+      "missingPrimarySourcePath": "repos/ui/apps/v4/styles/base-nova/ui/date-picker.tsx",
+      "sourcePaths": [],
+      "confidence": "low",
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/date-picker.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/date-picker-basic.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-demo.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-dob.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-input.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-natural-language.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-range.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-time.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-basic.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-demo.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-dob.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-input.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-natural-language.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-range.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-rtl.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-time.tsx"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-demo.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-form.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-with-presets.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-with-range.json"
+      ],
+      "registryDependencyHints": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover"
+      ],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "chrono-node",
+        "date-fns",
+        "date-fns/locale",
+        "lucide-react",
+        "react",
+        "react-day-picker",
+        "react-day-picker/locale"
+      ],
+      "blockers": [
+        "No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.",
+        "Local calendar/date behavior, popover, field, and input foundations must exist before installable source.",
+        "Range, time, locale, and natural-language parsing decisions must be modeled without React DayPicker runtime source."
+      ],
+      "unresolvedQuestions": [
+        "Which local calendar/date model should own single date, range, time, locale, and natural-language parsing flows?",
+        "Which parsing and formatting dependencies are acceptable as fixture evidence versus deferred runtime behavior?"
+      ],
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
+    },
+    {
+      "itemId": "shadcn/toast",
+      "status": "blocked",
+      "docsUrl": "https://ui.shadcn.com/docs/components/toast",
+      "localRepoPath": "repos/ui",
+      "resolutionStatus": "docs-example-only",
+      "missingPrimarySourcePath": "repos/ui/apps/v4/styles/base-nova/ui/toast.tsx",
+      "sourcePaths": [],
+      "confidence": "low",
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/toast.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/toast.mdx"
+      ],
+      "demoPaths": [],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [
+        "repos/ui/apps/v4/public/r/styles/default/toast-demo.json",
+        "repos/ui/apps/v4/public/r/styles/default/toast-destructive.json",
+        "repos/ui/apps/v4/public/r/styles/default/toast-simple.json",
+        "repos/ui/apps/v4/public/r/styles/default/toast-with-action.json",
+        "repos/ui/apps/v4/public/r/styles/default/toast-with-title.json",
+        "repos/ui/apps/v4/public/r/styles/default/toast.json",
+        "repos/ui/apps/v4/public/r/styles/default/use-toast.json"
+      ],
+      "registryDependencyHints": ["base-ui/toast", "shadcn/button"],
+      "runtimeDependencyHints": ["react"],
+      "blockers": [
+        "No primary base-nova shadcn component source exists; use docs/example-only and public registry JSON evidence for planning.",
+        "Notification architecture must be settled across base-ui/toast, shadcn/sonner, shadcn/toast, Foldkit messages, commands, and subscriptions.",
+        "The React hook-style origin API must be mapped to Foldkit messages, commands, and managed subscriptions."
+      ],
+      "unresolvedQuestions": [
+        "Should local notification behavior start from base-ui/toast, shadcn/sonner, or a shared Foldkit notification service?",
+        "Which lifecycle events belong in messages, commands, subscriptions, or managed resources?"
+      ],
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
+    },
+    {
+      "itemId": "shadcn/typography",
+      "status": "blocked",
+      "docsUrl": "https://ui.shadcn.com/docs/components/typography",
+      "localRepoPath": "repos/ui",
+      "resolutionStatus": "docs-example-only",
+      "missingPrimarySourcePath": "repos/ui/apps/v4/styles/base-nova/ui/typography.tsx",
+      "sourcePaths": [],
+      "confidence": "low",
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/typography.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/typography.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/typography-blockquote.tsx",
+        "repos/ui/apps/v4/examples/base/typography-demo.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h1.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h2.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h3.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h4.tsx",
+        "repos/ui/apps/v4/examples/base/typography-inline-code.tsx",
+        "repos/ui/apps/v4/examples/base/typography-large.tsx",
+        "repos/ui/apps/v4/examples/base/typography-lead.tsx",
+        "repos/ui/apps/v4/examples/base/typography-list.tsx",
+        "repos/ui/apps/v4/examples/base/typography-muted.tsx",
+        "repos/ui/apps/v4/examples/base/typography-p.tsx",
+        "repos/ui/apps/v4/examples/base/typography-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/typography-small.tsx",
+        "repos/ui/apps/v4/examples/base/typography-table.tsx"
+      ],
+      "styleVariantPaths": [],
+      "publicRegistryPaths": [
+        "repos/ui/apps/v4/public/r/styles/default/typography-blockquote.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-demo.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-h1.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-h2.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-h3.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-h4.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-inline-code.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-large.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-lead.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-list.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-muted.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-p.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-small.json",
+        "repos/ui/apps/v4/public/r/styles/default/typography-table.json"
+      ],
+      "registryDependencyHints": [],
+      "runtimeDependencyHints": ["@/components/language-selector", "react"],
+      "blockers": [
+        "No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.",
+        "Typography is docs/examples plus local style primitive evidence, not a single installable behavior component yet.",
+        "@/components/language-selector and react are origin fixture evidence only, not installable runtime dependencies."
+      ],
+      "unresolvedQuestions": [
+        "Should typography become local style primitives, documentation/examples registry content, or a later proven component API?",
+        "How should RTL language-selection examples be represented without importing origin fixture helpers into installable source?"
+      ],
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
+    },
+    {
+      "itemId": "shadcn/chart",
+      "status": "blocked",
+      "docsUrl": "https://ui.shadcn.com/docs/components/chart",
+      "localRepoPath": "repos/ui",
+      "resolutionStatus": "foundation-gated",
+      "sourcePaths": ["repos/ui/apps/v4/styles/base-nova/ui/chart.tsx"],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/chart.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/chart.mdx"
+      ],
+      "demoPaths": [
+        "repos/ui/apps/v4/examples/base/chart-demo.tsx",
+        "repos/ui/apps/v4/examples/base/chart-example-axis.tsx",
+        "repos/ui/apps/v4/examples/base/chart-example-grid.tsx",
+        "repos/ui/apps/v4/examples/base/chart-example-legend.tsx",
+        "repos/ui/apps/v4/examples/base/chart-example-tooltip.tsx",
+        "repos/ui/apps/v4/examples/base/chart-example.tsx",
+        "repos/ui/apps/v4/examples/base/chart-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/chart-tooltip.tsx"
+      ],
+      "styleVariantPaths": [
+        "repos/ui/apps/v4/styles/base-luma/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-lyra/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-maia/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-mira/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui-rtl/chart.tsx",
+        "repos/ui/apps/v4/styles/base-nova/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-rhea/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-sera/ui/chart.tsx",
+        "repos/ui/apps/v4/styles/base-vega/ui/chart.tsx"
+      ],
+      "publicRegistryPaths": [
+        "repos/ui/apps/v4/public/r/styles/default/chart.json",
+        "repos/ui/apps/v4/public/r/styles/default/chart-area-default.json",
+        "repos/ui/apps/v4/public/r/styles/default/chart-bar-default.json",
+        "repos/ui/apps/v4/public/r/styles/default/chart-line-default.json",
+        "repos/ui/apps/v4/public/r/styles/default/chart-pie-simple.json"
+      ],
+      "registryDependencyHints": ["shadcn/card", "utils/cn"],
+      "runtimeDependencyHints": [
+        "@/components/language-selector",
+        "@/registry/new-york-v4/ui/card",
+        "@/registry/new-york-v4/ui/chart",
+        "react",
+        "recharts"
+      ],
+      "confidence": "medium",
+      "blockers": [
+        "ADR 0001 gates charts on an explicit native chart foundation.",
+        "Recharts and React are origin evidence only unless a later architecture decision accepts a runtime chart dependency.",
+        "The chart namespace and chart example parity harness must exist before chart items become implementation-ready."
+      ],
+      "unresolvedQuestions": [
+        "What native Foldkit chart foundation should own scales, axes, legends, tooltips, and responsive layout?",
+        "How should chart examples prove parity without wrapping Recharts as installable source?"
+      ],
+      "pinnedRef": "40c7064532185f5556f6cbff7dca3544987c0fe1"
+    }
+  ],
+  "dependencyClassification": [
+    {
+      "specifier": "@/components/language-selector",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/registry/new-york-v4/ui/card",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@/registry/new-york-v4/ui/chart",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@dnd-kit/core",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@dnd-kit/modifiers",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@dnd-kit/sortable",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@dnd-kit/utilities",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "@tanstack/react-table",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "base-ui/toast",
+      "classification": "registry-local",
+      "target": "base-ui/toast",
+      "reason": "The styled shadcn item composes this local Base UI primitive."
+    },
+    {
+      "specifier": "chrono-node",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "date-fns",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "date-fns/locale",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "lucide-react",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react",
+      "classification": "dev-or-fixture-only",
+      "target": "",
+      "reason": "React is origin fixture evidence only, not installable Foldkit source."
+    },
+    {
+      "specifier": "react-day-picker",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "react-day-picker/locale",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "recharts",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "shadcn/badge",
+      "classification": "registry-local",
+      "target": "shadcn/badge",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/button",
+      "classification": "registry-local",
+      "target": "shadcn/button",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/calendar",
+      "classification": "registry-local",
+      "target": "shadcn/calendar",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/card",
+      "classification": "registry-local",
+      "target": "shadcn/card",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/checkbox",
+      "classification": "registry-local",
+      "target": "shadcn/checkbox",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/command",
+      "classification": "registry-local",
+      "target": "shadcn/command",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/drawer",
+      "classification": "registry-local",
+      "target": "shadcn/drawer",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/dropdown-menu",
+      "classification": "registry-local",
+      "target": "shadcn/dropdown-menu",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/field",
+      "classification": "registry-local",
+      "target": "shadcn/field",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input",
+      "classification": "registry-local",
+      "target": "shadcn/input",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/input-group",
+      "classification": "registry-local",
+      "target": "shadcn/input-group",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/label",
+      "classification": "registry-local",
+      "target": "shadcn/label",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/popover",
+      "classification": "registry-local",
+      "target": "shadcn/popover",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/select",
+      "classification": "registry-local",
+      "target": "shadcn/select",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/separator",
+      "classification": "registry-local",
+      "target": "shadcn/separator",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/table",
+      "classification": "registry-local",
+      "target": "shadcn/table",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "shadcn/tabs",
+      "classification": "registry-local",
+      "target": "shadcn/tabs",
+      "reason": "Origin examples compose this local shadcn registry item."
+    },
+    {
+      "specifier": "sonner",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    },
+    {
+      "specifier": "utils/cn",
+      "classification": "registry-local",
+      "target": "utils/cn",
+      "reason": "Local shadcn class canonicalization and Tailwind conflict handling."
+    },
+    {
+      "specifier": "zod",
+      "classification": "reject-or-defer",
+      "target": "",
+      "reason": "Review before implementation; keep as fixture-only, replace locally, or defer the row."
+    }
+  ],
+  "dependencyPolicy": {
+    "react": "dev-or-fixture-only",
+    "recharts": "reject-or-defer",
+    "@tanstack/react-table": "reject-or-defer",
+    "@dnd-kit/*": "reject-or-defer",
+    "sonner": "reject-or-defer",
+    "react-day-picker": "reject-or-defer",
+    "date-fns": "reject-or-defer",
+    "chrono-node": "reject-or-defer"
+  },
+  "unresolvedQuestions": [
+    "Should docs/example-only shadcn rows become non-installable documentation/examples registry items or dependency-complete component batches?",
+    "What native table/query model should replace TanStack React Table semantics?",
+    "What native chart foundation should exist before shadcn/chart and chart blocks are planned?",
+    "Should typography be a component, a style primitive family, or documentation-only examples?"
+  ]
+}

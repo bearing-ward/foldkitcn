@@ -173,7 +173,7 @@
       "id": "shadcn/spinner-empty",
       "title": "SpinnerEmpty",
       "description": "Empty state composed with Spinner media and a cancel action.",
-      "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+      "sourcePath": "src/registry/shadcn/empty/examples.ts",
       "kind": "demo"
     },
     {

@@ -90,22 +90,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/form-origin-fixture",
-      "title": "FormOriginFixture",
-      "description": "Static origin-evidence fixture derived from deterministic Base UI Form root, Field composition, validation state, and data attributes.",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "base-ui/form-foldkit-fixture",
-      "title": "FormFoldkitFixture",
-      "description": "Foldkit parity fixture exercising root, Field composition, valid/invalid/disabled states, noValidate behavior, and submit/reset handlers.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/form",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",

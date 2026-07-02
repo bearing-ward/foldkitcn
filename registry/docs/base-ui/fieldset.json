@@ -83,32 +83,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/fieldset-origin-fixture",
-      "title": "FieldsetOriginFixture",
-      "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
-      "componentItemId": "base-ui/fieldset",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
-      "snippet": "import type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotElement } from '../../dom'\n\ntype CaseConfig = Readonly<{\n  id: string\n  rootId: string\n  legendId: string\n  legend: string\n  disabled?: boolean\n  name?: string\n  form?: string\n}>\n\nconst renderOriginFieldset = (config: CaseConfig): FixtureSnapshot => {\n  const fieldset = document.createElement('fieldset')\n  const legend = document.createElement('div')\n  const input = document.createElement('input')\n\n  fieldset.id = config.rootId\n  fieldset.setAttribute('aria-labelledby', config.legendId)\n\n  if (config.name !== undefined) {\n    fieldset.setAttribute('name', config.name)\n  }\n\n  if (config.form !== undefined) {\n    fieldset.setAttribute('form', config.form)\n  }\n\n  if (config.disabled === true) {\n    fieldset.setAttribute('disabled', '')\n    fieldset.dataset.disabled = ''\n    legend.dataset.disabled = ''\n    input.disabled = true\n  }\n\n  legend.id = config.legendId\n  legend.textContent = config.legend\n  input.dataset.testid = `${config.rootId}-control`\n\n  fieldset.append(legend, input)\n  document.body.append(fieldset)\n  const snapshot = snapshotElement(fieldset, {})\n  fieldset.remove()\n\n  return snapshot\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    id: 'basic',\n    rootId: 'account',\n    legendId: 'account-legend',\n    legend: 'Account details',\n  },\n  {\n    id: 'custom-legend-id',\n    rootId: 'billing',\n    legendId: 'billing-heading',\n    legend: 'Billing details',\n    name: 'billing',\n    form: 'checkout',\n  },\n  {\n    id: 'disabled',\n    rootId: 'shipping',\n    legendId: 'shipping-legend',\n    legend: 'Shipping details',\n    disabled: true,\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.id,\n  snapshot: renderOriginFieldset(config),\n}))",
-      "previewStatus": "static",
-      "previewExportName": null,
-      "requiredRegistryItems": [],
-      "notes": []
-    },
-    {
-      "id": "base-ui/fieldset-foldkit-fixture",
-      "title": "FieldsetFoldkitFixture",
-      "description": "Foldkit parity fixture exercising root, legend, disabled, and explicit legend id behavior.",
-      "componentItemId": "base-ui/fieldset",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
-      "snippet": "import { html } from 'foldkit/html'\n\nimport * as Fieldset from '../../../../../src/registry/base-ui/fieldset'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\ntype CaseConfig = Readonly<{\n  id: string\n  rootId: string\n  legendId?: string\n  legend: string\n  disabled?: boolean\n  name?: string\n  form?: string\n}>\n\nconst renderFoldkitFieldset = (config: CaseConfig): FixtureSnapshot => {\n  const h = html<never>()\n\n  return snapshotHtml(\n    Fieldset.view<never>({\n      id: config.rootId,\n      legendId: config.legendId,\n      name: config.name,\n      form: config.form,\n      isDisabled: config.disabled,\n      toView: attributes =>\n        h.fieldset(\n          [...attributes.root],\n          [\n            h.div([...attributes.legend], [config.legend]),\n            h.input([\n              h.Attribute('data-testid', `${config.rootId}-control`),\n              ...(config.disabled === true ? [h.Disabled(true)] : []),\n            ]),\n          ],\n        ),\n    }),\n    {},\n  )\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    id: 'basic',\n    rootId: 'account',\n    legend: 'Account details',\n  },\n  {\n    id: 'custom-legend-id',\n    rootId: 'billing',\n    legendId: 'billing-heading',\n    legend: 'Billing details',\n    name: 'billing',\n    form: 'checkout',\n  },\n  {\n    id: 'disabled',\n    rootId: 'shipping',\n    legend: 'Shipping details',\n    disabled: true,\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.id,\n  snapshot: renderFoldkitFieldset(config),\n}))",
-      "previewStatus": "static",
-      "previewExportName": null,
-      "requiredRegistryItems": [],
-      "notes": []
-    }
-  ],
+  "examples": [],
   "quality": {
     "availability": "installable",
     "implementationStatus": "implemented",

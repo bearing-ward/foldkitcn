@@ -143,7 +143,7 @@
       "componentItemId": "shadcn/direction",
       "sourcePath": "src/registry/shadcn/direction/examples.ts",
       "snippet": "export const DirectionDemo = (): Html => loginCard(englishLoginCopy)",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "DirectionDemo",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -160,7 +160,7 @@
       "componentItemId": "shadcn/direction",
       "sourcePath": "src/registry/shadcn/direction/examples.ts",
       "snippet": "export const DirectionRtlCard = (): Html => loginCard(arabicLoginCopy)",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "DirectionRtlCard",
       "requiredRegistryItems": [
         "shadcn/button",

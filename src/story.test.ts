@@ -15,6 +15,7 @@ import {
   CopySnippet,
   DocsRoute,
   FailedCopySnippet,
+  GotLiveExampleToastMessage,
   HidCopiedIndicator,
   HideCopiedIndicator,
   HomeRoute,
@@ -43,6 +44,13 @@ import {
   urlToAppRoute,
 } from './main'
 import type { Model } from './main'
+import {
+  ClickedCreateStackedToast as ClickedCreateShadcnStackedToast,
+  ClickedPerformAction as ClickedPerformShadcnToastAction,
+  ClickedShowDescriptionToast as ClickedShowShadcnToastDescription,
+  ClickedShowToast as ClickedShowShadcnToast,
+  ClickedShowTypeToast as ClickedShowShadcnToastType,
+} from './registry/shadcn/toast/examples'
 import { routeInventory } from './route-inventory'
 
 const model: Model = {
@@ -51,11 +59,31 @@ const model: Model = {
   mobileNavigation: MobileNavigation({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
+  liveExampleOtpValues: {},
+  liveExampleSliderValues: {},
+  liveExampleSelectOpenValues: {},
+  liveExampleSelectValues: {},
+  liveExampleComboboxOpenValues: {},
+  liveExampleComboboxInputValues: {},
+  liveExampleComboboxValues: {},
+  liveExampleComboboxMultipleValues: {},
   liveExampleRadioGroupValues: {},
+  liveExampleCheckboxCheckedStates: {},
+  liveExampleSwitchCheckedValues: {},
+  liveExampleAccordionValues: {},
+  liveExampleCollapsibleOpenValues: {},
+  liveExampleTabsValues: {},
+  liveExampleTogglePressedValues: {},
+  liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
+  liveExampleOverlayOpenValues: {},
+  liveExampleMenuOpenValues: {},
+  liveExampleMenuOpenSubmenuValues: {},
+  liveExampleMenuContextPoints: {},
+  liveExampleMenuValues: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},
   liveExampleSidebarPanelOpenValues: {},
@@ -348,6 +376,117 @@ describe(update, () => {
           expect(nextModel.pagefindSearch._tag).toBe('IdlePagefindSearch')
         }),
         Story.Command.expectNone(),
+      )
+    })
+  })
+
+  describe(GotLiveExampleToastMessage, () => {
+    test('shadcn toast examples start empty and repeated clicks update non-stacked examples', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-demo',
+            message: ClickedShowShadcnToast(),
+          }),
+        ),
+        Story.model(nextModel => {
+          const state = nextModel.liveExampleToastStates['shadcn/toast-demo']
+
+          expect(state?.toasts).toHaveLength(1)
+          expect(state?.toasts[0]?.id).toBe('shadcn-toast-demo-toast')
+          expect(state?.toasts[0]?.title).toBe('Scheduled: Catch up')
+          expect(state?.toasts[0]?.description).toBe(
+            'Friday, February 10, 2023 at 5:57 PM',
+          )
+          expect(state?.toasts[0]?.actionLabel).toBe('Undo')
+        }),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-demo',
+            message: ClickedShowShadcnToast(),
+          }),
+        ),
+        Story.model(nextModel => {
+          const state = nextModel.liveExampleToastStates['shadcn/toast-demo']
+
+          expect(state?.toasts).toHaveLength(1)
+          expect(state?.toasts[0]?.updateKey).toBe(1)
+        }),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-simple',
+            message: ClickedShowShadcnToastDescription(),
+          }),
+        ),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-with-title',
+            message: ClickedShowShadcnToast(),
+          }),
+        ),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-with-action',
+            message: ClickedPerformShadcnToastAction(),
+          }),
+        ),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-destructive',
+            message: ClickedShowShadcnToastType({ variant: 'error' }),
+          }),
+        ),
+        Story.model(nextModel => {
+          expect(
+            nextModel.liveExampleToastStates['shadcn/toast-simple']?.toasts,
+          ).toHaveLength(1)
+          expect(
+            nextModel.liveExampleToastStates['shadcn/toast-with-title']?.toasts,
+          ).toHaveLength(1)
+          expect(
+            nextModel.liveExampleToastStates['shadcn/toast-with-action']
+              ?.toasts,
+          ).toHaveLength(1)
+          expect(
+            nextModel.liveExampleToastStates['shadcn/toast-destructive']
+              ?.toasts,
+          ).toHaveLength(1)
+        }),
+      )
+    })
+
+    test('shadcn stacked toast is the only shadcn toast example that accumulates a compact stack', () => {
+      Story.story(
+        update,
+        Story.with(model),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-stacked',
+            message: ClickedCreateShadcnStackedToast(),
+          }),
+        ),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-stacked',
+            message: ClickedCreateShadcnStackedToast(),
+          }),
+        ),
+        Story.message(
+          GotLiveExampleToastMessage({
+            exampleId: 'shadcn/toast-stacked',
+            message: ClickedCreateShadcnStackedToast(),
+          }),
+        ),
+        Story.model(nextModel => {
+          const state = nextModel.liveExampleToastStates['shadcn/toast-stacked']
+
+          expect(state?.toasts).toHaveLength(3)
+          expect(state?.toasts[0]?.title).toBe('Stacked toast 3')
+          expect(state?.toasts[1]?.title).toBe('Stacked toast 2')
+          expect(state?.toasts[2]?.title).toBe('Stacked toast 1')
+        }),
       )
     })
   })

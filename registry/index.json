@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-01T17:43:23.636Z",
+  "generatedAt": "2026-07-02T01:44:41.883Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -598,15 +598,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/avatar-hero",
-            "title": "AvatarHero",
-            "description": "Base UI Avatar hero fixture with image, fallback, and text fallback avatar.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/avatar",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/avatar.fixture.tsx",
@@ -649,12 +641,12 @@
           }
         ]
       },
-      "manifestHash": "bac8ae96d505ad72572b65d3459df1ef35fc70430be915892a1cd34e11ea847f",
+      "manifestHash": "5d9baeadbebcb57dea9e7a315e27966afe3a46563751a7c853b81b9f656225d4",
       "artifacts": [
         {
           "path": "registry-src/base-ui/avatar/item.json",
-          "sha256": "fe5f8cf4869f4086bc5172ec1e20dbad28090aaea21296199fed6b9aad4d373b",
-          "sizeBytes": 5393,
+          "sha256": "e1643b5da42d42704e306ec523f40fb9a325f8dbea00cfd15758d8b5c41a0140",
+          "sizeBytes": 5103,
           "role": "manifest"
         },
         {
@@ -2036,22 +2028,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/field-origin-fixture",
-            "title": "FieldOriginFixture",
-            "description": "Static origin-evidence fixture derived from deterministic Base UI Field relationships and data attributes.",
-            "sourcePath": "tests/parity/fixtures/origin/base-ui/field.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "base-ui/field-foldkit-fixture",
-            "title": "FieldFoldkitFixture",
-            "description": "Foldkit parity fixture exercising root, label, control, description, error, disabled, valid, invalid, touched, dirty, and ARIA relationships.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/field.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/field",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/field.fixture.ts",
@@ -2102,12 +2079,12 @@
           }
         ]
       },
-      "manifestHash": "53510c8ce52704a5af6d5dd63873860b8b0a8dbc2f3063e610ad833790da17f9",
+      "manifestHash": "10c4b2c15e2974e7662b0aaae78d5b2da452ab6f1cecc148ce1608dcbd9c94b2",
       "artifacts": [
         {
           "path": "registry-src/base-ui/field/item.json",
-          "sha256": "040ff28af41ee079a1413a87c880a0f3b13f5d20dafb65991ec3ebf139693627",
-          "sizeBytes": 7707,
+          "sha256": "f50379bce44450d1cdf05498129af6232040ceedb82beb4765a06ff0afd92e7c",
+          "sizeBytes": 7000,
           "role": "manifest"
         },
         {
@@ -2199,22 +2176,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/fieldset-origin-fixture",
-            "title": "FieldsetOriginFixture",
-            "description": "Static origin-evidence fixture derived from deterministic Base UI Fieldset Root and Legend output.",
-            "sourcePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "base-ui/fieldset-foldkit-fixture",
-            "title": "FieldsetFoldkitFixture",
-            "description": "Foldkit parity fixture exercising root, legend, disabled, and explicit legend id behavior.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/fieldset.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/fieldset",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/fieldset.fixture.ts",
@@ -2265,12 +2227,12 @@
           }
         ]
       },
-      "manifestHash": "5f34e9edf808cf07b1e37ecbe5f6cc36c986f08d2615dac678e132dbddb57cb9",
+      "manifestHash": "32dc3a6bf49d272ed08e733a8b40765a3752dfd1e70c453115a6aab0a4233e1c",
       "artifacts": [
         {
           "path": "registry-src/base-ui/fieldset/item.json",
-          "sha256": "36e744119be7a151c67c60325280e40bae8f2602b553a14260f4a4cdeb3ea13f",
-          "sizeBytes": 6375,
+          "sha256": "8d76adf94a156579d4443e9c3bef2fdc362d7eb4bf22281e494a44cf6e6720c1",
+          "sizeBytes": 5709,
           "role": "manifest"
         },
         {
@@ -2374,22 +2336,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/form-origin-fixture",
-            "title": "FormOriginFixture",
-            "description": "Static origin-evidence fixture derived from deterministic Base UI Form root, Field composition, validation state, and data attributes.",
-            "sourcePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "base-ui/form-foldkit-fixture",
-            "title": "FormFoldkitFixture",
-            "description": "Foldkit parity fixture exercising root, Field composition, valid/invalid/disabled states, noValidate behavior, and submit/reset handlers.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/form.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/form",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/form.fixture.ts",
@@ -2440,12 +2387,12 @@
           }
         ]
       },
-      "manifestHash": "1836722f4b38b8ca5c564ff3381887cb69b539b4975b8ad96ce134882363e70c",
+      "manifestHash": "79e3fb8e692c2ce91d8e220f036361d552175b4564c3a6f220e8481abe4beec1",
       "artifacts": [
         {
           "path": "registry-src/base-ui/form/item.json",
-          "sha256": "ea47dd8dd385cb6b3bb701289f916c78b29a5f1c4020dccd5999197090fdc6f0",
-          "sizeBytes": 7247,
+          "sha256": "9f4bbf233089cd0943c826402aac96f37422e829d142a51218732797f24f631e",
+          "sizeBytes": 6522,
           "role": "manifest"
         },
         {
@@ -3339,22 +3286,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/number-field-origin-fixture",
-            "title": "NumberFieldOriginFixture",
-            "description": "Static source-derived origin fixture preserving Number Field parts, grouped-control dimensions, form value, and data attributes.",
-            "sourcePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "base-ui/number-field-foldkit-fixture",
-            "title": "NumberFieldFoldkitFixture",
-            "description": "Foldkit parity fixture exercising root, scrub area, group, input, steppers, hidden input, disabled/read-only/invalid states, and bounded step configuration.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/number-field.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/number-field",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
@@ -3406,12 +3338,12 @@
           }
         ]
       },
-      "manifestHash": "9fdc4a691bcedbc34865234a6c3930a3ddc565609e980b5983633c6a67b9e42c",
+      "manifestHash": "7dba35a924ba815a75cd46f37f4b8054eaaa760d8f5378b0c32c0db12ef77fa6",
       "artifacts": [
         {
           "path": "registry-src/base-ui/number-field/item.json",
-          "sha256": "f3770e3b1f2bd47f16d3613324bc97350c75fbe601f532d851a3ac22a3ee0ce7",
-          "sizeBytes": 9579,
+          "sha256": "759ccb621489e8d23ff7a86fbfd1e0ed6d262ed5b59f5d0efa824a8104d9d06b",
+          "sizeBytes": 8795,
           "role": "manifest"
         },
         {
@@ -3509,22 +3441,7 @@
             }
           ]
         },
-        "examples": [
-          {
-            "id": "base-ui/otp-field-origin-fixture",
-            "title": "OTPFieldOriginFixture",
-            "description": "Static source-derived origin fixture preserving OTP Field slots, grouped layout, hidden form input, validation patterns, and state data attributes.",
-            "sourcePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "base-ui/otp-field-foldkit-fixture",
-            "title": "OTPFieldFoldkitFixture",
-            "description": "Foldkit parity fixture exercising basic, grouped, complete, disabled, invalid, and alphanumeric OTP Field states.",
-            "sourcePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
-            "kind": "foldkit-fixture"
-          }
-        ],
+        "examples": [],
         "parity": {
           "itemId": "base-ui/otp-field",
           "originFixturePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
@@ -3576,12 +3493,12 @@
           }
         ]
       },
-      "manifestHash": "96b36131fec7240dc861e0ac49b4c01406c7a1650e0a134c4757b9b5d2899799",
+      "manifestHash": "ebcc2eb7914b24320a93351ee5ebf8121b4568fead31bb37ce91a6364a4fa601",
       "artifacts": [
         {
           "path": "registry-src/base-ui/otp-field/item.json",
-          "sha256": "b83a747d1e876cdec299b01dbf939394f2e13d8dba411a431246c1f9b52e27e7",
-          "sizeBytes": 7083,
+          "sha256": "001434b379e1e10493abd03727dd2043fe065a001b48c31281117cf90af93d48",
+          "sizeBytes": 6341,
           "role": "manifest"
         },
         {
@@ -6287,8 +6204,8 @@
         },
         {
           "path": "src/registry/shadcn/accordion/examples.ts",
-          "sha256": "01166a17cfb33852435917e6237cfeed61aa59852dc939587510663c478c363e",
-          "sizeBytes": 3885,
+          "sha256": "f27fd35a262e1bb8f0be2b7dbefd066abb9ba22c7518c8e1029e911065ea626f",
+          "sizeBytes": 5621,
           "role": "source"
         }
       ]
@@ -6551,8 +6468,8 @@
         },
         {
           "path": "src/registry/shadcn/alert-dialog/examples.ts",
-          "sha256": "bd19f1a988a96329f479fdfbeb7f5ec0610741a9d1fbbd217715b7902f8774df",
-          "sizeBytes": 7376,
+          "sha256": "fe1f6b962f2a29b2e7263754f6c9fefaf2d0cf51edd16c3feb1d08cbe9b89131",
+          "sizeBytes": 9015,
           "role": "source"
         }
       ]
@@ -10194,8 +10111,8 @@
         },
         {
           "path": "src/registry/shadcn/collapsible/examples.ts",
-          "sha256": "c015abe6e8b0c21e7109ca8db44390ab373c49ae8f955968fb888baa3d13fd58",
-          "sizeBytes": 13746,
+          "sha256": "8711d19446e7a91b38bce8def7bd7f5156d348dc7b0111329f710f1b33dfd0e1",
+          "sizeBytes": 15671,
           "role": "source"
         }
       ]
@@ -11078,8 +10995,8 @@
         },
         {
           "path": "src/registry/shadcn/context-menu/examples.ts",
-          "sha256": "aadd3b9f920a68a3dc157dbbad8d25d561409d15ba1cf8210f8f92fce4ba8c4d",
-          "sizeBytes": 13289,
+          "sha256": "3b33301a615b479a059c3fe2ea6284aa6e6b53e79cd69b27f17e44c8cdd692e0",
+          "sizeBytes": 16193,
           "role": "source"
         }
       ]
@@ -11339,8 +11256,8 @@
         },
         {
           "path": "src/registry/shadcn/dialog/examples.ts",
-          "sha256": "b3a8904a6126a5b9b2fe0340f5cfd913cd5665db0ab2e1e06919fface025283a",
-          "sizeBytes": 8526,
+          "sha256": "ec26f3fab3bf1d3e95ac212fdd8a7c758cee92c0e18439b21a0a6083dab4e143",
+          "sizeBytes": 10000,
           "role": "source"
         }
       ]
@@ -11830,8 +11747,8 @@
         },
         {
           "path": "src/registry/shadcn/drawer/examples.ts",
-          "sha256": "6991d9d1d4ad23c039edce11f94d56ebbc4d5d04963be36daaad43efdb65303f",
-          "sizeBytes": 8402,
+          "sha256": "8e4ca0965d481a1b77d65f705663adfff7089d80e563f716037fbd5b5c516c52",
+          "sizeBytes": 9565,
           "role": "source"
         }
       ]
@@ -12130,8 +12047,8 @@
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/examples.ts",
-          "sha256": "8c7cb0302621ac6b886106508c38f1a8e1e6a59b8cff81bafdd9f5b36331be7b",
-          "sizeBytes": 15239,
+          "sha256": "4044aa798eff53be21ef2cc05d7102a5f5122bc2db2e0b88b19ebb7d54026c3f",
+          "sizeBytes": 17904,
           "role": "source"
         }
       ]
@@ -12589,20 +12506,6 @@
             "description": "Field and Textarea composition.",
             "sourcePath": "src/registry/shadcn/field/examples.ts",
             "kind": "demo"
-          },
-          {
-            "id": "shadcn/field-origin-fixture",
-            "title": "FieldOriginFixture",
-            "description": "Static origin-evidence fixture derived from base-nova Field source.",
-            "sourcePath": "tests/parity/fixtures/origin/shadcn/field.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "shadcn/field-foldkit-fixture",
-            "title": "FieldFoldkitFixture",
-            "description": "Foldkit parity fixture for dependency-complete shadcn Field composition.",
-            "sourcePath": "tests/parity/fixtures/foldkit/shadcn/field.fixture.ts",
-            "kind": "foldkit-fixture"
           }
         ],
         "parity": {
@@ -12663,12 +12566,12 @@
           }
         ]
       },
-      "manifestHash": "87847a7dae30e35ea90aef3c1052a23344b9286d02fe32a96c704013d7638232",
+      "manifestHash": "e52db4d8019df47d2d0a90d43bb91399661ede1ee3ffcb12a49ebfaa422c8d6d",
       "artifacts": [
         {
           "path": "registry-src/shadcn/field/item.json",
-          "sha256": "dc657ab728068380dcf20aa175697ca51755df25accdc7867873c472c59fcb04",
-          "sizeBytes": 9994,
+          "sha256": "a3daa162a534a691e7da46e995de4e166f26f534bc276d7a906214e1ce445a18",
+          "sizeBytes": 9401,
           "role": "manifest"
         },
         {
@@ -12894,8 +12797,8 @@
         },
         {
           "path": "src/registry/shadcn/hover-card/examples.ts",
-          "sha256": "668965ae27ea0cc3d49b9f2b6cc515416c0fb5803583ce13b93648b5d0b9e349",
-          "sizeBytes": 4367,
+          "sha256": "9797844b563fe865c7a7ba5052a4ef5750353b1e75c77e2a62c423da6f3b3e74",
+          "sizeBytes": 5644,
           "role": "source"
         }
       ]
@@ -13524,20 +13427,6 @@
             "description": "Verification form example with local Field, Button, and static Card shell.",
             "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
             "kind": "demo"
-          },
-          {
-            "id": "shadcn/input-otp-origin-fixture",
-            "title": "InputOTPOriginFixture",
-            "description": "Static origin-evidence fixture derived from base-nova Input OTP source.",
-            "sourcePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
-            "kind": "origin-fixture"
-          },
-          {
-            "id": "shadcn/input-otp-foldkit-fixture",
-            "title": "InputOTPFoldkitFixture",
-            "description": "Foldkit parity fixture for dependency-complete shadcn Input OTP composition.",
-            "sourcePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
-            "kind": "foldkit-fixture"
           }
         ],
         "parity": {
@@ -13598,12 +13487,12 @@
           }
         ]
       },
-      "manifestHash": "59ac704933785fd1e52f1e6ef8f7a18c38f84b366c499eb90d7f973614118224",
+      "manifestHash": "9da316fac3d9d7565a8c7df7beb4c371bc7ecbbf93005f0d70cc9e1f4fbb371e",
       "artifacts": [
         {
           "path": "registry-src/shadcn/input-otp/item.json",
-          "sha256": "170da10e41ed6c989b7e13a8cf3568b1b8568a3153df55680bf3a7c78016222e",
-          "sizeBytes": 10479,
+          "sha256": "a32c38dd2fbe969dee7e628379a38e4b63c8352f47ff2946b994cdea0be084c6",
+          "sizeBytes": 9856,
           "role": "manifest"
         },
         {
@@ -14263,6 +14152,7 @@
             "title": "KbdGroup",
             "description": "Inline KbdGroup in muted text.",
             "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+            "previewExportName": "KbdGroupExample",
             "kind": "demo"
           },
           {
@@ -14345,12 +14235,12 @@
           }
         ]
       },
-      "manifestHash": "a5d9412cd3cd95c301102ac78444b7c5f13ea352aea1e16efc59ee70abcbe942",
+      "manifestHash": "e744d60e9d0a9c24b2e85be671c6520e6d546a79c7409c7a10eae96bcde05025",
       "artifacts": [
         {
           "path": "registry-src/shadcn/kbd/item.json",
-          "sha256": "e15752b650b319ee85c61057e401cc3c3a03a5e01625e2cac70ee62df21f990b",
-          "sizeBytes": 8356,
+          "sha256": "0e243fc57467e3b8be44b0f856b37578fde7181313d05a66284f8ca261938c8e",
+          "sizeBytes": 8402,
           "role": "manifest"
         },
         {
@@ -15024,8 +14914,8 @@
         },
         {
           "path": "src/registry/shadcn/menubar/examples.ts",
-          "sha256": "ae13d1a8c90bc72bbe0b1ed61c1007544b33e9a3831b57f2079fc0b03fa9fc77",
-          "sizeBytes": 12130,
+          "sha256": "87612e56aec03a0c1bd5cbb948bd3ad606f10ab0031c66fe5dd2375046bc792f",
+          "sizeBytes": 14440,
           "role": "source"
         }
       ]
@@ -15954,8 +15844,8 @@
         },
         {
           "path": "src/registry/shadcn/navigation-menu/examples.ts",
-          "sha256": "7808f636a79000070a835796186a8c01254f53a3f8a3c64c572cf0a48865fd97",
-          "sizeBytes": 11095,
+          "sha256": "a2634c4f4fe7eea104f51fef02dbe4ccccd86844a22bfd67809308d59aac8cd4",
+          "sizeBytes": 12113,
           "role": "source"
         }
       ]
@@ -16442,8 +16332,8 @@
         },
         {
           "path": "src/registry/shadcn/popover/examples.ts",
-          "sha256": "9b8546a9bb587bbc484ba4ae36036287daa71184871e5fa22c39380bcfdce10c",
-          "sizeBytes": 7422,
+          "sha256": "bacc0e7648208240dfb12a03a584272f947ed596ca980b89cdd48aa33efca352",
+          "sizeBytes": 9204,
           "role": "source"
         }
       ]
@@ -18017,8 +17907,8 @@
         },
         {
           "path": "src/registry/shadcn/sheet/examples.ts",
-          "sha256": "993d107b53884cbfae0a76377281ae72602fd70ac524d5bc3ec4dc20f21cb80e",
-          "sizeBytes": 7548,
+          "sha256": "21ac04f347a7ad26a56d05ff41917ca6dc054308e86a6d4f92dca62c61e82892",
+          "sizeBytes": 8730,
           "role": "source"
         }
       ]
@@ -19221,7 +19111,7 @@
             "id": "shadcn/spinner-empty",
             "title": "SpinnerEmpty",
             "description": "Empty state composed with Spinner media and a cancel action.",
-            "sourcePath": "src/registry/shadcn/spinner/examples.ts",
+            "sourcePath": "src/registry/shadcn/empty/examples.ts",
             "kind": "demo"
           },
           {
@@ -19271,12 +19161,12 @@
           }
         ]
       },
-      "manifestHash": "b48f54cd69c10a125b68f47317e1cad1c53d04c20177432677b2403fb27986ff",
+      "manifestHash": "2ec29573d3353181ca40afe813740c7618686ffe78d72d9618ea0683b6af6bc3",
       "artifacts": [
         {
           "path": "registry-src/shadcn/spinner/item.json",
-          "sha256": "80619a63007921fa6ff364a30ec374c2d7074743406e0fa296741ad4c233e738",
-          "sizeBytes": 8082,
+          "sha256": "c264aa0423ac46db87e1ba1125e72e3a88ea8a6917cb3ac5cbea959d6c8c125d",
+          "sizeBytes": 8080,
           "role": "manifest"
         },
         {
@@ -19979,8 +19869,8 @@
         },
         {
           "path": "src/registry/shadcn/tabs/examples.ts",
-          "sha256": "bef4bb23afc1cb7c96950715bc01f615d93d9a6ffa42c67ea85893af1dfabcff",
-          "sizeBytes": 5087,
+          "sha256": "e1c4f800cc5f93eba8da38ddf0fb696732a44e13457284439d63d0f5c9f06ebc",
+          "sizeBytes": 7893,
           "role": "source"
         }
       ]
@@ -20198,6 +20088,225 @@
           "path": "src/registry/shadcn/textarea/examples.ts",
           "sha256": "dc1829ccf4f079d498afaa146d6b8b7edbf4c9decaa18e11d20277729288e8d5",
           "sizeBytes": 5512,
+          "role": "source"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "shadcn/toast",
+        "namespace": "shadcn",
+        "name": "Toast",
+        "kind": "component",
+        "description": "Foldkit-native shadcn Toast wrapper built on the local Base UI Toast primitive with shadcn card styling, stacked expansion, destructive variants, and live examples.",
+        "sourceRoot": "registry-src/shadcn/toast",
+        "installableSourcePaths": [
+          "src/registry/shadcn/toast/index.ts",
+          "src/registry/shadcn/toast/examples.ts"
+        ],
+        "consumedThemeTokens": [
+          "--background",
+          "--border",
+          "--destructive",
+          "--destructive-foreground",
+          "--foreground",
+          "--input",
+          "--muted",
+          "--muted-foreground",
+          "--popover",
+          "--popover-foreground",
+          "--radius"
+        ],
+        "originProvenance": [
+          {
+            "originKind": "shadcn",
+            "originName": "shadcn Toast",
+            "docsUrl": "https://ui.shadcn.com/docs/components/toast",
+            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/toast.tsx",
+            "localRepoPath": "repos/ui",
+            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+            "sourcePaths": [],
+            "docsPaths": [
+              "repos/ui/apps/v4/content/docs/components/base/toast.mdx",
+              "repos/ui/apps/v4/content/docs/components/radix/toast.mdx"
+            ],
+            "examplePaths": [
+              "repos/ui/apps/v4/examples/base/toast-demo.tsx",
+              "repos/ui/apps/v4/examples/base/toast-simple.tsx",
+              "repos/ui/apps/v4/examples/base/toast-with-title.tsx",
+              "repos/ui/apps/v4/examples/base/toast-with-action.tsx",
+              "repos/ui/apps/v4/examples/base/toast-destructive.tsx"
+            ],
+            "testPaths": []
+          }
+        ],
+        "dependencies": {
+          "registry": [
+            {
+              "specifier": "base-ui/toast",
+              "classification": "registry-local",
+              "target": "base-ui/toast",
+              "reason": "shadcn Toast composes the local Base UI Toast primitive."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "shadcn Toast examples compose the local shadcn Button registry item."
+            },
+            {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Toast uses local class canonicalization instead of CVA."
+            }
+          ],
+          "runtime": [
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Effect Schema literals for the toast variant option and local data shaping."
+            },
+            {
+              "specifier": "clsx",
+              "classification": "allowed-runtime",
+              "target": "npm:clsx",
+              "reason": "Provided through the local utils/cn registry dependency."
+            },
+            {
+              "specifier": "tailwind-merge",
+              "classification": "allowed-runtime",
+              "target": "npm:tailwind-merge",
+              "reason": "Provided through the local utils/cn registry dependency."
+            }
+          ],
+          "development": [
+            {
+              "specifier": "react",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "React is origin fixture evidence only, not installable Foldkit source."
+            },
+            {
+              "specifier": "@radix-ui/react-toast",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "The upstream React toast runtime is evidence only; installable source is Foldkit-native."
+            },
+            {
+              "specifier": "sonner",
+              "classification": "dev-or-fixture-only",
+              "target": "",
+              "reason": "Sonner is origin fixture evidence only and is replaced by the local Base UI Toast primitive."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "shadcn/toast-demo",
+            "title": "ToastDemo",
+            "description": "Basic shadcn Toast trigger with title, description, and undo action.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/toast-simple",
+            "title": "ToastSimple",
+            "description": "Simple shadcn Toast trigger with description only.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/toast-with-title",
+            "title": "ToastWithTitle",
+            "description": "Toast trigger with title and description text.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/toast-with-action",
+            "title": "ToastWithAction",
+            "description": "Toast trigger with an inline action button.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/toast-destructive",
+            "title": "ToastDestructive",
+            "description": "Destructive Toast variant with local shadcn card styling.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/toast-stacked",
+            "title": "ToastStacked",
+            "description": "Pre-seeded stacked toasts that expand on hover and focus.",
+            "sourcePath": "src/registry/shadcn/toast/examples.ts",
+            "kind": "demo"
+          }
+        ],
+        "parity": {
+          "itemId": "shadcn/toast",
+          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+          "requiredComparisons": [
+            "class-tokens",
+            "attributes",
+            "dom-structure",
+            "computed-style",
+            "colors",
+            "dimensions",
+            "bounding-box",
+            "keyboard-behavior"
+          ],
+          "acceptedDeviationIds": [
+            "shadcn-toast-foldkit-native-toast-primitive"
+          ]
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "accepted",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "complete"
+        },
+        "deviations": [
+          {
+            "id": "shadcn-toast-foldkit-native-toast-primitive",
+            "summary": "The wrapper composes the local Base UI Toast primitive instead of the upstream React/Radix hook stack and global useToast store.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "Installable source must stay Foldkit-native while preserving the visible shadcn toast surface and example set."
+          }
+        ]
+      },
+      "manifestHash": "fbb033e2f7d391aa4b49f374da0d6bc54b73215a667046ce3008258e9eaa2a42",
+      "artifacts": [
+        {
+          "path": "registry-src/shadcn/toast/item.json",
+          "sha256": "844ce8737a9fb146bf1d19daf1a510ba6e085a0d027442be17031a63426fd5fe",
+          "sizeBytes": 6617,
+          "role": "manifest"
+        },
+        {
+          "path": "src/registry/shadcn/toast/index.ts",
+          "sha256": "7d46ad30b93319604652e6a3c3697dedd10a472827a6fac43efaa531798fa42c",
+          "sizeBytes": 13575,
+          "role": "source"
+        },
+        {
+          "path": "src/registry/shadcn/toast/examples.ts",
+          "sha256": "e31b163699894a3414f354899a4409205e06658ba4b2610d552bbb7af9bcd862",
+          "sizeBytes": 6365,
           "role": "source"
         }
       ]
@@ -20469,8 +20578,8 @@
         },
         {
           "path": "src/registry/shadcn/toggle-group/examples.ts",
-          "sha256": "130a4be64738d9c0ca9677d49baf038163114c6e82d4b975852634e612225091",
-          "sizeBytes": 6162,
+          "sha256": "ce4a2fefb8a6ab1a88ee31201300a6591e3437442922716c7e7d18dc14348dab",
+          "sizeBytes": 8459,
           "role": "source"
         }
       ]
@@ -20701,8 +20810,8 @@
         },
         {
           "path": "src/registry/shadcn/toggle/examples.ts",
-          "sha256": "72e3cd6fb6d69b15299c1c7637d97c51fd76db81c7952d67272e2d820de9eccd",
-          "sizeBytes": 4198,
+          "sha256": "832b10f7c133cc61f025d13173bee818dc38cc7e3f7b9b8573d473cb09eca56e",
+          "sizeBytes": 5675,
           "role": "source"
         }
       ]
@@ -20939,8 +21048,8 @@
         },
         {
           "path": "src/registry/shadcn/tooltip/examples.ts",
-          "sha256": "ab36d202d6fb5dad48b91fbd24bcdfe625ad361e7240473bf7b4c2feb087c094",
-          "sizeBytes": 4754,
+          "sha256": "499520a8ed38beb7158d7ff9144a4a649ccb4a5bd26eb366c3d11a9217bf8b48",
+          "sizeBytes": 6085,
           "role": "source"
         }
       ]

@@ -21,6 +21,26 @@ type ExampleDefinition = Readonly<{
   view: () => Html
 }>
 
+export type MenubarExampleController<Message> = Readonly<{
+  openMenuValueFor: (
+    menubarId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  openSubmenuValuesFor: (
+    menubarId: string,
+    menuValue: string,
+    defaultValues: ReadonlyArray<string>,
+  ) => ReadonlyArray<string>
+  onMenuOpenChange: (
+    menubarId: string,
+    change: Menubar.MenubarMenuOpenChange,
+  ) => Message
+  onOpenMenuValueChange: (
+    menubarId: string,
+    change: Readonly<{ value?: string | undefined }>,
+  ) => Message
+}>
+
 const fileItems: ReadonlyArray<ExampleItem> = [
   { value: 'new-tab', label: 'New Tab', shortcut: '⌘T' },
   { value: 'new-window', label: 'New Window', shortcut: '⌘N' },
@@ -221,11 +241,11 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
-const itemContent = (
+const itemContent = <Message>(
   source: ExampleItem,
-  itemAttributes: Menubar.MenuItemAttributes<never>,
+  itemAttributes: Menubar.MenuItemAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
   const kind = Menubar.itemKind(itemAttributes.item)
   const indicator =
     kind === 'checkbox' || kind === 'radio'
@@ -250,11 +270,11 @@ const itemContent = (
   ]
 }
 
-const popupView = (
+const popupView = <Message>(
   items: ReadonlyArray<ExampleItem>,
-  popup: Menubar.MenuPopupAttributes<never>,
+  popup: Menubar.MenuPopupAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
 
   if (!popup.isMounted) {
     return []
@@ -288,11 +308,11 @@ const popupView = (
   ]
 }
 
-const menuView = (
+const menuView = <Message>(
   items: ReadonlyArray<ExampleItem>,
-  attributes: Menubar.MenubarMenuAttributes<never>,
+  attributes: Menubar.MenubarMenuAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...attributes.root],
@@ -309,28 +329,60 @@ const menuView = (
   )
 }
 
-const menubarExample = (
+const menubarExampleWithController = <Message = never>(
   id: string,
   menus: ReadonlyArray<ExampleMenu>,
-  options: Partial<Menubar.ViewConfig<never>> = {},
+  options: Partial<Menubar.ViewConfig<Message>> = {},
+  controller?: MenubarExampleController<Message>,
 ): Html => {
   const itemsByMenuValue = new Map<string, ReadonlyArray<ExampleItem>>(
     menus.map(menu => [menu.value, menu.items]),
   )
+  const defaultOpenMenuValue =
+    controller === undefined ? menus.at(0)?.value : undefined
+  const openMenuValue =
+    controller?.openMenuValueFor(id, defaultOpenMenuValue) ??
+    defaultOpenMenuValue
 
-  return Menubar.view<never>({
+  return Menubar.view<Message>({
     id,
-    menus: menus.map((menu, index) => ({
+    menus: menus.map(menu => ({
       ...menu,
-      open: index === 0,
+      open: menu.value === openMenuValue,
       highlightedValue: menu.items.find(item => item.parentValue === undefined)
         ?.value,
-      openSubmenuValues: menu.items
-        .filter(item => item.kind === 'submenu-trigger')
-        .slice(0, 1)
-        .map(item => item.value),
+      openSubmenuValues:
+        controller?.openSubmenuValuesFor(
+          id,
+          menu.value,
+          menu.items
+            .filter(item => item.kind === 'submenu-trigger')
+            .slice(0, 1)
+            .map(item => item.value),
+        ) ??
+        menu.items
+          .filter(item => item.kind === 'submenu-trigger')
+          .slice(0, 1)
+          .map(item => item.value),
     })),
-    focusedMenuValue: menus.at(0)?.value,
+    focusedMenuValue: openMenuValue ?? menus.at(0)?.value,
+    ...(controller === undefined
+      ? {}
+      : {
+          onMenuOpenChange: change => {
+            if (change.parentValue === undefined) {
+              return controller.onOpenMenuValueChange(id, {
+                value: change.open ? change.menuValue : undefined,
+              })
+            }
+
+            return controller.onMenuOpenChange(id, change)
+          },
+          onTriggerChange: change =>
+            controller.onOpenMenuValueChange(id, {
+              value: change.open ? change.value : undefined,
+            }),
+        }),
     ...options,
     toMenuView: attributes =>
       menuView(itemsByMenuValue.get(attributes.menu.value) ?? [], attributes),
@@ -344,41 +396,61 @@ const browserMenus: ReadonlyArray<ExampleMenu> = [
   { value: 'profiles', label: 'Profiles', items: profileItems },
 ]
 
-export const MenubarDemo = (): Html =>
-  menubarExample('menubar-demo', browserMenus, { className: 'w-72' })
+export const MenubarDemo = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
+    'menubar-demo',
+    browserMenus,
+    {
+      className: 'w-72',
+    },
+    controller,
+  )
 
-export const MenubarCheckbox = (): Html =>
-  menubarExample(
+export const MenubarCheckbox = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
     'menubar-checkbox',
     [
       { value: 'view', label: 'View', items: checkboxViewItems },
       { value: 'format', label: 'Format', items: formatItems },
     ],
     { className: 'w-72' },
+    controller,
   )
 
-export const MenubarIcons = (): Html =>
-  menubarExample(
+export const MenubarIcons = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
     'menubar-icons',
     [
       { value: 'file', label: 'File', items: iconFileItems },
       { value: 'more', label: 'More', items: moreItems },
     ],
     { className: 'w-72' },
+    controller,
   )
 
-export const MenubarRadio = (): Html =>
-  menubarExample(
+export const MenubarRadio = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
     'menubar-radio',
     [
       { value: 'profiles', label: 'Profiles', items: radioProfileItems },
       { value: 'theme', label: 'Theme', items: themeItems },
     ],
     { className: 'w-72' },
+    controller,
   )
 
-export const MenubarRtl = (): Html =>
-  menubarExample(
+export const MenubarRtl = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
     'menubar-rtl',
     [
       { value: 'file', label: 'ملف', items: rtlFileItems },
@@ -387,16 +459,20 @@ export const MenubarRtl = (): Html =>
       { value: 'profiles', label: 'الملفات الشخصية', items: profileItems },
     ],
     { className: 'w-72', dir: 'rtl' },
+    controller,
   )
 
-export const MenubarSubmenu = (): Html =>
-  menubarExample(
+export const MenubarSubmenu = <Message = never>(
+  controller?: MenubarExampleController<Message>,
+): Html =>
+  menubarExampleWithController(
     'menubar-submenu',
     [
       { value: 'file', label: 'File', items: submenuFileItems },
       { value: 'edit', label: 'Edit', items: submenuEditItems },
     ],
     { className: 'w-72' },
+    controller,
   )
 
 export const menubarExampleViews: ReadonlyArray<ExampleDefinition> = [

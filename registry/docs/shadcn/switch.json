@@ -127,7 +127,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchDemo = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex items-center space-x-2')],\n    [\n      ...switchControl(h, { id: 'airplane-mode' }),\n      h.label(\n        [...labelAttributes(h, { htmlFor: 'airplane-mode' })],\n        ['Airplane Mode'],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchDemo",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -139,7 +139,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchDescription = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldAttributes(h, { className: 'max-w-sm' })],\n    [\n      h.div(\n        [...fieldContentAttributes(h)],\n        [\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'switch-focus-mode',\n                field: true,\n              }),\n            ],\n            ['Share across devices'],\n          ),\n          h.p(\n            [...fieldDescriptionAttributes(h)],\n            [\n              'Focus is shared across devices, and turns off when you leave the app.',\n            ],\n          ),\n        ],\n      ),\n      ...switchControl(h, { id: 'switch-focus-mode' }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchDescription",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -151,7 +151,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchChoiceCard = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'w-full max-w-sm')],\n    [\n      h.label(\n        [...labelAttributes(h, { htmlFor: 'switch-share', field: true })],\n        [\n          h.div(\n            [...fieldAttributes(h)],\n            [\n              h.div(\n                [...fieldContentAttributes(h)],\n                [\n                  h.div([...fieldTitleAttributes(h)], ['Share across devices']),\n                  h.p(\n                    [...fieldDescriptionAttributes(h)],\n                    [\n                      'Focus is shared across devices, and turns off when you leave the app.',\n                    ],\n                  ),\n                ],\n              ),\n              ...switchControl(h, { id: 'switch-share' }),\n            ],\n          ),\n        ],\n      ),\n      h.label(\n        [\n          ...labelAttributes(h, {\n            htmlFor: 'switch-notifications',\n            field: true,\n          }),\n        ],\n        [\n          h.div(\n            [...fieldAttributes(h)],\n            [\n              h.div(\n                [...fieldContentAttributes(h)],\n                [\n                  h.div([...fieldTitleAttributes(h)], ['Enable notifications']),\n                  h.p(\n                    [...fieldDescriptionAttributes(h)],\n                    [\n                      'Receive notifications when focus mode is enabled or disabled.',\n                    ],\n                  ),\n                ],\n              ),\n              ...switchControl(h, {\n                id: 'switch-notifications',\n                isChecked: true,\n              }),\n            ],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchChoiceCard",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -163,7 +163,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchDisabled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldAttributes(h, { className: 'w-fit', isDisabled: true })],\n    [\n      ...switchControl(h, {\n        id: 'switch-disabled-unchecked',\n        isDisabled: true,\n      }),\n      h.label(\n        [\n          ...labelAttributes(h, {\n            htmlFor: 'switch-disabled-unchecked',\n            field: true,\n          }),\n        ],\n        ['Disabled'],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchDisabled",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -175,7 +175,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchInvalid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldAttributes(h, { className: 'max-w-sm', isInvalid: true })],\n    [\n      h.div(\n        [...fieldContentAttributes(h)],\n        [\n          h.label(\n            [...labelAttributes(h, { htmlFor: 'switch-terms', field: true })],\n            ['Accept terms and conditions'],\n          ),\n          h.p(\n            [...fieldDescriptionAttributes(h)],\n            ['You must accept the terms and conditions to continue.'],\n          ),\n        ],\n      ),\n      ...switchControl(h, { id: 'switch-terms', isInvalid: true }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchInvalid",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -187,7 +187,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchSizes = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [...fieldGroupAttributes(h, 'w-full max-w-[10rem]')],\n    [\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...switchControl(h, { id: 'switch-size-sm', size: 'sm' }),\n          h.label(\n            [...labelAttributes(h, { htmlFor: 'switch-size-sm', field: true })],\n            ['Small'],\n          ),\n        ],\n      ),\n      h.div(\n        [...fieldAttributes(h)],\n        [\n          ...switchControl(h, { id: 'switch-size-default', size: 'default' }),\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'switch-size-default',\n                field: true,\n              }),\n            ],\n            ['Default'],\n          ),\n        ],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchSizes",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []
@@ -199,7 +199,7 @@
       "componentItemId": "shadcn/switch",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
       "snippet": "export const SwitchRtl = (): Html => {\n  const h = html<never>()\n  const dir = 'rtl'\n\n  return h.div(\n    [...fieldAttributes(h, { className: 'max-w-sm', dir })],\n    [\n      h.div(\n        [...fieldContentAttributes(h)],\n        [\n          h.label(\n            [\n              ...labelAttributes(h, {\n                htmlFor: 'switch-focus-mode-rtl',\n                field: true,\n                dir,\n              }),\n            ],\n            ['المشاركة عبر الأجهزة'],\n          ),\n          h.p(\n            [...fieldDescriptionAttributes(h, dir)],\n            [\n              'يتم مشاركة التركيز عبر الأجهزة، ويتم إيقاف تشغيله عند مغادرة التطبيق.',\n            ],\n          ),\n        ],\n      ),\n      ...switchControl(h, { id: 'switch-focus-mode-rtl', dir }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SwitchRtl",
       "requiredRegistryItems": ["base-ui/switch", "utils/cn"],
       "notes": []

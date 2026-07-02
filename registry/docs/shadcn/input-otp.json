@@ -133,7 +133,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPDemo = (): Html =>\n  otp({\n    id: 'input-otp-demo',\n    value: '123456',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPDemo",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -150,7 +150,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPSeparatorExample = (): Html =>\n  InputOTP<never>({\n    id: 'input-otp-separator',\n    length: 6,\n    toView: attributes => {\n      const h = html<never>()\n\n      return h.div(\n        [...attributes.root],\n        [\n          InputOTPGroup<never>({ attributes, indexes: [0, 1] }),\n          InputOTPSeparator<never>(),\n          InputOTPGroup<never>({ attributes, indexes: [2, 3] }),\n          InputOTPSeparator<never>(),\n          InputOTPGroup<never>({ attributes, indexes: [4, 5] }),\n          h.input([...attributes.hiddenInput]),\n        ],\n      )\n    },\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPSeparatorExample",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -167,7 +167,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPDisabled = (): Html =>\n  splitOtp({\n    id: 'disabled',\n    value: '123456',\n    disabled: true,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPDisabled",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -184,7 +184,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPAlphanumeric = (): Html =>\n  splitOtp({\n    id: 'input-otp-alphanumeric',\n    validationType: 'alphanumeric',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPAlphanumeric",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -201,7 +201,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPFourDigits = (): Html =>\n  otp({\n    id: 'input-otp-four-digits',\n    length: 4,\n    validationType: 'numeric',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPFourDigits",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -218,7 +218,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPInvalid = (): Html =>\n  splitOtp({\n    id: 'input-otp-invalid',\n    value: '000000',\n    invalid: true,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPInvalid",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -235,7 +235,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPPattern = (): Html =>\n  Field<never>({\n    className: 'w-fit',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'digits-only',\n        children: ['Digits Only'],\n      }),\n      otp({\n        id: 'digits-only',\n        validationType: 'numeric',\n      }),\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPPattern",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -252,7 +252,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPControlled = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('space-y-2')],\n    [\n      otp({\n        id: 'input-otp-controlled',\n        value: '',\n      }),\n      h.div(\n        [h.Class('text-center text-sm')],\n        ['Enter your one-time password.'],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPControlled",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -269,7 +269,7 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPRtl = (): Html =>\n  html<never>().div(\n    [html<never>().Dir('rtl')],\n    [\n      Field<never>({\n        className: 'mx-auto max-w-xs',\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-otp-rtl',\n            dir: 'rtl',\n            children: ['رمز التحقق'],\n          }),\n          otp({\n            id: 'input-otp-rtl',\n            value: '123456',\n            dir: 'rtl',\n          }),\n        ],\n      }),\n    ],\n  )\n\nconst localCard = (children: ReadonlyArray<Html>): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [\n      h.DataAttribute('slot', 'card'),\n      h.Class(\n        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm mx-auto max-w-md',\n      ),\n    ],\n    children,\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPRtl",
       "requiredRegistryItems": [
         "base-ui/otp-field",
@@ -286,42 +286,8 @@
       "componentItemId": "shadcn/input-otp",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "snippet": "export const InputOTPForm = (): Html => {\n  const h = html<never>()\n\n  return localCard([\n    h.div(\n      [\n        h.DataAttribute('slot', 'card-header'),\n        h.Class(\n          'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6',\n        ),\n      ],\n      [\n        h.div(\n          [\n            h.DataAttribute('slot', 'card-title'),\n            h.Class('leading-none font-semibold'),\n          ],\n          ['Verify your login'],\n        ),\n        h.div(\n          [\n            h.DataAttribute('slot', 'card-description'),\n            h.Class('text-muted-foreground text-sm'),\n          ],\n          [\n            'Enter the verification code we sent to your email address: m@example.com.',\n          ],\n        ),\n      ],\n    ),\n    h.div(\n      [h.DataAttribute('slot', 'card-content'), h.Class('px-6')],\n      [\n        Field<never>({\n          children: [\n            h.div(\n              [h.Class('flex items-center justify-between')],\n              [\n                FieldLabel<never>({\n                  htmlFor: 'otp-verification',\n                  children: ['Verification code'],\n                }),\n                Button<never>({\n                  variant: 'outline',\n                  size: 'xs',\n                  toView: attributes =>\n                    h.button([...attributes.button], ['Resend Code']),\n                }),\n              ],\n            ),\n            splitOtp({\n              id: 'otp-verification',\n              required: true,\n              large: true,\n            }),\n            FieldDescription<never>({\n              children: ['I no longer have access to this email address.'],\n            }),\n          ],\n        }),\n      ],\n    ),\n  ])\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "InputOTPForm",
-      "requiredRegistryItems": [
-        "base-ui/otp-field",
-        "shadcn/button",
-        "shadcn/field",
-        "utils/cn"
-      ],
-      "notes": []
-    },
-    {
-      "id": "shadcn/input-otp-origin-fixture",
-      "title": "InputOTPOriginFixture",
-      "description": "Static origin-evidence fixture derived from base-nova Input OTP source.",
-      "componentItemId": "shadcn/input-otp",
-      "sourcePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
-      "snippet": "import type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { suppressedKeyboard } from '../../../fixture'\nimport { snapshotElement } from '../../dom'\n\ntype ValidationType = 'numeric' | 'alphanumeric'\n\ntype CaseConfig = Readonly<{\n  caseId: string\n  id: string\n  length: number\n  groups: ReadonlyArray<ReadonlyArray<number>>\n  value?: string\n  disabled?: boolean\n  invalid?: boolean\n  validationType?: ValidationType\n}>\n\nconst containerClassName =\n  'cn-input-otp flex items-center has-disabled:opacity-50'\nconst inputClassName = 'disabled:cursor-not-allowed'\nconst groupClassName =\n  'flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40'\nconst slotClassName =\n  'relative flex size-8 items-center justify-center border-y border-r border-input text-sm transition-all outline-none first:rounded-l-lg first:border-l last:rounded-r-lg aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-3 data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40'\nconst separatorClassName =\n  \"flex items-center [&_svg:not([class*='size-'])]:size-4\"\nconst caretWrapperClassName =\n  'pointer-events-none absolute inset-0 flex items-center justify-center'\nconst caretLineClassName =\n  'h-4 w-px animate-caret-blink bg-foreground duration-1000'\nconst hiddenInputStyle =\n  'clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: absolute;'\n\nconst baseKeyboard = {\n  click: 'activates',\n  Enter: 'native-activates',\n  Space: 'native-activates',\n  ArrowLeft: 'activates',\n  ArrowRight: 'activates',\n  Backspace: 'activates',\n  Delete: 'activates',\n  mousedown: 'passes-through',\n  pointerdown: 'passes-through',\n}\n\nconst setAttributes = (\n  element: Element,\n  attributes: Readonly<Record<string, string | undefined>>,\n): Element =>\n  Object.entries(attributes).reduce((currentElement, [name, value]) => {\n    if (value !== undefined) {\n      currentElement.setAttribute(name, value)\n    }\n\n    return currentElement\n  }, element)\n\nconst isComplete = (config: CaseConfig): boolean =>\n  (config.value ?? '').length === config.length\n\nconst activeIndex = (config: CaseConfig): number =>\n  Math.min((config.value ?? '').length, config.length - 1)\n\nconst validationInputMode = (validationType: ValidationType): string =>\n  validationType === 'alphanumeric' ? 'text' : 'numeric'\n\nconst slotPattern = (validationType: ValidationType): string =>\n  validationType === 'alphanumeric' ? '[a-zA-Z0-9]{1}' : '\\\\d{1}'\n\nconst hiddenInputPattern = (config: CaseConfig): string =>\n  config.validationType === 'alphanumeric'\n    ? `[a-zA-Z0-9]{${config.length}}`\n    : `\\\\d{${config.length}}`\n\nconst inputId = (id: string, index: number): string =>\n  index === 0 ? id : `${id}-${index + 1}`\n\nconst characters = (config: CaseConfig): ReadonlyArray<string> => [\n  ...(config.value ?? ''),\n]\n\nconst stateAttributes = (\n  config: CaseConfig,\n): Readonly<Record<string, string | undefined>> => ({\n  ...(isComplete(config) ? { 'data-complete': '' } : {}),\n  ...((config.value ?? '') === '' ? {} : { 'data-filled': '' }),\n  ...(config.disabled === true ? { 'data-disabled': '' } : {}),\n})\n\nconst appendCaret = (slot: Element): Element => {\n  const wrapper = document.createElement('div')\n  const line = document.createElement('div')\n  wrapper.setAttribute('class', caretWrapperClassName)\n  line.setAttribute('class', caretLineClassName)\n  wrapper.append(line)\n  slot.append(wrapper)\n\n  return slot\n}\n\nconst slotElement = (config: CaseConfig, index: number): Element => {\n  const validationType = config.validationType ?? 'numeric'\n  const char = characters(config)[index] ?? ''\n  const isActive = activeIndex(config) === index\n  const slot = document.createElement('div')\n\n  setAttributes(slot, {\n    'data-slot': 'input-otp-slot',\n    'data-active': isActive ? 'true' : 'false',\n    class: slotClassName,\n    ...(config.invalid === true ? { 'aria-invalid': 'true' } : {}),\n    ...stateAttributes(config),\n  })\n  slot.textContent = char\n\n  if (isActive && char === '') {\n    appendCaret(slot)\n  }\n\n  const input = document.createElement('input')\n  setAttributes(input, {\n    type: 'text',\n    value: char,\n    id: inputId(config.id, index),\n    inputmode: validationInputMode(validationType),\n    autocomplete: index === 0 ? 'one-time-code' : 'off',\n    autocorrect: 'off',\n    spellcheck: 'false',\n    enterkeyhint: index === config.length - 1 ? 'done' : 'next',\n    tabindex: isActive ? '0' : '-1',\n    pattern: slotPattern(validationType),\n    class: inputClassName,\n    ...(index === 0 ? { maxlength: String(config.length) } : {}),\n    ...(config.disabled === true ? { disabled: '' } : {}),\n  })\n  slot.append(input)\n\n  return slot\n}\n\nconst groupElement = (\n  config: CaseConfig,\n  indexes: ReadonlyArray<number>,\n): Element => {\n  const group = document.createElement('div')\n  setAttributes(group, {\n    'data-slot': 'input-otp-group',\n    class: groupClassName,\n  })\n  indexes.reduce((currentGroup, index) => {\n    currentGroup.append(slotElement(config, index))\n\n    return currentGroup\n  }, group)\n\n  return group\n}\n\nconst minusIcon = (): SVGElement => {\n  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')\n  setAttributes(svg, {\n    xmlns: 'http://www.w3.org/2000/svg',\n    width: '24',\n    height: '24',\n    viewBox: '0 0 24 24',\n    fill: 'none',\n    stroke: 'currentColor',\n    'stroke-width': '2',\n    'stroke-linecap': 'round',\n    'stroke-linejoin': 'round',\n    'aria-hidden': 'true',\n    'data-icon': 'minus',\n    class: 'lucide lucide-minus',\n  })\n\n  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')\n  path.setAttribute('d', 'M5 12h14')\n  svg.append(path)\n\n  return svg\n}\n\nconst separatorElement = (): Element => {\n  const separator = document.createElement('div')\n  setAttributes(separator, {\n    'data-slot': 'input-otp-separator',\n    role: 'separator',\n    class: separatorClassName,\n  })\n  separator.append(minusIcon())\n\n  return separator\n}\n\nconst hiddenInput = (config: CaseConfig): HTMLInputElement => {\n  const validationType = config.validationType ?? 'numeric'\n  const input = document.createElement('input')\n  setAttributes(input, {\n    'aria-hidden': 'true',\n    inputmode: validationInputMode(validationType),\n    style: hiddenInputStyle,\n    type: 'text',\n    value: config.value ?? '',\n    tabindex: '-1',\n    minlength: String(config.length),\n    maxlength: String(config.length),\n    autocomplete: 'one-time-code',\n    id: `${config.id}-hidden-input`,\n    pattern: hiddenInputPattern(config),\n    class: inputClassName,\n    ...(config.disabled === true ? { disabled: '' } : {}),\n  })\n\n  return input\n}\n\nconst rootElement = (config: CaseConfig): Element => {\n  const root = document.createElement('div')\n  setAttributes(root, {\n    role: 'group',\n    'data-slot': 'input-otp',\n    class: containerClassName,\n    ...stateAttributes(config),\n  })\n\n  config.groups.reduce((currentRoot, indexes, index) => {\n    if (index > 0) {\n      currentRoot.append(separatorElement())\n    }\n\n    currentRoot.append(groupElement(config, indexes))\n\n    return currentRoot\n  }, root)\n  root.append(hiddenInput(config))\n\n  return root\n}\n\nconst snapshot = (config: CaseConfig): FixtureSnapshot => {\n  const root = rootElement(config)\n  document.body.append(root)\n  const result = snapshotElement(\n    root,\n    config.disabled === true ? suppressedKeyboard : baseKeyboard,\n  )\n  root.remove()\n\n  return result\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'input-otp-demo',\n    id: 'input-otp-demo',\n    length: 6,\n    value: '123456',\n    groups: [[0, 1, 2, 3, 4, 5]],\n  },\n  {\n    caseId: 'input-otp-separator',\n    id: 'input-otp-separator',\n    length: 6,\n    groups: [\n      [0, 1],\n      [2, 3],\n      [4, 5],\n    ],\n  },\n  {\n    caseId: 'input-otp-disabled',\n    id: 'disabled',\n    length: 6,\n    value: '123456',\n    disabled: true,\n    groups: [\n      [0, 1, 2],\n      [3, 4, 5],\n    ],\n  },\n  {\n    caseId: 'input-otp-invalid',\n    id: 'input-otp-invalid',\n    length: 6,\n    value: '000000',\n    invalid: true,\n    groups: [\n      [0, 1],\n      [2, 3],\n      [4, 5],\n    ],\n  },\n  {\n    caseId: 'input-otp-four-digits',\n    id: 'input-otp-four-digits',\n    length: 4,\n    validationType: 'numeric',\n    groups: [[0, 1, 2, 3]],\n  },\n  {\n    caseId: 'input-otp-alphanumeric',\n    id: 'input-otp-alphanumeric',\n    length: 6,\n    validationType: 'alphanumeric',\n    groups: [\n      [0, 1, 2],\n      [3, 4, 5],\n    ],\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: snapshot(config),\n}))",
-      "previewStatus": "static",
-      "previewExportName": null,
-      "requiredRegistryItems": [
-        "base-ui/otp-field",
-        "shadcn/button",
-        "shadcn/field",
-        "utils/cn"
-      ],
-      "notes": []
-    },
-    {
-      "id": "shadcn/input-otp-foldkit-fixture",
-      "title": "InputOTPFoldkitFixture",
-      "description": "Foldkit parity fixture for dependency-complete shadcn Input OTP composition.",
-      "componentItemId": "shadcn/input-otp",
-      "sourcePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
-      "snippet": "import { html } from 'foldkit/html'\n\nimport * as InputOTP from '../../../../../src/registry/shadcn/input-otp'\nimport type { FixtureCase, FixtureSnapshot } from '../../../fixture'\nimport { suppressedKeyboard } from '../../../fixture'\nimport { snapshotHtml } from '../render'\n\ntype CaseConfig = Omit<InputOTP.ViewConfig<never>, 'toView'> &\n  Readonly<{\n    caseId: string\n    grouped?: boolean\n    split?: boolean\n  }>\n\nconst baseKeyboard = {\n  click: 'activates',\n  Enter: 'native-activates',\n  Space: 'native-activates',\n  ArrowLeft: 'activates',\n  ArrowRight: 'activates',\n  Backspace: 'activates',\n  Delete: 'activates',\n  mousedown: 'passes-through',\n  pointerdown: 'passes-through',\n}\n\nconst snapshot = (\n  config: CaseConfig,\n  keyboardBehavior: FixtureSnapshot['keyboardBehavior'] = baseKeyboard,\n): FixtureSnapshot => {\n  const h = html<never>()\n\n  return snapshotHtml(\n    InputOTP.view<never>({\n      ...config,\n      toView: attributes =>\n        h.div(\n          [...attributes.root],\n          config.split === true\n            ? [\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: [0, 1, 2],\n                }),\n                InputOTP.InputOTPSeparator<never>(),\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: [3, 4, 5],\n                }),\n                h.input([...attributes.hiddenInput]),\n              ]\n            : [\n                InputOTP.InputOTPGroup<never>({\n                  attributes,\n                  indexes: Array.from(\n                    { length: attributes.state.length },\n                    (_item, index) => index,\n                  ),\n                }),\n                h.input([...attributes.hiddenInput]),\n              ],\n        ),\n    }),\n    config.isDisabled === true ? suppressedKeyboard : keyboardBehavior,\n  )\n}\n\nconst caseConfigs: ReadonlyArray<CaseConfig> = [\n  {\n    caseId: 'input-otp-demo',\n    id: 'input-otp-demo',\n    length: 6,\n    value: '123456',\n  },\n  {\n    caseId: 'input-otp-separator',\n    id: 'input-otp-separator',\n    length: 6,\n    split: true,\n  },\n  {\n    caseId: 'input-otp-disabled',\n    id: 'disabled',\n    length: 6,\n    value: '123456',\n    isDisabled: true,\n    split: true,\n  },\n  {\n    caseId: 'input-otp-invalid',\n    id: 'input-otp-invalid',\n    length: 6,\n    value: '000000',\n    isInvalid: true,\n  },\n  {\n    caseId: 'input-otp-four-digits',\n    id: 'input-otp-four-digits',\n    length: 4,\n    validationType: 'numeric',\n  },\n  {\n    caseId: 'input-otp-alphanumeric',\n    id: 'input-otp-alphanumeric',\n    length: 6,\n    validationType: 'alphanumeric',\n    split: true,\n  },\n]\n\nexport const cases: ReadonlyArray<FixtureCase> = caseConfigs.map(config => ({\n  id: config.caseId,\n  snapshot: snapshot(config),\n}))",
-      "previewStatus": "static",
-      "previewExportName": null,
       "requiredRegistryItems": [
         "base-ui/otp-field",
         "shadcn/button",

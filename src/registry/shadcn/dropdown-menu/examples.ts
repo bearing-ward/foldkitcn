@@ -18,6 +18,15 @@ type ExampleDefinition = Readonly<{
 
 type ExampleChild = Html | string
 
+export type DropdownMenuExampleController<Message> = Readonly<{
+  isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
+  openSubmenuValuesFor: (
+    menuId: string,
+    defaultValues: ReadonlyArray<string>,
+  ) => ReadonlyArray<string>
+  onOpenChange: (menuId: string, change: DropdownMenu.MenuOpenChange) => Message
+}>
+
 const basicItems: ReadonlyArray<ExampleItem> = [
   { value: 'profile', label: 'Profile' },
   { value: 'billing', label: 'Billing' },
@@ -360,11 +369,11 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
-const itemContent = (
+const itemContent = <Message>(
   source: ExampleItem,
-  itemAttributes: DropdownMenu.MenuItemAttributes<never>,
+  itemAttributes: DropdownMenu.MenuItemAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
   const kind = DropdownMenu.itemKind(itemAttributes.item)
   const indicator =
     kind === 'checkbox' || kind === 'radio'
@@ -389,11 +398,11 @@ const itemContent = (
   ]
 }
 
-const popupView = (
+const popupView = <Message>(
   items: ReadonlyArray<ExampleItem>,
-  popup: DropdownMenu.MenuPopupAttributes<never>,
+  popup: DropdownMenu.MenuPopupAttributes<Message>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
 
   if (!popup.isMounted) {
     return []
@@ -427,22 +436,39 @@ const popupView = (
   ]
 }
 
-const menuExample = (
+const menuExampleWithController = <Message = never>(
   id: string,
   items: ReadonlyArray<ExampleItem>,
-  options: Partial<DropdownMenu.ViewConfig<never>> &
+  options: Partial<DropdownMenu.ViewConfig<Message>> &
     Readonly<{
       trigger?: ReadonlyArray<ExampleChild>
+      defaultOpen?: boolean
+      defaultOpenSubmenuValues?: ReadonlyArray<string>
     }> = {},
+  controller?: DropdownMenuExampleController<Message>,
 ): Html => {
-  const h = html<never>()
-  const { trigger, ...viewOptions } = options
+  const h = html<Message>()
+  const {
+    defaultOpen = true,
+    defaultOpenSubmenuValues = [],
+    trigger,
+    ...viewOptions
+  } = options
+  const fallbackOpen = controller === undefined ? defaultOpen : false
+  const open = controller?.isOpenFor(id, fallbackOpen) ?? fallbackOpen
+  const openSubmenuValues =
+    controller?.openSubmenuValuesFor(id, defaultOpenSubmenuValues) ??
+    defaultOpenSubmenuValues
 
-  return DropdownMenu.view<never>({
+  return DropdownMenu.view<Message>({
     id,
     items,
-    open: true,
+    open,
     highlightedValue: items.find(item => item.parentValue === undefined)?.value,
+    openSubmenuValues,
+    ...(controller === undefined
+      ? {}
+      : { onOpenChange: change => controller.onOpenChange(id, change) }),
     ...viewOptions,
     toView: attributes =>
       h.div(
@@ -463,76 +489,162 @@ const menuExample = (
   })
 }
 
-export const DropdownMenuAvatar = (): Html =>
-  menuExample('dropdown-menu-avatar', avatarItems, {
-    align: 'end',
-    trigger: [avatar()],
-  })
+export const DropdownMenuAvatar = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-avatar',
+    avatarItems,
+    {
+      align: 'end',
+      trigger: [avatar()],
+    },
+    controller,
+  )
 
-export const DropdownMenuBasic = (): Html =>
-  menuExample('dropdown-menu-basic', basicItems)
+export const DropdownMenuBasic = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController('dropdown-menu-basic', basicItems, {}, controller)
 
-export const DropdownMenuCheckboxesIcons = (): Html =>
-  menuExample('dropdown-menu-checkboxes-icons', checkboxIconItems, {
-    contentClassName: 'w-48',
-    trigger: ['Notifications'],
-  })
+export const DropdownMenuCheckboxesIcons = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-checkboxes-icons',
+    checkboxIconItems,
+    {
+      contentClassName: 'w-48',
+      trigger: ['Notifications'],
+    },
+    controller,
+  )
 
-export const DropdownMenuCheckboxes = (): Html =>
-  menuExample('dropdown-menu-checkboxes', checkboxItems, {
-    contentClassName: 'w-40',
-  })
+export const DropdownMenuCheckboxes = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-checkboxes',
+    checkboxItems,
+    {
+      contentClassName: 'w-40',
+    },
+    controller,
+  )
 
-export const DropdownMenuComplex = (): Html =>
-  menuExample('dropdown-menu-complex', complexItems, {
-    contentClassName: 'w-44',
-    highlightedValue: 'open-recent',
-    openSubmenuValues: ['open-recent', 'more-projects', 'theme', 'settings'],
-    trigger: ['Complex Menu'],
-  })
+export const DropdownMenuComplex = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-complex',
+    complexItems,
+    {
+      contentClassName: 'w-44',
+      highlightedValue: 'open-recent',
+      defaultOpenSubmenuValues: [
+        'open-recent',
+        'more-projects',
+        'theme',
+        'settings',
+      ],
+      trigger: ['Complex Menu'],
+    },
+    controller,
+  )
 
-export const DropdownMenuDemo = (): Html =>
-  menuExample('dropdown-menu-demo', demoItems, {
-    contentClassName: 'w-40',
-    highlightedValue: 'invite',
-    openSubmenuValues: ['invite'],
-  })
+export const DropdownMenuDemo = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-demo',
+    demoItems,
+    {
+      contentClassName: 'w-40',
+      highlightedValue: 'invite',
+      defaultOpenSubmenuValues: ['invite'],
+    },
+    controller,
+  )
 
-export const DropdownMenuDestructive = (): Html =>
-  menuExample('dropdown-menu-destructive', iconItems, {
-    variant: 'destructive',
-    trigger: ['Actions'],
-  })
+export const DropdownMenuDestructive = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-destructive',
+    iconItems,
+    {
+      variant: 'destructive',
+      trigger: ['Actions'],
+    },
+    controller,
+  )
 
-export const DropdownMenuIcons = (): Html =>
-  menuExample('dropdown-menu-icons', iconItems)
+export const DropdownMenuIcons = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController('dropdown-menu-icons', iconItems, {}, controller)
 
-export const DropdownMenuRadioGroup = (): Html =>
-  menuExample('dropdown-menu-radio-group', radioItems, {
-    contentClassName: 'w-32',
-  })
+export const DropdownMenuRadioGroup = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-radio-group',
+    radioItems,
+    {
+      contentClassName: 'w-32',
+    },
+    controller,
+  )
 
-export const DropdownMenuRadioIcons = (): Html =>
-  menuExample('dropdown-menu-radio-icons', radioIconItems, {
-    contentClassName: 'min-w-56',
-    trigger: ['Payment Method'],
-  })
+export const DropdownMenuRadioIcons = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-radio-icons',
+    radioIconItems,
+    {
+      contentClassName: 'min-w-56',
+      trigger: ['Payment Method'],
+    },
+    controller,
+  )
 
-export const DropdownMenuRtl = (): Html =>
-  menuExample('dropdown-menu-rtl', demoItems, {
-    dir: 'rtl',
-    highlightedValue: 'invite',
-    openSubmenuValues: ['invite'],
-  })
+export const DropdownMenuRtl = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-rtl',
+    demoItems,
+    {
+      dir: 'rtl',
+      highlightedValue: 'invite',
+      defaultOpenSubmenuValues: ['invite'],
+    },
+    controller,
+  )
 
-export const DropdownMenuShortcuts = (): Html =>
-  menuExample('dropdown-menu-shortcuts', demoItems)
+export const DropdownMenuShortcuts = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-shortcuts',
+    demoItems,
+    {},
+    controller,
+  )
 
-export const DropdownMenuSubmenu = (): Html =>
-  menuExample('dropdown-menu-submenu', submenuItems, {
-    highlightedValue: 'invite',
-    openSubmenuValues: ['invite', 'more-options'],
-  })
+export const DropdownMenuSubmenu = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html =>
+  menuExampleWithController(
+    'dropdown-menu-submenu',
+    submenuItems,
+    {
+      highlightedValue: 'invite',
+      defaultOpenSubmenuValues: ['invite', 'more-options'],
+    },
+    controller,
+  )
 
 export const dropdownMenuExampleViews: ReadonlyArray<ExampleDefinition> = [
   {

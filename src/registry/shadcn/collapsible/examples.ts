@@ -2,11 +2,23 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Collapsible } from './index'
+import type { CollapsibleOpenChange } from './index'
 
 type FileTreeItem = Readonly<
   | { name: string; kind: 'file' }
   | { name: string; kind: 'folder'; items: ReadonlyArray<FileTreeItem> }
 >
+
+export type CollapsibleExampleController<Message> = Readonly<{
+  openFor: (exampleId: string, defaultOpen: boolean) => boolean
+  onOpenChange: (exampleId: string, change: CollapsibleOpenChange) => Message
+}>
+
+const collapsibleOpen = <Message>(
+  controller: CollapsibleExampleController<Message> | undefined,
+  exampleId: string,
+  defaultOpen: boolean,
+): boolean => controller?.openFor(exampleId, defaultOpen) ?? defaultOpen
 
 const card = (children: ReadonlyArray<Html>): Html => {
   const h = html<never>()
@@ -122,16 +134,21 @@ const folderIcon = (): Html => {
   )
 }
 
-export const CollapsibleDemo = (): Html => {
-  const h = html<never>()
+export const CollapsibleDemo = <Message = never>(
+  controller?: CollapsibleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return Collapsible<never>({
-    open: false,
+  return Collapsible<Message>({
+    open: collapsibleOpen(controller, 'demo', false),
     className: 'flex w-[350px] flex-col gap-2',
     panel: {
       id: 'order-details',
       label: 'Order details',
     },
+    ...(controller === undefined
+      ? {}
+      : { onOpenChange: change => controller.onOpenChange('demo', change) }),
     toView: attributes =>
       h.div(
         [...attributes.root],
@@ -196,12 +213,14 @@ export const CollapsibleDemo = (): Html => {
   })
 }
 
-export const CollapsibleBasic = (): Html => {
-  const h = html<never>()
+export const CollapsibleBasic = <Message = never>(
+  controller?: CollapsibleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return card([
-    Collapsible<never>({
-      open: true,
+    Collapsible<Message>({
+      open: collapsibleOpen(controller, 'basic', true),
       className: 'rounded-md data-open:bg-muted',
       panel: {
         id: 'product-details',
@@ -210,6 +229,9 @@ export const CollapsibleBasic = (): Html => {
       },
       triggerClassName: buttonClassName('w-full bg-transparent px-3 py-2'),
       contentClassName: 'flex flex-col items-start gap-2 p-2.5 pt-0 text-sm',
+      ...(controller === undefined
+        ? {}
+        : { onOpenChange: change => controller.onOpenChange('basic', change) }),
       toView: attributes =>
         h.div(
           [...attributes.root],
@@ -248,17 +270,24 @@ export const CollapsibleBasic = (): Html => {
   ])
 }
 
-export const CollapsibleSettings = (): Html => {
-  const h = html<never>()
+export const CollapsibleSettings = <Message = never>(
+  controller?: CollapsibleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return Collapsible<never>({
-    open: true,
+  return Collapsible<Message>({
+    open: collapsibleOpen(controller, 'settings', true),
     className: 'flex w-[320px] flex-col gap-4 rounded-lg border p-4',
     panel: {
       id: 'radius-settings',
       label: 'Radius settings',
     },
     contentClassName: 'grid gap-3',
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: change => controller.onOpenChange('settings', change),
+        }),
     toView: attributes =>
       h.div(
         [...attributes.root],
@@ -349,8 +378,12 @@ const fileTree: ReadonlyArray<FileTreeItem> = [
   { name: 'package.json', kind: 'file' },
 ]
 
-const fileTreeItem = (item: FileTreeItem): Html => {
-  const h = html<never>()
+const fileTreeItem = <Message>(
+  item: FileTreeItem,
+  controller: CollapsibleExampleController<Message> | undefined,
+  path: string,
+): Html => {
+  const h = html<Message>()
 
   if (item.kind === 'file') {
     return h.button(
@@ -365,13 +398,16 @@ const fileTreeItem = (item: FileTreeItem): Html => {
     )
   }
 
-  return Collapsible<never>({
-    open: item.name === 'components',
+  return Collapsible<Message>({
+    open: collapsibleOpen(controller, path, item.name === 'components'),
     panel: {
       id: `${item.name}-folder`,
       label: item.name,
       keepMounted: true,
     },
+    ...(controller === undefined
+      ? {}
+      : { onOpenChange: change => controller.onOpenChange(path, change) }),
     toView: attributes =>
       h.div(
         [...attributes.root],
@@ -405,7 +441,9 @@ const fileTreeItem = (item: FileTreeItem): Html => {
                 [
                   h.div(
                     [h.Class('flex flex-col gap-1')],
-                    item.items.map(child => fileTreeItem(child)),
+                    item.items.map(child =>
+                      fileTreeItem(child, controller, `${path}/${child.name}`),
+                    ),
                   ),
                 ],
               )
@@ -415,8 +453,10 @@ const fileTreeItem = (item: FileTreeItem): Html => {
   })
 }
 
-export const CollapsibleFileTree = (): Html => {
-  const h = html<never>()
+export const CollapsibleFileTree = <Message = never>(
+  controller?: CollapsibleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
     [
@@ -435,22 +475,30 @@ export const CollapsibleFileTree = (): Html => {
           h.button([h.Class('rounded-md px-2 py-1 text-sm')], ['Outline']),
         ],
       ),
-      h.div([h.Class('flex flex-col gap-1')], fileTree.map(fileTreeItem)),
+      h.div(
+        [h.Class('flex flex-col gap-1')],
+        fileTree.map(item => fileTreeItem(item, controller, item.name)),
+      ),
     ],
   )
 }
 
-export const CollapsibleRtl = (): Html =>
-  Collapsible<never>({
-    open: false,
+export const CollapsibleRtl = <Message = never>(
+  controller?: CollapsibleExampleController<Message>,
+): Html =>
+  Collapsible<Message>({
+    open: collapsibleOpen(controller, 'rtl', false),
     dir: 'rtl',
     className: 'flex w-[350px] flex-col gap-2',
     panel: {
       id: 'rtl-order-details',
       label: 'Order details',
     },
+    ...(controller === undefined
+      ? {}
+      : { onOpenChange: change => controller.onOpenChange('rtl', change) }),
     toView: attributes => {
-      const h = html<never>()
+      const h = html<Message>()
 
       return h.div(
         [...attributes.root],

@@ -141,8 +141,8 @@
       "description": "Profile editing sheet with local shadcn field and input markup.",
       "componentItemId": "shadcn/sheet",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "snippet": "export const SheetDemo = (): Html =>\n  sheetShell({\n    id: 'sheet-demo',\n    trigger: 'Open',\n    title: 'Edit profile',\n    description:\n      \"Make changes to your profile here. Click save when you're done.\",\n    body: [\n      profileFields({\n        name: 'Name',\n        nameId: 'sheet-demo-name',\n        nameValue: 'Pedro Duarte',\n        username: 'Username',\n        usernameId: 'sheet-demo-username',\n        usernameValue: '@peduarte',\n      }),\n    ],\n    footer: [\n      button('Save changes', { type: 'submit' }),\n      button('Close', { variant: 'outline' }),\n    ],\n  })",
-      "previewStatus": "static",
+      "snippet": "export const SheetDemo = <Message = never>(\n  controller: SheetExampleController<Message> = {},\n): Html =>\n  sheetShell(\n    {\n      id: 'sheet-demo',\n      trigger: 'Open',\n      title: 'Edit profile',\n      description:\n        \"Make changes to your profile here. Click save when you're done.\",\n      body: [\n        profileFields({\n          name: 'Name',\n          nameId: 'sheet-demo-name',\n          nameValue: 'Pedro Duarte',\n          username: 'Username',\n          usernameId: 'sheet-demo-username',\n          usernameValue: '@peduarte',\n        }),\n      ],\n      footer: [\n        button('Save changes', { type: 'submit' }),\n        button('Close', { variant: 'outline' }),\n      ],\n    },\n    controller,\n  )",
+      "previewStatus": "live-ready",
       "previewExportName": "SheetDemo",
       "requiredRegistryItems": [
         "base-ui/dialog",
@@ -160,8 +160,8 @@
       "description": "Sheet side variants for top, right, bottom, and left.",
       "componentItemId": "shadcn/sheet",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "snippet": "export const SheetSide = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    sheetSideValues.map(side =>\n      sheetShell({\n        id: `sheet-side-${side}`,\n        trigger: side,\n        title: 'Edit profile',\n        description:\n          \"Make changes to your profile here. Click save when you're done.\",\n        side,\n        contentClassName:\n          'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',\n        body: [scrollableBody()],\n        footer: [\n          button('Save changes', { type: 'submit' }),\n          button('Cancel', { variant: 'outline' }),\n        ],\n      }),\n    ),\n  )\n}",
-      "previewStatus": "static",
+      "snippet": "export const SheetSide = <Message = never>(\n  controller: SheetExampleController<Message> = {},\n): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('flex flex-wrap gap-2')],\n    sheetSideValues.map(side =>\n      sheetShell(\n        {\n          id: `sheet-side-${side}`,\n          trigger: side,\n          title: 'Edit profile',\n          description:\n            \"Make changes to your profile here. Click save when you're done.\",\n          side,\n          contentClassName:\n            'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',\n          body: [scrollableBody()],\n          footer: [\n            button('Save changes', { type: 'submit' }),\n            button('Cancel', { variant: 'outline' }),\n          ],\n        },\n        controller,\n      ),\n    ),\n  )\n}",
+      "previewStatus": "live-ready",
       "previewExportName": "SheetSide",
       "requiredRegistryItems": [
         "base-ui/dialog",
@@ -179,8 +179,8 @@
       "description": "Sheet content without the top-right close button.",
       "componentItemId": "shadcn/sheet",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "snippet": "export const SheetNoCloseButton = (): Html =>\n  sheetShell({\n    id: 'sheet-no-close-button',\n    trigger: 'Open Sheet',\n    title: 'No Close Button',\n    description:\n      \"This sheet doesn't have a close button in the top-right corner. Click outside to close.\",\n    showCloseButton: false,\n  })",
-      "previewStatus": "static",
+      "snippet": "export const SheetNoCloseButton = <Message = never>(\n  controller: SheetExampleController<Message> = {},\n): Html =>\n  sheetShell(\n    {\n      id: 'sheet-no-close-button',\n      trigger: 'Open Sheet',\n      title: 'No Close Button',\n      description:\n        \"This sheet doesn't have a close button in the top-right corner. Click outside to close.\",\n      showCloseButton: false,\n    },\n    controller,\n  )",
+      "previewStatus": "live-ready",
       "previewExportName": "SheetNoCloseButton",
       "requiredRegistryItems": [
         "base-ui/dialog",
@@ -198,8 +198,8 @@
       "description": "RTL profile sheet with local static translations.",
       "componentItemId": "shadcn/sheet",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "snippet": "export const SheetRtl = (): Html =>\n  sheetShell({\n    id: 'sheet-rtl',\n    trigger: 'فتح',\n    title: 'تعديل الملف الشخصي',\n    description: 'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر حفظ عند الانتهاء.',\n    dir: 'rtl',\n    lang: 'ar',\n    side: 'left',\n    body: [\n      profileFields({\n        name: 'الاسم',\n        nameId: 'sheet-rtl-name',\n        nameValue: 'Pedro Duarte',\n        username: 'اسم المستخدم',\n        usernameId: 'sheet-rtl-username',\n        usernameValue: 'peduarte',\n        dir: 'rtl',\n      }),\n    ],\n    footer: [\n      button('حفظ التغييرات', { type: 'submit' }),\n      button('إغلاق', { variant: 'outline' }),\n    ],\n  })",
-      "previewStatus": "static",
+      "snippet": "export const SheetRtl = <Message = never>(\n  controller: SheetExampleController<Message> = {},\n): Html =>\n  sheetShell(\n    {\n      id: 'sheet-rtl',\n      trigger: 'فتح',\n      title: 'تعديل الملف الشخصي',\n      description:\n        'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر حفظ عند الانتهاء.',\n      dir: 'rtl',\n      lang: 'ar',\n      side: 'left',\n      body: [\n        profileFields({\n          name: 'الاسم',\n          nameId: 'sheet-rtl-name',\n          nameValue: 'Pedro Duarte',\n          username: 'اسم المستخدم',\n          usernameId: 'sheet-rtl-username',\n          usernameValue: 'peduarte',\n          dir: 'rtl',\n        }),\n      ],\n      footer: [\n        button('حفظ التغييرات', { type: 'submit' }),\n        button('إغلاق', { variant: 'outline' }),\n      ],\n    },\n    controller,\n  )",
+      "previewStatus": "live-ready",
       "previewExportName": "SheetRtl",
       "requiredRegistryItems": [
         "base-ui/dialog",

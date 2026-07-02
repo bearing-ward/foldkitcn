@@ -2,9 +2,14 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Toggle } from './index'
-import type { ToggleSize, ToggleVariant } from './index'
+import type { TogglePressedChange, ToggleSize, ToggleVariant } from './index'
 
 type IconName = 'bookmark' | 'bold' | 'italic'
+
+export type ToggleExampleController<Message> = Readonly<{
+  isPressedFor: (controlId: string, defaultIsPressed: boolean) => boolean
+  onPressedChange: (controlId: string, change: TogglePressedChange) => Message
+}>
 
 const iconPaths: Readonly<Record<IconName, string>> = {
   bookmark: 'M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16',
@@ -39,8 +44,8 @@ const icon = (name: IconName): Html => {
   )
 }
 
-const toggleButton = (
-  h: ReturnType<typeof html<never>>,
+const toggleButton = <Message>(
+  h: ReturnType<typeof html<Message>>,
   config: Readonly<{
     ariaLabel: string
     children: ReadonlyArray<Html | string>
@@ -51,9 +56,13 @@ const toggleButton = (
     size?: ToggleSize
     variant?: ToggleVariant
   }>,
+  controller: ToggleExampleController<Message> | undefined,
 ): Html =>
-  Toggle<never>({
-    isPressed: config.isPressed ?? false,
+  Toggle<Message>({
+    isPressed:
+      controller?.isPressedFor(config.ariaLabel, config.isPressed ?? false) ??
+      config.isPressed ??
+      false,
     ...(config.isDisabled === undefined
       ? {}
       : { isDisabled: config.isDisabled }),
@@ -61,6 +70,12 @@ const toggleButton = (
     ...(config.variant === undefined ? {} : { variant: config.variant }),
     ...(config.className === undefined ? {} : { className: config.className }),
     ...(config.dir === undefined ? {} : { dir: config.dir }),
+    ...(controller === undefined
+      ? {}
+      : {
+          onPressedChange: change =>
+            controller.onPressedChange(config.ariaLabel, change),
+        }),
     toView: attributes =>
       h.button(
         [...attributes.button, h.AriaLabel(config.ariaLabel)],
@@ -68,103 +83,155 @@ const toggleButton = (
       ),
   })
 
-export const ToggleDemo = (): Html => {
-  const h = html<never>()
+export const ToggleDemo = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return toggleButton(h, {
-    ariaLabel: 'Toggle bookmark',
-    size: 'sm',
-    variant: 'outline',
-    children: [icon('bookmark'), 'Bookmark'],
-  })
+  return toggleButton(
+    h,
+    {
+      ariaLabel: 'Toggle bookmark',
+      size: 'sm',
+      variant: 'outline',
+      children: [icon('bookmark'), 'Bookmark'],
+    },
+    controller,
+  )
 }
 
-export const ToggleDisabled = (): Html => {
-  const h = html<never>()
+export const ToggleDisabled = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
     [h.Class('flex flex-wrap items-center gap-2')],
     [
-      toggleButton(h, {
-        ariaLabel: 'Toggle disabled',
-        isDisabled: true,
-        children: ['Disabled'],
-      }),
-      toggleButton(h, {
-        ariaLabel: 'Toggle disabled outline',
-        isDisabled: true,
-        variant: 'outline',
-        children: ['Disabled'],
-      }),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle disabled',
+          isDisabled: true,
+          children: ['Disabled'],
+        },
+        controller,
+      ),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle disabled outline',
+          isDisabled: true,
+          variant: 'outline',
+          children: ['Disabled'],
+        },
+        controller,
+      ),
     ],
   )
 }
 
-export const ToggleOutline = (): Html => {
-  const h = html<never>()
+export const ToggleOutline = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
     [h.Class('flex flex-wrap items-center gap-2')],
     [
-      toggleButton(h, {
-        ariaLabel: 'Toggle italic',
-        variant: 'outline',
-        children: [icon('italic'), 'Italic'],
-      }),
-      toggleButton(h, {
-        ariaLabel: 'Toggle bold',
-        variant: 'outline',
-        children: [icon('bold'), 'Bold'],
-      }),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle italic',
+          variant: 'outline',
+          children: [icon('italic'), 'Italic'],
+        },
+        controller,
+      ),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle bold',
+          variant: 'outline',
+          children: [icon('bold'), 'Bold'],
+        },
+        controller,
+      ),
     ],
   )
 }
 
-export const ToggleRtl = (): Html => {
-  const h = html<never>()
+export const ToggleRtl = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return toggleButton(h, {
-    ariaLabel: 'Toggle bookmark',
-    dir: 'rtl',
-    size: 'sm',
-    variant: 'outline',
-    children: [icon('bookmark'), 'إشارة مرجعية'],
-  })
+  return toggleButton(
+    h,
+    {
+      ariaLabel: 'Toggle bookmark',
+      dir: 'rtl',
+      size: 'sm',
+      variant: 'outline',
+      children: [icon('bookmark'), 'إشارة مرجعية'],
+    },
+    controller,
+  )
 }
 
-export const ToggleSizes = (): Html => {
-  const h = html<never>()
+export const ToggleSizes = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
     [h.Class('flex flex-wrap items-center gap-2')],
     [
-      toggleButton(h, {
-        ariaLabel: 'Toggle small',
-        size: 'sm',
-        variant: 'outline',
-        children: ['Small'],
-      }),
-      toggleButton(h, {
-        ariaLabel: 'Toggle default',
-        size: 'default',
-        variant: 'outline',
-        children: ['Default'],
-      }),
-      toggleButton(h, {
-        ariaLabel: 'Toggle large',
-        size: 'lg',
-        variant: 'outline',
-        children: ['Large'],
-      }),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle small',
+          size: 'sm',
+          variant: 'outline',
+          children: ['Small'],
+        },
+        controller,
+      ),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle default',
+          size: 'default',
+          variant: 'outline',
+          children: ['Default'],
+        },
+        controller,
+      ),
+      toggleButton(
+        h,
+        {
+          ariaLabel: 'Toggle large',
+          size: 'lg',
+          variant: 'outline',
+          children: ['Large'],
+        },
+        controller,
+      ),
     ],
   )
 }
 
-export const ToggleText = (): Html => {
-  const h = html<never>()
+export const ToggleText = <Message = never>(
+  controller?: ToggleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return toggleButton(h, {
-    ariaLabel: 'Toggle italic',
-    children: [icon('italic'), 'Italic'],
-  })
+  return toggleButton(
+    h,
+    {
+      ariaLabel: 'Toggle italic',
+      children: [icon('italic'), 'Italic'],
+    },
+    controller,
+  )
 }

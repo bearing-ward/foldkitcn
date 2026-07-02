@@ -71,15 +71,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/avatar-hero",
-      "title": "AvatarHero",
-      "description": "Base UI Avatar hero fixture with image, fallback, and text fallback avatar.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/avatar.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/avatar",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/avatar.fixture.tsx",

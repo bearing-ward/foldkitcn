@@ -123,7 +123,7 @@
       "componentItemId": "shadcn/scroll-area",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
       "snippet": "export const ScrollAreaDemo = (): Html =>\n  ScrollArea<never>({\n    rootId: originRootId,\n    state: verticalOverflowState,\n    className: 'h-72 w-48 rounded-md border',\n    children: [tagsContent('Tags')],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ScrollAreaDemo",
       "requiredRegistryItems": [
         "base-ui/scroll-area",
@@ -139,7 +139,7 @@
       "componentItemId": "shadcn/scroll-area",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
       "snippet": "export const ScrollAreaHorizontalDemo = (): Html => {\n  const h = html<never>()\n\n  return ScrollArea<never>({\n    rootId: originRootId,\n    state: horizontalOverflowState,\n    className: 'w-96 rounded-md border whitespace-nowrap',\n    scrollbars: [{ orientation: 'horizontal' }],\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.div(\n            [...attributes.viewport],\n            [\n              h.div(\n                [h.Class('flex w-max space-x-4 p-4')],\n                works.map(artwork => artworkFigure(artwork)),\n              ),\n              ...attributes.scrollbars.flatMap(scrollbar =>\n                scrollbar.isMounted\n                  ? [\n                      h.div(\n                        [...scrollbar.root],\n                        [h.div([...scrollbar.thumb], [])],\n                      ),\n                    ]\n                  : [],\n              ),\n            ],\n          ),\n        ],\n      ),\n  })\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ScrollAreaHorizontalDemo",
       "requiredRegistryItems": [
         "base-ui/scroll-area",
@@ -155,7 +155,7 @@
       "componentItemId": "shadcn/scroll-area",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
       "snippet": "export const ScrollAreaRtl = (): Html => {\n  const { dir, values } = arabicScrollAreaRtl\n\n  return ScrollArea<never>({\n    rootId: originRootId,\n    state: verticalOverflowState,\n    className: 'h-72 w-48 rounded-md border',\n    dir,\n    children: [tagsContent(values.tags)],\n  })\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ScrollAreaRtl",
       "requiredRegistryItems": [
         "base-ui/scroll-area",

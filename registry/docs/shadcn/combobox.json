@@ -157,7 +157,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxBasic = (): Html =>\n  comboboxShell({\n    id: 'combobox-basic',\n    items: frameworks,\n    placeholder: 'Select a framework',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxBasic",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -174,7 +174,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxWithClear = (): Html =>\n  comboboxShell({\n    id: 'combobox-clear',\n    items: frameworks,\n    placeholder: 'Select a framework',\n    value: 'next',\n    showClear: true,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxWithClear",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -191,7 +191,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxWithGroupsAndSeparator = (): Html =>\n  comboboxShell({\n    id: 'combobox-groups',\n    items: allTimezones(),\n    placeholder: 'Select a timezone',\n    emptyText: 'No timezones found.',\n    groups: timezoneGroups,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxWithGroupsAndSeparator",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -208,7 +208,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboxboxInputGroup = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [],\n    [\n      comboboxShell({\n        id: 'combobox-input-group',\n        items: allTimezones(),\n        placeholder: 'Select a timezone',\n        contentClassName: 'w-60',\n        emptyText: 'No timezones found.',\n        inputGroupClassName: 'w-auto',\n        groups: timezoneGroups,\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboxboxInputGroup",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -225,7 +225,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxMultiple = (): Html =>\n  comboboxShell({\n    id: 'combobox-multiple',\n    items: frameworks,\n    placeholder: 'Add framework',\n    selectionMode: 'multiple',\n    values: ['next'],\n    highlightedValue: 'sveltekit',\n    autoHighlight: true,\n    anchorToChips: true,\n    chipsClassName: 'w-full max-w-xs',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxMultiple",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -242,7 +242,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxDisabled = (): Html =>\n  comboboxShell({\n    id: 'combobox-disabled',\n    items: frameworks.map(item =>\n      item.value === 'astro' ? { ...item, isDisabled: true } : item,\n    ),\n    placeholder: 'Select a framework',\n    disabled: true,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxDisabled",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -259,7 +259,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxInvalid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('w-full max-w-xs'), h.DataAttribute('invalid', '')],\n    [\n      h.label([h.Class('text-sm font-medium')], ['Framework']),\n      comboboxShell({\n        id: 'combobox-invalid',\n        items: frameworks,\n        placeholder: 'Select a framework',\n        invalid: true,\n      }),\n      h.p(\n        [h.Class('text-sm text-destructive')],\n        ['Please select a framework.'],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxInvalid",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -276,7 +276,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxPopup = (): Html => {\n  const h = html<never>()\n\n  return Combobox<never>({\n    id: 'combobox-popup',\n    open: true,\n    inputValue: '',\n    items: countries,\n    value: 'argentina',\n    placeholder: 'Search',\n    triggerClassName: 'w-64 justify-between font-normal',\n    toView: attributes =>\n      h.div(\n        [...attributes.root],\n        [\n          h.button(\n            [...attributes.trigger],\n            [\n              h.span(\n                [...attributes.value],\n                [\n                  displayValue({\n                    items: countries,\n                    placeholder: 'Select country',\n                    value: 'argentina',\n                  }),\n                ],\n              ),\n              h.span([], ['v']),\n            ],\n          ),\n          h.div(\n            [...attributes.portal],\n            [\n              h.div([...attributes.backdrop.root], []),\n              h.div(\n                [...attributes.positioner.root],\n                [\n                  h.div(\n                    [...attributes.popup.root],\n                    [\n                      h.div(\n                        [...attributes.inputGroup],\n                        [h.input([...attributes.input])],\n                      ),\n                      h.div([...attributes.empty], []),\n                      h.div(\n                        [...attributes.list.root],\n                        attributes.items.map(itemAttributes =>\n                          h.div(\n                            [...itemAttributes.root],\n                            [\n                              h.span(\n                                [...itemAttributes.text],\n                                [itemAttributes.item.label],\n                              ),\n                              h.span([...itemAttributes.indicator], []),\n                            ],\n                          ),\n                        ),\n                      ),\n                    ],\n                  ),\n                ],\n              ),\n            ],\n          ),\n        ],\n      ),\n  })\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxPopup",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -293,7 +293,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxAutoHighlight = (): Html =>\n  comboboxShell({\n    id: 'combobox-auto-highlight',\n    items: frameworks,\n    placeholder: 'Select a framework',\n    highlightedValue: 'next',\n    autoHighlight: true,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxAutoHighlight",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -310,7 +310,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxWithCustomItems = (): Html =>\n  comboboxShell({\n    id: 'combobox-custom',\n    items: countries,\n    placeholder: 'Search countries...',\n    inputValue: 'a',\n    emptyText: 'No countries found.',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxWithCustomItems",
       "requiredRegistryItems": [
         "base-ui/combobox",
@@ -327,7 +327,7 @@
       "componentItemId": "shadcn/combobox",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
       "snippet": "export const ComboboxRtl = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('mx-auto w-full max-w-xs'), h.Dir('rtl')],\n    [\n      h.label([h.Class('text-sm font-medium')], ['الفئات']),\n      comboboxShell({\n        id: 'combobox-rtl',\n        items: arabicCategories,\n        placeholder: 'أضف فئات',\n        selectionMode: 'multiple',\n        values: ['technology'],\n        highlightedValue: 'design',\n        anchorToChips: true,\n        dir: 'rtl',\n        emptyText: 'لم يتم العثور على فئات.',\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "ComboboxRtl",
       "requiredRegistryItems": [
         "base-ui/combobox",

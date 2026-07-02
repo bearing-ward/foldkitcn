@@ -157,7 +157,7 @@
       "componentItemId": "shadcn/sonner",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
       "snippet": "export const SonnerDemo = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => toastButton('Show Toast', ClickedShowToast(), controller)",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SonnerDemo",
       "requiredRegistryItems": ["base-ui/toast", "shadcn/button", "utils/cn"],
       "notes": []
@@ -169,7 +169,7 @@
       "componentItemId": "shadcn/sonner",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
       "snippet": "export const SonnerDescription = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html =>\n  toastButton(\n    'Show Toast',\n    ClickedShowDescriptionToast(),\n    controller,\n    descriptionButtonClassName,\n  )",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SonnerDescription",
       "requiredRegistryItems": ["base-ui/toast", "shadcn/button", "utils/cn"],
       "notes": []
@@ -181,7 +181,7 @@
       "componentItemId": "shadcn/sonner",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
       "snippet": "export const SonnerPosition = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => layoutButtons(positionButtonsClassName, positionButtons(controller))",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SonnerPosition",
       "requiredRegistryItems": ["base-ui/toast", "shadcn/button", "utils/cn"],
       "notes": []
@@ -193,7 +193,7 @@
       "componentItemId": "shadcn/sonner",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
       "snippet": "export const SonnerTypes = <Message = never>(\n  controller: ToastExampleController<Message> = {},\n): Html => layoutButtons(typeButtonsClassName, typeButtons(controller))",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SonnerTypes",
       "requiredRegistryItems": ["base-ui/toast", "shadcn/button", "utils/cn"],
       "notes": []

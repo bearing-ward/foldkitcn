@@ -1,4 +1,5 @@
 import { Array, Option, pipe } from 'effect'
+import { Scene } from 'foldkit'
 import { describe, expect, test } from 'vitest'
 
 import {
@@ -14,9 +15,41 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   inputValueFor: (_example, defaultValue) => defaultValue,
   inputIdPrefixFor: example => example.id.replaceAll('/', '-'),
   onInputValueChange: () => ({}),
+  otpValueFor: (_example, defaultValue) => defaultValue,
+  onOtpValueChange: () => ({}),
+  sliderValuesFor: (_example, _sliderId, defaultValues) => defaultValues,
+  onSliderValueChange: () => ({}),
+  selectIsOpenFor: () => false,
+  selectValueFor: (_example, defaultValue) => defaultValue,
+  onSelectOpenChange: () => ({}),
+  onSelectValueChange: () => ({}),
+  comboboxIsOpenFor: () => false,
+  comboboxInputValueFor: (_example, defaultValue) => defaultValue,
+  comboboxValueFor: (_example, defaultValue) => defaultValue,
+  comboboxValuesFor: (_example, defaultValues) => defaultValues,
+  onComboboxOpenChange: () => ({}),
+  onComboboxInputValueChange: () => ({}),
+  onComboboxValueChange: () => ({}),
   radioGroupValueFor: (_example, defaultValue) => defaultValue,
   radioGroupIdPrefixFor: example => example.id.replaceAll('/', '-'),
   onRadioGroupValueChange: () => ({}),
+  checkboxCheckedStateFor: (_example, _controlId, defaultCheckedState) =>
+    defaultCheckedState,
+  onCheckboxCheckedChange: () => ({}),
+  switchIsCheckedFor: (_example, _controlId, defaultIsChecked) =>
+    defaultIsChecked,
+  onSwitchCheckedChange: () => ({}),
+  accordionValuesFor: (_example, _accordionId, defaultValues) => defaultValues,
+  onAccordionValueChange: () => ({}),
+  collapsibleIsOpenFor: (_example, _collapsibleId, defaultOpen) => defaultOpen,
+  onCollapsibleOpenChange: () => ({}),
+  tabsValueFor: (_example, _tabsId, defaultValue) => defaultValue,
+  onTabsValueChange: () => ({}),
+  toggleIsPressedFor: (_example, _controlId, defaultIsPressed) =>
+    defaultIsPressed,
+  onTogglePressedChange: () => ({}),
+  toggleGroupValuesFor: (_example, _groupId, defaultValues) => defaultValues,
+  onToggleGroupValueChange: () => ({}),
   calendarSelectedDateFor: (_example, defaultValue) => defaultValue,
   onCalendarSelectDate: () => ({}),
   carouselSelectedIndexFor: (_example, defaultValue) => defaultValue,
@@ -27,6 +60,15 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   commandDialogIdFor: example => `${example.id.replaceAll('/', '-')}-dialog`,
   onCommandDialogOpen: () => ({}),
   onCommandDialogOpenChange: () => ({}),
+  overlayIsOpenFor: () => false,
+  onOverlayOpenChange: () => ({}),
+  menuIsOpenFor: (_example, _menuId, defaultOpen) => defaultOpen,
+  menuOpenSubmenuValuesFor: (_example, _menuId, defaultValues) => defaultValues,
+  menuContextPointFor: () => Option.none(),
+  menuValueFor: (_example, _menuId, defaultValue) => defaultValue,
+  onMenuOpenChange: () => ({}),
+  onMenuContextPointChange: () => ({}),
+  onMenuValueChange: () => ({}),
   toastStateFor: () => ToastPrimitive.createToastState(),
   onToastMessage: () => ({}),
   sidebarIsOpenFor: (_example, defaultOpen) => defaultOpen,
@@ -109,6 +151,43 @@ describe('generated docs data', () => {
       'shadcn/item',
     )
     expect(missingLiveExampleRenderers).toStrictEqual([])
+  })
+
+  test('shadcn ToastStacked live preview renders its seeded stack before interaction', () => {
+    const maybeToastStackedExample = pipe(
+      loadedPublicComponents(),
+      Array.findFirst(component => component.entry.item.id === 'shadcn/toast'),
+      Option.flatMap(component => component.maybeDocsArtifact),
+      Option.flatMap(artifact =>
+        Array.findFirst(artifact.examples, example =>
+          pipe(
+            example.previewExportName,
+            Option.match({
+              onNone: () => false,
+              onSome: exportName => exportName === 'ToastStacked',
+            }),
+          ),
+        ),
+      ),
+    )
+    const toastStackedExample = Option.getOrThrow(maybeToastStackedExample)
+    const toastStackedView = Option.getOrThrow(
+      liveExampleViewFor(toastStackedExample, liveExampleContext),
+    )
+
+    expect(() => {
+      Scene.scene(
+        {
+          update: (model: unknown) => [model, []],
+          view: () => toastStackedView,
+        },
+        Scene.with({}),
+        Scene.expectAll(Scene.all.role('dialog')).toHaveCount(3),
+        Scene.expect(Scene.text('Scheduled')).toExist(),
+        Scene.expect(Scene.text('Queued')).toExist(),
+        Scene.expect(Scene.text('Ready')).toExist(),
+      )
+    }).not.toThrow()
   })
 
   test('docs live preview gaps match the checked-in inventory', async () => {

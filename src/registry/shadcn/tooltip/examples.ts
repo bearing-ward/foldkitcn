@@ -3,8 +3,19 @@ import { html } from 'foldkit/html'
 
 import * as Button from '../button'
 import * as Kbd from '../kbd'
-import type { TooltipSide } from './index'
 import { view as Tooltip } from './index'
+import type { TooltipOpenChange, TooltipSide } from './index'
+
+export type TooltipExampleController<Message> = Readonly<{
+  openFor?: (tooltipId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (tooltipId: string, change: TooltipOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: TooltipExampleController<Message>,
+  tooltipId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(tooltipId, defaultOpen) ?? defaultOpen
 
 const iconSave = (): Html => {
   const h = html<never>()
@@ -19,7 +30,7 @@ const iconSave = (): Html => {
   )
 }
 
-const tooltipShell = (
+const tooltipShell = <Message>(
   config: Readonly<{
     id: string
     trigger: ReadonlyArray<Html | string>
@@ -32,12 +43,17 @@ const tooltipShell = (
     triggerSize?: Button.ButtonSize
     triggerAsSpan?: boolean
   }>,
+  controller: TooltipExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return Tooltip<never>({
+  return Tooltip<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onOpenChange(config.id, change) }),
     side: config.side,
     dir: config.dir,
     contentClassName: config.contentClassName,
@@ -51,7 +67,7 @@ const tooltipShell = (
             ? h.span(
                 [...attributes.trigger, h.Class('inline-block w-fit')],
                 [
-                  Button.view<never>({
+                  Button.view<Message>({
                     variant: 'outline',
                     isDisabled: config.isDisabled,
                     className: config.triggerClassName,
@@ -60,7 +76,7 @@ const tooltipShell = (
                   }),
                 ],
               )
-            : Button.view<never>({
+            : Button.view<Message>({
                 variant: 'outline',
                 size: config.triggerSize,
                 className: config.triggerClassName,
@@ -92,59 +108,86 @@ const tooltipShell = (
   })
 }
 
-export const TooltipDemo = (): Html =>
-  tooltipShell({
-    id: 'tooltip-demo',
-    trigger: ['Hover'],
-    content: ['Add to library'],
-  })
+export const TooltipDemo = <Message = never>(
+  controller: TooltipExampleController<Message> = {},
+): Html =>
+  tooltipShell(
+    {
+      id: 'tooltip-demo',
+      trigger: ['Hover'],
+      content: ['Add to library'],
+    },
+    controller,
+  )
 
-export const TooltipDisabled = (): Html =>
-  tooltipShell({
-    id: 'tooltip-disabled',
-    trigger: ['Disabled'],
-    content: ['This feature is currently unavailable'],
-    isDisabled: true,
-    triggerAsSpan: true,
-  })
+export const TooltipDisabled = <Message = never>(
+  controller: TooltipExampleController<Message> = {},
+): Html =>
+  tooltipShell(
+    {
+      id: 'tooltip-disabled',
+      trigger: ['Disabled'],
+      content: ['This feature is currently unavailable'],
+      isDisabled: true,
+      triggerAsSpan: true,
+    },
+    controller,
+  )
 
-export const TooltipKeyboard = (): Html => {
+export const TooltipKeyboard = <Message = never>(
+  controller: TooltipExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
-  return tooltipShell({
-    id: 'tooltip-keyboard',
-    trigger: [iconSave()],
-    triggerSize: 'icon-sm',
-    content: [
-      'Save Changes ',
-      Kbd.view<never>({
-        toView: attributes => h.kbd([...attributes.kbd], ['S']),
-      }),
-    ],
-  })
+  return tooltipShell(
+    {
+      id: 'tooltip-keyboard',
+      trigger: [iconSave()],
+      triggerSize: 'icon-sm',
+      content: [
+        'Save Changes ',
+        Kbd.view<never>({
+          toView: attributes => h.kbd([...attributes.kbd], ['S']),
+        }),
+      ],
+    },
+    controller,
+  )
 }
 
-const sideTooltip = (side: TooltipSide, label: string, dir?: string): Html =>
-  tooltipShell({
-    id: `tooltip-${dir ?? 'ltr'}-${side}`,
-    trigger: [label],
-    content: [dir === 'rtl' ? 'إضافة إلى المكتبة' : 'Add to library'],
-    side,
-    ...(dir === undefined ? {} : { dir }),
-    triggerClassName: 'w-fit capitalize',
-  })
+const sideTooltip = <Message>(
+  side: TooltipSide,
+  label: string,
+  controller: TooltipExampleController<Message>,
+  dir?: string,
+): Html =>
+  tooltipShell(
+    {
+      id: `tooltip-${dir ?? 'ltr'}-${side}`,
+      trigger: [label],
+      content: [dir === 'rtl' ? 'إضافة إلى المكتبة' : 'Add to library'],
+      side,
+      ...(dir === undefined ? {} : { dir }),
+      triggerClassName: 'w-fit capitalize',
+    },
+    controller,
+  )
 
-export const TooltipSides = (): Html => {
+export const TooltipSides = <Message = never>(
+  controller: TooltipExampleController<Message> = {},
+): Html => {
   const h = html<never>()
   const sides: ReadonlyArray<TooltipSide> = ['left', 'top', 'bottom', 'right']
 
   return h.div(
     [h.Class('flex flex-wrap gap-2')],
-    sides.map(side => sideTooltip(side, side)),
+    sides.map(side => sideTooltip(side, side, controller)),
   )
 }
 
-export const TooltipRtl = (): Html => {
+export const TooltipRtl = <Message = never>(
+  controller: TooltipExampleController<Message> = {},
+): Html => {
   const h = html<never>()
   const physicalSides: ReadonlyArray<TooltipSide> = [
     'left',
@@ -170,11 +213,15 @@ export const TooltipRtl = (): Html => {
     [
       h.div(
         [h.Class('flex flex-wrap justify-center gap-2')],
-        physicalSides.map(side => sideTooltip(side, labels[side], 'rtl')),
+        physicalSides.map(side =>
+          sideTooltip(side, labels[side], controller, 'rtl'),
+        ),
       ),
       h.div(
         [h.Class('flex flex-wrap justify-center gap-2')],
-        logicalSides.map(side => sideTooltip(side, labels[side], 'rtl')),
+        logicalSides.map(side =>
+          sideTooltip(side, labels[side], controller, 'rtl'),
+        ),
       ),
     ],
   )

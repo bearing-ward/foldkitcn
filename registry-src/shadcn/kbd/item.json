@@ -136,6 +136,7 @@
       "title": "KbdGroup",
       "description": "Inline KbdGroup in muted text.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
+      "previewExportName": "KbdGroupExample",
       "kind": "demo"
     },
     {

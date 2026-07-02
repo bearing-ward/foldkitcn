@@ -190,20 +190,6 @@
       "description": "Verification form example with local Field, Button, and static Card shell.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
       "kind": "demo"
-    },
-    {
-      "id": "shadcn/input-otp-origin-fixture",
-      "title": "InputOTPOriginFixture",
-      "description": "Static origin-evidence fixture derived from base-nova Input OTP source.",
-      "sourcePath": "tests/parity/fixtures/origin/shadcn/input-otp.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "shadcn/input-otp-foldkit-fixture",
-      "title": "InputOTPFoldkitFixture",
-      "description": "Foldkit parity fixture for dependency-complete shadcn Input OTP composition.",
-      "sourcePath": "tests/parity/fixtures/foldkit/shadcn/input-otp.fixture.ts",
-      "kind": "foldkit-fixture"
     }
   ],
   "parity": {

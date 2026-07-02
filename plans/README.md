@@ -97,6 +97,15 @@ honor its STOP conditions, and update your row when done.
 | 087 | Implement shadcn Message | P1 | M | 084, 085, 086 | DONE |
 | 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | DONE |
 | 089 | Inventory docs example cards without live previews | P1 | S | 068 | DONE |
+| 090 | Normalize live preview fixture rows | P1 | M | 089 | DONE |
+| 091 | Wire visual surface live previews | P1 | M | 090 | BLOCKED (43/44 done; AttachmentWorkflowDemo needs runtime-backed FileDrop/Submodel preview support) |
+| 092 | Wire media and keyboard live previews | P1 | M | 090 | DONE |
+| 093 | Wire form control live previews | P1 | L | 090 | DONE |
+| 094 | Wire selection and collection live previews | P1 | L | 090, 093 | DONE |
+| 095 | Wire toggle disclosure live previews | P1 | M | 090 | DONE |
+| 096 | Wire overlay live previews | P1 | L | 090 | DONE |
+| 097 | Wire menu navigation live previews | P1 | L | 090, 096 | DONE |
+| 098 | Implement shadcn Toast with stacked expansion | P1 | M | 081, 082 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -165,6 +174,8 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plans 084-088 are the chat-family cluster: Attachment, Bubble, and Marker land before Message, and Message Scroller lands last because it composes the local chat parts plus Empty/Input Group.
 - Advanced examples in Plans 078, 079, 085, 087, and 088 may be fixture-only or explicitly deferred when they require new date, autoplay, markdown, AI, animation, or network foundations. Do not install upstream runtime packages to satisfy those examples.
 - Plan 089 follows the docs live-preview runtime from Plan 068 and creates the explicit backlog for every generated example card that still lacks `.live-example-preview`; it is an inventory/gate plan, not an implementation batch for all missing previews.
+- Plans 090-097 break the Plan 089 inventory into behavior-shaped live-preview batches. Plan 090 runs first because rows with `previewExportName: null` cannot be fixed by generator/runtime registration alone.
+- Plan 098 promotes the held `shadcn/toast` row now that Plans 081 and 082 provide the local toast foundation. It must reuse Foldkit/Base UI toast behavior, keep shadcn card styling, and limit new behavior to compact stacked cards that expand on hover/focus.
 
 ## Findings considered and rejected
 

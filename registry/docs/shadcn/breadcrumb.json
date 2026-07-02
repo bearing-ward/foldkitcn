@@ -140,7 +140,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbBasic = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbBasic",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -156,7 +156,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([ellipsisMenuButton(), dropdownContent(dropdownItems)]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbDemo",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -172,7 +172,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbDropdown = (): Html => {\n  const h = html<never>()\n\n  return breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([\n      componentsMenuButton('Components', [\n        h.DataAttribute('icon', 'inline-end'),\n      ]),\n      dropdownContent(dropdownItems),\n    ]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbDropdown",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -188,7 +188,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbEllipsisDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([BreadcrumbEllipsis<never>()]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('/docs/components', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbEllipsisDemo",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -204,7 +204,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbLinkDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('#link-component', 'Home')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbLink('#link-component', 'Components')]),\n    breadcrumbSeparator(),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbLinkDemo",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -220,7 +220,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbRtl = (): Html => {\n  const h = html<never>()\n  const { dir, language, values } = arabicBreadcrumbRtl\n\n  return breadcrumbShell(\n    [\n      breadcrumbItem([breadcrumbLink('/', values.home)]),\n      breadcrumbSeparator([dotIcon()]),\n      breadcrumbItem([\n        h.button(\n          [\n            h.AriaHasPopup('menu'),\n            h.AriaExpanded(false),\n            h.Class('flex items-center gap-1'),\n          ],\n          [\n            values.components,\n            chevronDownIcon({\n              attributes: [h.DataAttribute('icon', 'inline-end')],\n              className: 'size-3.5',\n            }),\n          ],\n        ),\n        dropdownContent([values.documentation, values.themes, values.github], {\n          align: 'end',\n          dataLang: language,\n          dir,\n        }),\n      ]),\n      breadcrumbSeparator([dotIcon()]),\n      breadcrumbItem([breadcrumbPage(values.breadcrumb)]),\n    ],\n    { dir },\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbRtl",
       "requiredRegistryItems": [
         "shadcn/button",
@@ -236,7 +236,7 @@
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
       "snippet": "export const BreadcrumbSeparatorDemo = (): Html =>\n  breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbLink('/components', 'Components')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbSeparatorDemo",
       "requiredRegistryItems": [
         "shadcn/button",

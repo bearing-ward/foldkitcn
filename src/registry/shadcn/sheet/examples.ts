@@ -6,7 +6,18 @@ import * as Button from '../button'
 import { Field, FieldGroup, FieldLabel } from '../field'
 import { view as Input } from '../input'
 import { sheetSideValues, view as Sheet } from './index'
-import type { SheetSide as SheetSideValue } from './index'
+import type { SheetOpenChange, SheetSide as SheetSideValue } from './index'
+
+export type SheetExampleController<Message> = Readonly<{
+  openFor?: (sheetId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (sheetId: string, change: SheetOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: SheetExampleController<Message>,
+  sheetId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(sheetId, defaultOpen) ?? defaultOpen
 
 const button = (
   label: string,
@@ -107,7 +118,7 @@ const scrollableBody = (): Html => {
   )
 }
 
-const sheetShell = (
+const sheetShell = <Message>(
   config: Readonly<{
     id: string
     trigger: string
@@ -121,12 +132,17 @@ const sheetShell = (
     body?: ReadonlyArray<Html>
     footer?: ReadonlyArray<Html>
   }>,
+  controller: SheetExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return Sheet<never>({
+  return Sheet<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onOpenChange(config.id, change) }),
     side: config.side,
     dir: config.dir,
     contentClassName: config.contentClassName,
@@ -137,7 +153,7 @@ const sheetShell = (
       h.div(
         [...attributes.root],
         [
-          Button.view<never>({
+          Button.view<Message>({
             variant: 'outline',
             toView: buttonAttributes =>
               h.button(
@@ -183,86 +199,107 @@ const sheetShell = (
   })
 }
 
-export const SheetDemo = (): Html =>
-  sheetShell({
-    id: 'sheet-demo',
-    trigger: 'Open',
-    title: 'Edit profile',
-    description:
-      "Make changes to your profile here. Click save when you're done.",
-    body: [
-      profileFields({
-        name: 'Name',
-        nameId: 'sheet-demo-name',
-        nameValue: 'Pedro Duarte',
-        username: 'Username',
-        usernameId: 'sheet-demo-username',
-        usernameValue: '@peduarte',
-      }),
-    ],
-    footer: [
-      button('Save changes', { type: 'submit' }),
-      button('Close', { variant: 'outline' }),
-    ],
-  })
+export const SheetDemo = <Message = never>(
+  controller: SheetExampleController<Message> = {},
+): Html =>
+  sheetShell(
+    {
+      id: 'sheet-demo',
+      trigger: 'Open',
+      title: 'Edit profile',
+      description:
+        "Make changes to your profile here. Click save when you're done.",
+      body: [
+        profileFields({
+          name: 'Name',
+          nameId: 'sheet-demo-name',
+          nameValue: 'Pedro Duarte',
+          username: 'Username',
+          usernameId: 'sheet-demo-username',
+          usernameValue: '@peduarte',
+        }),
+      ],
+      footer: [
+        button('Save changes', { type: 'submit' }),
+        button('Close', { variant: 'outline' }),
+      ],
+    },
+    controller,
+  )
 
-export const SheetSide = (): Html => {
+export const SheetSide = <Message = never>(
+  controller: SheetExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
   return h.div(
     [h.Class('flex flex-wrap gap-2')],
     sheetSideValues.map(side =>
-      sheetShell({
-        id: `sheet-side-${side}`,
-        trigger: side,
-        title: 'Edit profile',
-        description:
-          "Make changes to your profile here. Click save when you're done.",
-        side,
-        contentClassName:
-          'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',
-        body: [scrollableBody()],
-        footer: [
-          button('Save changes', { type: 'submit' }),
-          button('Cancel', { variant: 'outline' }),
-        ],
-      }),
+      sheetShell(
+        {
+          id: `sheet-side-${side}`,
+          trigger: side,
+          title: 'Edit profile',
+          description:
+            "Make changes to your profile here. Click save when you're done.",
+          side,
+          contentClassName:
+            'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',
+          body: [scrollableBody()],
+          footer: [
+            button('Save changes', { type: 'submit' }),
+            button('Cancel', { variant: 'outline' }),
+          ],
+        },
+        controller,
+      ),
     ),
   )
 }
 
-export const SheetNoCloseButton = (): Html =>
-  sheetShell({
-    id: 'sheet-no-close-button',
-    trigger: 'Open Sheet',
-    title: 'No Close Button',
-    description:
-      "This sheet doesn't have a close button in the top-right corner. Click outside to close.",
-    showCloseButton: false,
-  })
+export const SheetNoCloseButton = <Message = never>(
+  controller: SheetExampleController<Message> = {},
+): Html =>
+  sheetShell(
+    {
+      id: 'sheet-no-close-button',
+      trigger: 'Open Sheet',
+      title: 'No Close Button',
+      description:
+        "This sheet doesn't have a close button in the top-right corner. Click outside to close.",
+      showCloseButton: false,
+    },
+    controller,
+  )
 
-export const SheetRtl = (): Html =>
-  sheetShell({
-    id: 'sheet-rtl',
-    trigger: 'فتح',
-    title: 'تعديل الملف الشخصي',
-    description: 'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر حفظ عند الانتهاء.',
-    dir: 'rtl',
-    lang: 'ar',
-    side: 'left',
-    body: [
-      profileFields({
-        name: 'الاسم',
-        nameId: 'sheet-rtl-name',
-        nameValue: 'Pedro Duarte',
-        username: 'اسم المستخدم',
-        usernameId: 'sheet-rtl-username',
-        usernameValue: 'peduarte',
-        dir: 'rtl',
-      }),
-    ],
-    footer: [
-      button('حفظ التغييرات', { type: 'submit' }),
-      button('إغلاق', { variant: 'outline' }),
-    ],
-  })
+export const SheetRtl = <Message = never>(
+  controller: SheetExampleController<Message> = {},
+): Html =>
+  sheetShell(
+    {
+      id: 'sheet-rtl',
+      trigger: 'فتح',
+      title: 'تعديل الملف الشخصي',
+      description:
+        'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر حفظ عند الانتهاء.',
+      dir: 'rtl',
+      lang: 'ar',
+      side: 'left',
+      body: [
+        profileFields({
+          name: 'الاسم',
+          nameId: 'sheet-rtl-name',
+          nameValue: 'Pedro Duarte',
+          username: 'اسم المستخدم',
+          usernameId: 'sheet-rtl-username',
+          usernameValue: 'peduarte',
+          dir: 'rtl',
+        }),
+      ],
+      footer: [
+        button('حفظ التغييرات', { type: 'submit' }),
+        button('إغلاق', { variant: 'outline' }),
+      ],
+    },
+    controller,
+  )

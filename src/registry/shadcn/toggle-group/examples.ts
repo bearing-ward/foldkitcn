@@ -3,9 +3,27 @@ import { html } from 'foldkit/html'
 
 import type { ToggleSize, ToggleVariant } from '../toggle'
 import { view as ToggleGroup } from './index'
-import type { ToggleGroupSpacing as ToggleGroupSpacingValue } from './index'
+import type {
+  ToggleGroupSpacing as ToggleGroupSpacingValue,
+  ToggleGroupValueChange,
+} from './index'
 
 type IconName = 'alignCenter' | 'alignLeft' | 'alignRight' | 'bold' | 'italic'
+
+export type ToggleGroupExampleController<Message> = Readonly<{
+  valueFor: (
+    groupId: string,
+    defaultValue: ReadonlyArray<string>,
+  ) => ReadonlyArray<string>
+  onValueChange: (groupId: string, change: ToggleGroupValueChange) => Message
+}>
+
+const toggleGroupValue = <Message>(
+  controller: ToggleGroupExampleController<Message> | undefined,
+  groupId: string,
+  defaultValue: ReadonlyArray<string>,
+): ReadonlyArray<string> =>
+  controller?.valueFor(groupId, defaultValue) ?? defaultValue
 
 const iconPaths: Readonly<Record<IconName, string>> = {
   alignCenter: 'M17 12H7m12-6H5m14 12H5',
@@ -55,10 +73,10 @@ const formattingItems = [
   { id: 'format-italic', value: 'italic', label: 'Italic' },
 ]
 
-const group = (
+const group = <Message>(
   config: Readonly<{
     ariaLabel: string
-    children: (h: ReturnType<typeof html<never>>) => ReadonlyArray<Html>
+    children: (h: ReturnType<typeof html<Message>>) => ReadonlyArray<Html>
     className?: string
     dir?: string
     itemClassName?: string
@@ -69,11 +87,16 @@ const group = (
     value?: ReadonlyArray<string>
     variant?: ToggleVariant
   }>,
+  controller: ToggleGroupExampleController<Message> | undefined,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
-  return ToggleGroup<never>({
-    value: config.value ?? ['center'],
+  return ToggleGroup<Message>({
+    value: toggleGroupValue(
+      controller,
+      config.ariaLabel,
+      config.value ?? ['center'],
+    ),
     items,
     ...(config.className === undefined ? {} : { className: config.className }),
     ...(config.dir === undefined ? {} : { dir: config.dir }),
@@ -89,6 +112,12 @@ const group = (
     ...(config.size === undefined ? {} : { size: config.size }),
     ...(config.spacing === undefined ? {} : { spacing: config.spacing }),
     ...(config.variant === undefined ? {} : { variant: config.variant }),
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change =>
+            controller.onValueChange(config.ariaLabel, change),
+        }),
     toView: attributes =>
       h.div(
         [...attributes.root, h.AriaLabel(config.ariaLabel)],
@@ -101,24 +130,31 @@ const group = (
   })
 }
 
-const alignmentChildren = (
-  h: ReturnType<typeof html<never>>,
+const alignmentChildren = <Message>(
+  h: ReturnType<typeof html<Message>>,
 ): ReadonlyArray<Html> => [
   h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignLeft')]),
   h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignCenter')]),
   h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignRight')]),
 ]
 
-export const ToggleGroupDemo = (): Html =>
-  group({
-    ariaLabel: 'Text alignment',
-    variant: 'outline',
-    children: alignmentChildren,
-  })
+export const ToggleGroupDemo = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  group<Message>(
+    {
+      ariaLabel: 'Text alignment',
+      variant: 'outline',
+      children: alignmentChildren,
+    },
+    controller,
+  )
 
-export const ToggleGroupDisabled = (): Html =>
-  ToggleGroup<never>({
-    value: ['bold'],
+export const ToggleGroupDisabled = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  ToggleGroup<Message>({
+    value: toggleGroupValue(controller, 'Disabled formatting', ['bold']),
     selectionMode: 'multiple',
     variant: 'outline',
     items: [
@@ -131,16 +167,30 @@ export const ToggleGroupDisabled = (): Html =>
         isDisabled: true,
       },
     ],
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change =>
+            controller.onValueChange('Disabled formatting', change),
+        }),
   })
 
-export const ToggleGroupFontWeightSelector = (): Html => {
-  const h = html<never>()
+export const ToggleGroupFontWeightSelector = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return ToggleGroup<never>({
-    value: ['bold'],
+  return ToggleGroup<Message>({
+    value: toggleGroupValue(controller, 'Font weight', ['bold']),
     selectionMode: 'multiple',
     variant: 'outline',
     items: formattingItems,
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change =>
+            controller.onValueChange('Font weight', change),
+        }),
     toView: attributes =>
       h.div(
         [...attributes.root, h.AriaLabel('Font weight')],
@@ -152,66 +202,100 @@ export const ToggleGroupFontWeightSelector = (): Html => {
   })
 }
 
-export const ToggleGroupOutline = (): Html =>
-  group({
-    ariaLabel: 'Text alignment outline',
-    variant: 'outline',
-    spacing: 0,
-    children: alignmentChildren,
-  })
+export const ToggleGroupOutline = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  group<Message>(
+    {
+      ariaLabel: 'Text alignment outline',
+      variant: 'outline',
+      spacing: 0,
+      children: alignmentChildren,
+    },
+    controller,
+  )
 
-export const ToggleGroupRtl = (): Html =>
-  group({
-    ariaLabel: 'محاذاة النص',
-    dir: 'rtl',
-    variant: 'outline',
-    children: h => [
-      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignRight')]),
-      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignCenter')]),
-      h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignLeft')]),
-    ],
-  })
+export const ToggleGroupRtl = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  group<Message>(
+    {
+      ariaLabel: 'محاذاة النص',
+      dir: 'rtl',
+      variant: 'outline',
+      children: h => [
+        h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignRight')]),
+        h.span(
+          [h.DataAttribute('icon', 'inline-start')],
+          [icon('alignCenter')],
+        ),
+        h.span([h.DataAttribute('icon', 'inline-start')], [icon('alignLeft')]),
+      ],
+    },
+    controller,
+  )
 
-export const ToggleGroupSizes = (): Html => {
-  const h = html<never>()
+export const ToggleGroupSizes = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
     [h.Class('flex flex-wrap items-center gap-2')],
     [
-      group({
-        ariaLabel: 'Small alignment',
-        size: 'sm',
-        variant: 'outline',
-        children: alignmentChildren,
-      }),
-      group({
-        ariaLabel: 'Default alignment',
-        size: 'default',
-        variant: 'outline',
-        children: alignmentChildren,
-      }),
-      group({
-        ariaLabel: 'Large alignment',
-        size: 'lg',
-        variant: 'outline',
-        children: alignmentChildren,
-      }),
+      group<Message>(
+        {
+          ariaLabel: 'Small alignment',
+          size: 'sm',
+          variant: 'outline',
+          children: alignmentChildren,
+        },
+        controller,
+      ),
+      group<Message>(
+        {
+          ariaLabel: 'Default alignment',
+          size: 'default',
+          variant: 'outline',
+          children: alignmentChildren,
+        },
+        controller,
+      ),
+      group<Message>(
+        {
+          ariaLabel: 'Large alignment',
+          size: 'lg',
+          variant: 'outline',
+          children: alignmentChildren,
+        },
+        controller,
+      ),
     ],
   )
 }
 
-export const ToggleGroupSpacing = (): Html =>
-  group({
-    ariaLabel: 'Spaced alignment',
-    spacing: 4,
-    variant: 'outline',
-    children: alignmentChildren,
-  })
+export const ToggleGroupSpacing = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  group<Message>(
+    {
+      ariaLabel: 'Spaced alignment',
+      spacing: 4,
+      variant: 'outline',
+      children: alignmentChildren,
+    },
+    controller,
+  )
 
-export const ToggleGroupVertical = (): Html =>
-  group({
-    ariaLabel: 'Vertical text alignment',
-    orientation: 'vertical',
-    variant: 'outline',
-    children: alignmentChildren,
-  })
+export const ToggleGroupVertical = <Message = never>(
+  controller?: ToggleGroupExampleController<Message>,
+): Html =>
+  group<Message>(
+    {
+      ariaLabel: 'Vertical text alignment',
+      orientation: 'vertical',
+      variant: 'outline',
+      children: alignmentChildren,
+    },
+    controller,
+  )

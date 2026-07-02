@@ -110,7 +110,7 @@
       "componentItemId": "shadcn/label",
       "sourcePath": "src/registry/shadcn/label/examples.ts",
       "snippet": "export const LabelDemo = (): Html => {\n  const h = html<never>()\n  const id = 'label-demo-terms'\n\n  return h.div(\n    [h.Class('flex items-center gap-2')],\n    [\n      checkbox(id),\n      checkboxInput(id),\n      Label<never>({\n        htmlFor: id,\n        toView: attributes =>\n          h.label([...attributes.label], ['Accept terms and conditions']),\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "LabelDemo",
       "requiredRegistryItems": ["shadcn/checkbox", "utils/cn"],
       "notes": []
@@ -122,7 +122,7 @@
       "componentItemId": "shadcn/label",
       "sourcePath": "src/registry/shadcn/label/examples.ts",
       "snippet": "export const LabelRtl = (): Html => {\n  const h = html<never>()\n  const id = 'label-rtl-terms'\n  const dir = 'rtl'\n\n  return h.div(\n    [h.Class('flex items-center gap-2'), h.Dir(dir)],\n    [\n      checkbox(id, dir),\n      checkboxInput(id, dir),\n      Label<never>({\n        htmlFor: id,\n        dir,\n        toView: attributes =>\n          h.label([...attributes.label], ['قبول الشروط والأحكام']),\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "LabelRtl",
       "requiredRegistryItems": ["shadcn/checkbox", "utils/cn"],
       "notes": []

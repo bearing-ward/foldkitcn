@@ -107,7 +107,7 @@
       "componentItemId": "shadcn/native-select",
       "sourcePath": "src/registry/shadcn/native-select/examples.ts",
       "snippet": "export const NativeSelectDemo = (): Html =>\n  nativeSelect({\n    children: statusOptions({\n      placeholder: 'Select status',\n      todo: 'Todo',\n      inProgress: 'In Progress',\n      done: 'Done',\n      cancelled: 'Cancelled',\n    }),\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "NativeSelectDemo",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -119,7 +119,7 @@
       "componentItemId": "shadcn/native-select",
       "sourcePath": "src/registry/shadcn/native-select/examples.ts",
       "snippet": "export const NativeSelectDisabled = (): Html =>\n  nativeSelect({\n    disabled: true,\n    children: [\n      option('', ['Disabled']),\n      option('apple', ['Apple']),\n      option('banana', ['Banana']),\n      option('blueberry', ['Blueberry']),\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "NativeSelectDisabled",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -131,7 +131,7 @@
       "componentItemId": "shadcn/native-select",
       "sourcePath": "src/registry/shadcn/native-select/examples.ts",
       "snippet": "export const NativeSelectGroups = (): Html =>\n  nativeSelect({\n    children: [\n      option('', ['Select department']),\n      optGroup('Engineering', [\n        option('frontend', ['Frontend']),\n        option('backend', ['Backend']),\n        option('devops', ['DevOps']),\n      ]),\n      optGroup('Sales', [\n        option('sales-rep', ['Sales Rep']),\n        option('account-manager', ['Account Manager']),\n        option('sales-director', ['Sales Director']),\n      ]),\n      optGroup('Operations', [\n        option('support', ['Customer Support']),\n        option('product-manager', ['Product Manager']),\n        option('ops-manager', ['Operations Manager']),\n      ]),\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "NativeSelectGroups",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -143,7 +143,7 @@
       "componentItemId": "shadcn/native-select",
       "sourcePath": "src/registry/shadcn/native-select/examples.ts",
       "snippet": "export const NativeSelectInvalid = (): Html =>\n  nativeSelect({\n    invalid: true,\n    children: [\n      option('', ['Error state']),\n      option('apple', ['Apple']),\n      option('banana', ['Banana']),\n      option('blueberry', ['Blueberry']),\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "NativeSelectInvalid",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -155,7 +155,7 @@
       "componentItemId": "shadcn/native-select",
       "sourcePath": "src/registry/shadcn/native-select/examples.ts",
       "snippet": "export const NativeSelectRtl = (): Html => {\n  const { dir, values } = arabicNativeSelectRtl\n\n  return nativeSelect({\n    dir,\n    children: statusOptions(values),\n  })\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "NativeSelectRtl",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []

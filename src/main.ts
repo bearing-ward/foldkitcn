@@ -74,11 +74,22 @@ import {
   carouselState,
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
+import type { ComboboxValueChange } from './registry/shadcn/combobox'
+import { ContextMenuPoint } from './registry/base-ui/context-menu'
 import * as ToastPrimitive from './registry/base-ui/toast'
 import {
   ToastExampleMessage,
   type ToastExampleMessage as ToastExampleMessageType,
 } from './registry/base-ui/toast/examples'
+import {
+  ToastExampleMessage as SonnerExampleMessage,
+  toastViewportPositionFromPosition,
+  type ToastExampleMessage as SonnerExampleMessageType,
+} from './registry/shadcn/sonner/examples'
+import {
+  ToastExampleMessage as ShadcnToastExampleMessage,
+  type ToastExampleMessage as ShadcnToastExampleMessageType,
+} from './registry/shadcn/toast/examples'
 import {
   EndedResizableDrag,
   MovedResizablePointer,
@@ -147,11 +158,31 @@ export const Model = S.Struct({
   mobileNavigation: MobileNavigation,
   copiedSnippets: S.HashSet(S.String),
   liveExampleInputValues: S.Record(S.String, S.String),
+  liveExampleOtpValues: S.Record(S.String, S.String),
+  liveExampleSliderValues: S.Record(S.String, S.Array(S.Number)),
+  liveExampleSelectOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleSelectValues: S.Record(S.String, S.String),
+  liveExampleComboboxOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleComboboxInputValues: S.Record(S.String, S.String),
+  liveExampleComboboxValues: S.Record(S.String, S.String),
+  liveExampleComboboxMultipleValues: S.Record(S.String, S.Array(S.String)),
   liveExampleRadioGroupValues: S.Record(S.String, S.String),
+  liveExampleCheckboxCheckedStates: S.Record(S.String, S.String),
+  liveExampleSwitchCheckedValues: S.Record(S.String, S.Boolean),
+  liveExampleAccordionValues: S.Record(S.String, S.Array(S.String)),
+  liveExampleCollapsibleOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleTabsValues: S.Record(S.String, S.String),
+  liveExampleTogglePressedValues: S.Record(S.String, S.Boolean),
+  liveExampleToggleGroupValues: S.Record(S.String, S.Array(S.String)),
   liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
   liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
   liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleOverlayOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleMenuOpenValues: S.Record(S.String, S.Boolean),
+  liveExampleMenuOpenSubmenuValues: S.Record(S.String, S.Array(S.String)),
+  liveExampleMenuContextPoints: S.Record(S.String, ContextMenuPoint),
+  liveExampleMenuValues: S.Record(S.String, S.String),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
   liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
@@ -171,6 +202,23 @@ const liveExampleSidebarStateKey = (
   exampleId: string,
   panelId: string,
 ): string => `${exampleId}#${panelId}`
+
+const liveExampleControlStateKey = (
+  exampleId: string,
+  controlId: string,
+): string => `${exampleId}#${controlId}`
+
+const updateLiveExampleMenuSubmenuValues = (
+  values: ReadonlyArray<string>,
+  parentValue: string,
+  open: boolean,
+): ReadonlyArray<string> => {
+  if (open) {
+    return values.includes(parentValue) ? values : [...values, parentValue]
+  }
+
+  return values.filter(value => value !== parentValue)
+}
 
 const LiveExampleResizableActiveDrag = S.Struct({
   exampleId: S.String,
@@ -214,6 +262,14 @@ const initialLiveExampleToastState = (
 ): ToastPrimitive.ToastState =>
   ToastPrimitive.createToastState({ limit: 3 })
 
+const shadcnToastExampleIdPrefix = 'shadcn/toast-'
+
+const isShadcnToastExample = (exampleId: string): boolean =>
+  exampleId.startsWith(shadcnToastExampleIdPrefix)
+
+const toastIdForExample = (exampleId: string): string =>
+  `${exampleId.replaceAll('/', '-')}-toast`
+
 const activeToastCount = (state: ToastPrimitive.ToastState): number =>
   state.toasts.filter(toast => toast.transitionStatus !== 'ending').length
 
@@ -249,7 +305,10 @@ const showActionUndoneToast = (
 const updateLiveExampleToastState = (
   state: ToastPrimitive.ToastState,
   exampleId: string,
-  message: ToastExampleMessageType,
+  message:
+    | ToastExampleMessageType
+    | SonnerExampleMessageType
+    | ShadcnToastExampleMessageType,
 ): readonly [
   ToastPrimitive.ToastState,
   ReadonlyArray<Command.Command<Message>>,
@@ -279,8 +338,24 @@ const updateLiveExampleToastState = (
           }),
           [],
         ],
-      ClickedCreateStackedToast: () =>
-        [
+      ClickedCreateStackedToast: () => {
+        if (isShadcnToastExample(exampleId)) {
+          const count = activeToastCount(state) + 1
+
+          return [
+            showToast(state, {
+              title: `Stacked toast ${count}`,
+              description: 'Hover or focus the viewport to expand.',
+              priority: 'low',
+              ...(count === 1 ? { actionLabel: 'Undo' } : {}),
+              timeout: 5000,
+              height: count === 1 ? 84 : 92,
+            }),
+            [],
+          ]
+        }
+
+        return [
           showToast(state, {
             description: 'Copied',
             priority: 'low',
@@ -288,7 +363,8 @@ const updateLiveExampleToastState = (
             height: 64,
           }),
           [],
-        ],
+        ]
+      },
       ClickedCreatePositionToast: () =>
         [
           showToast(state, {
@@ -300,8 +376,22 @@ const updateLiveExampleToastState = (
           }),
           [],
         ],
-      ClickedPerformAction: () =>
-        [
+      ClickedPerformAction: () => {
+        if (isShadcnToastExample(exampleId)) {
+          return [
+            showToast(state, {
+              id: toastIdForExample(exampleId),
+              title: 'Uh oh! Something went wrong.',
+              description: 'There was a problem with your request.',
+              actionLabel: 'Try again',
+              timeout: 5000,
+              height: 96,
+            }),
+            [],
+          ]
+        }
+
+        return [
           showToast(state, {
             id: `undo-${activeToastCount(state) + 1}`,
             title: `Action ${activeToastCount(state) + 1} performed`,
@@ -312,7 +402,8 @@ const updateLiveExampleToastState = (
             height: 96,
           }),
           [],
-        ],
+        ]
+      },
       ClickedRunPromiseToast: () => {
         const change = ToastPrimitive.startPromiseToast(state, {
           loading: 'Waiting for result...',
@@ -386,6 +477,112 @@ const updateLiveExampleToastState = (
         ],
       RequestedToastClose: ({ request }) =>
         [ToastPrimitive.closeToast(state, request), []],
+      ChangedToastViewport: ({ interaction }) =>
+        [ToastPrimitive.applyViewportInteraction(state, interaction), []],
+      ClickedShowToast: () => {
+        if (exampleId === 'shadcn/toast-demo') {
+          return [
+            showToast(state, {
+              id: toastIdForExample(exampleId),
+              title: 'Scheduled: Catch up',
+              description: 'Friday, February 10, 2023 at 5:57 PM',
+              actionLabel: 'Undo',
+              timeout: 5000,
+              height: 84,
+            }),
+            [],
+          ]
+        }
+
+        if (exampleId === 'shadcn/toast-with-title') {
+          return [
+            showToast(state, {
+              id: toastIdForExample(exampleId),
+              title: 'Uh oh! Something went wrong.',
+              description: 'There was a problem with your request.',
+              timeout: 5000,
+              height: 84,
+            }),
+            [],
+          ]
+        }
+
+        return [
+          showToast(state, {
+            title: 'Event has been created',
+            description: 'Sunday, December 03, 2023 at 9:00 AM',
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ]
+      },
+      ClickedShowDescriptionToast: () => {
+        if (exampleId === 'shadcn/toast-simple') {
+          return [
+            showToast(state, {
+              id: toastIdForExample(exampleId),
+              description: 'Your message has been sent.',
+              timeout: 5000,
+              height: 64,
+            }),
+            [],
+          ]
+        }
+
+        return [
+          showToast(state, {
+            title: 'Event has been created',
+            description: 'Sunday, December 03, 2023 at 9:00 AM',
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ]
+      },
+      ClickedShowPositionToast: ({ position }) =>
+        [
+          showToast(state, {
+            title: `${position} toast`,
+            description: 'This toast is rendered inside the live preview.',
+            position: {
+              ...toastViewportPositionFromPosition(position),
+              sideOffset: 10,
+              arrowWidth: 12,
+              arrowHeight: 6,
+            },
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ],
+      ClickedShowTypeToast: ({ variant }) => {
+        if (exampleId === 'shadcn/toast-destructive') {
+          return [
+            showToast(state, {
+              id: toastIdForExample(exampleId),
+              title: 'Uh oh! Something went wrong.',
+              description: 'There was a problem with your request.',
+              type: 'destructive',
+              actionLabel: 'Try again',
+              timeout: 5000,
+              height: 96,
+            }),
+            [],
+          ]
+        }
+
+        return [
+          showToast(state, {
+            title: `${variant} toast`,
+            description: 'Local Foldkit-native Sonner preview.',
+            type: variant === 'promise' ? 'default' : variant,
+            timeout: 5000,
+            height: 84,
+          }),
+          [],
+        ]
+      },
     }),
   )
 
@@ -407,11 +604,109 @@ export const UpdatedLiveExampleInputValue = m('UpdatedLiveExampleInputValue', {
   exampleId: S.String,
   value: S.String,
 })
+export const UpdatedLiveExampleOtpValue = m('UpdatedLiveExampleOtpValue', {
+  exampleId: S.String,
+  value: S.String,
+})
+export const UpdatedLiveExampleSliderValues = m(
+  'UpdatedLiveExampleSliderValues',
+  {
+    exampleId: S.String,
+    sliderId: S.String,
+    values: S.Array(S.Number),
+  },
+)
+export const UpdatedLiveExampleSelectOpen = m('UpdatedLiveExampleSelectOpen', {
+  exampleId: S.String,
+  open: S.Boolean,
+})
+export const SelectedLiveExampleSelectValue = m(
+  'SelectedLiveExampleSelectValue',
+  {
+    exampleId: S.String,
+    value: S.String,
+  },
+)
+export const UpdatedLiveExampleComboboxOpen = m(
+  'UpdatedLiveExampleComboboxOpen',
+  {
+    exampleId: S.String,
+    open: S.Boolean,
+  },
+)
+export const UpdatedLiveExampleComboboxInputValue = m(
+  'UpdatedLiveExampleComboboxInputValue',
+  {
+    exampleId: S.String,
+    value: S.String,
+  },
+)
+export const SelectedLiveExampleComboboxValue = m(
+  'SelectedLiveExampleComboboxValue',
+  {
+    exampleId: S.String,
+    value: S.optional(S.String),
+    values: S.Array(S.String),
+  },
+)
 export const UpdatedLiveExampleRadioGroupValue = m(
   'UpdatedLiveExampleRadioGroupValue',
   {
     exampleId: S.String,
     value: S.String,
+  },
+)
+export const UpdatedLiveExampleCheckboxCheckedState = m(
+  'UpdatedLiveExampleCheckboxCheckedState',
+  {
+    exampleId: S.String,
+    controlId: S.String,
+    checkedState: S.String,
+  },
+)
+export const UpdatedLiveExampleSwitchCheckedValue = m(
+  'UpdatedLiveExampleSwitchCheckedValue',
+  {
+    exampleId: S.String,
+    controlId: S.String,
+    isChecked: S.Boolean,
+  },
+)
+export const UpdatedLiveExampleAccordionValues = m(
+  'UpdatedLiveExampleAccordionValues',
+  {
+    exampleId: S.String,
+    accordionId: S.String,
+    values: S.Array(S.String),
+  },
+)
+export const UpdatedLiveExampleCollapsibleOpen = m(
+  'UpdatedLiveExampleCollapsibleOpen',
+  {
+    exampleId: S.String,
+    collapsibleId: S.String,
+    open: S.Boolean,
+  },
+)
+export const SelectedLiveExampleTabsValue = m('SelectedLiveExampleTabsValue', {
+  exampleId: S.String,
+  tabsId: S.String,
+  value: S.String,
+})
+export const UpdatedLiveExampleTogglePressed = m(
+  'UpdatedLiveExampleTogglePressed',
+  {
+    exampleId: S.String,
+    controlId: S.String,
+    isPressed: S.Boolean,
+  },
+)
+export const UpdatedLiveExampleToggleGroupValues = m(
+  'UpdatedLiveExampleToggleGroupValues',
+  {
+    exampleId: S.String,
+    groupId: S.String,
+    values: S.Array(S.String),
   },
 )
 export const SelectedLiveExampleCalendarDate = m(
@@ -453,9 +748,40 @@ export const UpdatedLiveExampleCommandDialogOpen = m(
     isOpen: S.Boolean,
   },
 )
+export const UpdatedLiveExampleOverlayOpen = m('UpdatedLiveExampleOverlayOpen', {
+  exampleId: S.String,
+  overlayId: S.String,
+  open: S.Boolean,
+})
+export const UpdatedLiveExampleMenuOpen = m('UpdatedLiveExampleMenuOpen', {
+  exampleId: S.String,
+  menuId: S.String,
+  open: S.Boolean,
+  parentValue: S.optional(S.String),
+})
+export const UpdatedLiveExampleMenuContextPoint = m(
+  'UpdatedLiveExampleMenuContextPoint',
+  {
+    exampleId: S.String,
+    menuId: S.String,
+    point: ContextMenuPoint,
+  },
+)
+export const SelectedLiveExampleMenuValue = m(
+  'SelectedLiveExampleMenuValue',
+  {
+    exampleId: S.String,
+    menuId: S.String,
+    value: S.optional(S.String),
+  },
+)
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
-  message: ToastExampleMessage,
+  message: S.Union([
+    ToastExampleMessage,
+    SonnerExampleMessage,
+    ShadcnToastExampleMessage,
+  ]),
 })
 export const UpdatedLiveExampleSidebarOpen = m(
   'UpdatedLiveExampleSidebarOpen',
@@ -509,12 +835,30 @@ export const Message = S.Union([
   FailedCopySnippet,
   HidCopiedIndicator,
   UpdatedLiveExampleInputValue,
+  UpdatedLiveExampleOtpValue,
+  UpdatedLiveExampleSliderValues,
+  UpdatedLiveExampleSelectOpen,
+  SelectedLiveExampleSelectValue,
+  UpdatedLiveExampleComboboxOpen,
+  UpdatedLiveExampleComboboxInputValue,
+  SelectedLiveExampleComboboxValue,
   UpdatedLiveExampleRadioGroupValue,
+  UpdatedLiveExampleCheckboxCheckedState,
+  UpdatedLiveExampleSwitchCheckedValue,
+  UpdatedLiveExampleAccordionValues,
+  UpdatedLiveExampleCollapsibleOpen,
+  SelectedLiveExampleTabsValue,
+  UpdatedLiveExampleTogglePressed,
+  UpdatedLiveExampleToggleGroupValues,
   SelectedLiveExampleCalendarDate,
   GotLiveExampleCarouselMessage,
   GotLiveExampleResizableMessage,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
+  UpdatedLiveExampleOverlayOpen,
+  UpdatedLiveExampleMenuOpen,
+  UpdatedLiveExampleMenuContextPoint,
+  SelectedLiveExampleMenuValue,
   GotLiveExampleToastMessage,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
@@ -538,11 +882,31 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       mobileNavigation: MobileNavigation({ isOpen: false }),
       copiedSnippets: HashSet.empty(),
       liveExampleInputValues: {},
+      liveExampleOtpValues: {},
+      liveExampleSliderValues: {},
+      liveExampleSelectOpenValues: {},
+      liveExampleSelectValues: {},
+      liveExampleComboboxOpenValues: {},
+      liveExampleComboboxInputValues: {},
+      liveExampleComboboxValues: {},
+      liveExampleComboboxMultipleValues: {},
       liveExampleRadioGroupValues: {},
+      liveExampleCheckboxCheckedStates: {},
+      liveExampleSwitchCheckedValues: {},
+      liveExampleAccordionValues: {},
+      liveExampleCollapsibleOpenValues: {},
+      liveExampleTabsValues: {},
+      liveExampleTogglePressedValues: {},
+      liveExampleToggleGroupValues: {},
       liveExampleCalendarSelectedDates: {},
       liveExampleCarouselSelectedIndexes: {},
       liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
+      liveExampleOverlayOpenValues: {},
+      liveExampleMenuOpenValues: {},
+      liveExampleMenuOpenSubmenuValues: {},
+      liveExampleMenuContextPoints: {},
+      liveExampleMenuValues: {},
       liveExampleToastStates: {},
       liveExampleSidebarOpenValues: {},
       liveExampleSidebarPanelOpenValues: {},
@@ -759,9 +1123,148 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      UpdatedLiveExampleOtpValue: ({ exampleId, value }) => [
+        evo(model, {
+          liveExampleOtpValues: EffectRecord.set(exampleId, value),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleSliderValues: ({ exampleId, sliderId, values }) => [
+        evo(model, {
+          liveExampleSliderValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, sliderId),
+            values,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleSelectOpen: ({ exampleId, open }) => [
+        evo(model, {
+          liveExampleSelectOpenValues: EffectRecord.set(exampleId, open),
+        }),
+        [],
+      ],
+      SelectedLiveExampleSelectValue: ({ exampleId, value }) => [
+        evo(model, {
+          liveExampleSelectValues: EffectRecord.set(exampleId, value),
+          liveExampleSelectOpenValues: EffectRecord.set(exampleId, false),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleComboboxOpen: ({ exampleId, open }) => [
+        evo(model, {
+          liveExampleComboboxOpenValues: EffectRecord.set(exampleId, open),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleComboboxInputValue: ({ exampleId, value }) => [
+        evo(model, {
+          liveExampleComboboxInputValues: EffectRecord.set(exampleId, value),
+          liveExampleComboboxOpenValues: EffectRecord.set(exampleId, true),
+        }),
+        [],
+      ],
+      SelectedLiveExampleComboboxValue: ({ exampleId, value, values }) => [
+        evo(model, {
+          liveExampleComboboxValues:
+            value === undefined
+              ? EffectRecord.remove(exampleId)
+              : EffectRecord.set(exampleId, value),
+          liveExampleComboboxMultipleValues: EffectRecord.set(
+            exampleId,
+            values,
+          ),
+          liveExampleComboboxInputValues: EffectRecord.set(exampleId, ''),
+          liveExampleComboboxOpenValues: EffectRecord.set(exampleId, false),
+        }),
+        [],
+      ],
       UpdatedLiveExampleRadioGroupValue: ({ exampleId, value }) => [
         evo(model, {
           liveExampleRadioGroupValues: EffectRecord.set(exampleId, value),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleCheckboxCheckedState: ({
+        exampleId,
+        controlId,
+        checkedState,
+      }) => [
+        evo(model, {
+          liveExampleCheckboxCheckedStates: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, controlId),
+            checkedState,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleSwitchCheckedValue: ({
+        exampleId,
+        controlId,
+        isChecked,
+      }) => [
+        evo(model, {
+          liveExampleSwitchCheckedValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, controlId),
+            isChecked,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleAccordionValues: ({
+        exampleId,
+        accordionId,
+        values,
+      }) => [
+        evo(model, {
+          liveExampleAccordionValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, accordionId),
+            values,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleCollapsibleOpen: ({
+        exampleId,
+        collapsibleId,
+        open,
+      }) => [
+        evo(model, {
+          liveExampleCollapsibleOpenValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, collapsibleId),
+            open,
+          ),
+        }),
+        [],
+      ],
+      SelectedLiveExampleTabsValue: ({ exampleId, tabsId, value }) => [
+        evo(model, {
+          liveExampleTabsValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, tabsId),
+            value,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleTogglePressed: ({
+        exampleId,
+        controlId,
+        isPressed,
+      }) => [
+        evo(model, {
+          liveExampleTogglePressedValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, controlId),
+            isPressed,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleToggleGroupValues: ({ exampleId, groupId, values }) => [
+        evo(model, {
+          liveExampleToggleGroupValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, groupId),
+            values,
+          ),
         }),
         [],
       ],
@@ -847,6 +1350,69 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           liveExampleCommandDialogOpenValues: EffectRecord.set(
             exampleId,
             isOpen,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleOverlayOpen: ({ exampleId, overlayId, open }) => [
+        evo(model, {
+          liveExampleOverlayOpenValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, overlayId),
+            open,
+          ),
+        }),
+        [],
+      ],
+      UpdatedLiveExampleMenuOpen: ({
+        exampleId,
+        menuId,
+        open,
+        parentValue,
+      }) => {
+        const stateKey = liveExampleControlStateKey(exampleId, menuId)
+
+        if (parentValue !== undefined) {
+          const currentValues = pipe(
+            EffectRecord.get(model.liveExampleMenuOpenSubmenuValues, stateKey),
+            Option.getOrElse((): ReadonlyArray<string> => []),
+          )
+
+          return [
+            evo(model, {
+              liveExampleMenuOpenSubmenuValues: EffectRecord.set(
+                stateKey,
+                updateLiveExampleMenuSubmenuValues(
+                  currentValues,
+                  parentValue,
+                  open,
+                ),
+              ),
+            }),
+            [],
+          ]
+        }
+
+        return [
+          evo(model, {
+            liveExampleMenuOpenValues: EffectRecord.set(stateKey, open),
+          }),
+          [],
+        ]
+      },
+      UpdatedLiveExampleMenuContextPoint: ({ exampleId, menuId, point }) => [
+        evo(model, {
+          liveExampleMenuContextPoints: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, menuId),
+            point,
+          ),
+        }),
+        [],
+      ],
+      SelectedLiveExampleMenuValue: ({ exampleId, menuId, value }) => [
+        evo(model, {
+          liveExampleMenuValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, menuId),
+            value ?? '',
           ),
         }),
         [],
@@ -1996,11 +2562,39 @@ const examplesSectionView = (
   component: PublicComponent,
   copiedSnippets: HashSet.HashSet<string>,
   liveExampleInputValues: Readonly<Record<string, string>>,
+  liveExampleOtpValues: Readonly<Record<string, string>>,
+  liveExampleSliderValues: Readonly<Record<string, ReadonlyArray<number>>>,
+  liveExampleSelectOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleSelectValues: Readonly<Record<string, string>>,
+  liveExampleComboboxOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleComboboxInputValues: Readonly<Record<string, string>>,
+  liveExampleComboboxValues: Readonly<Record<string, string>>,
+  liveExampleComboboxMultipleValues: Readonly<
+    Record<string, ReadonlyArray<string>>
+  >,
   liveExampleRadioGroupValues: Readonly<Record<string, string>>,
+  liveExampleCheckboxCheckedStates: Readonly<Record<string, string>>,
+  liveExampleSwitchCheckedValues: Readonly<Record<string, boolean>>,
+  liveExampleAccordionValues: Readonly<Record<string, ReadonlyArray<string>>>,
+  liveExampleCollapsibleOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleTabsValues: Readonly<Record<string, string>>,
+  liveExampleTogglePressedValues: Readonly<Record<string, boolean>>,
+  liveExampleToggleGroupValues: Readonly<
+    Record<string, ReadonlyArray<string>>
+  >,
   liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
   liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
   liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleOverlayOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleMenuOpenValues: Readonly<Record<string, boolean>>,
+  liveExampleMenuOpenSubmenuValues: Readonly<
+    Record<string, ReadonlyArray<string>>
+  >,
+  liveExampleMenuContextPoints: Readonly<
+    Record<string, typeof ContextMenuPoint.Type>
+  >,
+  liveExampleMenuValues: Readonly<Record<string, string>>,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
@@ -2026,6 +2620,127 @@ const examplesSectionView = (
         exampleId: example.id,
         value: change.value,
       }),
+    otpValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(liveExampleOtpValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onOtpValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      UpdatedLiveExampleOtpValue({
+        exampleId: example.id,
+        value: change.value,
+      }),
+    sliderValuesFor: (
+      example: ExampleDocsArtifact,
+      sliderId: string,
+      defaultValues: ReadonlyArray<number>,
+    ): ReadonlyArray<number> =>
+      pipe(
+        EffectRecord.get(
+          liveExampleSliderValues,
+          liveExampleControlStateKey(example.id, sliderId),
+        ),
+        Option.getOrElse(() => defaultValues),
+      ),
+    onSliderValueChange: (
+      example: ExampleDocsArtifact,
+      sliderId: string,
+      change: Readonly<{ values: ReadonlyArray<number> }>,
+    ): Message =>
+      UpdatedLiveExampleSliderValues({
+        exampleId: example.id,
+        sliderId,
+        values: [...change.values],
+      }),
+    selectIsOpenFor: (example: ExampleDocsArtifact): boolean =>
+      pipe(
+        EffectRecord.get(liveExampleSelectOpenValues, example.id),
+        Option.getOrElse(() => false),
+      ),
+    selectValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(liveExampleSelectValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onSelectOpenChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleSelectOpen({
+        exampleId: example.id,
+        open: change.open,
+      }),
+    onSelectValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      SelectedLiveExampleSelectValue({
+        exampleId: example.id,
+        value: change.value,
+      }),
+    comboboxIsOpenFor: (example: ExampleDocsArtifact): boolean =>
+      pipe(
+        EffectRecord.get(liveExampleComboboxOpenValues, example.id),
+        Option.getOrElse(() => false),
+      ),
+    comboboxInputValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(liveExampleComboboxInputValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    comboboxValueFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(liveExampleComboboxValues, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
+    comboboxValuesFor: (
+      example: ExampleDocsArtifact,
+      defaultValues: ReadonlyArray<string>,
+    ): ReadonlyArray<string> =>
+      pipe(
+        EffectRecord.get(liveExampleComboboxMultipleValues, example.id),
+        Option.getOrElse(() => defaultValues),
+      ),
+    onComboboxOpenChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleComboboxOpen({
+        exampleId: example.id,
+        open: change.open,
+      }),
+    onComboboxInputValueChange: (
+      example: ExampleDocsArtifact,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      UpdatedLiveExampleComboboxInputValue({
+        exampleId: example.id,
+        value: change.value,
+      }),
+    onComboboxValueChange: (
+      example: ExampleDocsArtifact,
+      change: ComboboxValueChange,
+    ): Message =>
+      SelectedLiveExampleComboboxValue({
+        exampleId: example.id,
+        value: change.value,
+        values: [...change.values],
+      }),
     radioGroupValueFor: (
       example: ExampleDocsArtifact,
       defaultValue: string,
@@ -2043,6 +2758,168 @@ const examplesSectionView = (
       UpdatedLiveExampleRadioGroupValue({
         exampleId: example.id,
         value: change.value,
+      }),
+    checkboxCheckedStateFor: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      defaultCheckedState: 'checked' | 'unchecked' | 'indeterminate',
+    ): 'checked' | 'unchecked' | 'indeterminate' =>
+      pipe(
+        EffectRecord.get(
+          liveExampleCheckboxCheckedStates,
+          liveExampleControlStateKey(example.id, controlId),
+        ),
+        Option.filter(
+          (
+            checkedState,
+          ): checkedState is 'checked' | 'unchecked' | 'indeterminate' =>
+            checkedState === 'checked' ||
+            checkedState === 'unchecked' ||
+            checkedState === 'indeterminate',
+        ),
+        Option.getOrElse(() => defaultCheckedState),
+      ),
+    onCheckboxCheckedChange: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      change: Readonly<{ checkedState: string }>,
+    ): Message =>
+      UpdatedLiveExampleCheckboxCheckedState({
+        exampleId: example.id,
+        controlId,
+        checkedState: change.checkedState,
+      }),
+    switchIsCheckedFor: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      defaultIsChecked: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleSwitchCheckedValues,
+          liveExampleControlStateKey(example.id, controlId),
+        ),
+        Option.getOrElse(() => defaultIsChecked),
+      ),
+    onSwitchCheckedChange: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      change: Readonly<{ isChecked: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleSwitchCheckedValue({
+        exampleId: example.id,
+        controlId,
+        isChecked: change.isChecked,
+      }),
+    accordionValuesFor: (
+      example: ExampleDocsArtifact,
+      accordionId: string,
+      defaultValues: ReadonlyArray<string>,
+    ): ReadonlyArray<string> =>
+      pipe(
+        EffectRecord.get(
+          liveExampleAccordionValues,
+          liveExampleControlStateKey(example.id, accordionId),
+        ),
+        Option.getOrElse(() => defaultValues),
+      ),
+    onAccordionValueChange: (
+      example: ExampleDocsArtifact,
+      accordionId: string,
+      change: Readonly<{ value: ReadonlyArray<string> }>,
+    ): Message =>
+      UpdatedLiveExampleAccordionValues({
+        exampleId: example.id,
+        accordionId,
+        values: [...change.value],
+      }),
+    collapsibleIsOpenFor: (
+      example: ExampleDocsArtifact,
+      collapsibleId: string,
+      defaultOpen: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleCollapsibleOpenValues,
+          liveExampleControlStateKey(example.id, collapsibleId),
+        ),
+        Option.getOrElse(() => defaultOpen),
+      ),
+    onCollapsibleOpenChange: (
+      example: ExampleDocsArtifact,
+      collapsibleId: string,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleCollapsibleOpen({
+        exampleId: example.id,
+        collapsibleId,
+        open: change.open,
+      }),
+    tabsValueFor: (
+      example: ExampleDocsArtifact,
+      tabsId: string,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(
+          liveExampleTabsValues,
+          liveExampleControlStateKey(example.id, tabsId),
+        ),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onTabsValueChange: (
+      example: ExampleDocsArtifact,
+      tabsId: string,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      SelectedLiveExampleTabsValue({
+        exampleId: example.id,
+        tabsId,
+        value: change.value,
+      }),
+    toggleIsPressedFor: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      defaultIsPressed: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleTogglePressedValues,
+          liveExampleControlStateKey(example.id, controlId),
+        ),
+        Option.getOrElse(() => defaultIsPressed),
+      ),
+    onTogglePressedChange: (
+      example: ExampleDocsArtifact,
+      controlId: string,
+      change: Readonly<{ isPressed: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleTogglePressed({
+        exampleId: example.id,
+        controlId,
+        isPressed: change.isPressed,
+      }),
+    toggleGroupValuesFor: (
+      example: ExampleDocsArtifact,
+      groupId: string,
+      defaultValues: ReadonlyArray<string>,
+    ): ReadonlyArray<string> =>
+      pipe(
+        EffectRecord.get(
+          liveExampleToggleGroupValues,
+          liveExampleControlStateKey(example.id, groupId),
+        ),
+        Option.getOrElse(() => defaultValues),
+      ),
+    onToggleGroupValueChange: (
+      example: ExampleDocsArtifact,
+      groupId: string,
+      change: Readonly<{ value: ReadonlyArray<string> }>,
+    ): Message =>
+      UpdatedLiveExampleToggleGroupValues({
+        exampleId: example.id,
+        groupId,
+        values: [...change.value],
       }),
     calendarSelectedDateFor: (
       example: ExampleDocsArtifact,
@@ -2125,6 +3002,109 @@ const examplesSectionView = (
         exampleId: example.id,
         isOpen: change.open,
       }),
+    overlayIsOpenFor: (
+      example: ExampleDocsArtifact,
+      overlayId: string,
+      defaultOpen: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleOverlayOpenValues,
+          liveExampleControlStateKey(example.id, overlayId),
+        ),
+        Option.getOrElse(() => defaultOpen),
+      ),
+    onOverlayOpenChange: (
+      example: ExampleDocsArtifact,
+      overlayId: string,
+      change: Readonly<{ open: boolean }>,
+    ): Message =>
+      UpdatedLiveExampleOverlayOpen({
+        exampleId: example.id,
+        overlayId,
+        open: change.open,
+      }),
+    menuIsOpenFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      defaultOpen: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleMenuOpenValues,
+          liveExampleControlStateKey(example.id, menuId),
+        ),
+        Option.getOrElse(() => defaultOpen),
+      ),
+    menuOpenSubmenuValuesFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      defaultValues: ReadonlyArray<string>,
+    ): ReadonlyArray<string> =>
+      pipe(
+        EffectRecord.get(
+          liveExampleMenuOpenSubmenuValues,
+          liveExampleControlStateKey(example.id, menuId),
+        ),
+        Option.getOrElse(() => defaultValues),
+      ),
+    menuContextPointFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+    ): Option.Option<typeof ContextMenuPoint.Type> =>
+      EffectRecord.get(
+        liveExampleMenuContextPoints,
+        liveExampleControlStateKey(example.id, menuId),
+      ),
+    menuValueFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(
+          liveExampleMenuValues,
+          liveExampleControlStateKey(example.id, menuId),
+        ),
+        Option.filter(value => value !== ''),
+        Option.getOrElse(() => defaultValue),
+      ),
+    onMenuOpenChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      change: Readonly<{
+        open: boolean
+        parentValue?: string | undefined
+      }>,
+    ): Message =>
+      UpdatedLiveExampleMenuOpen({
+        exampleId: example.id,
+        menuId,
+        open: change.open,
+        ...(change.parentValue === undefined
+          ? {}
+          : { parentValue: change.parentValue }),
+      }),
+    onMenuContextPointChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      point: typeof ContextMenuPoint.Type,
+    ): Message =>
+      UpdatedLiveExampleMenuContextPoint({
+        exampleId: example.id,
+        menuId,
+        point,
+      }),
+    onMenuValueChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      change: Readonly<{ value?: string | undefined }>,
+    ): Message =>
+      SelectedLiveExampleMenuValue({
+        exampleId: example.id,
+        menuId,
+        ...(change.value === undefined ? {} : { value: change.value }),
+      }),
     toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
       pipe(
         EffectRecord.get(liveExampleToastStates, example.id),
@@ -2132,7 +3112,10 @@ const examplesSectionView = (
       ),
     onToastMessage: (
       example: ExampleDocsArtifact,
-      message: ToastExampleMessageType,
+      message:
+        | ToastExampleMessageType
+        | SonnerExampleMessageType
+        | ShadcnToastExampleMessageType,
     ): Message =>
       GotLiveExampleToastMessage({
         exampleId: example.id,
@@ -2427,11 +3410,31 @@ const componentDetailPageView = (
           component,
           model.copiedSnippets,
           model.liveExampleInputValues,
+          model.liveExampleOtpValues,
+          model.liveExampleSliderValues,
+          model.liveExampleSelectOpenValues,
+          model.liveExampleSelectValues,
+          model.liveExampleComboboxOpenValues,
+          model.liveExampleComboboxInputValues,
+          model.liveExampleComboboxValues,
+          model.liveExampleComboboxMultipleValues,
           model.liveExampleRadioGroupValues,
+          model.liveExampleCheckboxCheckedStates,
+          model.liveExampleSwitchCheckedValues,
+          model.liveExampleAccordionValues,
+          model.liveExampleCollapsibleOpenValues,
+          model.liveExampleTabsValues,
+          model.liveExampleTogglePressedValues,
+          model.liveExampleToggleGroupValues,
           model.liveExampleCalendarSelectedDates,
           model.liveExampleCarouselSelectedIndexes,
           model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,
+          model.liveExampleOverlayOpenValues,
+          model.liveExampleMenuOpenValues,
+          model.liveExampleMenuOpenSubmenuValues,
+          model.liveExampleMenuContextPoints,
+          model.liveExampleMenuValues,
           model.liveExampleToastStates,
           model.liveExampleSidebarOpenValues,
           model.liveExampleSidebarPanelOpenValues,

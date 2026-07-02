@@ -16,9 +16,20 @@ type ComponentLink = Readonly<{
   description: string
 }>
 
-type NavigationMenuContentView = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+type NavigationMenuContentView<Message> = (
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ) => Html
+
+export type NavigationMenuExampleController<Message> = Readonly<{
+  valueFor: (
+    menuId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  onValueChange: (
+    menuId: string,
+    change: NavigationMenu.NavigationMenuValueChange,
+  ) => Message
+}>
 
 const components: ReadonlyArray<ComponentLink> = [
   {
@@ -169,10 +180,10 @@ const iconLink = (label: string, icon: Html): Html => {
   )
 }
 
-const gettingStartedContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const gettingStartedContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root],
@@ -201,10 +212,10 @@ const gettingStartedContent = (
   )
 }
 
-const componentsContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const componentsContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root],
@@ -221,10 +232,10 @@ const componentsContent = (
   )
 }
 
-const iconContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const iconContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root],
@@ -246,10 +257,10 @@ const iconContent = (
   )
 }
 
-const rtlGettingStartedContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const rtlGettingStartedContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root, h.DataAttribute('lang', 'ar')],
@@ -279,10 +290,10 @@ const rtlGettingStartedContent = (
   )
 }
 
-const rtlComponentsContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const rtlComponentsContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root, h.DataAttribute('lang', 'ar')],
@@ -305,10 +316,10 @@ const rtlComponentsContent = (
   )
 }
 
-const rtlIconContent = (
-  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<never>,
+const rtlIconContent = <Message>(
+  itemAttributes: NavigationMenu.NavigationMenuItemAttributes<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return h.div(
     [...itemAttributes.content.root, h.DataAttribute('lang', 'ar')],
@@ -330,7 +341,10 @@ const rtlIconContent = (
   )
 }
 
-const contentView = (value: string, rtl = false): NavigationMenuContentView => {
+const contentView = <Message>(
+  value: string,
+  rtl = false,
+): NavigationMenuContentView<Message> => {
   if (value === 'components') {
     return rtl ? rtlComponentsContent : componentsContent
   }
@@ -342,7 +356,7 @@ const contentView = (value: string, rtl = false): NavigationMenuContentView => {
   return rtl ? rtlGettingStartedContent : gettingStartedContent
 }
 
-const navigationMenuExample = (
+const navigationMenuExampleWithController = <Message = never>(
   config: Readonly<{
     id: string
     items: ReadonlyArray<NavigationMenuItemDescriptor>
@@ -350,15 +364,23 @@ const navigationMenuExample = (
     dir?: string
     rtl?: boolean
   }>,
+  controller?: NavigationMenuExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const fallbackValue = controller === undefined ? config.value : undefined
+  const value = controller?.valueFor(config.id, fallbackValue) ?? fallbackValue
 
-  return NavigationMenu.view<never>({
+  return NavigationMenu.view<Message>({
     id: config.id,
     items: config.items,
-    value: config.value,
+    value,
     dir: config.dir,
     align: config.dir === 'rtl' ? 'end' : 'start',
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change => controller.onValueChange(config.id, change),
+        }),
     toView: attributes =>
       h.nav(
         [...attributes.root],
@@ -415,21 +437,31 @@ const navigationMenuExample = (
   })
 }
 
-export const NavigationMenuDemo = (): Html =>
-  navigationMenuExample({
-    id: 'navigation-menu-demo',
-    items: navigationItems,
-    value: 'getting-started',
-  })
+export const NavigationMenuDemo = <Message = never>(
+  controller?: NavigationMenuExampleController<Message>,
+): Html =>
+  navigationMenuExampleWithController(
+    {
+      id: 'navigation-menu-demo',
+      items: navigationItems,
+      value: 'getting-started',
+    },
+    controller,
+  )
 
-export const NavigationMenuRtl = (): Html =>
-  navigationMenuExample({
-    id: 'navigation-menu-rtl',
-    items: rtlNavigationItems,
-    value: 'getting-started',
-    dir: 'rtl',
-    rtl: true,
-  })
+export const NavigationMenuRtl = <Message = never>(
+  controller?: NavigationMenuExampleController<Message>,
+): Html =>
+  navigationMenuExampleWithController(
+    {
+      id: 'navigation-menu-rtl',
+      items: rtlNavigationItems,
+      value: 'getting-started',
+      dir: 'rtl',
+      rtl: true,
+    },
+    controller,
+  )
 
 export const navigationMenuExampleViews: ReadonlyArray<ExampleDefinition> = [
   {

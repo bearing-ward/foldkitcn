@@ -10,65 +10,18 @@ This artifact lists every generated docs example card that currently does not
 render `.live-example-preview`. Static rows are known backlog;
 `missing-live-renderer` rows are a stop condition.
 
-- Total example cards: 426
-- Cards with `.live-example-preview`: 168
-- Cards missing `.live-example-preview`: 258
+- Total example cards: 411
+- Cards with `.live-example-preview`: 410
+- Cards missing `.live-example-preview`: 1
 
 ## Missing Count By Reason
 
 | Reason          | Missing preview cards |
 | --------------- | --------------------- |
-| `static-status` | 258                   |
+| `static-status` | 1                     |
 
 ## Missing Count By Component
 
-| Component                | Missing preview cards |
-| ------------------------ | --------------------- |
-| `shadcn/dropdown-menu`   | 13                    |
-| `shadcn/input-otp`       | 12                    |
-| `shadcn/combobox`        | 11                    |
-| `shadcn/context-menu`    | 11                    |
-| `shadcn/avatar`          | 10                    |
-| `shadcn/checkbox`        | 8                     |
-| `shadcn/toggle-group`    | 8                     |
-| `shadcn/alert-dialog`    | 7                     |
-| `shadcn/badge`           | 7                     |
-| `shadcn/breadcrumb`      | 7                     |
-| `shadcn/field`           | 7                     |
-| `shadcn/select`          | 7                     |
-| `shadcn/skeleton`        | 7                     |
-| `shadcn/slider`          | 7                     |
-| `shadcn/switch`          | 7                     |
-| `shadcn/alert`           | 6                     |
-| `shadcn/card`            | 6                     |
-| `shadcn/dialog`          | 6                     |
-| `shadcn/input`           | 6                     |
-| `shadcn/kbd`             | 6                     |
-| `shadcn/menubar`         | 6                     |
-| `shadcn/tabs`            | 6                     |
-| `shadcn/textarea`        | 6                     |
-| `shadcn/toggle`          | 6                     |
-| `shadcn/accordion`       | 5                     |
-| `shadcn/collapsible`     | 5                     |
-| `shadcn/native-select`   | 5                     |
-| `shadcn/popover`         | 5                     |
-| `shadcn/separator`       | 5                     |
-| `shadcn/tooltip`         | 5                     |
-| `shadcn/aspect-ratio`    | 4                     |
-| `shadcn/drawer`          | 4                     |
-| `shadcn/progress`        | 4                     |
-| `shadcn/sheet`           | 4                     |
-| `shadcn/sonner`          | 4                     |
-| `shadcn/hover-card`      | 3                     |
-| `shadcn/scroll-area`     | 3                     |
-| `base-ui/field`          | 2                     |
-| `base-ui/fieldset`       | 2                     |
-| `base-ui/form`           | 2                     |
-| `base-ui/number-field`   | 2                     |
-| `base-ui/otp-field`      | 2                     |
-| `shadcn/direction`       | 2                     |
-| `shadcn/label`           | 2                     |
-| `shadcn/navigation-menu` | 2                     |
-| `base-ui/avatar`         | 1                     |
-| `shadcn/attachment`      | 1                     |
-| `shadcn/spinner`         | 1                     |
+| Component           | Missing preview cards |
+| ------------------- | --------------------- |
+| `shadcn/attachment` | 1                     |

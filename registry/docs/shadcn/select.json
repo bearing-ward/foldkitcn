@@ -139,7 +139,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectDemo = (): Html =>\n  selectShell({\n    id: 'select-demo',\n    items: fruitItems,\n    placeholder: 'Select a fruit',\n    triggerClassName: 'w-full max-w-48',\n    groups: [{ label: 'Fruits', items: fruitItems }],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectDemo",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -151,7 +151,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectDisabled = (): Html =>\n  selectShell({\n    id: 'select-disabled',\n    items: fruitItems.map(item =>\n      item.value === 'grapes' ? { ...item, isDisabled: true } : item,\n    ),\n    placeholder: 'Select a fruit',\n    disabled: true,\n    triggerClassName: 'w-full max-w-48',\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectDisabled",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -163,7 +163,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectGroups = (): Html =>\n  selectShell({\n    id: 'select-groups',\n    items: [...fruitItems, ...vegetableItems],\n    placeholder: 'Select a fruit',\n    triggerClassName: 'w-full max-w-48',\n    groups: [\n      { label: 'Fruits', items: fruitItems },\n      { label: 'Vegetables', items: vegetableItems },\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectGroups",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -175,7 +175,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectScrollable = (): Html =>\n  selectShell({\n    id: 'select-scrollable',\n    items: allTimezones(),\n    placeholder: 'Select a timezone',\n    triggerClassName: 'w-full max-w-64',\n    groups: timezoneGroups,\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectScrollable",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -187,7 +187,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectAlignItem = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class(fieldGroupClassName)],\n    [\n      h.div(\n        [h.Class('flex items-center justify-between gap-4')],\n        [\n          h.div(\n            [h.Class(fieldClassName)],\n            [\n              h.label([h.Class(fieldLabelClassName)], ['Align Item']),\n              h.p(\n                [h.Class(fieldDescriptionClassName)],\n                ['Toggle to align the item with the trigger.'],\n              ),\n            ],\n          ),\n          h.button(\n            [\n              h.Type('button'),\n              h.Id('align-item'),\n              h.Role('switch'),\n              h.AriaChecked(true),\n              h.DataAttribute('state', 'checked'),\n              h.Class(switchClassName),\n            ],\n            [],\n          ),\n        ],\n      ),\n      selectShell({\n        id: 'select-align-item',\n        items: fruitItems,\n        placeholder: 'Select a fruit',\n        value: 'banana',\n        highlightedValue: 'banana',\n        alignItemWithTrigger: true,\n      }),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectAlignItem",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -199,7 +199,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectInvalid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('w-full max-w-48'), h.DataAttribute('invalid', '')],\n    [\n      h.label([h.Class(fieldLabelClassName)], ['Fruit']),\n      selectShell({\n        id: 'select-invalid',\n        items: fruitItems.slice(0, 3),\n        placeholder: 'Select a fruit',\n        invalid: true,\n      }),\n      h.p([h.Class(fieldErrorClassName)], ['Please select a fruit.']),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectInvalid",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []
@@ -211,7 +211,7 @@
       "componentItemId": "shadcn/select",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
       "snippet": "export const SelectRtl = (): Html =>\n  selectShell({\n    id: 'select-rtl',\n    items: [\n      { label: 'تفاح', value: 'apple' },\n      { label: 'موز', value: 'banana' },\n      { label: 'توت أزرق', value: 'blueberry' },\n      { label: 'عنب', value: 'grapes' },\n      { label: 'أناناس', value: 'pineapple' },\n      { label: 'جزر', value: 'carrot' },\n      { label: 'بروكلي', value: 'broccoli' },\n      { label: 'سبانخ', value: 'spinach' },\n    ],\n    placeholder: 'اختر فاكهة',\n    triggerClassName: 'w-32',\n    dir: 'rtl',\n    groups: [\n      {\n        label: 'الفواكه',\n        items: [\n          { label: 'تفاح', value: 'apple' },\n          { label: 'موز', value: 'banana' },\n          { label: 'توت أزرق', value: 'blueberry' },\n          { label: 'عنب', value: 'grapes' },\n          { label: 'أناناس', value: 'pineapple' },\n        ],\n      },\n      {\n        label: 'الخضروات',\n        items: [\n          { label: 'جزر', value: 'carrot' },\n          { label: 'بروكلي', value: 'broccoli' },\n          { label: 'سبانخ', value: 'spinach' },\n        ],\n      },\n    ],\n  })",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "SelectRtl",
       "requiredRegistryItems": ["base-ui/select", "utils/cn"],
       "notes": []

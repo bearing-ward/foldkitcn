@@ -103,7 +103,7 @@
       "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
       "snippet": "export const AspectRatioDemo = (): Html =>\n  aspectRatio(16 / 9, 'w-full max-w-sm rounded-lg bg-muted')",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "AspectRatioDemo",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -115,7 +115,7 @@
       "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
       "snippet": "export const AspectRatioPortrait = (): Html =>\n  aspectRatio(9 / 16, 'w-full max-w-[10rem] rounded-lg bg-muted')",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "AspectRatioPortrait",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -127,7 +127,7 @@
       "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
       "snippet": "export const AspectRatioRtl = (): Html => {\n  const h = html<never>()\n  const { dir, values } = arabicAspectRatioRtl\n\n  return h.figure(\n    [h.Class('w-full max-w-sm'), h.Dir(dir)],\n    [\n      aspectRatio(16 / 9, 'rounded-lg bg-muted'),\n      h.figcaption(\n        [h.Class('mt-2 text-center text-sm text-muted-foreground')],\n        [values.caption],\n      ),\n    ],\n  )\n}",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "AspectRatioRtl",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []
@@ -139,7 +139,7 @@
       "componentItemId": "shadcn/aspect-ratio",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
       "snippet": "export const AspectRatioSquare = (): Html =>\n  aspectRatio(1 / 1, 'w-full max-w-[12rem] rounded-lg bg-muted')",
-      "previewStatus": "static",
+      "previewStatus": "live-ready",
       "previewExportName": "AspectRatioSquare",
       "requiredRegistryItems": ["utils/cn"],
       "notes": []

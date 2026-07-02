@@ -3,7 +3,23 @@ import type { Html } from 'foldkit/html'
 
 import * as Accordion from './index'
 
-type Message = never
+export type AccordionExampleController<Message> = Readonly<{
+  valueFor: (
+    exampleId: string,
+    defaultValue: ReadonlyArray<string>,
+  ) => ReadonlyArray<string>
+  onValueChange: (
+    exampleId: string,
+    change: Accordion.AccordionValueChange,
+  ) => Message
+}>
+
+const accordionValue = <Message>(
+  controller: AccordionExampleController<Message> | undefined,
+  exampleId: string,
+  defaultValue: ReadonlyArray<string>,
+): ReadonlyArray<string> =>
+  controller?.valueFor(exampleId, defaultValue) ?? defaultValue
 
 const faqItems: ReadonlyArray<Accordion.AccordionItemDescriptor> = [
   {
@@ -80,28 +96,38 @@ const settingsItems: ReadonlyArray<Accordion.AccordionItemDescriptor> = [
   },
 ]
 
-export const AccordionBasic = (): ReturnType<typeof Accordion.view<Message>> =>
+export const AccordionBasic = <Message = never>(
+  controller?: AccordionExampleController<Message>,
+): ReturnType<typeof Accordion.view<Message>> =>
   Accordion.view<Message>({
-    value: ['item-1'],
+    value: accordionValue(controller, 'basic', ['item-1']),
     items: faqItems,
     className: 'max-w-lg',
+    ...(controller === undefined
+      ? {}
+      : { onValueChange: change => controller.onValueChange('basic', change) }),
   })
 
-export const AccordionMultiple = (): ReturnType<
-  typeof Accordion.view<Message>
-> =>
+export const AccordionMultiple = <Message = never>(
+  controller?: AccordionExampleController<Message>,
+): ReturnType<typeof Accordion.view<Message>> =>
   Accordion.view<Message>({
-    value: ['notifications', 'billing'],
+    value: accordionValue(controller, 'multiple', ['notifications', 'billing']),
     items: settingsItems,
     multiple: true,
     className: 'max-w-lg',
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change => controller.onValueChange('multiple', change),
+        }),
   })
 
-export const AccordionDisabled = (): ReturnType<
-  typeof Accordion.view<Message>
-> =>
+export const AccordionDisabled = <Message = never>(
+  controller?: AccordionExampleController<Message>,
+): ReturnType<typeof Accordion.view<Message>> =>
   Accordion.view<Message>({
-    value: [],
+    value: accordionValue(controller, 'disabled', []),
     items: [
       faqPasswordItem,
       {
@@ -111,17 +137,29 @@ export const AccordionDisabled = (): ReturnType<
       faqPaymentItem,
     ],
     className: 'max-w-lg',
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change => controller.onValueChange('disabled', change),
+        }),
   })
 
-export const AccordionRtl = (): ReturnType<typeof Accordion.view<Message>> =>
+export const AccordionRtl = <Message = never>(
+  controller?: AccordionExampleController<Message>,
+): ReturnType<typeof Accordion.view<Message>> =>
   Accordion.view<Message>({
-    value: ['item-1'],
+    value: accordionValue(controller, 'rtl', ['item-1']),
     items: faqItems,
     className: 'max-w-lg',
     dir: 'rtl',
+    ...(controller === undefined
+      ? {}
+      : { onValueChange: change => controller.onValueChange('rtl', change) }),
   })
 
-export const AccordionCard = (): Html => {
+export const AccordionCard = <Message = never>(
+  controller?: AccordionExampleController<Message>,
+): Html => {
   const h = html<Message>()
 
   return h.div(
@@ -133,8 +171,13 @@ export const AccordionCard = (): Html => {
     [
       h.h3([h.Class('mb-2 text-sm font-medium')], ['Account questions']),
       Accordion.view<Message>({
-        value: ['item-1'],
+        value: accordionValue(controller, 'card', ['item-1']),
         items: faqItems,
+        ...(controller === undefined
+          ? {}
+          : {
+              onValueChange: change => controller.onValueChange('card', change),
+            }),
       }),
     ],
   )

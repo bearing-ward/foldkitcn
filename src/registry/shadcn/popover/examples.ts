@@ -1,8 +1,19 @@
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
-import type { PopoverAlign, PopoverSide } from './index'
 import { view as Popover } from './index'
+import type { PopoverAlign, PopoverOpenChange, PopoverSide } from './index'
+
+export type PopoverExampleController<Message> = Readonly<{
+  openFor?: (popoverId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (popoverId: string, change: PopoverOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: PopoverExampleController<Message>,
+  popoverId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(popoverId, defaultOpen) ?? defaultOpen
 
 const buttonClassName = (className: string): string =>
   [
@@ -13,7 +24,7 @@ const buttonClassName = (className: string): string =>
 const inputClassName =
   'h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40'
 
-const popoverShell = (
+const popoverShell = <Message>(
   config: Readonly<{
     id: string
     trigger: string
@@ -25,12 +36,17 @@ const popoverShell = (
     dir?: string
     body?: ReadonlyArray<Html>
   }>,
+  controller: PopoverExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return Popover<never>({
+  return Popover<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onOpenChange(config.id, change) }),
     side: config.side,
     align: config.align,
     dir: config.dir,
@@ -139,83 +155,113 @@ const compactFields = (): ReadonlyArray<Html> => {
   ]
 }
 
-export const PopoverBasic = (): Html =>
-  popoverShell({
-    id: 'popover-basic',
-    trigger: 'Open Popover',
-    title: 'Dimensions',
-    description: 'Set the dimensions for the layer.',
-    align: 'start',
-  })
+export const PopoverBasic = <Message = never>(
+  controller: PopoverExampleController<Message> = {},
+): Html =>
+  popoverShell(
+    {
+      id: 'popover-basic',
+      trigger: 'Open Popover',
+      title: 'Dimensions',
+      description: 'Set the dimensions for the layer.',
+      align: 'start',
+    },
+    controller,
+  )
 
-export const PopoverDemo = (): Html => {
+export const PopoverDemo = <Message = never>(
+  controller: PopoverExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
-  return popoverShell({
-    id: 'popover-demo',
-    trigger: 'Open popover',
-    title: 'Dimensions',
-    description: 'Set the dimensions for the layer.',
-    contentClassName: 'w-80',
-    body: [
-      h.div(
-        [h.Class('grid gap-4')],
-        [h.div([h.Class('space-y-2')], []), ...dimensionFields()],
-      ),
-    ],
-  })
+  return popoverShell(
+    {
+      id: 'popover-demo',
+      trigger: 'Open popover',
+      title: 'Dimensions',
+      description: 'Set the dimensions for the layer.',
+      contentClassName: 'w-80',
+      body: [
+        h.div(
+          [h.Class('grid gap-4')],
+          [h.div([h.Class('space-y-2')], []), ...dimensionFields()],
+        ),
+      ],
+    },
+    controller,
+  )
 }
 
-export const PopoverForm = (): Html =>
-  popoverShell({
-    id: 'popover-form',
-    trigger: 'Open Popover',
-    title: 'Dimensions',
-    description: 'Set the dimensions for the layer.',
-    align: 'start',
-    contentClassName: 'w-64',
-    body: compactFields(),
-  })
+export const PopoverForm = <Message = never>(
+  controller: PopoverExampleController<Message> = {},
+): Html =>
+  popoverShell(
+    {
+      id: 'popover-form',
+      trigger: 'Open Popover',
+      title: 'Dimensions',
+      description: 'Set the dimensions for the layer.',
+      align: 'start',
+      contentClassName: 'w-64',
+      body: compactFields(),
+    },
+    controller,
+  )
 
-const alignmentPopover = (align: PopoverAlign, trigger: string): Html =>
-  popoverShell({
-    id: `popover-align-${align}`,
-    trigger,
-    title: `Aligned to ${align}`,
-    description: `Aligned to ${align}`,
-    align,
-    contentClassName: 'w-40',
-  })
+const alignmentPopover = <Message>(
+  align: PopoverAlign,
+  trigger: string,
+  controller: PopoverExampleController<Message>,
+): Html =>
+  popoverShell(
+    {
+      id: `popover-align-${align}`,
+      trigger,
+      title: `Aligned to ${align}`,
+      description: `Aligned to ${align}`,
+      align,
+      contentClassName: 'w-40',
+    },
+    controller,
+  )
 
-export const PopoverAlignments = (): Html => {
+export const PopoverAlignments = <Message = never>(
+  controller: PopoverExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
   return h.div(
     [h.Class('flex gap-6')],
     [
-      alignmentPopover('start', 'Start'),
-      alignmentPopover('center', 'Center'),
-      alignmentPopover('end', 'End'),
+      alignmentPopover('start', 'Start', controller),
+      alignmentPopover('center', 'Center', controller),
+      alignmentPopover('end', 'End', controller),
     ],
   )
 }
 
-const rtlPopover = (
+const rtlPopover = <Message>(
   side: PopoverSide,
   trigger: string,
   title: string,
   description: string,
+  controller: PopoverExampleController<Message>,
 ): Html =>
-  popoverShell({
-    id: `popover-rtl-${side}`,
-    trigger,
-    title,
-    description,
-    side,
-    dir: 'rtl',
-  })
+  popoverShell(
+    {
+      id: `popover-rtl-${side}`,
+      trigger,
+      title,
+      description,
+      side,
+      dir: 'rtl',
+    },
+    controller,
+  )
 
-export const PopoverRtl = (): Html => {
+export const PopoverRtl = <Message = never>(
+  controller: PopoverExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
   return h.div(
@@ -224,10 +270,34 @@ export const PopoverRtl = (): Html => {
       h.div(
         [h.Class('flex flex-wrap justify-center gap-2')],
         [
-          rtlPopover('left', 'Left', 'Dimensions', 'Set the dimensions.'),
-          rtlPopover('top', 'Top', 'Dimensions', 'Set the dimensions.'),
-          rtlPopover('bottom', 'Bottom', 'Dimensions', 'Set the dimensions.'),
-          rtlPopover('right', 'Right', 'Dimensions', 'Set the dimensions.'),
+          rtlPopover(
+            'left',
+            'Left',
+            'Dimensions',
+            'Set the dimensions.',
+            controller,
+          ),
+          rtlPopover(
+            'top',
+            'Top',
+            'Dimensions',
+            'Set the dimensions.',
+            controller,
+          ),
+          rtlPopover(
+            'bottom',
+            'Bottom',
+            'Dimensions',
+            'Set the dimensions.',
+            controller,
+          ),
+          rtlPopover(
+            'right',
+            'Right',
+            'Dimensions',
+            'Set the dimensions.',
+            controller,
+          ),
         ],
       ),
       h.div(
@@ -238,12 +308,14 @@ export const PopoverRtl = (): Html => {
             'Inline Start',
             'Dimensions',
             'Set the dimensions.',
+            controller,
           ),
           rtlPopover(
             'inline-end',
             'Inline End',
             'Dimensions',
             'Set the dimensions.',
+            controller,
           ),
         ],
       ),

@@ -3,9 +3,20 @@ import { html } from 'foldkit/html'
 
 import * as Button from '../button'
 import { view as AlertDialog } from './index'
-import type { AlertDialogSize } from './index'
+import type { AlertDialogOpenChange, AlertDialogSize } from './index'
 
 type IconName = 'bluetooth' | 'circle-fading-plus' | 'trash'
+
+export type AlertDialogExampleController<Message> = Readonly<{
+  openFor?: (dialogId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (dialogId: string, change: AlertDialogOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: AlertDialogExampleController<Message>,
+  dialogId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(dialogId, defaultOpen) ?? defaultOpen
 
 const icon = (
   name: IconName,
@@ -65,7 +76,7 @@ const trashIcon = (): Html => {
   ])
 }
 
-const alertDialogShell = (
+const alertDialogShell = <Message>(
   config: Readonly<{
     id: string
     trigger: string
@@ -81,12 +92,19 @@ const alertDialogShell = (
     triggerVariant?: Button.ButtonVariant
     actionVariant?: Button.ButtonVariant
   }>,
+  controller: AlertDialogExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return AlertDialog<never>({
+  return AlertDialog<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : {
+          onOpenChange: change => onOpenChange(config.id, change),
+        }),
     titleId: `${config.id}-title`,
     descriptionId: `${config.id}-description`,
     size: config.size,
@@ -97,7 +115,7 @@ const alertDialogShell = (
       h.div(
         [...attributes.root],
         [
-          Button.view<never>({
+          Button.view<Message>({
             variant: config.triggerVariant ?? 'outline',
             toView: buttonAttributes =>
               h.button(
@@ -143,123 +161,161 @@ const alertDialogShell = (
   })
 }
 
-export const AlertDialogDemo = (): Html =>
-  alertDialogShell({
-    id: 'alert-dialog-demo',
-    trigger: 'Show Dialog',
-    title: 'Are you absolutely sure?',
-    description: [
-      'This action cannot be undone. This will permanently delete your account from our servers.',
-    ],
-    cancel: 'Cancel',
-    action: 'Continue',
-  })
+export const AlertDialogDemo = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html =>
+  alertDialogShell(
+    {
+      id: 'alert-dialog-demo',
+      trigger: 'Show Dialog',
+      title: 'Are you absolutely sure?',
+      description: [
+        'This action cannot be undone. This will permanently delete your account from our servers.',
+      ],
+      cancel: 'Cancel',
+      action: 'Continue',
+    },
+    controller,
+  )
 
-export const AlertDialogBasic = (): Html =>
-  alertDialogShell({
-    id: 'alert-dialog-basic',
-    trigger: 'Show Dialog',
-    title: 'Are you absolutely sure?',
-    description: [
-      'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
-    ],
-    cancel: 'Cancel',
-    action: 'Continue',
-  })
+export const AlertDialogBasic = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html =>
+  alertDialogShell(
+    {
+      id: 'alert-dialog-basic',
+      trigger: 'Show Dialog',
+      title: 'Are you absolutely sure?',
+      description: [
+        'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+      ],
+      cancel: 'Cancel',
+      action: 'Continue',
+    },
+    controller,
+  )
 
-export const AlertDialogDestructive = (): Html => {
+export const AlertDialogDestructive = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
-  return alertDialogShell({
-    id: 'alert-dialog-destructive',
-    trigger: 'Delete Chat',
-    triggerVariant: 'destructive',
-    title: 'Delete chat?',
-    description: [
-      'This will permanently delete this chat conversation. View ',
-      h.a([h.Href('#')], ['Settings']),
-      ' delete any memories saved during this chat.',
-    ],
-    cancel: 'Cancel',
-    action: 'Delete',
-    size: 'sm',
-    media: trashIcon(),
-    mediaClassName:
-      'bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive',
-    actionVariant: 'destructive',
-  })
+  return alertDialogShell(
+    {
+      id: 'alert-dialog-destructive',
+      trigger: 'Delete Chat',
+      triggerVariant: 'destructive',
+      title: 'Delete chat?',
+      description: [
+        'This will permanently delete this chat conversation. View ',
+        h.a([h.Href('#')], ['Settings']),
+        ' delete any memories saved during this chat.',
+      ],
+      cancel: 'Cancel',
+      action: 'Delete',
+      size: 'sm',
+      media: trashIcon(),
+      mediaClassName:
+        'bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive',
+      actionVariant: 'destructive',
+    },
+    controller,
+  )
 }
 
-export const AlertDialogWithMedia = (): Html =>
-  alertDialogShell({
-    id: 'alert-dialog-media',
-    trigger: 'Share Project',
-    title: 'Share this project?',
-    description: [
-      'Anyone with the link will be able to view and edit this project.',
-    ],
-    cancel: 'Cancel',
-    action: 'Share',
-    media: circleFadingPlusIcon(),
-  })
+export const AlertDialogWithMedia = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html =>
+  alertDialogShell(
+    {
+      id: 'alert-dialog-media',
+      trigger: 'Share Project',
+      title: 'Share this project?',
+      description: [
+        'Anyone with the link will be able to view and edit this project.',
+      ],
+      cancel: 'Cancel',
+      action: 'Share',
+      media: circleFadingPlusIcon(),
+    },
+    controller,
+  )
 
-export const AlertDialogSmall = (): Html =>
-  alertDialogShell({
-    id: 'alert-dialog-small',
-    trigger: 'Show Dialog',
-    title: 'Allow accessory to connect?',
-    description: [
-      'Do you want to allow the USB accessory to connect to this device?',
-    ],
-    cancel: "Don't allow",
-    action: 'Allow',
-    size: 'sm',
-  })
+export const AlertDialogSmall = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html =>
+  alertDialogShell(
+    {
+      id: 'alert-dialog-small',
+      trigger: 'Show Dialog',
+      title: 'Allow accessory to connect?',
+      description: [
+        'Do you want to allow the USB accessory to connect to this device?',
+      ],
+      cancel: "Don't allow",
+      action: 'Allow',
+      size: 'sm',
+    },
+    controller,
+  )
 
-export const AlertDialogSmallWithMedia = (): Html =>
-  alertDialogShell({
-    id: 'alert-dialog-small-media',
-    trigger: 'Show Dialog',
-    title: 'Allow accessory to connect?',
-    description: [
-      'Do you want to allow the USB accessory to connect to this device?',
-    ],
-    cancel: "Don't allow",
-    action: 'Allow',
-    size: 'sm',
-    media: bluetoothIcon(),
-  })
+export const AlertDialogSmallWithMedia = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html =>
+  alertDialogShell(
+    {
+      id: 'alert-dialog-small-media',
+      trigger: 'Show Dialog',
+      title: 'Allow accessory to connect?',
+      description: [
+        'Do you want to allow the USB accessory to connect to this device?',
+      ],
+      cancel: "Don't allow",
+      action: 'Allow',
+      size: 'sm',
+      media: bluetoothIcon(),
+    },
+    controller,
+  )
 
-export const AlertDialogRtl = (): Html => {
+export const AlertDialogRtl = <Message = never>(
+  controller: AlertDialogExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
   return h.div(
     [h.Class('flex gap-4'), h.Dir('rtl')],
     [
-      alertDialogShell({
-        id: 'alert-dialog-rtl-default',
-        trigger: 'إظهار الحوار',
-        title: 'هل أنت متأكد تمامًا؟',
-        description: [
-          'لا يمكن التراجع عن هذا الإجراء. سيؤدي هذا إلى حذف حسابك نهائيًا من خوادمنا.',
-        ],
-        cancel: 'إلغاء',
-        action: 'متابعة',
-        dir: 'rtl',
-        lang: 'ar',
-      }),
-      alertDialogShell({
-        id: 'alert-dialog-rtl-small',
-        trigger: 'إظهار الحوار (صغير)',
-        title: 'السماح للملحق بالاتصال؟',
-        description: ['هل تريد السماح لملحق USB بالاتصال بهذا الجهاز؟'],
-        cancel: 'عدم السماح',
-        action: 'السماح',
-        size: 'sm',
-        dir: 'rtl',
-        lang: 'ar',
-        media: bluetoothIcon(),
-      }),
+      alertDialogShell(
+        {
+          id: 'alert-dialog-rtl-default',
+          trigger: 'إظهار الحوار',
+          title: 'هل أنت متأكد تمامًا؟',
+          description: [
+            'لا يمكن التراجع عن هذا الإجراء. سيؤدي هذا إلى حذف حسابك نهائيًا من خوادمنا.',
+          ],
+          cancel: 'إلغاء',
+          action: 'متابعة',
+          dir: 'rtl',
+          lang: 'ar',
+        },
+        controller,
+      ),
+      alertDialogShell(
+        {
+          id: 'alert-dialog-rtl-small',
+          trigger: 'إظهار الحوار (صغير)',
+          title: 'السماح للملحق بالاتصال؟',
+          description: ['هل تريد السماح لملحق USB بالاتصال بهذا الجهاز؟'],
+          cancel: 'عدم السماح',
+          action: 'السماح',
+          size: 'sm',
+          dir: 'rtl',
+          lang: 'ar',
+          media: bluetoothIcon(),
+        },
+        controller,
+      ),
     ],
   )
 }

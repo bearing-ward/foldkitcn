@@ -3,6 +3,18 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Dialog } from './index'
+import type { DialogOpenChange } from './index'
+
+export type DialogExampleController<Message> = Readonly<{
+  openFor?: (dialogId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (dialogId: string, change: DialogOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: DialogExampleController<Message>,
+  dialogId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(dialogId, defaultOpen) ?? defaultOpen
 
 const buttonClassName = (className: string): string =>
   [
@@ -16,7 +28,7 @@ const inputClassName =
 const paragraphText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
-const dialogShell = (
+const dialogShell = <Message>(
   config: Readonly<{
     id: string
     trigger: string
@@ -29,12 +41,17 @@ const dialogShell = (
     body?: ReadonlyArray<Html>
     footer?: ReadonlyArray<Html>
   }>,
+  controller: DialogExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return Dialog<never>({
+  return Dialog<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onOpenChange(config.id, change) }),
     dir: config.dir,
     contentClassName: config.contentClassName,
     showCloseButton: config.showCloseButton,
@@ -166,111 +183,145 @@ const scrollableBody = (): ReadonlyArray<Html> => {
   ]
 }
 
-export const DialogDemo = (): Html =>
-  dialogShell({
-    id: 'dialog-demo',
-    trigger: 'Open Dialog',
-    title: 'Edit profile',
-    description:
-      "Make changes to your profile here. Click save when you're done.",
-    contentClassName: 'sm:max-w-sm',
-    body: profileFields({ name: 'Name', username: 'Username' }),
-    footer: footerButtons({ cancel: 'Cancel', save: 'Save changes' }),
-  })
+export const DialogDemo = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html =>
+  dialogShell(
+    {
+      id: 'dialog-demo',
+      trigger: 'Open Dialog',
+      title: 'Edit profile',
+      description:
+        "Make changes to your profile here. Click save when you're done.",
+      contentClassName: 'sm:max-w-sm',
+      body: profileFields({ name: 'Name', username: 'Username' }),
+      footer: footerButtons({ cancel: 'Cancel', save: 'Save changes' }),
+    },
+    controller,
+  )
 
-export const DialogCloseButton = (): Html => {
+export const DialogCloseButton = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
-  return dialogShell({
-    id: 'dialog-close-button',
-    trigger: 'Share',
-    title: 'Share link',
-    description: 'Anyone who has this link will be able to view this.',
-    contentClassName: 'sm:max-w-md',
-    body: [
-      h.div(
-        [h.Class('flex items-center gap-2')],
-        [
-          h.div(
-            [h.Class('grid flex-1 gap-2')],
-            [
-              h.label(
-                [h.Attribute('for', 'link'), h.Class('sr-only')],
-                ['Link'],
-              ),
-              h.input([
-                h.Id('link'),
-                h.Value('https://ui.shadcn.com/docs/installation'),
-                h.Readonly(true),
-                h.Class(inputClassName),
-              ]),
-            ],
-          ),
-        ],
-      ),
-    ],
-    footer: [
-      h.button(
-        [
-          h.Class(
-            buttonClassName('bg-primary text-primary-foreground px-2.5 h-8'),
-          ),
-        ],
-        ['Close'],
-      ),
-    ],
-  })
+  return dialogShell(
+    {
+      id: 'dialog-close-button',
+      trigger: 'Share',
+      title: 'Share link',
+      description: 'Anyone who has this link will be able to view this.',
+      contentClassName: 'sm:max-w-md',
+      body: [
+        h.div(
+          [h.Class('flex items-center gap-2')],
+          [
+            h.div(
+              [h.Class('grid flex-1 gap-2')],
+              [
+                h.label(
+                  [h.Attribute('for', 'link'), h.Class('sr-only')],
+                  ['Link'],
+                ),
+                h.input([
+                  h.Id('link'),
+                  h.Value('https://ui.shadcn.com/docs/installation'),
+                  h.Readonly(true),
+                  h.Class(inputClassName),
+                ]),
+              ],
+            ),
+          ],
+        ),
+      ],
+      footer: [
+        h.button(
+          [
+            h.Class(
+              buttonClassName('bg-primary text-primary-foreground px-2.5 h-8'),
+            ),
+          ],
+          ['Close'],
+        ),
+      ],
+    },
+    controller,
+  )
 }
 
-export const DialogNoCloseButton = (): Html =>
-  dialogShell({
-    id: 'dialog-no-close-button',
-    trigger: 'No Close Button',
-    title: 'No Close Button',
-    description:
-      "This dialog doesn't have a close button in the top-right corner.",
-    showCloseButton: false,
-  })
+export const DialogNoCloseButton = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html =>
+  dialogShell(
+    {
+      id: 'dialog-no-close-button',
+      trigger: 'No Close Button',
+      title: 'No Close Button',
+      description:
+        "This dialog doesn't have a close button in the top-right corner.",
+      showCloseButton: false,
+    },
+    controller,
+  )
 
-export const DialogScrollableContent = (): Html =>
-  dialogShell({
-    id: 'dialog-scrollable-content',
-    trigger: 'Scrollable Content',
-    title: 'Scrollable Content',
-    description: 'This is a dialog with scrollable content.',
-    body: scrollableBody(),
-  })
+export const DialogScrollableContent = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html =>
+  dialogShell(
+    {
+      id: 'dialog-scrollable-content',
+      trigger: 'Scrollable Content',
+      title: 'Scrollable Content',
+      description: 'This is a dialog with scrollable content.',
+      body: scrollableBody(),
+    },
+    controller,
+  )
 
-export const DialogStickyFooter = (): Html =>
-  dialogShell({
-    id: 'dialog-sticky-footer',
-    trigger: 'Sticky Footer',
-    title: 'Sticky Footer',
-    description:
-      'This dialog has a sticky footer that stays visible while the content scrolls.',
-    body: scrollableBody(),
-    footer: [
-      html<never>().button(
-        [
-          html<never>().Class(
-            buttonClassName('border-border bg-background px-2.5 h-8'),
-          ),
-        ],
-        ['Close'],
-      ),
-    ],
-  })
+export const DialogStickyFooter = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html =>
+  dialogShell(
+    {
+      id: 'dialog-sticky-footer',
+      trigger: 'Sticky Footer',
+      title: 'Sticky Footer',
+      description:
+        'This dialog has a sticky footer that stays visible while the content scrolls.',
+      body: scrollableBody(),
+      footer: [
+        html<never>().button(
+          [
+            html<never>().Class(
+              buttonClassName('border-border bg-background px-2.5 h-8'),
+            ),
+          ],
+          ['Close'],
+        ),
+      ],
+    },
+    controller,
+  )
 
-export const DialogRtl = (): Html =>
-  dialogShell({
-    id: 'dialog-rtl',
-    trigger: 'فتح الحوار',
-    title: 'تعديل الملف الشخصي',
-    description:
-      'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر فوق حفظ عند الانتهاء.',
-    contentClassName: 'sm:max-w-sm',
-    dir: 'rtl',
-    lang: 'ar',
-    body: profileFields({ name: 'الاسم', username: 'اسم المستخدم', dir: 'rtl' }),
-    footer: footerButtons({ cancel: 'إلغاء', save: 'حفظ التغييرات' }),
-  })
+export const DialogRtl = <Message = never>(
+  controller: DialogExampleController<Message> = {},
+): Html =>
+  dialogShell(
+    {
+      id: 'dialog-rtl',
+      trigger: 'فتح الحوار',
+      title: 'تعديل الملف الشخصي',
+      description:
+        'قم بإجراء تغييرات على ملفك الشخصي هنا. انقر فوق حفظ عند الانتهاء.',
+      contentClassName: 'sm:max-w-sm',
+      dir: 'rtl',
+      lang: 'ar',
+      body: profileFields({
+        name: 'الاسم',
+        username: 'اسم المستخدم',
+        dir: 'rtl',
+      }),
+      footer: footerButtons({ cancel: 'إلغاء', save: 'حفظ التغييرات' }),
+    },
+    controller,
+  )

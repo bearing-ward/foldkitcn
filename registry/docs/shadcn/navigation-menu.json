@@ -127,8 +127,8 @@
       "description": "Default Navigation Menu with getting started, components, icon, and docs link items.",
       "componentItemId": "shadcn/navigation-menu",
       "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
-      "snippet": "export const NavigationMenuDemo = (): Html =>\n  navigationMenuExample({\n    id: 'navigation-menu-demo',\n    items: navigationItems,\n    value: 'getting-started',\n  })",
-      "previewStatus": "static",
+      "snippet": "export const NavigationMenuDemo = <Message = never>(\n  controller?: NavigationMenuExampleController<Message>,\n): Html =>\n  navigationMenuExampleWithController(\n    {\n      id: 'navigation-menu-demo',\n      items: navigationItems,\n      value: 'getting-started',\n    },\n    controller,\n  )",
+      "previewStatus": "live-ready",
       "previewExportName": "NavigationMenuDemo",
       "requiredRegistryItems": ["base-ui/navigation-menu", "utils/cn"],
       "notes": []
@@ -139,8 +139,8 @@
       "description": "RTL Navigation Menu with deterministic local translated labels and end alignment.",
       "componentItemId": "shadcn/navigation-menu",
       "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
-      "snippet": "export const NavigationMenuRtl = (): Html =>\n  navigationMenuExample({\n    id: 'navigation-menu-rtl',\n    items: rtlNavigationItems,\n    value: 'getting-started',\n    dir: 'rtl',\n    rtl: true,\n  })",
-      "previewStatus": "static",
+      "snippet": "export const NavigationMenuRtl = <Message = never>(\n  controller?: NavigationMenuExampleController<Message>,\n): Html =>\n  navigationMenuExampleWithController(\n    {\n      id: 'navigation-menu-rtl',\n      items: rtlNavigationItems,\n      value: 'getting-started',\n      dir: 'rtl',\n      rtl: true,\n    },\n    controller,\n  )",
+      "previewStatus": "live-ready",
       "previewExportName": "NavigationMenuRtl",
       "requiredRegistryItems": ["base-ui/navigation-menu", "utils/cn"],
       "notes": []

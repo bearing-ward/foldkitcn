@@ -3,7 +3,18 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Drawer } from './index'
-import type { DrawerDirection } from './index'
+import type { DrawerDirection, DrawerOpenChange } from './index'
+
+export type DrawerExampleController<Message> = Readonly<{
+  openFor?: (drawerId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (drawerId: string, change: DrawerOpenChange) => Message
+}>
+
+const isOpenFor = <Message>(
+  controller: DrawerExampleController<Message>,
+  drawerId: string,
+  defaultOpen: boolean,
+): boolean => controller.openFor?.(drawerId, defaultOpen) ?? defaultOpen
 
 const buttonClassName = (className: string): string =>
   [
@@ -135,7 +146,7 @@ const footerButtons = (
   ]
 }
 
-const drawerShell = (
+const drawerShell = <Message>(
   config: Readonly<{
     id: string
     trigger: string
@@ -149,12 +160,17 @@ const drawerShell = (
     body?: ReadonlyArray<Html>
     footer?: ReadonlyArray<Html>
   }>,
+  controller: DrawerExampleController<Message>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
+  const { onOpenChange } = controller
 
-  return Drawer<never>({
+  return Drawer<Message>({
     id: config.id,
-    open: true,
+    open: isOpenFor(controller, config.id, true),
+    ...(onOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onOpenChange(config.id, change) }),
     titleId: `${config.id}-title`,
     descriptionId: `${config.id}-description`,
     direction: config.direction,
@@ -223,41 +239,51 @@ const scrollableBody = (): ReadonlyArray<Html> => {
   ]
 }
 
-export const DrawerDemo = (): Html => {
+export const DrawerDemo = <Message = never>(
+  controller: DrawerExampleController<Message> = {},
+): Html => {
   const h = html<never>()
 
-  return drawerShell({
-    id: 'drawer-demo',
-    trigger: 'Open Drawer',
-    title: 'Move Goal',
-    description: 'Set your daily activity goal.',
-    body: [
-      h.div(
-        [h.Class('mx-auto w-full max-w-sm')],
-        [
-          goalControls({
-            caloriesPerDay: 'Calories/day',
-            decrease: 'Decrease',
-            goal: '350',
-            increase: 'Increase',
-          }),
-        ],
-      ),
-    ],
-    footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
-  })
+  return drawerShell(
+    {
+      id: 'drawer-demo',
+      trigger: 'Open Drawer',
+      title: 'Move Goal',
+      description: 'Set your daily activity goal.',
+      body: [
+        h.div(
+          [h.Class('mx-auto w-full max-w-sm')],
+          [
+            goalControls({
+              caloriesPerDay: 'Calories/day',
+              decrease: 'Decrease',
+              goal: '350',
+              increase: 'Increase',
+            }),
+          ],
+        ),
+      ],
+      footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
+    },
+    controller,
+  )
 }
 
-export const DrawerScrollableContent = (): Html =>
-  drawerShell({
-    id: 'drawer-scrollable-content',
-    trigger: 'Scrollable Content',
-    title: 'Move Goal',
-    description: 'Set your daily activity goal.',
-    direction: 'right',
-    body: scrollableBody(),
-    footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
-  })
+export const DrawerScrollableContent = <Message = never>(
+  controller: DrawerExampleController<Message> = {},
+): Html =>
+  drawerShell(
+    {
+      id: 'drawer-scrollable-content',
+      trigger: 'Scrollable Content',
+      title: 'Move Goal',
+      description: 'Set your daily activity goal.',
+      direction: 'right',
+      body: scrollableBody(),
+      footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
+    },
+    controller,
+  )
 
 const drawerDirections: ReadonlyArray<DrawerDirection> = [
   'top',
@@ -266,42 +292,52 @@ const drawerDirections: ReadonlyArray<DrawerDirection> = [
   'left',
 ]
 
-export const DrawerWithSides = (): Html => {
+export const DrawerWithSides = <Message = never>(
+  controller: DrawerExampleController<Message> = {},
+): Html => {
   const localHtml = html<never>()
 
   return localHtml.div(
     [localHtml.Class('flex flex-wrap gap-2')],
     drawerDirections.map(direction =>
-      drawerShell({
-        id: `drawer-${direction}`,
-        trigger: direction,
-        title: 'Move Goal',
-        description: 'Set your daily activity goal.',
-        direction,
-        contentClassName:
-          'data-[vaul-drawer-direction=bottom]:max-h-[50vh] data-[vaul-drawer-direction=top]:max-h-[50vh]',
-        body: scrollableBody(),
-        footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
-      }),
+      drawerShell(
+        {
+          id: `drawer-${direction}`,
+          trigger: direction,
+          title: 'Move Goal',
+          description: 'Set your daily activity goal.',
+          direction,
+          contentClassName:
+            'data-[vaul-drawer-direction=bottom]:max-h-[50vh] data-[vaul-drawer-direction=top]:max-h-[50vh]',
+          body: scrollableBody(),
+          footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
+        },
+        controller,
+      ),
     ),
   )
 }
 
-export const DrawerRtl = (): Html =>
-  drawerShell({
-    id: 'drawer-rtl',
-    trigger: 'فتح الدرج',
-    title: 'نقل الهدف',
-    description: 'حدد هدف نشاطك اليومي.',
-    dir: 'rtl',
-    lang: 'ar',
-    body: [
-      goalControls({
-        caloriesPerDay: 'سعرات حرارية/يوم',
-        decrease: 'تقليل',
-        goal: '٣٥٠',
-        increase: 'زيادة',
-      }),
-    ],
-    footer: footerButtons({ cancel: 'إلغاء', submit: 'إرسال' }),
-  })
+export const DrawerRtl = <Message = never>(
+  controller: DrawerExampleController<Message> = {},
+): Html =>
+  drawerShell(
+    {
+      id: 'drawer-rtl',
+      trigger: 'فتح الدرج',
+      title: 'نقل الهدف',
+      description: 'حدد هدف نشاطك اليومي.',
+      dir: 'rtl',
+      lang: 'ar',
+      body: [
+        goalControls({
+          caloriesPerDay: 'سعرات حرارية/يوم',
+          decrease: 'تقليل',
+          goal: '٣٥٠',
+          increase: 'زيادة',
+        }),
+      ],
+      footer: footerButtons({ cancel: 'إلغاء', submit: 'إرسال' }),
+    },
+    controller,
+  )

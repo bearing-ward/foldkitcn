@@ -2,6 +2,22 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Tabs } from './index'
+import type { TabsValueChange } from './index'
+
+export type TabsExampleController<Message> = Readonly<{
+  valueFor: (
+    exampleId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  onValueChange: (exampleId: string, change: TabsValueChange) => Message
+}>
+
+const tabsValue = <Message>(
+  controller: TabsExampleController<Message> | undefined,
+  exampleId: string,
+  defaultValue: string | undefined,
+): string | undefined =>
+  controller?.valueFor(exampleId, defaultValue) ?? defaultValue
 
 const analyticsTabs = [
   { id: 'overview-tab', value: 'overview', label: 'Overview' },
@@ -22,6 +38,21 @@ const defaultAnalyticsLabels = {
   analytics: 'Analytics',
   reports: 'Reports',
   settings: 'Settings',
+}
+
+const analyticsDescriptions: Readonly<Record<string, string>> = {
+  overview: 'View your key metrics and recent project activity.',
+  analytics:
+    'Compare trend lines, conversion rates, and week-over-week movement.',
+  reports: 'Review scheduled reports and recently exported documents.',
+  settings: 'Adjust workspace preferences and notification defaults.',
+}
+
+const analyticsContent: Readonly<Record<string, string>> = {
+  overview: 'You have 12 active projects and 3 pending tasks.',
+  analytics: 'Conversion is up 8% over the last 30 days.',
+  reports: 'Two reports are ready to export.',
+  settings: 'Email summaries are enabled for this workspace.',
 }
 
 const localCard = (
@@ -61,17 +92,13 @@ const localCard = (
   )
 }
 
-const tabsWithCards = (
+const tabsWithCards = <Message = never>(
   dir?: string,
-  labels: Readonly<{
-    overview: string
-    analytics: string
-    reports: string
-    settings: string
-  }> = defaultAnalyticsLabels,
+  labels: Readonly<Record<string, string>> = defaultAnalyticsLabels,
+  controller?: TabsExampleController<Message>,
 ): Html =>
-  Tabs<never>({
-    value: 'overview',
+  Tabs<Message>({
+    value: tabsValue(controller, 'cards', 'overview'),
     className: 'w-[400px]',
     ...(dir === undefined ? {} : { dir }),
     tabs: [
@@ -81,8 +108,22 @@ const tabsWithCards = (
       { id: 'settings-tab', value: 'settings', label: labels.settings },
     ],
     panels: analyticsPanels,
+    ...(controller === undefined
+      ? {}
+      : { onValueChange: change => controller.onValueChange('cards', change) }),
     toView: attributes => {
-      const h = html<never>()
+      const h = html<Message>()
+      const activePanel = attributes.panels.find(panel => panel.isActive)
+      const activeValue = activePanel?.panel.value ?? 'overview'
+      const activeLabel = labels[activeValue] ?? labels.overview ?? 'Overview'
+      const activeDescription =
+        analyticsDescriptions[activeValue] ??
+        analyticsDescriptions.overview ??
+        'View your key metrics and recent project activity.'
+      const activeContent =
+        analyticsContent[activeValue] ??
+        analyticsContent.overview ??
+        'You have 12 active projects and 3 pending tasks.'
 
       return h.div(
         [...attributes.root],
@@ -94,25 +135,23 @@ const tabsWithCards = (
             ),
           ),
           h.div(
-            [...(attributes.panels.find(panel => panel.isActive)?.root ?? [])],
-            [
-              localCard(
-                labels.overview,
-                'View your key metrics and recent project activity. Track progress across all your active projects.',
-                'You have 12 active projects and 3 pending tasks.',
-              ),
-            ],
+            [...(activePanel?.root ?? [])],
+            [localCard(activeLabel, activeDescription, activeContent)],
           ),
         ],
       )
     },
   })
 
-export const TabsDemo = (): Html => tabsWithCards()
+export const TabsDemo = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html => tabsWithCards(undefined, defaultAnalyticsLabels, controller)
 
-export const TabsDisabled = (): Html =>
-  Tabs<never>({
-    value: 'home',
+export const TabsDisabled = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html =>
+  Tabs<Message>({
+    value: tabsValue(controller, 'disabled', 'home'),
     tabs: [
       { id: 'home-tab', value: 'home', label: 'Home' },
       {
@@ -122,17 +161,27 @@ export const TabsDisabled = (): Html =>
         isDisabled: true,
       },
     ],
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change => controller.onValueChange('disabled', change),
+        }),
   })
 
-export const TabsIcons = (): Html => {
-  const h = html<never>()
+export const TabsIcons = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return Tabs<never>({
-    value: 'preview',
+  return Tabs<Message>({
+    value: tabsValue(controller, 'icons', 'preview'),
     tabs: [
       { id: 'preview-tab', value: 'preview', label: 'Preview' },
       { id: 'code-tab', value: 'code', label: 'Code' },
     ],
+    ...(controller === undefined
+      ? {}
+      : { onValueChange: change => controller.onValueChange('icons', change) }),
     toView: attributes =>
       h.div(
         [...attributes.root],
@@ -158,24 +207,37 @@ export const TabsIcons = (): Html => {
   })
 }
 
-export const TabsLine = (): Html =>
-  Tabs<never>({
-    value: 'overview',
+export const TabsLine = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html =>
+  Tabs<Message>({
+    value: tabsValue(controller, 'line', 'overview'),
     listVariant: 'line',
     tabs: analyticsTabs.slice(0, 3),
+    ...(controller === undefined
+      ? {}
+      : { onValueChange: change => controller.onValueChange('line', change) }),
   })
 
-export const TabsRtl = (): Html =>
-  tabsWithCards('rtl', {
-    overview: 'نظرة عامة',
-    analytics: 'التحليلات',
-    reports: 'التقارير',
-    settings: 'الإعدادات',
-  })
+export const TabsRtl = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html =>
+  tabsWithCards(
+    'rtl',
+    {
+      overview: 'نظرة عامة',
+      analytics: 'التحليلات',
+      reports: 'التقارير',
+      settings: 'الإعدادات',
+    },
+    controller,
+  )
 
-export const TabsVertical = (): Html =>
-  Tabs<never>({
-    value: 'account',
+export const TabsVertical = <Message = never>(
+  controller?: TabsExampleController<Message>,
+): Html =>
+  Tabs<Message>({
+    value: tabsValue(controller, 'vertical', 'account'),
     orientation: 'vertical',
     tabs: [
       { id: 'account-tab', value: 'account', label: 'Account' },
@@ -186,4 +248,9 @@ export const TabsVertical = (): Html =>
         label: 'Notifications',
       },
     ],
+    ...(controller === undefined
+      ? {}
+      : {
+          onValueChange: change => controller.onValueChange('vertical', change),
+        }),
   })

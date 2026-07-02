@@ -108,22 +108,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/number-field-origin-fixture",
-      "title": "NumberFieldOriginFixture",
-      "description": "Static source-derived origin fixture preserving Number Field parts, grouped-control dimensions, form value, and data attributes.",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "base-ui/number-field-foldkit-fixture",
-      "title": "NumberFieldFoldkitFixture",
-      "description": "Foldkit parity fixture exercising root, scrub area, group, input, steppers, hidden input, disabled/read-only/invalid states, and bounded step configuration.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/number-field.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/number-field",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/number-field.fixture.ts",

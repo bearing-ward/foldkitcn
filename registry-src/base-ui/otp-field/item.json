@@ -84,22 +84,7 @@
       }
     ]
   },
-  "examples": [
-    {
-      "id": "base-ui/otp-field-origin-fixture",
-      "title": "OTPFieldOriginFixture",
-      "description": "Static source-derived origin fixture preserving OTP Field slots, grouped layout, hidden form input, validation patterns, and state data attributes.",
-      "sourcePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
-      "kind": "origin-fixture"
-    },
-    {
-      "id": "base-ui/otp-field-foldkit-fixture",
-      "title": "OTPFieldFoldkitFixture",
-      "description": "Foldkit parity fixture exercising basic, grouped, complete, disabled, invalid, and alphanumeric OTP Field states.",
-      "sourcePath": "tests/parity/fixtures/foldkit/base-ui/otp-field.fixture.ts",
-      "kind": "foldkit-fixture"
-    }
-  ],
+  "examples": [],
   "parity": {
     "itemId": "base-ui/otp-field",
     "originFixturePath": "tests/parity/fixtures/origin/base-ui/otp-field.fixture.ts",
