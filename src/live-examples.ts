@@ -219,6 +219,15 @@ import {
 } from './registry/shadcn/context-menu/examples'
 import type { ContextMenuExampleController } from './registry/shadcn/context-menu/examples'
 import {
+  DataTableDemo,
+  DataTableRtl,
+  DataTableTasks,
+} from './registry/shadcn/data-table/examples'
+import type {
+  DataTableExampleController,
+  DataTableExampleMessage,
+} from './registry/shadcn/data-table/examples'
+import {
   DialogCloseButton,
   DialogDemo,
   DialogNoCloseButton,
@@ -570,6 +579,23 @@ import {
   TooltipSides,
 } from './registry/shadcn/tooltip/examples'
 import type { TooltipExampleController } from './registry/shadcn/tooltip/examples'
+import {
+  TypographyBlockquote,
+  TypographyDemo,
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyInlineCode,
+  TypographyLarge,
+  TypographyLead,
+  TypographyList,
+  TypographyMuted,
+  TypographyP,
+  TypographyRtl,
+  TypographySmall,
+  TypographyTable,
+} from './registry/shadcn/typography/examples'
 
 export type LiveExampleContext<Message> = Readonly<{
   inputValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
@@ -802,6 +828,32 @@ export type LiveExampleContext<Message> = Readonly<{
     menuId: string,
     change: Readonly<{ value?: string | undefined }>,
   ) => Message
+  dataTableStateFor?: (
+    example: ExampleDocsArtifact,
+    defaultState: Readonly<{
+      sorting: ReadonlyArray<
+        Readonly<{ columnId: string; direction: 'asc' | 'desc' }>
+      >
+      filters: Readonly<Record<string, string>>
+      hiddenColumnIds: ReadonlyArray<string>
+      selectedRowIds: Readonly<Record<string, boolean>>
+      pageIndex: number
+      pageSize: number
+    }>,
+  ) => Readonly<{
+    sorting: ReadonlyArray<
+      Readonly<{ columnId: string; direction: 'asc' | 'desc' }>
+    >
+    filters: Readonly<Record<string, string>>
+    hiddenColumnIds: ReadonlyArray<string>
+    selectedRowIds: Readonly<Record<string, boolean>>
+    pageIndex: number
+    pageSize: number
+  }>
+  onDataTableMessage?: (
+    example: ExampleDocsArtifact,
+    message: DataTableExampleMessage,
+  ) => Message
   toastStateFor: (example: ExampleDocsArtifact) => ToastState
   onToastMessage: (
     example: ExampleDocsArtifact,
@@ -872,6 +924,10 @@ type ShadcnToastExampleView = <Message = never>(
 
 type SonnerExampleView = <Message = never>(
   controller?: SonnerExampleController<Message>,
+) => Html
+
+type DataTableExampleView = <Message = never>(
+  controller?: DataTableExampleController<Message>,
 ) => Html
 
 type AlertDialogExampleView = <Message = never>(
@@ -1791,6 +1847,32 @@ const sonnerExample = (view: SonnerExampleView): LiveExampleDefinition => ({
   },
 })
 
+const dataTableExample = (
+  view: DataTableExampleView,
+): LiveExampleDefinition => ({
+  render: (example, context) => {
+    const { dataTableStateFor, onDataTableMessage } = context
+    const defaultState = {
+      sorting: [],
+      filters: {},
+      hiddenColumnIds: [],
+      selectedRowIds: {},
+      pageIndex: 0,
+      pageSize: example.id.endsWith('data-table-tasks') ? 3 : 2,
+    }
+
+    return view({
+      state: dataTableStateFor?.(example, defaultState) ?? defaultState,
+      ...(onDataTableMessage === undefined
+        ? {}
+        : {
+            onDataTableMessage: (message: DataTableExampleMessage) =>
+              onDataTableMessage(example, message),
+          }),
+    })
+  },
+})
+
 const overlayController = <Message>(
   example: ExampleDocsArtifact,
   context: LiveExampleContext<Message>,
@@ -2660,11 +2742,47 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(SpinnerEmpty),
   [liveExampleKey('shadcn/spinner', 'SpinnerRtl')]: staticExample(SpinnerRtl),
   [liveExampleKey('shadcn/spinner', 'SpinnerSize')]: staticExample(SpinnerSize),
+  [liveExampleKey('shadcn/data-table', 'DataTableDemo')]:
+    dataTableExample(DataTableDemo),
+  [liveExampleKey('shadcn/data-table', 'DataTableTasks')]:
+    dataTableExample(DataTableTasks),
+  [liveExampleKey('shadcn/data-table', 'DataTableRtl')]:
+    dataTableExample(DataTableRtl),
   [liveExampleKey('shadcn/table', 'TableActions')]: staticExample(TableActions),
   [liveExampleKey('shadcn/table', 'TableDemo')]: staticExample(TableDemo),
   [liveExampleKey('shadcn/table', 'TableFooterExample')]:
     staticExample(TableFooterExample),
   [liveExampleKey('shadcn/table', 'TableRtl')]: staticExample(TableRtl),
+  [liveExampleKey('shadcn/typography', 'TypographyBlockquote')]:
+    staticExample(TypographyBlockquote),
+  [liveExampleKey('shadcn/typography', 'TypographyDemo')]:
+    staticExample(TypographyDemo),
+  [liveExampleKey('shadcn/typography', 'TypographyH1')]:
+    staticExample(TypographyH1),
+  [liveExampleKey('shadcn/typography', 'TypographyH2')]:
+    staticExample(TypographyH2),
+  [liveExampleKey('shadcn/typography', 'TypographyH3')]:
+    staticExample(TypographyH3),
+  [liveExampleKey('shadcn/typography', 'TypographyH4')]:
+    staticExample(TypographyH4),
+  [liveExampleKey('shadcn/typography', 'TypographyInlineCode')]:
+    staticExample(TypographyInlineCode),
+  [liveExampleKey('shadcn/typography', 'TypographyLarge')]:
+    staticExample(TypographyLarge),
+  [liveExampleKey('shadcn/typography', 'TypographyLead')]:
+    staticExample(TypographyLead),
+  [liveExampleKey('shadcn/typography', 'TypographyList')]:
+    staticExample(TypographyList),
+  [liveExampleKey('shadcn/typography', 'TypographyMuted')]:
+    staticExample(TypographyMuted),
+  [liveExampleKey('shadcn/typography', 'TypographyP')]:
+    staticExample(TypographyP),
+  [liveExampleKey('shadcn/typography', 'TypographyRtl')]:
+    staticExample(TypographyRtl),
+  [liveExampleKey('shadcn/typography', 'TypographySmall')]:
+    staticExample(TypographySmall),
+  [liveExampleKey('shadcn/typography', 'TypographyTable')]:
+    staticExample(TypographyTable),
   [liveExampleKey('shadcn/tabs', 'TabsDemo')]: tabsExample(TabsDemo),
   [liveExampleKey('shadcn/tabs', 'TabsDisabled')]: tabsExample(TabsDisabled),
   [liveExampleKey('shadcn/tabs', 'TabsIcons')]: tabsExample(TabsIcons),

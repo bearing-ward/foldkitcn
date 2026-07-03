@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "id": "shadcn/typography",
+  "namespace": "shadcn",
+  "name": "Typography",
+  "kind": "component",
+  "description": "Docs-only shadcn Typography examples showing utility classes applied directly to semantic HTML; Foldkit CN does not ship default prose styles or an installable Typography helper.",
+  "sourceRoot": "registry-src/shadcn/typography",
+  "installableSourcePaths": [],
+  "consumedThemeTokens": [
+    "--background",
+    "--border",
+    "--foreground",
+    "--muted-foreground"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Typography",
+      "docsUrl": "https://ui.shadcn.com/docs/components/typography",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/content/docs/components/base/typography.mdx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/typography.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/typography.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/typography-demo.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h1.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h2.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h3.tsx",
+        "repos/ui/apps/v4/examples/base/typography-h4.tsx",
+        "repos/ui/apps/v4/examples/base/typography-p.tsx",
+        "repos/ui/apps/v4/examples/base/typography-blockquote.tsx",
+        "repos/ui/apps/v4/examples/base/typography-table.tsx",
+        "repos/ui/apps/v4/examples/base/typography-list.tsx",
+        "repos/ui/apps/v4/examples/base/typography-inline-code.tsx",
+        "repos/ui/apps/v4/examples/base/typography-lead.tsx",
+        "repos/ui/apps/v4/examples/base/typography-large.tsx",
+        "repos/ui/apps/v4/examples/base/typography-small.tsx",
+        "repos/ui/apps/v4/examples/base/typography-muted.tsx",
+        "repos/ui/apps/v4/examples/base/typography-rtl.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [],
+    "runtime": [],
+    "development": [
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only; Typography examples render as Foldkit Html in local docs previews."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The origin RTL example uses the app language selector as fixture evidence; local docs use deterministic RTL copy instead."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/typography-demo",
+      "title": "TypographyDemo",
+      "description": "A semantic article specimen with headings, paragraphs, blockquote, list, and table utility classes.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-h1",
+      "title": "TypographyH1",
+      "description": "Heading level one utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-h2",
+      "title": "TypographyH2",
+      "description": "Heading level two utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-h3",
+      "title": "TypographyH3",
+      "description": "Heading level three utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-h4",
+      "title": "TypographyH4",
+      "description": "Heading level four utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-p",
+      "title": "TypographyP",
+      "description": "Paragraph utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-blockquote",
+      "title": "TypographyBlockquote",
+      "description": "Blockquote utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-table",
+      "title": "TypographyTable",
+      "description": "Semantic table utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-list",
+      "title": "TypographyList",
+      "description": "Unordered list utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-inline-code",
+      "title": "TypographyInlineCode",
+      "description": "Inline code utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-lead",
+      "title": "TypographyLead",
+      "description": "Lead paragraph utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-large",
+      "title": "TypographyLarge",
+      "description": "Large text utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-small",
+      "title": "TypographySmall",
+      "description": "Small text utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-muted",
+      "title": "TypographyMuted",
+      "description": "Muted text utility-class example.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/typography-rtl",
+      "title": "TypographyRtl",
+      "description": "RTL utility-class example using deterministic local copy.",
+      "sourcePath": "src/registry/shadcn/typography/examples.ts",
+      "kind": "demo"
+    }
+  ],
+  "parity": {
+    "itemId": "shadcn/typography",
+    "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
+    "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
+    "requiredComparisons": [],
+    "acceptedDeviationIds": ["shadcn-typography-docs-only"]
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "availability": "preview",
+    "docsStatus": "complete"
+  },
+  "deviations": [
+    {
+      "id": "shadcn-typography-docs-only",
+      "summary": "Typography is published as docs and examples without an installable helper.",
+      "required": true,
+      "status": "waived",
+      "rationale": "Origin Typography is documentation and utility-class examples, not a shipped component source file. Foldkit CN mirrors that stance instead of inventing a runtime Typography API."
+    }
+  ]
+}

@@ -6,6 +6,8 @@ import { docsData, publicComponents } from './data'
 import {
   ComponentDetailRoute,
   CompleteLiveExampleToastWait,
+  CompletedRemoveLiveExampleToast,
+  CompletedTimeoutLiveExampleToast,
   CopySnippet,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -20,9 +22,11 @@ import {
   RegistryLifecycleRoute,
   RegistryRoute,
   RegistrySchemaRoute,
+  RemoveLiveExampleToast,
   RoadmapRoute,
   SearchPagefind,
   SucceededCopySnippet,
+  TimeoutLiveExampleToast,
   update,
   view,
 } from './main'
@@ -119,6 +123,23 @@ const modelWithRoute = (route: Model['route']): Model => ({
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
+
+const resolveStaleToastTimeout = (
+  exampleId: string,
+  toastId: string,
+  durationMillis: number,
+  updateKey = 0,
+) =>
+  Scene.Command.resolve(
+    TimeoutLiveExampleToast({ exampleId, toastId, updateKey, durationMillis }),
+    CompletedTimeoutLiveExampleToast({ exampleId, toastId, updateKey: -1 }),
+  )
+
+const resolveToastRemoval = (exampleId: string, toastId: string) =>
+  Scene.Command.resolve(
+    RemoveLiveExampleToast({ exampleId, toastId }),
+    CompletedRemoveLiveExampleToast({ exampleId, toastId }),
+  )
 
 const documentedCarouselLiveExampleTitles = (): ReadonlyArray<string> => {
   const component = pipe(
@@ -737,6 +758,35 @@ describe(view, () => {
     )
   })
 
+  test('Typography detail renders docs-only guidance without install snippets', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'typography' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Typography' })).toExist(),
+      Scene.expect(
+        Scene.text('does not ship default typography styles', {
+          exact: false,
+        }),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('has no installable component', { exact: false }),
+      ).toExist(),
+      Scene.expect(
+        Scene.text('bunx foldkitcn add shadcn/typography'),
+      ).not.toExist(),
+      Scene.expect(
+        Scene.text(
+          "import { Typography } from '@/components/foldkitcn/shadcn/typography'",
+        ),
+      ).not.toExist(),
+      Scene.expect(Scene.role('heading', { name: 'TypographyDemo' })).toExist(),
+    )
+  })
+
   test('Button detail renders live example previews and snippets', () => {
     Scene.scene(
       { update, view },
@@ -815,6 +865,7 @@ describe(view, () => {
       Scene.expect(
         Scene.within(anchoredPreview, Scene.text('Copied')),
       ).toExist(),
+      resolveStaleToastTimeout('base-ui/toast-anchored-toasts', 'copied', 1500),
     )
   })
 
@@ -838,6 +889,11 @@ describe(view, () => {
           customPositionPreview,
           Scene.role('button', { name: 'Create toast' }),
         ),
+      ),
+      resolveStaleToastTimeout(
+        'base-ui/toast-custom-position',
+        'toast-1',
+        5000,
       ),
       Scene.click(
         Scene.within(
@@ -863,6 +919,11 @@ describe(view, () => {
           Scene.role('region', { name: 'Notifications' }),
         ),
       ).toHaveAttr('data-position', 'top-center'),
+      resolveStaleToastTimeout(
+        'base-ui/toast-custom-position',
+        'toast-2',
+        5000,
+      ),
       Scene.click(
         Scene.within(
           customPositionPreview,
@@ -872,12 +933,14 @@ describe(view, () => {
       Scene.expect(
         Scene.within(customPositionPreview, Scene.text('Toast 2 created')),
       ).not.toExist(),
+      resolveToastRemoval('base-ui/toast-custom-position', 'toast-2'),
       Scene.click(
         Scene.within(
           undoPreview,
           Scene.role('button', { name: 'Perform action' }),
         ),
       ),
+      resolveStaleToastTimeout('base-ui/toast-undo-action', 'undo-1', 10_000),
       Scene.click(
         Scene.within(
           undoPreview,
@@ -890,6 +953,7 @@ describe(view, () => {
       Scene.expect(
         Scene.within(undoPreview, Scene.text('Action 2 performed')),
       ).toExist(),
+      resolveStaleToastTimeout('base-ui/toast-undo-action', 'undo-2', 10_000),
       Scene.click(
         Scene.within(undoPreview, Scene.role('button', { name: 'Undo' })),
       ),
@@ -899,6 +963,12 @@ describe(view, () => {
       Scene.expect(
         Scene.within(undoPreview, Scene.text('You can undo this action.')),
       ).toExist(),
+      resolveToastRemoval('base-ui/toast-undo-action', 'undo-2'),
+      resolveStaleToastTimeout(
+        'base-ui/toast-undo-action',
+        'action-undone',
+        5000,
+      ),
       Scene.click(
         Scene.within(
           waitingPreview,
@@ -922,6 +992,7 @@ describe(view, () => {
       Scene.expect(
         Scene.within(waitingPreview, Scene.text('Result received')),
       ).toExist(),
+      resolveStaleToastTimeout('base-ui/toast-promise', 'toast-1', 5000, 1),
       Scene.click(
         Scene.within(
           waitingPreview,
@@ -942,12 +1013,15 @@ describe(view, () => {
           toastId: 'toast-2',
         },
       ),
+      resolveStaleToastTimeout('base-ui/toast-promise', 'toast-2', 5000, 1),
       Scene.click(
         Scene.within(waitingPreview, Scene.role('button', { name: 'Dismiss' })),
       ),
+      resolveToastRemoval('base-ui/toast-promise', 'toast-2'),
       Scene.click(
         Scene.within(waitingPreview, Scene.role('button', { name: 'Dismiss' })),
       ),
+      resolveToastRemoval('base-ui/toast-promise', 'toast-1'),
       Scene.expect(
         Scene.within(waitingPreview, Scene.text('Result received')),
       ).not.toExist(),
@@ -957,6 +1031,7 @@ describe(view, () => {
           Scene.role('button', { name: 'Create custom toast' }),
         ),
       ),
+      resolveStaleToastTimeout('base-ui/toast-custom', 'toast-1', 5000),
       Scene.click(
         Scene.within(
           customPreview,
@@ -969,17 +1044,24 @@ describe(view, () => {
       Scene.expect(
         Scene.within(customPreview, Scene.text('Toast with custom data 2')),
       ).toExist(),
+      resolveStaleToastTimeout('base-ui/toast-custom', 'toast-2', 5000),
       Scene.click(
         Scene.within(customPreview, Scene.role('button', { name: 'Dismiss' })),
       ),
       Scene.expect(
         Scene.within(customPreview, Scene.text('Toast with custom data 2')),
       ).not.toExist(),
+      resolveToastRemoval('base-ui/toast-custom', 'toast-2'),
       Scene.click(
         Scene.within(
           deduplicatedPreview,
           Scene.role('button', { name: 'Save draft' }),
         ),
+      ),
+      resolveStaleToastTimeout(
+        'base-ui/toast-deduplicated-toast',
+        'save-status',
+        5000,
       ),
       Scene.click(
         Scene.within(
@@ -990,6 +1072,12 @@ describe(view, () => {
       Scene.expect(
         Scene.within(deduplicatedPreview, Scene.text('Pulse replayed 1 time')),
       ).toExist(),
+      resolveStaleToastTimeout(
+        'base-ui/toast-deduplicated-toast',
+        'save-status',
+        5000,
+        1,
+      ),
       Scene.click(
         Scene.within(
           deduplicatedPreview,
@@ -999,11 +1087,17 @@ describe(view, () => {
       Scene.expect(
         Scene.within(deduplicatedPreview, Scene.text('Draft saved')),
       ).not.toExist(),
+      resolveToastRemoval('base-ui/toast-deduplicated-toast', 'save-status'),
       Scene.click(
         Scene.within(
           varyingHeightsPreview,
           Scene.role('button', { name: 'Create varying height toast' }),
         ),
+      ),
+      resolveStaleToastTimeout(
+        'base-ui/toast-varying-heights',
+        'toast-1',
+        5000,
       ),
       Scene.click(
         Scene.within(
@@ -1020,6 +1114,11 @@ describe(view, () => {
           Scene.text('A bit longer message that spans two lines.'),
         ),
       ).toExist(),
+      resolveStaleToastTimeout(
+        'base-ui/toast-varying-heights',
+        'toast-2',
+        5000,
+      ),
       Scene.click(
         Scene.within(
           varyingHeightsPreview,
@@ -1032,6 +1131,7 @@ describe(view, () => {
           Scene.text('A bit longer message that spans two lines.'),
         ),
       ).not.toExist(),
+      resolveToastRemoval('base-ui/toast-varying-heights', 'toast-2'),
     )
   })
 
@@ -1385,7 +1485,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
-      Scene.expect(Scene.text('54 of 64')).toExist(),
+      Scene.expect(Scene.text('62 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
@@ -1399,7 +1499,7 @@ describe(view, () => {
       Scene.expect(
         Scene.role('heading', { name: 'Docs/example-only rows' }),
       ).toExist(),
-      Scene.expect(Scene.text('shadcn/data-table')).toExist(),
+      Scene.expect(Scene.text('shadcn/date-picker')).toExist(),
       Scene.expect(
         Scene.text('plans/artifacts', { exact: false }),
       ).not.toExist(),

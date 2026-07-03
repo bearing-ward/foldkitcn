@@ -82,6 +82,24 @@ import {
   type ToastExampleMessage as ToastExampleMessageType,
 } from './registry/base-ui/toast/examples'
 import {
+  DataTableExampleMessage,
+  type DataTableExampleMessage as DataTableExampleMessageType,
+} from './registry/shadcn/data-table/examples'
+import {
+  DataTableState as LiveExampleDataTableState,
+  clearFilters as clearLiveExampleDataTableFilters,
+  firstPage as firstLiveExampleDataTablePage,
+  lastPage as lastLiveExampleDataTablePage,
+  nextPage as nextLiveExampleDataTablePage,
+  previousPage as previousLiveExampleDataTablePage,
+  setFilter as setLiveExampleDataTableFilter,
+  setPageSize as setLiveExampleDataTablePageSize,
+  toggleAllPageRowsSelection as toggleAllLiveExampleDataTablePageRowsSelection,
+  toggleColumnVisibility as toggleLiveExampleDataTableColumnVisibility,
+  toggleRowSelection as toggleLiveExampleDataTableRowSelection,
+  toggleSort as toggleLiveExampleDataTableSort,
+} from './registry/shadcn/data-table'
+import {
   ToastExampleMessage as SonnerExampleMessage,
   toastViewportPositionFromPosition,
   type ToastExampleMessage as SonnerExampleMessageType,
@@ -183,6 +201,9 @@ export const Model = S.Struct({
   liveExampleMenuOpenSubmenuValues: S.Record(S.String, S.Array(S.String)),
   liveExampleMenuContextPoints: S.Record(S.String, ContextMenuPoint),
   liveExampleMenuValues: S.Record(S.String, S.String),
+  liveExampleDataTableStates: S.optional(
+    S.Record(S.String, LiveExampleDataTableState),
+  ),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
   liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
@@ -202,6 +223,17 @@ const liveExampleSidebarStateKey = (
   exampleId: string,
   panelId: string,
 ): string => `${exampleId}#${panelId}`
+
+const initialLiveExampleDataTableState = (
+  exampleId: string,
+): typeof LiveExampleDataTableState.Type => ({
+  sorting: [],
+  filters: {},
+  hiddenColumnIds: [],
+  selectedRowIds: {},
+  pageIndex: 0,
+  pageSize: exampleId.endsWith('data-table-tasks') ? 3 : 2,
+})
 
 const liveExampleControlStateKey = (
   exampleId: string,
@@ -841,6 +873,13 @@ export const SelectedLiveExampleMenuValue = m(
     value: S.optional(S.String),
   },
 )
+export const GotLiveExampleDataTableMessage = m(
+  'GotLiveExampleDataTableMessage',
+  {
+    exampleId: S.String,
+    message: DataTableExampleMessage,
+  },
+)
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
   message: S.Union([
@@ -940,6 +979,7 @@ export const Message = S.Union([
   UpdatedLiveExampleMenuOpen,
   UpdatedLiveExampleMenuContextPoint,
   SelectedLiveExampleMenuValue,
+  GotLiveExampleDataTableMessage,
   GotLiveExampleToastMessage,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
@@ -990,6 +1030,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuOpenSubmenuValues: {},
       liveExampleMenuContextPoints: {},
       liveExampleMenuValues: {},
+      liveExampleDataTableStates: {},
       liveExampleToastStates: {},
       liveExampleSidebarOpenValues: {},
       liveExampleSidebarPanelOpenValues: {},
@@ -1529,6 +1570,56 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      GotLiveExampleDataTableMessage: ({ exampleId, message }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleDataTableStates ?? {}, exampleId),
+          Option.getOrElse(() => initialLiveExampleDataTableState(exampleId)),
+        )
+        const nextState = M.value(message).pipe(
+          M.withReturnType<typeof LiveExampleDataTableState.Type>(),
+          M.tagsExhaustive({
+            UpdatedDataTableFilter: ({ columnId, value }) =>
+              setLiveExampleDataTableFilter(state, columnId, value),
+            ClickedDataTableSort: ({ columnId }) =>
+              toggleLiveExampleDataTableSort(state, columnId),
+            ClickedDataTableRowCheckbox: ({ rowId }) =>
+              toggleLiveExampleDataTableRowSelection(state, rowId),
+            ClickedDataTableSelectAll: ({ rowIds }) =>
+              toggleAllLiveExampleDataTablePageRowsSelection(state, rowIds),
+            ClickedDataTableColumnVisibility: ({ columnId, isVisible }) =>
+              toggleLiveExampleDataTableColumnVisibility(
+                state,
+                columnId,
+                isVisible,
+              ),
+            ClickedDataTablePreviousPage: () =>
+              previousLiveExampleDataTablePage(state),
+            ClickedDataTableNextPage: ({ pageCount }) =>
+              nextLiveExampleDataTablePage(state, pageCount),
+            ClickedDataTableFirstPage: () =>
+              firstLiveExampleDataTablePage(state),
+            ClickedDataTableLastPage: ({ pageCount }) =>
+              lastLiveExampleDataTablePage(state, pageCount),
+            SelectedDataTablePageSize: ({ pageSize }) =>
+              setLiveExampleDataTablePageSize(state, pageSize),
+            ClickedDataTableAction: () => state,
+            ClickedDataTableClearFilters: () =>
+              clearLiveExampleDataTableFilters(state),
+          }),
+        )
+
+        return [
+          evo(model, {
+            liveExampleDataTableStates: () =>
+              EffectRecord.set(
+                model.liveExampleDataTableStates ?? {},
+                exampleId,
+                nextState,
+              ),
+          }),
+          [],
+        ]
+      },
       GotLiveExampleToastMessage: ({ exampleId, message }) => {
         const state = pipe(
           EffectRecord.get(model.liveExampleToastStates, exampleId),
@@ -2583,6 +2674,14 @@ const importSnippetFor = (component: PublicComponent): string =>
     component.entry.item.id,
   )}'`
 
+const isDocsOnlyComponent = (component: PublicComponent): boolean =>
+  component.entry.item.lifecycle.availability === 'preview' &&
+  Option.match(component.maybeDocsArtifact, {
+    onNone: () => false,
+    onSome: artifact =>
+      Array.isReadonlyArrayEmpty(artifact.installableSourcePaths),
+  })
+
 const snippetBlockView = (
   text: string,
   ariaLabel: string,
@@ -2647,35 +2746,57 @@ const installationSectionView = (
 
   return h.section([h.Id('installation'), h.Class('content-section')], [
     h.h2([], ['Installation']),
-    M.value(availability).pipe(
-      M.withReturnType<Html>(),
-      M.when('installable', () =>
-        h.div([], [
-          h.p([], [
-            'Install the component into your app, then import it from the generated local namespace.',
-          ]),
-          snippetBlockView(
-            installCommandFor(component.entry.item.id),
-            `Copy ${component.entry.item.name} install command`,
-            copiedSnippets,
+    isDocsOnlyComponent(component)
+      ? h.p([], [
+          'This docs-only page has no installable component. Foldkit CN does not ship default typography styles or a Typography helper.',
+        ])
+      : M.value(availability).pipe(
+          M.withReturnType<Html>(),
+          M.when('installable', () =>
+            h.div([], [
+              h.p([], [
+                'Install the component into your app, then import it from the generated local namespace.',
+              ]),
+              snippetBlockView(
+                installCommandFor(component.entry.item.id),
+                `Copy ${component.entry.item.name} install command`,
+                copiedSnippets,
+              ),
+            ]),
           ),
+          M.when('preview', () =>
+            h.p([], [
+              'This component is in preview. The public install command is not enabled for this row yet.',
+            ]),
+          ),
+          M.when('private', () =>
+            h.p([], [
+              'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
+            ]),
+          ),
+          M.orElse(() =>
+            h.p([], [
+              'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
+            ]),
+          ),
+        ),
+  ])
+}
+
+const docsOnlyUsageView = (): Html => {
+  const h = html<Message>()
+
+  return h.div([], [
+    h.p([], [
+      'Apply utility classes directly to semantic HTML inside your Foldkit views. There is no generated Typography import for this docs-only row.',
+    ]),
+    h.pre(
+      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
+      [
+        h.code([], [
+          "h.h1([h.Class('scroll-m-20 text-4xl font-extrabold tracking-tight')], ['Taxing Laughter: The Joke Tax Chronicles'])",
         ]),
-      ),
-      M.when('preview', () =>
-        h.p([], [
-          'This component is in preview. The public install command is not enabled for this row yet.',
-        ]),
-      ),
-      M.when('private', () =>
-        h.p([], [
-          'This component is private. It is hidden from public navigation and is not installable from the public docs site.',
-        ]),
-      ),
-      M.orElse(() =>
-        h.p([], [
-          'This component is tracked as roadmap work. Install instructions will appear after the registry marks it installable.',
-        ]),
-      ),
+      ],
     ),
   ])
 }
@@ -2688,31 +2809,35 @@ const usageSectionView = (
 
   return h.section([h.Id('usage'), h.Class('content-section')], [
     h.h2([], ['Usage']),
-    Option.match(component.maybeDocsArtifact, {
-      onNone: () =>
-        h.p([], ['Usage guidance is waiting for the generated docs artifact.']),
-      onSome: artifact =>
-        h.div([], [
-          h.p([], [
-            'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
-          ]),
-          snippetBlockView(
-            importSnippetFor(component),
-            `Copy ${component.entry.item.name} import snippet`,
-            copiedSnippets,
-          ),
-          h.dl([h.Class('meta-list wide')], [
-            h.div([], [
-              h.dt([], ['Default physical path']),
-              h.dd([], [physicalInstallPathFor(artifact.itemId)]),
+    isDocsOnlyComponent(component)
+      ? docsOnlyUsageView()
+      : Option.match(component.maybeDocsArtifact, {
+          onNone: () =>
+            h.p([], [
+              'Usage guidance is waiting for the generated docs artifact.',
             ]),
+          onSome: artifact =>
             h.div([], [
-              h.dt([], ['Default alias']),
-              h.dd([], [aliasImportPathFor(artifact.itemId)]),
+              h.p([], [
+                'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
+              ]),
+              snippetBlockView(
+                importSnippetFor(component),
+                `Copy ${component.entry.item.name} import snippet`,
+                copiedSnippets,
+              ),
+              h.dl([h.Class('meta-list wide')], [
+                h.div([], [
+                  h.dt([], ['Default physical path']),
+                  h.dd([], [physicalInstallPathFor(artifact.itemId)]),
+                ]),
+                h.div([], [
+                  h.dt([], ['Default alias']),
+                  h.dd([], [aliasImportPathFor(artifact.itemId)]),
+                ]),
+              ]),
             ]),
-          ]),
-        ]),
-    }),
+        }),
   ])
 }
 
@@ -2753,6 +2878,9 @@ const examplesSectionView = (
     Record<string, typeof ContextMenuPoint.Type>
   >,
   liveExampleMenuValues: Readonly<Record<string, string>>,
+  liveExampleDataTableStates: Readonly<
+    Record<string, typeof LiveExampleDataTableState.Type>
+  >,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
@@ -3263,6 +3391,22 @@ const examplesSectionView = (
         menuId,
         ...(change.value === undefined ? {} : { value: change.value }),
       }),
+    dataTableStateFor: (
+      example: ExampleDocsArtifact,
+      defaultState: typeof LiveExampleDataTableState.Type,
+    ): typeof LiveExampleDataTableState.Type =>
+      pipe(
+        EffectRecord.get(liveExampleDataTableStates, example.id),
+        Option.getOrElse(() => defaultState),
+      ),
+    onDataTableMessage: (
+      example: ExampleDocsArtifact,
+      message: DataTableExampleMessageType,
+    ): Message =>
+      GotLiveExampleDataTableMessage({
+        exampleId: example.id,
+        message,
+      }),
     toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
       pipe(
         EffectRecord.get(liveExampleToastStates, example.id),
@@ -3384,14 +3528,18 @@ const examplesSectionView = (
   ])
 }
 
-const apiSectionView = (): Html => {
+const apiSectionView = (component: PublicComponent): Html => {
   const h = html<Message>()
 
   return h.section([h.Id('api'), h.Class('content-section')], [
     h.h2([], ['API']),
-    h.p([], [
-      'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
-    ]),
+    isDocsOnlyComponent(component)
+      ? h.p([], [
+          'There is no Typography component API. Parent views render semantic HTML and apply utility classes directly.',
+        ])
+      : h.p([], [
+          'API extraction is pending. The component is currently documented through generated source paths, examples, and registry metadata.',
+        ]),
   ])
 }
 
@@ -3495,12 +3643,16 @@ const sourceSectionView = (component: PublicComponent): Html => {
               h.dd([], [artifact.sourceRoot]),
             ]),
           ]),
-          h.ul(
-            [h.Class('compact-list')],
-            artifact.installableSourcePaths.map(sourcePath =>
-              h.li([], [h.code([], [sourcePath])]),
-            ),
-          ),
+          Array.isReadonlyArrayEmpty(artifact.installableSourcePaths)
+            ? h.p([], [
+                'This docs-only row has no installable source files. Its local source is sidecar documentation plus deterministic examples.',
+              ])
+            : h.ul(
+                [h.Class('compact-list')],
+                artifact.installableSourcePaths.map(sourcePath =>
+                  h.li([], [h.code([], [sourcePath])]),
+                ),
+              ),
         ]),
     }),
   ])
@@ -3513,9 +3665,13 @@ const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
     [h.Id('foldkit-differences'), h.Class('content-section')],
     [
       h.h2([], ['Foldkit Differences']),
-      h.p([], [
-        'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
-      ]),
+      isDocsOnlyComponent(component)
+        ? h.p([], [
+            'Typography mirrors the origin docs-only stance: Foldkit CN does not ship default prose styles, React is fixture evidence only, and the RTL example uses deterministic local text instead of the origin language selector.',
+          ])
+        : h.p([], [
+            'This item replaces the origin React, CVA, and icon-package assumptions with Foldkit Html, local Base UI behavior, Effect Schema literals, and local inline SVG examples.',
+          ]),
       Option.match(component.maybeDocsArtifact, {
         onNone: () => h.empty,
         onSome: artifact => {
@@ -3593,12 +3749,13 @@ const componentDetailPageView = (
           model.liveExampleMenuOpenSubmenuValues,
           model.liveExampleMenuContextPoints,
           model.liveExampleMenuValues,
+          model.liveExampleDataTableStates ?? {},
           model.liveExampleToastStates,
           model.liveExampleSidebarOpenValues,
           model.liveExampleSidebarPanelOpenValues,
           model.liveExampleSidebarSelectedValues,
         ),
-        apiSectionView(),
+        apiSectionView(component),
         accessibilitySectionView(),
         qualitySectionView(component),
         sourceSectionView(component),

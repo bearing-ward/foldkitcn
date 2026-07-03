@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 54,
-      remaining: 10,
+      imported: 62,
+      remaining: 2,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -133,6 +133,8 @@ describe('origin component progress', () => {
       'shadcn/tooltip',
       'shadcn/toggle',
       'shadcn/toggle-group',
+      'shadcn/toast',
+      'shadcn/typography',
     ]
 
     expect(
@@ -150,28 +152,24 @@ describe('origin component progress', () => {
   })
 
   test('keeps held rows blocked and visible', () => {
-    expect(requireRow('shadcn/data-table').readiness).toBe('blocked')
+    expect(requireRow('shadcn/data-table').readiness).toBe('imported')
     expect(requireRow('shadcn/date-picker').readiness).toBe('blocked')
-    expect(requireRow('shadcn/toast').readiness).toBe('blocked')
-    expect(requireRow('shadcn/typography').readiness).toBe('blocked')
     expect(requireRow('shadcn/chart').readiness).toBe('blocked')
+    expect(requireRow('shadcn/toast').readiness).toBe('imported')
+    expect(requireRow('shadcn/typography').readiness).toBe('imported')
   })
 
-  test('selects a deterministic next row with recommended URLs', () => {
+  test('selects no deterministic next row after non-blocked rows are imported', () => {
     const [nextRow] = selectNextOriginComponentRows(report, 1)
 
-    expect(nextRow?.itemId).toBe('shadcn/sidebar')
-    expect(nextRow?.readiness).toBe('dossier-ready')
-    expect(nextRow?.recommendedUrls).toStrictEqual([
-      'https://ui.shadcn.com/docs/components/sidebar',
-    ])
+    expect(nextRow).toBeUndefined()
   })
 
   test('selects no imported or blocked rows for next batches', () => {
     const nextRows = selectNextOriginComponentRows(report, 4)
 
     expect(nextRows.length).toBeLessThanOrEqual(4)
-    expect(nextRows).not.toHaveLength(0)
+    expect(nextRows).toHaveLength(0)
     expect(nextRows.every(row => row.readiness !== 'imported')).toBeTruthy()
     expect(nextRows.every(row => row.readiness !== 'blocked')).toBeTruthy()
   })
