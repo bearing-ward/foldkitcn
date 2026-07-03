@@ -505,6 +505,15 @@ import {
 import type { SwitchCheckedChange } from './registry/shadcn/switch'
 import { view as SwitchView } from './registry/shadcn/switch'
 import {
+  DataTableDemo,
+  DataTableRtl,
+  DataTableTasks,
+} from './registry/shadcn/data-table/examples'
+import type {
+  DataTableExampleController,
+  DataTableExampleMessage,
+} from './registry/shadcn/data-table/examples'
+import {
   TableActions,
   TableDemo,
   TableFooterExample,
@@ -819,6 +828,28 @@ export type LiveExampleContext<Message> = Readonly<{
     menuId: string,
     change: Readonly<{ value?: string | undefined }>,
   ) => Message
+  dataTableStateFor?: (
+    example: ExampleDocsArtifact,
+    defaultState: Readonly<{
+      sorting: ReadonlyArray<Readonly<{ columnId: string; direction: 'asc' | 'desc' }>>
+      filters: Readonly<Record<string, string>>
+      hiddenColumnIds: ReadonlyArray<string>
+      selectedRowIds: Readonly<Record<string, boolean>>
+      pageIndex: number
+      pageSize: number
+    }>,
+  ) => Readonly<{
+    sorting: ReadonlyArray<Readonly<{ columnId: string; direction: 'asc' | 'desc' }>>
+    filters: Readonly<Record<string, string>>
+    hiddenColumnIds: ReadonlyArray<string>
+    selectedRowIds: Readonly<Record<string, boolean>>
+    pageIndex: number
+    pageSize: number
+  }>
+  onDataTableMessage?: (
+    example: ExampleDocsArtifact,
+    message: DataTableExampleMessage,
+  ) => Message
   toastStateFor: (example: ExampleDocsArtifact) => ToastState
   onToastMessage: (
     example: ExampleDocsArtifact,
@@ -889,6 +920,10 @@ type ShadcnToastExampleView = <Message = never>(
 
 type SonnerExampleView = <Message = never>(
   controller?: SonnerExampleController<Message>,
+) => Html
+
+type DataTableExampleView = <Message = never>(
+  controller?: DataTableExampleController<Message>,
 ) => Html
 
 type AlertDialogExampleView = <Message = never>(
@@ -1808,6 +1843,32 @@ const sonnerExample = (view: SonnerExampleView): LiveExampleDefinition => ({
   },
 })
 
+const dataTableExample = (
+  view: DataTableExampleView,
+): LiveExampleDefinition => ({
+  render: (example, context) => {
+    const onDataTableMessage = context.onDataTableMessage
+    const defaultState = {
+      sorting: [],
+      filters: {},
+      hiddenColumnIds: [],
+      selectedRowIds: {},
+      pageIndex: 0,
+      pageSize: example.id.endsWith('data-table-tasks') ? 3 : 2,
+    }
+
+    return view({
+      state: context.dataTableStateFor?.(example, defaultState) ?? defaultState,
+      ...(onDataTableMessage === undefined
+        ? {}
+        : {
+            onDataTableMessage: (message: DataTableExampleMessage) =>
+              onDataTableMessage(example, message),
+          }),
+    })
+  },
+})
+
 const overlayController = <Message>(
   example: ExampleDocsArtifact,
   context: LiveExampleContext<Message>,
@@ -2677,6 +2738,12 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(SpinnerEmpty),
   [liveExampleKey('shadcn/spinner', 'SpinnerRtl')]: staticExample(SpinnerRtl),
   [liveExampleKey('shadcn/spinner', 'SpinnerSize')]: staticExample(SpinnerSize),
+  [liveExampleKey('shadcn/data-table', 'DataTableDemo')]:
+    dataTableExample(DataTableDemo),
+  [liveExampleKey('shadcn/data-table', 'DataTableTasks')]:
+    dataTableExample(DataTableTasks),
+  [liveExampleKey('shadcn/data-table', 'DataTableRtl')]:
+    dataTableExample(DataTableRtl),
   [liveExampleKey('shadcn/table', 'TableActions')]: staticExample(TableActions),
   [liveExampleKey('shadcn/table', 'TableDemo')]: staticExample(TableDemo),
   [liveExampleKey('shadcn/table', 'TableFooterExample')]:

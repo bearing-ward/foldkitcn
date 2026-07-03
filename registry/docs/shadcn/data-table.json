@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/data-table",
+  "routePath": "/components/shadcn/data-table",
+  "title": "Data Table",
+  "description": "Foldkit-native shadcn Data Table composition helpers and examples built on the local Table primitive plus a small query-state model for filtering, sorting, selection, visibility, and pagination.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/data-table/docs.md",
+  "markdown": "# Data Table\n\n## Overview\n\nData Table is a Foldkit-native translation of the shadcn guide, not a giant\none-size grid component. It pairs the local `shadcn/table` primitive with a\nsmall query-state helper for filtering, sorting, pagination, column visibility,\nand row selection.\n\n## Foldkit Model\n\n`DataTableState` is Schema-backed and owns only table-query concerns:\nsorting, string filters, hidden columns, selected row ids, and pagination.\nRow data stays in the parent model or in example fixtures. The helper functions\nstay pure so a parent update function can handle every interaction as a fact.\n\n## Usage\n\nImport the query helpers and compose them with the local table parts.\n\n```ts\nconst state = DataTable.initialState({ pageSize: 10 })\nconst model = DataTable.rowModel({\n  rows,\n  columns,\n  state,\n  rowId: row => row.id,\n})\n```\n\nRender `model.visibleColumns` with `shadcn/table`, drive filter inputs with\n`setFilter`, sorting buttons with `toggleSort`, row checkboxes with\n`toggleRowSelection`, and pagination controls with `previousPage`, `nextPage`,\n`firstPage`, `lastPage`, and `setPageSize`.\n\n## Examples\n\nThe registry includes:\n\n- `DataTableDemo` for payments with email filtering, selection, sorting, and pagination\n- `DataTableTasks` for a denser task workflow with badges, column visibility, and rows-per-page controls\n- `DataTableRtl` for Arabic copy and RTL table layout\n\n## Accessibility\n\nExamples keep native table semantics by composing real `table`, `thead`,\n`tbody`, `tr`, `th`, and `td` elements from the local Table primitive. Row\nselection uses accessible checkbox controls, and filter/page controls keep\nvisible text labels or aria labels for screen readers.\n\n## Foldkit Differences\n\nThe origin guide uses TanStack React Table, React state, Lucide React icons,\nand follow-up dashboard integrations. This registry item replaces the row-model\nlogic with local pure helpers, uses Foldkit messages as facts, and keeps\ninstallable source free of React, TanStack, chart, drawer, toast, and drag\ndependencies.\n\n## Follow-up: Native DragAndDrop and VirtualList\n\nFuture reorder examples should use native `@foldkit/ui/DragAndDrop` and commit\nrow moves back through parent update logic.\n\nFuture large-row examples should use native `@foldkit/ui/VirtualList` inside a\nconstrained-height scrolling container.\n\nNeither reorder nor virtualization is part of first-slice acceptance for this\nData Table item.\n",
+  "headings": [
+    {
+      "id": "data-table",
+      "text": "Data Table",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    },
+    {
+      "id": "follow-up-native-draganddrop-and-virtuallist",
+      "text": "Follow-up: Native DragAndDrop and VirtualList",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/data-table",
+  "defaultImportPath": "shadcn/data-table",
+  "sourceRoot": "registry-src/shadcn/data-table",
+  "installableSourcePaths": [
+    "src/registry/shadcn/data-table/index.ts",
+    "src/registry/shadcn/data-table/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Data Table",
+      "docsUrl": "https://ui.shadcn.com/docs/components/data-table",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/content/docs/components/base/data-table.mdx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/data-table.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/data-table.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/data-table-demo.tsx",
+        "repos/ui/apps/v4/examples/base/data-table-rtl.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/columns.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-pagination.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-toolbar.tsx",
+        "repos/ui/apps/v4/app/(app)/examples/tasks/components/data-table-view-options.tsx"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/badge",
+        "classification": "registry-local",
+        "target": "shadcn/badge",
+        "reason": "Examples render payment, task status, and priority surfaces with local Badge helpers."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Examples use local Button helpers for sorting, actions, and pagination controls."
+      },
+      {
+        "specifier": "shadcn/card",
+        "classification": "registry-local",
+        "target": "shadcn/card",
+        "reason": "The tasks example presents the denser table workflow inside a local Card layout."
+      },
+      {
+        "specifier": "shadcn/checkbox",
+        "classification": "registry-local",
+        "target": "shadcn/checkbox",
+        "reason": "Examples use local Checkbox helpers for row selection and page selection."
+      },
+      {
+        "specifier": "shadcn/dropdown-menu",
+        "classification": "registry-local",
+        "target": "shadcn/dropdown-menu",
+        "reason": "Examples use the local Dropdown Menu primitive for column visibility controls."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "Examples use local Input helpers for column filter controls."
+      },
+      {
+        "specifier": "shadcn/pagination",
+        "classification": "registry-local",
+        "target": "shadcn/pagination",
+        "reason": "Examples use local Pagination helpers for first, previous, next, and last page controls."
+      },
+      {
+        "specifier": "shadcn/select",
+        "classification": "registry-local",
+        "target": "shadcn/select",
+        "reason": "Examples use the local Select primitive for rows-per-page choices."
+      },
+      {
+        "specifier": "shadcn/table",
+        "classification": "registry-local",
+        "target": "shadcn/table",
+        "reason": "Data Table composes the local Table primitive for its rendering surface."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "The query model exports local layout class helpers through the shared cn utility."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Html and message helpers for the Foldkit-native examples."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema literals and collection helpers for the local query model."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the shared utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the shared utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "@tanstack/react-table",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The origin guide depends on TanStack React Table; installable Foldkit source replaces it with a local query model."
+      },
+      {
+        "specifier": "@dnd-kit/core",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Row reordering is deferred to a later native DragAndDrop follow-up."
+      },
+      {
+        "specifier": "@dnd-kit/sortable",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Row reordering is deferred to a later native DragAndDrop follow-up."
+      },
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "react-dom",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React DOM is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "recharts",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Dashboard chart follow-up work is explicitly deferred."
+      },
+      {
+        "specifier": "sonner",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Dashboard toast follow-up work is explicitly deferred."
+      },
+      {
+        "specifier": "zod",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Origin task example schema validation is fixture evidence only."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Installable source uses local inline SVG icons instead of Lucide React."
+      },
+      {
+        "specifier": "@tabler/icons-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Installable source uses local inline SVG icons instead of Tabler React icons."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/data-table-demo",
+      "title": "DataTableDemo",
+      "description": "Payments table with email filtering, sortable columns, selection, and pagination.",
+      "componentItemId": "shadcn/data-table",
+      "sourcePath": "src/registry/shadcn/data-table/examples.ts",
+      "snippet": "export const DataTableDemo = <Message = never>(\n  controller: DataTableExampleController<Message> = {},\n): Html =>\n  renderDataTable({\n    controller,\n    state: stateFor(controller.state, defaultPaymentState),\n    rows: paymentRows,\n    columns: paymentColumns,\n    rowId: paymentRowId,\n    copy: paymentCopy,\n    filterColumnId: 'email',\n    actionLabelForRow: () => 'Copy ID',\n    actionIdForRow: payment => `copy-payment:${payment.id}`,\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DataTableDemo",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/checkbox",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/pagination",
+        "shadcn/select",
+        "shadcn/table",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/data-table-tasks",
+      "title": "DataTableTasks",
+      "description": "Task table with badges, column visibility, and rows-per-page controls.",
+      "componentItemId": "shadcn/data-table",
+      "sourcePath": "src/registry/shadcn/data-table/examples.ts",
+      "snippet": "export const DataTableTasks = <Message = never>(\n  controller: DataTableExampleController<Message> = {},\n): Html =>\n  renderDataTable({\n    controller,\n    state: stateFor(controller.state, defaultTaskState),\n    rows: taskRows,\n    columns: taskColumns,\n    rowId: taskRowId,\n    copy: taskCopy,\n    filterColumnId: 'title',\n    title: 'Tasks',\n    description:\n      'A denser task table with badges, title filtering, column toggles, and page-size controls.',\n    card: true,\n    actionLabelForRow: () => 'Open',\n    actionIdForRow: task => `open-task:${task.id}`,\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DataTableTasks",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/checkbox",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/pagination",
+        "shadcn/select",
+        "shadcn/table",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/data-table-rtl",
+      "title": "DataTableRtl",
+      "description": "RTL payments table with Arabic copy, selection, filtering, and pagination.",
+      "componentItemId": "shadcn/data-table",
+      "sourcePath": "src/registry/shadcn/data-table/examples.ts",
+      "snippet": "export const DataTableRtl = <Message = never>(\n  controller: DataTableExampleController<Message> = {},\n): Html =>\n  renderDataTable({\n    controller,\n    state: stateFor(controller.state, defaultRtlState),\n    rows: paymentRows,\n    columns: paymentColumnsRtl,\n    rowId: paymentRowId,\n    copy: paymentRtlCopy,\n    filterColumnId: 'email',\n    actionLabelForRow: () => 'نسخ المعرّف',\n    actionIdForRow: payment => `copy-payment-rtl:${payment.id}`,\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DataTableRtl",
+      "requiredRegistryItems": [
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/card",
+        "shadcn/checkbox",
+        "shadcn/dropdown-menu",
+        "shadcn/input",
+        "shadcn/pagination",
+        "shadcn/select",
+        "shadcn/table",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-data-table-docs-example-only",
+        "summary": "Data Table is accepted from docs and example evidence because no primary base-nova component source file exists.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The origin docs position Data Table as a composition guide rather than a single reusable primitive."
+      },
+      {
+        "id": "shadcn-data-table-local-query-model",
+        "summary": "Installable source replaces TanStack React Table row models and React state with a local Foldkit query-state helper.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Filtering, sorting, selection, visibility, and pagination must stay installable without React or TanStack runtime dependencies."
+      },
+      {
+        "id": "shadcn-data-table-dashboard-follow-up",
+        "summary": "Dashboard row reordering, chart, drawer, and toast integrations are deferred from first-slice acceptance.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Those flows need separate native foundations and follow-up examples beyond the base Data Table guide."
+      },
+      {
+        "id": "shadcn-data-table-local-inline-icons",
+        "summary": "Installable source uses local inline SVG icons instead of Lucide React or Tabler React icons.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The examples preserve the visible affordances while keeping the registry item installable."
+      }
+    ]
+  }
+}

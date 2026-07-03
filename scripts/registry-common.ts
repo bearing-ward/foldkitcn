@@ -626,6 +626,11 @@ const liveReadyExampleExportsByItemId: Readonly<
     'TableFooterExample',
     'TableRtl',
   ]),
+  'shadcn/data-table': new Set([
+    'DataTableDemo',
+    'DataTableTasks',
+    'DataTableRtl',
+  ]),
   'shadcn/tabs': new Set([
     'TabsDemo',
     'TabsDisabled',

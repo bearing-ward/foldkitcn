@@ -82,6 +82,24 @@ import {
   type ToastExampleMessage as ToastExampleMessageType,
 } from './registry/base-ui/toast/examples'
 import {
+  DataTableExampleMessage,
+  type DataTableExampleMessage as DataTableExampleMessageType,
+} from './registry/shadcn/data-table/examples'
+import {
+  DataTableState as LiveExampleDataTableState,
+  clearFilters as clearLiveExampleDataTableFilters,
+  firstPage as firstLiveExampleDataTablePage,
+  lastPage as lastLiveExampleDataTablePage,
+  nextPage as nextLiveExampleDataTablePage,
+  previousPage as previousLiveExampleDataTablePage,
+  setFilter as setLiveExampleDataTableFilter,
+  setPageSize as setLiveExampleDataTablePageSize,
+  toggleAllPageRowsSelection as toggleAllLiveExampleDataTablePageRowsSelection,
+  toggleColumnVisibility as toggleLiveExampleDataTableColumnVisibility,
+  toggleRowSelection as toggleLiveExampleDataTableRowSelection,
+  toggleSort as toggleLiveExampleDataTableSort,
+} from './registry/shadcn/data-table'
+import {
   ToastExampleMessage as SonnerExampleMessage,
   toastViewportPositionFromPosition,
   type ToastExampleMessage as SonnerExampleMessageType,
@@ -183,6 +201,9 @@ export const Model = S.Struct({
   liveExampleMenuOpenSubmenuValues: S.Record(S.String, S.Array(S.String)),
   liveExampleMenuContextPoints: S.Record(S.String, ContextMenuPoint),
   liveExampleMenuValues: S.Record(S.String, S.String),
+  liveExampleDataTableStates: S.optional(
+    S.Record(S.String, LiveExampleDataTableState),
+  ),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
   liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
@@ -202,6 +223,17 @@ const liveExampleSidebarStateKey = (
   exampleId: string,
   panelId: string,
 ): string => `${exampleId}#${panelId}`
+
+const initialLiveExampleDataTableState = (
+  exampleId: string,
+): typeof LiveExampleDataTableState.Type => ({
+  sorting: [],
+  filters: {},
+  hiddenColumnIds: [],
+  selectedRowIds: {},
+  pageIndex: 0,
+  pageSize: exampleId.endsWith('data-table-tasks') ? 3 : 2,
+})
 
 const liveExampleControlStateKey = (
   exampleId: string,
@@ -841,6 +873,13 @@ export const SelectedLiveExampleMenuValue = m(
     value: S.optional(S.String),
   },
 )
+export const GotLiveExampleDataTableMessage = m(
+  'GotLiveExampleDataTableMessage',
+  {
+    exampleId: S.String,
+    message: DataTableExampleMessage,
+  },
+)
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
   message: S.Union([
@@ -940,6 +979,7 @@ export const Message = S.Union([
   UpdatedLiveExampleMenuOpen,
   UpdatedLiveExampleMenuContextPoint,
   SelectedLiveExampleMenuValue,
+  GotLiveExampleDataTableMessage,
   GotLiveExampleToastMessage,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
@@ -990,6 +1030,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuOpenSubmenuValues: {},
       liveExampleMenuContextPoints: {},
       liveExampleMenuValues: {},
+      liveExampleDataTableStates: {},
       liveExampleToastStates: {},
       liveExampleSidebarOpenValues: {},
       liveExampleSidebarPanelOpenValues: {},
@@ -1529,6 +1570,56 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      GotLiveExampleDataTableMessage: ({ exampleId, message }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleDataTableStates ?? {}, exampleId),
+          Option.getOrElse(() => initialLiveExampleDataTableState(exampleId)),
+        )
+        const nextState = M.value(message).pipe(
+          M.withReturnType<typeof LiveExampleDataTableState.Type>(),
+          M.tagsExhaustive({
+            UpdatedDataTableFilter: ({ columnId, value }) =>
+              setLiveExampleDataTableFilter(state, columnId, value),
+            ClickedDataTableSort: ({ columnId }) =>
+              toggleLiveExampleDataTableSort(state, columnId),
+            ClickedDataTableRowCheckbox: ({ rowId }) =>
+              toggleLiveExampleDataTableRowSelection(state, rowId),
+            ClickedDataTableSelectAll: ({ rowIds }) =>
+              toggleAllLiveExampleDataTablePageRowsSelection(state, rowIds),
+            ClickedDataTableColumnVisibility: ({ columnId, isVisible }) =>
+              toggleLiveExampleDataTableColumnVisibility(
+                state,
+                columnId,
+                isVisible,
+              ),
+            ClickedDataTablePreviousPage: () =>
+              previousLiveExampleDataTablePage(state),
+            ClickedDataTableNextPage: ({ pageCount }) =>
+              nextLiveExampleDataTablePage(state, pageCount),
+            ClickedDataTableFirstPage: () =>
+              firstLiveExampleDataTablePage(state),
+            ClickedDataTableLastPage: ({ pageCount }) =>
+              lastLiveExampleDataTablePage(state, pageCount),
+            SelectedDataTablePageSize: ({ pageSize }) =>
+              setLiveExampleDataTablePageSize(state, pageSize),
+            ClickedDataTableAction: () => state,
+            ClickedDataTableClearFilters: () =>
+              clearLiveExampleDataTableFilters(state),
+          }),
+        )
+
+        return [
+          evo(model, {
+            liveExampleDataTableStates: () =>
+              EffectRecord.set(
+                model.liveExampleDataTableStates ?? {},
+                exampleId,
+                nextState,
+              ),
+          }),
+          [],
+        ]
+      },
       GotLiveExampleToastMessage: ({ exampleId, message }) => {
         const state = pipe(
           EffectRecord.get(model.liveExampleToastStates, exampleId),
@@ -2787,6 +2878,9 @@ const examplesSectionView = (
     Record<string, typeof ContextMenuPoint.Type>
   >,
   liveExampleMenuValues: Readonly<Record<string, string>>,
+  liveExampleDataTableStates: Readonly<
+    Record<string, typeof LiveExampleDataTableState.Type>
+  >,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
@@ -3297,6 +3391,22 @@ const examplesSectionView = (
         menuId,
         ...(change.value === undefined ? {} : { value: change.value }),
       }),
+    dataTableStateFor: (
+      example: ExampleDocsArtifact,
+      defaultState: typeof LiveExampleDataTableState.Type,
+    ): typeof LiveExampleDataTableState.Type =>
+      pipe(
+        EffectRecord.get(liveExampleDataTableStates, example.id),
+        Option.getOrElse(() => defaultState),
+      ),
+    onDataTableMessage: (
+      example: ExampleDocsArtifact,
+      message: DataTableExampleMessageType,
+    ): Message =>
+      GotLiveExampleDataTableMessage({
+        exampleId: example.id,
+        message,
+      }),
     toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
       pipe(
         EffectRecord.get(liveExampleToastStates, example.id),
@@ -3639,6 +3749,7 @@ const componentDetailPageView = (
           model.liveExampleMenuOpenSubmenuValues,
           model.liveExampleMenuContextPoints,
           model.liveExampleMenuValues,
+          model.liveExampleDataTableStates ?? {},
           model.liveExampleToastStates,
           model.liveExampleSidebarOpenValues,
           model.liveExampleSidebarPanelOpenValues,

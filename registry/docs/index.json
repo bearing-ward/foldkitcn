@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-02T21:50:21.760Z",
+  "generatedAt": "2026-07-03T15:53:05.930Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -291,6 +291,11 @@
       "itemId": "shadcn/context-menu",
       "routePath": "/components/shadcn/context-menu",
       "docsArtifactPath": "registry/docs/shadcn/context-menu.json"
+    },
+    {
+      "itemId": "shadcn/data-table",
+      "routePath": "/components/shadcn/data-table",
+      "docsArtifactPath": "registry/docs/shadcn/data-table.json"
     },
     {
       "itemId": "shadcn/dialog",
