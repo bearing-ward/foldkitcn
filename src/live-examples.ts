@@ -219,6 +219,15 @@ import {
 } from './registry/shadcn/context-menu/examples'
 import type { ContextMenuExampleController } from './registry/shadcn/context-menu/examples'
 import {
+  DataTableDemo,
+  DataTableRtl,
+  DataTableTasks,
+} from './registry/shadcn/data-table/examples'
+import type {
+  DataTableExampleController,
+  DataTableExampleMessage,
+} from './registry/shadcn/data-table/examples'
+import {
   DialogCloseButton,
   DialogDemo,
   DialogNoCloseButton,
@@ -504,15 +513,6 @@ import {
 } from './registry/shadcn/spinner/examples'
 import type { SwitchCheckedChange } from './registry/shadcn/switch'
 import { view as SwitchView } from './registry/shadcn/switch'
-import {
-  DataTableDemo,
-  DataTableRtl,
-  DataTableTasks,
-} from './registry/shadcn/data-table/examples'
-import type {
-  DataTableExampleController,
-  DataTableExampleMessage,
-} from './registry/shadcn/data-table/examples'
 import {
   TableActions,
   TableDemo,
@@ -831,7 +831,9 @@ export type LiveExampleContext<Message> = Readonly<{
   dataTableStateFor?: (
     example: ExampleDocsArtifact,
     defaultState: Readonly<{
-      sorting: ReadonlyArray<Readonly<{ columnId: string; direction: 'asc' | 'desc' }>>
+      sorting: ReadonlyArray<
+        Readonly<{ columnId: string; direction: 'asc' | 'desc' }>
+      >
       filters: Readonly<Record<string, string>>
       hiddenColumnIds: ReadonlyArray<string>
       selectedRowIds: Readonly<Record<string, boolean>>
@@ -839,7 +841,9 @@ export type LiveExampleContext<Message> = Readonly<{
       pageSize: number
     }>,
   ) => Readonly<{
-    sorting: ReadonlyArray<Readonly<{ columnId: string; direction: 'asc' | 'desc' }>>
+    sorting: ReadonlyArray<
+      Readonly<{ columnId: string; direction: 'asc' | 'desc' }>
+    >
     filters: Readonly<Record<string, string>>
     hiddenColumnIds: ReadonlyArray<string>
     selectedRowIds: Readonly<Record<string, boolean>>
@@ -1847,7 +1851,7 @@ const dataTableExample = (
   view: DataTableExampleView,
 ): LiveExampleDefinition => ({
   render: (example, context) => {
-    const onDataTableMessage = context.onDataTableMessage
+    const { dataTableStateFor, onDataTableMessage } = context
     const defaultState = {
       sorting: [],
       filters: {},
@@ -1858,7 +1862,7 @@ const dataTableExample = (
     }
 
     return view({
-      state: context.dataTableStateFor?.(example, defaultState) ?? defaultState,
+      state: dataTableStateFor?.(example, defaultState) ?? defaultState,
       ...(onDataTableMessage === undefined
         ? {}
         : {

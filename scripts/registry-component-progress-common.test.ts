@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 61,
-      remaining: 3,
+      imported: 62,
+      remaining: 2,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -152,7 +152,7 @@ describe('origin component progress', () => {
   })
 
   test('keeps held rows blocked and visible', () => {
-    expect(requireRow('shadcn/data-table').readiness).toBe('blocked')
+    expect(requireRow('shadcn/data-table').readiness).toBe('imported')
     expect(requireRow('shadcn/date-picker').readiness).toBe('blocked')
     expect(requireRow('shadcn/chart').readiness).toBe('blocked')
     expect(requireRow('shadcn/toast').readiness).toBe('imported')

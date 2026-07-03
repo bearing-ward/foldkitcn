@@ -1,6 +1,7 @@
 import {
   Array as EffectArray,
   Option,
+  Order,
   pipe,
   Record as EffectRecord,
   Schema as S,
@@ -63,7 +64,8 @@ export type DataTableRowModel<Row> = Readonly<{
 export const DataTableLayoutStyleOptions = S.Struct({
   className: S.optional(S.String),
 })
-export type DataTableLayoutStyleOptions = typeof DataTableLayoutStyleOptions.Type
+export type DataTableLayoutStyleOptions =
+  typeof DataTableLayoutStyleOptions.Type
 
 // UPDATE
 
@@ -89,13 +91,27 @@ const pageCountFor = (rowCount: number, pageSize: number): number =>
 const clampedPageIndex = (pageIndex: number, pageCount: number): number =>
   Math.min(Math.max(pageIndex, 0), maxPageIndex(pageCount))
 
-const compareValues = (
-  left: string | number,
-  right: string | number,
-): number =>
+const compareValues = (left: string | number, right: string | number): number =>
   typeof left === 'number' && typeof right === 'number'
     ? left - right
     : String(left).localeCompare(String(right))
+
+const orderingFor = (
+  left: string | number,
+  right: string | number,
+): -1 | 0 | 1 => {
+  const value = compareValues(left, right)
+
+  if (value < 0) {
+    return -1
+  }
+
+  if (value > 0) {
+    return 1
+  }
+
+  return 0
+}
 
 const selectedRowCount = <Row>(
   rows: ReadonlyArray<Row>,
@@ -187,15 +203,22 @@ export const sortedRows = <Row>(
         Option.filter(column => column.isSortable !== false),
         Option.match({
           onNone: () => currentRows,
-          onSome: column =>
-            [...currentRows].sort((left: Row, right: Row) => {
-              const order = compareValues(
-                comparableValue(column, left),
-                comparableValue(column, right),
-              )
+          onSome: column => {
+            const order = Order.mapInput(
+              Order.make<Row>((left, right) =>
+                orderingFor(
+                  comparableValue(column, left),
+                  comparableValue(column, right),
+                ),
+              ),
+              (row: Row) => row,
+            )
 
-              return sort.direction === 'asc' ? order : order * -1
-            }),
+            return EffectArray.sort(
+              currentRows,
+              sort.direction === 'asc' ? order : Order.flip(order),
+            )
+          },
         }),
       ),
     rows,
@@ -318,9 +341,9 @@ export const toggleAllPageRowsSelection = (
   state: DataTableState,
   rowIds: ReadonlyArray<string>,
 ): DataTableState => {
-  const shouldSelect =
-    rowIds.length > 0 &&
-    rowIds.some(rowId => state.selectedRowIds[rowId] !== true)
+  const shouldSelect = rowIds.some(
+    rowId => state.selectedRowIds[rowId] !== true,
+  )
 
   return evo(state, {
     selectedRowIds: currentSelection =>

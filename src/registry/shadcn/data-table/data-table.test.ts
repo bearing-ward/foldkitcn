@@ -3,7 +3,7 @@
 import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
-import type { Html } from 'foldkit/html'
+import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
 
 import {
@@ -30,6 +30,8 @@ type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 const initialModel: Model = {}
 
 const update = (model: Model, _message: Message): UpdateReturn => [model, []]
+const h = html<never>()
+const textCell = (text: string) => h.span([], [text])
 
 const paymentRows: ReadonlyArray<Payment> = [
   {
@@ -58,7 +60,7 @@ const paymentColumns: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
     header: 'Status',
     isFilterable: true,
     valueText: payment => payment.status,
-    cell: () => 'status' as unknown as Html,
+    cell: () => textCell('status'),
   },
   {
     id: 'email',
@@ -67,7 +69,7 @@ const paymentColumns: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
     isSortable: true,
     isFilterable: true,
     valueText: payment => payment.email,
-    cell: () => 'email' as unknown as Html,
+    cell: () => textCell('email'),
   },
   {
     id: 'amount',
@@ -76,7 +78,7 @@ const paymentColumns: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
     isSortable: true,
     valueText: payment => String(payment.amount),
     sortValue: payment => payment.amount,
-    cell: () => 'amount' as unknown as Html,
+    cell: () => textCell('amount'),
   },
 ]
 

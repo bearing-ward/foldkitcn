@@ -3,6 +3,7 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 
+import * as Badge from '../badge'
 import * as Button from '../button'
 import * as Card from '../card'
 import * as Checkbox from '../checkbox'
@@ -11,7 +12,6 @@ import * as Input from '../input'
 import * as Pagination from '../pagination'
 import * as Select from '../select'
 import * as Table from '../table'
-import * as Badge from '../badge'
 import * as DataTable from './index'
 
 type Child = Html | string
@@ -58,88 +58,74 @@ type Copy = Readonly<{
 type ExampleDefinition = Readonly<{
   id: string
   title: string
-  view: <Message = never>(controller?: DataTableExampleController<Message>) => Html
+  view: <Message = never>(
+    controller?: DataTableExampleController<Message>,
+  ) => Html
 }>
 
 // MESSAGE
 
-const UpdatedDataTableFilterLocal = m('UpdatedDataTableFilter', {
+const UpdatedDataTableFilter = m('UpdatedDataTableFilter', {
   columnId: S.String,
   value: S.String,
 })
-const ClickedDataTableSortLocal = m('ClickedDataTableSort', {
+const ClickedDataTableSort = m('ClickedDataTableSort', {
   columnId: S.String,
 })
-const ClickedDataTableRowCheckboxLocal = m('ClickedDataTableRowCheckbox', {
+const ClickedDataTableRowCheckbox = m('ClickedDataTableRowCheckbox', {
   rowId: S.String,
 })
-const ClickedDataTableSelectAllLocal = m('ClickedDataTableSelectAll', {
+const ClickedDataTableSelectAll = m('ClickedDataTableSelectAll', {
   rowIds: S.Array(S.String),
 })
-const ClickedDataTableColumnVisibilityLocal = m(
-  'ClickedDataTableColumnVisibility',
-  {
-    columnId: S.String,
-    isVisible: S.Boolean,
-  },
-)
-const ClickedDataTablePreviousPageLocal = m('ClickedDataTablePreviousPage')
-const ClickedDataTableNextPageLocal = m('ClickedDataTableNextPage', {
+const ClickedDataTableColumnVisibility = m('ClickedDataTableColumnVisibility', {
+  columnId: S.String,
+  isVisible: S.Boolean,
+})
+const ClickedDataTablePreviousPage = m('ClickedDataTablePreviousPage')
+const ClickedDataTableNextPage = m('ClickedDataTableNextPage', {
   pageCount: S.Number,
 })
-const ClickedDataTableFirstPageLocal = m('ClickedDataTableFirstPage')
-const ClickedDataTableLastPageLocal = m('ClickedDataTableLastPage', {
+const ClickedDataTableFirstPage = m('ClickedDataTableFirstPage')
+const ClickedDataTableLastPage = m('ClickedDataTableLastPage', {
   pageCount: S.Number,
 })
-const SelectedDataTablePageSizeLocal = m('SelectedDataTablePageSize', {
+const SelectedDataTablePageSize = m('SelectedDataTablePageSize', {
   pageSize: S.Number,
 })
-const ClickedDataTableActionLocal = m('ClickedDataTableAction', {
+const ClickedDataTableAction = m('ClickedDataTableAction', {
   actionId: S.String,
 })
-const ClickedDataTableClearFiltersLocal = m('ClickedDataTableClearFilters')
+const ClickedDataTableClearFilters = m('ClickedDataTableClearFilters')
 
 export {
-  ClickedDataTableActionLocal as ClickedDataTableAction,
-  ClickedDataTableClearFiltersLocal as ClickedDataTableClearFilters,
-  ClickedDataTableColumnVisibilityLocal as ClickedDataTableColumnVisibility,
-  ClickedDataTableFirstPageLocal as ClickedDataTableFirstPage,
-  ClickedDataTableLastPageLocal as ClickedDataTableLastPage,
-  ClickedDataTableNextPageLocal as ClickedDataTableNextPage,
-  ClickedDataTablePreviousPageLocal as ClickedDataTablePreviousPage,
-  ClickedDataTableRowCheckboxLocal as ClickedDataTableRowCheckbox,
-  ClickedDataTableSelectAllLocal as ClickedDataTableSelectAll,
-  ClickedDataTableSortLocal as ClickedDataTableSort,
-  SelectedDataTablePageSizeLocal as SelectedDataTablePageSize,
-  UpdatedDataTableFilterLocal as UpdatedDataTableFilter,
+  ClickedDataTableAction,
+  ClickedDataTableClearFilters,
+  ClickedDataTableColumnVisibility,
+  ClickedDataTableFirstPage,
+  ClickedDataTableLastPage,
+  ClickedDataTableNextPage,
+  ClickedDataTablePreviousPage,
+  ClickedDataTableRowCheckbox,
+  ClickedDataTableSelectAll,
+  ClickedDataTableSort,
+  SelectedDataTablePageSize,
+  UpdatedDataTableFilter,
 }
 
-const UpdatedDataTableFilter = UpdatedDataTableFilterLocal
-const ClickedDataTableSort = ClickedDataTableSortLocal
-const ClickedDataTableRowCheckbox = ClickedDataTableRowCheckboxLocal
-const ClickedDataTableSelectAll = ClickedDataTableSelectAllLocal
-const ClickedDataTableColumnVisibility = ClickedDataTableColumnVisibilityLocal
-const ClickedDataTablePreviousPage = ClickedDataTablePreviousPageLocal
-const ClickedDataTableNextPage = ClickedDataTableNextPageLocal
-const ClickedDataTableFirstPage = ClickedDataTableFirstPageLocal
-const ClickedDataTableLastPage = ClickedDataTableLastPageLocal
-const SelectedDataTablePageSize = SelectedDataTablePageSizeLocal
-const ClickedDataTableAction = ClickedDataTableActionLocal
-const ClickedDataTableClearFilters = ClickedDataTableClearFiltersLocal
-
 export const DataTableExampleMessage = S.Union([
-  UpdatedDataTableFilterLocal,
-  ClickedDataTableSortLocal,
-  ClickedDataTableRowCheckboxLocal,
-  ClickedDataTableSelectAllLocal,
-  ClickedDataTableColumnVisibilityLocal,
-  ClickedDataTablePreviousPageLocal,
-  ClickedDataTableNextPageLocal,
-  ClickedDataTableFirstPageLocal,
-  ClickedDataTableLastPageLocal,
-  SelectedDataTablePageSizeLocal,
-  ClickedDataTableActionLocal,
-  ClickedDataTableClearFiltersLocal,
+  UpdatedDataTableFilter,
+  ClickedDataTableSort,
+  ClickedDataTableRowCheckbox,
+  ClickedDataTableSelectAll,
+  ClickedDataTableColumnVisibility,
+  ClickedDataTablePreviousPage,
+  ClickedDataTableNextPage,
+  ClickedDataTableFirstPage,
+  ClickedDataTableLastPage,
+  SelectedDataTablePageSize,
+  ClickedDataTableAction,
+  ClickedDataTableClearFilters,
 ])
 export type DataTableExampleMessage = typeof DataTableExampleMessage.Type
 
@@ -233,7 +219,8 @@ const paymentCopy: Copy = {
   description: 'Manage incoming payments and review status at a glance.',
   filterPlaceholder: 'Filter emails...',
   noResults: 'No results.',
-  selectedSummary: (selected, total) => `${selected} of ${total} row(s) selected.`,
+  selectedSummary: (selected, total) =>
+    `${selected} of ${total} row(s) selected.`,
   columnsLabel: 'Columns',
   rowsPerPageLabel: 'Rows per page',
   pageLabel: (page, totalPages) => `Page ${page} of ${totalPages}`,
@@ -249,10 +236,12 @@ const paymentCopy: Copy = {
 
 const taskCopy: Copy = {
   title: 'Tasks',
-  description: 'Track work items with filter, visibility, and page-size controls.',
+  description:
+    'Track work items with filter, visibility, and page-size controls.',
   filterPlaceholder: 'Filter tasks...',
   noResults: 'No tasks match the current filters.',
-  selectedSummary: (selected, total) => `${selected} of ${total} tasks selected.`,
+  selectedSummary: (selected, total) =>
+    `${selected} of ${total} tasks selected.`,
   columnsLabel: 'View',
   rowsPerPageLabel: 'Rows per page',
   pageLabel: (page, totalPages) => `Page ${page} of ${totalPages}`,
@@ -340,18 +329,19 @@ const checkboxView = <Message>(
   }>,
 ): Html => {
   const h = html<Message>()
-  const onDataTableMessage = config.controller.onDataTableMessage
+  const { checkedState, controller, id, label, message } = config
+  const { onDataTableMessage } = controller
 
   return Checkbox.view<Message>({
-    id: config.id,
-    name: config.id,
-    checkedState: config.checkedState,
+    id,
+    name: id,
+    checkedState,
     ...(onDataTableMessage === undefined
       ? {}
-      : { onCheckedChange: () => onDataTableMessage(config.message) }),
+      : { onCheckedChange: () => onDataTableMessage(message) }),
     toView: attributes =>
       h.span(
-        [...attributes.root, h.AriaLabel(config.label)],
+        [...attributes.root, h.AriaLabel(label)],
         attributes.indicator.length > 0
           ? [h.span([...attributes.indicator], [])]
           : [],
@@ -388,76 +378,63 @@ const icon = (
 const arrowUpDownIcon = (): Html =>
   icon('m7 15 5 5 5-5M7 9l5-5 5 5', 'lucide lucide-arrow-up-down size-4')
 
-const cardIcon = (): Html =>
-  icon(
-    'M2 8h20M6 16h.01M10 16h4M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z',
-    'lucide lucide-credit-card size-4 text-muted-foreground',
-    'inline-start',
-  )
-
 const badgeForPaymentStatus = (status: PaymentStatus): Html => {
   const h = html<never>()
-  const variant =
-    status === 'failed'
-      ? 'destructive'
-      : status === 'success'
-        ? 'default'
-        : 'secondary'
-  const label =
-    status === 'processing'
-      ? 'Processing'
-      : status === 'pending'
-        ? 'Pending'
-        : status === 'success'
-          ? 'Success'
-          : 'Failed'
+  const variants = {
+    failed: 'destructive',
+    pending: 'secondary',
+    processing: 'secondary',
+    success: 'default',
+  } as const
+  const labels = {
+    failed: 'Failed',
+    pending: 'Pending',
+    processing: 'Processing',
+    success: 'Success',
+  } as const
 
   return Badge.view<never>({
-    variant,
-    toView: attributes => h.span([...attributes.badge], [label]),
+    variant: variants[status],
+    toView: attributes => h.span([...attributes.badge], [labels[status]]),
   })
 }
 
 const badgeForTaskStatus = (status: TaskStatus): Html => {
   const h = html<never>()
-  const variant =
-    status === 'blocked'
-      ? 'destructive'
-      : status === 'done'
-        ? 'default'
-        : 'outline'
-  const label =
-    status === 'in-progress'
-      ? 'In Progress'
-      : status === 'todo'
-        ? 'Todo'
-        : status === 'done'
-          ? 'Done'
-          : 'Blocked'
+  const variants = {
+    blocked: 'destructive',
+    done: 'default',
+    'in-progress': 'outline',
+    todo: 'outline',
+  } as const
+  const labels = {
+    blocked: 'Blocked',
+    done: 'Done',
+    'in-progress': 'In Progress',
+    todo: 'Todo',
+  } as const
 
   return Badge.view<never>({
-    variant,
-    toView: attributes => h.span([...attributes.badge], [label]),
+    variant: variants[status],
+    toView: attributes => h.span([...attributes.badge], [labels[status]]),
   })
 }
 
 const badgeForTaskPriority = (priority: TaskPriority): Html => {
   const h = html<never>()
+  const labels = {
+    high: 'High',
+    low: 'Low',
+    medium: 'Medium',
+  } as const
 
   return Badge.view<never>({
     variant: priority === 'high' ? 'secondary' : 'outline',
-    toView: attributes =>
-      h.span([...attributes.badge], [
-        priority === 'high'
-          ? 'High'
-          : priority === 'medium'
-            ? 'Medium'
-            : 'Low',
-      ]),
+    toView: attributes => h.span([...attributes.badge], [labels[priority]]),
   })
 }
 
-const amountText = (amount: number, locale: string = 'en-US'): string =>
+const amountText = (amount: number, locale = 'en-US'): string =>
   new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'USD',
@@ -493,9 +470,10 @@ const paymentColumns: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
     sortValue: payment => payment.amount,
     cell: payment => {
       const h = html<never>()
-      return h.div([h.Class('text-right font-medium')], [
-        amountText(payment.amount),
-      ])
+      return h.div(
+        [h.Class('text-right font-medium')],
+        [amountText(payment.amount)],
+      )
     },
   },
 ]
@@ -507,9 +485,10 @@ const taskColumns: ReadonlyArray<DataTable.DataTableColumn<Task>> = [
     valueText: task => task.id,
     cell: task => {
       const h = html<never>()
-      return h.div([h.Class('font-mono text-xs text-muted-foreground')], [
-        task.id,
-      ])
+      return h.div(
+        [h.Class('font-mono text-xs text-muted-foreground')],
+        [task.id],
+      )
     },
   },
   {
@@ -521,13 +500,16 @@ const taskColumns: ReadonlyArray<DataTable.DataTableColumn<Task>> = [
     valueText: task => task.title,
     cell: task => {
       const h = html<never>()
-      return h.div([h.Class('flex min-w-0 items-center gap-2')], [
-        Badge.view<never>({
-          variant: 'outline',
-          toView: attributes => h.span([...attributes.badge], [task.label]),
-        }),
-        h.span([h.Class('truncate font-medium')], [task.title]),
-      ])
+      return h.div(
+        [h.Class('flex min-w-0 items-center gap-2')],
+        [
+          Badge.view<never>({
+            variant: 'outline',
+            toView: attributes => h.span([...attributes.badge], [task.label]),
+          }),
+          h.span([h.Class('truncate font-medium')], [task.title]),
+        ],
+      )
     },
   },
   {
@@ -562,15 +544,18 @@ const paymentColumnsRtl: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
         processing: 'قيد المعالجة',
         failed: 'فشل',
         pending: 'قيد الانتظار',
-      }
+      } as const
+      const variants = {
+        failed: 'destructive',
+        pending: 'secondary',
+        processing: 'secondary',
+        success: 'default',
+      } as const
+
       return Badge.view<never>({
-        variant:
-          payment.status === 'failed'
-            ? 'destructive'
-            : payment.status === 'success'
-              ? 'default'
-              : 'secondary',
-        toView: attributes => h.span([...attributes.badge], [labels[payment.status]]),
+        variant: variants[payment.status],
+        toView: attributes =>
+          h.span([...attributes.badge], [labels[payment.status]]),
       })
     },
   },
@@ -595,9 +580,10 @@ const paymentColumnsRtl: ReadonlyArray<DataTable.DataTableColumn<Payment>> = [
     sortValue: payment => payment.amount,
     cell: payment => {
       const h = html<never>()
-      return h.div([h.Class('text-start font-medium')], [
-        amountText(payment.amount, 'ar-SA'),
-      ])
+      return h.div(
+        [h.Class('text-start font-medium')],
+        [amountText(payment.amount, 'ar-SA')],
+      )
     },
   },
 ]
@@ -640,7 +626,7 @@ const filterInput = <Message>(
   dir?: 'rtl',
 ): Html => {
   const h = html<Message>()
-  const onDataTableMessage = controller.onDataTableMessage
+  const { onDataTableMessage } = controller
 
   return Input.view<Message>({
     value: state.filters[columnId] ?? '',
@@ -687,7 +673,7 @@ const columnVisibilityMenu = <Message, Row>(
   dir?: 'rtl',
 ): Html => {
   const h = html<Message>()
-  const onDataTableMessage = controller.onDataTableMessage
+  const { onDataTableMessage } = controller
   const items = columns
     .filter(column => column.isHideable !== false)
     .map(
@@ -724,9 +710,10 @@ const columnVisibilityMenu = <Message, Row>(
             variant: 'outline',
             size: 'sm',
             toView: buttonAttributes =>
-              h.button([...buttonAttributes.button, ...attributes.trigger], [
-                label,
-              ]),
+              h.button(
+                [...buttonAttributes.button, ...attributes.trigger],
+                [label],
+              ),
           }),
           h.div(
             [...attributes.portal],
@@ -739,15 +726,18 @@ const columnVisibilityMenu = <Message, Row>(
                       h.div(
                         [...attributes.popup.popup.root],
                         [
-                          h.div([...attributes.popup.group], [
-                            h.div([...attributes.popup.groupLabel], [label]),
-                            ...attributes.popup.items.map(itemAttributes =>
-                              h.div(
-                                [...itemAttributes.root],
-                                defaultMenuItemContent(itemAttributes),
+                          h.div(
+                            [...attributes.popup.group],
+                            [
+                              h.div([...attributes.popup.groupLabel], [label]),
+                              ...attributes.popup.items.map(itemAttributes =>
+                                h.div(
+                                  [...itemAttributes.root],
+                                  defaultMenuItemContent(itemAttributes),
+                                ),
                               ),
-                            ),
-                          ]),
+                            ],
+                          ),
                         ],
                       ),
                     ],
@@ -764,7 +754,7 @@ const rowsPerPageSelect = <Message>(
   controller: DataTableExampleController<Message>,
   state: DataTable.DataTableState,
 ): Html => {
-  const onDataTableMessage = controller.onDataTableMessage
+  const { onDataTableMessage } = controller
 
   return Select.view<Message>({
     id: 'data-table-rows-per-page',
@@ -816,7 +806,9 @@ const tableHeadContent = <Message, Row>(
   controller: DataTableExampleController<Message>,
   column: DataTable.DataTableColumn<Row>,
 ): Child =>
-  column.isSortable === true ? sortHeaderButton(controller, column) : column.header
+  column.isSortable === true
+    ? sortHeaderButton(controller, column)
+    : column.header
 
 const renderDataTable = <Message, Row>(
   config: Readonly<{
@@ -835,282 +827,319 @@ const renderDataTable = <Message, Row>(
   }>,
 ): Html => {
   const h = html<Message>()
+  const {
+    actionIdForRow,
+    actionLabelForRow,
+    card,
+    columns,
+    controller,
+    copy,
+    description,
+    filterColumnId,
+    rowId,
+    rows,
+    state,
+    title,
+  } = config
+  const { onDataTableMessage } = controller
+  const isRtl = copy.dir === 'rtl'
+  const amountColumnClassName = isRtl ? 'text-start' : 'text-right'
   const model = DataTable.rowModel({
-    rows: config.rows,
-    columns: config.columns,
-    state: config.state,
-    rowId: config.rowId,
+    rows,
+    columns,
+    state,
+    rowId,
   })
-  const pageRowIds = model.paginatedRows.map(config.rowId)
+  const pageRowIds = model.paginatedRows.map(rowId)
   const selectAllState = checkedStateFor(
     model.selectedPageRowCount,
     pageRowIds.length,
   )
-  const hasFilters = Object.keys(config.state.filters).length > 0
+  const hasFilters = Object.keys(state.filters).length > 0
   const body = h.div(
     [h.Class('w-full')],
     [
-      h.div([h.Class(DataTable.dataTableToolbarClassName())], [
-        h.div([h.Class(DataTable.dataTableFiltersClassName())], [
-          filterInput(
-            config.controller,
-            config.filterColumnId,
-            config.state,
-            config.copy.filterPlaceholder,
-            'h-8 w-full max-w-sm',
-            config.copy.dir,
-          ),
-          ...(hasFilters
-            ? [
-                Button.view<Message>({
-                  variant: 'ghost',
-                  size: 'sm',
-                  toView: attributes =>
-                    h.button(
-                      [
-                        ...attributes.button,
-                        ...buttonMessageAttributes(
-                          h,
-                          config.controller,
-                          ClickedDataTableClearFilters(),
+      h.div(
+        [h.Class(DataTable.dataTableToolbarClassName())],
+        [
+          h.div(
+            [h.Class(DataTable.dataTableFiltersClassName())],
+            [
+              filterInput(
+                controller,
+                filterColumnId,
+                state,
+                copy.filterPlaceholder,
+                'h-8 w-full max-w-sm',
+                copy.dir,
+              ),
+              ...(hasFilters
+                ? [
+                    Button.view<Message>({
+                      variant: 'ghost',
+                      size: 'sm',
+                      toView: attributes =>
+                        h.button(
+                          [
+                            ...attributes.button,
+                            ...buttonMessageAttributes(
+                              h,
+                              controller,
+                              ClickedDataTableClearFilters(),
+                            ),
+                          ],
+                          [copy.clearLabel],
                         ),
-                      ],
-                      [config.copy.clearLabel],
-                    ),
-                }),
-              ]
-            : []),
-        ]),
-        h.div([h.Class(DataTable.dataTableActionsClassName())], [
-          columnVisibilityMenu(
-            config.controller,
-            config.columns,
-            config.state,
-            config.copy.columnsLabel,
-            config.copy.dir,
+                    }),
+                  ]
+                : []),
+            ],
           ),
-        ]),
-      ]),
-      h.div([h.Class('overflow-hidden rounded-md border')], [
-        Table.Table<Message>({
-          ...(config.copy.dir === undefined ? {} : { dir: config.copy.dir }),
-          children: [
-            Table.TableHeader<Message>({
-              children: [
-                Table.TableRow<Message>({
-                  children: [
-                    Table.TableHead<Message>({
-                      className: 'w-10',
-                      children: [
-                        checkboxView({
-                          id: `${config.copy.title}-select-all`,
-                          label: config.copy.selectAllLabel,
-                          checkedState: selectAllState,
-                          controller: config.controller,
-                          message: ClickedDataTableSelectAll({
-                            rowIds: [...pageRowIds],
+          h.div(
+            [h.Class(DataTable.dataTableActionsClassName())],
+            [
+              columnVisibilityMenu(
+                controller,
+                columns,
+                state,
+                copy.columnsLabel,
+                copy.dir,
+              ),
+            ],
+          ),
+        ],
+      ),
+      h.div(
+        [h.Class('overflow-hidden rounded-md border')],
+        [
+          Table.Table<Message>({
+            ...(copy.dir === undefined ? {} : { dir: copy.dir }),
+            children: [
+              Table.TableHeader<Message>({
+                children: [
+                  Table.TableRow<Message>({
+                    children: [
+                      Table.TableHead<Message>({
+                        className: 'w-10',
+                        children: [
+                          checkboxView({
+                            id: `${copy.title}-select-all`,
+                            label: copy.selectAllLabel,
+                            checkedState: selectAllState,
+                            controller,
+                            message: ClickedDataTableSelectAll({
+                              rowIds: [...pageRowIds],
+                            }),
                           }),
+                        ],
+                      }),
+                      ...model.visibleColumns.map(column =>
+                        Table.TableHead<Message>({
+                          className:
+                            column.id === 'amount'
+                              ? amountColumnClassName
+                              : undefined,
+                          children: [tableHeadContent(controller, column)],
+                        }),
+                      ),
+                      Table.TableHead<Message>({
+                        className: amountColumnClassName,
+                        children: [copy.actionLabel],
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+              Table.TableBody<Message>({
+                children:
+                  model.paginatedRows.length > 0
+                    ? model.paginatedRows.map(row =>
+                        Table.TableRow<Message>({
+                          state:
+                            state.selectedRowIds[rowId(row)] === true
+                              ? 'selected'
+                              : undefined,
+                          children: [
+                            Table.TableCell<Message>({
+                              children: [
+                                checkboxView({
+                                  id: rowId(row),
+                                  label: copy.selectRowLabel,
+                                  checkedState:
+                                    state.selectedRowIds[rowId(row)] === true
+                                      ? 'checked'
+                                      : 'unchecked',
+                                  controller,
+                                  message: ClickedDataTableRowCheckbox({
+                                    rowId: rowId(row),
+                                  }),
+                                }),
+                              ],
+                            }),
+                            ...model.visibleColumns.map(column =>
+                              Table.TableCell<Message>({
+                                className:
+                                  column.id === 'amount'
+                                    ? amountColumnClassName
+                                    : undefined,
+                                children: [column.cell(row)],
+                              }),
+                            ),
+                            Table.TableCell<Message>({
+                              className: amountColumnClassName,
+                              children: [
+                                actionButton(
+                                  controller,
+                                  actionIdForRow(row),
+                                  actionLabelForRow(row),
+                                ),
+                              ],
+                            }),
+                          ],
+                        }),
+                      )
+                    : [
+                        Table.TableRow<Message>({
+                          children: [
+                            Table.TableCell<Message>({
+                              attributes: [h.Attribute('colspan', '5')],
+                              className:
+                                DataTable.dataTableEmptyStateClassName(),
+                              children: [copy.noResults],
+                            }),
+                          ],
                         }),
                       ],
-                    }),
-                    ...model.visibleColumns.map(column =>
-                      Table.TableHead<Message>({
-                        className:
-                          column.id === 'amount'
-                            ? config.copy.dir === 'rtl'
-                              ? 'text-start'
-                              : 'text-right'
-                            : undefined,
-                        children: [tableHeadContent(config.controller, column)],
-                      }),
-                    ),
-                    Table.TableHead<Message>({
-                      className:
-                        config.copy.dir === 'rtl' ? 'text-start' : 'text-right',
-                      children: [config.copy.actionLabel],
-                    }),
-                  ],
-                }),
-              ],
-            }),
-            Table.TableBody<Message>({
-              children:
-                model.paginatedRows.length > 0
-                  ? model.paginatedRows.map(row =>
-                      Table.TableRow<Message>({
-                        state:
-                          config.state.selectedRowIds[config.rowId(row)] === true
-                            ? 'selected'
-                            : undefined,
-                        children: [
-                          Table.TableCell<Message>({
-                            children: [
-                              checkboxView({
-                                id: config.rowId(row),
-                                label: config.copy.selectRowLabel,
-                                checkedState:
-                                  config.state.selectedRowIds[config.rowId(row)] ===
-                                  true
-                                    ? 'checked'
-                                    : 'unchecked',
-                                controller: config.controller,
-                                message: ClickedDataTableRowCheckbox({
-                                  rowId: config.rowId(row),
-                                }),
-                              }),
-                            ],
-                          }),
-                          ...model.visibleColumns.map(column =>
-                            Table.TableCell<Message>({
-                              className:
-                                column.id === 'amount'
-                                  ? config.copy.dir === 'rtl'
-                                    ? 'text-start'
-                                    : 'text-right'
-                                  : undefined,
-                              children: [column.cell(row)],
-                            }),
-                          ),
-                          Table.TableCell<Message>({
-                            className:
-                              config.copy.dir === 'rtl' ? 'text-start' : 'text-right',
-                            children: [
-                              actionButton(
-                                config.controller,
-                                config.actionIdForRow(row),
-                                config.actionLabelForRow(row),
-                              ),
-                            ],
-                          }),
-                        ],
-                      }),
-                    )
-                  : [
-                      Table.TableRow<Message>({
-                        children: [
-                          Table.TableCell<Message>({
-                            attributes: [h.Attribute('colspan', '5')],
-                            className: DataTable.dataTableEmptyStateClassName(),
-                            children: [config.copy.noResults],
-                          }),
-                        ],
-                      }),
-                    ],
-            }),
-          ],
-        }),
-      ]),
-      h.div([h.Class(DataTable.dataTableMetaClassName())], [
-        h.div([h.Class('flex-1 text-sm text-muted-foreground')], [
-          config.copy.selectedSummary(
-            model.selectedFilteredRowCount,
-            model.filteredRowCount,
+              }),
+            ],
+          }),
+        ],
+      ),
+      h.div(
+        [h.Class(DataTable.dataTableMetaClassName())],
+        [
+          h.div(
+            [h.Class('flex-1 text-sm text-muted-foreground')],
+            [
+              copy.selectedSummary(
+                model.selectedFilteredRowCount,
+                model.filteredRowCount,
+              ),
+            ],
           ),
-        ]),
-        h.div([h.Class('flex items-center gap-4')], [
-          h.div([h.Class('flex items-center gap-2 text-sm')], [
-            h.span([h.Class('font-medium')], [config.copy.rowsPerPageLabel]),
-            rowsPerPageSelect(config.controller, config.state),
-          ]),
-          h.div([h.Class('text-sm text-muted-foreground')], [
-            config.copy.pageLabel(
-              config.state.pageIndex + 1,
-              model.totalPageCount,
-            ),
-          ]),
-          Pagination.Pagination<Message>({
-            className: 'mx-0 w-auto',
-            ...(config.copy.dir === undefined ? {} : { dir: config.copy.dir }),
-            children: [
-              Pagination.PaginationContent<Message>({
+          h.div(
+            [h.Class('flex items-center gap-4')],
+            [
+              h.div(
+                [h.Class('flex items-center gap-2 text-sm')],
+                [
+                  h.span([h.Class('font-medium')], [copy.rowsPerPageLabel]),
+                  rowsPerPageSelect(controller, state),
+                ],
+              ),
+              h.div(
+                [h.Class('text-sm text-muted-foreground')],
+                [copy.pageLabel(state.pageIndex + 1, model.totalPageCount)],
+              ),
+              Pagination.Pagination<Message>({
+                className: 'mx-0 w-auto',
+                ...(copy.dir === undefined ? {} : { dir: copy.dir }),
                 children: [
-                  Pagination.PaginationItem<Message>({
+                  Pagination.PaginationContent<Message>({
                     children: [
-                      Pagination.PaginationLink<Message>({
-                        href: '#',
-                        isDisabled: !model.canPreviousPage,
-                        children: [config.copy.firstLabel],
-                        ...(config.controller.onDataTableMessage === undefined
-                          ? {}
-                          : { onClick: config.controller.onDataTableMessage(ClickedDataTableFirstPage()) }),
-                      }),
-                    ],
-                  }),
-                  Pagination.PaginationItem<Message>({
-                    children: [
-                      Pagination.PaginationPrevious<Message>({
-                        href: '#',
-                        text: config.copy.previousLabel,
-                        dir: config.copy.dir ?? 'ltr',
-                        isDisabled: !model.canPreviousPage,
-                        ...(config.controller.onDataTableMessage === undefined
-                          ? {}
-                          : {
-                              onClick: config.controller.onDataTableMessage(
-                                ClickedDataTablePreviousPage(),
-                              ),
-                            }),
-                      }),
-                    ],
-                  }),
-                  Pagination.PaginationItem<Message>({
-                    children: [
-                      Pagination.PaginationNext<Message>({
-                        href: '#',
-                        text: config.copy.nextLabel,
-                        dir: config.copy.dir ?? 'ltr',
-                        isDisabled: !model.canNextPage,
-                        ...(config.controller.onDataTableMessage === undefined
-                          ? {}
-                          : {
-                              onClick: config.controller.onDataTableMessage(
-                                ClickedDataTableNextPage({
-                                  pageCount: model.totalPageCount,
+                      Pagination.PaginationItem<Message>({
+                        children: [
+                          Pagination.PaginationLink<Message>({
+                            href: '#',
+                            isDisabled: !model.canPreviousPage,
+                            children: [copy.firstLabel],
+                            ...(onDataTableMessage === undefined
+                              ? {}
+                              : {
+                                  onClick: onDataTableMessage(
+                                    ClickedDataTableFirstPage(),
+                                  ),
                                 }),
-                              ),
-                            }),
+                          }),
+                        ],
                       }),
-                    ],
-                  }),
-                  Pagination.PaginationItem<Message>({
-                    children: [
-                      Pagination.PaginationLink<Message>({
-                        href: '#',
-                        isDisabled: !model.canNextPage,
-                        children: [config.copy.lastLabel],
-                        ...(config.controller.onDataTableMessage === undefined
-                          ? {}
-                          : {
-                              onClick: config.controller.onDataTableMessage(
-                                ClickedDataTableLastPage({
-                                  pageCount: model.totalPageCount,
+                      Pagination.PaginationItem<Message>({
+                        children: [
+                          Pagination.PaginationPrevious<Message>({
+                            href: '#',
+                            text: copy.previousLabel,
+                            dir: copy.dir ?? 'ltr',
+                            isDisabled: !model.canPreviousPage,
+                            ...(onDataTableMessage === undefined
+                              ? {}
+                              : {
+                                  onClick: onDataTableMessage(
+                                    ClickedDataTablePreviousPage(),
+                                  ),
                                 }),
-                              ),
-                            }),
+                          }),
+                        ],
+                      }),
+                      Pagination.PaginationItem<Message>({
+                        children: [
+                          Pagination.PaginationNext<Message>({
+                            href: '#',
+                            text: copy.nextLabel,
+                            dir: copy.dir ?? 'ltr',
+                            isDisabled: !model.canNextPage,
+                            ...(onDataTableMessage === undefined
+                              ? {}
+                              : {
+                                  onClick: onDataTableMessage(
+                                    ClickedDataTableNextPage({
+                                      pageCount: model.totalPageCount,
+                                    }),
+                                  ),
+                                }),
+                          }),
+                        ],
+                      }),
+                      Pagination.PaginationItem<Message>({
+                        children: [
+                          Pagination.PaginationLink<Message>({
+                            href: '#',
+                            isDisabled: !model.canNextPage,
+                            children: [copy.lastLabel],
+                            ...(onDataTableMessage === undefined
+                              ? {}
+                              : {
+                                  onClick: onDataTableMessage(
+                                    ClickedDataTableLastPage({
+                                      pageCount: model.totalPageCount,
+                                    }),
+                                  ),
+                                }),
+                          }),
+                        ],
                       }),
                     ],
                   }),
                 ],
               }),
             ],
-          }),
-        ]),
-      ]),
+          ),
+        ],
+      ),
     ],
   )
 
-  if (config.card !== true) {
+  if (card !== true) {
     return body
   }
 
   return Card.Card<Message>({
-    ...(config.copy.dir === undefined ? {} : { dir: config.copy.dir }),
+    ...(copy.dir === undefined ? {} : { dir: copy.dir }),
     children: [
       Card.CardHeader<Message>({
         children: [
-          Card.CardTitle<Message>({ children: [config.title ?? config.copy.title] }),
+          Card.CardTitle<Message>({ children: [title ?? copy.title] }),
           Card.CardDescription<Message>({
-            children: [config.description ?? config.copy.description],
+            children: [description ?? copy.description],
           }),
         ],
       }),
