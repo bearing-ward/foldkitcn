@@ -108,6 +108,7 @@ honor its STOP conditions, and update your row when done.
 | 098 | Implement shadcn Toast with stacked expansion | P1 | M | 081, 082 | DONE |
 | 099 | Document shadcn Typography as a docs-only page | P1 | M | 015, 061, 068 | DONE |
 | 100 | Implement shadcn Date Picker with native Foldkit Calendar | P1 | L | 034, 038, 072, 078 | DONE |
+| 101 | Implement shadcn Data Table with native Foldkit query state | P1 | L | 022, 025, 042, 043, 058, 075, 076, 077 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -180,6 +181,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 098 promotes the held `shadcn/toast` row now that Plans 081 and 082 provide the local toast foundation. It must reuse Foldkit/Base UI toast behavior, keep shadcn card styling, and limit new behavior to compact stacked cards that expand on hover/focus.
 - Plan 099 resolves `shadcn/typography` by matching origin's docs-only intent: publish a preview docs page with utility-class examples, waive component parity, and avoid creating an installable Typography API.
 - Plan 100 promotes the held `shadcn/date-picker` row now that Calendar, Popover, Field, Input, and Input Group foundations exist. It must use native Foldkit `Calendar` and `@foldkit/ui/DatePicker` for date behavior, keep origin date packages fixture-only or deferred, and document range, time, and natural-language examples as follow-up work unless native Foldkit support exists.
+- Plan 101 promotes the held `shadcn/data-table` row by replacing TanStack Table with a local Foldkit query-state helper and examples that compose existing shadcn primitives. It intentionally defers dashboard chart, native DragAndDrop row reorder, and native VirtualList row virtualization to follow-up plans so the first installable slice stays reviewable.
 
 ## Findings considered and rejected
 

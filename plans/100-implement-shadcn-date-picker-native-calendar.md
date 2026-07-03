@@ -67,6 +67,7 @@ styling it like the shadcn base-nova examples, and rejecting the origin
 
 ```md
 <!-- plans/artifacts/098-blocked-component-foundation-preview/plan-preview.md:47-82 -->
+
 - Missing primary source: `repos/ui/apps/v4/styles/base-nova/ui/date-picker.tsx`
 - Evidence paths:
   - `repos/ui/apps/v4/content/docs/components/base/date-picker.mdx`
@@ -87,6 +88,7 @@ styling it like the shadcn base-nova examples, and rejecting the origin
 
 ```md
 <!-- plans/artifacts/098-blocked-component-foundation-preview/plan-preview.md:194-203 -->
+
 - `react-day-picker`: `reject-or-defer`
 - `date-fns`: `reject-or-defer`
 - `chrono-node`: `reject-or-defer`
@@ -97,7 +99,7 @@ styling it like the shadcn base-nova examples, and rejecting the origin
 
 ```ts
 // node_modules/foldkit/dist/index.d.ts:1
-export * as Calendar from './calendar/public.js';
+export * as Calendar from './calendar/public.js'
 ```
 
 - Native Calendar already has the date helpers this plan needs:
@@ -136,11 +138,18 @@ export const make = (year: number, month: number, day: number): CalendarDate =>
 ```ts
 // repos/foldkit/packages/foldkit/src/calendar/calendarDate.ts:217-240
 export const CalendarDateFromIsoString = S.String.pipe(
-  S.decodeTo(CalendarDate, SchemaTransformation.transformOrFail({
-    decode: input => { /* accepts only YYYY-MM-DD */ },
-    encode: ({ year, month, day }) =>
-      Effect.succeed(`${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`),
-  })),
+  S.decodeTo(
+    CalendarDate,
+    SchemaTransformation.transformOrFail({
+      decode: input => {
+        /* accepts only YYYY-MM-DD */
+      },
+      encode: ({ year, month, day }) =>
+        Effect.succeed(
+          `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+        ),
+    }),
+  ),
 )
 ```
 
@@ -162,7 +171,7 @@ export const addMonths = Function.dual(2, (self, n) => {
 
 ```ts
 // node_modules/@foldkit/ui/dist/index.d.ts:4
-export * as DatePicker from './datePicker/public.js';
+export * as DatePicker from './datePicker/public.js'
 ```
 
 - The native DatePicker model owns a selected `CalendarDate`, a Calendar
@@ -203,7 +212,9 @@ export type InitConfig = Readonly<{
 
 export const init = (config: InitConfig): Model => ({
   maybeSelectedDate: Option.fromNullishOr(config.initialSelectedDate),
-  calendar: UiCalendar.init({ /* same native CalendarDate config */ }),
+  calendar: UiCalendar.init({
+    /* same native CalendarDate config */
+  }),
   popover: Popover.init({ id: `${config.id}-popover`, contentFocus: true }),
 })
 ```
@@ -219,15 +230,17 @@ export type ViewInputs = Readonly<{
   panelClassName?: string
 }>
 
-export const view = defineView<Model, Message, ViewInputs>((model, viewInputs) => {
-  const calendarVNode = h.submodel({
-    model: model.calendar,
-    view: UiCalendar.view,
-    viewInputs: { toView: toCalendarView },
-    toParentMessage: message => GotCalendarMessage({ message }),
-  })
-  /* Popover trigger/panel plus optional hidden input */
-})
+export const view = defineView<Model, Message, ViewInputs>(
+  (model, viewInputs) => {
+    const calendarVNode = h.submodel({
+      model: model.calendar,
+      view: UiCalendar.view,
+      viewInputs: { toView: toCalendarView },
+      toParentMessage: message => GotCalendarMessage({ message }),
+    })
+    /* Popover trigger/panel plus optional hidden input */
+  },
+)
 ```
 
 - Foldkit website has the closest framework-native implementation reference:
@@ -275,8 +288,12 @@ export const CalendarState = S.Struct({
 const dateFromParts = (year: number, month: number, day: number): Date =>
   new Date(Date.UTC(year, month - 1, day))
 
-const addDays = (isoDate: string, delta: number): string => { /* local Date */ }
-export const addMonths = (monthKey: string, delta: number): string => { /* local Date */ }
+const addDays = (isoDate: string, delta: number): string => {
+  /* local Date */
+}
+export const addMonths = (monthKey: string, delta: number): string => {
+  /* local Date */
+}
 ```
 
 - Live examples currently have special state plumbing for ISO-string Calendar
@@ -294,7 +311,10 @@ const calendarExample = (
   defaultSelectedDate?: string,
 ): LiveExampleDefinition => ({
   render: (example, context) => {
-    const selectedDate = context.calendarSelectedDateFor(example, defaultSelectedDate)
+    const selectedDate = context.calendarSelectedDateFor(
+      example,
+      defaultSelectedDate,
+    )
     return view({
       ...(selectedDate === undefined ? {} : { selectedDate }),
       onSelectDate: change => context.onCalendarSelectDate(example, change),
@@ -308,17 +328,17 @@ than reusing `liveExampleCalendarSelectedDates`.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-|---------|---------|---------------------|
-| Check origin/progress status | `bun run origin:components:status` | exit 0; `shadcn/date-picker` appears blocked/private before the work |
-| Build registry artifacts | `bun run registry:build` | exit 0; generated registry/docs artifacts include `shadcn/date-picker` |
-| Refresh checklist | `bun run origin:components:write` | exit 0; `docs/component-conversion-checklist.json` is updated |
-| Registry gate | `bun run registry:check` | exit 0 |
-| Focused tests | `bun run test -- src/registry/shadcn/date-picker/date-picker.test.ts scripts/registry-component-progress-common.test.ts src/scene.test.ts` | exit 0; all focused tests pass |
-| Full relevant tests | `bun run test -- src/registry/validation.test.ts scripts/origin-common.test.ts scripts/registry-component-progress-common.test.ts src/registry/shadcn/date-picker/date-picker.test.ts src/scene.test.ts` | exit 0 |
-| Typecheck | `bun run typecheck` | exit 0 |
-| Lint/check | `bun run check` | exit 0 |
-| Build | `bun run build` | exit 0 |
+| Purpose                      | Command                                                                                                                                                                                                  | Expected on success                                                    |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Check origin/progress status | `bun run origin:components:status`                                                                                                                                                                       | exit 0; `shadcn/date-picker` appears blocked/private before the work   |
+| Build registry artifacts     | `bun run registry:build`                                                                                                                                                                                 | exit 0; generated registry/docs artifacts include `shadcn/date-picker` |
+| Refresh checklist            | `bun run origin:components:write`                                                                                                                                                                        | exit 0; `docs/component-conversion-checklist.json` is updated          |
+| Registry gate                | `bun run registry:check`                                                                                                                                                                                 | exit 0                                                                 |
+| Focused tests                | `bun run test -- src/registry/shadcn/date-picker/date-picker.test.ts scripts/registry-component-progress-common.test.ts src/scene.test.ts`                                                               | exit 0; all focused tests pass                                         |
+| Full relevant tests          | `bun run test -- src/registry/validation.test.ts scripts/origin-common.test.ts scripts/registry-component-progress-common.test.ts src/registry/shadcn/date-picker/date-picker.test.ts src/scene.test.ts` | exit 0                                                                 |
+| Typecheck                    | `bun run typecheck`                                                                                                                                                                                      | exit 0                                                                 |
+| Lint/check                   | `bun run check`                                                                                                                                                                                          | exit 0                                                                 |
+| Build                        | `bun run build`                                                                                                                                                                                          | exit 0                                                                 |
 
 Do not run `bun x ultracite fix` unless the operator explicitly asks; use
 targeted edits and then `bun run check`.
@@ -543,7 +563,9 @@ export type DatePickerConfig<Message> = DatePickerController<Message> &
 
 export const DatePicker = <Message>(
   config: DatePickerConfig<Message>,
-): Html => { /* h.submodel with UiDatePicker.view */ }
+): Html => {
+  /* h.submodel with UiDatePicker.view */
+}
 ```
 
 **Verify**:
@@ -586,7 +608,9 @@ export type DatePickerExampleController<Message = never> = Readonly<{
 
 export const DatePickerDemo = <Message = never>(
   controller?: DatePickerExampleController<Message>,
-): Html => { /* static fallback only for code preview, live preview supplies controller */ }
+): Html => {
+  /* static fallback only for code preview, live preview supplies controller */
+}
 ```
 
 The static fallback may call `datePickerInit` with a deterministic
