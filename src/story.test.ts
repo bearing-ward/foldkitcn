@@ -80,6 +80,7 @@ const model: Model = {
   liveExampleTogglePressedValues: {},
   liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
+  liveExampleDatePickerStates: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
