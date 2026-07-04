@@ -81,6 +81,11 @@ const requireExampleView = (
   return view
 }
 
+const staticExampleView =
+  (view: ExampleView) =>
+  (_model: Model): Html =>
+    view()
+
 // VIEW
 
 const viewMenu =
@@ -316,7 +321,7 @@ describe('shadcn/dropdown-menu view', () => {
     expect(() => {
       for (const example of dropdownMenuExampleViews) {
         Scene.scene(
-          { update, view: example.view },
+          { update, view: staticExampleView(example.view) },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="dropdown-menu"]'),
@@ -351,7 +356,7 @@ describe('shadcn/dropdown-menu view', () => {
         newlyCoveredExampleIds.has(candidate.id),
       )) {
         Scene.scene(
-          { update, view: example.view },
+          { update, view: staticExampleView(example.view) },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="dropdown-menu"]'),
@@ -372,7 +377,10 @@ describe('shadcn/dropdown-menu view', () => {
         'shadcn/dropdown-menu-complex',
       ]) {
         Scene.scene(
-          { update, view: requireExampleView(viewById, id) },
+          {
+            update,
+            view: staticExampleView(requireExampleView(viewById, id)),
+          },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="dropdown-menu-sub-content"]'),
@@ -383,9 +391,8 @@ describe('shadcn/dropdown-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(
-            viewById,
-            'shadcn/dropdown-menu-destructive',
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/dropdown-menu-destructive'),
           ),
         },
         Scene.with(initialModel),
@@ -396,7 +403,9 @@ describe('shadcn/dropdown-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/dropdown-menu-rtl'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/dropdown-menu-rtl'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-slot="dropdown-menu"]')).toHaveAttr(
@@ -407,7 +416,9 @@ describe('shadcn/dropdown-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/dropdown-menu-shortcuts'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/dropdown-menu-shortcuts'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(
