@@ -74,6 +74,11 @@ import {
   carouselState,
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
+import {
+  DatePickerMessage,
+  DatePickerModel,
+  datePickerUpdate,
+} from './registry/shadcn/date-picker'
 import type { ComboboxValueChange } from './registry/shadcn/combobox'
 import { ContextMenuPoint } from './registry/base-ui/context-menu'
 import * as ToastPrimitive from './registry/base-ui/toast'
@@ -193,6 +198,7 @@ export const Model = S.Struct({
   liveExampleTogglePressedValues: S.Record(S.String, S.Boolean),
   liveExampleToggleGroupValues: S.Record(S.String, S.Array(S.String)),
   liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
+  liveExampleDatePickerStates: S.Record(S.String, DatePickerModel),
   liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
   liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
@@ -814,6 +820,14 @@ export const SelectedLiveExampleCalendarDate = m(
     date: S.String,
   },
 )
+export const GotLiveExampleDatePickerMessage = m(
+  'GotLiveExampleDatePickerMessage',
+  {
+    exampleId: S.String,
+    message: DatePickerMessage,
+    initialModel: DatePickerModel,
+  },
+)
 export const GotLiveExampleCarouselMessage = m(
   'GotLiveExampleCarouselMessage',
   {
@@ -971,6 +985,7 @@ export const Message = S.Union([
   UpdatedLiveExampleTogglePressed,
   UpdatedLiveExampleToggleGroupValues,
   SelectedLiveExampleCalendarDate,
+  GotLiveExampleDatePickerMessage,
   GotLiveExampleCarouselMessage,
   GotLiveExampleResizableMessage,
   ClickedOpenLiveExampleCommandDialog,
@@ -1022,6 +1037,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleTogglePressedValues: {},
       liveExampleToggleGroupValues: {},
       liveExampleCalendarSelectedDates: {},
+      liveExampleDatePickerStates: {},
       liveExampleCarouselSelectedIndexes: {},
       liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
@@ -1427,6 +1443,33 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      GotLiveExampleDatePickerMessage: ({
+        exampleId,
+        message,
+        initialModel,
+      }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleDatePickerStates, exampleId),
+          Option.getOrElse(() => initialModel),
+        )
+        const [nextState, commands] = datePickerUpdate(state, message)
+
+        return [
+          evo(model, {
+            liveExampleDatePickerStates: EffectRecord.set(
+              exampleId,
+              nextState,
+            ),
+          }),
+          Command.mapMessages(commands, nextMessage =>
+            GotLiveExampleDatePickerMessage({
+              exampleId,
+              message: nextMessage,
+              initialModel,
+            }),
+          ),
+        ]
+      },
       GotLiveExampleCarouselMessage: ({
         exampleId,
         message,
@@ -2866,6 +2909,7 @@ const examplesSectionView = (
     Record<string, ReadonlyArray<string>>
   >,
   liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
+  liveExampleDatePickerStates: Readonly<Record<string, DatePickerModel>>,
   liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
   liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
@@ -3222,6 +3266,24 @@ const examplesSectionView = (
       SelectedLiveExampleCalendarDate({
         exampleId: example.id,
         date: change.date,
+      }),
+    datePickerStateFor: (
+      example: ExampleDocsArtifact,
+      initialModel: DatePickerModel,
+    ): DatePickerModel =>
+      pipe(
+        EffectRecord.get(liveExampleDatePickerStates, example.id),
+        Option.getOrElse(() => initialModel),
+      ),
+    onDatePickerMessage: (
+      example: ExampleDocsArtifact,
+      message: DatePickerMessage,
+      initialModel: DatePickerModel,
+    ): Message =>
+      GotLiveExampleDatePickerMessage({
+        exampleId: example.id,
+        message,
+        initialModel,
       }),
     carouselSelectedIndexFor: (
       example: ExampleDocsArtifact,
@@ -3741,6 +3803,7 @@ const componentDetailPageView = (
           model.liveExampleTogglePressedValues,
           model.liveExampleToggleGroupValues,
           model.liveExampleCalendarSelectedDates,
+          model.liveExampleDatePickerStates,
           model.liveExampleCarouselSelectedIndexes,
           model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,

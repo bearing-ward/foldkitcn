@@ -218,6 +218,23 @@ import {
   ContextMenuSubmenu,
 } from './registry/shadcn/context-menu/examples'
 import type { ContextMenuExampleController } from './registry/shadcn/context-menu/examples'
+import type {
+  DatePickerMessage,
+  DatePickerModel,
+} from './registry/shadcn/date-picker'
+import {
+  DatePickerBasic,
+  DatePickerDemo,
+  DatePickerDob,
+  DatePickerInput,
+  DatePickerRtl,
+  datePickerBasicInitialModel,
+  datePickerDemoInitialModel,
+  datePickerDobInitialModel,
+  datePickerInputInitialModel,
+  datePickerRtlInitialModel,
+} from './registry/shadcn/date-picker/examples'
+import type { DatePickerExampleController } from './registry/shadcn/date-picker/examples'
 import {
   DataTableDemo,
   DataTableRtl,
@@ -744,6 +761,15 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     change: CalendarSelectChange,
   ) => Message
+  datePickerStateFor?: (
+    example: ExampleDocsArtifact,
+    initialModel: DatePickerModel,
+  ) => DatePickerModel
+  onDatePickerMessage?: (
+    example: ExampleDocsArtifact,
+    message: DatePickerMessage,
+    initialModel: DatePickerModel,
+  ) => Message
   carouselSelectedIndexFor: (
     example: ExampleDocsArtifact,
     defaultSelectedIndex: number,
@@ -904,6 +930,10 @@ type CommandDialogExampleView = <Message = never>(
 
 type CalendarExampleView = <Message = never>(
   controller?: CalendarExampleController<Message>,
+) => Html
+
+type DatePickerExampleView = <Message = never>(
+  controller?: DatePickerExampleController<Message>,
 ) => Html
 
 type CarouselExampleView = <Message = never>(
@@ -1768,6 +1798,28 @@ const calendarExample = (
   },
 })
 
+const datePickerExample = (
+  view: DatePickerExampleView,
+  initialModel: () => DatePickerModel,
+): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const initial = initialModel()
+    const controller: DatePickerExampleController<Message> = {
+      model: context.datePickerStateFor?.(example, initial) ?? initial,
+      toParentMessage: message =>
+        context.onDatePickerMessage?.(example, message, initial) ??
+        (() => {
+          throw new Error('Date Picker live examples require a controller.')
+        })(),
+    }
+
+    return view(controller)
+  },
+})
+
 const carouselExample = (
   view: CarouselExampleView,
   defaultSelectedIndex = 0,
@@ -2380,6 +2432,26 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/calendar', 'CalendarRtl')]: calendarExample(
     CalendarRtl,
     '2025-01-06',
+  ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerDemo')]: datePickerExample(
+    DatePickerDemo,
+    datePickerDemoInitialModel,
+  ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerBasic')]: datePickerExample(
+    DatePickerBasic,
+    datePickerBasicInitialModel,
+  ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerDob')]: datePickerExample(
+    DatePickerDob,
+    datePickerDobInitialModel,
+  ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerInput')]: datePickerExample(
+    DatePickerInput,
+    datePickerInputInitialModel,
+  ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerRtl')]: datePickerExample(
+    DatePickerRtl,
+    datePickerRtlInitialModel,
   ),
   [liveExampleKey('shadcn/carousel', 'CarouselDemo')]:
     carouselExample(CarouselDemo),

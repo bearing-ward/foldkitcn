@@ -95,6 +95,7 @@ describe('origin component progress', () => {
       'shadcn/button',
       'shadcn/button-group',
       'shadcn/calendar',
+      'shadcn/date-picker',
       'shadcn/carousel',
       'shadcn/card',
       'shadcn/checkbox',
@@ -153,7 +154,7 @@ describe('origin component progress', () => {
 
   test('keeps held rows blocked and visible', () => {
     expect(requireRow('shadcn/data-table').readiness).toBe('imported')
-    expect(requireRow('shadcn/date-picker').readiness).toBe('blocked')
+    expect(requireRow('shadcn/date-picker').readiness).toBe('imported')
     expect(requireRow('shadcn/chart').readiness).toBe('blocked')
     expect(requireRow('shadcn/toast').readiness).toBe('imported')
     expect(requireRow('shadcn/typography').readiness).toBe('imported')

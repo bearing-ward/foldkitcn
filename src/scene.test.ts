@@ -108,6 +108,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleTogglePressedValues: {},
   liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
+  liveExampleDatePickerStates: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},

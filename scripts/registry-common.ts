@@ -461,6 +461,13 @@ const liveReadyExampleExportsByItemId: Readonly<
     'CalendarBookedDates',
     'CalendarRtl',
   ]),
+  'shadcn/date-picker': new Set([
+    'DatePickerDemo',
+    'DatePickerBasic',
+    'DatePickerDob',
+    'DatePickerInput',
+    'DatePickerRtl',
+  ]),
   'shadcn/carousel': new Set([
     'CarouselDemo',
     'CarouselSize',
