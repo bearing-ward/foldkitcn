@@ -22,6 +22,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Check out origin evidence
+        run: git submodule update --init --depth 1 repos/base-ui repos/ui
+
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -34,6 +37,8 @@ jobs:
         run: bun run registry:check
 
       - name: Typecheck
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
         run: bun run typecheck
 
       - name: Test
