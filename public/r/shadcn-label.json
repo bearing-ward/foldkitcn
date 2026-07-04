@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "Foldkit-native shadcn base-nova Label helper using a native label element, shadcn label slot classes, and cn.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": ["@foldkitcn/shadcn-checkbox", "@foldkitcn/utils-cn"],
+  "files": [
+    {
+      "path": "src/registry/shadcn/label/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/label.ts",
+      "content": "import { Predicate, Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const LabelOptions = S.Struct({\n  id: S.optional(S.String),\n  for: S.optional(S.String),\n  htmlFor: S.optional(S.String),\n  dir: S.optional(S.String),\n  ariaLabel: S.optional(S.String),\n  ariaLabelledBy: S.optional(S.String),\n  ariaDescribedBy: S.optional(S.String),\n})\nexport type LabelOptions = typeof LabelOptions.Type\n\nexport const LabelStyleOptions = S.Struct({\n  className: S.optional(S.String),\n})\nexport type LabelStyleOptions = typeof LabelStyleOptions.Type\n\n// VIEW\n\nexport type LabelAttributes<Message> = Readonly<{\n  label: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = LabelOptions &\n  LabelStyleOptions &\n  Readonly<{\n    toView: (attributes: LabelAttributes<Message>) => Html\n  }>\n\nexport const labelBaseClassName =\n  'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50'\n\nexport const labelClassName = ({ className }: LabelStyleOptions = {}): string =>\n  cn(labelBaseClassName, className)\n\nconst optionalAttribute = <Message>(\n  value: string | undefined,\n  toAttribute: (value: string) => Attribute<Message>,\n): ReadonlyArray<Attribute<Message>> =>\n  Predicate.isNotUndefined(value) ? [toAttribute(value)] : []\n\nconst labelFor = (\n  config: Pick<LabelOptions, 'for' | 'htmlFor'>,\n): string | undefined => config.htmlFor ?? config.for\n\nconst labelAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  config: ViewConfig<Message>,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'label'),\n  h.Class(labelClassName({ className: config.className })),\n  ...optionalAttribute<Message>(config.id, value => h.Id(value)),\n  ...optionalAttribute<Message>(labelFor(config), value =>\n    h.Attribute('for', value),\n  ),\n  ...optionalAttribute<Message>(config.dir, value => h.Dir(value)),\n  ...optionalAttribute<Message>(config.ariaLabel, value => h.AriaLabel(value)),\n  ...optionalAttribute<Message>(config.ariaLabelledBy, value =>\n    h.AriaLabelledBy(value),\n  ),\n  ...optionalAttribute<Message>(config.ariaDescribedBy, value =>\n    h.AriaDescribedBy(value),\n  ),\n]\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n\n  return config.toView({\n    label: labelAttributes(h, config),\n  })\n}\n"
+    }
+  ]
+}

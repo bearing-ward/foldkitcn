@@ -3,8 +3,8 @@ import type { CalendarAttributes } from '@foldkit/ui/calendar'
 import type { AnchorConfig } from '@foldkit/ui/popover'
 import { Match as M, Option, Schema as S } from 'effect'
 import { Calendar } from 'foldkit'
-import type { Attribute, Html } from 'foldkit/html'
-import { childAttributes, html } from 'foldkit/html'
+import type { Html } from 'foldkit/html'
+import { html } from 'foldkit/html'
 
 import { cn } from '../../../utils/cn'
 
@@ -19,53 +19,81 @@ export type DatePickerMessage = typeof DatePickerMessage.Type
 export const DatePickerOutMessage = UiDatePicker.OutMessage
 export type DatePickerOutMessage = typeof DatePickerOutMessage.Type
 
-export type DatePickerInitConfig = UiDatePicker.InitConfig
+export const DatePickerDirection = S.Union([S.Literal('ltr'), S.Literal('rtl')])
+export type DatePickerDirection = typeof DatePickerDirection.Type
+
+export type DatePickerController<Message = DatePickerMessage> = Readonly<{
+  model: DatePickerModel
+  toParentMessage: (message: DatePickerMessage) => Message
+}>
+
+export type DatePickerConfig<Message = DatePickerMessage> =
+  DatePickerController<Message> &
+    Readonly<{
+      placeholder?: string
+      name?: string
+      locale?: Calendar.LocaleConfig
+      anchor?: AnchorConfig
+      className?: string
+      triggerClassName?: string
+      panelClassName?: string
+      isDisabled?: boolean
+      dir?: DatePickerDirection
+      compact?: boolean
+    }>
 
 export const datePickerInit = UiDatePicker.init
 export const datePickerUpdate = UiDatePicker.update
 export const datePickerSelectDate = UiDatePicker.selectDate
 export const datePickerClear = UiDatePicker.clear
-export const datePickerReflectSelectedDate = UiDatePicker.reflectSelectedDate
-export const DatePickerSelectedDate = UiDatePicker.SelectedDate
-export const DatePickerChangedViewMonth = UiDatePicker.ChangedViewMonth
-export const DatePickerRequestedSelectDate = UiDatePicker.RequestedSelectDate
-export const DatePickerCleared = UiDatePicker.Cleared
-export const DatePickerOpened = UiDatePicker.Opened
-
-export const encodeCalendarDateIso = S.encodeSync(
-  Calendar.CalendarDateFromIsoString,
-)
-
-export const decodeCalendarDateIso = S.decodeUnknownOption(
-  Calendar.CalendarDateFromIsoString,
-)
 
 // VIEW
 
-export type DatePickerController<Message> = Readonly<{
-  model: DatePickerModel
-  toParentMessage: (message: DatePickerMessage) => Message
-}>
-
-export type DatePickerConfig<Message> = DatePickerController<Message> &
-  Readonly<{
-    placeholder?: string
-    name?: string
-    locale?: Calendar.LocaleConfig
-    anchor?: AnchorConfig
-    className?: string
-    triggerClassName?: string
-    panelClassName?: string
-    isDisabled?: boolean
-    dir?: 'ltr' | 'rtl'
-    compact?: boolean
-  }>
-
-export const datePickerAnchor: AnchorConfig = {
+const defaultAnchor: AnchorConfig = {
   placement: 'bottom-start',
   gap: 4,
   padding: 8,
 }
+
+const triggerBaseClassName =
+  'inline-flex h-8 w-fit min-w-48 items-center justify-between gap-2 rounded-lg border border-input bg-background px-2.5 py-1 text-sm font-normal whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[placeholder=true]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50'
+
+const panelBaseClassName =
+  'z-50 w-auto rounded-lg border bg-popover p-3 text-popover-foreground shadow-md outline-none'
+
+const calendarBaseClassName =
+  'group/calendar flex w-fit flex-col gap-3 [--cell-size:--spacing(8)]'
+
+const calendarHeaderClassName = 'flex items-center justify-between gap-1'
+
+const calendarHeadingButtonClassName =
+  'inline-flex h-8 items-center justify-center gap-1 rounded-md px-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50'
+
+const calendarHeadingClassName = 'text-sm font-medium'
+
+const calendarNavButtonClassName =
+  'inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50'
+
+const calendarGridClassName = 'grid gap-1 outline-none'
+
+const calendarWeekClassName = 'grid grid-cols-7 gap-1'
+
+const calendarDayCellClassName =
+  'group/day relative aspect-square size-(--cell-size) p-0 text-center text-sm'
+
+const calendarDayButtonClassName =
+  'flex size-full items-center justify-center rounded-md text-sm font-normal hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 group-data-[outside-month]/day:text-muted-foreground group-data-[outside-month]/day:opacity-50 group-data-[today]/day:bg-accent group-data-[today]/day:text-accent-foreground group-data-[selected]/day:bg-primary group-data-[selected]/day:text-primary-foreground group-data-[selected]/day:hover:bg-primary group-data-[selected]/day:hover:text-primary-foreground'
+
+const calendarColumnHeaderClassName =
+  'flex size-(--cell-size) items-center justify-center rounded-md text-xs font-normal text-muted-foreground'
+
+const monthYearGridClassName =
+  'grid min-h-72 grid-cols-3 grid-rows-4 gap-1 outline-none'
+
+const monthYearCellClassName = 'group flex items-center justify-center'
+
+const monthYearButtonClassName =
+  'flex h-full min-h-12 w-full items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 group-data-[today]:bg-accent group-data-[today]:text-accent-foreground group-data-[selected]:bg-primary group-data-[selected]:text-primary-foreground'
 
 export const datePickerClassName = (
   className: string | undefined = undefined,
@@ -73,68 +101,14 @@ export const datePickerClassName = (
 
 export const datePickerTriggerClassName = (
   className: string | undefined = undefined,
-): string =>
-  cn(
-    'inline-flex h-9 w-56 items-center justify-between gap-2 whitespace-nowrap rounded-md border border-input bg-background px-3 py-2 text-sm font-normal shadow-xs transition-colors outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:hover:bg-input/50',
-    className,
-  )
+): string => cn(triggerBaseClassName, className)
 
 export const datePickerPanelClassName = (
   className: string | undefined = undefined,
-): string =>
-  cn(
-    'z-50 w-auto rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-hidden',
-    className,
-  )
+): string => cn(panelBaseClassName, className)
 
-const datePickerBackdropClassName = 'fixed inset-0 z-0'
-
-const triggerContentClassName = 'flex min-w-0 flex-1 items-center gap-2'
-const triggerLabelClassName = 'min-w-0 truncate'
-const placeholderClassName = 'min-w-0 truncate text-muted-foreground'
-const triggerIconClassName = 'size-4 shrink-0 text-muted-foreground'
-const calendarWrapperClassName =
-  'flex min-h-72 min-w-70 select-none flex-col gap-3'
-const calendarHeaderClassName = 'flex items-center justify-between gap-2'
-const calendarHeadingButtonClassName =
-  'inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium tabular-nums hover:bg-accent hover:text-accent-foreground'
-const calendarHeadingTextClassName = 'text-sm font-medium tabular-nums'
-const calendarNavButtonClassName =
-  'inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50'
-const calendarGridClassName = 'flex flex-col gap-1 outline-none'
-const calendarHeaderRowClassName = 'grid grid-cols-7 gap-1'
-const calendarColumnHeaderClassName =
-  'py-1 text-center text-[0.8rem] font-normal text-muted-foreground'
-const calendarWeekRowClassName = 'grid grid-cols-7 gap-1'
-const calendarCellClassName =
-  'group relative flex size-8 items-center justify-center p-0 text-center text-sm'
-const calendarDayButtonClassName =
-  'inline-flex size-8 items-center justify-center rounded-md text-sm tabular-nums transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 group-data-[outside-month]:text-muted-foreground group-data-[outside-month]:opacity-50 group-data-[today]:bg-accent group-data-[today]:text-accent-foreground group-data-[selected]:bg-primary group-data-[selected]:text-primary-foreground group-data-[selected]:hover:bg-primary group-data-[selected]:hover:text-primary-foreground'
-const calendarMonthYearGridClassName =
-  'grid flex-1 grid-cols-3 grid-rows-4 gap-2 outline-none'
-const calendarMonthYearCellClassName = 'group flex items-center justify-center'
-const calendarMonthYearButtonClassName =
-  'inline-flex h-full min-h-10 w-full items-center justify-center rounded-md text-sm tabular-nums transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 group-data-[today]:bg-accent group-data-[today]:text-accent-foreground group-data-[selected]:bg-primary group-data-[selected]:text-primary-foreground'
-
-type IconName = 'calendar' | 'chevronDown' | 'chevronLeft' | 'chevronRight'
-
-const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
-  calendar: [
-    'M8 2v4',
-    'M16 2v4',
-    'M3 10h18',
-    'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
-  ],
-  chevronDown: ['m6 9 6 6 6-6'],
-  chevronLeft: ['m15 18-6-6 6-6'],
-  chevronRight: ['m9 18 6-6-6-6'],
-}
-
-const icon = (
-  name: IconName,
-  attributes: ReadonlyArray<Attribute<never>> = [],
-): Html => {
-  const h = html<never>()
+const icon = <Message>(path: string, className = 'size-4 shrink-0'): Html => {
+  const h = html<Message>()
 
   return h.svg(
     [
@@ -147,54 +121,65 @@ const icon = (
       h.StrokeWidth('2'),
       h.StrokeLinecap('round'),
       h.StrokeLinejoin('round'),
-      ...attributes,
+      h.AriaHidden(true),
+      h.Class(className),
     ],
-    iconPaths[name].map(path => h.path([h.D(path)], [])),
+    [h.path([h.D(path)], [])],
   )
 }
 
-const datePickerIcon = (name: IconName, className: string): Html => {
-  const h = html<never>()
-  return icon(name, [h.Class(className), h.AriaHidden(true)])
-}
+const calendarIcon = <Message>(): Html =>
+  icon<Message>(
+    'M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2',
+  )
 
-const triggerContent = (
-  placeholder: string,
+const chevronDownIcon = <Message>(): Html => icon<Message>('m6 9 6 6 6-6')
+
+const chevronLeftIcon = <Message>(): Html =>
+  icon<Message>('m15 18-6-6 6-6', 'cn-rtl-flip size-4 shrink-0')
+
+const chevronRightIcon = <Message>(): Html =>
+  icon<Message>('m9 18 6-6-6-6', 'cn-rtl-flip size-4 shrink-0')
+
+const triggerLabel = (
+  maybeDate: Option.Option<Calendar.CalendarDate>,
   locale: Calendar.LocaleConfig,
-  compact: boolean,
-): ((maybeDate: Option.Option<Calendar.CalendarDate>) => Html) => {
-  const h = html<never>()
+  placeholder: string,
+): string =>
+  Option.match(maybeDate, {
+    onNone: () => placeholder,
+    onSome: date => Calendar.formatLong(date, locale),
+  })
 
-  return maybeDate =>
-    h.span(
-      [h.Class(triggerContentClassName)],
-      [
-        datePickerIcon('calendar', triggerIconClassName),
-        Option.match(maybeDate, {
-          onNone: () => h.span([h.Class(placeholderClassName)], [placeholder]),
-          onSome: date =>
-            h.span(
-              [h.Class(triggerLabelClassName)],
-              [
-                compact
-                  ? Calendar.formatShort(date, locale)
-                  : Calendar.formatLong(date, locale),
-              ],
-            ),
-        }),
-        datePickerIcon('chevronDown', triggerIconClassName),
-      ],
-    )
+const renderTriggerContent = <Message>(
+  maybeDate: Option.Option<Calendar.CalendarDate>,
+  config: Pick<DatePickerConfig<Message>, 'compact' | 'locale' | 'placeholder'>,
+): Html => {
+  const h = html<Message>()
+  const locale = config.locale ?? Calendar.defaultEnglishLocale
+  const placeholder = config.placeholder ?? 'Pick a date'
+
+  return h.span(
+    [h.Class('flex w-full min-w-0 items-center justify-between gap-2')],
+    [
+      h.span(
+        [h.Class('truncate')],
+        [triggerLabel(maybeDate, locale, placeholder)],
+      ),
+      ...(config.compact === true ? [] : [calendarIcon<Message>()]),
+      chevronDownIcon<Message>(),
+    ],
+  )
 }
 
-const renderCalendar = (attributes: CalendarAttributes): Html => {
-  const h = html<never>()
+const toCalendarView = <Message>(attributes: CalendarAttributes): Html => {
+  const h = html<Message>()
 
   return M.value(attributes).pipe(
     M.tagsExhaustive({
       Days: days =>
         h.div(
-          [...days.root, h.Class(calendarWrapperClassName)],
+          [...days.root, h.Class(calendarBaseClassName)],
           [
             h.div(
               [h.Class(calendarHeaderClassName)],
@@ -204,7 +189,7 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                     ...days.previousMonthButton,
                     h.Class(calendarNavButtonClassName),
                   ],
-                  [datePickerIcon('chevronLeft', 'size-4')],
+                  [chevronLeftIcon<Message>()],
                 ),
                 h.button(
                   [
@@ -212,14 +197,14 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                     ...days.headingButton,
                     h.Class(calendarHeadingButtonClassName),
                   ],
-                  [days.heading.text, datePickerIcon('chevronDown', 'size-3')],
+                  [days.heading.text, chevronDownIcon<Message>()],
                 ),
                 h.button(
                   [
                     ...days.nextMonthButton,
                     h.Class(calendarNavButtonClassName),
                   ],
-                  [datePickerIcon('chevronRight', 'size-4')],
+                  [chevronRightIcon<Message>()],
                 ),
               ],
             ),
@@ -227,7 +212,7 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
               [...days.grid, h.Class(calendarGridClassName)],
               [
                 h.div(
-                  [...days.headerRow, h.Class(calendarHeaderRowClassName)],
+                  [...days.headerRow, h.Class(calendarWeekClassName)],
                   days.columnHeaders.map(header =>
                     h.div(
                       [
@@ -240,12 +225,12 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                 ),
                 ...days.weeks.map(week =>
                   h.div(
-                    [...week.attributes, h.Class(calendarWeekRowClassName)],
+                    [...week.attributes, h.Class(calendarWeekClassName)],
                     week.cells.map(cell =>
                       h.div(
                         [
                           ...cell.cellAttributes,
-                          h.Class(calendarCellClassName),
+                          h.Class(calendarDayCellClassName),
                         ],
                         [
                           h.button(
@@ -266,7 +251,7 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
         ),
       Months: months =>
         h.div(
-          [...months.root, h.Class(calendarWrapperClassName)],
+          [...months.root, h.Class(calendarBaseClassName)],
           [
             h.div(
               [h.Class(`${calendarHeaderClassName} justify-center`)],
@@ -277,26 +262,20 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                     ...months.headingButton,
                     h.Class(calendarHeadingButtonClassName),
                   ],
-                  [
-                    months.heading.text,
-                    datePickerIcon('chevronDown', 'size-3'),
-                  ],
+                  [months.heading.text, chevronDownIcon<Message>()],
                 ),
               ],
             ),
             h.div(
-              [...months.grid, h.Class(calendarMonthYearGridClassName)],
+              [...months.grid, h.Class(monthYearGridClassName)],
               months.cells.map(cell =>
                 h.div(
-                  [
-                    ...cell.cellAttributes,
-                    h.Class(calendarMonthYearCellClassName),
-                  ],
+                  [...cell.cellAttributes, h.Class(monthYearCellClassName)],
                   [
                     h.button(
                       [
                         ...cell.buttonAttributes,
-                        h.Class(calendarMonthYearButtonClassName),
+                        h.Class(monthYearButtonClassName),
                       ],
                       [cell.shortLabel],
                     ),
@@ -308,7 +287,7 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
         ),
       Years: years =>
         h.div(
-          [...years.root, h.Class(calendarWrapperClassName)],
+          [...years.root, h.Class(calendarBaseClassName)],
           [
             h.div(
               [h.Class(calendarHeaderClassName)],
@@ -318,13 +297,10 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                     ...years.previousPageButton,
                     h.Class(calendarNavButtonClassName),
                   ],
-                  [datePickerIcon('chevronLeft', 'size-4')],
+                  [chevronLeftIcon<Message>()],
                 ),
                 h.h2(
-                  [
-                    h.Id(years.heading.id),
-                    h.Class(calendarHeadingTextClassName),
-                  ],
+                  [h.Id(years.heading.id), h.Class(calendarHeadingClassName)],
                   [years.heading.text],
                 ),
                 h.button(
@@ -332,23 +308,20 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
                     ...years.nextPageButton,
                     h.Class(calendarNavButtonClassName),
                   ],
-                  [datePickerIcon('chevronRight', 'size-4')],
+                  [chevronRightIcon<Message>()],
                 ),
               ],
             ),
             h.div(
-              [...years.grid, h.Class(calendarMonthYearGridClassName)],
+              [...years.grid, h.Class(monthYearGridClassName)],
               years.cells.map(cell =>
                 h.div(
-                  [
-                    ...cell.cellAttributes,
-                    h.Class(calendarMonthYearCellClassName),
-                  ],
+                  [...cell.cellAttributes, h.Class(monthYearCellClassName)],
                   [
                     h.button(
                       [
                         ...cell.buttonAttributes,
-                        h.Class(calendarMonthYearButtonClassName),
+                        h.Class(monthYearButtonClassName),
                       ],
                       [cell.label],
                     ),
@@ -362,40 +335,31 @@ const renderCalendar = (attributes: CalendarAttributes): Html => {
   )
 }
 
-export const DatePicker = <Message>(
+export const DatePicker = <Message = DatePickerMessage>(
   config: DatePickerConfig<Message>,
 ): Html => {
   const h = html<Message>()
-  const locale = config.locale ?? Calendar.defaultEnglishLocale
 
-  return h.submodel({
+  const picker = h.submodel({
     slotId: config.model.id,
     model: config.model,
     view: UiDatePicker.view,
     viewInputs: {
-      anchor: config.anchor ?? datePickerAnchor,
-      triggerContent: triggerContent(
-        config.placeholder ?? 'Pick a date',
-        locale,
-        config.compact ?? false,
-      ),
-      toCalendarView: renderCalendar,
-      backdropClassName: datePickerBackdropClassName,
-      className: datePickerClassName(config.className),
-      triggerClassName: datePickerTriggerClassName(config.triggerClassName),
-      panelClassName: datePickerPanelClassName(config.panelClassName),
+      anchor: config.anchor ?? defaultAnchor,
+      triggerContent: maybeDate => renderTriggerContent(maybeDate, config),
+      toCalendarView: attributes => toCalendarView<Message>(attributes),
       ...(config.name === undefined ? {} : { name: config.name }),
       ...(config.isDisabled === undefined
         ? {}
         : { isDisabled: config.isDisabled }),
-      ...(config.dir === undefined
-        ? {}
-        : {
-            attributes: childAttributes([h.Dir(config.dir)]),
-            triggerAttributes: childAttributes([h.Dir(config.dir)]),
-            panelAttributes: childAttributes([h.Dir(config.dir)]),
-          }),
+      className: datePickerClassName(config.className),
+      triggerClassName: datePickerTriggerClassName(config.triggerClassName),
+      panelClassName: datePickerPanelClassName(config.panelClassName),
     },
     toParentMessage: config.toParentMessage,
   })
+
+  return config.dir === undefined
+    ? picker
+    : h.div([h.Dir(config.dir)], [picker])
 }

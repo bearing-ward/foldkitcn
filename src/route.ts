@@ -9,6 +9,7 @@ import {
   slash,
   string,
 } from 'foldkit/route'
+import type { Url } from 'foldkit/url'
 
 export const HomeRoute = r('Home')
 export const DocsRoute = r('Docs')
@@ -40,46 +41,167 @@ export const AppRoute = S.Union([
 ])
 export type AppRoute = typeof AppRoute.Type
 
-export const homeRouter = pipe(root, mapTo(HomeRoute))
-export const docsRouter = pipe(literal('docs'), mapTo(DocsRoute))
-export const componentsIndexRouter = pipe(
+const normalizeBasePath = (basePath: string): string => {
+  if (basePath === '/') {
+    return '/'
+  }
+
+  if (!basePath.startsWith('/') || !basePath.endsWith('/')) {
+    throw new Error(`Invalid deployment base path: ${basePath}`)
+  }
+
+  return basePath
+}
+
+const deploymentBasePath = normalizeBasePath(import.meta.env.BASE_URL ?? '/')
+
+const prefixDeploymentBase = (
+  pathname: string,
+  basePath: string = deploymentBasePath,
+): string => {
+  const normalizedBasePath = normalizeBasePath(basePath)
+
+  if (normalizedBasePath === '/') {
+    return pathname
+  }
+
+  if (pathname === normalizedBasePath.slice(0, -1)) {
+    return normalizedBasePath
+  }
+
+  if (!pathname.startsWith('/')) {
+    return `${normalizedBasePath.slice(0, -1)}/${pathname}`
+  }
+
+  if (pathname.startsWith(normalizedBasePath)) {
+    return pathname
+  }
+
+  return `${normalizedBasePath.slice(0, -1)}${pathname}`
+}
+
+export const stripDeploymentBaseFromPathname = (
+  pathname: string,
+  basePath: string = deploymentBasePath,
+): string => {
+  const normalizedBasePath = normalizeBasePath(basePath)
+
+  if (normalizedBasePath === '/') {
+    return pathname
+  }
+
+  const basePathWithoutTrailingSlash = normalizedBasePath.slice(0, -1)
+
+  if (pathname === basePathWithoutTrailingSlash) {
+    return '/'
+  }
+
+  if (!pathname.startsWith(normalizedBasePath)) {
+    return pathname
+  }
+
+  const normalizedPathname = pathname.slice(basePathWithoutTrailingSlash.length)
+
+  return normalizedPathname.length === 0 ? '/' : normalizedPathname
+}
+
+export const normalizeUrlForRouting = (
+  url: Url,
+  basePath: string = deploymentBasePath,
+): Url => ({
+  ...url,
+  pathname: stripDeploymentBaseFromPathname(url.pathname, basePath),
+})
+
+const homeRouteParser = pipe(root, mapTo(HomeRoute))
+const docsRouteParser = pipe(literal('docs'), mapTo(DocsRoute))
+const componentsIndexRouteParser = pipe(
   literal('components'),
   mapTo(ComponentsIndexRoute),
 )
-export const componentsNamespaceRouter = pipe(
+const componentsNamespaceRouteParser = pipe(
   literal('components'),
   slash(string('namespace')),
   mapTo(ComponentsNamespaceRoute),
 )
-export const componentDetailRouter = pipe(
+const componentDetailRouteParser = pipe(
   literal('components'),
   slash(string('namespace')),
   slash(string('slug')),
   mapTo(ComponentDetailRoute),
 )
-export const registryRouter = pipe(literal('registry'), mapTo(RegistryRoute))
-export const registrySchemaRouter = pipe(
+const registryRouteParser = pipe(literal('registry'), mapTo(RegistryRoute))
+const registrySchemaRouteParser = pipe(
   literal('registry'),
   slash(literal('schema')),
   mapTo(RegistrySchemaRoute),
 )
-export const registryLifecycleRouter = pipe(
+const registryLifecycleRouteParser = pipe(
   literal('registry'),
   slash(literal('lifecycle')),
   mapTo(RegistryLifecycleRoute),
 )
-export const roadmapRouter = pipe(literal('roadmap'), mapTo(RoadmapRoute))
+const roadmapRouteParser = pipe(literal('roadmap'), mapTo(RoadmapRoute))
+
+export const homeRouter = (
+  route: Parameters<typeof homeRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(homeRouteParser(route), basePath)
+
+export const docsRouter = (
+  route: Parameters<typeof docsRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(docsRouteParser(route), basePath)
+
+export const componentsIndexRouter = (
+  route: Parameters<typeof componentsIndexRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(componentsIndexRouteParser(route), basePath)
+
+export const componentsNamespaceRouter = (
+  route: Parameters<typeof componentsNamespaceRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(componentsNamespaceRouteParser(route), basePath)
+
+export const componentDetailRouter = (
+  route: Parameters<typeof componentDetailRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(componentDetailRouteParser(route), basePath)
+
+export const registryRouter = (
+  route: Parameters<typeof registryRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(registryRouteParser(route), basePath)
+
+export const registrySchemaRouter = (
+  route: Parameters<typeof registrySchemaRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(registrySchemaRouteParser(route), basePath)
+
+export const registryLifecycleRouter = (
+  route: Parameters<typeof registryLifecycleRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(registryLifecycleRouteParser(route), basePath)
+
+export const roadmapRouter = (
+  route: Parameters<typeof roadmapRouteParser>[0],
+  basePath?: string,
+) => prefixDeploymentBase(roadmapRouteParser(route), basePath)
 
 export const routeParser = oneOf(
-  componentDetailRouter,
-  componentsNamespaceRouter,
-  componentsIndexRouter,
-  registrySchemaRouter,
-  registryLifecycleRouter,
-  registryRouter,
-  roadmapRouter,
-  docsRouter,
-  homeRouter,
+  componentDetailRouteParser,
+  componentsNamespaceRouteParser,
+  componentsIndexRouteParser,
+  registrySchemaRouteParser,
+  registryLifecycleRouteParser,
+  registryRouteParser,
+  roadmapRouteParser,
+  docsRouteParser,
+  homeRouteParser,
 )
 
-export const urlToAppRoute = parseUrlWithFallback(routeParser, NotFoundRoute)
+export const urlToAppRoute = (url: Url, basePath?: string) =>
+  parseUrlWithFallback(
+    routeParser,
+    NotFoundRoute,
+  )(normalizeUrlForRouting(url, basePath))

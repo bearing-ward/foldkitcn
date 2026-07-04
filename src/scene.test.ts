@@ -108,7 +108,6 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleTogglePressedValues: {},
   liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
-  liveExampleDatePickerStates: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
@@ -117,6 +116,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
   liveExampleMenuValues: {},
+  liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},
   liveExampleSidebarPanelOpenValues: {},
@@ -1486,7 +1486,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
-      Scene.expect(Scene.text('62 of 64')).toExist(),
+      Scene.expect(Scene.text('63 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
@@ -1499,8 +1499,8 @@ describe(view, () => {
       Scene.expect(Scene.text('shadcn/chart')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Docs/example-only rows' }),
-      ).toExist(),
-      Scene.expect(Scene.text('shadcn/date-picker')).toExist(),
+      ).not.toExist(),
+      Scene.expect(Scene.text('shadcn/date-picker')).not.toExist(),
       Scene.expect(
         Scene.text('plans/artifacts', { exact: false }),
       ).not.toExist(),

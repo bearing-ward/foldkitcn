@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "Foldkit-native shadcn base-nova Spinner helper with local inline SVG rendering, status semantics, and examples across badges, buttons, items, input groups, RTL, custom icons, and sizes.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": [
+    "@foldkitcn/shadcn-badge",
+    "@foldkitcn/shadcn-button",
+    "@foldkitcn/shadcn-input-group",
+    "@foldkitcn/shadcn-empty",
+    "@foldkitcn/shadcn-item",
+    "@foldkitcn/utils-cn"
+  ],
+  "files": [
+    {
+      "path": "src/registry/shadcn/spinner/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/spinner.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const SpinnerStyleOptions = S.Struct({\n  className: S.optional(S.String),\n  ariaLabel: S.optional(S.String),\n})\nexport type SpinnerStyleOptions = typeof SpinnerStyleOptions.Type\n\n// VIEW\n\nexport type SpinnerAttributes<Message> = Readonly<{\n  spinner: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = SpinnerStyleOptions &\n  Readonly<{\n    attributes?: ReadonlyArray<Attribute<Message>>\n    toView?: (attributes: SpinnerAttributes<Message>) => Html\n  }>\n\nexport const spinnerIconClassName = 'lucide lucide-loader-circle'\nexport const spinnerBaseClassName = 'size-4 animate-spin'\nexport const spinnerPath = 'M21 12a9 9 0 1 1-6.219-8.56'\n\nexport const spinnerClassName = ({\n  className,\n}: SpinnerStyleOptions = {}): string =>\n  cn(spinnerIconClassName, spinnerBaseClassName, className)\n\nconst spinnerAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  config: ViewConfig<Message>,\n): ReadonlyArray<Attribute<Message>> => [\n  h.Xmlns('http://www.w3.org/2000/svg'),\n  h.Width('24'),\n  h.Height('24'),\n  h.ViewBox('0 0 24 24'),\n  h.Fill('none'),\n  h.Stroke('currentColor'),\n  h.StrokeWidth('2'),\n  h.StrokeLinecap('round'),\n  h.StrokeLinejoin('round'),\n  h.Class(spinnerClassName(config)),\n  h.DataAttribute('slot', 'spinner'),\n  h.Role('status'),\n  h.AriaLabel(config.ariaLabel ?? 'Loading'),\n  ...(config.attributes ?? []),\n]\n\nexport const view = <Message>(config: ViewConfig<Message> = {}): Html => {\n  const h = html<Message>()\n  const attributes = { spinner: spinnerAttributes(h, config) }\n\n  if (config.toView !== undefined) {\n    return config.toView(attributes)\n  }\n\n  return h.svg([...attributes.spinner], [h.path([h.D(spinnerPath)], [])])\n}\n\nexport const Spinner = view\n"
+    }
+  ]
+}

@@ -446,6 +446,55 @@ export const InstallTargetPath = S.String.check(
 )
 export type InstallTargetPath = typeof InstallTargetPath.Type
 
+export const PublicRegistryName = S.Literal('foldkitcn')
+export type PublicRegistryName = typeof PublicRegistryName.Type
+
+export const PublicRegistryCatalogSchemaUrl = S.Literal(
+  'https://ui.shadcn.com/schema/registry.json',
+)
+export type PublicRegistryCatalogSchemaUrl =
+  typeof PublicRegistryCatalogSchemaUrl.Type
+
+export const PublicRegistryItemSchemaUrl = S.Literal(
+  'https://ui.shadcn.com/schema/registry-item.json',
+)
+export type PublicRegistryItemSchemaUrl =
+  typeof PublicRegistryItemSchemaUrl.Type
+
+export const PublicRegistryItemType = S.Union([
+  S.Literal('registry:ui'),
+  S.Literal('registry:lib'),
+])
+export type PublicRegistryItemType = typeof PublicRegistryItemType.Type
+
+export const PublicRegistryFile = S.Struct({
+  path: S.String,
+  type: PublicRegistryItemType,
+  target: InstallTargetPath,
+  content: S.String,
+})
+export type PublicRegistryFile = typeof PublicRegistryFile.Type
+
+export const PublicRegistryItem = S.Struct({
+  $schema: PublicRegistryItemSchemaUrl,
+  name: S.String,
+  type: PublicRegistryItemType,
+  title: S.String,
+  description: S.String,
+  dependencies: S.Array(S.String),
+  registryDependencies: S.Array(S.String),
+  files: S.Array(PublicRegistryFile),
+})
+export type PublicRegistryItem = typeof PublicRegistryItem.Type
+
+export const PublicRegistryCatalog = S.Struct({
+  $schema: PublicRegistryCatalogSchemaUrl,
+  name: PublicRegistryName,
+  homepage: S.String,
+  items: S.Array(PublicRegistryItem),
+})
+export type PublicRegistryCatalog = typeof PublicRegistryCatalog.Type
+
 export const InstallerConflictPolicy = S.Union([
   S.Literal('preserve'),
   S.Literal('overwrite'),

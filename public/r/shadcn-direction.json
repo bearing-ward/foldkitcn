@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-direction",
+  "type": "registry:ui",
+  "title": "Direction",
+  "description": "Foldkit-native shadcn base-nova Direction helper that replaces the upstream React context provider with explicit direction data, dir attributes, local data-direction attributes, and direction-aware examples.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": [
+    "@foldkitcn/shadcn-button",
+    "@foldkitcn/shadcn-input",
+    "@foldkitcn/shadcn-label",
+    "@foldkitcn/utils-cn"
+  ],
+  "files": [
+    {
+      "path": "src/registry/shadcn/direction/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/direction.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const Direction = S.Union([S.Literal('ltr'), S.Literal('rtl')])\nexport type Direction = typeof Direction.Type\n\nexport const directionValues: ReadonlyArray<Direction> = ['ltr', 'rtl']\n\nexport const DirectionStyleOptions = S.Struct({\n  className: S.optional(S.String),\n  direction: S.optional(Direction),\n  lang: S.optional(S.String),\n})\nexport type DirectionStyleOptions = typeof DirectionStyleOptions.Type\n\n// VIEW\n\nexport type DirectionAttributes<Message> = Readonly<{\n  root: ReadonlyArray<Attribute<Message>>\n  direction: Direction\n}>\n\nexport type ViewConfig<Message> = DirectionStyleOptions &\n  Readonly<{\n    toView: (attributes: DirectionAttributes<Message>) => Html\n  }>\n\nexport const defaultDirection: Direction = 'ltr'\n\nexport const resolvedDirection = (direction?: Direction): Direction =>\n  direction ?? defaultDirection\n\nexport const isRtl = (direction: Direction): boolean => direction === 'rtl'\n\nexport const directionClassName = ({\n  className,\n}: Pick<DirectionStyleOptions, 'className'> = {}): string => cn(className)\n\nexport const directionAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  config: DirectionStyleOptions = {},\n): DirectionAttributes<Message> => {\n  const direction = resolvedDirection(config.direction)\n  const className = directionClassName(config)\n\n  return {\n    direction,\n    root: [\n      h.Dir(direction),\n      h.DataAttribute('direction', direction),\n      ...(config.lang === undefined ? [] : [h.Attribute('lang', config.lang)]),\n      ...(className === '' ? [] : [h.Class(className)]),\n    ],\n  }\n}\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n\n  return config.toView(directionAttributes(h, config))\n}\n\nexport const DirectionProvider = view\n"
+    }
+  ]
+}

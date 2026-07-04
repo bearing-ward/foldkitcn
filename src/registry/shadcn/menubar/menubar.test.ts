@@ -96,6 +96,11 @@ const requireExampleView = (
   return view
 }
 
+const staticExampleView =
+  (view: ExampleView) =>
+  (_model: Model): Html =>
+    view()
+
 // VIEW
 
 const viewMenubar =
@@ -320,7 +325,7 @@ describe('shadcn/menubar view', () => {
     expect(() => {
       for (const example of menubarExampleViews) {
         Scene.scene(
-          { update, view: example.view },
+          { update, view: staticExampleView(example.view) },
           Scene.with(initialModel),
           Scene.expect(Scene.selector('[data-slot="menubar"]')).toBeVisible(),
         )
@@ -337,7 +342,9 @@ describe('shadcn/menubar view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/menubar-checkbox'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/menubar-checkbox'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(
@@ -348,7 +355,9 @@ describe('shadcn/menubar view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/menubar-radio'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/menubar-radio'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(
@@ -367,7 +376,9 @@ describe('shadcn/menubar view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/menubar-submenu'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/menubar-submenu'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(
@@ -378,7 +389,9 @@ describe('shadcn/menubar view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/menubar-icons'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/menubar-icons'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-icon="file"]')).toHaveAttr(
@@ -390,7 +403,9 @@ describe('shadcn/menubar view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/menubar-rtl'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/menubar-rtl'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-slot="menubar"]')).toHaveAttr(

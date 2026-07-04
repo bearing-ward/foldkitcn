@@ -1,8 +1,10 @@
-import { Schema as S } from 'effect'
+import { Array as EffectArray, Schema as S } from 'effect'
 
 import {
   ComponentDocsArtifact,
   ComponentDocsIndex,
+  PublicRegistryCatalog,
+  PublicRegistryItem,
   RegistryIndex,
 } from '../src/registry/schema'
 import type {
@@ -11,6 +13,8 @@ import type {
   ComponentDocsRoute,
   ExampleManifest,
   ExamplePreviewStatus,
+  PublicRegistryCatalog as PublicRegistryCatalogType,
+  PublicRegistryItem as PublicRegistryItemType,
   RegistryIndex as RegistryIndexType,
   RegistryItemManifest,
 } from '../src/registry/schema'
@@ -29,6 +33,7 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  rmSync,
   statSync,
   writeFileSync,
 } from 'node:fs'
@@ -218,6 +223,309 @@ export const selectRegistryGeneratedAt = (
     registryIndexSemanticHash(nextIndex)
     ? options.previousIndex.generatedAt
     : (options.generatedAt ?? new Date().toISOString())
+
+interface PublicRegistryBuildResult {
+  readonly catalog: PublicRegistryCatalogType
+  readonly items: ReadonlyArray<PublicRegistryItemType>
+}
+
+const publicRegistryOutputRoot = 'public/r'
+const publicRegistryCatalogPath = (outputRoot = publicRegistryOutputRoot) =>
+  pathModule.join(outputRoot, 'registry.json')
+const publicRegistryNoJekyllPath = (outputRoot = publicRegistryOutputRoot) =>
+  pathModule.join(outputRoot, '.nojekyll')
+const publicRegistryItemPath = (
+  outputRoot: string,
+  publicName: string,
+): string => pathModule.join(outputRoot, `${publicName}.json`)
+
+export const publicNameForItemId = (itemId: string): string =>
+  itemId.replaceAll('/', '-')
+
+const publicRegistryTypeForItem = (item: RegistryItemManifest) =>
+  item.kind === 'utility' || item.namespace === 'utils'
+    ? ('registry:lib' as const)
+    : ('registry:ui' as const)
+
+const publicRegistryDependencyForTarget = (target: string): string =>
+  `@foldkitcn/${publicNameForItemId(target)}`
+
+const publicRegistryDependenciesForItem = (
+  item: RegistryItemManifest,
+): ReadonlyArray<string> => {
+  const dependencies = item.dependencies.registry.map(dependency =>
+    publicRegistryDependencyForTarget(dependency.target),
+  )
+
+  return [...new Set(dependencies)]
+}
+
+const githubRepositorySlug = (): string | undefined => {
+  try {
+    const remoteUrl = execFileSync('git', ['remote', 'get-url', 'origin'], {
+      encoding: 'utf-8',
+    }).trim()
+    const match = remoteUrl.match(
+      /github\.com[:/](?<owner>[^/]+)\/(?<repo>[^/]+?)(?:\.git)?$/u,
+    )
+
+    if (match?.groups?.owner !== undefined && match.groups.repo !== undefined) {
+      return `${match.groups.owner}/${match.groups.repo}`
+    }
+  } catch {
+    return undefined
+  }
+
+  return undefined
+}
+
+const publicRegistryHomepage = (): string => {
+  const repositorySlug = githubRepositorySlug()
+
+  if (repositorySlug === undefined) {
+    return 'https://example.com/'
+  }
+
+  const [owner, repo] = repositorySlug.split('/')
+
+  return owner !== undefined && repo !== undefined
+    ? `https://${owner}.github.io/${repo}/`
+    : 'https://example.com/'
+}
+
+const dedupeEntries = (
+  entries: ReadonlyArray<RegistryIndexEntry>,
+): ReadonlyArray<RegistryIndexEntry> => {
+  const initialEntries: ReadonlyArray<RegistryIndexEntry> = []
+
+  return EffectArray.reduce(entries, initialEntries, (accumulator, entry) =>
+    accumulator.some(candidate => candidate.item.id === entry.item.id)
+      ? accumulator
+      : [...accumulator, entry],
+  )
+}
+
+const registryEntryById = (
+  index: RegistryIndexType,
+): ReadonlyMap<string, RegistryIndexEntry> =>
+  new Map(index.items.map(entry => [entry.item.id, entry]))
+
+const collectRegistryClosure = (
+  entriesById: ReadonlyMap<string, RegistryIndexEntry>,
+  itemId: string,
+  visited: ReadonlySet<string> = new Set(),
+): ReadonlyArray<RegistryIndexEntry> => {
+  if (visited.has(itemId)) {
+    return []
+  }
+
+  const entry = entriesById.get(itemId)
+
+  if (entry === undefined) {
+    throw new Error(
+      `Missing registry item for public registry build: ${itemId}`,
+    )
+  }
+
+  const nextVisited = new Set([...visited, itemId])
+  const dependencies = entry.item.dependencies.registry.flatMap(dependency =>
+    collectRegistryClosure(entriesById, dependency.target, nextVisited),
+  )
+
+  return [...dependencies, entry]
+}
+
+const targetPathForItem = (itemId: string): string =>
+  `src/components/foldkitcn/${itemId}.ts`
+
+const runtimeSourcePathsForItem = (
+  entry: RegistryIndexEntry,
+): ReadonlyArray<string> =>
+  entry.item.installableSourcePaths.filter(
+    sourcePath =>
+      sourcePath.endsWith('/index.ts') || sourcePath === 'src/utils/cn.ts',
+  )
+
+const dropTsExtension = (path: string): string =>
+  path.endsWith('.ts') ? path.slice(0, -'.ts'.length) : path
+
+const dirname = (path: string): string => {
+  const normalized = normalizePath(path)
+  const index = normalized.lastIndexOf('/')
+
+  return index === -1 ? '.' : normalized.slice(0, index)
+}
+
+const moduleKeysForSourcePath = (sourcePath: string): ReadonlyArray<string> => {
+  const withoutExtension = dropTsExtension(sourcePath)
+
+  return withoutExtension.endsWith('/index')
+    ? [withoutExtension, dirname(withoutExtension)]
+    : [withoutExtension]
+}
+
+const relativeImportSpecifier = (
+  pathService: typeof pathModule,
+  fromPath: string,
+  toPath: string,
+): string => {
+  const relative = pathService.relative(dirname(fromPath), toPath)
+
+  return relative.startsWith('.') ? relative : `./${relative}`
+}
+
+const importSpecifierPattern =
+  /(?<prefix>\b(?:import|export)\s+(?:type\s+)?(?:[^'"]*?\s+from\s*)?['"])(?<specifier>\.{1,2}\/[^'"]+)(?<suffix>['"])/gu
+
+type ImportSpecifierGroups = Readonly<{
+  prefix: string
+  specifier: string
+  suffix: string
+}>
+
+const isImportSpecifierGroups = (
+  value: unknown,
+): value is ImportSpecifierGroups =>
+  typeof value === 'object' &&
+  value !== null &&
+  'prefix' in value &&
+  typeof value.prefix === 'string' &&
+  'specifier' in value &&
+  typeof value.specifier === 'string' &&
+  'suffix' in value &&
+  typeof value.suffix === 'string'
+
+const rewriteRegistryImports = (
+  pathService: typeof pathModule,
+  source: string,
+  sourcePath: string,
+  targetPath: string,
+  moduleTargets: ReadonlyMap<string, string>,
+): string =>
+  source.replaceAll(
+    importSpecifierPattern,
+    (
+      match: string,
+      _prefix: string,
+      _specifier: string,
+      _suffix: string,
+      ...rest: ReadonlyArray<unknown>
+    ) => {
+      const groups = rest.at(-1)
+
+      if (!isImportSpecifierGroups(groups)) {
+        return match
+      }
+
+      const { prefix, specifier, suffix } = groups
+      const resolvedSourceModule = dropTsExtension(
+        pathService.normalize(pathService.join(dirname(sourcePath), specifier)),
+      )
+      const targetModule = moduleTargets.get(resolvedSourceModule)
+
+      return targetModule === undefined
+        ? match
+        : `${prefix}${relativeImportSpecifier(
+            pathService,
+            targetPath,
+            targetModule,
+          )}${suffix}`
+    },
+  )
+
+const moduleTargetsForEntries = (
+  entries: ReadonlyArray<RegistryIndexEntry>,
+): ReadonlyMap<string, string> =>
+  new Map(
+    entries.flatMap(entry =>
+      runtimeSourcePathsForItem(entry).flatMap(sourcePath =>
+        moduleKeysForSourcePath(sourcePath).map(key => [
+          key,
+          dropTsExtension(targetPathForItem(entry.item.id)),
+        ]),
+      ),
+    ),
+  )
+
+const publicRegistryItemFilesForEntry = (
+  entry: RegistryIndexEntry,
+  moduleTargets: ReadonlyMap<string, string>,
+): ReadonlyArray<{
+  readonly path: string
+  readonly type: 'registry:ui' | 'registry:lib'
+  readonly target: string
+  readonly content: string
+}> =>
+  runtimeSourcePathsForItem(entry)
+    .toSorted((left, right) => left.localeCompare(right))
+    .map(sourcePath => {
+      const content = readFileSync(sourcePath, 'utf-8')
+      const targetPath = targetPathForItem(entry.item.id)
+
+      return {
+        path: sourcePath,
+        type: publicRegistryTypeForItem(entry.item),
+        target: targetPath,
+        content: rewriteRegistryImports(
+          pathModule,
+          content,
+          sourcePath,
+          targetPath,
+          moduleTargets,
+        ),
+      }
+    })
+
+const publicRegistryItemForEntry = (
+  entry: RegistryIndexEntry,
+  moduleTargets: ReadonlyMap<string, string>,
+): PublicRegistryItemType =>
+  S.decodeUnknownSync(PublicRegistryItem)({
+    $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+    name: publicNameForItemId(entry.item.id),
+    type: publicRegistryTypeForItem(entry.item),
+    title: entry.item.name,
+    description: entry.item.description,
+    dependencies: entry.item.dependencies.runtime.map(
+      dependency => dependency.specifier,
+    ),
+    registryDependencies: publicRegistryDependenciesForItem(entry.item),
+    files: publicRegistryItemFilesForEntry(entry, moduleTargets),
+  })
+
+export const buildPublicRegistryArtifacts = (
+  registryIndex: RegistryIndexType,
+): PublicRegistryBuildResult => {
+  const installableEntries = dedupeEntries(
+    registryIndex.items.filter(
+      entry => entry.item.lifecycle.availability === 'installable',
+    ),
+  ).toSorted((left, right) =>
+    publicNameForItemId(left.item.id).localeCompare(
+      publicNameForItemId(right.item.id),
+    ),
+  )
+  const entriesById = registryEntryById(registryIndex)
+  const moduleTargets = moduleTargetsForEntries(
+    installableEntries.flatMap(entry =>
+      collectRegistryClosure(entriesById, entry.item.id),
+    ),
+  )
+  const items = installableEntries.map(entry =>
+    publicRegistryItemForEntry(entry, moduleTargets),
+  )
+  const catalog = S.decodeUnknownSync(PublicRegistryCatalog)({
+    $schema: 'https://ui.shadcn.com/schema/registry.json',
+    name: 'foldkitcn',
+    homepage: publicRegistryHomepage(),
+    items,
+  })
+
+  return {
+    catalog,
+    items,
+  }
+}
 
 export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   const result = checkRegistry()
@@ -931,6 +1239,59 @@ export const writeJson = (outputPath: string, value: unknown): void => {
   })
 }
 
+const readPublicRegistryCatalog = (
+  outputPath: string,
+): PublicRegistryCatalogType | undefined => {
+  if (!existsSync(outputPath)) {
+    return undefined
+  }
+
+  try {
+    return S.decodeUnknownSync(PublicRegistryCatalog)(readJson(outputPath))
+  } catch {
+    return undefined
+  }
+}
+
+const readPublicRegistryItem = (
+  outputPath: string,
+): PublicRegistryItemType | undefined => {
+  if (!existsSync(outputPath)) {
+    return undefined
+  }
+
+  try {
+    return S.decodeUnknownSync(PublicRegistryItem)(readJson(outputPath))
+  } catch {
+    return undefined
+  }
+}
+
+const publicRegistryOutputFileNames = (
+  outputRoot: string,
+): ReadonlyArray<string> => {
+  if (!existsSync(outputRoot)) {
+    return []
+  }
+
+  return readdirSync(outputRoot, { withFileTypes: true })
+    .flatMap(entry => (entry.isFile() ? [entry.name] : []))
+    .toSorted((left, right) => left.localeCompare(right))
+}
+
+export const writePublicRegistryArtifacts = (
+  result: PublicRegistryBuildResult,
+  outputRoot = publicRegistryOutputRoot,
+): void => {
+  rmSync(outputRoot, { recursive: true, force: true })
+  mkdirSync(outputRoot, { recursive: true })
+  writeFileSync(publicRegistryNoJekyllPath(outputRoot), '')
+  writeJson(publicRegistryCatalogPath(outputRoot), result.catalog)
+  void result.items.map(item =>
+    writeJson(publicRegistryItemPath(outputRoot, item.name), item),
+  )
+}
+
 export const buildComponentDocsArtifacts = (
   registryIndex: RegistryIndexType,
 ): ComponentDocsBuildResult => {
@@ -983,6 +1344,63 @@ export const buildComponentDocsArtifacts = (
     artifacts,
     index: S.decodeUnknownSync(ComponentDocsIndex)(index),
   }
+}
+
+export const checkPublicRegistryCurrent = (
+  registryIndex: RegistryIndexType,
+  outputRoot = publicRegistryOutputRoot,
+): PublicRegistryCatalogType => {
+  const outputPath = publicRegistryCatalogPath(outputRoot)
+
+  if (!existsSync(outputPath)) {
+    throw new Error(`${outputPath} is missing; run bun run registry:build`)
+  }
+
+  const previousCatalog = readPublicRegistryCatalog(outputPath)
+
+  if (previousCatalog === undefined) {
+    throw new Error(`${outputPath} is invalid; run bun run registry:build`)
+  }
+
+  const nextResult = buildPublicRegistryArtifacts(registryIndex)
+
+  if (hashJson(previousCatalog) !== hashJson(nextResult.catalog)) {
+    throw new Error(`${outputPath} is stale; run bun run registry:build`)
+  }
+
+  const expectedFileNames = [
+    '.nojekyll',
+    'registry.json',
+    ...nextResult.items.map(item => `${item.name}.json`),
+  ].toSorted((left, right) => left.localeCompare(right))
+  const actualFileNames = publicRegistryOutputFileNames(outputRoot)
+
+  if (hashJson(actualFileNames) !== hashJson(expectedFileNames)) {
+    throw new Error(`${outputRoot} is stale; run bun run registry:build`)
+  }
+
+  if (readFileSync(publicRegistryNoJekyllPath(outputRoot), 'utf-8') !== '') {
+    throw new Error(
+      `${publicRegistryNoJekyllPath(outputRoot)} is stale; run bun run registry:build`,
+    )
+  }
+
+  void nextResult.items.map(nextItem => {
+    const itemPath = publicRegistryItemPath(outputRoot, nextItem.name)
+    const previousItem = readPublicRegistryItem(itemPath)
+
+    if (previousItem === undefined) {
+      throw new Error(`${itemPath} is missing; run bun run registry:build`)
+    }
+
+    if (hashJson(previousItem) !== hashJson(nextItem)) {
+      throw new Error(`${itemPath} is stale; run bun run registry:build`)
+    }
+
+    return itemPath
+  })
+
+  return previousCatalog
 }
 
 export const writeComponentDocsArtifacts = (
@@ -1063,6 +1481,7 @@ export const checkRegistryIndexCurrent = (
   }
 
   checkComponentDocsCurrent(previousIndex)
+  checkPublicRegistryCurrent(previousIndex)
 
   return previousIndex
 }

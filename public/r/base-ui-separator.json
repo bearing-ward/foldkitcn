@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-ui-separator",
+  "type": "registry:ui",
+  "title": "Separator",
+  "description": "Foldkit-native Base UI Separator primitive preserving role, orientation, ARIA, and data attributes.",
+  "dependencies": ["foldkit", "effect"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/registry/base-ui/separator/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/base-ui/separator.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\n// MODEL\n\nexport const SeparatorOrientation = S.Union([\n  S.Literal('horizontal'),\n  S.Literal('vertical'),\n])\nexport type SeparatorOrientation = typeof SeparatorOrientation.Type\n\nexport const SeparatorOptions = S.Struct({\n  orientation: S.optional(SeparatorOrientation),\n})\nexport type SeparatorOptions = typeof SeparatorOptions.Type\n\n// VIEW\n\nexport type SeparatorAttributes<Message> = Readonly<{\n  separator: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = SeparatorOptions &\n  Readonly<{\n    toView: (attributes: SeparatorAttributes<Message>) => Html\n  }>\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n\n  const { orientation = 'horizontal', toView } = config\n\n  return toView({\n    separator: [\n      h.Role('separator'),\n      h.AriaOrientation(orientation),\n      h.DataAttribute('orientation', orientation),\n    ],\n  })\n}\n"
+    }
+  ]
+}

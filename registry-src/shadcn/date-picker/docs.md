@@ -1,45 +1,44 @@
 # Date Picker
 
-Foldkit-native shadcn base-nova Date Picker built on `@foldkit/ui/DatePicker`
-and the native Foldkit `Calendar` date model.
+Foldkit-native shadcn Date Picker wrapper built on the native `@foldkit/ui`
+DatePicker and Foldkit Calendar model.
 
 ## Overview
 
-Date Picker renders a shadcn-style trigger and popover calendar while keeping
-selection, focus, visible month, and open/close behavior inside the native
-Foldkit UI submodels. It supports single-date selection, hidden ISO form values,
-min/max constraints, deterministic ISO input composition, and RTL locale data.
+Date Picker renders a shadcn-style trigger and popover calendar while delegating
+date state, focus movement, hidden form input output, and selection messages to
+the native Foldkit UI DatePicker submodel.
 
 ## Foldkit Model
 
-Parents own a `DatePicker.Model` submodel and delegate
-`DatePicker.Message` through `DatePicker.update`. The wrapper returns native
-`DatePicker.OutMessage` values such as `SelectedDate` so application models can
-lift the selected `Calendar.CalendarDate` into domain state when needed.
+Applications own a `DatePickerModel` in their model and delegate
+`DatePickerMessage` values through `datePickerUpdate`. The native submodel emits
+`DatePickerOutMessage` values such as `SelectedDate` when the user commits a
+date.
 
 ## Usage
 
-Import the generated helper from `src/registry/shadcn/date-picker`. Initialize
-models with `datePickerInit`, passing `Calendar.make(...)` or `Calendar.today`
-at the application boundary. Use `Calendar.CalendarDateFromIsoString` for ISO
-input examples and keep parsed dates as native `Calendar.CalendarDate` values.
+Initialize with `datePickerInit`, passing `Calendar.make(...)` or `Calendar.today`
+at the app boundary. For ISO input examples, decode with
+`Calendar.CalendarDateFromIsoString` before reflecting the value into the
+submodel.
 
 ## Examples
 
-The supported live examples are `DatePickerDemo`, `DatePickerBasic`,
-`DatePickerDob`, `DatePickerInput`, and `DatePickerRtl`. Range, time, and
-natural-language examples from the origin docs are deferred until Foldkit has a
-native model for those flows.
+The installable examples cover `DatePickerDemo`, `DatePickerBasic`,
+`DatePickerDob`, `DatePickerInput`, and `DatePickerRtl`. Range selection, time
+selection, presets, and natural-language parsing are documented as deferred
+follow-up work.
 
 ## Accessibility
 
-The native DatePicker composes a Popover submodel with a Calendar submodel, so
-trigger state, popover visibility, calendar grid focus, keyboard selection, and
-hidden form submission follow the same command-driven Foldkit architecture as
-the rest of the app.
+The native Foldkit UI DatePicker owns trigger, popover, grid, keyboard, focus,
+and hidden-input semantics. The shadcn wrapper preserves those attributes while
+adding local visual classes and deterministic labels.
 
 ## Foldkit Differences
 
-This implementation does not ship React, React DayPicker, `date-fns`, or
-`chrono-node` runtime code. Date arithmetic and formatting use Foldkit
-`Calendar` helpers, and icons are local inline SVGs instead of `lucide-react`.
+This implementation does not import React DayPicker, `date-fns`, `chrono-node`,
+React, or Lucide React. Origin examples are treated as evidence, while the
+installable component uses native Foldkit Calendar dates, native Foldkit UI
+submodels, and local inline SVG icons.

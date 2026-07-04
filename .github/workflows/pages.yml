@@ -1,0 +1,79 @@
+name: pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify registry artifacts
+        run: bun run registry:check
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Test
+        run: bun run test
+
+      - name: Lint and checks
+        run: bun run check
+
+      - name: Build site for GitHub Pages
+        run: FOLDKITCN_BASE_PATH=/${{ github.event.repository.name }}/ bun run build
+
+      - name: Prerender docs routes
+        run: FOLDKITCN_BASE_PATH=/${{ github.event.repository.name }}/ bun run docs:prerender
+
+      - name: Build search index
+        run: bun run docs:search
+
+      - name: Smoke check build output
+        run: |
+          test -f dist/index.html
+          test -f dist/components/shadcn/button/index.html
+          test -f dist/r/registry.json
+          test -f dist/r/shadcn-button.json
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

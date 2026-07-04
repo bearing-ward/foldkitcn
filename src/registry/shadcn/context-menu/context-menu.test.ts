@@ -81,6 +81,11 @@ const requireExampleView = (
   return view
 }
 
+const staticExampleView =
+  (view: ExampleView) =>
+  (_model: Model): Html =>
+    view()
+
 // VIEW
 
 const viewMenu =
@@ -334,7 +339,7 @@ describe('shadcn/context-menu view', () => {
     expect(() => {
       for (const example of contextMenuExampleViews) {
         Scene.scene(
-          { update, view: example.view },
+          { update, view: staticExampleView(example.view) },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu"]'),
@@ -369,7 +374,10 @@ describe('shadcn/context-menu view', () => {
         'shadcn/context-menu-sides',
       ]) {
         Scene.scene(
-          { update, view: requireExampleView(viewById, id) },
+          {
+            update,
+            view: staticExampleView(requireExampleView(viewById, id)),
+          },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu"]'),
@@ -390,7 +398,10 @@ describe('shadcn/context-menu view', () => {
         'shadcn/context-menu-submenu',
       ]) {
         Scene.scene(
-          { update, view: requireExampleView(viewById, id) },
+          {
+            update,
+            view: staticExampleView(requireExampleView(viewById, id)),
+          },
           Scene.with(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu-sub-content"]'),
@@ -401,7 +412,9 @@ describe('shadcn/context-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/context-menu-destructive'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/context-menu-destructive'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(
@@ -411,7 +424,9 @@ describe('shadcn/context-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/context-menu-rtl'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/context-menu-rtl'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-slot="context-menu"]')).toHaveAttr(
@@ -422,7 +437,9 @@ describe('shadcn/context-menu view', () => {
       Scene.scene(
         {
           update,
-          view: requireExampleView(viewById, 'shadcn/context-menu-shortcuts'),
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/context-menu-shortcuts'),
+          ),
         },
         Scene.with(initialModel),
         Scene.expect(

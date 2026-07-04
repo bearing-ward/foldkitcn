@@ -851,22 +851,22 @@ Expected: exit 0.
 
 All must hold:
 
-- [ ] `registry-src/shadcn/date-picker/item.json` exists and marks
+- [x] `registry-src/shadcn/date-picker/item.json` exists and marks
       `shadcn/date-picker` installable.
-- [ ] `src/registry/shadcn/date-picker/index.ts` uses
+- [x] `src/registry/shadcn/date-picker/index.ts` uses
       `import { Calendar } from 'foldkit'` for date calculations and wraps
       `@foldkit/ui/DatePicker`.
-- [ ] No installable source imports `react-day-picker`, `date-fns`,
+- [x] No installable source imports `react-day-picker`, `date-fns`,
       `chrono-node`, `lucide-react`, or `react`.
-- [ ] Date Picker examples registered in `scripts/registry-common.ts` all render
+- [x] Date Picker examples registered in `scripts/registry-common.ts` all render
       as live previews.
-- [ ] `docs/component-conversion-checklist.json` no longer reports
+- [x] `docs/component-conversion-checklist.json` no longer reports
       `shadcn/date-picker` as blocked/private.
-- [ ] `bun run registry:check` exits 0.
-- [ ] Focused tests and full relevant tests listed above exit 0.
-- [ ] `bun run typecheck`, `bun run check`, and `bun run build` exit 0.
-- [ ] No out-of-scope files are modified.
-- [ ] `plans/README.md` status row for Plan 100 is updated to `DONE` after
+- [x] `bun run registry:check` exits 0.
+- [x] Focused tests and full relevant tests listed above exit 0.
+- [x] `bun run typecheck`, `bun run check`, and `bun run build` exit 0.
+- [x] No out-of-scope files are modified.
+- [x] `plans/README.md` status row for Plan 100 is updated to `DONE` after
       review acceptance, or `BLOCKED (...)` if a STOP condition occurs.
 
 ## STOP conditions

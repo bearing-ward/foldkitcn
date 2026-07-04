@@ -2,6 +2,7 @@ import { Array, Option, Order, Schema as S, pipe } from 'effect'
 
 import type {
   LiveExampleContext,
+  hasLiveExampleViewFor as hasLiveExampleViewForType,
   liveExampleViewFor as liveExampleViewForType,
 } from '../src/live-examples'
 import type { createToastState as createToastStateType } from '../src/registry/base-ui/toast'
@@ -45,6 +46,7 @@ export type LivePreviewGapReport = Readonly<{
 }>
 
 type LiveExampleViewFor = typeof liveExampleViewForType
+type HasLiveExampleViewFor = typeof hasLiveExampleViewForType
 type CreateToastState = typeof createToastStateType
 
 const repoRoot = path.resolve(import.meta.dirname, '..')
@@ -89,6 +91,14 @@ export const loadLiveExampleViewFor = async (): Promise<LiveExampleViewFor> => {
 
   return liveExamplesModule.liveExampleViewFor
 }
+
+export const loadHasLiveExampleViewFor =
+  async (): Promise<HasLiveExampleViewFor> => {
+    ensureBrowserGlobals()
+    const liveExamplesModule = await import('../src/live-examples')
+
+    return liveExamplesModule.hasLiveExampleViewFor
+  }
 
 export const loadCreateToastState = async (): Promise<CreateToastState> => {
   ensureBrowserGlobals()
@@ -204,19 +214,36 @@ const incrementCount = <Key extends string>(
 
 export const createLivePreviewGapReport = (
   artifacts: ReadonlyArray<ComponentDocsArtifactType>,
-  liveExampleViewFor: LiveExampleViewFor,
+  hasLiveExampleViewFor: HasLiveExampleViewFor,
   liveExampleContext: LiveExampleContext<unknown>,
 ): LivePreviewGapReport => {
+  void liveExampleContext
+
   const rows = pipe(
     artifacts,
     Array.flatMap(artifact =>
       pipe(
         artifact.examples,
         Array.flatMap(example =>
-          Option.match(liveExampleViewFor(example, liveExampleContext), {
-            onSome: () => [],
-            onNone: () => {
-              if (example.previewStatus === 'live-ready') {
+          hasLiveExampleViewFor(example)
+            ? []
+            : (() => {
+                if (example.previewStatus === 'live-ready') {
+                  const row: MissingLivePreviewCard = {
+                    routePath: artifact.routePath,
+                    itemId: artifact.itemId,
+                    exampleId: example.id,
+                    title: example.title,
+                    previewExportName: optionToNullable(
+                      example.previewExportName,
+                    ),
+                    previewStatus: example.previewStatus,
+                    reason: 'missing-live-renderer',
+                  }
+
+                  return [row]
+                }
+
                 const row: MissingLivePreviewCard = {
                   routePath: artifact.routePath,
                   itemId: artifact.itemId,
@@ -226,25 +253,11 @@ export const createLivePreviewGapReport = (
                     example.previewExportName,
                   ),
                   previewStatus: example.previewStatus,
-                  reason: 'missing-live-renderer',
+                  reason: 'static-status',
                 }
 
                 return [row]
-              }
-
-              const row: MissingLivePreviewCard = {
-                routePath: artifact.routePath,
-                itemId: artifact.itemId,
-                exampleId: example.id,
-                title: example.title,
-                previewExportName: optionToNullable(example.previewExportName),
-                previewStatus: example.previewStatus,
-                reason: 'static-status',
-              }
-
-              return [row]
-            },
-          }),
+              })(),
         ),
       ),
     ),
@@ -359,7 +372,7 @@ const main = async (): Promise<void> => {
   const shouldWriteArtifacts = process.argv.includes('--write')
   const report = createLivePreviewGapReport(
     await loadGeneratedDocsArtifacts(),
-    await loadLiveExampleViewFor(),
+    await loadHasLiveExampleViewFor(),
     createLiveExampleContext(await loadCreateToastState()),
   )
   const missingRenderers = report.rows.filter(

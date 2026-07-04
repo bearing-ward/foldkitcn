@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-ui-toggle",
+  "type": "registry:ui",
+  "title": "Toggle",
+  "description": "Foldkit-native Base UI Toggle primitive preserving controlled pressed state, aria-pressed, data-pressed, disabled behavior, and keyboard activation through the local Button conventions.",
+  "dependencies": ["foldkit", "effect"],
+  "registryDependencies": ["@foldkitcn/base-ui-button"],
+  "files": [
+    {
+      "path": "src/registry/base-ui/toggle/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/base-ui/toggle.ts",
+      "content": "import { Predicate, Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport * as Button from './button'\n\n// MODEL\n\nexport const ToggleChangeReason = S.Literal('none')\nexport type ToggleChangeReason = typeof ToggleChangeReason.Type\n\nexport const TogglePressedChange = S.Struct({\n  isPressed: S.Boolean,\n  reason: ToggleChangeReason,\n})\nexport type TogglePressedChange = typeof TogglePressedChange.Type\n\nexport const ToggleOptions = S.Struct({\n  isPressed: S.Boolean,\n  isDisabled: S.optional(S.Boolean),\n  isNativeButton: S.optional(S.Boolean),\n})\nexport type ToggleOptions = typeof ToggleOptions.Type\n\n// UPDATE\n\nexport const pressedChange = (isPressed: boolean): TogglePressedChange => ({\n  isPressed,\n  reason: 'none',\n})\n\n// VIEW\n\nexport type ToggleAttributes<Message> = Button.ButtonAttributes<Message>\n\nexport type ViewConfig<Message> = ToggleOptions &\n  Omit<Button.ViewConfig<Message>, 'onClick' | 'toView' | 'type'> &\n  Readonly<{\n    toView: (attributes: ToggleAttributes<Message>) => Html\n    onPressedChange?: (change: TogglePressedChange) => Message\n  }>\n\nconst pressedAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  isPressed: boolean,\n): ReadonlyArray<Attribute<Message>> => [\n  h.AriaPressed(String(isPressed)),\n  ...(isPressed ? [h.DataAttribute('pressed', '')] : []),\n]\n\nconst nextPressedMessage = <Message>(\n  config: Pick<ViewConfig<Message>, 'isPressed' | 'onPressedChange'>,\n): Message | undefined =>\n  Predicate.isNotUndefined(config.onPressedChange)\n    ? config.onPressedChange(pressedChange(!config.isPressed))\n    : undefined\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const {\n    toView,\n    isPressed,\n    onPressedChange: _onPressedChange,\n    ...buttonConfig\n  } = config\n  const onClick = nextPressedMessage(config)\n\n  return Button.view<Message>({\n    ...buttonConfig,\n    type: 'button',\n    ...(onClick === undefined ? {} : { onClick }),\n    toView: attributes =>\n      toView({\n        button: [...attributes.button, ...pressedAttributes(h, isPressed)],\n      }),\n  })\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-kbd",
+  "type": "registry:ui",
+  "title": "Kbd",
+  "description": "Foldkit-native shadcn base-nova Kbd and KbdGroup helpers using cn.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": ["@foldkitcn/utils-cn"],
+  "files": [
+    {
+      "path": "src/registry/shadcn/kbd/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/kbd.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const KbdStyleOptions = S.Struct({\n  className: S.optional(S.String),\n})\nexport type KbdStyleOptions = typeof KbdStyleOptions.Type\n\nexport const KbdGroupStyleOptions = S.Struct({\n  className: S.optional(S.String),\n})\nexport type KbdGroupStyleOptions = typeof KbdGroupStyleOptions.Type\n\n// VIEW\n\nexport type KbdAttributes<Message> = Readonly<{\n  kbd: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type KbdGroupAttributes<Message> = Readonly<{\n  kbdGroup: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = KbdStyleOptions &\n  Readonly<{\n    toView: (attributes: KbdAttributes<Message>) => Html\n  }>\n\nexport type GroupViewConfig<Message> = KbdGroupStyleOptions &\n  Readonly<{\n    toView: (attributes: KbdGroupAttributes<Message>) => Html\n  }>\n\nexport const kbdBaseClassName =\n  \"pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 [&_svg:not([class*='size-'])]:size-3\"\n\nexport const kbdGroupBaseClassName = 'inline-flex items-center gap-1'\n\nexport const kbdClassName = ({ className }: KbdStyleOptions = {}): string =>\n  cn(kbdBaseClassName, className)\n\nexport const kbdGroupClassName = ({\n  className,\n}: KbdGroupStyleOptions = {}): string => cn(kbdGroupBaseClassName, className)\n\nconst kbdAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  className: string | undefined,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'kbd'),\n  h.Class(kbdClassName({ className })),\n]\n\nconst groupAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  className: string | undefined,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'kbd-group'),\n  h.Class(kbdGroupClassName({ className })),\n]\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const { toView, className } = config\n\n  return toView({\n    kbd: kbdAttributes(h, className),\n  })\n}\n\nexport const groupView = <Message>(config: GroupViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const { toView, className } = config\n\n  return toView({\n    kbdGroup: groupAttributes(h, className),\n  })\n}\n"
+    }
+  ]
+}
