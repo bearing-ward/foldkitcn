@@ -7,7 +7,7 @@ import {
   readLivePreviewGapArtifact,
 } from '../scripts/report-docs-live-preview-gaps'
 import { docsData, publicComponents } from './data'
-import { liveExampleViewFor } from './live-examples'
+import { hasLiveExampleViewFor, liveExampleViewFor } from './live-examples'
 import type { LiveExampleContext } from './live-examples'
 import * as ToastPrimitive from './registry/base-ui/toast'
 
@@ -137,7 +137,7 @@ describe('generated docs data', () => {
           Array.filter(
             example =>
               example.previewStatus === 'live-ready' &&
-              Option.isNone(liveExampleViewFor(example, liveExampleContext)),
+              !hasLiveExampleViewFor(example),
           ),
           Array.map(
             example =>
@@ -193,7 +193,7 @@ describe('generated docs data', () => {
   test('docs live preview gaps match the checked-in inventory', async () => {
     const currentReport = createLivePreviewGapReport(
       loadedDocsArtifacts(),
-      liveExampleViewFor,
+      hasLiveExampleViewFor,
       liveExampleContext,
     )
     const checkedInRows = await readLivePreviewGapArtifact()

@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/date-picker",
+  "routePath": "/components/shadcn/date-picker",
+  "title": "Date Picker",
+  "description": "Foldkit-native shadcn Date Picker wrapper built on the native @foldkit/ui DatePicker and Calendar submodels, with live single-date examples and deferred range, time, and natural-language parsing examples.",
+  "docsStatus": "complete",
+  "markdownPath": "registry-src/shadcn/date-picker/docs.md",
+  "markdown": "# Date Picker\n\nFoldkit-native shadcn Date Picker wrapper built on the native `@foldkit/ui`\nDatePicker and Foldkit Calendar model.\n\n## Overview\n\nDate Picker renders a shadcn-style trigger and popover calendar while delegating\ndate state, focus movement, hidden form input output, and selection messages to\nthe native Foldkit UI DatePicker submodel.\n\n## Foldkit Model\n\nApplications own a `DatePickerModel` in their model and delegate\n`DatePickerMessage` values through `datePickerUpdate`. The native submodel emits\n`DatePickerOutMessage` values such as `SelectedDate` when the user commits a\ndate.\n\n## Usage\n\nInitialize with `datePickerInit`, passing `Calendar.make(...)` or `Calendar.today`\nat the app boundary. For ISO input examples, decode with\n`Calendar.CalendarDateFromIsoString` before reflecting the value into the\nsubmodel.\n\n## Examples\n\nThe installable examples cover `DatePickerDemo`, `DatePickerBasic`,\n`DatePickerDob`, `DatePickerInput`, and `DatePickerRtl`. Range selection, time\nselection, presets, and natural-language parsing are documented as deferred\nfollow-up work.\n\n## Accessibility\n\nThe native Foldkit UI DatePicker owns trigger, popover, grid, keyboard, focus,\nand hidden-input semantics. The shadcn wrapper preserves those attributes while\nadding local visual classes and deterministic labels.\n\n## Foldkit Differences\n\nThis implementation does not import React DayPicker, `date-fns`, `chrono-node`,\nReact, or Lucide React. Origin examples are treated as evidence, while the\ninstallable component uses native Foldkit Calendar dates, native Foldkit UI\nsubmodels, and local inline SVG icons.\n",
+  "headings": [
+    {
+      "id": "date-picker",
+      "text": "Date Picker",
+      "level": 1
+    },
+    {
+      "id": "overview",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "id": "foldkit-model",
+      "text": "Foldkit Model",
+      "level": 2
+    },
+    {
+      "id": "usage",
+      "text": "Usage",
+      "level": 2
+    },
+    {
+      "id": "examples",
+      "text": "Examples",
+      "level": 2
+    },
+    {
+      "id": "accessibility",
+      "text": "Accessibility",
+      "level": 2
+    },
+    {
+      "id": "foldkit-differences",
+      "text": "Foldkit Differences",
+      "level": 2
+    }
+  ],
+  "installCommand": null,
+  "localInstallPath": "src/registry/shadcn/date-picker",
+  "defaultImportPath": "shadcn/date-picker",
+  "sourceRoot": "registry-src/shadcn/date-picker",
+  "installableSourcePaths": [
+    "src/registry/shadcn/date-picker/index.ts",
+    "src/registry/shadcn/date-picker/examples.ts"
+  ],
+  "originProvenance": [
+    {
+      "originKind": "shadcn",
+      "originName": "shadcn Date Picker",
+      "docsUrl": "https://ui.shadcn.com/docs/components/date-picker",
+      "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/content/docs/components/base/date-picker.mdx",
+      "localRepoPath": "repos/ui",
+      "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
+      "sourcePaths": [],
+      "docsPaths": [
+        "repos/ui/apps/v4/content/docs/components/base/date-picker.mdx",
+        "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
+      ],
+      "examplePaths": [
+        "repos/ui/apps/v4/examples/base/date-picker-basic.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-demo.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-dob.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-input.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-natural-language.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-range.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-rtl.tsx",
+        "repos/ui/apps/v4/examples/base/date-picker-time.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-basic.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-demo.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-dob.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-input.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-natural-language.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-range.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-rtl.tsx",
+        "repos/ui/apps/v4/examples/radix/date-picker-time.tsx",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-demo.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-form.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-with-presets.json",
+        "repos/ui/apps/v4/public/r/styles/default/date-picker-with-range.json"
+      ],
+      "testPaths": []
+    }
+  ],
+  "dependencies": {
+    "registry": [
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Date picker trigger and calendar cells preserve the local shadcn button affordances."
+      },
+      {
+        "specifier": "shadcn/calendar",
+        "classification": "registry-local",
+        "target": "shadcn/calendar",
+        "reason": "The visual calendar layout mirrors the local shadcn Calendar styling while using the native DatePicker model."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "Origin form examples are represented through local shadcn field composition."
+      },
+      {
+        "specifier": "shadcn/input",
+        "classification": "registry-local",
+        "target": "shadcn/input",
+        "reason": "The ISO input example composes local input affordances."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "The input example uses local Input Group helpers for the displayed ISO value."
+      },
+      {
+        "specifier": "shadcn/popover",
+        "classification": "registry-local",
+        "target": "shadcn/popover",
+        "reason": "Native DatePicker owns popover behavior and the wrapper keeps shadcn popover visual tokens."
+      },
+      {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "Date Picker class helpers use the shared class canonicalization utility."
+      }
+    ],
+    "runtime": [
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides Calendar date helpers, Html, and Foldkit submodel rendering."
+      },
+      {
+        "specifier": "@foldkit/ui",
+        "classification": "allowed-runtime",
+        "target": "npm:@foldkit/ui",
+        "reason": "Provides the native DatePicker, Calendar, and Popover submodels."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema, Option, Either, and pattern matching helpers."
+      },
+      {
+        "specifier": "clsx",
+        "classification": "allowed-runtime",
+        "target": "npm:clsx",
+        "reason": "Provided through the shared utils/cn registry dependency."
+      },
+      {
+        "specifier": "tailwind-merge",
+        "classification": "allowed-runtime",
+        "target": "npm:tailwind-merge",
+        "reason": "Provided through the shared utils/cn registry dependency."
+      }
+    ],
+    "development": [
+      {
+        "specifier": "react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "React is origin fixture evidence only, not installable Foldkit source."
+      },
+      {
+        "specifier": "react-day-picker",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Installable source uses native Foldkit DatePicker instead of React DayPicker."
+      },
+      {
+        "specifier": "date-fns",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Supported examples use native Foldkit Calendar formatting and ISO decoding."
+      },
+      {
+        "specifier": "date-fns/locale",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Locale examples use local Calendar.LocaleConfig values."
+      },
+      {
+        "specifier": "react-day-picker/locale",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Locale examples use local Calendar.LocaleConfig values."
+      },
+      {
+        "specifier": "lucide-react",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "Installable source uses local inline SVG icons instead of Lucide React."
+      },
+      {
+        "specifier": "@/components/language-selector",
+        "classification": "dev-or-fixture-only",
+        "target": "",
+        "reason": "The RTL example uses deterministic local locale data instead of the origin app selector."
+      },
+      {
+        "specifier": "chrono-node",
+        "classification": "reject-or-defer",
+        "target": "",
+        "reason": "Natural-language parsing is deferred until a native Foldkit parsing model exists."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "shadcn/date-picker-demo",
+      "title": "DatePickerDemo",
+      "description": "Default selected-date Date Picker with shadcn trigger and native Calendar popover.",
+      "componentItemId": "shadcn/date-picker",
+      "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
+      "snippet": "export const DatePickerDemo = <Message = DatePickerMessage>(\n  controller?: DatePickerExampleController<Message>,\n): Html =>\n  picker({\n    controller,\n    id: 'date-picker-demo',\n    today: deterministicToday,\n    initialSelectedDate: demoSelectedDate,\n    placeholder: 'Pick a date',\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DatePickerDemo",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/date-picker-basic",
+      "title": "DatePickerBasic",
+      "description": "Compact Date Picker trigger with a deterministic selected date.",
+      "componentItemId": "shadcn/date-picker",
+      "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
+      "snippet": "export const DatePickerBasic = <Message = DatePickerMessage>(\n  controller?: DatePickerExampleController<Message>,\n): Html =>\n  picker({\n    controller,\n    id: 'date-picker-basic',\n    today: deterministicToday,\n    initialSelectedDate: basicSelectedDate,\n    placeholder: 'Select date',\n    triggerClassName: 'min-w-40',\n    compact: true,\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DatePickerBasic",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/date-picker-dob",
+      "title": "DatePickerDob",
+      "description": "Date of birth picker with native min and max date constraints.",
+      "componentItemId": "shadcn/date-picker",
+      "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
+      "snippet": "export const DatePickerDob = <Message = DatePickerMessage>(\n  controller?: DatePickerExampleController<Message>,\n): Html => {\n  const h = html<Message | DatePickerMessage>()\n\n  return h.div(\n    [h.Class('grid w-full max-w-64 gap-2')],\n    [\n      h.label(\n        [\n          h.For('date-picker-dob-trigger'),\n          h.Class('text-sm font-medium leading-none'),\n        ],\n        ['Date of birth'],\n      ),\n      picker({\n        controller,\n        id: 'date-picker-dob',\n        today: deterministicToday,\n        initialSelectedDate: dobSelectedDate,\n        minDate: dobMinDate,\n        maxDate: dobMaxDate,\n        placeholder: 'Pick your birthday',\n        triggerClassName: 'w-full',\n      }),\n      h.p(\n        [h.Class('text-xs text-muted-foreground')],\n        [\n          'Dates outside 1900-2010 are disabled by the native DatePicker model.',\n        ],\n      ),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "DatePickerDob",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/date-picker-input",
+      "title": "DatePickerInput",
+      "description": "Date Picker composed with an Input Group and hidden ISO field.",
+      "componentItemId": "shadcn/date-picker",
+      "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
+      "snippet": "export const DatePickerInput = <Message = DatePickerMessage>(\n  controller?: DatePickerExampleController<Message>,\n): Html => {\n  const h = html<Message | DatePickerMessage>()\n  const resolved = controllerFor({\n    controller,\n    id: 'date-picker-input',\n    today: deterministicToday,\n    initialSelectedDate: demoSelectedDate,\n  })\n\n  return h.div(\n    [h.Class('grid w-full max-w-72 gap-2')],\n    [\n      InputGroup<Message | DatePickerMessage>({\n        children: [\n          InputGroupText<Message | DatePickerMessage>({\n            children: ['ISO'],\n          }),\n          InputGroupInput<Message | DatePickerMessage>({\n            value: isoValue(resolved.model),\n            attributes: [h.Readonly(true), h.AriaLabel('Selected ISO date')],\n          }),\n        ],\n      }),\n      DatePicker<Message | DatePickerMessage>({\n        ...resolved,\n        name: 'date',\n        placeholder: 'Pick date',\n        triggerClassName: 'w-full',\n        compact: true,\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "DatePickerInput",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/date-picker-rtl",
+      "title": "DatePickerRtl",
+      "description": "RTL Date Picker with local Calendar locale labels.",
+      "componentItemId": "shadcn/date-picker",
+      "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
+      "snippet": "export const DatePickerRtl = <Message = DatePickerMessage>(\n  controller?: DatePickerExampleController<Message>,\n): Html =>\n  picker({\n    controller,\n    id: 'date-picker-rtl',\n    today: deterministicToday,\n    initialSelectedDate: demoSelectedDate,\n    locale: arabicLocale,\n    placeholder: 'اختر التاريخ',\n    triggerClassName: 'min-w-52',\n    panelClassName: 'text-right',\n    dir: 'rtl',\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "DatePickerRtl",
+      "requiredRegistryItems": [
+        "shadcn/button",
+        "shadcn/calendar",
+        "shadcn/field",
+        "shadcn/input",
+        "shadcn/input-group",
+        "shadcn/popover",
+        "utils/cn"
+      ],
+      "notes": []
+    }
+  ],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "accepted",
+    "driftStatus": "current",
+    "deviations": [
+      {
+        "id": "shadcn-date-picker-docs-example-only-source",
+        "summary": "Date Picker has docs/example-only origin evidence because the current origin does not ship a base-nova ui/date-picker.tsx source file.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The installable Foldkit item is sourced from documented origin examples and local native primitives rather than a missing primary component file."
+      },
+      {
+        "id": "shadcn-date-picker-native-foldkit-model",
+        "summary": "Date Picker uses native @foldkit/ui DatePicker and Foldkit CalendarDate values instead of React DayPicker, date-fns, or React state.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source must stay Foldkit-native and reuse the framework-owned date submodel."
+      },
+      {
+        "id": "shadcn-date-picker-local-icons",
+        "summary": "Trigger and navigation icons use local inline SVG helpers instead of lucide-react.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Installable source cannot depend on React icon packages."
+      },
+      {
+        "id": "shadcn-date-picker-deferred-advanced-examples",
+        "summary": "Range, time, natural-language parsing, presets, and advanced locale examples are deferred.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "Native @foldkit/ui DatePicker currently models single-date selection; advanced modes need separate Foldkit-native foundations."
+      }
+    ]
+  }
+}

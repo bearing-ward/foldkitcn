@@ -88,6 +88,7 @@ const model: Model = {
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
   liveExampleMenuValues: {},
+  liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},
   liveExampleSidebarPanelOpenValues: {},

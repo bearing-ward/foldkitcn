@@ -1,4 +1,5 @@
 import { Option, pipe } from 'effect'
+import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -227,6 +228,20 @@ import type {
   DataTableExampleController,
   DataTableExampleMessage,
 } from './registry/shadcn/data-table/examples'
+import { datePickerInit } from './registry/shadcn/date-picker'
+import type {
+  DatePickerMessage,
+  DatePickerModel,
+} from './registry/shadcn/date-picker'
+import {
+  DatePickerBasic,
+  DatePickerDemo,
+  DatePickerDob,
+  DatePickerInput,
+  DatePickerRtl,
+  arabicLocale,
+} from './registry/shadcn/date-picker/examples'
+import type { DatePickerExampleController } from './registry/shadcn/date-picker/examples'
 import {
   DialogCloseButton,
   DialogDemo,
@@ -854,6 +869,15 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     message: DataTableExampleMessage,
   ) => Message
+  datePickerStateFor?: (
+    example: ExampleDocsArtifact,
+    initialModel: DatePickerModel,
+  ) => DatePickerModel
+  onDatePickerMessage?: (
+    example: ExampleDocsArtifact,
+    message: DatePickerMessage,
+    initialModel: DatePickerModel,
+  ) => Message
   toastStateFor: (example: ExampleDocsArtifact) => ToastState
   onToastMessage: (
     example: ExampleDocsArtifact,
@@ -928,6 +952,10 @@ type SonnerExampleView = <Message = never>(
 
 type DataTableExampleView = <Message = never>(
   controller?: DataTableExampleController<Message>,
+) => Html
+
+type DatePickerExampleView = <Message = DatePickerMessage>(
+  controller?: DatePickerExampleController<Message>,
 ) => Html
 
 type AlertDialogExampleView = <Message = never>(
@@ -1873,6 +1901,65 @@ const dataTableExample = (
   },
 })
 
+const datePickerToday = Calendar.make(2025, 6, 12)
+const datePickerDemoDate = Calendar.make(2025, 6, 12)
+const datePickerBasicDate = Calendar.make(2025, 1, 6)
+const datePickerDobDate = Calendar.make(1995, 6, 12)
+
+const initialDatePickerModel = (exampleId: string): DatePickerModel => {
+  if (exampleId.endsWith('date-picker-basic')) {
+    return datePickerInit({
+      id: `${exampleId}-live`,
+      today: datePickerToday,
+      initialSelectedDate: datePickerBasicDate,
+    })
+  }
+
+  if (exampleId.endsWith('date-picker-dob')) {
+    return datePickerInit({
+      id: `${exampleId}-live`,
+      today: datePickerToday,
+      initialSelectedDate: datePickerDobDate,
+      minDate: Calendar.make(1900, 1, 1),
+      maxDate: Calendar.make(2010, 12, 31),
+    })
+  }
+
+  if (exampleId.endsWith('date-picker-rtl')) {
+    return datePickerInit({
+      id: `${exampleId}-live`,
+      today: datePickerToday,
+      initialSelectedDate: datePickerDemoDate,
+      locale: arabicLocale,
+    })
+  }
+
+  return datePickerInit({
+    id: `${exampleId}-live`,
+    today: datePickerToday,
+    initialSelectedDate: datePickerDemoDate,
+  })
+}
+
+const datePickerExample = (
+  view: DatePickerExampleView,
+): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const initialModel = initialDatePickerModel(example.id)
+
+    return view<DatePickerMessage | Message>({
+      model:
+        context.datePickerStateFor?.(example, initialModel) ?? initialModel,
+      toParentMessage: message =>
+        context.onDatePickerMessage?.(example, message, initialModel) ??
+        message,
+    })
+  },
+})
+
 const overlayController = <Message>(
   example: ExampleDocsArtifact,
   context: LiveExampleContext<Message>,
@@ -2381,6 +2468,16 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     CalendarRtl,
     '2025-01-06',
   ),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerDemo')]:
+    datePickerExample(DatePickerDemo),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerBasic')]:
+    datePickerExample(DatePickerBasic),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerDob')]:
+    datePickerExample(DatePickerDob),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerInput')]:
+    datePickerExample(DatePickerInput),
+  [liveExampleKey('shadcn/date-picker', 'DatePickerRtl')]:
+    datePickerExample(DatePickerRtl),
   [liveExampleKey('shadcn/carousel', 'CarouselDemo')]:
     carouselExample(CarouselDemo),
   [liveExampleKey('shadcn/carousel', 'CarouselSize')]:
@@ -3138,5 +3235,25 @@ export const liveExampleViewFor = <Message>(
       ),
     ),
     Option.map(definition => definition.render(example, context)),
+  )
+}
+
+export const hasLiveExampleViewFor = (
+  example: ExampleDocsArtifact,
+): boolean => {
+  if (example.previewStatus !== 'live-ready') {
+    return false
+  }
+
+  return pipe(
+    example.previewExportName,
+    Option.flatMap(previewExportName =>
+      Option.fromNullishOr(
+        liveExampleViews[
+          liveExampleKey(example.componentItemId, previewExportName)
+        ],
+      ),
+    ),
+    Option.isSome,
   )
 }

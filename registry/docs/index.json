@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-03T16:11:03.892Z",
+  "generatedAt": "2026-07-04T18:57:27.178Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -296,6 +296,11 @@
       "itemId": "shadcn/data-table",
       "routePath": "/components/shadcn/data-table",
       "docsArtifactPath": "registry/docs/shadcn/data-table.json"
+    },
+    {
+      "itemId": "shadcn/date-picker",
+      "routePath": "/components/shadcn/date-picker",
+      "docsArtifactPath": "registry/docs/shadcn/date-picker.json"
     },
     {
       "itemId": "shadcn/dialog",

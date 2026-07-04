@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-03T15:53:40.059Z",
+  "generatedAt": "2026-07-04T18:43:42.276Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -9,12 +9,12 @@
     },
     "shadcn": {
       "total": 64,
-      "imported": 62,
-      "remaining": 2
+      "imported": 63,
+      "remaining": 1
     },
     "shadcnSourceFileCount": 60,
     "shadcnDocsExampleOnlyCount": 4,
-    "blockedCount": 2,
+    "blockedCount": 1,
     "readyForDossierCount": 0,
     "dossierReadyCount": 0,
     "sourceRefs": {
@@ -2331,7 +2331,7 @@
       "originResolutionStatus": "docs-example-only",
       "hasOriginDocs": true,
       "hasOriginSource": false,
-      "hasRegistryItem": false,
+      "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
         "plans/artifacts/008-outstanding-held-component-dossiers/dossier.json",
@@ -2339,10 +2339,10 @@
         "plans/artifacts/098-blocked-component-foundation-preview/dossier.json"
       ],
       "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
       "driftStatus": "current",
-      "availability": "private",
+      "availability": "installable",
       "blockers": [
         "No primary base-nova shadcn component source exists; use docs/example-only evidence for planning.",
         "Local calendar/date behavior, popover, field, and input foundations must exist before installable source.",
@@ -2354,7 +2354,7 @@
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/date-picker"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 98",
-      "readiness": "blocked"
+      "readiness": "imported"
     },
     {
       "itemId": "shadcn/toast",

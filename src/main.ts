@@ -100,6 +100,13 @@ import {
   toggleSort as toggleLiveExampleDataTableSort,
 } from './registry/shadcn/data-table'
 import {
+  type DatePickerMessage as DatePickerMessageType,
+  DatePickerMessage,
+  DatePickerModel,
+  type DatePickerModel as DatePickerModelType,
+  datePickerUpdate,
+} from './registry/shadcn/date-picker'
+import {
   ToastExampleMessage as SonnerExampleMessage,
   toastViewportPositionFromPosition,
   type ToastExampleMessage as SonnerExampleMessageType,
@@ -204,6 +211,7 @@ export const Model = S.Struct({
   liveExampleDataTableStates: S.optional(
     S.Record(S.String, LiveExampleDataTableState),
   ),
+  liveExampleDatePickerStates: S.Record(S.String, DatePickerModel),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
   liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
@@ -880,6 +888,14 @@ export const GotLiveExampleDataTableMessage = m(
     message: DataTableExampleMessage,
   },
 )
+export const GotLiveExampleDatePickerMessage = m(
+  'GotLiveExampleDatePickerMessage',
+  {
+    exampleId: S.String,
+    message: DatePickerMessage,
+    initialModel: DatePickerModel,
+  },
+)
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
   message: S.Union([
@@ -980,6 +996,7 @@ export const Message = S.Union([
   UpdatedLiveExampleMenuContextPoint,
   SelectedLiveExampleMenuValue,
   GotLiveExampleDataTableMessage,
+  GotLiveExampleDatePickerMessage,
   GotLiveExampleToastMessage,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
@@ -1031,6 +1048,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuContextPoints: {},
       liveExampleMenuValues: {},
       liveExampleDataTableStates: {},
+      liveExampleDatePickerStates: {},
       liveExampleToastStates: {},
       liveExampleSidebarOpenValues: {},
       liveExampleSidebarPanelOpenValues: {},
@@ -1618,6 +1636,33 @@ export const update = (model: Model, message: Message): UpdateReturn =>
               ),
           }),
           [],
+        ]
+      },
+      GotLiveExampleDatePickerMessage: ({
+        exampleId,
+        message,
+        initialModel,
+      }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleDatePickerStates, exampleId),
+          Option.getOrElse(() => initialModel),
+        )
+        const [nextState, commands] = datePickerUpdate(state, message)
+
+        return [
+          evo(model, {
+            liveExampleDatePickerStates: EffectRecord.set(
+              exampleId,
+              nextState,
+            ),
+          }),
+          Command.mapMessages(commands, nextMessage =>
+            GotLiveExampleDatePickerMessage({
+              exampleId,
+              message: nextMessage,
+              initialModel,
+            }),
+          ),
         ]
       },
       GotLiveExampleToastMessage: ({ exampleId, message }) => {
@@ -2881,6 +2926,7 @@ const examplesSectionView = (
   liveExampleDataTableStates: Readonly<
     Record<string, typeof LiveExampleDataTableState.Type>
   >,
+  liveExampleDatePickerStates: Readonly<Record<string, DatePickerModelType>>,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
@@ -3407,6 +3453,24 @@ const examplesSectionView = (
         exampleId: example.id,
         message,
       }),
+    datePickerStateFor: (
+      example: ExampleDocsArtifact,
+      initialModel: DatePickerModelType,
+    ): DatePickerModelType =>
+      pipe(
+        EffectRecord.get(liveExampleDatePickerStates, example.id),
+        Option.getOrElse(() => initialModel),
+      ),
+    onDatePickerMessage: (
+      example: ExampleDocsArtifact,
+      message: DatePickerMessageType,
+      initialModel: DatePickerModelType,
+    ): Message =>
+      GotLiveExampleDatePickerMessage({
+        exampleId: example.id,
+        message,
+        initialModel,
+      }),
     toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
       pipe(
         EffectRecord.get(liveExampleToastStates, example.id),
@@ -3750,6 +3814,7 @@ const componentDetailPageView = (
           model.liveExampleMenuContextPoints,
           model.liveExampleMenuValues,
           model.liveExampleDataTableStates ?? {},
+          model.liveExampleDatePickerStates,
           model.liveExampleToastStates,
           model.liveExampleSidebarOpenValues,
           model.liveExampleSidebarPanelOpenValues,
