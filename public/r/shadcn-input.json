@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "Foldkit-native shadcn base-nova Input wrapper composed from the local Base UI Input primitive and shadcn class tokens.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": ["@foldkitcn/base-ui-input", "@foldkitcn/utils-cn"],
+  "files": [
+    {
+      "path": "src/registry/shadcn/input/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/input.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\nimport * as BaseInput from '../base-ui/input'\n\n// MODEL\n\nexport const InputStyleOptions = S.Struct({\n  className: S.optional(S.String),\n})\nexport type InputStyleOptions = typeof InputStyleOptions.Type\n\n// VIEW\n\nexport type InputAttributes<Message> = BaseInput.InputAttributes<Message>\n\nexport type ViewConfig<Message> = Omit<\n  BaseInput.ViewConfig<Message>,\n  'toView'\n> &\n  InputStyleOptions &\n  Readonly<{\n    toView: (attributes: InputAttributes<Message>) => Html\n  }>\n\nexport const inputBaseClassName =\n  'h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40'\n\nexport const inputClassName = ({ className }: InputStyleOptions = {}): string =>\n  cn(inputBaseClassName, className)\n\nconst shadcnAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  className: string | undefined,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'input'),\n  h.Class(inputClassName({ className })),\n]\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const { toView, className, ...baseConfig } = config\n\n  return BaseInput.view<Message>({\n    ...baseConfig,\n    toView: attributes =>\n      toView({\n        input: [...attributes.input, ...shadcnAttributes(h, className)],\n      }),\n  })\n}\n"
+    }
+  ]
+}

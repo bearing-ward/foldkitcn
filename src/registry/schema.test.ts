@@ -10,6 +10,8 @@ import {
   InstallerItemId,
   InstallerWritePlan,
   InstallTargetPath,
+  PublicRegistryCatalog,
+  PublicRegistryItem,
   RegistryItemManifest,
 } from './schema'
 import type { ExamplePreviewStatus } from './schema'
@@ -134,6 +136,62 @@ describe('registry item manifest schema', () => {
 })
 
 describe('generated docs artifact schemas', () => {
+  test('decodes public registry catalogs', () => {
+    const catalog = S.decodeUnknownSync(PublicRegistryCatalog)({
+      $schema: 'https://ui.shadcn.com/schema/registry.json',
+      name: 'foldkitcn',
+      homepage: 'https://bearing-ward.github.io/foldkitcn/',
+      items: [
+        {
+          $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+          name: 'shadcn-button',
+          type: 'registry:ui',
+          title: 'Button',
+          description: 'Foldkit-native shadcn button wrapper.',
+          dependencies: ['clsx'],
+          registryDependencies: ['@foldkitcn/base-ui-button'],
+          files: [
+            {
+              path: 'src/registry/shadcn/button/index.ts',
+              type: 'registry:ui',
+              target: 'src/components/foldkitcn/shadcn/button.ts',
+              content: "import * as BaseButton from '../base-ui/button'",
+            },
+          ],
+        },
+      ],
+    })
+
+    expect(catalog.items[0]?.name).toBe('shadcn-button')
+    expect(catalog.items[0]?.files[0]?.target).toBe(
+      'src/components/foldkitcn/shadcn/button.ts',
+    )
+  })
+
+  test('decodes public registry items with resolved file content', () => {
+    const item = S.decodeUnknownSync(PublicRegistryItem)({
+      $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+      name: 'shadcn-button',
+      type: 'registry:ui',
+      title: 'Button',
+      description: 'Foldkit-native shadcn button wrapper.',
+      dependencies: ['clsx'],
+      registryDependencies: ['@foldkitcn/base-ui-button'],
+      files: [
+        {
+          path: 'src/registry/shadcn/button/index.ts',
+          type: 'registry:ui',
+          target: 'src/components/foldkitcn/shadcn/button.ts',
+          content: "import * as BaseButton from '../base-ui/button'",
+        },
+      ],
+    })
+
+    expect(item.files[0]?.target).toBe(
+      'src/components/foldkitcn/shadcn/button.ts',
+    )
+  })
+
   test('decodes docs status values', () => {
     expect(S.decodeUnknownSync(DocsStatus)('missing')).toBe('missing')
     expect(() => S.decodeUnknownSync(DocsStatus)('draft')).toThrow(/draft/u)

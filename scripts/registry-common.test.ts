@@ -1,13 +1,22 @@
-import { Option } from 'effect'
+import { Option, Schema as S } from 'effect'
 import { describe, expect, test } from 'vitest'
 
+import registryIndexJson from '../registry/index.json'
 import type { RegistryIndex } from '../src/registry/schema'
+import { RegistryIndex as RegistryIndexSchema } from '../src/registry/schema'
 import {
   buildComponentDocsArtifacts,
+  buildPublicRegistryArtifacts,
   componentDocsRouteForItem,
+  checkPublicRegistryCurrent,
   registryIndexIsCurrent,
+  publicNameForItemId,
   selectRegistryGeneratedAt,
+  writePublicRegistryArtifacts,
 } from './registry-common'
+
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 
 const emptyIndex = (generatedAt: string): RegistryIndex => ({
   schemaVersion: 1,
@@ -111,6 +120,16 @@ const registryIndexWithDocsItems = (): RegistryIndex => ({
     },
   ],
 })
+
+const actualRegistryIndex = (): RegistryIndex =>
+  S.decodeUnknownSync(RegistryIndexSchema)(registryIndexJson)
+
+const makeTempDir = (): string =>
+  mkdtempSync(path.join(process.cwd(), 'tmp-public-registry-'))
+
+const cleanupTempDir = (fixturePath: string): void => {
+  rmSync(fixturePath, { recursive: true, force: true })
+}
 
 describe('registry build helpers', () => {
   test('preserves generatedAt when registry index content is unchanged', () => {
@@ -277,4 +296,95 @@ describe('registry build helpers', () => {
       'foldkit',
     )
   })
+})
+
+describe('public registry build helpers', () => {
+  test('maps item ids to public registry names', () => {
+    expect(publicNameForItemId('shadcn/button')).toBe('shadcn-button')
+    expect(publicNameForItemId('base-ui/button')).toBe('base-ui-button')
+    expect(publicNameForItemId('utils/cn')).toBe('utils-cn')
+  })
+
+  test('builds a public catalog and item payloads from the current registry index', () => {
+    const index = actualRegistryIndex()
+    const publicRegistry = buildPublicRegistryArtifacts(index)
+    const itemNames = publicRegistry.catalog.items.map(item => item.name)
+    const buttonCatalogItem = publicRegistry.catalog.items.find(
+      item => item.name === 'shadcn-button',
+    )
+
+    expect(itemNames).toContain('shadcn-button')
+    expect(itemNames.every(name => !name.startsWith('local-'))).toBeTruthy()
+    expect(buttonCatalogItem?.files[0]).toMatchObject({
+      target: 'src/components/foldkitcn/shadcn/button.ts',
+      type: 'registry:ui',
+    })
+    expect(buttonCatalogItem?.files[0]?.content).toContain('Button')
+  })
+
+  test('builds a shadcn button item payload with rewritten dependencies', () => {
+    const index = actualRegistryIndex()
+    const publicRegistry = buildPublicRegistryArtifacts(index)
+    const buttonItem = publicRegistry.items.find(
+      item => item.name === 'shadcn-button',
+    )
+
+    expect(buttonItem).toMatchObject({
+      name: 'shadcn-button',
+      registryDependencies: expect.arrayContaining([
+        '@foldkitcn/base-ui-button',
+        '@foldkitcn/utils-cn',
+      ]),
+    })
+    expect(buttonItem?.files[0]).toMatchObject({
+      target: 'src/components/foldkitcn/shadcn/button.ts',
+      type: 'registry:ui',
+    })
+    expect(
+      buttonItem?.files.every(file =>
+        [
+          'react',
+          'react-dom',
+          '@radix-ui/react-',
+          '@base-ui/react',
+          'repos/',
+        ].every(forbidden => !file.content.includes(forbidden)),
+      ),
+    ).toBeTruthy()
+  })
+
+  test('fails when public registry artifacts are stale', () => {
+    const index = actualRegistryIndex()
+    const fixturePath = makeTempDir()
+
+    try {
+      const current = buildPublicRegistryArtifacts(index)
+      const buttonItem = current.items.find(
+        item => item.name === 'shadcn-button',
+      )
+
+      if (buttonItem === undefined) {
+        throw new Error('Missing shadcn-button public registry item.')
+      }
+
+      writePublicRegistryArtifacts(current, fixturePath)
+      writeFileSync(
+        path.join(fixturePath, 'shadcn-button.json'),
+        `${JSON.stringify(
+          {
+            ...buttonItem,
+            description: 'Stale button description.',
+          },
+          null,
+          2,
+        )}\n`,
+      )
+
+      expect(() => checkPublicRegistryCurrent(index, fixturePath)).toThrow(
+        /stale/u,
+      )
+    } finally {
+      cleanupTempDir(fixturePath)
+    }
+  }, 30_000)
 })

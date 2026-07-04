@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "Foldkit-native shadcn base-nova Skeleton helper using cn.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": ["@foldkitcn/utils-cn"],
+  "files": [
+    {
+      "path": "src/registry/shadcn/skeleton/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/skeleton.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const SkeletonStyleOptions = S.Struct({\n  className: S.optional(S.String),\n})\nexport type SkeletonStyleOptions = typeof SkeletonStyleOptions.Type\n\n// VIEW\n\nexport type SkeletonAttributes<Message> = Readonly<{\n  skeleton: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = SkeletonStyleOptions &\n  Readonly<{\n    toView: (attributes: SkeletonAttributes<Message>) => Html\n  }>\n\nexport const baseClassName = 'animate-pulse rounded-md bg-muted'\n\nexport const skeletonClassName = ({\n  className,\n}: SkeletonStyleOptions = {}): string => cn(baseClassName, className)\n\nconst shadcnAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  className: string | undefined,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'skeleton'),\n  h.Class(skeletonClassName({ className })),\n]\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const { toView, className } = config\n\n  return toView({\n    skeleton: shadcnAttributes(h, className),\n  })\n}\n"
+    }
+  ]
+}

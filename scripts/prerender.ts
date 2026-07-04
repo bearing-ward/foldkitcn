@@ -20,7 +20,36 @@ const DIST_DIR = 'dist'
 const ROOT_PLACEHOLDER = '<div id="root"></div>'
 const PREVIEW_HOST = '127.0.0.1'
 const PREVIEW_PORT = 4174
-const PREVIEW_BASE_URL = `http://${PREVIEW_HOST}:${PREVIEW_PORT}`
+const normalizeBasePath = (basePath: string): string => {
+  if (basePath === '/') {
+    return '/'
+  }
+
+  if (!basePath.startsWith('/') || !basePath.endsWith('/')) {
+    throw new Error(`Invalid FOLDKITCN_BASE_PATH: ${basePath}`)
+  }
+
+  return basePath
+}
+
+const joinBasePath = (basePath: string, routePath: string): string => {
+  const normalizedBasePath = normalizeBasePath(basePath)
+
+  if (normalizedBasePath === '/') {
+    return routePath
+  }
+
+  if (routePath === '/') {
+    return normalizedBasePath
+  }
+
+  return `${normalizedBasePath.slice(0, -1)}${routePath}`
+}
+
+const PREVIEW_BASE_PATH = normalizeBasePath(
+  process.env.FOLDKITCN_BASE_PATH ?? '/',
+)
+const PREVIEW_BASE_URL = `http://${PREVIEW_HOST}:${PREVIEW_PORT}${PREVIEW_BASE_PATH}`
 const SERVER_READY_ATTEMPTS = 80
 const SERVER_READY_DELAY_MS = 250
 const titlePattern = /<title>.*?<\/title>/su
@@ -278,6 +307,8 @@ const captureRouteHtml = (
     }),
     page =>
       Effect.gen(function* captureRouteHtmlProgram() {
+        const browserPath = joinBasePath(PREVIEW_BASE_PATH, entry.path)
+
         yield* Effect.tryPromise({
           try: () => page.goto(PREVIEW_BASE_URL),
           catch: error => error,
@@ -287,7 +318,7 @@ const captureRouteHtml = (
             page.evaluate(urlPath => {
               window.history.replaceState(null, '', urlPath)
               window.dispatchEvent(new CustomEvent('foldkit:urlchange'))
-            }, entry.path),
+            }, browserPath),
           catch: error => error,
         })
         yield* Effect.tryPromise({
@@ -351,6 +382,7 @@ const program = Effect.scoped(
     yield* Effect.forEach(prerenderRoute(browser, baseHtml), {
       concurrency: 4,
     })(routes)
+    yield* writeRouteHtml('404.html', baseHtml)
     yield* Console.log(`Prerendered ${routes.length} routes.`)
   }),
 )

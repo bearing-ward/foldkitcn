@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils-cn",
+  "type": "registry:lib",
+  "title": "cn",
+  "description": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/utils/cn.ts",
+      "type": "registry:lib",
+      "target": "src/components/foldkitcn/utils/cn.ts",
+      "content": "import { clsx } from 'clsx'\nimport type { ClassValue } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport const cn = (...inputs: ReadonlyArray<ClassValue>): string =>\n  twMerge(clsx(...inputs))\n"
+    }
+  ]
+}

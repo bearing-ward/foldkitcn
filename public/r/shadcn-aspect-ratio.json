@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shadcn-aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Foldkit-native shadcn base-nova Aspect Ratio helper using a CSS ratio variable and cn.",
+  "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
+  "registryDependencies": ["@foldkitcn/utils-cn"],
+  "files": [
+    {
+      "path": "src/registry/shadcn/aspect-ratio/index.ts",
+      "type": "registry:ui",
+      "target": "src/components/foldkitcn/shadcn/aspect-ratio.ts",
+      "content": "import { Schema as S } from 'effect'\nimport type { Attribute, Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { cn } from '../utils/cn'\n\n// MODEL\n\nexport const AspectRatioOptions = S.Struct({\n  ratio: S.Number,\n  className: S.optional(S.String),\n})\nexport type AspectRatioOptions = typeof AspectRatioOptions.Type\n\n// VIEW\n\nexport type AspectRatioAttributes<Message> = Readonly<{\n  root: ReadonlyArray<Attribute<Message>>\n}>\n\nexport type ViewConfig<Message> = AspectRatioOptions &\n  Readonly<{\n    toView: (attributes: AspectRatioAttributes<Message>) => Html\n  }>\n\nexport const baseClassName = 'relative aspect-(--ratio)'\n\nexport const aspectRatioClassName = ({\n  className,\n}: Pick<AspectRatioOptions, 'className'> = {}): string =>\n  cn(baseClassName, className)\n\nexport const aspectRatioStyle = (\n  ratio: number,\n): Readonly<Record<string, string>> => ({\n  '--ratio': String(ratio),\n})\n\nexport const aspectRatioStyleAttribute = (ratio: number): string =>\n  `--ratio: ${String(ratio)};`\n\nconst shadcnAttributes = <Message>(\n  h: ReturnType<typeof html<Message>>,\n  { className, ratio }: AspectRatioOptions,\n): ReadonlyArray<Attribute<Message>> => [\n  h.DataAttribute('slot', 'aspect-ratio'),\n  h.Attribute('style', aspectRatioStyleAttribute(ratio)),\n  h.Class(aspectRatioClassName({ className })),\n]\n\nexport const view = <Message>(config: ViewConfig<Message>): Html => {\n  const h = html<Message>()\n  const { toView, ...options } = config\n\n  return toView({\n    root: shadcnAttributes(h, options),\n  })\n}\n"
+    }
+  ]
+}
