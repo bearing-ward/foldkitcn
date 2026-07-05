@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -67,17 +70,20 @@ jobs:
           test -f dist/r/shadcn-button.json
 
       - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v6
         with:
           enablement: true
 
       - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
