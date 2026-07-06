@@ -16,6 +16,10 @@ import {
   InputDisabled as BaseInputDisabled,
 } from './registry/base-ui/input/examples'
 import type { InputExampleController } from './registry/base-ui/input/examples'
+import type {
+  MenuCheckedChange,
+  MenuRadioValueChange,
+} from './registry/base-ui/menu'
 import type { ToastState } from './registry/base-ui/toast'
 import {
   ToastAnchored as BaseToastAnchored,
@@ -113,6 +117,10 @@ import {
   BubbleReactionsDemo,
   BubbleTooltipDemo,
   BubbleVariantsDemo,
+} from './registry/shadcn/bubble/examples'
+import type {
+  BubbleExampleController,
+  BubbleExampleMessage,
 } from './registry/shadcn/bubble/examples'
 import {
   ButtonGroupDemo,
@@ -289,7 +297,6 @@ import {
   EmptyRtl,
 } from './registry/shadcn/empty/examples'
 import {
-  FieldCheckbox,
   FieldInput,
   FieldResponsive,
   FieldRtl,
@@ -409,6 +416,7 @@ import {
   PaginationRtl,
   PaginationSimple,
 } from './registry/shadcn/pagination/examples'
+import type { PaginationExampleController } from './registry/shadcn/pagination/examples'
 import {
   PopoverAlignments,
   PopoverBasic,
@@ -534,6 +542,7 @@ import {
   TableFooterExample,
   TableRtl,
 } from './registry/shadcn/table/examples'
+import type { TableActionsController } from './registry/shadcn/table/examples'
 import {
   TabsDemo,
   TabsDisabled,
@@ -755,10 +764,16 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     defaultValue: string | undefined,
   ) => string | undefined
+  calendarVisibleMonthFor: (
+    example: ExampleDocsArtifact,
+    defaultValue: string,
+  ) => string
   onCalendarSelectDate: (
     example: ExampleDocsArtifact,
     change: CalendarSelectChange,
   ) => Message
+  onCalendarPreviousMonth: (example: ExampleDocsArtifact) => Message
+  onCalendarNextMonth: (example: ExampleDocsArtifact) => Message
   carouselSelectedIndexFor: (
     example: ExampleDocsArtifact,
     defaultSelectedIndex: number,
@@ -819,6 +834,18 @@ export type LiveExampleContext<Message> = Readonly<{
     menuId: string,
     defaultValue: string | undefined,
   ) => string | undefined
+  menuCheckedStateFor: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    itemValue: string,
+    defaultChecked: boolean,
+  ) => boolean
+  menuRadioValueFor: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    groupValue: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   onMenuOpenChange: (
     example: ExampleDocsArtifact,
     menuId: string,
@@ -837,6 +864,16 @@ export type LiveExampleContext<Message> = Readonly<{
       screenY: number
       pointerType: string
     }>,
+  ) => Message
+  onMenuCheckedChange: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    change: MenuCheckedChange,
+  ) => Message
+  onMenuRadioValueChange: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    change: MenuRadioValueChange,
   ) => Message
   onMenuValueChange: (
     example: ExampleDocsArtifact,
@@ -886,6 +923,10 @@ export type LiveExampleContext<Message> = Readonly<{
       | SonnerExampleMessage
       | ShadcnToastExampleMessage,
   ) => Message
+  onBubbleMessage: (
+    example: ExampleDocsArtifact,
+    message: BubbleExampleMessage,
+  ) => Message
   sidebarIsOpenFor: (
     example: ExampleDocsArtifact,
     defaultOpen: boolean,
@@ -934,6 +975,10 @@ type CarouselExampleView = <Message = never>(
   controller?: CarouselExampleController<Message>,
 ) => Html
 
+type PaginationExampleView = <Message = never>(
+  controller?: PaginationExampleController<Message>,
+) => Html
+
 type ResizableExampleView = <Message = never>(
   controller?: ResizableExampleController<Message>,
 ) => Html
@@ -952,6 +997,10 @@ type SonnerExampleView = <Message = never>(
 
 type DataTableExampleView = <Message = never>(
   controller?: DataTableExampleController<Message>,
+) => Html
+
+type TableActionsExampleView = <Message = never>(
+  controller?: TableActionsController<Message>,
 ) => Html
 
 type DatePickerExampleView = <Message = DatePickerMessage>(
@@ -984,6 +1033,10 @@ type SheetExampleView = <Message = never>(
 
 type TooltipExampleView = <Message = never>(
   controller?: TooltipExampleController<Message>,
+) => Html
+
+type BubbleExampleView = <Message = never>(
+  controller?: BubbleExampleController<Message>,
 ) => Html
 
 type DropdownMenuExampleView = <Message = never>(
@@ -1037,6 +1090,11 @@ const liveExampleKey = (
   componentItemId: string,
   previewExportName: string,
 ): string => `${componentItemId}#${previewExportName}`
+
+const liveExampleControlStateKey = (
+  exampleId: string,
+  controlId: string,
+): string => `${exampleId}#${controlId}`
 
 const staticExample = (view: () => Html): LiveExampleDefinition => ({
   render: () => view(),
@@ -1661,6 +1719,7 @@ const checkboxPreview = (
     Readonly<{
       id: string
       label: string
+      description?: string
       defaultCheckedState?: CheckboxCheckedState
       isDisabled?: boolean
       isInvalid?: boolean
@@ -1681,7 +1740,13 @@ const checkboxPreview = (
       ],
       controls.map(control =>
         h.label(
-          [h.Class('flex items-center gap-2 text-sm font-medium')],
+          [
+            h.Class(
+              control.description === undefined
+                ? 'flex items-center gap-2 text-sm font-medium'
+                : 'flex items-start gap-3 text-sm',
+            ),
+          ],
           [
             CheckboxView<Message>({
               id: control.id,
@@ -1700,10 +1765,346 @@ const checkboxPreview = (
               onCheckedChange: change =>
                 context.onCheckboxCheckedChange(example, control.id, change),
             }),
-            control.label,
+            control.description === undefined
+              ? control.label
+              : h.div(
+                  [h.Class('grid gap-0.5')],
+                  [
+                    h.span([h.Class('font-medium')], [control.label]),
+                    h.p(
+                      [h.Class('text-muted-foreground text-sm font-normal')],
+                      [control.description],
+                    ),
+                  ],
+                ),
           ],
         ),
       ),
+    )
+  },
+})
+
+const checkboxTableRows = [
+  {
+    id: '1',
+    checkboxId: 'row-1-checkbox',
+    name: 'Sarah Chen',
+    email: 'sarah.chen@example.com',
+    role: 'Admin',
+    defaultCheckedState: 'checked' as const,
+  },
+  {
+    id: '2',
+    checkboxId: 'row-2-checkbox',
+    name: 'Marcus Rodriguez',
+    email: 'marcus.rodriguez@example.com',
+    role: 'User',
+    defaultCheckedState: 'unchecked' as const,
+  },
+  {
+    id: '3',
+    checkboxId: 'row-3-checkbox',
+    name: 'Priya Patel',
+    email: 'priya.patel@example.com',
+    role: 'User',
+    defaultCheckedState: 'unchecked' as const,
+  },
+  {
+    id: '4',
+    checkboxId: 'row-4-checkbox',
+    name: 'David Kim',
+    email: 'david.kim@example.com',
+    role: 'Editor',
+    defaultCheckedState: 'unchecked' as const,
+  },
+] as const
+
+const checkboxTablePreview = (): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const h = html<Message>()
+    const selectedRowIds = checkboxTableRows.flatMap(row =>
+      context.checkboxCheckedStateFor(
+        example,
+        row.checkboxId,
+        row.defaultCheckedState,
+      ) === 'checked'
+        ? [row.id]
+        : [],
+    )
+    const selectAllState: CheckboxCheckedState =
+      selectedRowIds.length === checkboxTableRows.length
+        ? 'checked'
+        : 'unchecked'
+    const aggregateSelectAllState: CheckboxCheckedState =
+      selectedRowIds.length === 0 ? selectAllState : 'indeterminate'
+    const nextSelectAllState =
+      aggregateSelectAllState === 'checked' ? 'unchecked' : 'checked'
+
+    return h.table(
+      [h.Class('w-full caption-bottom text-sm')],
+      [
+        h.thead(
+          [h.Class('[&_tr]:border-b')],
+          [
+            h.tr(
+              [h.Class('border-b transition-colors')],
+              [
+                h.th(
+                  [
+                    h.Class(
+                      'text-muted-foreground h-10 w-8 px-2 text-left align-middle font-medium whitespace-nowrap',
+                    ),
+                  ],
+                  [
+                    h.label(
+                      [
+                        h.Class('flex cursor-pointer items-center'),
+                        h.OnClick(
+                          context.onCheckboxCheckedChange(
+                            example,
+                            'select-all-checkbox',
+                            {
+                              checkedState: nextSelectAllState,
+                              reason: 'none',
+                            },
+                          ),
+                        ),
+                      ],
+                      [
+                        CheckboxView<Message>({
+                          id: 'select-all-checkbox',
+                          checkedState: aggregateSelectAllState,
+                        }),
+                      ],
+                    ),
+                  ],
+                ),
+                h.th(
+                  [
+                    h.Class(
+                      'text-muted-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap',
+                    ),
+                  ],
+                  ['Name'],
+                ),
+                h.th(
+                  [
+                    h.Class(
+                      'text-muted-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap',
+                    ),
+                  ],
+                  ['Email'],
+                ),
+                h.th(
+                  [
+                    h.Class(
+                      'text-muted-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap',
+                    ),
+                  ],
+                  ['Role'],
+                ),
+              ],
+            ),
+          ],
+        ),
+        h.tbody(
+          [h.Class('[&_tr:last-child]:border-0')],
+          checkboxTableRows.map(row => {
+            const checkedState = context.checkboxCheckedStateFor(
+              example,
+              row.checkboxId,
+              row.defaultCheckedState,
+            )
+
+            return h.tr(
+              [
+                h.Class(
+                  'hover:bg-muted/50 border-b transition-colors data-[state=selected]:bg-muted',
+                ),
+                ...(checkedState === 'checked'
+                  ? [h.DataAttribute('state', 'selected')]
+                  : []),
+              ],
+              [
+                h.td(
+                  [h.Class('p-2 align-middle whitespace-nowrap')],
+                  [
+                    CheckboxView<Message>({
+                      id: row.checkboxId,
+                      checkedState,
+                      onCheckedChange: change =>
+                        context.onCheckboxCheckedChange(
+                          example,
+                          row.checkboxId,
+                          change,
+                        ),
+                    }),
+                  ],
+                ),
+                h.td(
+                  [h.Class('p-2 align-middle font-medium whitespace-nowrap')],
+                  [row.name],
+                ),
+                h.td(
+                  [h.Class('p-2 align-middle whitespace-nowrap')],
+                  [row.email],
+                ),
+                h.td(
+                  [h.Class('p-2 align-middle whitespace-nowrap')],
+                  [row.role],
+                ),
+              ],
+            )
+          }),
+        ),
+      ],
+    )
+  },
+})
+
+const fieldCheckboxPreview = (): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const h = html<Message>()
+    const fieldControls = [
+      {
+        id: 'finder-pref-hard-disks',
+        label: 'Hard disks',
+        defaultCheckedState: 'checked' as const,
+      },
+      {
+        id: 'finder-pref-external-disks',
+        label: 'External disks',
+        defaultCheckedState: 'unchecked' as const,
+      },
+      {
+        id: 'finder-pref-cds-dvds',
+        label: 'CDs, DVDs, and iPods',
+        defaultCheckedState: 'unchecked' as const,
+      },
+      {
+        id: 'finder-pref-connected-servers',
+        label: 'Connected servers',
+        defaultCheckedState: 'unchecked' as const,
+      },
+    ] as const
+
+    return h.div(
+      [h.Class('flex w-full max-w-xs flex-col gap-4')],
+      [
+        h.fieldset(
+          [h.Class('flex min-w-0 flex-col gap-3')],
+          [
+            h.legend(
+              [h.Class('text-sm font-medium')],
+              ['Show these items on the desktop'],
+            ),
+            h.p(
+              [h.Class('text-muted-foreground text-sm')],
+              ['Select the items you want to show on the desktop.'],
+            ),
+            h.div(
+              [h.Class('flex flex-col gap-3')],
+              fieldControls.map(control =>
+                h.label(
+                  [
+                    h.Class('flex items-center gap-2 text-sm'),
+                    h.OnClick(
+                      context.onCheckboxCheckedChange(example, control.id, {
+                        checkedState:
+                          context.checkboxCheckedStateFor(
+                            example,
+                            control.id,
+                            control.defaultCheckedState,
+                          ) === 'checked'
+                            ? 'unchecked'
+                            : 'checked',
+                        reason: 'none',
+                      }),
+                    ),
+                  ],
+                  [
+                    CheckboxView<Message>({
+                      id: control.id,
+                      checkedState: context.checkboxCheckedStateFor(
+                        example,
+                        control.id,
+                        control.defaultCheckedState,
+                      ),
+                      onCheckedChange: change =>
+                        context.onCheckboxCheckedChange(
+                          example,
+                          control.id,
+                          change,
+                        ),
+                    }),
+                    h.span([h.Class('font-normal')], [control.label]),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        h.hr([h.Class('bg-border h-px border-0')]),
+        h.label(
+          [
+            h.Class('flex items-start gap-3 text-sm'),
+            h.OnClick(
+              context.onCheckboxCheckedChange(
+                example,
+                'finder-pref-sync-folders',
+                {
+                  checkedState:
+                    context.checkboxCheckedStateFor(
+                      example,
+                      'finder-pref-sync-folders',
+                      'checked',
+                    ) === 'checked'
+                      ? 'unchecked'
+                      : 'checked',
+                  reason: 'none',
+                },
+              ),
+            ),
+          ],
+          [
+            CheckboxView<Message>({
+              id: 'finder-pref-sync-folders',
+              checkedState: context.checkboxCheckedStateFor(
+                example,
+                'finder-pref-sync-folders',
+                'checked',
+              ),
+              onCheckedChange: change =>
+                context.onCheckboxCheckedChange(
+                  example,
+                  'finder-pref-sync-folders',
+                  change,
+                ),
+            }),
+            h.div(
+              [h.Class('grid gap-0.5')],
+              [
+                h.span(
+                  [h.Class('font-medium')],
+                  ['Sync Desktop & Documents folders'],
+                ),
+                h.p(
+                  [h.Class('text-muted-foreground text-sm font-normal')],
+                  [
+                    'Your Desktop & Documents folders are being synced with iCloud Drive.',
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     )
   },
 })
@@ -1713,6 +2114,7 @@ const switchPreview = (
     Readonly<{
       id: string
       label: string
+      description?: string
       defaultIsChecked?: boolean
       isDisabled?: boolean
       isInvalid?: boolean
@@ -1736,11 +2138,24 @@ const switchPreview = (
         h.label(
           [
             h.Class(
-              'flex items-center justify-between gap-4 text-sm font-medium',
+              control.description === undefined
+                ? 'flex items-center justify-between gap-4 text-sm font-medium'
+                : 'flex items-start justify-between gap-4 text-sm',
             ),
           ],
           [
-            control.label,
+            control.description === undefined
+              ? control.label
+              : h.div(
+                  [h.Class('grid gap-0.5')],
+                  [
+                    h.span([h.Class('font-medium')], [control.label]),
+                    h.p(
+                      [h.Class('text-muted-foreground text-sm font-normal')],
+                      [control.description],
+                    ),
+                  ],
+                ),
             SwitchView<Message>({
               id: control.id,
               isChecked: context.switchIsCheckedFor(
@@ -1788,10 +2203,14 @@ const calendarExample = (
       example,
       defaultSelectedDate,
     )
+    const visibleMonth = context.calendarVisibleMonthFor(example, '2025-01')
 
     return view({
       ...(selectedDate === undefined ? {} : { selectedDate }),
+      visibleMonth,
       onSelectDate: change => context.onCalendarSelectDate(example, change),
+      onPreviousMonth: context.onCalendarPreviousMonth(example),
+      onNextMonth: context.onCalendarNextMonth(example),
     })
   },
 })
@@ -1807,6 +2226,20 @@ const carouselExample = (
         defaultSelectedIndex,
       ),
       onCarouselMessage: change => context.onCarouselMessage(example, change),
+    }),
+})
+
+const paginationExampleWithRowsPerPage = (
+  view: PaginationExampleView,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      isRowsPerPageOpen: context.selectIsOpenFor(example),
+      rowsPerPageValue: context.selectValueFor(example, '25') ?? '25',
+      onRowsPerPageOpenChange: change =>
+        context.onSelectOpenChange(example, change),
+      onRowsPerPageValueChange: change =>
+        context.onSelectValueChange(example, change),
     }),
 })
 
@@ -1891,6 +2324,23 @@ const dataTableExample = (
 
     return view({
       state: dataTableStateFor?.(example, defaultState) ?? defaultState,
+      menuIsOpenFor: (menuId, defaultOpen) =>
+        context.menuIsOpenFor(example, menuId, defaultOpen),
+      onMenuOpenChange: (menuId, change) =>
+        context.onMenuOpenChange(example, menuId, change),
+      selectIsOpenFor: (selectId, _defaultOpen) =>
+        context.selectIsOpenFor({
+          ...example,
+          id: liveExampleControlStateKey(example.id, selectId),
+        }),
+      onSelectOpenChange: (selectId, change) =>
+        context.onSelectOpenChange(
+          {
+            ...example,
+            id: liveExampleControlStateKey(example.id, selectId),
+          },
+          change,
+        ),
       ...(onDataTableMessage === undefined
         ? {}
         : {
@@ -1981,8 +2431,42 @@ const dropdownMenuExample = (
         context.menuIsOpenFor(example, menuId, defaultOpen),
       openSubmenuValuesFor: (menuId, defaultValues) =>
         context.menuOpenSubmenuValuesFor(example, menuId, defaultValues),
+      checkedStateFor: (menuId, itemValue, defaultChecked) =>
+        context.menuCheckedStateFor(example, menuId, itemValue, defaultChecked),
+      radioValueFor: (menuId, groupValue, defaultValue) =>
+        context.menuRadioValueFor(example, menuId, groupValue, defaultValue),
       onOpenChange: (menuId, change) =>
         context.onMenuOpenChange(example, menuId, change),
+      onItemPress: (menuId, press) =>
+        context.onMenuOpenChange(example, menuId, {
+          open: false,
+          ...(press.kind === 'submenu-trigger'
+            ? { parentValue: press.value }
+            : {}),
+        }),
+      onCheckedChange: (menuId, change) =>
+        context.onMenuCheckedChange(example, menuId, change),
+      onRadioValueChange: (menuId, change) =>
+        context.onMenuRadioValueChange(example, menuId, change),
+    }),
+})
+
+const tableActionsExample = (
+  view: TableActionsExampleView,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      isOpenFor: (menuId, defaultOpen) =>
+        context.menuIsOpenFor(example, menuId, defaultOpen),
+      onOpenChange: (menuId, change) =>
+        context.onMenuOpenChange(example, menuId, change),
+      onItemPress: (menuId, press) =>
+        context.onMenuOpenChange(example, menuId, {
+          open: false,
+          ...(press.kind === 'submenu-trigger'
+            ? { parentValue: press.value }
+            : {}),
+        }),
     }),
 })
 
@@ -1996,10 +2480,25 @@ const contextMenuExample = (
         context.menuIsOpenFor(example, menuId, defaultOpen),
       openSubmenuValuesFor: (menuId, defaultValues) =>
         context.menuOpenSubmenuValuesFor(example, menuId, defaultValues),
+      checkedStateFor: (menuId, itemValue, defaultChecked) =>
+        context.menuCheckedStateFor(example, menuId, itemValue, defaultChecked),
+      radioValueFor: (menuId, groupValue, defaultValue) =>
+        context.menuRadioValueFor(example, menuId, groupValue, defaultValue),
       onContextPointChange: (menuId, point) =>
         context.onMenuContextPointChange(example, menuId, point),
       onOpenChange: (menuId, change) =>
         context.onMenuOpenChange(example, menuId, change),
+      onItemPress: (menuId, press) =>
+        context.onMenuOpenChange(example, menuId, {
+          open: false,
+          ...(press.kind === 'submenu-trigger'
+            ? { parentValue: press.value }
+            : {}),
+        }),
+      onCheckedChange: (menuId, change) =>
+        context.onMenuCheckedChange(example, menuId, change),
+      onRadioValueChange: (menuId, change) =>
+        context.onMenuRadioValueChange(example, menuId, change),
     }),
 })
 
@@ -2014,6 +2513,10 @@ const menubarExample = (view: MenubarExampleView): LiveExampleDefinition => ({
           `${menubarId}:${menuValue}`,
           defaultValues,
         ),
+      checkedStateFor: (menuId, itemValue, defaultChecked) =>
+        context.menuCheckedStateFor(example, menuId, itemValue, defaultChecked),
+      radioValueFor: (menuId, groupValue, defaultValue) =>
+        context.menuRadioValueFor(example, menuId, groupValue, defaultValue),
       onMenuOpenChange: (menubarId, change) =>
         context.onMenuOpenChange(
           example,
@@ -2022,6 +2525,12 @@ const menubarExample = (view: MenubarExampleView): LiveExampleDefinition => ({
         ),
       onOpenMenuValueChange: (menubarId, change) =>
         context.onMenuValueChange(example, menubarId, change),
+      onItemPress: (menuId, _press) =>
+        context.onMenuValueChange(example, menuId, { value: undefined }),
+      onCheckedChange: (menuId, change) =>
+        context.onMenuCheckedChange(example, menuId, change),
+      onRadioValueChange: (menuId, change) =>
+        context.onMenuRadioValueChange(example, menuId, change),
     }),
 })
 
@@ -2061,12 +2570,46 @@ const popoverExample = (view: PopoverExampleView): LiveExampleDefinition => ({
   render: (example, context) => view(overlayController(example, context)),
 })
 
+const buttonGroupSelectExample = (
+  view: typeof ButtonGroupSelect,
+): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      isOpenFor: () => context.selectIsOpenFor(example),
+      valueFor: (_selectId, defaultValue) =>
+        context.selectValueFor(example, defaultValue),
+      onOpenChange: (_selectId, change) =>
+        context.onSelectOpenChange(example, change),
+      onValueChange: (_selectId, change) =>
+        context.onSelectValueChange(example, change),
+    }),
+})
+
 const sheetExample = (view: SheetExampleView): LiveExampleDefinition => ({
   render: (example, context) => view(overlayController(example, context)),
 })
 
 const tooltipExample = (view: TooltipExampleView): LiveExampleDefinition => ({
   render: (example, context) => view(overlayController(example, context)),
+})
+
+const bubbleExample = (view: BubbleExampleView): LiveExampleDefinition => ({
+  render: (example, context) =>
+    view({
+      openFor: (controlId, defaultOpen) =>
+        controlId.includes('tooltip') || controlId.includes('popover')
+          ? context.overlayIsOpenFor(example, controlId, defaultOpen)
+          : context.collapsibleIsOpenFor(example, controlId, defaultOpen),
+      onOpenChange: (controlId, change) =>
+        controlId.includes('tooltip') || controlId.includes('popover')
+          ? context.onOverlayOpenChange(example, controlId, change)
+          : context.onCollapsibleOpenChange(example, controlId, {
+              open: change.open,
+              reason: 'trigger-press',
+            }),
+      toastState: context.toastStateFor(example),
+      onBubbleMessage: message => context.onBubbleMessage(example, message),
+    }),
 })
 
 const sidebarExample = (
@@ -2109,6 +2652,10 @@ const collapsibleExample = (
         context.collapsibleIsOpenFor(example, collapsibleId, defaultOpen),
       onOpenChange: (collapsibleId, change) =>
         context.onCollapsibleOpenChange(example, collapsibleId, change),
+      valueFor: (tabsId, defaultValue) =>
+        context.tabsValueFor(example, tabsId, defaultValue),
+      onValueChange: (tabsId, change) =>
+        context.onTabsValueChange(example, tabsId, change),
     }),
 })
 
@@ -2260,7 +2807,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/breadcrumb', 'BreadcrumbDemo')]:
     staticExample(BreadcrumbDemo),
   [liveExampleKey('shadcn/breadcrumb', 'BreadcrumbDropdown')]:
-    staticExample(BreadcrumbDropdown),
+    dropdownMenuExample(BreadcrumbDropdown),
   [liveExampleKey('shadcn/breadcrumb', 'BreadcrumbEllipsisDemo')]:
     staticExample(BreadcrumbEllipsisDemo),
   [liveExampleKey('shadcn/breadcrumb', 'BreadcrumbLinkDemo')]:
@@ -2292,7 +2839,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/avatar', 'AvatarBasic')]: staticExample(AvatarBasic),
   [liveExampleKey('shadcn/avatar', 'AvatarDemo')]: staticExample(AvatarDemo),
   [liveExampleKey('shadcn/avatar', 'AvatarDropdown')]:
-    staticExample(AvatarDropdown),
+    dropdownMenuExample(AvatarDropdown),
   [liveExampleKey('shadcn/avatar', 'AvatarGroupCountIconExample')]:
     staticExample(AvatarGroupCountIconExample),
   [liveExampleKey('shadcn/avatar', 'AvatarGroupCountExample')]: staticExample(
@@ -2359,16 +2906,16 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/bubble', 'BubbleAlignmentDemo')]:
     staticExample(BubbleAlignmentDemo),
   [liveExampleKey('shadcn/bubble', 'BubbleLinkButtonDemo')]:
-    staticExample(BubbleLinkButtonDemo),
+    bubbleExample(BubbleLinkButtonDemo),
   [liveExampleKey('shadcn/bubble', 'BubbleReactionsDemo')]:
     staticExample(BubbleReactionsDemo),
-  [liveExampleKey('shadcn/bubble', 'BubbleCollapsibleDemo')]: staticExample(
+  [liveExampleKey('shadcn/bubble', 'BubbleCollapsibleDemo')]: bubbleExample(
     BubbleCollapsibleDemo,
   ),
   [liveExampleKey('shadcn/bubble', 'BubbleTooltipDemo')]:
-    staticExample(BubbleTooltipDemo),
+    bubbleExample(BubbleTooltipDemo),
   [liveExampleKey('shadcn/bubble', 'BubblePopoverDemo')]:
-    staticExample(BubblePopoverDemo),
+    bubbleExample(BubblePopoverDemo),
   [liveExampleKey('shadcn/bubble', 'BubbleMarkdownDemo')]:
     staticExample(BubbleMarkdownDemo),
   [liveExampleKey('shadcn/message', 'MessageDemo')]: staticExample(MessageDemo),
@@ -2437,17 +2984,17 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDemo')]:
     staticExample(ButtonGroupDemo),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDropdown')]:
-    staticExample(ButtonGroupDropdown),
+    dropdownMenuExample(ButtonGroupDropdown),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupInput')]:
     staticExample(ButtonGroupInput),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupOrientation')]:
     staticExample(ButtonGroupOrientation),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupPopover')]:
-    staticExample(ButtonGroupPopover),
+    popoverExample(ButtonGroupPopover),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupRtl')]:
     staticExample(ButtonGroupRtl),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSelect')]:
-    staticExample(ButtonGroupSelect),
+    buttonGroupSelectExample(ButtonGroupSelect),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSeparatorDemo')]:
     staticExample(ButtonGroupSeparatorDemo),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupSize')]:
@@ -2538,7 +3085,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     collapsibleExample(CollapsibleSettings),
   [liveExampleKey('shadcn/item', 'ItemAvatar')]: staticExample(ItemAvatar),
   [liveExampleKey('shadcn/item', 'ItemDemo')]: staticExample(ItemDemo),
-  [liveExampleKey('shadcn/item', 'ItemDropdown')]: staticExample(ItemDropdown),
+  [liveExampleKey('shadcn/item', 'ItemDropdown')]:
+    dropdownMenuExample(ItemDropdown),
   [liveExampleKey('shadcn/item', 'ItemGroupExample')]:
     staticExample(ItemGroupExample),
   [liveExampleKey('shadcn/item', 'ItemHeaderDemo')]:
@@ -2658,6 +3206,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     {
       id: 'terms-checkbox-desc',
       label: 'Accept terms and conditions',
+      description:
+        'By clicking this checkbox, you agree to the terms and conditions.',
       defaultCheckedState: 'checked',
     },
   ]),
@@ -2698,21 +3248,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
       dir: 'rtl',
     },
   ]),
-  [liveExampleKey('shadcn/checkbox', 'CheckboxInTable')]: checkboxPreview([
-    {
-      id: 'select-all-checkbox',
-      label: 'Select all rows',
-      defaultCheckedState: 'indeterminate',
-    },
-    {
-      id: 'row-1-checkbox',
-      label: 'Sarah Chen',
-      defaultCheckedState: 'checked',
-    },
-    { id: 'row-2-checkbox', label: 'Marcus Rodriguez' },
-    { id: 'row-3-checkbox', label: 'Priya Patel' },
-    { id: 'row-4-checkbox', label: 'David Kim' },
-  ]),
+  [liveExampleKey('shadcn/checkbox', 'CheckboxInTable')]:
+    checkboxTablePreview(),
   [liveExampleKey('shadcn/switch', 'SwitchChoiceCard')]: switchPreview([
     { id: 'switch-share', label: 'Share across devices' },
     {
@@ -2725,7 +3262,12 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     { id: 'airplane-mode', label: 'Airplane Mode' },
   ]),
   [liveExampleKey('shadcn/switch', 'SwitchDescription')]: switchPreview([
-    { id: 'switch-focus-mode', label: 'Share across devices' },
+    {
+      id: 'switch-focus-mode',
+      label: 'Share across devices',
+      description:
+        'Focus is shared across devices, and turns off when you leave the app.',
+    },
   ]),
   [liveExampleKey('shadcn/switch', 'SwitchDisabled')]: switchPreview([
     { id: 'switch-disabled-unchecked', label: 'Disabled', isDisabled: true },
@@ -2800,8 +3342,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     id: 'input-otp-separator-live',
     split: true,
   }),
-  [liveExampleKey('shadcn/field', 'FieldCheckbox')]:
-    staticExample(FieldCheckbox),
+  [liveExampleKey('shadcn/field', 'FieldCheckbox')]: fieldCheckboxPreview(),
   [liveExampleKey('shadcn/field', 'FieldInput')]: staticExample(FieldInput),
   [liveExampleKey('shadcn/field', 'FieldResponsive')]:
     staticExample(FieldResponsive),
@@ -2845,7 +3386,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     dataTableExample(DataTableTasks),
   [liveExampleKey('shadcn/data-table', 'DataTableRtl')]:
     dataTableExample(DataTableRtl),
-  [liveExampleKey('shadcn/table', 'TableActions')]: staticExample(TableActions),
+  [liveExampleKey('shadcn/table', 'TableActions')]:
+    tableActionsExample(TableActions),
   [liveExampleKey('shadcn/table', 'TableDemo')]: staticExample(TableDemo),
   [liveExampleKey('shadcn/table', 'TableFooterExample')]:
     staticExample(TableFooterExample),
@@ -2913,7 +3455,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/pagination', 'PaginationDemo')]:
     staticExample(PaginationDemo),
   [liveExampleKey('shadcn/pagination', 'PaginationIconsOnly')]:
-    staticExample(PaginationIconsOnly),
+    paginationExampleWithRowsPerPage(PaginationIconsOnly),
   [liveExampleKey('shadcn/pagination', 'PaginationRtl')]:
     staticExample(PaginationRtl),
   [liveExampleKey('shadcn/pagination', 'PaginationSimple')]:
@@ -3179,23 +3721,24 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/sidebar', 'SidebarFooter')]:
     sidebarExample(SidebarFooter),
   [liveExampleKey('shadcn/sidebar', 'SidebarGroupAction')]:
-    staticExample(SidebarGroupAction),
-  [liveExampleKey('shadcn/sidebar', 'SidebarGroupCollapsible')]: staticExample(
+    sidebarExample(SidebarGroupAction),
+  [liveExampleKey('shadcn/sidebar', 'SidebarGroupCollapsible')]: sidebarExample(
     SidebarGroupCollapsible,
   ),
   [liveExampleKey('shadcn/sidebar', 'SidebarHeader')]:
     sidebarExample(SidebarHeader),
   [liveExampleKey('shadcn/sidebar', 'SidebarMenuAction')]:
-    staticExample(SidebarMenuAction),
+    sidebarExample(SidebarMenuAction),
   [liveExampleKey('shadcn/sidebar', 'SidebarMenuBadge')]:
-    staticExample(SidebarMenuBadge),
-  [liveExampleKey('shadcn/sidebar', 'SidebarMenuCollapsible')]: staticExample(
+    sidebarExample(SidebarMenuBadge),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenuCollapsible')]: sidebarExample(
     SidebarMenuCollapsible,
   ),
   [liveExampleKey('shadcn/sidebar', 'SidebarMenuSub')]:
-    staticExample(SidebarMenuSub),
-  [liveExampleKey('shadcn/sidebar', 'SidebarMenu')]: staticExample(SidebarMenu),
-  [liveExampleKey('shadcn/sidebar', 'SidebarRsc')]: staticExample(SidebarRsc),
+    sidebarExample(SidebarMenuSub),
+  [liveExampleKey('shadcn/sidebar', 'SidebarMenu')]:
+    sidebarExample(SidebarMenu),
+  [liveExampleKey('shadcn/sidebar', 'SidebarRsc')]: sidebarExample(SidebarRsc),
   [liveExampleKey('shadcn/sidebar', 'SidebarRtl')]: sidebarExample(SidebarRtl),
   [liveExampleKey('shadcn/radio-group', 'RadioGroupDemo')]: radioGroupExample(
     RadioGroupDemo,

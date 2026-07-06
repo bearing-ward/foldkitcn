@@ -2,6 +2,8 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Button } from '../button'
+import { view as DropdownMenu } from '../dropdown-menu'
+import type { DropdownMenuExampleController } from '../dropdown-menu/examples'
 import { badgeView, groupCountView, groupView, view as Avatar } from './index'
 import type {
   AvatarBadgePlacement,
@@ -45,6 +47,14 @@ const arabicAvatarRtl = {
     moreUsers: '+٣',
   },
 }
+
+const dropdownItems: ReadonlyArray<Readonly<{ value: string; label: string }>> =
+  [
+    { value: 'account', label: 'Account' },
+    { value: 'billing', label: 'Billing' },
+    { value: 'notifications', label: 'Notifications' },
+    { value: 'sign-out', label: 'Sign Out' },
+  ]
 
 const plusIcon = (): Html => {
   const h = html<never>()
@@ -174,8 +184,90 @@ export const AvatarDemo = (): Html => {
   )
 }
 
-export const AvatarDropdown = (): Html => {
+const avatarDropdownShell = <Message>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const open = controller?.isOpenFor('avatar-dropdown', false) ?? true
+  const onItemPress = controller?.onItemPress
+
+  return DropdownMenu<Message>({
+    id: 'avatar-dropdown',
+    items: dropdownItems.map(item => ({
+      value: item.value,
+      label: item.label,
+    })),
+    open,
+    openSubmenuValues: [],
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: change =>
+            controller.onOpenChange('avatar-dropdown', change),
+        }),
+    ...(onItemPress === undefined
+      ? {}
+      : {
+          onItemPress: press => onItemPress('avatar-dropdown', press),
+        }),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          h.button(
+            [
+              ...attributes.trigger,
+              h.Attribute('aria-haspopup', 'menu'),
+              h.AriaExpanded(open),
+              h.Class('rounded-full'),
+            ],
+            [avatar({ ...shadcnProfile, alt: 'shadcn' })],
+          ),
+          h.div(
+            [...attributes.portal],
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.popup.backdrop.root], []),
+                  h.div(
+                    [...attributes.popup.positioner.root],
+                    [
+                      h.div(
+                        [...attributes.popup.popup.root],
+                        [
+                          h.div(
+                            [...attributes.popup.group],
+                            attributes.popup.items.map(itemAttributes =>
+                              h.div(
+                                [...itemAttributes.root],
+                                [
+                                  h.span(
+                                    [...itemAttributes.label],
+                                    [itemAttributes.item.label],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ]
+              : [],
+          ),
+        ],
+      ),
+  })
+}
+
+export const AvatarDropdown = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
   const h = html<never>()
+
+  if (controller !== undefined) {
+    return avatarDropdownShell(controller)
+  }
 
   return Button<never>({
     variant: 'ghost',

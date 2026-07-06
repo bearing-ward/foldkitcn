@@ -89,7 +89,7 @@ export type SeparatorConfig = Readonly<{
 }>
 
 export const inputOTPContainerBaseClassName =
-  'cn-input-otp flex items-center has-disabled:opacity-50'
+  'cn-input-otp relative flex items-center has-disabled:opacity-50'
 
 export const inputOTPInputBaseClassName = 'disabled:cursor-not-allowed'
 
@@ -107,6 +107,9 @@ const caretWrapperClassName =
 
 const caretLineClassName =
   'h-4 w-px animate-caret-blink bg-foreground duration-1000'
+
+const interactiveSlotInputClassName =
+  'absolute inset-0 size-full cursor-text opacity-0 outline-none'
 
 export const inputOTPContainerClassName = ({
   containerClassName,
@@ -179,24 +182,43 @@ const shadcnSeparatorAttributes = <Message>(
 
 export const InputOTPGroup = <Message>(config: GroupConfig<Message>): Html => {
   const h = html<Message>()
+  const includesAllSlots =
+    config.indexes.length === config.attributes.state.length
 
   return h.div(
     [
       ...config.attributes.group,
+      h.Class('relative'),
       h.Class(inputOTPGroupClassName({ className: config.className })),
     ],
-    config.indexes.flatMap(index => {
-      const slot = config.attributes.slots[index]
+    [
+      ...config.indexes.flatMap(index => {
+        const slot = config.attributes.slots[index]
 
-      return slot === undefined
-        ? []
-        : [
-            h.input([
-              ...slot.input,
-              h.Class(inputOTPSlotClassName({ className: config.className })),
-            ]),
-          ]
-    }),
+        return slot === undefined
+          ? []
+          : [
+              h.div(
+                [...slot.slot],
+                [
+                  ...(slot.state.value === ''
+                    ? []
+                    : [h.span([h.Class('text-sm')], [slot.state.value])]),
+                  ...(slot.state.isActive && slot.state.value === ''
+                    ? [h.div([...slot.caret], [h.div([...slot.caretLine], [])])]
+                    : []),
+                  h.input([
+                    ...slot.input,
+                    h.Class(interactiveSlotInputClassName),
+                  ]),
+                ],
+              ),
+            ]
+      }),
+      ...(includesAllSlots
+        ? [h.input([...config.attributes.hiddenInput])]
+        : []),
+    ],
   )
 }
 
@@ -272,16 +294,15 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
         group: shadcnGroupAttributes(h, config.groupClassName),
         slots: attributes.slots.map(slot => ({
           ...slot,
-          input: [
-            ...slot.input,
-            ...shadcnInputAttributes(h, config.className),
-            ...shadcnSlotAttributes(h, slot.state, config.slotClassName),
-          ],
+          input: [...slot.input],
           slot: shadcnSlotAttributes(h, slot.state, config.slotClassName),
           caret: [h.Class(caretWrapperClassName)],
           caretLine: [h.Class(caretLineClassName)],
         })),
-        hiddenInput: attributes.hiddenInput,
+        hiddenInput: [
+          ...attributes.hiddenInput,
+          ...shadcnInputAttributes(h, config.className),
+        ],
         separator: shadcnSeparatorAttributes(h, config.separatorClassName),
         separatorIcon: [h.Attribute('data-icon', 'minus'), h.AriaHidden(true)],
       }),

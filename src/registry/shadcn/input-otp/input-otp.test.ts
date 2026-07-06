@@ -14,6 +14,7 @@ import {
   InputOTPSeparatorExample,
 } from './examples'
 import {
+  InputOTPGroup,
   inputOTPContainerClassName,
   inputOTPGroupClassName,
   inputOTPInputClassName,
@@ -55,11 +56,13 @@ const viewInputOTP =
         h.div(
           [...attributes.root],
           [
-            h.div(
-              [...attributes.group],
-              attributes.slots.map(slot => h.input([...slot.input])),
-            ),
-            h.input([...attributes.hiddenInput]),
+            InputOTPGroup<Message>({
+              attributes,
+              indexes: Array.from(
+                { length: attributes.state.length },
+                (_item, index) => index,
+              ),
+            }),
           ],
         ),
     })
@@ -68,7 +71,7 @@ const viewInputOTP =
 describe('shadcn/input-otp class helpers', () => {
   test('exports base-nova class strings', () => {
     expect(inputOTPContainerClassName()).toBe(
-      'cn-input-otp flex items-center has-disabled:opacity-50',
+      'cn-input-otp relative flex items-center has-disabled:opacity-50',
     )
     expect(inputOTPInputClassName()).toBe('disabled:cursor-not-allowed')
     expect(inputOTPGroupClassName()).toContain(
@@ -99,15 +102,21 @@ describe('shadcn/input-otp view', () => {
           'class',
           inputOTPContainerClassName(),
         ),
-        Scene.expect(Scene.selector('#otp')).toHaveAttr(
+        Scene.expect(Scene.selector('[data-slot="input-otp-slot"]')).toHaveAttr(
           'data-slot',
           'input-otp-slot',
         ),
-        Scene.expect(Scene.selector('#otp')).toHaveAttr('data-active', 'false'),
-        Scene.expect(Scene.selector('#otp')).toHaveAttr(
+        Scene.expect(Scene.selector('[data-slot="input-otp-slot"]')).toHaveAttr(
+          'data-active',
+          'false',
+        ),
+        Scene.expect(Scene.selector('[data-slot="input-otp-slot"]')).toHaveAttr(
           'class',
           inputOTPSlotClassName(),
         ),
+        Scene.expect(
+          Scene.selector('[data-slot="input-otp-input"]'),
+        ).toHaveAttr('class', inputOTPInputClassName()),
       )
     }).not.toThrow()
   })

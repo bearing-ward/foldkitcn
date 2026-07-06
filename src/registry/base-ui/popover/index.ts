@@ -393,6 +393,11 @@ const backdropAttributes = <Message>(
         ...(config.open ? [] : [h.Hidden(true)]),
         ...openStateDataAttributes(h, config.open),
         ...transitionDataAttributes(h, config.transitionStatus),
+        h.Style({
+          position: 'fixed',
+          inset: '0',
+          zIndex: '49',
+        }),
         ...optionalMessageAttribute(
           config.disableOutsidePress === true
             ? Option.none()

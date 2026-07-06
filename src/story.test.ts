@@ -17,6 +17,7 @@ import {
   CopySnippet,
   DocsRoute,
   FailedCopySnippet,
+  GotLiveExampleBubbleMessage,
   GotLiveExampleToastMessage,
   HidCopiedIndicator,
   HideCopiedIndicator,
@@ -34,7 +35,10 @@ import {
   ScrollToAnchor,
   SucceededCopySnippet,
   TimeoutLiveExampleToast,
+  SelectedLiveExampleSidebarValue,
   UpdatedSearchQuery,
+  UpdatedLiveExampleSidebarOpen,
+  UpdatedLiveExampleSidebarPanelOpen,
   componentDetailRouter,
   componentsIndexRouter,
   componentsNamespaceRouter,
@@ -48,6 +52,7 @@ import {
   urlToAppRoute,
 } from './main'
 import type { Model } from './main'
+import { ClickedBubbleReply } from './registry/shadcn/bubble/examples'
 import {
   ClickedCreateStackedToast as ClickedCreateShadcnStackedToast,
   ClickedPerformAction as ClickedPerformShadcnToastAction,
@@ -80,6 +85,7 @@ const model: Model = {
   liveExampleTogglePressedValues: {},
   liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
+  liveExampleCalendarVisibleMonths: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
@@ -88,6 +94,8 @@ const model: Model = {
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
   liveExampleMenuValues: {},
+  liveExampleMenuCheckedValues: {},
+  liveExampleMenuRadioValues: {},
   liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},
@@ -551,6 +559,103 @@ describe(update, () => {
 
       expect(toast?.transitionStatus).not.toBe('ending')
       expect(toast?.updateKey).toBe(1)
+      expect(commands).toStrictEqual([])
+    })
+  })
+
+  describe(GotLiveExampleBubbleMessage, () => {
+    test('selected bubble replies create distinct local sonner toasts', () => {
+      const [afterFirst, firstCommands] = update(
+        model,
+        GotLiveExampleBubbleMessage({
+          exampleId: 'shadcn/bubble-link-button',
+          message: ClickedBubbleReply({ reply: 'I forgot my password' }),
+        }),
+      )
+      const [afterSecond, secondCommands] = update(
+        afterFirst,
+        GotLiveExampleBubbleMessage({
+          exampleId: 'shadcn/bubble-link-button',
+          message: ClickedBubbleReply({
+            reply: 'I need help with my subscription',
+          }),
+        }),
+      )
+      const state =
+        afterSecond.liveExampleToastStates['shadcn/bubble-link-button']
+
+      expect(state?.toasts).toHaveLength(2)
+      expect(state?.toasts[0]?.title).toBe('Reply selected')
+      expect(state?.toasts[0]?.description).toBe(
+        'I need help with my subscription',
+      )
+      expect(state?.toasts[1]?.description).toBe('I forgot my password')
+      expect(firstCommands).toHaveLength(1)
+      expect(firstCommands[0]?.name).toBe('TimeoutLiveExampleToast')
+      expect(secondCommands).toHaveLength(1)
+      expect(secondCommands[0]?.name).toBe('TimeoutLiveExampleToast')
+    })
+  })
+
+  describe('sidebar live example state', () => {
+    test('stores sidebar collapsed state by example id', () => {
+      const [nextModel, commands] = update(
+        model,
+        UpdatedLiveExampleSidebarOpen({
+          exampleId: 'shadcn/sidebar-demo',
+          open: false,
+        }),
+      )
+
+      expect(
+        nextModel.liveExampleSidebarOpenValues['shadcn/sidebar-demo'],
+      ).toBe(false)
+      expect(commands).toStrictEqual([])
+    })
+
+    test('stores sidebar collapsible panel state by example and panel id', () => {
+      const [nextModel, commands] = update(
+        model,
+        UpdatedLiveExampleSidebarPanelOpen({
+          exampleId: 'shadcn/sidebar-group-collapsible',
+          panelId: 'group:help',
+          open: false,
+        }),
+      )
+
+      expect(
+        nextModel.liveExampleSidebarPanelOpenValues[
+          'shadcn/sidebar-group-collapsible#group:help'
+        ],
+      ).toBe(false)
+      expect(commands).toStrictEqual([])
+    })
+
+    test('selecting a sidebar dropdown value closes that dropdown panel', () => {
+      const [nextModel, commands] = update(
+        {
+          ...model,
+          liveExampleSidebarPanelOpenValues: {
+            'shadcn/sidebar-footer#sidebar-footer-user-menu': true,
+          },
+        },
+        SelectedLiveExampleSidebarValue({
+          exampleId: 'shadcn/sidebar-footer',
+          panelId: 'sidebar-footer-user-menu',
+          value: 'account',
+        }),
+      )
+
+      expect(
+        nextModel.liveExampleSidebarSelectedValues[
+          'shadcn/sidebar-footer#sidebar-footer-user-menu'
+        ],
+      ).toBe('account')
+      expect(
+        nextModel.liveExampleSidebarPanelOpenValues[
+          'shadcn/sidebar-footer#sidebar-footer-user-menu'
+        ],
+      ).toBe(false)
       expect(commands).toStrictEqual([])
     })
   })

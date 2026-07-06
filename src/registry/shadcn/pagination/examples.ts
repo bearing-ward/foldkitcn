@@ -2,7 +2,11 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { Field, FieldLabel } from '../field'
-import type { SelectItemDescriptor } from '../select'
+import type {
+  SelectItemDescriptor,
+  SelectOpenChange,
+  SelectValueChange,
+} from '../select'
 import { view as Select } from '../select'
 import {
   Pagination,
@@ -19,7 +23,16 @@ type Child = Html | string
 type PaginationExampleDefinition = Readonly<{
   id: string
   title: string
-  view: () => Html
+  view: <Message = never>(
+    controller?: PaginationExampleController<Message>,
+  ) => Html
+}>
+
+export type PaginationExampleController<Message> = Readonly<{
+  isRowsPerPageOpen: boolean
+  rowsPerPageValue: string
+  onRowsPerPageOpenChange: (change: SelectOpenChange) => Message
+  onRowsPerPageValueChange: (change: SelectValueChange) => Message
 }>
 
 const rowsPerPageItems: ReadonlyArray<SelectItemDescriptor> = [
@@ -27,6 +40,34 @@ const rowsPerPageItems: ReadonlyArray<SelectItemDescriptor> = [
   { value: '25', label: '25' },
   { value: '50', label: '50' },
   { value: '100', label: '100' },
+]
+
+const pageRows: ReadonlyArray<string> = [
+  'Invoice INV001',
+  'Invoice INV002',
+  'Invoice INV003',
+  'Invoice INV004',
+  'Invoice INV005',
+  'Invoice INV006',
+  'Invoice INV007',
+  'Invoice INV008',
+  'Invoice INV009',
+  'Invoice INV010',
+  'Invoice INV011',
+  'Invoice INV012',
+  'Invoice INV013',
+  'Invoice INV014',
+  'Invoice INV015',
+  'Invoice INV016',
+  'Invoice INV017',
+  'Invoice INV018',
+  'Invoice INV019',
+  'Invoice INV020',
+  'Invoice INV021',
+  'Invoice INV022',
+  'Invoice INV023',
+  'Invoice INV024',
+  'Invoice INV025',
 ]
 
 const originClosedSelectTriggerClassName =
@@ -87,38 +128,66 @@ const paginationLink = (
     children: [label],
   })
 
-const rowsPerPageSelect = (): Html => {
-  const h = html<never>()
+const rowsPerPageSelect = <Message>(
+  controller?: PaginationExampleController<Message>,
+): Html => {
   const config = {
     id: 'select-rows-per-page',
     items: rowsPerPageItems,
-    open: false,
-    value: '25',
-    placeholder: '25',
+    open: controller?.isRowsPerPageOpen ?? false,
+    value: controller?.rowsPerPageValue ?? '25',
+    placeholder: controller?.rowsPerPageValue ?? '25',
     triggerClassName: 'w-20',
   }
 
-  return Select<never>({
+  return Select<Message>({
     ...config,
-    toView: () =>
-      h.button(
-        [
-          h.AriaExpanded(false),
-          h.AriaHasPopup('listbox'),
-          h.Class(originClosedSelectTriggerClassName),
-          h.DataAttribute('slot', 'select-trigger'),
-          h.Id('select-rows-per-page'),
-          h.Type('button'),
-        ],
-        [
-          h.span(
-            [h.DataAttribute('slot', 'select-value')],
-            [h.span([h.DataAttribute('slot', 'select-value')], [])],
-          ),
-          h.svg([], []),
-        ],
-      ),
+    triggerClassName: originClosedSelectTriggerClassName,
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: controller.onRowsPerPageOpenChange,
+          onValueChange: controller.onRowsPerPageValueChange,
+        }),
   })
+}
+
+const pageSizeFromController = (
+  controller: PaginationExampleController<unknown> | undefined,
+): number => Number.parseInt(controller?.rowsPerPageValue ?? '25', 10)
+
+const visibleRows = (
+  controller: PaginationExampleController<unknown> | undefined,
+): ReadonlyArray<string> =>
+  pageRows.slice(0, pageSizeFromController(controller))
+
+const paginationRows = <Message>(
+  controller?: PaginationExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const rows = visibleRows(controller)
+
+  return h.div(
+    [h.Class('flex min-w-0 flex-col gap-2 text-sm')],
+    [
+      h.ul(
+        [h.DataAttribute('slot', 'pagination-rows'), h.Class('grid gap-1')],
+        rows.map(row =>
+          h.li(
+            [h.Key(row), h.Class('rounded-md border bg-background px-2 py-1')],
+            [row],
+          ),
+        ),
+      ),
+      h.p(
+        [
+          h.DataAttribute('slot', 'pagination-status'),
+          h.Class('text-muted-foreground'),
+        ],
+        [`Showing ${rows.length} of ${pageRows.length} rows`],
+      ),
+    ],
+  )
 }
 
 export const PaginationDemo = (): Html =>
@@ -131,34 +200,42 @@ export const PaginationDemo = (): Html =>
     paginationItem([PaginationNext<never>({ href: '#' })]),
   ])
 
-export const PaginationIconsOnly = (): Html => {
-  const h = html<never>()
+export const PaginationIconsOnly = <Message = never>(
+  controller?: PaginationExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
   return h.div(
-    [h.Class('flex items-center justify-between gap-4')],
+    [h.Class('grid gap-4')],
     [
-      Field<never>({
-        orientation: 'horizontal',
-        className: 'w-fit',
-        children: [
-          FieldLabel<never>({
-            htmlFor: 'select-rows-per-page',
-            children: ['Rows per page'],
-          }),
-          rowsPerPageSelect(),
-        ],
-      }),
-      Pagination<never>({
-        className: 'mx-0 w-auto',
-        children: [
-          PaginationContent<never>({
+      h.div(
+        [h.Class('flex items-center justify-between gap-4')],
+        [
+          Field<Message>({
+            orientation: 'horizontal',
+            className: 'w-fit',
             children: [
-              paginationItem([PaginationPrevious<never>({ href: '#' })]),
-              paginationItem([PaginationNext<never>({ href: '#' })]),
+              FieldLabel<Message>({
+                htmlFor: 'select-rows-per-page',
+                children: ['Rows per page'],
+              }),
+              rowsPerPageSelect(controller),
+            ],
+          }),
+          Pagination<Message>({
+            className: 'mx-0 w-auto',
+            children: [
+              PaginationContent<Message>({
+                children: [
+                  paginationItem([PaginationPrevious<Message>({ href: '#' })]),
+                  paginationItem([PaginationNext<Message>({ href: '#' })]),
+                ],
+              }),
             ],
           }),
         ],
-      }),
+      ),
+      paginationRows(controller),
     ],
   )
 }

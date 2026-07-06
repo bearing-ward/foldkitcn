@@ -171,7 +171,7 @@
       "description": "Breadcrumb with a custom dot separator and a components dropdown trigger.",
       "componentItemId": "shadcn/breadcrumb",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "snippet": "export const BreadcrumbDropdown = (): Html => {\n  const h = html<never>()\n\n  return breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([\n      componentsMenuButton('Components', [\n        h.DataAttribute('icon', 'inline-end'),\n      ]),\n      dropdownContent(dropdownItems),\n    ]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])\n}",
+      "snippet": "export const BreadcrumbDropdown = <Message = never>(\n  controller?: DropdownMenuExampleController<Message>,\n): Html => {\n  if (controller !== undefined) {\n    return breadcrumbDropdownShell(controller)\n  }\n\n  const h = html<never>()\n\n  return breadcrumbShell([\n    breadcrumbItem([breadcrumbLink('/', 'Home')]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([\n      componentsMenuButton('Components', [\n        h.DataAttribute('icon', 'inline-end'),\n      ]),\n      dropdownContent(dropdownItems),\n    ]),\n    breadcrumbSeparator([dotIcon()]),\n    breadcrumbItem([breadcrumbPage('Breadcrumb')]),\n  ])\n}",
       "previewStatus": "live-ready",
       "previewExportName": "BreadcrumbDropdown",
       "requiredRegistryItems": [

@@ -232,7 +232,7 @@
       "description": "Closed dropdown trigger example matching the origin Item dropdown preview root.",
       "componentItemId": "shadcn/item",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "snippet": "export const ItemDropdown = (): Html => {\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    toView: attributes =>\n      h.button(\n        [\n          ...attributes.button,\n          h.Attribute('aria-haspopup', 'menu'),\n          h.AriaExpanded(false),\n        ],\n        ['Select ', icon('chevron-down')],\n      ),\n  })\n}",
+      "snippet": "export const ItemDropdown = <Message = never>(\n  controller?: DropdownMenuExampleController<Message>,\n): Html => {\n  if (controller !== undefined) {\n    return itemDropdownShell(controller)\n  }\n\n  const h = html<never>()\n\n  return Button<never>({\n    variant: 'outline',\n    toView: attributes =>\n      h.button(\n        [\n          ...attributes.button,\n          h.Attribute('aria-haspopup', 'menu'),\n          h.AriaExpanded(false),\n        ],\n        ['Select ', icon('chevron-down')],\n      ),\n  })\n}",
       "previewStatus": "live-ready",
       "previewExportName": "ItemDropdown",
       "requiredRegistryItems": [

@@ -174,7 +174,7 @@
       "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
       "componentItemId": "shadcn/dropdown-menu",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "snippet": "export const DropdownMenuComplex = <Message = never>(\n  controller?: DropdownMenuExampleController<Message>,\n): Html =>\n  menuExampleWithController(\n    'dropdown-menu-complex',\n    complexItems,\n    {\n      contentClassName: 'w-44',\n      highlightedValue: 'open-recent',\n      defaultOpenSubmenuValues: [\n        'open-recent',\n        'more-projects',\n        'theme',\n        'settings',\n      ],\n      trigger: ['Complex Menu'],\n    },\n    controller,\n  )",
+      "snippet": "export const DropdownMenuComplex = <Message = never>(\n  controller?: DropdownMenuExampleController<Message>,\n): Html =>\n  menuExampleWithController(\n    'dropdown-menu-complex',\n    complexItems,\n    {\n      contentClassName: 'w-44',\n      highlightedValue: 'open-recent',\n      trigger: ['Complex Menu'],\n    },\n    controller,\n  )",
       "previewStatus": "live-ready",
       "previewExportName": "DropdownMenuComplex",
       "requiredRegistryItems": ["base-ui/menu", "utils/cn"],

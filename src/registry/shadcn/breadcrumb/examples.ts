@@ -2,6 +2,8 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Button } from '../button'
+import { view as DropdownMenu } from '../dropdown-menu'
+import type { DropdownMenuExampleController } from '../dropdown-menu/examples'
 import {
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -116,6 +118,85 @@ const breadcrumbSeparator = (children?: ReadonlyArray<Child>): Html =>
     ? BreadcrumbSeparator<never>()
     : BreadcrumbSeparator<never>({ children })
 
+const breadcrumbDropdownShell = <Message>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const open = controller?.isOpenFor('breadcrumb-dropdown', false) ?? true
+  const onItemPress = controller?.onItemPress
+
+  return DropdownMenu<Message>({
+    id: 'breadcrumb-dropdown',
+    items: dropdownItems.map(value => ({ value, label: value })),
+    open,
+    openSubmenuValues: [],
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: change =>
+            controller.onOpenChange('breadcrumb-dropdown', change),
+        }),
+    ...(onItemPress === undefined
+      ? {}
+      : {
+          onItemPress: press => onItemPress('breadcrumb-dropdown', press),
+        }),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          h.button(
+            [
+              ...attributes.trigger,
+              h.AriaHasPopup('menu'),
+              h.AriaExpanded(open),
+              h.Class('flex items-center gap-1'),
+            ],
+            [
+              'Components',
+              chevronDownIcon({
+                attributes: [h.DataAttribute('icon', 'inline-end')],
+                className: 'size-3.5',
+              }),
+            ],
+          ),
+          h.div(
+            [...attributes.portal],
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.popup.backdrop.root], []),
+                  h.div(
+                    [...attributes.popup.positioner.root],
+                    [
+                      h.div(
+                        [...attributes.popup.popup.root],
+                        [
+                          h.div(
+                            [...attributes.popup.group],
+                            attributes.popup.items.map(itemAttributes =>
+                              h.div(
+                                [...itemAttributes.root],
+                                [
+                                  h.span(
+                                    [...itemAttributes.label],
+                                    [itemAttributes.item.label],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ]
+              : [],
+          ),
+        ],
+      ),
+  })
+}
+
 const breadcrumbShell = (
   children: ReadonlyArray<Child>,
   config: Readonly<{ dir?: 'ltr' | 'rtl' }> = {},
@@ -218,7 +299,13 @@ export const BreadcrumbDemo = (): Html =>
     breadcrumbItem([breadcrumbPage('Breadcrumb')]),
   ])
 
-export const BreadcrumbDropdown = (): Html => {
+export const BreadcrumbDropdown = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
+  if (controller !== undefined) {
+    return breadcrumbDropdownShell(controller)
+  }
+
   const h = html<never>()
 
   return breadcrumbShell([

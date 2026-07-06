@@ -52,15 +52,15 @@ describe('shadcn/carousel update', () => {
     )
   })
 
-  test('next and previous wrap at boundaries', () => {
+  test('next and previous clamp at boundaries', () => {
     Story.story(
       update,
       Story.with(initialState({ selectedIndex: 2 })),
       Story.message(ClickedCarouselNext()),
       Story.model(model => {
-        expect(model.selectedIndex).toBe(0)
+        expect(model.selectedIndex).toBe(2)
         expect(model.canScrollPrevious).toBeTruthy()
-        expect(model.canScrollNext).toBeTruthy()
+        expect(model.canScrollNext).toBeFalsy()
       }),
     )
 
@@ -69,8 +69,8 @@ describe('shadcn/carousel update', () => {
       Story.with(initialState()),
       Story.message(ClickedCarouselPrevious()),
       Story.model(model => {
-        expect(model.selectedIndex).toBe(2)
-        expect(model.canScrollPrevious).toBeTruthy()
+        expect(model.selectedIndex).toBe(0)
+        expect(model.canScrollPrevious).toBeFalsy()
         expect(model.canScrollNext).toBeTruthy()
       }),
     )

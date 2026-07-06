@@ -33,6 +33,20 @@ type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
 
 const update = (model: Model, _message: Message): UpdateReturn => [model, []]
 
+type ActionsModel = Readonly<{ isOpen: boolean }>
+type ActionsMessage = Readonly<{ open: boolean }>
+type ActionsUpdateReturn = readonly [
+  ActionsModel,
+  ReadonlyArray<Command.Command<ActionsMessage>>,
+]
+
+const actionsInitialModel: ActionsModel = { isOpen: false }
+
+const actionsUpdate = (
+  _model: ActionsModel,
+  message: ActionsMessage,
+): ActionsUpdateReturn => [{ isOpen: message.open }, []]
+
 // VIEW
 
 const viewHtml = (renderedHtml: Html) => (): Html => renderedHtml
@@ -247,7 +261,7 @@ describe('shadcn/table view', () => {
         ),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-content"]'),
-        ).toHaveAttr('hidden', 'true'),
+        ).not.toExist(),
       )
       Scene.scene(
         { update, view: () => TableRtl() },
@@ -276,6 +290,30 @@ describe('shadcn/table view', () => {
     expect(manifest.examples.map(example => example.title)).toStrictEqual(
       tableExampleViews.map(example => example.title),
     )
+  })
+
+  test('renders action menu content when controlled open', () => {
+    const actionsView = (model: ActionsModel): Html =>
+      TableActions<ActionsMessage>({
+        isOpenFor: () => model.isOpen,
+        onOpenChange: (_menuId, change) => ({ open: change.open }),
+        onItemPress: () => ({ open: false }),
+      })
+
+    expect(() => {
+      Scene.scene(
+        { update: actionsUpdate, view: actionsView },
+        Scene.with(actionsInitialModel),
+        Scene.click(Scene.role('button', { name: 'Open menu' })),
+        Scene.expect(
+          Scene.selector('[data-slot="dropdown-menu-content"]'),
+        ).toBeVisible(),
+        Scene.click(Scene.role('menuitem', { name: 'Edit' })),
+        Scene.expect(
+          Scene.selector('[data-slot="dropdown-menu-content"]'),
+        ).not.toExist(),
+      )
+    }).not.toThrow()
   })
 })
 

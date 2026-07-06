@@ -132,6 +132,16 @@ export type DataTableExampleMessage = typeof DataTableExampleMessage.Type
 export type DataTableExampleController<Message> = Readonly<{
   state?: DataTable.DataTableState
   onDataTableMessage?: (message: DataTableExampleMessage) => Message
+  menuIsOpenFor?: (menuId: string, defaultOpen: boolean) => boolean
+  onMenuOpenChange?: (
+    menuId: string,
+    change: DropdownMenu.MenuOpenChange,
+  ) => Message
+  selectIsOpenFor?: (selectId: string, defaultOpen: boolean) => boolean
+  onSelectOpenChange?: (
+    selectId: string,
+    change: Select.SelectOpenChange,
+  ) => Message
 }>
 
 // DATA
@@ -673,7 +683,8 @@ const columnVisibilityMenu = <Message, Row>(
   dir?: 'rtl',
 ): Html => {
   const h = html<Message>()
-  const { onDataTableMessage } = controller
+  const { onDataTableMessage, onMenuOpenChange } = controller
+  const menuId = `${label.replaceAll(' ', '-').toLocaleLowerCase()}-columns`
   const items = columns
     .filter(column => column.isHideable !== false)
     .map(
@@ -686,11 +697,14 @@ const columnVisibilityMenu = <Message, Row>(
     )
 
   return DropdownMenu.view<Message>({
-    id: `${label.replaceAll(' ', '-').toLocaleLowerCase()}-columns`,
-    open: true,
+    id: menuId,
+    open: controller.menuIsOpenFor?.(menuId, false) ?? false,
     items,
     align: dir === 'rtl' ? 'start' : 'end',
     ...(dir === undefined ? {} : { dir }),
+    ...(onMenuOpenChange === undefined
+      ? {}
+      : { onOpenChange: change => onMenuOpenChange(menuId, change) }),
     ...(onDataTableMessage === undefined
       ? {}
       : {
@@ -754,16 +768,22 @@ const rowsPerPageSelect = <Message>(
   controller: DataTableExampleController<Message>,
   state: DataTable.DataTableState,
 ): Html => {
-  const { onDataTableMessage } = controller
+  const { onDataTableMessage, onSelectOpenChange } = controller
+  const selectId = 'data-table-rows-per-page'
 
   return Select.view<Message>({
-    id: 'data-table-rows-per-page',
-    open: true,
+    id: selectId,
+    open: controller.selectIsOpenFor?.(selectId, false) ?? false,
     items: pageSizeItems,
     value: String(state.pageSize),
     placeholder: String(state.pageSize),
     triggerClassName: 'h-8 w-16',
     contentClassName: 'w-16',
+    ...(onSelectOpenChange === undefined
+      ? {}
+      : {
+          onOpenChange: change => onSelectOpenChange(selectId, change),
+        }),
     ...(onDataTableMessage === undefined
       ? {}
       : {

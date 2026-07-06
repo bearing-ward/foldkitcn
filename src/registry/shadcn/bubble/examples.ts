@@ -1,7 +1,38 @@
+import { Schema as S } from 'effect'
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
+import { m } from 'foldkit/message'
 
+import * as ToastPrimitive from '../../base-ui/toast'
+import { view as Collapsible } from '../collapsible'
+import { view as Popover } from '../popover'
+import { view as Sonner } from '../sonner'
+import { view as Tooltip } from '../tooltip'
 import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from './index'
+
+export const ClickedBubbleReply = m('ClickedBubbleReply', { reply: S.String })
+
+export const BubbleExampleMessage = S.Union([ClickedBubbleReply])
+export type BubbleExampleMessage = typeof BubbleExampleMessage.Type
+
+export type BubbleExampleController<Message> = Readonly<{
+  openFor?: (controlId: string, defaultOpen: boolean) => boolean
+  onOpenChange?: (
+    controlId: string,
+    change: Readonly<{ open: boolean }>,
+  ) => Message
+  toastState?: ToastPrimitive.ToastState
+  onBubbleMessage?: (message: BubbleExampleMessage) => Message
+}>
+
+const defaultBubbleToastState = (): ToastPrimitive.ToastState =>
+  ToastPrimitive.createToastState({ limit: 3 })
+
+const isOpenFor = <Message>(
+  controller: BubbleExampleController<Message> | undefined,
+  controlId: string,
+  defaultOpen: boolean,
+): boolean => controller?.openFor?.(controlId, defaultOpen) ?? defaultOpen
 
 const bubbleStackWithClass = (
   className: string,
@@ -91,11 +122,30 @@ const button = (label: string, ariaLabel?: string): Html => {
   )
 }
 
-const bubbleContentButton = (label: string): Html => {
-  const h = html<never>()
+const bubbleContentButton = <Message>(
+  label: string,
+  controller?: BubbleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return BubbleContent<never>({
-    toView: attributes => h.button([...attributes.content], [label]),
+  return BubbleContent<Message>({
+    toView: attributes =>
+      h.button(
+        [
+          ...attributes.content,
+          h.Type('button'),
+          ...(controller?.onBubbleMessage === undefined
+            ? []
+            : [
+                h.OnClick(
+                  controller.onBubbleMessage(
+                    ClickedBubbleReply({ reply: label }),
+                  ),
+                ),
+              ]),
+        ],
+        [label],
+      ),
   })
 }
 
@@ -306,32 +356,44 @@ export const BubbleAlignmentDemo = (): Html =>
     }),
   ])
 
-export const BubbleLinkButtonDemo = (): Html =>
+export const BubbleLinkButtonDemo = <Message = never>(
+  controller?: BubbleExampleController<Message>,
+): Html =>
   bubbleStack([
-    Bubble<never>({
+    Bubble<Message>({
       variant: 'muted',
       children: [
-        BubbleContent<never>({ children: ['How can I help you today?'] }),
+        BubbleContent<Message>({ children: ['How can I help you today?'] }),
       ],
     }),
-    BubbleGroup<never>({
+    BubbleGroup<Message>({
       children: [
-        Bubble<never>({
+        Bubble<Message>({
           variant: 'tinted',
           align: 'end',
-          children: [bubbleContentButton('I forgot my password')],
+          children: [bubbleContentButton('I forgot my password', controller)],
         }),
-        Bubble<never>({
+        Bubble<Message>({
           variant: 'tinted',
           align: 'end',
-          children: [bubbleContentButton('I need help with my subscription')],
+          children: [
+            bubbleContentButton('I need help with my subscription', controller),
+          ],
         }),
-        Bubble<never>({
+        Bubble<Message>({
           variant: 'tinted',
           align: 'end',
-          children: [bubbleContentButton('Something else. Talk to a human.')],
+          children: [
+            bubbleContentButton('Something else. Talk to a human.', controller),
+          ],
         }),
       ],
+    }),
+    Sonner<Message>({
+      id: 'bubble-reply-sonner',
+      state: controller?.toastState ?? defaultBubbleToastState(),
+      viewportPositioning: 'absolute',
+      viewportPosition: 'bottom-right',
     }),
   ])
 
@@ -404,104 +466,248 @@ export const BubbleReactionsDemo = (): Html =>
     }),
   ])
 
-export const BubbleCollapsibleDemo = (): Html => {
-  const h = html<never>()
+export const BubbleCollapsibleDemo = <Message = never>(
+  controller?: BubbleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const controlId = 'bubble-collapsible'
+  const onOpenChange = controller?.onOpenChange
+  const open = isOpenFor(controller, controlId, false)
   const preview =
     'The accessibility review found two focus states that were visually too subtle in dark mode.\n\nI checked the dialog, menu, and drawer paths because each one renders focusable controls inside a layered surface.\n\nThe dialog and drawer are fine. The menu needs the hover and focus tokens split so keyboard focus stays visible when the pointer is not involved.'
+  const summary =
+    'The accessibility review found two focus states that were visually too subtle in dark mode.'
 
   return bubbleStack([
-    Bubble<never>({
+    Bubble<Message>({
       variant: 'muted',
       children: [
-        BubbleContent<never>({ children: ['How can I help you today?'] }),
+        BubbleContent<Message>({ children: ['How can I help you today?'] }),
       ],
     }),
-    Bubble<never>({
+    Bubble<Message>({
       variant: 'muted',
       align: 'end',
       children: [
-        BubbleContent<never>({
+        BubbleContent<Message>({
           className: 'whitespace-pre-line',
           toView: attributes =>
-            h.div(
-              [...attributes.content],
-              [
-                h.div([], [preview]),
-                h.button(
+            Collapsible<Message>({
+              id: controlId,
+              open,
+              panel: { id: `${controlId}-panel`, label: 'Expanded reply' },
+              ...(onOpenChange === undefined
+                ? {}
+                : {
+                    onOpenChange: change => onOpenChange(controlId, change),
+                  }),
+              toView: collapsible =>
+                h.div(
+                  [...attributes.content, ...collapsible.root],
                   [
-                    h.Type('button'),
-                    h.Class(
-                      'mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground',
+                    h.p([], [summary]),
+                    collapsible.panel.isMounted
+                      ? h.div(
+                          [
+                            ...collapsible.panel.root,
+                            h.Attribute(
+                              'style',
+                              '--collapsible-panel-height: auto; --collapsible-panel-width: auto; animation-name: none;',
+                            ),
+                          ],
+                          [h.p([h.Class('mt-3')], [preview])],
+                        )
+                      : h.empty,
+                    h.button(
+                      [
+                        ...collapsible.trigger,
+                        h.Type('button'),
+                        h.Class(
+                          'mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground',
+                        ),
+                      ],
+                      [open ? 'Show less' : 'Show more'],
                     ),
                   ],
-                  ['Show more'],
                 ),
-              ],
-            ),
+            }),
         }),
       ],
     }),
   ])
 }
 
-export const BubbleTooltipDemo = (): Html => {
-  const h = html<never>()
+export const BubbleTooltipDemo = <Message = never>(
+  controller?: BubbleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const controlId = 'bubble-read-status-tooltip'
+  const onOpenChange = controller?.onOpenChange
 
   return compactBubbleStack([
-    Bubble<never>({
+    Bubble<Message>({
       variant: 'secondary',
       children: [
-        BubbleContent<never>({
+        BubbleContent<Message>({
           children: ['Did you remove the stale route?'],
         }),
       ],
     }),
-    Bubble<never>({
+    Bubble<Message>({
       align: 'end',
       children: [
-        BubbleContent<never>({
+        BubbleContent<Message>({
           children: ['Yes, removed it from the registry.'],
         }),
         bareReactions([
-          h.button(
-            [
-              h.Type('button'),
-              h.AriaLabel('Read on Jan 5, 2026 at 4:32 PM'),
-              h.Class(
-                'inline-flex size-7 items-center justify-center rounded-full bg-transparent',
+          Tooltip<Message>({
+            id: controlId,
+            open: isOpenFor(controller, controlId, false),
+            instant: 'delay',
+            side: 'top',
+            ...(onOpenChange === undefined
+              ? {}
+              : { onOpenChange: change => onOpenChange(controlId, change) }),
+            toView: attributes =>
+              h.div(
+                [...attributes.provider],
+                [
+                  h.div(
+                    [...attributes.root],
+                    [
+                      h.button(
+                        [
+                          ...attributes.trigger,
+                          h.Type('button'),
+                          h.AriaLabel('Read on Jan 5, 2026 at 4:32 PM'),
+                          h.Class(
+                            'inline-flex size-7 items-center justify-center rounded-full bg-transparent',
+                          ),
+                        ],
+                        ['✓'],
+                      ),
+                      h.div(
+                        [...attributes.portal],
+                        attributes.popup.isMounted
+                          ? [
+                              h.div(
+                                [...attributes.positioner.root],
+                                [
+                                  h.div(
+                                    [...attributes.popup.root],
+                                    [
+                                      h.div(
+                                        [...attributes.viewport.root],
+                                        ['Read on Jan 5, 2026 at 4:32 PM'],
+                                      ),
+                                      h.div([...attributes.arrow.root], []),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ]
+                          : [],
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-            ['✓'],
-          ),
+          }),
         ]),
       ],
     }),
   ])
 }
 
-export const BubblePopoverDemo = (): Html => {
-  const h = html<never>()
+export const BubblePopoverDemo = <Message = never>(
+  controller?: BubbleExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const controlId = 'bubble-error-details-popover'
+  const onOpenChange = controller?.onOpenChange
 
   return compactBubbleStack([
-    Bubble<never>({
+    Bubble<Message>({
       align: 'end',
-      children: [BubbleContent<never>({ children: ['Run the build script.'] })],
+      children: [
+        BubbleContent<Message>({ children: ['Run the build script.'] }),
+      ],
     }),
-    Bubble<never>({
+    Bubble<Message>({
       variant: 'destructive',
       children: [
-        BubbleContent<never>({ children: ['Failed to run the command.'] }),
+        BubbleContent<Message>({ children: ['Failed to run the command.'] }),
         bareReactions([
-          h.button(
-            [
-              h.Type('button'),
-              h.AriaLabel('Show error details'),
-              h.Class(
-                'inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive',
+          Popover<Message>({
+            id: controlId,
+            open: isOpenFor(controller, controlId, false),
+            side: 'top',
+            align: 'end',
+            titleId: `${controlId}-title`,
+            descriptionId: `${controlId}-description`,
+            contentClassName: 'w-72',
+            ...(onOpenChange === undefined
+              ? {}
+              : { onOpenChange: change => onOpenChange(controlId, change) }),
+            toView: attributes =>
+              h.div(
+                [...attributes.root],
+                [
+                  h.button(
+                    [
+                      ...attributes.trigger,
+                      h.Type('button'),
+                      h.AriaLabel('Show error details'),
+                      h.Class(
+                        'inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive',
+                      ),
+                    ],
+                    ['i'],
+                  ),
+                  h.div(
+                    [...attributes.portal],
+                    attributes.popup.isMounted
+                      ? [
+                          h.div([...attributes.backdrop.root], []),
+                          h.div(
+                            [...attributes.positioner.root],
+                            [
+                              h.div(
+                                [...attributes.popup.root],
+                                [
+                                  h.div(
+                                    [...attributes.header],
+                                    [
+                                      h.h4(
+                                        [...attributes.title],
+                                        ['Command failed'],
+                                      ),
+                                      h.p(
+                                        [...attributes.description],
+                                        [
+                                          'Exit code 1 while running the build script.',
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  h.pre(
+                                    [
+                                      h.Class(
+                                        'mt-3 overflow-auto rounded-md bg-muted p-2 text-xs text-muted-foreground',
+                                      ),
+                                    ],
+                                    ['bun run build --filter docs'],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ]
+                      : [],
+                  ),
+                ],
               ),
-            ],
-            ['i'],
-          ),
+          }),
         ]),
       ],
     }),

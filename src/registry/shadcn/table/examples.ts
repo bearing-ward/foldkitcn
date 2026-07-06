@@ -51,7 +51,7 @@ type Product = Readonly<{
 type ExampleDefinition = Readonly<{
   id: string
   title: string
-  view: () => Html
+  view: <Message = never>(controller?: TableActionsController<Message>) => Html
 }>
 
 const invoices: ReadonlyArray<Invoice> = [
@@ -171,20 +171,26 @@ const moreHorizontalIcon = (): Html => {
   )
 }
 
-const triggerBehaviorAttributes = (
-  attributes: ReadonlyArray<Attribute<never>>,
-): ReadonlyArray<Attribute<never>> =>
+export type TableActionsController<Message> = Readonly<{
+  isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
+  onOpenChange: (menuId: string, change: DropdownMenu.MenuOpenChange) => Message
+  onItemPress?: (menuId: string, press: DropdownMenu.MenuItemPress) => Message
+}>
+
+const triggerBehaviorAttributes = <Message>(
+  attributes: ReadonlyArray<Attribute<Message>>,
+): ReadonlyArray<Attribute<Message>> =>
   attributes.filter(
     attribute =>
       !(attribute._tag === 'DataAttribute' && attribute.key === 'slot'),
   )
 
-const actionButton = (
-  triggerAttributes: ReadonlyArray<Attribute<never>>,
+const actionButton = <Message>(
+  triggerAttributes: ReadonlyArray<Attribute<Message>>,
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
-  return Button.view<never>({
+  return Button.view<Message>({
     variant: 'ghost',
     size: 'icon',
     className: 'size-8',
@@ -196,8 +202,10 @@ const actionButton = (
   })
 }
 
-const menuItem = (attributes: DropdownMenu.MenuItemAttributes<never>): Html => {
-  const h = html<never>()
+const menuItem = <Message>(
+  attributes: DropdownMenu.MenuItemAttributes<Message>,
+): Html => {
+  const h = html<Message>()
   const children: ReadonlyArray<Child> =
     attributes.item.value === 'delete'
       ? [attributes.item.label]
@@ -206,24 +214,34 @@ const menuItem = (attributes: DropdownMenu.MenuItemAttributes<never>): Html => {
   return h.div([...attributes.root], children)
 }
 
-const optionalMenuItem = (
-  attributes: DropdownMenu.MenuItemAttributes<never> | undefined,
+const optionalMenuItem = <Message>(
+  attributes: DropdownMenu.MenuItemAttributes<Message> | undefined,
 ): ReadonlyArray<Html> =>
   attributes === undefined ? [] : [menuItem(attributes)]
 
-const actionMenu = (id: string): Html => {
-  const h = html<never>()
+const actionMenu = <Message>(
+  id: string,
+  controller?: TableActionsController<Message>,
+): Html => {
+  const h = html<Message>()
+  const open = controller?.isOpenFor(id, false) ?? false
+  const onItemPress = controller?.onItemPress
 
-  return DropdownMenu.view<never>({
+  return DropdownMenu.view<Message>({
     id,
     align: 'end',
-    forceMount: true,
+    open,
     items: [
       { value: 'edit', label: 'Edit' },
       { value: 'duplicate', label: 'Duplicate' },
       { value: 'delete', label: 'Delete' },
     ],
-    open: false,
+    ...(controller === undefined
+      ? {}
+      : { onOpenChange: change => controller.onOpenChange(id, change) }),
+    ...(onItemPress === undefined
+      ? {}
+      : { onItemPress: press => onItemPress(id, press) }),
     variant: 'destructive',
     toView: attributes =>
       h.div(
@@ -232,30 +250,33 @@ const actionMenu = (id: string): Html => {
           actionButton(triggerBehaviorAttributes(attributes.trigger)),
           h.div(
             [...attributes.portal],
-            [
-              h.div(
-                [...attributes.popup.positioner.root],
-                [
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.popup.backdrop.root], []),
                   h.div(
-                    [...attributes.popup.popup.root],
+                    [...attributes.popup.positioner.root],
                     [
                       h.div(
-                        [...attributes.popup.group],
+                        [...attributes.popup.popup.root],
                         [
-                          ...optionalMenuItem(attributes.popup.items[0]),
-                          ...optionalMenuItem(attributes.popup.items[1]),
+                          h.div(
+                            [...attributes.popup.group],
+                            [
+                              ...optionalMenuItem(attributes.popup.items[0]),
+                              ...optionalMenuItem(attributes.popup.items[1]),
+                            ],
+                          ),
+                          h.div([...attributes.popup.separator], []),
+                          h.div(
+                            [...attributes.popup.group],
+                            [...optionalMenuItem(attributes.popup.items[2])],
+                          ),
                         ],
-                      ),
-                      h.div([...attributes.popup.separator], []),
-                      h.div(
-                        [...attributes.popup.group],
-                        [...optionalMenuItem(attributes.popup.items[2])],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ],
+                ]
+              : [],
           ),
         ],
       ),
@@ -333,16 +354,18 @@ const invoiceTable = (
     ],
   })
 
-export const TableActions = (): Html =>
-  Table<never>({
+export const TableActions = <Message = never>(
+  controller?: TableActionsController<Message>,
+): Html =>
+  Table<Message>({
     children: [
-      TableHeader<never>({
+      TableHeader<Message>({
         children: [
-          TableRow<never>({
+          TableRow<Message>({
             children: [
-              TableHead<never>({ children: ['Product'] }),
-              TableHead<never>({ children: ['Price'] }),
-              TableHead<never>({
+              TableHead<Message>({ children: ['Product'] }),
+              TableHead<Message>({ children: ['Price'] }),
+              TableHead<Message>({
                 className: 'text-right',
                 children: ['Actions'],
               }),
@@ -350,21 +373,26 @@ export const TableActions = (): Html =>
           }),
         ],
       }),
-      TableBody<never>({
+      TableBody<Message>({
         children: pipe(
           products,
           EffectArray.map(product =>
-            TableRow<never>({
-              attributes: [html<never>().Key(product.id)],
+            TableRow<Message>({
+              attributes: [html<Message>().Key(product.id)],
               children: [
-                TableCell<never>({
+                TableCell<Message>({
                   className: 'font-medium',
                   children: [product.name],
                 }),
-                TableCell<never>({ children: [product.price] }),
-                TableCell<never>({
+                TableCell<Message>({ children: [product.price] }),
+                TableCell<Message>({
                   className: 'text-right',
-                  children: [actionMenu(`table-actions-${product.id}`)],
+                  children: [
+                    actionMenu<Message>(
+                      `table-actions-${product.id}`,
+                      controller,
+                    ),
+                  ],
                 }),
               ],
             }),

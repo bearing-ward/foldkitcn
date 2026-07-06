@@ -17,6 +17,7 @@ import {
   DatePicker,
   datePickerClassName,
   datePickerInit,
+  datePickerPanelClassName,
   datePickerSelectDate,
   datePickerTriggerClassName,
 } from './index'
@@ -121,6 +122,13 @@ describe('shadcn/date-picker view', () => {
   test('exposes stable class helpers', () => {
     expect(datePickerClassName('demo')).toContain('demo')
     expect(datePickerTriggerClassName()).toContain('data-[placeholder=true]')
+    expect(datePickerTriggerClassName(undefined, true)).toContain('min-w-36')
+  })
+
+  test('exposes opaque panel class helpers', () => {
+    expect(datePickerPanelClassName()).toContain('bg-white')
+    expect(datePickerPanelClassName()).toContain('shadow-lg')
+    expect(datePickerPanelClassName(undefined, true)).toContain('p-2')
   })
 
   test('keeps manifest examples aligned with exported examples', async () => {

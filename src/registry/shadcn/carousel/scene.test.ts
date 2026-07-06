@@ -122,7 +122,9 @@ describe('shadcn/carousel class helpers', () => {
     ])
     expect(Carousel.carouselClassName()).toBe('relative')
     expect(Carousel.carouselViewportClassName()).toBe('overflow-hidden')
-    expect(Carousel.carouselContentClassName()).toBe('flex -ml-4')
+    expect(Carousel.carouselContentClassName()).toBe(
+      'flex transition-transform duration-300 ease-out will-change-transform -ml-4',
+    )
   })
 
   test('exports orientation and RTL class strings', () => {
@@ -131,7 +133,9 @@ describe('shadcn/carousel class helpers', () => {
         orientation: 'vertical',
         className: '-mt-1 h-[340px]',
       }),
-    ).toBe('flex flex-col -mt-1 h-[340px]')
+    ).toBe(
+      'flex transition-transform duration-300 ease-out will-change-transform flex-col -mt-1 h-[340px]',
+    )
     expect(
       Carousel.carouselItemClassName({
         orientation: 'horizontal',
@@ -190,10 +194,22 @@ describe('shadcn/carousel view', () => {
         Scene.with(initialModel()),
         Scene.expect(
           Scene.role('button', { name: 'Previous slide' }),
-        ).toBeEnabled(),
+        ).toBeDisabled(),
         Scene.expect(
           Scene.role('button', { name: 'Next slide' }),
         ).toBeEnabled(),
+        Scene.expect(Scene.selector('[data-slot="carousel"]')).toHaveAttr(
+          'data-selected-index',
+          '0',
+        ),
+        Scene.expect(Scene.selector('[data-slot="carousel"]')).toHaveAttr(
+          'data-can-scroll-previous',
+          'false',
+        ),
+        Scene.expect(Scene.selector('[data-slot="carousel"]')).toHaveAttr(
+          'data-can-scroll-next',
+          'true',
+        ),
       )
     }).not.toThrow()
   })
@@ -218,15 +234,18 @@ describe('shadcn/carousel view', () => {
     }).not.toThrow()
   })
 
-  test('previous control wraps from the first slide to the last slide', () => {
+  test('previous control stays disabled at the first slide', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
         Scene.with(initialModel()),
-        Scene.click(Scene.role('button', { name: 'Previous slide' })),
         Scene.expect(
-          Scene.selector('[data-slot="carousel-content"] div'),
-        ).toHaveStyle('transform', 'translate3d(-200%, 0, 0)'),
+          Scene.role('button', { name: 'Previous slide' }),
+        ).toBeDisabled(),
+        Scene.expect(Scene.selector('[data-slot="carousel"]')).toHaveAttr(
+          'data-selected-index',
+          '0',
+        ),
       )
     }).not.toThrow()
   })
@@ -282,7 +301,9 @@ describe('shadcn/carousel view', () => {
       dir: 'rtl',
     })
 
-    expect(Carousel.carouselContentClassName(state)).toBe('flex -ms-4')
+    expect(Carousel.carouselContentClassName(state)).toBe(
+      'flex transition-transform duration-300 ease-out will-change-transform -ms-4',
+    )
     expect(Carousel.carouselItemClassName(state)).toBe(
       'min-w-0 shrink-0 grow-0 basis-full ps-4',
     )
@@ -314,7 +335,7 @@ describe('shadcn/carousel view', () => {
         ),
         Scene.expectAll(
           Scene.all.selector('[data-slot="carousel-loop-fill-item"]'),
-        ).toHaveCount(5),
+        ).toHaveCount(0),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselMultiple()) },
@@ -330,7 +351,7 @@ describe('shadcn/carousel view', () => {
           Scene.selector('[data-slot="carousel-content"] div'),
         ).toHaveAttr(
           'class',
-          'flex -ml-1 [--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
+          'flex transition-transform duration-300 ease-out will-change-transform -ml-1 [--carousel-slide-step:50%] lg:[--carousel-slide-step:33.333333%]',
         ),
       )
       Scene.scene(
@@ -340,7 +361,7 @@ describe('shadcn/carousel view', () => {
           Scene.selector('[data-slot="carousel-content"] div'),
         ).toHaveAttr(
           'class',
-          'flex flex-col -mt-1 h-[340px] [--carousel-slide-step:50%]',
+          'flex transition-transform duration-300 ease-out will-change-transform flex-col -mt-1 h-[340px] [--carousel-slide-step:50%]',
         ),
       )
       Scene.scene(

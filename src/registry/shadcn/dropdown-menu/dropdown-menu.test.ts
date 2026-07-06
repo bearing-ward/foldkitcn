@@ -372,21 +372,30 @@ describe('shadcn/dropdown-menu view', () => {
     )
 
     expect(() => {
-      for (const id of [
-        'shadcn/dropdown-menu-submenu',
-        'shadcn/dropdown-menu-complex',
-      ]) {
-        Scene.scene(
-          {
-            update,
-            view: staticExampleView(requireExampleView(viewById, id)),
-          },
-          Scene.with(initialModel),
-          Scene.expect(
-            Scene.selector('[data-slot="dropdown-menu-sub-content"]'),
-          ).toBeVisible(),
-        )
-      }
+      Scene.scene(
+        {
+          update,
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/dropdown-menu-submenu'),
+          ),
+        },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.selector('[data-slot="dropdown-menu-sub-content"]'),
+        ).toBeVisible(),
+      )
+      Scene.scene(
+        {
+          update,
+          view: staticExampleView(
+            requireExampleView(viewById, 'shadcn/dropdown-menu-complex'),
+          ),
+        },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.selector('[data-slot="dropdown-menu-sub-trigger"]'),
+        ).toBeVisible(),
+      )
 
       Scene.scene(
         {

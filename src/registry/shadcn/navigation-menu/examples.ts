@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -369,6 +370,36 @@ const navigationMenuExampleWithController = <Message = never>(
   const h = html<Message>()
   const fallbackValue = controller === undefined ? config.value : undefined
   const value = controller?.valueFor(config.id, fallbackValue) ?? fallbackValue
+  const escapeHandler =
+    controller === undefined
+      ? []
+      : [
+          h.OnKeyDownPreventDefault((key, modifiers) =>
+            key === 'Escape' && modifiers.shiftKey !== true
+              ? Option.some(
+                  controller.onValueChange(
+                    config.id,
+                    NavigationMenu.valueChange(undefined, 'escape-key'),
+                  ),
+                )
+              : Option.none(),
+          ),
+        ]
+  const popupEscapeHandler =
+    controller === undefined
+      ? []
+      : [
+          h.OnKeyDownPreventDefault((key, modifiers) =>
+            key === 'Escape' && modifiers.shiftKey !== true
+              ? Option.some(
+                  controller.onValueChange(
+                    config.id,
+                    NavigationMenu.valueChange(undefined, 'escape-key'),
+                  ),
+                )
+              : Option.none(),
+          ),
+        ]
 
   return NavigationMenu.view<Message>({
     id: config.id,
@@ -383,7 +414,7 @@ const navigationMenuExampleWithController = <Message = never>(
         }),
     toView: attributes =>
       h.nav(
-        [...attributes.root],
+        [...attributes.root, ...escapeHandler],
         [
           h.ul(
             [...attributes.list],
@@ -411,7 +442,7 @@ const navigationMenuExampleWithController = <Message = never>(
                 [...attributes.positioner.root],
                 [
                   h.nav(
-                    [...attributes.popup.root],
+                    [...attributes.popup.root, ...popupEscapeHandler],
                     [
                       h.div(
                         [...attributes.viewport.root],

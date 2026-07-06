@@ -696,6 +696,18 @@ const triggerKeyboardMessage = <Message>(
   const verticalOpen =
     orientation(config) === 'vertical' && key === 'ArrowRight'
 
+  if (key === 'Escape' && isActiveItem(config, item)) {
+    return valueMessage(
+      config,
+      valueChange(
+        undefined,
+        'escape-key',
+        config.value,
+        triggerFocusSelector(config, item),
+      ),
+    )
+  }
+
   if (activationKeys.has(key) || horizontalOpen || verticalOpen) {
     return valueMessage(
       config,
@@ -889,6 +901,9 @@ const backdropAttributes = <Message>(
         ...openStateDataAttributes(h, isOpen(config)),
         ...transitionDataAttributes(h, config.transitionStatus),
         h.Style({
+          position: 'fixed',
+          inset: '0',
+          zIndex: '49',
           userSelect: 'none',
           WebkitUserSelect: 'none',
         }),
@@ -939,6 +954,9 @@ const popupAttributes = <Message>(
         ...booleanDataAttribute(h, 'anchor-hidden', config.isAnchorHidden),
         ...placementAttributes(h, config),
         h.OnKeyDownPreventDefault((key, modifiers) =>
+          popupKeyboardMessage(config, key, modifiers),
+        ),
+        h.OnKeyUpPreventDefault((key, modifiers) =>
           popupKeyboardMessage(config, key, modifiers),
         ),
       ]

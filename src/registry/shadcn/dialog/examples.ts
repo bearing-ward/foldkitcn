@@ -3,7 +3,7 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { view as Dialog } from './index'
-import type { DialogOpenChange } from './index'
+import type { DialogAttributes, DialogOpenChange } from './index'
 
 export type DialogExampleController<Message> = Readonly<{
   openFor?: (dialogId: string, defaultOpen: boolean) => boolean
@@ -39,7 +39,7 @@ const dialogShell = <Message>(
     dir?: string
     lang?: string
     body?: ReadonlyArray<Html>
-    footer?: ReadonlyArray<Html>
+    footer?: (attributes: DialogAttributes<Message>) => ReadonlyArray<Html>
   }>,
   controller: DialogExampleController<Message>,
 ): Html => {
@@ -92,7 +92,12 @@ const dialogShell = <Message>(
                   ...(config.body ?? []),
                   ...(config.footer === undefined
                     ? []
-                    : [h.div([...attributes.footer], config.footer)]),
+                    : [
+                        h.div(
+                          [...attributes.footer],
+                          config.footer(attributes),
+                        ),
+                      ]),
                   config.showCloseButton === false
                     ? h.empty
                     : h.button(
@@ -146,18 +151,23 @@ const profileFields = (
   ]
 }
 
-const footerButtons = (
+const footerButtons = <Message>(
+  attributes: DialogAttributes<Message>,
   labels: Readonly<{ cancel: string; save: string }>,
 ): ReadonlyArray<Html> => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return [
     h.button(
-      [h.Class(buttonClassName('border-border bg-background px-2.5 h-8'))],
+      [
+        ...attributes.close,
+        h.Class(buttonClassName('border-border bg-background px-2.5 h-8')),
+      ],
       [labels.cancel],
     ),
     h.button(
       [
+        ...attributes.close,
         h.Class(
           buttonClassName('bg-primary text-primary-foreground px-2.5 h-8'),
         ),
@@ -195,7 +205,8 @@ export const DialogDemo = <Message = never>(
         "Make changes to your profile here. Click save when you're done.",
       contentClassName: 'sm:max-w-sm',
       body: profileFields({ name: 'Name', username: 'Username' }),
-      footer: footerButtons({ cancel: 'Cancel', save: 'Save changes' }),
+      footer: attributes =>
+        footerButtons(attributes, { cancel: 'Cancel', save: 'Save changes' }),
     },
     controller,
   )
@@ -203,7 +214,7 @@ export const DialogDemo = <Message = never>(
 export const DialogCloseButton = <Message = never>(
   controller: DialogExampleController<Message> = {},
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
 
   return dialogShell(
     {
@@ -234,9 +245,10 @@ export const DialogCloseButton = <Message = never>(
           ],
         ),
       ],
-      footer: [
+      footer: attributes => [
         h.button(
           [
+            ...attributes.close,
             h.Class(
               buttonClassName('bg-primary text-primary-foreground px-2.5 h-8'),
             ),
@@ -289,16 +301,21 @@ export const DialogStickyFooter = <Message = never>(
       description:
         'This dialog has a sticky footer that stays visible while the content scrolls.',
       body: scrollableBody(),
-      footer: [
-        html<never>().button(
-          [
-            html<never>().Class(
-              buttonClassName('border-border bg-background px-2.5 h-8'),
-            ),
-          ],
-          ['Close'],
-        ),
-      ],
+      footer: attributes => {
+        const h = html<Message>()
+
+        return [
+          h.button(
+            [
+              ...attributes.close,
+              h.Class(
+                buttonClassName('border-border bg-background px-2.5 h-8'),
+              ),
+            ],
+            ['Close'],
+          ),
+        ]
+      },
     },
     controller,
   )
@@ -321,7 +338,8 @@ export const DialogRtl = <Message = never>(
         username: 'اسم المستخدم',
         dir: 'rtl',
       }),
-      footer: footerButtons({ cancel: 'إلغاء', save: 'حفظ التغييرات' }),
+      footer: attributes =>
+        footerButtons(attributes, { cancel: 'إلغاء', save: 'حفظ التغييرات' }),
     },
     controller,
   )

@@ -2,7 +2,13 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import * as Menubar from './index'
-import type { MenubarMenuDescriptor, MenuItemDescriptor } from './index'
+import type {
+  MenuItemDescriptor,
+  MenubarMenuDescriptor,
+  MenubarMenuCheckedChange,
+  MenubarMenuItemPress,
+  MenubarMenuRadioValueChange,
+} from './index'
 
 type ExampleItem = MenuItemDescriptor &
   Readonly<{
@@ -21,6 +27,64 @@ type ExampleDefinition = Readonly<{
   view: () => Html
 }>
 
+const defaultRadioValuesFor = (
+  items: ReadonlyArray<ExampleItem>,
+): Readonly<Record<string, string>> =>
+  items.reduce<Record<string, string>>((values, item) => {
+    if (item.kind !== 'radio' || item.isChecked !== true) {
+      return values
+    }
+
+    const groupValue = item.radioGroupValue ?? 'default'
+
+    if (values[groupValue] === undefined) {
+      values[groupValue] = item.value
+    }
+
+    return values
+  }, {})
+
+const itemsWithState = <Message>(
+  menuId: string,
+  items: ReadonlyArray<ExampleItem>,
+  controller?: MenubarExampleController<Message>,
+): ReadonlyArray<ExampleItem> => {
+  if (controller === undefined) {
+    return items
+  }
+
+  const defaultRadioValues = defaultRadioValuesFor(items)
+
+  return items.map(item => {
+    if (item.kind === 'checkbox') {
+      return {
+        ...item,
+        isChecked:
+          controller.checkedStateFor?.(
+            menuId,
+            item.value,
+            item.isChecked === true,
+          ) ?? item.isChecked === true,
+      }
+    }
+
+    if (item.kind === 'radio') {
+      const groupValue = item.radioGroupValue ?? 'default'
+      const defaultValue = defaultRadioValues[groupValue]
+      const selectedValue =
+        controller.radioValueFor?.(menuId, groupValue, defaultValue) ??
+        defaultValue
+
+      return {
+        ...item,
+        isChecked: selectedValue === item.value,
+      }
+    }
+
+    return item
+  })
+}
+
 export type MenubarExampleController<Message> = Readonly<{
   openMenuValueFor: (
     menubarId: string,
@@ -38,6 +102,25 @@ export type MenubarExampleController<Message> = Readonly<{
   onOpenMenuValueChange: (
     menubarId: string,
     change: Readonly<{ value?: string | undefined }>,
+  ) => Message
+  onItemPress?: (menuId: string, press: MenubarMenuItemPress) => Message
+  checkedStateFor?: (
+    menuId: string,
+    itemValue: string,
+    defaultChecked: boolean,
+  ) => boolean
+  radioValueFor?: (
+    menuId: string,
+    groupValue: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  onCheckedChange?: (
+    menuId: string,
+    change: MenubarMenuCheckedChange,
+  ) => Message
+  onRadioValueChange?: (
+    menuId: string,
+    change: MenubarMenuRadioValueChange,
   ) => Message
 }>
 
@@ -343,10 +426,17 @@ const menubarExampleWithController = <Message = never>(
   const openMenuValue =
     controller?.openMenuValueFor(id, defaultOpenMenuValue) ??
     defaultOpenMenuValue
+  const resolvedMenus = menus.map(menu => ({
+    ...menu,
+    items: itemsWithState(id, menu.items, controller),
+  }))
+  const onCheckedChange = controller?.onCheckedChange
+  const onRadioValueChange = controller?.onRadioValueChange
+  const onItemPress = controller?.onItemPress
 
   return Menubar.view<Message>({
     id,
-    menus: menus.map(menu => ({
+    menus: resolvedMenus.map(menu => ({
       ...menu,
       open: menu.value === openMenuValue,
       highlightedValue: menu.items.find(item => item.parentValue === undefined)
@@ -382,6 +472,23 @@ const menubarExampleWithController = <Message = never>(
             controller.onOpenMenuValueChange(id, {
               value: change.open ? change.value : undefined,
             }),
+        }),
+    ...(onItemPress === undefined
+      ? {}
+      : {
+          onItemPress: (press: MenubarMenuItemPress) => onItemPress(id, press),
+        }),
+    ...(onCheckedChange === undefined
+      ? {}
+      : {
+          onCheckedChange: (change: MenubarMenuCheckedChange) =>
+            onCheckedChange(id, change),
+        }),
+    ...(onRadioValueChange === undefined
+      ? {}
+      : {
+          onRadioValueChange: (change: MenubarMenuRadioValueChange) =>
+            onRadioValueChange(id, change),
         }),
     ...options,
     toMenuView: attributes =>

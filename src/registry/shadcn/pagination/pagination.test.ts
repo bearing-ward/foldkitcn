@@ -245,12 +245,38 @@ describe('shadcn/pagination view', () => {
         ),
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
           'id',
-          'select-rows-per-page',
+          'select-rows-per-page-trigger',
         ),
         Scene.expect(Scene.selector('[data-slot="pagination"]')).toHaveAttr(
           'class',
           Pagination.paginationClassName({ className: 'mx-0 w-auto' }),
         ),
+        Scene.expectAll(
+          Scene.all.selector('[data-slot="pagination-rows"] li'),
+        ).toHaveCount(25),
+        Scene.expect(
+          Scene.selector('[data-slot="pagination-status"]'),
+        ).toHaveText('Showing 25 of 25 rows'),
+      )
+      Scene.scene(
+        {
+          update,
+          view: view(
+            PaginationIconsOnly<string>({
+              isRowsPerPageOpen: false,
+              rowsPerPageValue: '10',
+              onRowsPerPageOpenChange: () => 'changed-open',
+              onRowsPerPageValueChange: () => 'changed-value',
+            }),
+          ),
+        },
+        Scene.with(initialModel),
+        Scene.expectAll(
+          Scene.all.selector('[data-slot="pagination-rows"] li'),
+        ).toHaveCount(10),
+        Scene.expect(
+          Scene.selector('[data-slot="pagination-status"]'),
+        ).toHaveText('Showing 10 of 25 rows'),
       )
       Scene.scene(
         { update, view: view(PaginationRtl()) },

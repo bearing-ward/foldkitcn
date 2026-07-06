@@ -1485,6 +1485,7 @@ export const SidebarFooter = <Message = never>(
       Sidebar.Sidebar<Message>({
         id: 'sidebar-footer',
         open: sidebarIsOpen(controller),
+        collapsible: 'icon',
         children: [
           Sidebar.SidebarHeader<Message>({ children: [] }),
           Sidebar.SidebarContent<Message>({ children: [] }),
@@ -1494,21 +1495,51 @@ export const SidebarFooter = <Message = never>(
                 children: [
                   Sidebar.SidebarMenuItem<Message>({
                     children: [
-                      Sidebar.SidebarMenuButton<Message>({
-                        className:
-                          'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
-                        attributes: [
-                          h.AriaExpanded(false),
-                          h.AriaHasPopup('menu'),
-                        ],
-                        children: ['Username', icon('chevronUp', 'ml-auto')],
-                      }),
+                      controller === undefined
+                        ? Sidebar.SidebarMenuButton<Message>({
+                            className:
+                              'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
+                            attributes: [
+                              h.AriaExpanded(false),
+                              h.AriaHasPopup('menu'),
+                            ],
+                            children: [
+                              demoAvatar(),
+                              h.span([], ['Username']),
+                              icon('chevronUp', 'ml-auto'),
+                            ],
+                          })
+                        : sidebarDropdown<Message>({
+                            id: 'sidebar-footer-user-menu',
+                            controller,
+                            side: 'top',
+                            align: 'end',
+                            contentClassName: 'min-w-48 rounded-lg',
+                            items: [
+                              { value: 'account', label: 'Account' },
+                              { value: 'billing', label: 'Billing' },
+                              { value: 'settings', label: 'Settings' },
+                              { value: 'sign-out', label: 'Sign out' },
+                            ],
+                            trigger: attributes =>
+                              Sidebar.SidebarMenuButton<Message>({
+                                className:
+                                  'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
+                                attributes: [...attributes.trigger],
+                                children: [
+                                  demoAvatar(),
+                                  h.span([], ['Username']),
+                                  icon('chevronUp', 'ml-auto'),
+                                ],
+                              }),
+                          }),
                     ],
                   }),
                 ],
               }),
             ],
           }),
+          sidebarRail(controller),
         ],
       }),
       Sidebar.SidebarInset<Message>({
@@ -1523,10 +1554,12 @@ export const SidebarFooter = <Message = never>(
   })
 }
 
-export const SidebarGroupAction = (): Html => {
-  const h = html<never>()
+export const SidebarGroupAction = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
       h.div(
         [
@@ -1536,29 +1569,32 @@ export const SidebarGroupAction = (): Html => {
         ],
         [],
       ),
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-group-action',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),
+                  Sidebar.SidebarGroupLabel<Message>({
+                    children: ['Projects'],
+                  }),
                   ' ',
-                  Sidebar.SidebarGroupAction<never>({
+                  Sidebar.SidebarGroupAction<Message>({
                     attributes: [h.Title('Add Project')],
                     children: [
                       icon('plus'),
                       h.span([h.Class('sr-only')], ['Add Project']),
                     ],
                   }),
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: [
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 children: [
                                   frameIcon(),
@@ -1567,9 +1603,9 @@ export const SidebarGroupAction = (): Html => {
                               }),
                             ],
                           }),
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 children: [
                                   pieChartIcon(),
@@ -1578,9 +1614,9 @@ export const SidebarGroupAction = (): Html => {
                               }),
                             ],
                           }),
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 children: [mapIcon(), h.span([], ['Travel'])],
                               }),
@@ -1600,28 +1636,42 @@ export const SidebarGroupAction = (): Html => {
   })
 }
 
-export const SidebarGroupCollapsible = (): Html => {
-  const h = html<never>()
+export const SidebarGroupCollapsible = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
+  const panelId = 'group:help'
+  const open = sidebarPanelIsOpen(controller, panelId, true)
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-group-collapsible',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Collapsible.view<never>({
-                open: true,
+              Collapsible.view<Message>({
+                open,
                 className: 'group/collapsible',
                 panel: {
-                  id: 'base-ui-_r_0_',
+                  id: 'sidebar-group-collapsible-help',
                   label: 'Help',
                 },
+                ...(controller === undefined
+                  ? {}
+                  : {
+                      onOpenChange: change =>
+                        controller.onPanelOpenChange({
+                          panelId,
+                          open: change.open,
+                        }),
+                    }),
                 toView: attributes =>
                   h.div(
                     [...attributes.root],
                     [
-                      Sidebar.SidebarGroup<never>({
+                      Sidebar.SidebarGroup<Message>({
                         children: [
                           h.button(
                             [
@@ -1655,28 +1705,32 @@ export const SidebarGroupCollapsible = (): Html => {
                                   ),
                                 ],
                                 [
-                                  Sidebar.SidebarGroupContent<never>({
+                                  Sidebar.SidebarGroupContent<Message>({
                                     children: [
-                                      Sidebar.SidebarMenu<never>({
+                                      Sidebar.SidebarMenu<Message>({
                                         children: [
-                                          Sidebar.SidebarMenuItem<never>({
+                                          Sidebar.SidebarMenuItem<Message>({
                                             children: [
-                                              Sidebar.SidebarMenuButton<never>({
-                                                children: [
-                                                  lifeBuoyIcon(),
-                                                  'Support',
-                                                ],
-                                              }),
+                                              Sidebar.SidebarMenuButton<Message>(
+                                                {
+                                                  children: [
+                                                    lifeBuoyIcon(),
+                                                    'Support',
+                                                  ],
+                                                },
+                                              ),
                                             ],
                                           }),
-                                          Sidebar.SidebarMenuItem<never>({
+                                          Sidebar.SidebarMenuItem<Message>({
                                             children: [
-                                              Sidebar.SidebarMenuButton<never>({
-                                                children: [
-                                                  sendIcon(),
-                                                  'Feedback',
-                                                ],
-                                              }),
+                                              Sidebar.SidebarMenuButton<Message>(
+                                                {
+                                                  children: [
+                                                    sendIcon(),
+                                                    'Feedback',
+                                                  ],
+                                                },
+                                              ),
                                             ],
                                           }),
                                         ],
@@ -1748,8 +1802,10 @@ export const SidebarHeader = <Message = never>(
   })
 }
 
-export const SidebarMenuAction = (): Html => {
-  const h = html<never>()
+export const SidebarMenuAction = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
   const projects = [
     { name: 'Design Engineering', icon: frameIcon },
     { name: 'Sales & Marketing', icon: pieChartIcon },
@@ -1758,23 +1814,26 @@ export const SidebarMenuAction = (): Html => {
     { name: 'Feedback', icon: sendIcon },
   ] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-menu-action',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupLabel<Message>({
+                    children: ['Projects'],
+                  }),
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: projects.map(project =>
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 className:
                                   'group-has-[[data-state=open]]/menu-item:bg-sidebar-accent',
@@ -1783,16 +1842,48 @@ export const SidebarMenuAction = (): Html => {
                                   h.span([], [project.name]),
                                 ],
                               }),
-                              Sidebar.SidebarMenuAction<never>({
-                                attributes: [
-                                  h.AriaExpanded(false),
-                                  h.AriaHasPopup('menu'),
-                                ],
-                                children: [
-                                  icon('moreHorizontal'),
-                                  h.span([h.Class('sr-only')], ['More']),
-                                ],
-                              }),
+                              controller === undefined
+                                ? Sidebar.SidebarMenuAction<Message>({
+                                    attributes: [
+                                      h.AriaExpanded(false),
+                                      h.AriaHasPopup('menu'),
+                                    ],
+                                    children: [
+                                      icon('moreHorizontal'),
+                                      h.span([h.Class('sr-only')], ['More']),
+                                    ],
+                                  })
+                                : sidebarDropdown<Message>({
+                                    id: `menu-action:${project.name}`,
+                                    controller,
+                                    contentClassName: 'w-44 rounded-lg',
+                                    items: [
+                                      {
+                                        value: 'view-project',
+                                        label: 'View Project',
+                                      },
+                                      {
+                                        value: 'share-project',
+                                        label: 'Share Project',
+                                      },
+                                      {
+                                        value: 'archive-project',
+                                        label: 'Archive Project',
+                                      },
+                                    ],
+                                    trigger: attributes =>
+                                      Sidebar.SidebarMenuAction<Message>({
+                                        className: 'z-10',
+                                        attributes: [...attributes.trigger],
+                                        children: [
+                                          icon('moreHorizontal'),
+                                          h.span(
+                                            [h.Class('sr-only')],
+                                            [`More ${project.name}`],
+                                          ),
+                                        ],
+                                      }),
+                                  }),
                             ],
                           }),
                         ),
@@ -1809,8 +1900,10 @@ export const SidebarMenuAction = (): Html => {
   })
 }
 
-export const SidebarMenuBadge = (): Html => {
-  const h = html<never>()
+export const SidebarMenuBadge = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
   const projects = [
     { name: 'Design Engineering', icon: frameIcon, badge: '24' },
     { name: 'Sales & Marketing', icon: pieChartIcon, badge: '12' },
@@ -1819,23 +1912,26 @@ export const SidebarMenuBadge = (): Html => {
     { name: 'Feedback', icon: sendIcon, badge: '8' },
   ] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-menu-badge',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupLabel<Message>({
+                    children: ['Projects'],
+                  }),
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: projects.map(project =>
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 className:
                                   'group-has-[[data-state=open]]/menu-item:bg-sidebar-accent',
@@ -1844,7 +1940,7 @@ export const SidebarMenuBadge = (): Html => {
                                   h.span([], [project.name]),
                                 ],
                               }),
-                              Sidebar.SidebarMenuBadge<never>({
+                              Sidebar.SidebarMenuBadge<Message>({
                                 children: [project.badge],
                               }),
                             ],
@@ -1863,8 +1959,10 @@ export const SidebarMenuBadge = (): Html => {
   })
 }
 
-export const SidebarMenuCollapsible = (): Html => {
-  const h = html<never>()
+export const SidebarMenuCollapsible = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
 
   const items = [
     {
@@ -1876,34 +1974,45 @@ export const SidebarMenuCollapsible = (): Html => {
     { title: 'Architecture', items: [] },
   ] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-menu-collapsible',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: items.map((item, index) =>
-                          Collapsible.view<never>({
-                            open: index === 0,
+                          Collapsible.view<Message>({
+                            open: sidebarPanelIsOpen(
+                              controller,
+                              `menu:${item.title}`,
+                              index === 0,
+                            ),
                             className: 'group/collapsible',
-                            panel:
-                              index === 0
-                                ? {
-                                    id: 'base-ui-_r_0_',
-                                    label: item.title,
-                                  }
-                                : undefined,
+                            panel: {
+                              id: `sidebar-menu-collapsible-${index}`,
+                              label: item.title,
+                            },
+                            ...(controller === undefined
+                              ? {}
+                              : {
+                                  onOpenChange: change =>
+                                    controller.onPanelOpenChange({
+                                      panelId: `menu:${item.title}`,
+                                      open: change.open,
+                                    }),
+                                }),
                             toView: attributes =>
                               h.div(
                                 [...attributes.root],
                                 [
-                                  Sidebar.SidebarMenuItem<never>({
+                                  Sidebar.SidebarMenuItem<Message>({
                                     children: [
                                       h.button(
                                         [
@@ -1937,13 +2046,13 @@ export const SidebarMenuCollapsible = (): Html => {
                                               ),
                                             ],
                                             [
-                                              Sidebar.SidebarMenuSub<never>({
+                                              Sidebar.SidebarMenuSub<Message>({
                                                 children: item.items.map(
                                                   subItem =>
-                                                    Sidebar.SidebarMenuSubItem<never>(
+                                                    Sidebar.SidebarMenuSubItem<Message>(
                                                       {
                                                         children: [
-                                                          Sidebar.SidebarMenuSubButton<never>(
+                                                          Sidebar.SidebarMenuSubButton<Message>(
                                                             {
                                                               href: '#',
                                                               children: [
@@ -1981,8 +2090,10 @@ export const SidebarMenuCollapsible = (): Html => {
   })
 }
 
-export const SidebarMenuSub = (): Html => {
-  const h = html<never>()
+export const SidebarMenuSub = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
 
   const items = [
     {
@@ -1991,68 +2102,44 @@ export const SidebarMenuSub = (): Html => {
     },
     {
       title: 'Build Your Application',
-      items: [
-        'Routing',
-        'Data Fetching',
-        'Rendering',
-        'Caching',
-        'Styling',
-        'Optimizing',
-        'Configuring',
-        'Testing',
-        'Authentication',
-        'Deploying',
-        'Upgrading',
-        'Examples',
-      ],
+      items: ['Routing', 'Data Fetching', 'Rendering', 'Styling', 'Testing'],
     },
     {
       title: 'API Reference',
-      items: [
-        'Components',
-        'File Conventions',
-        'Functions',
-        'next.config.js Options',
-        'CLI',
-        'Edge Runtime',
-      ],
+      items: ['Components', 'File Conventions', 'Functions', 'CLI'],
     },
     {
       title: 'Architecture',
-      items: [
-        'Accessibility',
-        'Fast Refresh',
-        'Next.js Compiler',
-        'Supported Browsers',
-        'Turbopack',
-      ],
+      items: ['Accessibility', 'Fast Refresh', 'Supported Browsers'],
     },
   ] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-menu-sub',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: items.map(item =>
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 children: [h.span([], [item.title])],
                               }),
-                              Sidebar.SidebarMenuSub<never>({
+                              Sidebar.SidebarMenuSub<Message>({
+                                className: 'max-h-16 overflow-auto',
                                 children: item.items.map(subItem =>
-                                  Sidebar.SidebarMenuSubItem<never>({
+                                  Sidebar.SidebarMenuSubItem<Message>({
                                     children: [
-                                      Sidebar.SidebarMenuSubButton<never>({
+                                      Sidebar.SidebarMenuSubButton<Message>({
                                         href: '#',
                                         children: [h.span([], [subItem])],
                                       }),
@@ -2076,8 +2163,10 @@ export const SidebarMenuSub = (): Html => {
   })
 }
 
-export const SidebarMenu = (): Html => {
-  const h = html<never>()
+export const SidebarMenu = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
+  const h = html<Message>()
   const projects = [
     { name: 'Design Engineering', icon: frameIcon },
     { name: 'Sales & Marketing', icon: pieChartIcon },
@@ -2086,23 +2175,26 @@ export const SidebarMenu = (): Html => {
     { name: 'Feedback', icon: sendIcon },
   ] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-menu',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupLabel<Message>({
+                    children: ['Projects'],
+                  }),
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: projects.map(project =>
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuButton<never>({
+                              Sidebar.SidebarMenuButton<Message>({
                                 href: '#',
                                 children: [
                                   project.icon(),
@@ -2125,26 +2217,31 @@ export const SidebarMenu = (): Html => {
   })
 }
 
-export const SidebarRsc = (): Html => {
+export const SidebarRsc = <Message = never>(
+  controller?: SidebarController<Message>,
+): Html => {
   const widths = ['70%', '63%', '71%', '64%', '61%'] as const
 
-  return Sidebar.SidebarProvider<never>({
+  return Sidebar.SidebarProvider<Message>({
     children: [
-      Sidebar.Sidebar<never>({
+      Sidebar.Sidebar<Message>({
         id: 'sidebar-rsc',
+        open: sidebarIsOpen(controller),
         children: [
-          Sidebar.SidebarContent<never>({
+          Sidebar.SidebarContent<Message>({
             children: [
-              Sidebar.SidebarGroup<never>({
+              Sidebar.SidebarGroup<Message>({
                 children: [
-                  Sidebar.SidebarGroupLabel<never>({ children: ['Projects'] }),
-                  Sidebar.SidebarGroupContent<never>({
+                  Sidebar.SidebarGroupLabel<Message>({
+                    children: ['Projects'],
+                  }),
+                  Sidebar.SidebarGroupContent<Message>({
                     children: [
-                      Sidebar.SidebarMenu<never>({
+                      Sidebar.SidebarMenu<Message>({
                         children: widths.map(width =>
-                          Sidebar.SidebarMenuItem<never>({
+                          Sidebar.SidebarMenuItem<Message>({
                             children: [
-                              Sidebar.SidebarMenuSkeleton<never>({
+                              Sidebar.SidebarMenuSkeleton<Message>({
                                 showIcon: true,
                                 width,
                               }),

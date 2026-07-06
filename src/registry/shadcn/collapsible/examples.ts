@@ -1,6 +1,7 @@
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { TabsValueChange } from '../tabs/index'
 import { view as Collapsible } from './index'
 import type { CollapsibleOpenChange } from './index'
 
@@ -12,6 +13,11 @@ type FileTreeItem = Readonly<
 export type CollapsibleExampleController<Message> = Readonly<{
   openFor: (exampleId: string, defaultOpen: boolean) => boolean
   onOpenChange: (exampleId: string, change: CollapsibleOpenChange) => Message
+  valueFor: (
+    tabsId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
+  onValueChange: (tabsId: string, change: TabsValueChange) => Message
 }>
 
 const collapsibleOpen = <Message>(
@@ -19,6 +25,12 @@ const collapsibleOpen = <Message>(
   exampleId: string,
   defaultOpen: boolean,
 ): boolean => controller?.openFor(exampleId, defaultOpen) ?? defaultOpen
+
+const collapsibleTabsValue = <Message>(
+  controller: CollapsibleExampleController<Message> | undefined,
+  tabsId: string,
+  defaultValue: string,
+): string => controller?.valueFor(tabsId, defaultValue) ?? defaultValue
 
 const card = (children: ReadonlyArray<Html>): Html => {
   const h = html<never>()
@@ -378,6 +390,14 @@ const fileTree: ReadonlyArray<FileTreeItem> = [
   { name: 'package.json', kind: 'file' },
 ]
 
+const fileTreeOutline = [
+  'Project structure',
+  'Shared UI primitives',
+  'Authentication flows',
+  'Editor workspace',
+  'Build and package outputs',
+] as const
+
 const fileTreeItem = <Message>(
   item: FileTreeItem,
   controller: CollapsibleExampleController<Message> | undefined,
@@ -457,6 +477,15 @@ export const CollapsibleFileTree = <Message = never>(
   controller?: CollapsibleExampleController<Message>,
 ): Html => {
   const h = html<Message>()
+  const activeView = collapsibleTabsValue(
+    controller,
+    'collapsible-file-tree-tabs',
+    'explorer',
+  )
+  const tabButtonClassName = (value: string): string =>
+    value === activeView
+      ? 'rounded-md bg-background px-2 py-1 text-sm shadow-sm'
+      : 'rounded-md px-2 py-1 text-sm text-muted-foreground'
 
   return h.div(
     [
@@ -469,16 +498,52 @@ export const CollapsibleFileTree = <Message = never>(
         [h.Class('mb-2 grid grid-cols-2 gap-1 rounded-lg bg-muted p-[3px]')],
         [
           h.button(
-            [h.Class('rounded-md bg-background px-2 py-1 text-sm')],
+            [
+              h.Class(tabButtonClassName('explorer')),
+              ...(controller === undefined
+                ? []
+                : [
+                    h.OnClick(
+                      controller.onValueChange('collapsible-file-tree-tabs', {
+                        value: 'explorer',
+                        reason: 'none',
+                        activationDirection: 'none',
+                      }),
+                    ),
+                  ]),
+            ],
             ['Explorer'],
           ),
-          h.button([h.Class('rounded-md px-2 py-1 text-sm')], ['Outline']),
+          h.button(
+            [
+              h.Class(tabButtonClassName('outline')),
+              ...(controller === undefined
+                ? []
+                : [
+                    h.OnClick(
+                      controller.onValueChange('collapsible-file-tree-tabs', {
+                        value: 'outline',
+                        reason: 'none',
+                        activationDirection: 'none',
+                      }),
+                    ),
+                  ]),
+            ],
+            ['Outline'],
+          ),
         ],
       ),
-      h.div(
-        [h.Class('flex flex-col gap-1')],
-        fileTree.map(item => fileTreeItem(item, controller, item.name)),
-      ),
+      activeView === 'outline'
+        ? h.div(
+            [h.Class('flex flex-col gap-2')],
+            fileTreeOutline.map(item =>
+              h.div([h.Class('rounded-md border px-3 py-2 text-sm')], [item]),
+            ),
+          )
+        : h.div(
+            [h.Class('flex flex-col gap-1')],
+            fileTree.map(item => fileTreeItem(item, controller, item.name)),
+          ),
     ],
   )
 }

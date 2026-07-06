@@ -92,6 +92,57 @@ const localCard = (
   )
 }
 
+const previewIcon = (): Html => {
+  const h = html<never>()
+
+  return h.svg(
+    [
+      h.Attribute('data-icon', 'preview'),
+      h.Attribute('viewBox', '0 0 24 24'),
+      h.Attribute('fill', 'none'),
+      h.Attribute('stroke', 'currentColor'),
+      h.Attribute('stroke-width', '2'),
+      h.Attribute('stroke-linecap', 'round'),
+      h.Attribute('stroke-linejoin', 'round'),
+      h.AriaHidden(true),
+    ],
+    [
+      h.rect(
+        [
+          h.Attribute('x', '3'),
+          h.Attribute('y', '4'),
+          h.Attribute('width', '18'),
+          h.Attribute('height', '14'),
+          h.Attribute('rx', '2'),
+        ],
+        [],
+      ),
+      h.path([h.Attribute('d', 'M8 20h8')], []),
+    ],
+  )
+}
+
+const codeIcon = (): Html => {
+  const h = html<never>()
+
+  return h.svg(
+    [
+      h.Attribute('data-icon', 'code'),
+      h.Attribute('viewBox', '0 0 24 24'),
+      h.Attribute('fill', 'none'),
+      h.Attribute('stroke', 'currentColor'),
+      h.Attribute('stroke-width', '2'),
+      h.Attribute('stroke-linecap', 'round'),
+      h.Attribute('stroke-linejoin', 'round'),
+      h.AriaHidden(true),
+    ],
+    [
+      h.path([h.Attribute('d', 'm9 18-6-6 6-6')], []),
+      h.path([h.Attribute('d', 'm15 6 6 6-6 6')], []),
+    ],
+  )
+}
+
 const tabsWithCards = <Message = never>(
   dir?: string,
   labels: Readonly<Record<string, string>> = defaultAnalyticsLabels,
@@ -179,6 +230,10 @@ export const TabsIcons = <Message = never>(
       { id: 'preview-tab', value: 'preview', label: 'Preview' },
       { id: 'code-tab', value: 'code', label: 'Code' },
     ],
+    panels: [
+      { id: 'preview-panel', value: 'preview', label: 'Preview' },
+      { id: 'code-panel', value: 'code', label: 'Code' },
+    ],
     ...(controller === undefined
       ? {}
       : { onValueChange: change => controller.onValueChange('icons', change) }),
@@ -191,17 +246,26 @@ export const TabsIcons = <Message = never>(
             [
               h.button(
                 [...(attributes.tabs[0]?.root ?? [])],
-                [
-                  h.span([h.DataAttribute('icon', 'inline-start')], []),
-                  'Preview',
-                ],
+                [previewIcon(), 'Preview'],
               ),
               h.button(
                 [...(attributes.tabs[1]?.root ?? [])],
-                [h.span([h.DataAttribute('icon', 'inline-start')], []), 'Code'],
+                [codeIcon(), 'Code'],
               ),
             ],
           ),
+          ...attributes.panels
+            .filter(panel => panel.isMounted)
+            .map(panel =>
+              h.div(
+                [...panel.root],
+                [
+                  panel.panel.value === 'preview'
+                    ? 'Interactive preview surface'
+                    : 'Installable example code',
+                ],
+              ),
+            ),
         ],
       ),
   })

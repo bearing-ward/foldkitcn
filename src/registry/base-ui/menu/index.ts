@@ -648,6 +648,11 @@ const backdropAttributes = <Message>(
         ...(isOpen ? [] : [h.Hidden(true)]),
         ...openStateDataAttributes(h, isOpen),
         ...transitionDataAttributes(h, config.transitionStatus),
+        h.Style({
+          position: 'fixed',
+          inset: '0',
+          zIndex: '49',
+        }),
         ...optionalMessageAttribute(
           openMessage(config, openChange(false, 'outside-press', parentValue)),
           message => h.OnClick(message),
@@ -835,7 +840,9 @@ const itemAttributes = <Message>(
     h.OnClick(message),
   ),
   ...optionalMessageAttribute(
-    highlightMessage(config, item, 'item-hover'),
+    itemKind(item) === 'submenu-trigger'
+      ? openMessage(config, openChange(true, 'submenu-open', item.value))
+      : highlightMessage(config, item, 'item-hover'),
     message => h.OnMouseEnter(message),
   ),
   ...optionalMessageAttribute(itemClickMessage(config, item), message =>

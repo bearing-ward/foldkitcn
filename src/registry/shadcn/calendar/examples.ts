@@ -12,7 +12,10 @@ type CalendarExampleDefinition = Readonly<{
 
 export type CalendarExampleController<Message> = Readonly<{
   selectedDate?: string
+  visibleMonth?: string
   onSelectDate?: (change: CalendarSelectChange) => Message
+  onPreviousMonth?: Message
+  onNextMonth?: Message
 }>
 
 const selectedDateConfig = (
@@ -46,34 +49,47 @@ const bookedDates: ReadonlyArray<string> = [
 
 export const CalendarDemo = <Message = never>({
   selectedDate = '2025-01-06',
+  visibleMonth = '2025-01',
   onSelectDate,
+  onPreviousMonth,
+  onNextMonth,
 }: CalendarExampleController<Message> = {}): Html =>
   Calendar<Message>({
     mode: 'single',
-    visibleMonth: '2025-01',
+    visibleMonth,
     ...selectedDateConfig(selectedDate),
     today: '2025-01-06',
     className: 'rounded-lg border',
     captionLayout: 'dropdown',
     ...selectHandlerConfig(onSelectDate),
+    ...(onPreviousMonth === undefined ? {} : { onPreviousMonth }),
+    ...(onNextMonth === undefined ? {} : { onNextMonth }),
   })
 
 export const CalendarBasic = <Message = never>({
   selectedDate,
+  visibleMonth = '2025-01',
   onSelectDate,
+  onPreviousMonth,
+  onNextMonth,
 }: CalendarExampleController<Message> = {}): Html =>
   Calendar<Message>({
     mode: 'single',
-    visibleMonth: '2025-01',
+    visibleMonth,
     ...selectedDateConfig(selectedDate),
     today: '2025-01-06',
     className: 'rounded-lg border',
     ...selectHandlerConfig(onSelectDate),
+    ...(onPreviousMonth === undefined ? {} : { onPreviousMonth }),
+    ...(onNextMonth === undefined ? {} : { onNextMonth }),
   })
 
 export const CalendarBookedDates = <Message = never>({
   selectedDate = '2025-01-06',
+  visibleMonth = '2025-01',
   onSelectDate,
+  onPreviousMonth,
+  onNextMonth,
 }: CalendarExampleController<Message> = {}): Html =>
   Card<Message>({
     className: 'mx-auto w-fit p-0',
@@ -83,11 +99,13 @@ export const CalendarBookedDates = <Message = never>({
         children: [
           Calendar<Message>({
             mode: 'single',
-            visibleMonth: '2025-01',
+            visibleMonth,
             ...selectedDateConfig(selectedDate),
             today: '2025-01-06',
             disabledDates: bookedDates,
             ...selectHandlerConfig(onSelectDate),
+            ...(onPreviousMonth === undefined ? {} : { onPreviousMonth }),
+            ...(onNextMonth === undefined ? {} : { onNextMonth }),
           }),
         ],
       }),
@@ -96,11 +114,14 @@ export const CalendarBookedDates = <Message = never>({
 
 export const CalendarRtl = <Message = never>({
   selectedDate = '2025-01-06',
+  visibleMonth = '2025-01',
   onSelectDate,
+  onPreviousMonth,
+  onNextMonth,
 }: CalendarExampleController<Message> = {}): Html =>
   Calendar<Message>({
     mode: 'single',
-    visibleMonth: '2025-01',
+    visibleMonth,
     ...selectedDateConfig(selectedDate),
     today: '2025-01-06',
     className: 'rounded-lg border [--cell-size:--spacing(9)]',
@@ -109,6 +130,8 @@ export const CalendarRtl = <Message = never>({
     locale: 'ar-SA',
     weekStartsOn: 6,
     ...selectHandlerConfig(onSelectDate),
+    ...(onPreviousMonth === undefined ? {} : { onPreviousMonth }),
+    ...(onNextMonth === undefined ? {} : { onNextMonth }),
   })
 
 export const calendarExampleViews: ReadonlyArray<CalendarExampleDefinition> = [

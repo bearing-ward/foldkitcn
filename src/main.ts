@@ -12,7 +12,7 @@ import {
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
-import { Command, Dom, Subscription } from 'foldkit'
+import { Command, Dom, Render, Subscription } from 'foldkit'
 import type { Document, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
@@ -74,13 +74,26 @@ import {
   carouselState,
   update as updateCarouselState,
 } from './registry/shadcn/carousel'
+import {
+  ClickedCalendarNextMonth,
+  ClickedCalendarPreviousMonth,
+  calendarState,
+  updateCalendarState,
+} from './registry/shadcn/calendar'
 import type { ComboboxValueChange } from './registry/shadcn/combobox'
 import { ContextMenuPoint } from './registry/base-ui/context-menu'
+import type {
+  MenuCheckedChange,
+  MenuRadioValueChange,
+} from './registry/base-ui/menu'
 import * as ToastPrimitive from './registry/base-ui/toast'
 import {
   ToastExampleMessage,
   type ToastExampleMessage as ToastExampleMessageType,
 } from './registry/base-ui/toast/examples'
+import {
+  BubbleExampleMessage,
+} from './registry/shadcn/bubble/examples'
 import {
   DataTableExampleMessage,
   type DataTableExampleMessage as DataTableExampleMessageType,
@@ -200,6 +213,7 @@ export const Model = S.Struct({
   liveExampleTogglePressedValues: S.Record(S.String, S.Boolean),
   liveExampleToggleGroupValues: S.Record(S.String, S.Array(S.String)),
   liveExampleCalendarSelectedDates: S.Record(S.String, S.String),
+  liveExampleCalendarVisibleMonths: S.Record(S.String, S.String),
   liveExampleCarouselSelectedIndexes: S.Record(S.String, S.Number),
   liveExampleResizableStates: S.Record(S.String, ResizableState),
   liveExampleCommandDialogOpenValues: S.Record(S.String, S.Boolean),
@@ -208,6 +222,8 @@ export const Model = S.Struct({
   liveExampleMenuOpenSubmenuValues: S.Record(S.String, S.Array(S.String)),
   liveExampleMenuContextPoints: S.Record(S.String, ContextMenuPoint),
   liveExampleMenuValues: S.Record(S.String, S.String),
+  liveExampleMenuCheckedValues: S.Record(S.String, S.Boolean),
+  liveExampleMenuRadioValues: S.Record(S.String, S.String),
   liveExampleDataTableStates: S.optional(
     S.Record(S.String, LiveExampleDataTableState),
   ),
@@ -247,6 +263,67 @@ const liveExampleControlStateKey = (
   exampleId: string,
   controlId: string,
 ): string => `${exampleId}#${controlId}`
+
+const checkboxTableRowControlIds = [
+  'row-1-checkbox',
+  'row-2-checkbox',
+  'row-3-checkbox',
+  'row-4-checkbox',
+] as const
+
+const checkboxTableSelectAllControlId = 'select-all-checkbox'
+
+const updatedCheckboxTableCheckedStates = (
+  states: Readonly<Record<string, string>>,
+  exampleId: string,
+  controlId: string,
+  checkedState: string,
+): Readonly<Record<string, string>> => {
+  if (controlId === checkboxTableSelectAllControlId) {
+    const nextRowState = checkedState === 'checked' ? 'checked' : 'unchecked'
+
+    return checkboxTableRowControlIds.reduce(
+      (nextStates, rowControlId) =>
+        EffectRecord.set(
+          nextStates,
+          liveExampleControlStateKey(exampleId, rowControlId),
+          nextRowState,
+        ),
+      EffectRecord.set(
+        states,
+        liveExampleControlStateKey(exampleId, checkboxTableSelectAllControlId),
+        checkedState,
+      ),
+    )
+  }
+
+  if (checkboxTableRowControlIds.includes(controlId as never)) {
+    return EffectRecord.set(
+      states,
+      liveExampleControlStateKey(exampleId, controlId),
+      checkedState,
+    )
+  }
+
+  return EffectRecord.set(
+    states,
+    liveExampleControlStateKey(exampleId, controlId),
+    checkedState,
+  )
+}
+
+const liveExampleMenuCheckedStateKey = (
+  exampleId: string,
+  menuId: string,
+  itemValue: string,
+): string =>
+  liveExampleControlStateKey(exampleId, `${menuId}#checked#${itemValue}`)
+
+const liveExampleMenuRadioStateKey = (
+  exampleId: string,
+  menuId: string,
+  groupValue: string,
+): string => liveExampleControlStateKey(exampleId, `${menuId}#radio#${groupValue}`)
 
 const updateLiveExampleMenuSubmenuValues = (
   values: ReadonlyArray<string>,
@@ -697,6 +774,9 @@ const updateLiveExampleToastState = (
 export const CompletedNavigateInternal = m('CompletedNavigateInternal')
 export const CompletedLoadExternal = m('CompletedLoadExternal')
 export const CompletedScrollToAnchor = m('CompletedScrollToAnchor')
+export const CompletedFocusLiveExampleMenu = m(
+  'CompletedFocusLiveExampleMenu',
+)
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
@@ -822,6 +902,18 @@ export const SelectedLiveExampleCalendarDate = m(
     date: S.String,
   },
 )
+export const ClickedLiveExampleCalendarPreviousMonth = m(
+  'ClickedLiveExampleCalendarPreviousMonth',
+  {
+    exampleId: S.String,
+  },
+)
+export const ClickedLiveExampleCalendarNextMonth = m(
+  'ClickedLiveExampleCalendarNextMonth',
+  {
+    exampleId: S.String,
+  },
+)
 export const GotLiveExampleCarouselMessage = m(
   'GotLiveExampleCarouselMessage',
   {
@@ -865,6 +957,15 @@ export const UpdatedLiveExampleMenuOpen = m('UpdatedLiveExampleMenuOpen', {
   open: S.Boolean,
   parentValue: S.optional(S.String),
 })
+export const UpdatedLiveExampleMenuChecked = m(
+  'UpdatedLiveExampleMenuChecked',
+  {
+    exampleId: S.String,
+    menuId: S.String,
+    itemValue: S.String,
+    checked: S.Boolean,
+  },
+)
 export const UpdatedLiveExampleMenuContextPoint = m(
   'UpdatedLiveExampleMenuContextPoint',
   {
@@ -879,6 +980,15 @@ export const SelectedLiveExampleMenuValue = m(
     exampleId: S.String,
     menuId: S.String,
     value: S.optional(S.String),
+  },
+)
+export const SelectedLiveExampleMenuRadioValue = m(
+  'SelectedLiveExampleMenuRadioValue',
+  {
+    exampleId: S.String,
+    menuId: S.String,
+    groupValue: S.String,
+    value: S.String,
   },
 )
 export const GotLiveExampleDataTableMessage = m(
@@ -903,6 +1013,10 @@ export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
     SonnerExampleMessage,
     ShadcnToastExampleMessage,
   ]),
+})
+export const GotLiveExampleBubbleMessage = m('GotLiveExampleBubbleMessage', {
+  exampleId: S.String,
+  message: BubbleExampleMessage,
 })
 export const UpdatedLiveExampleSidebarOpen = m(
   'UpdatedLiveExampleSidebarOpen',
@@ -952,6 +1066,12 @@ export const CompletedRemoveLiveExampleToast = m(
 export const PressedLiveExampleCommandDialogShortcut = m(
   'PressedLiveExampleCommandDialogShortcut',
 )
+export const PressedEscapeLiveExampleSurface = m(
+  'PressedEscapeLiveExampleSurface',
+)
+export const PressedPointerOutsideLiveExampleSurface = m(
+  'PressedPointerOutsideLiveExampleSurface',
+)
 export const UpdatedSearchQuery = m('UpdatedSearchQuery', { value: S.String })
 export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', {
   results: S.Array(PagefindSearchResult),
@@ -963,6 +1083,7 @@ export const Message = S.Union([
   CompletedNavigateInternal,
   CompletedLoadExternal,
   CompletedScrollToAnchor,
+  CompletedFocusLiveExampleMenu,
   ClickedLink,
   ChangedUrl,
   ClickedToggleMobileNavigation,
@@ -987,17 +1108,22 @@ export const Message = S.Union([
   UpdatedLiveExampleTogglePressed,
   UpdatedLiveExampleToggleGroupValues,
   SelectedLiveExampleCalendarDate,
+  ClickedLiveExampleCalendarPreviousMonth,
+  ClickedLiveExampleCalendarNextMonth,
   GotLiveExampleCarouselMessage,
   GotLiveExampleResizableMessage,
   ClickedOpenLiveExampleCommandDialog,
   UpdatedLiveExampleCommandDialogOpen,
   UpdatedLiveExampleOverlayOpen,
   UpdatedLiveExampleMenuOpen,
+  UpdatedLiveExampleMenuChecked,
   UpdatedLiveExampleMenuContextPoint,
   SelectedLiveExampleMenuValue,
+  SelectedLiveExampleMenuRadioValue,
   GotLiveExampleDataTableMessage,
   GotLiveExampleDatePickerMessage,
   GotLiveExampleToastMessage,
+  GotLiveExampleBubbleMessage,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
   SelectedLiveExampleSidebarValue,
@@ -1005,6 +1131,8 @@ export const Message = S.Union([
   CompletedTimeoutLiveExampleToast,
   CompletedRemoveLiveExampleToast,
   PressedLiveExampleCommandDialogShortcut,
+  PressedEscapeLiveExampleSurface,
+  PressedPointerOutsideLiveExampleSurface,
   UpdatedSearchQuery,
   ReceivedPagefindSearchResults,
   ClickedClearSearch,
@@ -1039,6 +1167,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleTogglePressedValues: {},
       liveExampleToggleGroupValues: {},
       liveExampleCalendarSelectedDates: {},
+      liveExampleCalendarVisibleMonths: {},
       liveExampleCarouselSelectedIndexes: {},
       liveExampleResizableStates: {},
       liveExampleCommandDialogOpenValues: {},
@@ -1047,6 +1176,8 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuOpenSubmenuValues: {},
       liveExampleMenuContextPoints: {},
       liveExampleMenuValues: {},
+      liveExampleMenuCheckedValues: {},
+      liveExampleMenuRadioValues: {},
       liveExampleDataTableStates: {},
       liveExampleDatePickerStates: {},
       liveExampleToastStates: {},
@@ -1083,6 +1214,21 @@ export const ScrollToAnchor = Command.define(
     yield* Dom.scrollIntoViewAfterPaint(target, { block: 'start' })
     yield* Dom.focus(target, { preventScroll: true, makeFocusable: true })
   }).pipe(Effect.ignore, Effect.as(CompletedScrollToAnchor())),
+)
+
+const FocusLiveExampleMenu = Command.define(
+  'FocusLiveExampleMenu',
+  { selector: S.String },
+  CompletedFocusLiveExampleMenu,
+)(({ selector }) =>
+  Effect.gen(function* () {
+    yield* Render.afterPaint
+    yield* Dom.focus(selector, { preventScroll: true, makeFocusable: true })
+  }).pipe(
+    Effect.ignore,
+    Effect.catchCause(() => Effect.void),
+    Effect.as(CompletedFocusLiveExampleMenu()),
+  ),
 )
 
 const commandsForUrlHash = (url: Url): ReadonlyArray<Command.Command<Message>> =>
@@ -1246,6 +1392,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       CompletedNavigateInternal: () => [model, []],
       CompletedLoadExternal: () => [model, []],
       CompletedScrollToAnchor: () => [model, []],
+      CompletedFocusLiveExampleMenu: () => [model, []],
       ClickedLink: ({ request }) =>
         M.value(request).pipe(
           withUpdateReturn,
@@ -1362,10 +1509,13 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         checkedState,
       }) => [
         evo(model, {
-          liveExampleCheckboxCheckedStates: EffectRecord.set(
-            liveExampleControlStateKey(exampleId, controlId),
-            checkedState,
-          ),
+          liveExampleCheckboxCheckedStates: currentStates =>
+            updatedCheckboxTableCheckedStates(
+              currentStates,
+              exampleId,
+              controlId,
+              checkedState,
+            ),
         }),
         [],
       ],
@@ -1445,6 +1595,46 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      ClickedLiveExampleCalendarPreviousMonth: ({ exampleId }) => {
+        const visibleMonth = pipe(
+          EffectRecord.get(model.liveExampleCalendarVisibleMonths, exampleId),
+          Option.getOrElse(() => '2025-01'),
+        )
+        const nextState = updateCalendarState(
+          calendarState({ visibleMonth }),
+          ClickedCalendarPreviousMonth(),
+        )
+
+        return [
+          evo(model, {
+            liveExampleCalendarVisibleMonths: EffectRecord.set(
+              exampleId,
+              nextState.visibleMonth,
+            ),
+          }),
+          [],
+        ]
+      },
+      ClickedLiveExampleCalendarNextMonth: ({ exampleId }) => {
+        const visibleMonth = pipe(
+          EffectRecord.get(model.liveExampleCalendarVisibleMonths, exampleId),
+          Option.getOrElse(() => '2025-01'),
+        )
+        const nextState = updateCalendarState(
+          calendarState({ visibleMonth }),
+          ClickedCalendarNextMonth(),
+        )
+
+        return [
+          evo(model, {
+            liveExampleCalendarVisibleMonths: EffectRecord.set(
+              exampleId,
+              nextState.visibleMonth,
+            ),
+          }),
+          [],
+        ]
+      },
       GotLiveExampleCarouselMessage: ({
         exampleId,
         message,
@@ -1570,6 +1760,20 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           [],
         ]
       },
+      UpdatedLiveExampleMenuChecked: ({
+        exampleId,
+        menuId,
+        itemValue,
+        checked,
+      }) => [
+        evo(model, {
+          liveExampleMenuCheckedValues: EffectRecord.set(
+            liveExampleMenuCheckedStateKey(exampleId, menuId, itemValue),
+            checked,
+          ),
+        }),
+        [],
+      ],
       UpdatedLiveExampleMenuContextPoint: ({ exampleId, menuId, point }) => [
         evo(model, {
           liveExampleMenuContextPoints: EffectRecord.set(
@@ -1584,6 +1788,24 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           liveExampleMenuValues: EffectRecord.set(
             liveExampleControlStateKey(exampleId, menuId),
             value ?? '',
+          ),
+        }),
+        [
+          FocusLiveExampleMenu({
+            selector: `#${CSS.escape(value === undefined ? menuId : `${menuId}-popup`)}`,
+          }),
+        ],
+      ],
+      SelectedLiveExampleMenuRadioValue: ({
+        exampleId,
+        menuId,
+        groupValue,
+        value,
+      }) => [
+        evo(model, {
+          liveExampleMenuRadioValues: EffectRecord.set(
+            liveExampleMenuRadioStateKey(exampleId, menuId, groupValue),
+            value,
           ),
         }),
         [],
@@ -1684,6 +1906,32 @@ export const update = (model: Model, message: Message): UpdateReturn =>
             ...commands,
             ...scheduleLiveExampleToastLifecycle(state, nextState, exampleId),
           ],
+        ]
+      },
+      GotLiveExampleBubbleMessage: ({ exampleId, message }) => {
+        const state = pipe(
+          EffectRecord.get(model.liveExampleToastStates, exampleId),
+          Option.getOrElse(() => initialLiveExampleToastState(exampleId)),
+        )
+        const nextState = M.value(message).pipe(
+          M.withReturnType<ToastPrimitive.ToastState>(),
+          M.tagsExhaustive({
+            ClickedBubbleReply: ({ reply }) =>
+              showToast(state, {
+                title: 'Reply selected',
+                description: reply,
+                type: 'success',
+                timeout: 5000,
+                height: 84,
+              }),
+          }),
+        )
+
+        return [
+          evo(model, {
+            liveExampleToastStates: EffectRecord.set(exampleId, nextState),
+          }),
+          scheduleLiveExampleToastLifecycle(state, nextState, exampleId),
         ]
       },
       UpdatedLiveExampleSidebarOpen: ({ exampleId, open }) => [
@@ -1800,6 +2048,27 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           [],
         ]
       },
+      PressedEscapeLiveExampleSurface: () => [
+        evo(model, {
+          liveExampleCommandDialogOpenValues: () => ({}),
+          liveExampleOverlayOpenValues: () => ({}),
+          liveExampleMenuOpenValues: () => ({}),
+          liveExampleMenuOpenSubmenuValues: () => ({}),
+          liveExampleMenuValues: () => ({}),
+        }),
+        [],
+      ],
+      PressedPointerOutsideLiveExampleSurface: () => [
+        evo(model, {
+          liveExampleCommandDialogOpenValues: () => ({}),
+          liveExampleOverlayOpenValues: () => ({}),
+          liveExampleMenuContextPoints: () => ({}),
+          liveExampleMenuOpenValues: () => ({}),
+          liveExampleMenuOpenSubmenuValues: () => ({}),
+          liveExampleMenuValues: () => ({}),
+        }),
+        [],
+      ],
       UpdatedSearchQuery: ({ value }) => {
         if (value === model.searchQuery) {
           return [model, []]
@@ -1852,10 +2121,81 @@ const isCommandComponentRoute = (route: AppRoute): boolean =>
   route.namespace === 'shadcn' &&
   route.slug === 'command'
 
+const isComponentDetailRoute = (route: AppRoute): boolean =>
+  route._tag === 'ComponentDetail'
+
 const isCommandDialogShortcut = (event: KeyboardEvent): boolean =>
   (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'j'
 
 export const subscriptions = Subscription.make<Model, Message>()(entry => ({
+  liveExampleEscape: entry(
+    { isComponentDetailRoute: S.Boolean },
+    {
+      modelToDependencies: model => ({
+        isComponentDetailRoute: isComponentDetailRoute(model.route),
+      }),
+      dependenciesToStream: ({ isComponentDetailRoute }) =>
+        Stream.when(
+          Stream.callback<Message>(queue =>
+            Effect.acquireRelease(
+              Effect.sync(() => {
+                const handler = (event: KeyboardEvent) => {
+                  if (event.key === 'Escape' && event.shiftKey !== true) {
+                    Queue.offerUnsafe(queue, PressedEscapeLiveExampleSurface())
+                  }
+                }
+                document.addEventListener('keydown', handler, {
+                  capture: true,
+                })
+                return handler
+              }),
+              handler =>
+                Effect.sync(() =>
+                  document.removeEventListener('keydown', handler, {
+                    capture: true,
+                  }),
+                ),
+            ).pipe(Effect.flatMap(() => Effect.never)),
+          ),
+          Effect.sync(() => isComponentDetailRoute),
+        ),
+    },
+  ),
+  liveExampleOutsidePointer: entry(
+    { isComponentDetailRoute: S.Boolean },
+    {
+      modelToDependencies: model => ({
+        isComponentDetailRoute: isComponentDetailRoute(model.route),
+      }),
+      dependenciesToStream: ({ isComponentDetailRoute }) =>
+        Stream.when(
+          Stream.callback<Message>(queue =>
+            Effect.acquireRelease(
+              Effect.sync(() => {
+                const handler = (event: PointerEvent) => {
+                  if (
+                    event.target instanceof Element &&
+                    event.target.closest('.live-example-preview') === null
+                  ) {
+                    Queue.offerUnsafe(
+                      queue,
+                      PressedPointerOutsideLiveExampleSurface(),
+                    )
+                  }
+                }
+                document.addEventListener('pointerdown', handler)
+                return handler
+              }),
+              handler =>
+                Effect.sync(() =>
+                  document.removeEventListener('pointerdown', handler),
+                ),
+            ).pipe(Effect.flatMap(() => Effect.never)),
+          ),
+          Effect.sync(() => isComponentDetailRoute),
+        ),
+    },
+  ),
   commandDialogShortcut: entry(
     { isCommandComponentRoute: S.Boolean },
     {
@@ -2911,6 +3251,7 @@ const examplesSectionView = (
     Record<string, ReadonlyArray<string>>
   >,
   liveExampleCalendarSelectedDates: Readonly<Record<string, string>>,
+  liveExampleCalendarVisibleMonths: Readonly<Record<string, string>>,
   liveExampleCarouselSelectedIndexes: Readonly<Record<string, number>>,
   liveExampleResizableStates: Readonly<Record<string, ResizableState>>,
   liveExampleCommandDialogOpenValues: Readonly<Record<string, boolean>>,
@@ -2923,6 +3264,8 @@ const examplesSectionView = (
     Record<string, typeof ContextMenuPoint.Type>
   >,
   liveExampleMenuValues: Readonly<Record<string, string>>,
+  liveExampleMenuCheckedValues: Readonly<Record<string, boolean>>,
+  liveExampleMenuRadioValues: Readonly<Record<string, string>>,
   liveExampleDataTableStates: Readonly<
     Record<string, typeof LiveExampleDataTableState.Type>
   >,
@@ -3261,6 +3604,14 @@ const examplesSectionView = (
         EffectRecord.get(liveExampleCalendarSelectedDates, example.id),
         Option.getOrElse(() => defaultValue),
       ),
+    calendarVisibleMonthFor: (
+      example: ExampleDocsArtifact,
+      defaultValue: string,
+    ): string =>
+      pipe(
+        EffectRecord.get(liveExampleCalendarVisibleMonths, example.id),
+        Option.getOrElse(() => defaultValue),
+      ),
     onCalendarSelectDate: (
       example: ExampleDocsArtifact,
       change: Readonly<{ date: string }>,
@@ -3268,6 +3619,14 @@ const examplesSectionView = (
       SelectedLiveExampleCalendarDate({
         exampleId: example.id,
         date: change.date,
+      }),
+    onCalendarPreviousMonth: (example: ExampleDocsArtifact): Message =>
+      ClickedLiveExampleCalendarPreviousMonth({
+        exampleId: example.id,
+      }),
+    onCalendarNextMonth: (example: ExampleDocsArtifact): Message =>
+      ClickedLiveExampleCalendarNextMonth({
+        exampleId: example.id,
       }),
     carouselSelectedIndexFor: (
       example: ExampleDocsArtifact,
@@ -3401,6 +3760,32 @@ const examplesSectionView = (
         Option.filter(value => value !== ''),
         Option.getOrElse(() => defaultValue),
       ),
+    menuCheckedStateFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      itemValue: string,
+      defaultChecked: boolean,
+    ): boolean =>
+      pipe(
+        EffectRecord.get(
+          liveExampleMenuCheckedValues,
+          liveExampleMenuCheckedStateKey(example.id, menuId, itemValue),
+        ),
+        Option.getOrElse(() => defaultChecked),
+      ),
+    menuRadioValueFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      groupValue: string,
+      defaultValue: string | undefined,
+    ): string | undefined =>
+      pipe(
+        EffectRecord.get(
+          liveExampleMenuRadioValues,
+          liveExampleMenuRadioStateKey(example.id, menuId, groupValue),
+        ),
+        Option.getOrElse(() => defaultValue),
+      ),
     onMenuOpenChange: (
       example: ExampleDocsArtifact,
       menuId: string,
@@ -3426,6 +3811,28 @@ const examplesSectionView = (
         exampleId: example.id,
         menuId,
         point,
+      }),
+    onMenuCheckedChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      change: MenuCheckedChange,
+    ): Message =>
+      UpdatedLiveExampleMenuChecked({
+        exampleId: example.id,
+        menuId,
+        itemValue: change.value,
+        checked: change.checked,
+      }),
+    onMenuRadioValueChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      change: MenuRadioValueChange,
+    ): Message =>
+      SelectedLiveExampleMenuRadioValue({
+        exampleId: example.id,
+        menuId,
+        groupValue: change.groupValue,
+        value: change.value,
       }),
     onMenuValueChange: (
       example: ExampleDocsArtifact,
@@ -3484,6 +3891,14 @@ const examplesSectionView = (
         | ShadcnToastExampleMessageType,
     ): Message =>
       GotLiveExampleToastMessage({
+        exampleId: example.id,
+        message,
+      }),
+    onBubbleMessage: (
+      example: ExampleDocsArtifact,
+      message: typeof BubbleExampleMessage.Type,
+    ): Message =>
+      GotLiveExampleBubbleMessage({
         exampleId: example.id,
         message,
       }),
@@ -3805,6 +4220,7 @@ const componentDetailPageView = (
           model.liveExampleTogglePressedValues,
           model.liveExampleToggleGroupValues,
           model.liveExampleCalendarSelectedDates,
+          model.liveExampleCalendarVisibleMonths,
           model.liveExampleCarouselSelectedIndexes,
           model.liveExampleResizableStates,
           model.liveExampleCommandDialogOpenValues,
@@ -3813,6 +4229,8 @@ const componentDetailPageView = (
           model.liveExampleMenuOpenSubmenuValues,
           model.liveExampleMenuContextPoints,
           model.liveExampleMenuValues,
+          model.liveExampleMenuCheckedValues,
+          model.liveExampleMenuRadioValues,
           model.liveExampleDataTableStates ?? {},
           model.liveExampleDatePickerStates,
           model.liveExampleToastStates,

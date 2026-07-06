@@ -111,6 +111,11 @@ honor its STOP conditions, and update your row when done.
 | 101 | Implement shadcn Data Table with native Foldkit query state | P1 | L | 022, 025, 042, 043, 058, 075, 076, 077 | DONE |
 | 102 | Restore the current Vitest suite to green | P1 | S | - | DONE |
 | 103 | Publish docs and public registry on GitHub Pages | P1 | L | 066, 069 | DONE |
+| 104 | Harden shadcn overlay and menu regressions | P1 | L | 096, 097, 102 | DONE |
+| 105 | Harden shadcn form and selection regressions | P1 | L | 093, 094, 095, 102, 104 | DONE |
+| 106 | Harden shadcn data, date, and carousel regressions | P1 | L | 078, 079, 100, 101, 104, 105 | DONE |
+| 107 | Harden shadcn visual parity regressions | P1 | L | 104, 105, 106 | DONE |
+| 108 | Harden shadcn sidebar and chat-family regressions | P1 | L | 083, 085, 098, 104, 107 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -188,6 +193,26 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 103 depends on 066 because GitHub Pages should publish prerendered docs
   routes, and on 069 because the public registry endpoint must preserve the
   local installer's generated-source and dependency-closure behavior.
+- Plans 104-108 were generated from the 2026-07-05 user-reported all-shadcn
+  regression sweep. Each plan starts by adding tests that confirm the reported
+  issue on the docs surface, then fixes the source so those tests pass.
+- Plan 104 runs first because overlay, dismissal, anchoring, and menu state are
+  shared by many later reports: avatar/breadcrumb/button-group/item dropdowns,
+  dialog actions, alert-dialog actions, hover-card, popover, tooltip, context
+  menu, menubar, and navigation menu.
+- Plan 105 depends on 104 because Select, Combobox, Field, Checkbox, Switch,
+  Input OTP, Slider, Tabs, and Collapsible examples reuse the same live-preview
+  controller and popup/dismiss patterns.
+- Plan 106 depends on 104 and 105 because Date Picker composes Calendar and
+  Popover, Data Table composes Dropdown Menu, Checkbox, Select, Table, and
+  Pagination, and Carousel needs its own smooth native Foldkit model parity
+  against shadcn's Embla-facing API.
+- Plan 107 follows the behavior plans because visual parity checks for floating
+  surfaces, drawer/sheet/dialog sizing, progress, separator, tabs, toast, and
+  tooltip should verify the fixed live surfaces rather than static broken ones.
+- Plan 108 depends on Sidebar, Bubble, Sonner, and the overlay/visual hardening
+  plans because sidebar and chat examples compose menu, collapsible, tooltip,
+  popover, and toast behavior.
 
 ## Findings considered and rejected
 

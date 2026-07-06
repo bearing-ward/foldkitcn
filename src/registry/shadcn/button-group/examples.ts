@@ -3,9 +3,13 @@ import { html } from 'foldkit/html'
 
 import * as Button from '../button'
 import * as DropdownMenu from '../dropdown-menu'
+import type { DropdownMenuExampleController } from '../dropdown-menu/examples'
 import { Field, FieldDescription, FieldLabel } from '../field'
 import * as Input from '../input'
 import * as Popover from '../popover'
+import type { PopoverExampleController } from '../popover/examples'
+import { displayValue as displaySelectValue, view as Select } from '../select'
+import type { SelectOpenChange, SelectValueChange } from '../select'
 import * as Textarea from '../textarea'
 import { ButtonGroup, ButtonGroupSeparator } from './index'
 
@@ -20,6 +24,18 @@ type IconName =
   | 'search'
 
 type ButtonChild = Html | string
+
+type ButtonGroupDropdownController<Message> =
+  DropdownMenuExampleController<Message>
+
+type ButtonGroupPopoverController<Message> = PopoverExampleController<Message>
+
+type ButtonGroupSelectController<Message> = Readonly<{
+  isOpenFor: (selectId: string, defaultOpen: boolean) => boolean
+  valueFor: (selectId: string, defaultValue?: string) => string | undefined
+  onOpenChange: (selectId: string, change: SelectOpenChange) => Message
+  onValueChange: (selectId: string, change: SelectValueChange) => Message
+}>
 
 const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
   arrowLeft: ['m12 19-7-7 7-7', 'M19 12H5'],
@@ -71,19 +87,19 @@ const icon = (
   )
 }
 
-const button = (
+const button = <Message = never>(
   children: ReadonlyArray<ButtonChild>,
   options: Button.ButtonStyleOptions &
     Readonly<{
       ariaLabel?: string
-      attributes?: ReadonlyArray<Attribute<never>>
+      attributes?: ReadonlyArray<Attribute<Message>>
       preferTriggerSlot?: boolean
     }> = {},
 ): Html => {
-  const h = html<never>()
+  const h = html<Message>()
   const extraAttributes = options.attributes ?? []
 
-  return Button.view<never>({
+  return Button.view<Message>({
     variant: options.variant,
     size: options.size,
     className: options.className,
@@ -151,21 +167,34 @@ const popoverTriggerButton = (
       }),
   })
 
-const currencySelect = (): Html => {
-  const h = html<never>()
+const currencyItems: ReadonlyArray<Readonly<{ label: string; value: string }>> =
+  [
+    { label: 'USD', value: 'USD' },
+    { label: 'EUR', value: 'EUR' },
+    { label: 'GBP', value: 'GBP' },
+  ]
+
+const currencySelect = <Message = never>(
+  attributes: ReadonlyArray<Attribute<Message>> = [],
+  label = '$',
+): Html => {
+  const h = html<Message>()
+  const hasControllerAttributes = attributes.length > 0
 
   return h.button(
     [
-      h.AriaExpanded(false),
-      h.AriaHasPopup('listbox'),
+      ...(hasControllerAttributes
+        ? []
+        : [h.AriaExpanded(false), h.AriaHasPopup('listbox')]),
       h.Class(
         "flex h-8 w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm whitespace-nowrap shadow-none transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 font-mono",
       ),
       h.DataAttribute('slot', 'select-trigger'),
       h.Type('button'),
+      ...attributes,
     ],
     [
-      h.span([h.DataAttribute('slot', 'select-value')], ['$']),
+      h.span([h.DataAttribute('slot', 'select-value')], [label]),
       icon('chevronDown'),
     ],
   )
@@ -207,8 +236,88 @@ export const ButtonGroupDemo = (): Html =>
     ],
   })
 
-export const ButtonGroupDropdown = (): Html =>
-  ButtonGroup<never>({
+const buttonGroupDropdownShell = <Message>(
+  controller: ButtonGroupDropdownController<Message>,
+): Html => {
+  const h = html<Message>()
+  const { isOpenFor, onItemPress, onOpenChange, openSubmenuValuesFor } =
+    controller
+  const open = isOpenFor('button-group-dropdown', false)
+
+  return DropdownMenu.view<Message>({
+    id: 'button-group-dropdown',
+    items: [
+      { value: 'mute', label: 'Mute' },
+      { value: 'snooze', label: 'Snooze' },
+      { value: 'archive', label: 'Archive' },
+    ],
+    open,
+    openSubmenuValues: openSubmenuValuesFor('button-group-dropdown', []),
+    onOpenChange: change => onOpenChange('button-group-dropdown', change),
+    ...(onItemPress === undefined
+      ? {}
+      : {
+          onItemPress: press => onItemPress('button-group-dropdown', press),
+        }),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          ButtonGroup<Message>({
+            children: [
+              button(['Follow'], { variant: 'outline' }),
+              button([icon('chevronDown')], {
+                variant: 'outline',
+                className: 'pl-2!',
+                attributes: attributes.trigger,
+              }),
+            ],
+          }),
+          h.div(
+            [...attributes.portal],
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.popup.backdrop.root], []),
+                  h.div(
+                    [...attributes.popup.positioner.root],
+                    [
+                      h.div(
+                        [...attributes.popup.popup.root],
+                        [
+                          h.div(
+                            [...attributes.popup.group],
+                            attributes.popup.items.map(itemAttributes =>
+                              h.div(
+                                [...itemAttributes.root],
+                                [
+                                  h.span(
+                                    [...itemAttributes.label],
+                                    [itemAttributes.item.label],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ]
+              : [],
+          ),
+        ],
+      ),
+  })
+}
+
+export const ButtonGroupDropdown = <Message = never>(
+  controller?: ButtonGroupDropdownController<Message>,
+): Html => {
+  if (controller !== undefined) {
+    return buttonGroupDropdownShell(controller)
+  }
+
+  return ButtonGroup<never>({
     children: [
       button(['Follow'], { variant: 'outline' }),
       dropdownTriggerButton('button-group-dropdown', [icon('chevronDown')], {
@@ -217,6 +326,7 @@ export const ButtonGroupDropdown = (): Html =>
       }),
     ],
   })
+}
 
 export const ButtonGroupInput = (): Html =>
   ButtonGroup<never>({
@@ -240,8 +350,83 @@ export const ButtonGroupOrientation = (): Html =>
     ],
   })
 
-export const ButtonGroupPopover = (): Html =>
-  ButtonGroup<never>({
+const buttonGroupPopoverShell = <Message>(
+  controller: ButtonGroupPopoverController<Message>,
+): Html => {
+  const h = html<Message>()
+  const { onOpenChange, openFor } = controller
+  const open = openFor?.('button-group-popover', true) ?? true
+
+  return Popover.view<Message>({
+    id: 'button-group-popover',
+    open,
+    titleId: 'button-group-popover-title',
+    descriptionId: 'button-group-popover-description',
+    ...(onOpenChange === undefined
+      ? {}
+      : {
+          onOpenChange: change => onOpenChange('button-group-popover', change),
+        }),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          ButtonGroup<Message>({
+            children: [
+              button([icon('bot'), 'Copilot'], { variant: 'outline' }),
+              button([icon('chevronDown')], {
+                variant: 'outline',
+                size: 'icon',
+                ariaLabel: 'Open Popover',
+                attributes: attributes.trigger,
+              }),
+            ],
+          }),
+          h.div(
+            [...attributes.portal],
+            [
+              h.div([...attributes.backdrop.root], []),
+              h.div(
+                [...attributes.positioner.root],
+                [
+                  h.div(
+                    [...attributes.popup.root],
+                    [
+                      h.div(
+                        [...attributes.header],
+                        [
+                          h.h4([...attributes.title], ['Button group popover']),
+                          h.p(
+                            [...attributes.description],
+                            [
+                              'Floating content remains anchored to the trigger.',
+                            ],
+                          ),
+                        ],
+                      ),
+                      h.p(
+                        [],
+                        ['Pick a follow-up action or close the surface.'],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+  })
+}
+
+export const ButtonGroupPopover = <Message = never>(
+  controller?: ButtonGroupPopoverController<Message>,
+): Html => {
+  if (controller !== undefined) {
+    return buttonGroupPopoverShell(controller)
+  }
+
+  return ButtonGroup<never>({
     children: [
       button([icon('bot'), 'Copilot'], { variant: 'outline' }),
       popoverTriggerButton([icon('chevronDown')], {
@@ -251,6 +436,7 @@ export const ButtonGroupPopover = (): Html =>
       }),
     ],
   })
+}
 
 const rtlLabels = {
   archive: 'أرشفة',
@@ -306,7 +492,110 @@ export const ButtonGroupRtl = (): Html => {
   )
 }
 
-export const ButtonGroupSelect = (): Html => {
+const buttonGroupSelectShell = <Message>(
+  controller: ButtonGroupSelectController<Message>,
+): Html => {
+  const h = html<Message>()
+  const { isOpenFor, onOpenChange, onValueChange, valueFor } = controller
+  const open = isOpenFor('button-group-select', false)
+  const value = valueFor('button-group-select')
+  const label = displaySelectValue({
+    items: currencyItems,
+    placeholder: '$',
+    value,
+  })
+
+  return Select<Message>({
+    id: 'button-group-select',
+    items: currencyItems,
+    open,
+    value,
+    placeholder: '$',
+    onOpenChange: change => onOpenChange('button-group-select', change),
+    onValueChange: change => onValueChange('button-group-select', change),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          ButtonGroup<Message>({
+            children: [
+              currencySelect(attributes.trigger, label),
+              input('10.00', [h.Attribute('pattern', '[0-9]*')]),
+            ],
+          }),
+          ButtonGroup<Message>({
+            children: [
+              button([icon('arrowRight')], {
+                variant: 'outline',
+                size: 'icon',
+                ariaLabel: 'Send',
+              }),
+            ],
+          }),
+          h.div(
+            [...attributes.portal],
+            attributes.isMounted
+              ? [
+                  h.div([...attributes.backdrop.root], []),
+                  h.div(
+                    [...attributes.positioner.root],
+                    [
+                      h.div(
+                        [...attributes.popup.root],
+                        [
+                          h.div([...attributes.arrow.root], []),
+                          h.div([...attributes.scrollUp.root], ['Up']),
+                          h.div(
+                            [...attributes.list.root],
+                            [
+                              h.div(
+                                [...attributes.group],
+                                [
+                                  h.div(
+                                    [...attributes.groupLabel],
+                                    ['Currency'],
+                                  ),
+                                  ...attributes.items.map(itemAttributes =>
+                                    h.div(
+                                      [...itemAttributes.root],
+                                      [
+                                        h.span(
+                                          [...itemAttributes.text],
+                                          [itemAttributes.item.label],
+                                        ),
+                                        h.span(
+                                          [...itemAttributes.indicator],
+                                          [],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              h.div([...attributes.separator], []),
+                            ],
+                          ),
+                          h.div([...attributes.scrollDown.root], ['Down']),
+                        ],
+                      ),
+                    ],
+                  ),
+                ]
+              : [],
+          ),
+          h.input([...attributes.hiddenInput]),
+        ],
+      ),
+  })
+}
+
+export const ButtonGroupSelect = <Message = never>(
+  controller?: ButtonGroupSelectController<Message>,
+): Html => {
+  if (controller !== undefined) {
+    return buttonGroupSelectShell(controller)
+  }
+
   const h = html<never>()
 
   return ButtonGroup<never>({

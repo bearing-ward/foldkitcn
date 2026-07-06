@@ -41,7 +41,7 @@ export type CarouselStateOptions = typeof CarouselStateOptions.Type
 const normalizedItemCount = (itemCount: number): number =>
   Math.max(0, Math.floor(itemCount))
 
-const wrapSelectedIndex = (
+const clampSelectedIndex = (
   selectedIndex: number,
   itemCount: number,
 ): number => {
@@ -51,7 +51,7 @@ const wrapSelectedIndex = (
     return 0
   }
 
-  return ((Math.floor(selectedIndex) % count) + count) % count
+  return Math.min(Math.max(Math.floor(selectedIndex), 0), count - 1)
 }
 
 export const carouselState = ({
@@ -61,16 +61,15 @@ export const carouselState = ({
   dir,
 }: CarouselStateOptions): CarouselState => {
   const count = normalizedItemCount(itemCount)
-  const index = wrapSelectedIndex(selectedIndex, count)
-  const canScroll = count > 1
+  const index = clampSelectedIndex(selectedIndex, count)
 
   return {
     selectedIndex: index,
     itemCount: count,
     orientation,
     dir,
-    canScrollPrevious: canScroll,
-    canScrollNext: canScroll,
+    canScrollPrevious: index > 0,
+    canScrollNext: index < count - 1,
   }
 }
 
@@ -202,6 +201,8 @@ export const carouselBaseClassName = 'relative'
 export const carouselViewportBaseClassName = 'overflow-hidden'
 
 export const carouselContentBaseClassName = 'flex'
+export const carouselContentMotionClassName =
+  'transition-transform duration-300 ease-out will-change-transform'
 
 export const carouselContentHorizontalClassName = '-ml-4'
 
@@ -294,6 +295,7 @@ export const carouselContentClassName = ({
 }> = {}): string =>
   cn(
     carouselContentBaseClassName,
+    carouselContentMotionClassName,
     carouselContentOrientationClassName(orientation, dir),
     className,
   )
@@ -416,6 +418,9 @@ const rootAttributes = <Message>(
   h.Role('region'),
   h.AriaRoleDescription('carousel'),
   h.DataAttribute('slot', 'carousel'),
+  h.DataAttribute('selected-index', state.selectedIndex.toString()),
+  h.DataAttribute('can-scroll-previous', String(state.canScrollPrevious)),
+  h.DataAttribute('can-scroll-next', String(state.canScrollNext)),
   h.Class(carouselClassName({ className: config.className })),
   ...optionalDir(h, state.dir),
   ...keyboardAttributes(h, config, state),
@@ -518,23 +523,6 @@ const itemAttributes = <Message>(
   ],
 })
 
-const loopFillItemAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
-  config: ViewConfig<Message>,
-  state: CarouselState,
-  item: CarouselItemConfig<Message>,
-): ReadonlyArray<Attribute<Message>> => [
-  h.AriaHidden(true),
-  h.DataAttribute('slot', 'carousel-loop-fill-item'),
-  h.Class(
-    carouselItemClassName({
-      className: cn(config.itemClassName, item.className),
-      orientation: state.orientation,
-      dir: state.dir,
-    }),
-  ),
-]
-
 const icon = (kind: 'left' | 'right', dir: string | undefined): Html => {
   const h = html<never>()
   const d = kind === 'left' ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'
@@ -627,12 +615,6 @@ const carouselAttributes = <Message>(
 export const view = <Message>(config: ViewConfig<Message>): Html => {
   const h = html<Message>()
   const attributes = carouselAttributes(config)
-  const state = carouselState({
-    selectedIndex: config.state.selectedIndex,
-    itemCount: config.items.length,
-    orientation: config.state.orientation,
-    dir: config.state.dir,
-  })
 
   if (config.toView !== undefined) {
     return config.toView(attributes)
@@ -646,17 +628,9 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
         [
           h.div(
             [...attributes.content],
-            [
-              ...attributes.items.map(item =>
-                h.div([...item.root], item.item.children ?? []),
-              ),
-              ...attributes.items.map(item =>
-                h.div(
-                  [...loopFillItemAttributes(h, config, state, item.item)],
-                  item.item.children ?? [],
-                ),
-              ),
-            ],
+            attributes.items.map(item =>
+              h.div([...item.root], item.item.children ?? []),
+            ),
           ),
         ],
       ),

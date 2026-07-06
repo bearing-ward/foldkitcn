@@ -3,6 +3,8 @@ import { html } from 'foldkit/html'
 
 import * as Avatar from '../avatar'
 import { view as Button } from '../button'
+import { view as DropdownMenu } from '../dropdown-menu'
+import type { DropdownMenuExampleController } from '../dropdown-menu/examples'
 import {
   Item,
   ItemActions,
@@ -41,6 +43,14 @@ type ModelCard = Readonly<{
   description: string
   image: string
 }>
+
+const dropdownItems: ReadonlyArray<Readonly<{ value: string; label: string }>> =
+  [
+    { value: 'edit', label: 'Edit' },
+    { value: 'duplicate', label: 'Duplicate' },
+    { value: 'archive', label: 'Archive' },
+    { value: 'delete', label: 'Delete' },
+  ]
 
 const people: ReadonlyArray<Person> = [
   {
@@ -331,6 +341,79 @@ const verifiedItem = (
   })
 }
 
+const itemDropdownShell = <Message>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const open = controller?.isOpenFor('item-dropdown', false) ?? true
+  const onItemPress = controller?.onItemPress
+
+  return DropdownMenu<Message>({
+    id: 'item-dropdown',
+    items: dropdownItems.map(item => ({
+      value: item.value,
+      label: item.label,
+    })),
+    open,
+    openSubmenuValues: [],
+    ...(controller === undefined
+      ? {}
+      : {
+          onOpenChange: change =>
+            controller.onOpenChange('item-dropdown', change),
+        }),
+    ...(onItemPress === undefined
+      ? {}
+      : { onItemPress: press => onItemPress('item-dropdown', press) }),
+    toView: attributes =>
+      h.div(
+        [...attributes.root],
+        [
+          h.button(
+            [
+              ...attributes.trigger,
+              h.AriaHasPopup('menu'),
+              h.AriaExpanded(open),
+            ],
+            ['Select ', icon('chevron-down')],
+          ),
+          h.div(
+            [...attributes.portal],
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.popup.backdrop.root], []),
+                  h.div(
+                    [...attributes.popup.positioner.root],
+                    [
+                      h.div(
+                        [...attributes.popup.popup.root],
+                        [
+                          h.div(
+                            [...attributes.popup.group],
+                            attributes.popup.items.map(itemAttributes =>
+                              h.div(
+                                [...itemAttributes.root],
+                                [
+                                  h.span(
+                                    [...itemAttributes.label],
+                                    [itemAttributes.item.label],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ]
+              : [],
+          ),
+        ],
+      ),
+  })
+}
+
 const personItem = (person: Person): Html =>
   Item<never>({
     variant: 'outline',
@@ -449,7 +532,13 @@ export const ItemAvatar = (): Html => {
   )
 }
 
-export const ItemDropdown = (): Html => {
+export const ItemDropdown = <Message = never>(
+  controller?: DropdownMenuExampleController<Message>,
+): Html => {
+  if (controller !== undefined) {
+    return itemDropdownShell(controller)
+  }
+
   const h = html<never>()
 
   return Button<never>({

@@ -58,11 +58,17 @@ const defaultAnchor: AnchorConfig = {
 const triggerBaseClassName =
   'inline-flex h-8 w-fit min-w-48 items-center justify-between gap-2 rounded-lg border border-input bg-background px-2.5 py-1 text-sm font-normal whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[placeholder=true]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50'
 
+const triggerCompactClassName = 'h-7 min-w-36 gap-1.5 px-2 text-xs'
+
 const panelBaseClassName =
-  'z-50 w-auto rounded-lg border bg-popover p-3 text-popover-foreground shadow-md outline-none'
+  'isolate z-50 w-auto max-w-[min(20rem,calc(100vw-2rem))] rounded-lg border border-neutral-200 bg-popover bg-white p-3 text-popover-foreground text-black shadow-lg ring-1 ring-neutral-950/10 outline-none'
+
+const panelCompactClassName = 'p-2'
 
 const calendarBaseClassName =
   'group/calendar flex w-fit flex-col gap-3 [--cell-size:--spacing(8)]'
+
+const calendarCompactClassName = 'gap-2 [--cell-size:--spacing(7)]'
 
 const calendarHeaderClassName = 'flex items-center justify-between gap-1'
 
@@ -101,11 +107,15 @@ export const datePickerClassName = (
 
 export const datePickerTriggerClassName = (
   className: string | undefined = undefined,
-): string => cn(triggerBaseClassName, className)
+  compact = false,
+): string =>
+  cn(triggerBaseClassName, compact ? triggerCompactClassName : '', className)
 
 export const datePickerPanelClassName = (
   className: string | undefined = undefined,
-): string => cn(panelBaseClassName, className)
+  compact = false,
+): string =>
+  cn(panelBaseClassName, compact ? panelCompactClassName : '', className)
 
 const icon = <Message>(path: string, className = 'size-4 shrink-0'): Html => {
   const h = html<Message>()
@@ -172,14 +182,21 @@ const renderTriggerContent = <Message>(
   )
 }
 
-const toCalendarView = <Message>(attributes: CalendarAttributes): Html => {
+const toCalendarView = <Message>(
+  attributes: CalendarAttributes,
+  compact = false,
+): Html => {
   const h = html<Message>()
+  const calendarClassName = cn(
+    calendarBaseClassName,
+    compact ? calendarCompactClassName : '',
+  )
 
   return M.value(attributes).pipe(
     M.tagsExhaustive({
       Days: days =>
         h.div(
-          [...days.root, h.Class(calendarBaseClassName)],
+          [...days.root, h.Class(calendarClassName)],
           [
             h.div(
               [h.Class(calendarHeaderClassName)],
@@ -251,7 +268,7 @@ const toCalendarView = <Message>(attributes: CalendarAttributes): Html => {
         ),
       Months: months =>
         h.div(
-          [...months.root, h.Class(calendarBaseClassName)],
+          [...months.root, h.Class(calendarClassName)],
           [
             h.div(
               [h.Class(`${calendarHeaderClassName} justify-center`)],
@@ -287,7 +304,7 @@ const toCalendarView = <Message>(attributes: CalendarAttributes): Html => {
         ),
       Years: years =>
         h.div(
-          [...years.root, h.Class(calendarBaseClassName)],
+          [...years.root, h.Class(calendarClassName)],
           [
             h.div(
               [h.Class(calendarHeaderClassName)],
@@ -347,14 +364,21 @@ export const DatePicker = <Message = DatePickerMessage>(
     viewInputs: {
       anchor: config.anchor ?? defaultAnchor,
       triggerContent: maybeDate => renderTriggerContent(maybeDate, config),
-      toCalendarView: attributes => toCalendarView<Message>(attributes),
+      toCalendarView: attributes =>
+        toCalendarView<Message>(attributes, config.compact === true),
       ...(config.name === undefined ? {} : { name: config.name }),
       ...(config.isDisabled === undefined
         ? {}
         : { isDisabled: config.isDisabled }),
       className: datePickerClassName(config.className),
-      triggerClassName: datePickerTriggerClassName(config.triggerClassName),
-      panelClassName: datePickerPanelClassName(config.panelClassName),
+      triggerClassName: datePickerTriggerClassName(
+        config.triggerClassName,
+        config.compact === true,
+      ),
+      panelClassName: datePickerPanelClassName(
+        config.panelClassName,
+        config.compact === true,
+      ),
     },
     toParentMessage: config.toParentMessage,
   })

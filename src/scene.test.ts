@@ -25,8 +25,16 @@ import {
   RemoveLiveExampleToast,
   RoadmapRoute,
   SearchPagefind,
+  SelectedLiveExampleTabsValue,
+  SelectedLiveExampleMenuRadioValue,
+  SelectedLiveExampleMenuValue,
   SucceededCopySnippet,
   TimeoutLiveExampleToast,
+  UpdatedLiveExampleCheckboxCheckedState,
+  UpdatedLiveExampleMenuChecked,
+  UpdatedLiveExampleMenuOpen,
+  UpdatedLiveExampleOverlayOpen,
+  UpdatedLiveExampleOtpValue,
   update,
   view,
 } from './main'
@@ -108,6 +116,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleTogglePressedValues: {},
   liveExampleToggleGroupValues: {},
   liveExampleCalendarSelectedDates: {},
+  liveExampleCalendarVisibleMonths: {},
   liveExampleCarouselSelectedIndexes: {},
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
@@ -116,6 +125,8 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
   liveExampleMenuValues: {},
+  liveExampleMenuCheckedValues: {},
+  liveExampleMenuRadioValues: {},
   liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},
@@ -141,6 +152,11 @@ const resolveToastRemoval = (exampleId: string, toastId: string) =>
     RemoveLiveExampleToast({ exampleId, toastId }),
     CompletedRemoveLiveExampleToast({ exampleId, toastId }),
   )
+
+const liveExampleControlStateKey = (
+  exampleId: string,
+  controlId: string,
+): string => `${exampleId}#${controlId}`
 
 const documentedCarouselLiveExampleTitles = (): ReadonlyArray<string> => {
   const component = pipe(
@@ -299,7 +315,7 @@ describe(view, () => {
     )
   })
 
-  test('Carousel live previews wrap backward from their first slide', () => {
+  test('Carousel live previews disable previous at their first slide', () => {
     const preview = Scene.label('CarouselDemo live preview')
 
     Scene.scene(
@@ -309,15 +325,12 @@ describe(view, () => {
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
         ),
       ),
-      Scene.click(
-        Scene.within(preview, Scene.role('button', { name: 'Previous slide' })),
-      ),
       Scene.expect(
-        Scene.within(
-          preview,
-          Scene.selector('[data-slot="carousel-content"] div'),
-        ),
-      ).toHaveStyle('transform', 'translate3d(-400%, 0, 0)'),
+        Scene.within(preview, Scene.role('button', { name: 'Previous slide' })),
+      ).toBeDisabled(),
+      Scene.expect(
+        Scene.within(preview, Scene.selector('[data-slot="carousel"]')),
+      ).toHaveAttr('data-selected-index', '0'),
     )
   })
 
@@ -468,6 +481,182 @@ describe(view, () => {
           Scene.selector(
             '[data-slot="dropdown-menu-content"][data-side="top"]',
           ),
+        ),
+      ).toExist(),
+    )
+  })
+
+  test('SidebarFooter live preview opens and dismisses the footer menu', () => {
+    const preview = Scene.label('SidebarFooter live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(preview, Scene.role('button', { name: /Username/ })),
+      ),
+      Scene.expect(Scene.within(preview, Scene.text('Account'))).toExist(),
+      Scene.expect(
+        Scene.within(
+          preview,
+          Scene.selector(
+            '[data-slot="dropdown-menu-content"][data-side="top"]',
+          ),
+        ),
+      ).toExist(),
+      Scene.click(Scene.within(preview, Scene.text('Account'))),
+      Scene.expect(Scene.within(preview, Scene.text('Billing'))).not.toExist(),
+    )
+  })
+
+  test('sidebar static family examples are interactive when live-ready', () => {
+    const groupPreview = Scene.label('SidebarGroupCollapsible live preview')
+    const menuPreview = Scene.label('SidebarMenuCollapsible live preview')
+    const actionPreview = Scene.label('SidebarMenuAction live preview')
+    const subPreview = Scene.label('SidebarMenuSub live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
+        ),
+      ),
+      Scene.expect(Scene.within(groupPreview, Scene.text('Support'))).toExist(),
+      Scene.click(
+        Scene.within(groupPreview, Scene.role('button', { name: /Help/ })),
+      ),
+      Scene.expect(
+        Scene.within(groupPreview, Scene.text('Support')),
+      ).not.toExist(),
+      Scene.expect(
+        Scene.within(menuPreview, Scene.text('Installation')),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          menuPreview,
+          Scene.role('button', { name: /Getting Started/ }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(menuPreview, Scene.text('Installation')),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          actionPreview,
+          Scene.role('button', { name: 'More Design Engineering' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(actionPreview, Scene.text('View Project')),
+      ).toExist(),
+      Scene.click(Scene.within(actionPreview, Scene.text('Share Project'))),
+      Scene.expect(
+        Scene.within(actionPreview, Scene.text('Archive Project')),
+      ).not.toExist(),
+      Scene.expect(
+        Scene.within(
+          subPreview,
+          Scene.selector('[data-slot="sidebar-menu-sub"]'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(subPreview, Scene.text('Installation')),
+      ).toExist(),
+    )
+  })
+
+  test('Bubble live previews expand, toast, tooltip, and popover from Foldkit state', () => {
+    const collapsiblePreview = Scene.label('BubbleCollapsibleDemo live preview')
+    const linkPreview = Scene.label('BubbleLinkButtonDemo live preview')
+    const tooltipPreview = Scene.label('BubbleTooltipDemo live preview')
+    const popoverPreview = Scene.label('BubblePopoverDemo live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'bubble' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          collapsiblePreview,
+          Scene.text('The menu needs the hover and focus tokens split', {
+            exact: false,
+          }),
+        ),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          collapsiblePreview,
+          Scene.role('button', { name: 'Show more' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          collapsiblePreview,
+          Scene.text('The menu needs the hover and focus tokens split', {
+            exact: false,
+          }),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          collapsiblePreview,
+          Scene.role('button', { name: 'Show less' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          collapsiblePreview,
+          Scene.text('The menu needs the hover and focus tokens split', {
+            exact: false,
+          }),
+        ),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          linkPreview,
+          Scene.role('button', { name: 'I forgot my password' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(linkPreview, Scene.text('Reply selected')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(linkPreview, Scene.text('I forgot my password')),
+      ).toExist(),
+      resolveStaleToastTimeout('shadcn/bubble-link-button', 'toast-1', 5000),
+      Scene.focus(
+        Scene.within(
+          tooltipPreview,
+          Scene.role('button', { name: 'Read on Jan 5, 2026 at 4:32 PM' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          tooltipPreview,
+          Scene.selector('[data-slot="tooltip-content"]'),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          popoverPreview,
+          Scene.role('button', { name: 'Show error details' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(popoverPreview, Scene.text('Command failed')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          popoverPreview,
+          Scene.selector('[data-slot="popover-content"]'),
         ),
       ).toExist(),
     )
@@ -1449,6 +1638,298 @@ describe(view, () => {
         HideCopiedIndicator({ text }),
         HidCopiedIndicator({ text }),
       ),
+    )
+  })
+
+  test('root update records overlay and menu state for live examples', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterOverlay] = update(
+      initial,
+      UpdatedLiveExampleOverlayOpen({
+        exampleId: 'shadcn/dialog-demo',
+        overlayId: 'dialog-demo',
+        open: true,
+      }),
+    )
+    const [afterSubmenuOpen] = update(
+      afterOverlay,
+      UpdatedLiveExampleMenuOpen({
+        exampleId: 'shadcn/dropdown-menu-submenu',
+        menuId: 'dropdown-menu-submenu',
+        open: true,
+        parentValue: 'invite',
+      }),
+    )
+    const [afterSubmenuNestedOpen] = update(
+      afterSubmenuOpen,
+      UpdatedLiveExampleMenuOpen({
+        exampleId: 'shadcn/dropdown-menu-submenu',
+        menuId: 'dropdown-menu-submenu',
+        open: true,
+        parentValue: 'more-options',
+      }),
+    )
+    const [afterDropdownChecked] = update(
+      afterSubmenuNestedOpen,
+      UpdatedLiveExampleMenuChecked({
+        exampleId: 'shadcn/dropdown-menu-checkboxes',
+        menuId: 'dropdown-menu-checkboxes',
+        itemValue: 'panel',
+        checked: true,
+      }),
+    )
+    const [afterDropdownRadio] = update(
+      afterDropdownChecked,
+      SelectedLiveExampleMenuRadioValue({
+        exampleId: 'shadcn/dropdown-menu-radio-group',
+        menuId: 'dropdown-menu-radio-group',
+        groupValue: 'panel-position',
+        value: 'bottom',
+      }),
+    )
+    expect(
+      (afterDropdownRadio.liveExampleMenuRadioValues ?? {})[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-radio-group',
+          'dropdown-menu-radio-group#radio#panel-position',
+        )
+      ],
+    ).toBe('bottom')
+    const [afterMenubarActive] = update(
+      afterDropdownRadio,
+      SelectedLiveExampleMenuValue({
+        exampleId: 'shadcn/menubar-demo',
+        menuId: 'menubar-demo',
+        value: 'edit',
+      }),
+    )
+    const [afterNavigationActive] = update(
+      afterMenubarActive,
+      SelectedLiveExampleMenuValue({
+        exampleId: 'shadcn/navigation-menu-demo',
+        menuId: 'navigation-menu-demo',
+        value: 'components',
+      }),
+    )
+
+    expect(
+      afterNavigationActive.liveExampleOverlayOpenValues[
+        liveExampleControlStateKey('shadcn/dialog-demo', 'dialog-demo')
+      ],
+    ).toBe(true)
+    expect(
+      afterNavigationActive.liveExampleMenuOpenSubmenuValues[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-submenu',
+          'dropdown-menu-submenu',
+        )
+      ],
+    ).toStrictEqual(['invite', 'more-options'])
+    expect(
+      (afterNavigationActive.liveExampleMenuRadioValues ?? {})[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-radio-group',
+          'dropdown-menu-radio-group#radio#panel-position',
+        )
+      ],
+    ).toBe('bottom')
+    expect(
+      afterNavigationActive.liveExampleMenuCheckedValues[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-checkboxes',
+          'dropdown-menu-checkboxes#checked#panel',
+        )
+      ],
+    ).toBe(true)
+    expect(
+      afterNavigationActive.liveExampleMenuRadioValues[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-radio-group',
+          'dropdown-menu-radio-group#radio#panel-position',
+        )
+      ],
+    ).toBe('bottom')
+    expect(
+      afterNavigationActive.liveExampleMenuValues[
+        liveExampleControlStateKey('shadcn/menubar-demo', 'menubar-demo')
+      ],
+    ).toBe('edit')
+    expect(
+      afterNavigationActive.liveExampleMenuValues[
+        liveExampleControlStateKey(
+          'shadcn/navigation-menu-demo',
+          'navigation-menu-demo',
+        )
+      ],
+    ).toBe('components')
+  })
+
+  test('root update records live preview otp, checkbox table, and collapsible tab state', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterOtp] = update(
+      initial,
+      UpdatedLiveExampleOtpValue({
+        exampleId: 'shadcn/input-otp-demo',
+        value: '654321',
+      }),
+    )
+    const [afterSelectAll] = update(
+      afterOtp,
+      UpdatedLiveExampleCheckboxCheckedState({
+        exampleId: 'shadcn/checkbox-table',
+        controlId: 'select-all-checkbox',
+        checkedState: 'checked',
+      }),
+    )
+    const [afterRowUnchecked] = update(
+      afterSelectAll,
+      UpdatedLiveExampleCheckboxCheckedState({
+        exampleId: 'shadcn/checkbox-table',
+        controlId: 'row-2-checkbox',
+        checkedState: 'unchecked',
+      }),
+    )
+    const [afterTabs] = update(
+      afterRowUnchecked,
+      SelectedLiveExampleTabsValue({
+        exampleId: 'shadcn/collapsible-file-tree',
+        tabsId: 'collapsible-file-tree-tabs',
+        value: 'outline',
+      }),
+    )
+
+    expect(afterTabs.liveExampleOtpValues['shadcn/input-otp-demo']).toBe(
+      '654321',
+    )
+    expect(
+      afterTabs.liveExampleCheckboxCheckedStates[
+        liveExampleControlStateKey('shadcn/checkbox-table', 'row-1-checkbox')
+      ],
+    ).toBe('checked')
+    expect(
+      afterTabs.liveExampleCheckboxCheckedStates[
+        liveExampleControlStateKey('shadcn/checkbox-table', 'row-3-checkbox')
+      ],
+    ).toBe('checked')
+    expect(
+      afterTabs.liveExampleCheckboxCheckedStates[
+        liveExampleControlStateKey('shadcn/checkbox-table', 'row-2-checkbox')
+      ],
+    ).toBe('unchecked')
+    expect(
+      afterTabs.liveExampleTabsValues[
+        liveExampleControlStateKey(
+          'shadcn/collapsible-file-tree',
+          'collapsible-file-tree-tabs',
+        )
+      ],
+    ).toBe('outline')
+  })
+
+  test('form and selection live previews render repaired descriptions and tabs content', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'checkbox' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('CheckboxDescription live preview'),
+          Scene.text(
+            'By clicking this checkbox, you agree to the terms and conditions.',
+          ),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.label('CheckboxInTable live preview'),
+          Scene.role('checkbox'),
+        ),
+      ).toExist(),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'field' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('FieldCheckbox live preview'),
+          Scene.text('External disks'),
+        ),
+      ).toExist(),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'switch' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('SwitchDescription live preview'),
+          Scene.text(
+            'Focus is shared across devices, and turns off when you leave the app.',
+          ),
+        ),
+      ).toExist(),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'collapsible' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          Scene.label('CollapsibleFileTree live preview'),
+          Scene.role('button', { name: 'Outline' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('CollapsibleFileTree live preview'),
+          Scene.text('Project structure'),
+        ),
+      ).toExist(),
+    )
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'tabs' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('TabsIcons live preview'),
+          Scene.selector('[data-icon=\"preview\"]'),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          Scene.label('TabsIcons live preview'),
+          Scene.role('tab', { name: 'Code' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('TabsIcons live preview'),
+          Scene.text('Installable example code'),
+        ),
+      ).toExist(),
     )
   })
 

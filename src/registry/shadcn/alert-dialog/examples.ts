@@ -105,6 +105,15 @@ const alertDialogShell = <Message>(
       : {
           onOpenChange: change => onOpenChange(config.id, change),
         }),
+    ...(onOpenChange === undefined
+      ? {}
+      : {
+          onAction: () =>
+            onOpenChange(config.id, {
+              open: false,
+              reason: 'close-press',
+            }),
+        }),
     titleId: `${config.id}-title`,
     descriptionId: `${config.id}-description`,
     size: config.size,

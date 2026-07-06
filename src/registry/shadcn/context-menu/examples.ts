@@ -3,7 +3,12 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import * as ContextMenu from './index'
-import type { MenuItemDescriptor } from './index'
+import type {
+  MenuCheckedChange,
+  MenuItemDescriptor,
+  MenuItemPress,
+  MenuRadioValueChange,
+} from './index'
 
 type ExampleItem = MenuItemDescriptor &
   Readonly<{
@@ -19,6 +24,64 @@ type ExampleDefinition = Readonly<{
 
 type ExampleChild = Html | string
 
+const defaultRadioValuesFor = (
+  items: ReadonlyArray<ExampleItem>,
+): Readonly<Record<string, string>> =>
+  items.reduce<Record<string, string>>((values, item) => {
+    if (item.kind !== 'radio' || item.isChecked !== true) {
+      return values
+    }
+
+    const groupValue = item.radioGroupValue ?? 'default'
+
+    if (values[groupValue] === undefined) {
+      values[groupValue] = item.value
+    }
+
+    return values
+  }, {})
+
+const itemsWithState = <Message>(
+  menuId: string,
+  items: ReadonlyArray<ExampleItem>,
+  controller?: ContextMenuExampleController<Message>,
+): ReadonlyArray<ExampleItem> => {
+  if (controller === undefined) {
+    return items
+  }
+
+  const defaultRadioValues = defaultRadioValuesFor(items)
+
+  return items.map(item => {
+    if (item.kind === 'checkbox') {
+      return {
+        ...item,
+        isChecked:
+          controller.checkedStateFor?.(
+            menuId,
+            item.value,
+            item.isChecked === true,
+          ) ?? item.isChecked === true,
+      }
+    }
+
+    if (item.kind === 'radio') {
+      const groupValue = item.radioGroupValue ?? 'default'
+      const defaultValue = defaultRadioValues[groupValue]
+      const selectedValue =
+        controller.radioValueFor?.(menuId, groupValue, defaultValue) ??
+        defaultValue
+
+      return {
+        ...item,
+        isChecked: selectedValue === item.value,
+      }
+    }
+
+    return item
+  })
+}
+
 export type ContextMenuExampleController<Message> = Readonly<{
   contextPointFor: (
     menuId: string,
@@ -28,6 +91,16 @@ export type ContextMenuExampleController<Message> = Readonly<{
     menuId: string,
     defaultValues: ReadonlyArray<string>,
   ) => ReadonlyArray<string>
+  checkedStateFor?: (
+    menuId: string,
+    itemValue: string,
+    defaultChecked: boolean,
+  ) => boolean
+  radioValueFor?: (
+    menuId: string,
+    groupValue: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   onContextPointChange: (
     menuId: string,
     point: ContextMenu.ContextMenuPoint,
@@ -36,6 +109,9 @@ export type ContextMenuExampleController<Message> = Readonly<{
     menuId: string,
     change: ContextMenu.ContextMenuOpenChange,
   ) => Message
+  onItemPress?: (menuId: string, press: MenuItemPress) => Message
+  onCheckedChange?: (menuId: string, change: MenuCheckedChange) => Message
+  onRadioValueChange?: (menuId: string, change: MenuRadioValueChange) => Message
 }>
 
 const triggerClassName =
@@ -374,21 +450,26 @@ const contextMenuExampleWithController = <Message = never>(
     triggerLabel,
     ...viewOptions
   } = options
+  const onCheckedChange = controller?.onCheckedChange
+  const onRadioValueChange = controller?.onRadioValueChange
+  const onItemPress = controller?.onItemPress
   const fallbackOpen = controller === undefined ? defaultOpen : false
   const open = controller?.isOpenFor(id, fallbackOpen) ?? fallbackOpen
   const openSubmenuValues =
     controller?.openSubmenuValuesFor(id, defaultOpenSubmenuValues) ??
     defaultOpenSubmenuValues
+  const resolvedItems = itemsWithState(id, items, controller)
 
   return ContextMenu.view<Message>({
     id,
-    items,
+    items: resolvedItems,
     open,
     contextPoint:
       controller === undefined
         ? ContextMenu.contextPoint(24, 32, 24, 32, 'mouse')
         : Option.getOrUndefined(controller.contextPointFor(id)),
-    highlightedValue: items.find(item => item.parentValue === undefined)?.value,
+    highlightedValue: resolvedItems.find(item => item.parentValue === undefined)
+      ?.value,
     openSubmenuValues,
     triggerClassName,
     ...(controller === undefined
@@ -396,6 +477,17 @@ const contextMenuExampleWithController = <Message = never>(
       : {
           onOpenChange: change => controller.onOpenChange(id, change),
           onPointerChange: point => controller.onContextPointChange(id, point),
+        }),
+    ...(onItemPress === undefined
+      ? {}
+      : { onItemPress: press => onItemPress(id, press) }),
+    ...(onCheckedChange === undefined
+      ? {}
+      : { onCheckedChange: change => onCheckedChange(id, change) }),
+    ...(onRadioValueChange === undefined
+      ? {}
+      : {
+          onRadioValueChange: change => onRadioValueChange(id, change),
         }),
     ...viewOptions,
     toView: attributes =>
@@ -409,9 +501,9 @@ const contextMenuExampleWithController = <Message = never>(
           h.div(
             [...attributes.portal],
             [
-              ...popupView(items, attributes.popup),
+              ...popupView(resolvedItems, attributes.popup),
               ...attributes.submenus.flatMap(submenu =>
-                popupView(items, submenu),
+                popupView(resolvedItems, submenu),
               ),
             ],
           ),
