@@ -103,6 +103,7 @@ import {
   FocusOTPFieldInput,
   type OTPFieldValueChange,
 } from './registry/base-ui/otp-field'
+import * as ShadcnInputGroup from './registry/shadcn/input-group'
 import {
   DataTableState as LiveExampleDataTableState,
   clearFilters as clearLiveExampleDataTableFilters,
@@ -2554,28 +2555,94 @@ const componentSearchView = (model: Model): Html => {
       h.label([h.For('component-search-input'), h.Class('search-label')], [
         'Search documentation',
       ]),
-      h.div([h.Class('search-control')], [
-        h.input([
-          h.Id('component-search-input'),
-          h.Type('search'),
-          h.Placeholder('Search components and docs'),
-          h.Value(model.searchQuery),
-          h.OnInput(value => UpdatedSearchQuery({ value })),
-        ]),
-        h.button(
-          [
-            h.Type('button'),
-            h.Class('search-clear-button'),
-            h.AriaLabel('Clear component search'),
-            h.Disabled(isClearDisabled),
-            h.OnClick(ClickedClearSearch()),
-          ],
-          ['Clear'],
-        ),
-      ]),
+      ShadcnInputGroup.InputGroup({
+        className: 'search-control',
+        children: [
+          ShadcnInputGroup.InputGroupInput({
+            id: 'component-search-input',
+            type: 'search',
+            placeholder: 'Search components and docs',
+            value: model.searchQuery,
+            onValueChange: ({ value }) => UpdatedSearchQuery({ value }),
+          }),
+          ShadcnInputGroup.InputGroupButton({
+            className: 'search-clear-button',
+            size: 'icon-xs',
+            ariaLabel: 'Clear component search',
+            isDisabled: isClearDisabled,
+            onClick: ClickedClearSearch(),
+            children: ['×'],
+          }),
+        ],
+      }),
       searchResultsView(model.searchQuery, results, model.pagefindSearch),
     ],
   )
+}
+
+const componentNavigationView = (
+  model: Model,
+  groups: ReadonlyArray<NamespaceGroup>,
+): Html => {
+  const h = html<Message>()
+
+  return h.nav([h.AriaLabel('Component navigation')], [
+    h.a(
+      [
+        h.Class(
+          isComponentsIndexRoute(model.route)
+            ? 'sidebar-root-link active'
+            : 'sidebar-root-link',
+        ),
+        h.Href(componentsIndexRouter({})),
+        ...(isComponentsIndexRoute(model.route) ? [h.AriaCurrent('page')] : []),
+      ],
+      ['All components'],
+    ),
+    ...groups.map(group =>
+      h.section([h.Class('sidebar-group')], [
+        h.h2([h.Class('sidebar-heading')], [
+          h.a(
+            [
+              h.Href(componentsNamespaceRouter({ namespace: group.namespace })),
+              ...(isComponentNamespaceActive(model.route, group.namespace)
+                ? [h.Class('active')]
+                : []),
+            ],
+            [group.label],
+          ),
+        ]),
+        h.ul(
+          [h.Class('sidebar-list')],
+          group.components.map(component =>
+            h.keyed('li')(
+              component.entry.item.id,
+              [],
+              [
+                h.a(
+                  [
+                    h.Href(componentHref(component)),
+                    h.AriaLabel(
+                      `${component.entry.item.name} (${component.entry.item.id})`,
+                    ),
+                    ...(isComponentLinkActive(model.route, component)
+                      ? [h.Class('active'), h.AriaCurrent('page')]
+                      : []),
+                  ],
+                  [
+                    h.span([], [component.entry.item.name]),
+                    component.entry.item.lifecycle.availability === 'preview'
+                      ? statusBadgeView('preview')
+                      : h.empty,
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ]),
+    ),
+  ])
 }
 
 const sidebarView = (
@@ -2587,67 +2654,14 @@ const sidebarView = (
   return h.aside(
     [h.Class('docs-sidebar'), h.DataAttribute('pagefind-ignore', '')],
     [
-      componentSearchView(model),
-      h.nav([h.AriaLabel('Component navigation')], [
-        h.a(
-          [
-            h.Class(
-              isComponentsIndexRoute(model.route)
-                ? 'sidebar-root-link active'
-                : 'sidebar-root-link',
-            ),
-            h.Href(componentsIndexRouter({})),
-            ...(isComponentsIndexRoute(model.route)
-              ? [h.AriaCurrent('page')]
-              : []),
-          ],
-          ['All components'],
-        ),
-        ...groups.map(group =>
-          h.section([h.Class('sidebar-group')], [
-            h.h2([h.Class('sidebar-heading')], [
-              h.a(
-                [
-                  h.Href(
-                    componentsNamespaceRouter({ namespace: group.namespace }),
-                  ),
-                  ...(isComponentNamespaceActive(model.route, group.namespace)
-                    ? [h.Class('active')]
-                    : []),
-                ],
-                [group.label],
-              ),
-            ]),
-            h.ul(
-              [h.Class('sidebar-list')],
-              group.components.map(component =>
-                h.keyed('li')(
-                  component.entry.item.id,
-                  [],
-                  [
-                    h.a(
-                      [
-                        h.Href(componentHref(component)),
-                        h.AriaLabel(
-                          `${component.entry.item.name} (${component.entry.item.id})`,
-                        ),
-                        ...(isComponentLinkActive(model.route, component)
-                          ? [h.Class('active'), h.AriaCurrent('page')]
-                          : []),
-                      ],
-                      [
-                        h.span([], [component.entry.item.name]),
-                        component.entry.item.lifecycle.availability === 'preview'
-                          ? statusBadgeView('preview')
-                          : h.empty,
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ]),
-        ),
+      h.section([h.Class('docs-sidebar-section docs-sidebar-search')], [
+        componentSearchView(model),
+      ]),
+      h.section([h.Class('docs-sidebar-section docs-sidebar-components')], [
+        h.h2([h.Class('sidebar-heading docs-sidebar-section-heading')], [
+          'Components',
+        ]),
+        componentNavigationView(model, groups),
       ]),
     ],
   )
@@ -2677,6 +2691,27 @@ const tableOfContentsComponent = (
   )
 
 const tableOfContentsExampleLinksView = (
+  component: PublicComponent,
+): Html => {
+  const h = html<Message>()
+
+  return Option.match(component.maybeDocsArtifact, {
+    onNone: () => h.empty,
+    onSome: artifact =>
+      Array.isReadonlyArrayEmpty(artifact.examples)
+        ? h.empty
+        : h.ul(
+          [h.Class('toc-example-list')],
+          artifact.examples.map(example =>
+            h.li([], [
+              h.a([h.Href(`#${exampleAnchorId(example)}`)], [example.title]),
+            ]),
+          ),
+        ),
+  })
+}
+
+const tableOfContentsView = (
   maybeComponent: Option.Option<PublicComponent>,
 ): Html => {
   const h = html<Message>()
@@ -2684,61 +2719,44 @@ const tableOfContentsExampleLinksView = (
   return Option.match(maybeComponent, {
     onNone: () => h.empty,
     onSome: component =>
-      Option.match(component.maybeDocsArtifact, {
-        onNone: () => h.empty,
-        onSome: artifact =>
-          Array.isReadonlyArrayEmpty(artifact.examples)
-            ? h.empty
-            : h.ul(
-              [h.Class('toc-example-list')],
-              artifact.examples.map(example =>
-                h.li([], [
-                  h.a([h.Href(`#${exampleAnchorId(example)}`)], [
-                    example.title,
-                  ]),
-                ]),
-              ),
-            ),
-      }),
+      h.aside(
+        [
+          h.Class('docs-toc'),
+          h.AriaLabel('On this page'),
+          h.DataAttribute('pagefind-ignore', ''),
+        ],
+        [
+          h.p([h.Class('toc-heading')], ['On this page']),
+          h.a([h.Href('#overview')], ['Overview']),
+          h.a([h.Href('#installation')], ['Installation']),
+          h.a([h.Href('#usage')], ['Usage']),
+          h.div([h.Class('toc-group')], [
+            h.a([h.Href('#examples')], ['Examples']),
+            tableOfContentsExampleLinksView(component),
+          ]),
+          h.a([h.Href('#api')], ['API']),
+          h.a([h.Href('#accessibility')], ['Accessibility']),
+          h.a([h.Href('#quality')], ['Quality']),
+          h.a([h.Href('#source')], ['Source']),
+          h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
+        ],
+      ),
   })
-}
-
-const tableOfContentsView = (model: Model): Html => {
-  const h = html<Message>()
-  const maybeComponent = tableOfContentsComponent(model)
-
-  return h.aside(
-    [
-      h.Class('docs-toc'),
-      h.AriaLabel('On this page'),
-      h.DataAttribute('pagefind-ignore', ''),
-    ],
-    [
-      h.p([h.Class('toc-heading')], ['On this page']),
-      h.a([h.Href('#overview')], ['Overview']),
-      h.a([h.Href('#installation')], ['Installation']),
-      h.a([h.Href('#usage')], ['Usage']),
-      h.div([h.Class('toc-group')], [
-        h.a([h.Href('#examples')], ['Examples']),
-        tableOfContentsExampleLinksView(maybeComponent),
-      ]),
-      h.a([h.Href('#api')], ['API']),
-      h.a([h.Href('#accessibility')], ['Accessibility']),
-      h.a([h.Href('#quality')], ['Quality']),
-      h.a([h.Href('#source')], ['Source']),
-      h.a([h.Href('#foldkit-differences')], ['Foldkit Differences']),
-    ],
-  )
 }
 
 const shellView = (model: Model, content: Html): Html => {
   const h = html<Message>()
   const groups = namespaceGroups(model.data)
+  const maybeTableOfContents = tableOfContentsComponent(model)
+  const layoutClass = Option.match(maybeTableOfContents, {
+    onNone: () => 'docs-layout no-toc',
+    onSome: () => 'docs-layout has-toc',
+  })
 
   return h.div([h.Class('app-shell')], [
     headerView(model),
     mobileNavigationView(model),
-    h.div([h.Class('docs-layout')], [
+    h.div([h.Class(layoutClass)], [
       sidebarView(model, groups),
       h.main(
         [
@@ -2754,7 +2772,7 @@ const shellView = (model: Model, content: Html): Html => {
           ),
         ],
       ),
-      tableOfContentsView(model),
+      tableOfContentsView(maybeTableOfContents),
     ]),
   ])
 }
