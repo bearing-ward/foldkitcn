@@ -20,6 +20,7 @@ import type {
   MenuCheckedChange,
   MenuRadioValueChange,
 } from './registry/base-ui/menu'
+import type { OTPFieldValueChange } from './registry/base-ui/otp-field'
 import type { ToastState } from './registry/base-ui/toast'
 import {
   ToastAnchored as BaseToastAnchored,
@@ -195,7 +196,10 @@ import type { CollapsibleExampleController } from './registry/shadcn/collapsible
 import type { CollapsibleOpenChange } from './registry/shadcn/collapsible/index'
 import {
   displayValue as displayComboboxValue,
+  checkIcon as comboboxCheckIcon,
+  chevronDownIcon as comboboxChevronDownIcon,
   view as ComboboxView,
+  xIcon as comboboxXIcon,
 } from './registry/shadcn/combobox'
 import type {
   ComboboxInputValueChange,
@@ -425,8 +429,8 @@ import {
   PopoverRtl,
 } from './registry/shadcn/popover/examples'
 import type { PopoverExampleController } from './registry/shadcn/popover/examples'
+import { view as ProgressView } from './registry/shadcn/progress'
 import {
-  ProgressControlled,
   ProgressDemo,
   ProgressRtl,
   ProgressWithLabel,
@@ -562,18 +566,6 @@ import {
   TextareaRtl,
 } from './registry/shadcn/textarea/examples'
 import {
-  ToastDemo as ShadcnToastDemo,
-  ToastDestructive as ShadcnToastDestructive,
-  ToastSimple as ShadcnToastSimple,
-  ToastStacked as ShadcnToastStacked,
-  ToastWithAction as ShadcnToastWithAction,
-  ToastWithTitle as ShadcnToastWithTitle,
-} from './registry/shadcn/toast/examples'
-import type {
-  ToastExampleController as ShadcnToastExampleController,
-  ToastExampleMessage as ShadcnToastExampleMessage,
-} from './registry/shadcn/toast/examples'
-import {
   ToggleGroupDemo,
   ToggleGroupDisabled,
   ToggleGroupFontWeightSelector,
@@ -631,7 +623,7 @@ export type LiveExampleContext<Message> = Readonly<{
   otpValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
   onOtpValueChange: (
     example: ExampleDocsArtifact,
-    change: Readonly<{ value: string }>,
+    change: OTPFieldValueChange,
   ) => Message
   sliderValuesFor: (
     example: ExampleDocsArtifact,
@@ -657,6 +649,9 @@ export type LiveExampleContext<Message> = Readonly<{
     change: SelectValueChange,
   ) => Message
   comboboxIsOpenFor: (example: ExampleDocsArtifact) => boolean
+  maybeComboboxInputValueFor?: (
+    example: ExampleDocsArtifact,
+  ) => Option.Option<string>
   comboboxInputValueFor: (
     example: ExampleDocsArtifact,
     defaultValue: string,
@@ -918,10 +913,7 @@ export type LiveExampleContext<Message> = Readonly<{
   toastStateFor: (example: ExampleDocsArtifact) => ToastState
   onToastMessage: (
     example: ExampleDocsArtifact,
-    message:
-      | ToastExampleMessage
-      | SonnerExampleMessage
-      | ShadcnToastExampleMessage,
+    message: ToastExampleMessage | SonnerExampleMessage,
   ) => Message
   onBubbleMessage: (
     example: ExampleDocsArtifact,
@@ -985,10 +977,6 @@ type ResizableExampleView = <Message = never>(
 
 type ToastExampleView = <Message = never>(
   controller?: ToastExampleController<Message>,
-) => Html
-
-type ShadcnToastExampleView = <Message = never>(
-  controller?: ShadcnToastExampleController<Message>,
 ) => Html
 
 type SonnerExampleView = <Message = never>(
@@ -1214,6 +1202,13 @@ const sliderExample = (
     className?: string
     isDisabled?: boolean
     label?: string
+    controlRect?: Readonly<{
+      left: number
+      right: number
+      bottom: number
+      width: number
+      height: number
+    }>
   }>,
 ): LiveExampleDefinition => ({
   render: <Message>(
@@ -1258,8 +1253,71 @@ const sliderExample = (
           dir: config.dir,
           className: config.className,
           isDisabled: config.isDisabled,
+          ...(config.controlRect === undefined
+            ? {}
+            : { controlRect: config.controlRect }),
           onValueChange: change =>
             context.onSliderValueChange(example, config.id, change),
+        }),
+      ],
+    )
+  },
+})
+
+const sliderControlRect = {
+  left: 0,
+  right: 320,
+  bottom: 160,
+  width: 320,
+  height: 160,
+} as const
+
+const progressControlledExample = (): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const h = html<Message>()
+    const values = context.sliderValuesFor(
+      example,
+      'progress-controlled-live',
+      [50],
+    )
+    const value = values[0] ?? 50
+
+    return h.div(
+      [h.Class('mx-auto grid w-full max-w-xs gap-3')],
+      [
+        h.div(
+          [h.Class('flex items-center justify-between gap-2 text-sm')],
+          [
+            h.span([], ['Progress']),
+            h.span([h.Class('text-muted-foreground')], [`${value}%`]),
+          ],
+        ),
+        SliderView<Message>({
+          id: 'progress-controlled-live',
+          values: [value],
+          max: 100,
+          step: 1,
+          className: 'w-full',
+          controlRect: {
+            left: 0,
+            right: 320,
+            bottom: 160,
+            width: 320,
+            height: 160,
+          },
+          onValueChange: change =>
+            context.onSliderValueChange(
+              example,
+              'progress-controlled-live',
+              change,
+            ),
+        }),
+        ProgressView<Message>({
+          value,
+          className: 'w-full',
         }),
       ],
     )
@@ -1448,17 +1506,23 @@ const comboboxFrameworks: ReadonlyArray<ComboboxItemDescriptor> = [
 ]
 
 const comboboxCountries: ReadonlyArray<ComboboxItemDescriptor> = [
-  { label: 'Argentina', value: 'argentina', textValue: 'Argentina ar' },
-  { label: 'Australia', value: 'australia', textValue: 'Australia au' },
-  { label: 'Brazil', value: 'brazil', textValue: 'Brazil br' },
-  { label: 'Canada', value: 'canada', textValue: 'Canada ca' },
-  { label: 'China', value: 'china', textValue: 'China cn' },
-  { label: 'France', value: 'france', textValue: 'France fr' },
-  { label: 'Japan', value: 'japan', textValue: 'Japan jp' },
+  {
+    label: 'Argentina',
+    value: 'argentina',
+    textValue: 'Argentina South America ar',
+  },
+  { label: 'Australia', value: 'australia', textValue: 'Australia Oceania au' },
+  { label: 'Brazil', value: 'brazil', textValue: 'Brazil South America br' },
+  { label: 'Canada', value: 'canada', textValue: 'Canada North America ca' },
+  { label: 'China', value: 'china', textValue: 'China Asia cn' },
+  { label: 'France', value: 'france', textValue: 'France Europe fr' },
+  { label: 'Japan', value: 'japan', textValue: 'Japan Asia jp' },
+  { label: 'Kenya', value: 'kenya', textValue: 'Kenya Africa ke' },
+  { label: 'Mexico', value: 'mexico', textValue: 'Mexico North America mx' },
   {
     label: 'United States',
     value: 'united-states',
-    textValue: 'United States',
+    textValue: 'United States North America us',
   },
 ]
 
@@ -1528,9 +1592,11 @@ const groupedComboboxExample = (
     context: LiveExampleContext<Message>,
   ) => {
     const h = html<Message>()
-    const inputValue = context.comboboxInputValueFor(
-      example,
-      config.defaultInputValue ?? '',
+    const maybeInputValue =
+      context.maybeComboboxInputValueFor?.(example) ?? Option.none()
+    const inputValue = pipe(
+      maybeInputValue,
+      Option.getOrElse(() => config.defaultInputValue ?? ''),
     )
     const value = context.comboboxValueFor(example, config.defaultValue)
     const values = context.comboboxValuesFor(
@@ -1538,11 +1604,30 @@ const groupedComboboxExample = (
       config.defaultValues ?? [],
     )
     const groups = config.groups ?? [{ items: config.items }]
+    const displayInputValue =
+      config.selectionMode === 'multiple'
+        ? undefined
+        : pipe(
+            maybeInputValue,
+            Option.match({
+              onNone: () =>
+                value === undefined
+                  ? (config.defaultInputValue ?? '')
+                  : displayComboboxValue({
+                      items: config.items,
+                      placeholder: config.placeholder,
+                      value,
+                      values,
+                    }),
+              onSome: storedValue => storedValue,
+            }),
+          )
 
     return ComboboxView<Message>({
       id: config.id,
       open: context.comboboxIsOpenFor(example),
       inputValue,
+      ...(displayInputValue === undefined ? {} : { displayInputValue }),
       items: config.items,
       placeholder: config.placeholder,
       contentClassName: config.contentClassName ?? 'max-h-64',
@@ -1592,7 +1677,10 @@ const groupedComboboxExample = (
                       ...attributes.chipItems.map(chip =>
                         h.div(
                           [...chip.root],
-                          [chip.item.label, h.button([...chip.remove], ['x'])],
+                          [
+                            chip.item.label,
+                            h.button([...chip.remove], [comboboxXIcon([])]),
+                          ],
                         ),
                       ),
                       h.input([
@@ -1614,9 +1702,17 @@ const groupedComboboxExample = (
                           h.DataAttribute('align', 'inline-end'),
                         ],
                         [
-                          h.button([...attributes.trigger], ['v']),
+                          h.button(
+                            [...attributes.trigger],
+                            [comboboxChevronDownIcon([])],
+                          ),
                           ...(config.showClear === true
-                            ? [h.button([...attributes.clear], ['x'])]
+                            ? [
+                                h.button(
+                                  [...attributes.clear],
+                                  [comboboxXIcon([])],
+                                ),
+                              ]
                             : []),
                         ],
                       ),
@@ -1672,7 +1768,7 @@ const groupedComboboxExample = (
                                             ),
                                             h.span(
                                               [...itemAttributes.indicator],
-                                              [],
+                                              [comboboxCheckIcon([])],
                                             ),
                                           ],
                                         ),
@@ -2270,16 +2366,6 @@ const toastExample = (view: ToastExampleView): LiveExampleDefinition => ({
     }),
 })
 
-const shadcnToastExample = (
-  view: ShadcnToastExampleView,
-): LiveExampleDefinition => ({
-  render: (example, context) =>
-    view({
-      state: context.toastStateFor(example),
-      onToastMessage: message => context.onToastMessage(example, message),
-    }),
-})
-
 const sonnerExample = (view: SonnerExampleView): LiveExampleDefinition => ({
   render: <Message>(
     example: ExampleDocsArtifact,
@@ -2319,7 +2405,7 @@ const dataTableExample = (
       hiddenColumnIds: [],
       selectedRowIds: {},
       pageIndex: 0,
-      pageSize: example.id.endsWith('data-table-tasks') ? 3 : 2,
+      pageSize: 10,
     }
 
     return view({
@@ -2967,20 +3053,6 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     sonnerExample(ShadcnSonnerPosition),
   [liveExampleKey('shadcn/sonner', 'SonnerTypes')]:
     sonnerExample(ShadcnSonnerTypes),
-  [liveExampleKey('shadcn/toast', 'ToastDemo')]:
-    shadcnToastExample(ShadcnToastDemo),
-  [liveExampleKey('shadcn/toast', 'ToastSimple')]:
-    shadcnToastExample(ShadcnToastSimple),
-  [liveExampleKey('shadcn/toast', 'ToastWithTitle')]:
-    shadcnToastExample(ShadcnToastWithTitle),
-  [liveExampleKey('shadcn/toast', 'ToastWithAction')]: shadcnToastExample(
-    ShadcnToastWithAction,
-  ),
-  [liveExampleKey('shadcn/toast', 'ToastDestructive')]: shadcnToastExample(
-    ShadcnToastDestructive,
-  ),
-  [liveExampleKey('shadcn/toast', 'ToastStacked')]:
-    shadcnToastExample(ShadcnToastStacked),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDemo')]:
     staticExample(ButtonGroupDemo),
   [liveExampleKey('shadcn/button-group', 'ButtonGroupDropdown')]:
@@ -3470,7 +3542,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     popoverExample(PopoverForm),
   [liveExampleKey('shadcn/popover', 'PopoverRtl')]: popoverExample(PopoverRtl),
   [liveExampleKey('shadcn/progress', 'ProgressControlled')]:
-    staticExample(ProgressControlled),
+    progressControlledExample(),
   [liveExampleKey('shadcn/progress', 'ProgressDemo')]:
     staticExample(ProgressDemo),
   [liveExampleKey('shadcn/progress', 'ProgressWithLabel')]:
@@ -3580,12 +3652,14 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     max: 1,
     step: 0.1,
     label: 'Temperature',
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderDemo')]: sliderExample({
     id: 'slider-demo-live',
     defaultValues: [75],
     max: 100,
     step: 1,
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderDisabled')]: sliderExample({
     id: 'slider-disabled-live',
@@ -3593,18 +3667,21 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     max: 100,
     step: 1,
     isDisabled: true,
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderMultiple')]: sliderExample({
     id: 'slider-multiple-live',
     defaultValues: [10, 20, 70],
     max: 100,
     step: 10,
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderRange')]: sliderExample({
     id: 'slider-range-live',
     defaultValues: [25, 50],
     max: 100,
     step: 5,
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderRtl')]: sliderExample({
     id: 'slider-rtl-live',
@@ -3612,6 +3689,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     max: 100,
     step: 1,
     dir: 'rtl',
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/slider', 'SliderVertical')]: sliderExample({
     id: 'slider-vertical-live',
@@ -3620,6 +3698,7 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     step: 1,
     orientation: 'vertical',
     className: 'h-40',
+    controlRect: sliderControlRect,
   }),
   [liveExampleKey('shadcn/combobox', 'ComboboxAutoHighlight')]:
     groupedComboboxExample({

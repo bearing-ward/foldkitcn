@@ -116,6 +116,10 @@ honor its STOP conditions, and update your row when done.
 | 106 | Harden shadcn data, date, and carousel regressions | P1 | L | 078, 079, 100, 101, 104, 105 | DONE |
 | 107 | Harden shadcn visual parity regressions | P1 | L | 104, 105, 106 | DONE |
 | 108 | Harden shadcn sidebar and chat-family regressions | P1 | L | 083, 085, 098, 104, 107 | DONE |
+| 109 | Reopen shadcn form and collection regressions with exact red tests | P1 | L | 104, 105, 106, 107 | DONE |
+| 110 | Reopen shadcn overlay and menu regressions with exact red tests | P1 | L | 104, 107, 109 | DONE |
+| 111 | Reopen shadcn surface layout regressions with exact red tests | P1 | L | 107, 108, 109, 110 | DONE |
+| 112 | Remove shadcn toast from the public shadcn registry surface | P1 | M | 081, 082, 098 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -213,6 +217,37 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 108 depends on Sidebar, Bubble, Sonner, and the overlay/visual hardening
   plans because sidebar and chat examples compose menu, collapsible, tooltip,
   popover, and toast behavior.
+- Plans 109-111 were generated on 2026-07-06 after the user supplied current
+  screenshots showing that the Plan 104-108 acceptance gates were too broad.
+  They do not rewrite those DONE rows; they reopen the current failures with
+  exact red tests for the reported behavior before any fix work.
+- Plan 109 runs first because form, collection, and control regressions expose
+  the clearest missing test assertions: combobox clear/filter/custom items,
+  data-table and pagination rows-per-page, progress control, OTP typing, and
+  slider interaction. During execution, registry-build verification also
+  refreshed generated registry index/public artifacts for changed combobox
+  snippets.
+- Plan 110 follows because overlay/menu positioning and touchy state should be
+  tested after Plan 109 removes control-level ambiguity around Select and
+  Combobox popups. Its execution baseline includes the already-applied Plan 109
+  form/control fixes and Plan 112 toast removal. Execution reproduced and fixed
+  the sidebar action-menu offset; `TableActions` clipping did not reproduce
+  after two browser attempts, so the final tests keep a geometry/dismissal guard.
+  Registry-build verification refreshed generated registry index/public
+  artifacts.
+- Plan 111 follows the behavior plans because drawer, sheet, dialog,
+  alert-dialog, and sidebar layout checks should run against the repaired
+  overlay/control foundations. Its execution baseline includes the already-
+  applied Plans 109, 110, and 112. Execution confirmed and fixed the drawer
+  top/bottom docs-preview height issue and sidebar constrained-layout issues;
+  Sheet top/bottom sizing did not produce a distinct red failure, so Sheet
+  source remains unchanged with only a neutral guard.
+- Plan 112 supersedes the product-surface outcome of Plan 098: Plan 098 remains
+  historical DONE work, but the active direction is now to remove
+  `shadcn/toast` completely while preserving `base-ui/toast` and
+  `shadcn/sonner`. During execution, registry/progress verification also
+  required refreshing the component-conversion checklist artifacts and their
+  progress-count assertions.
 
 ## Findings considered and rejected
 
@@ -220,6 +255,9 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Making `registry/` the editable source tree: rejected because `registry/` is easy to confuse with generated/public registry output; use `registry-src/` for human-edited source truth.
 - Exposing React-style `asChild` as a normal Foldkit API: rejected because Foldkit should preserve the composition capability through `toView` or named part renderers, not mimic React Slot cloning semantics.
 - Implementing `shadcn/typography` as a runtime component API: rejected because origin explicitly uses the Typography page to explain that typography styles are not shipped by default; Foldkit CN should document utility-class examples instead of inventing a fake installable helper.
+- Re-running Plans 104-108 unchanged: rejected because those plans are already
+  marked DONE and their broad tests missed the exact current reports. Plans
+  109-111 add narrower red tests for the present failures instead.
 
 ## Reconciliation log
 

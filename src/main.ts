@@ -99,6 +99,11 @@ import {
   type DataTableExampleMessage as DataTableExampleMessageType,
 } from './registry/shadcn/data-table/examples'
 import {
+  CompletedFocusOTPFieldInput,
+  FocusOTPFieldInput,
+  type OTPFieldValueChange,
+} from './registry/base-ui/otp-field'
+import {
   DataTableState as LiveExampleDataTableState,
   clearFilters as clearLiveExampleDataTableFilters,
   firstPage as firstLiveExampleDataTablePage,
@@ -124,10 +129,6 @@ import {
   toastViewportPositionFromPosition,
   type ToastExampleMessage as SonnerExampleMessageType,
 } from './registry/shadcn/sonner/examples'
-import {
-  ToastExampleMessage as ShadcnToastExampleMessage,
-  type ToastExampleMessage as ShadcnToastExampleMessageType,
-} from './registry/shadcn/toast/examples'
 import {
   EndedResizableDrag,
   MovedResizablePointer,
@@ -379,11 +380,6 @@ const initialLiveExampleToastState = (
 ): ToastPrimitive.ToastState =>
   ToastPrimitive.createToastState({ limit: 3 })
 
-const shadcnToastExampleIdPrefix = 'shadcn/toast-'
-
-const isShadcnToastExample = (exampleId: string): boolean =>
-  exampleId.startsWith(shadcnToastExampleIdPrefix)
-
 const toastIdForExample = (exampleId: string): string =>
   `${exampleId.replaceAll('/', '-')}-toast`
 
@@ -490,8 +486,7 @@ const updateLiveExampleToastState = (
   exampleId: string,
   message:
     | ToastExampleMessageType
-    | SonnerExampleMessageType
-    | ShadcnToastExampleMessageType,
+    | SonnerExampleMessageType,
 ): readonly [
   ToastPrimitive.ToastState,
   ReadonlyArray<Command.Command<Message>>,
@@ -521,33 +516,15 @@ const updateLiveExampleToastState = (
           }),
           [],
         ],
-      ClickedCreateStackedToast: () => {
-        if (isShadcnToastExample(exampleId)) {
-          const count = activeToastCount(state) + 1
-
-          return [
-            showToast(state, {
-              title: `Stacked toast ${count}`,
-              description: 'Hover or focus the viewport to expand.',
-              priority: 'low',
-              ...(count === 1 ? { actionLabel: 'Undo' } : {}),
-              timeout: 5000,
-              height: count === 1 ? 84 : 92,
-            }),
-            [],
-          ]
-        }
-
-        return [
-          showToast(state, {
-            description: 'Copied',
-            priority: 'low',
-            timeout: 5000,
-            height: 64,
-          }),
-          [],
-        ]
-      },
+      ClickedCreateStackedToast: () => [
+        showToast(state, {
+          description: 'Copied',
+          priority: 'low',
+          timeout: 5000,
+          height: 64,
+        }),
+        [],
+      ],
       ClickedCreatePositionToast: () =>
         [
           showToast(state, {
@@ -559,34 +536,18 @@ const updateLiveExampleToastState = (
           }),
           [],
         ],
-      ClickedPerformAction: () => {
-        if (isShadcnToastExample(exampleId)) {
-          return [
-            showToast(state, {
-              id: toastIdForExample(exampleId),
-              title: 'Uh oh! Something went wrong.',
-              description: 'There was a problem with your request.',
-              actionLabel: 'Try again',
-              timeout: 5000,
-              height: 96,
-            }),
-            [],
-          ]
-        }
-
-        return [
-          showToast(state, {
-            id: `undo-${activeToastCount(state) + 1}`,
-            title: `Action ${activeToastCount(state) + 1} performed`,
-            description: 'You can undo this action.',
-            type: 'success',
-            actionLabel: 'Undo',
-            timeout: 10_000,
-            height: 96,
-          }),
-          [],
-        ]
-      },
+      ClickedPerformAction: () => [
+        showToast(state, {
+          id: `undo-${activeToastCount(state) + 1}`,
+          title: `Action ${activeToastCount(state) + 1} performed`,
+          description: 'You can undo this action.',
+          type: 'success',
+          actionLabel: 'Undo',
+          timeout: 10_000,
+          height: 96,
+        }),
+        [],
+      ],
       ClickedRunPromiseToast: () => {
         const change = ToastPrimitive.startPromiseToast(state, {
           loading: 'Waiting for result...',
@@ -662,67 +623,24 @@ const updateLiveExampleToastState = (
         [ToastPrimitive.closeToast(state, request), []],
       ChangedToastViewport: ({ interaction }) =>
         [ToastPrimitive.applyViewportInteraction(state, interaction), []],
-      ClickedShowToast: () => {
-        if (exampleId === 'shadcn/toast-demo') {
-          return [
-            showToast(state, {
-              id: toastIdForExample(exampleId),
-              title: 'Scheduled: Catch up',
-              description: 'Friday, February 10, 2023 at 5:57 PM',
-              actionLabel: 'Undo',
-              timeout: 5000,
-              height: 84,
-            }),
-            [],
-          ]
-        }
-
-        if (exampleId === 'shadcn/toast-with-title') {
-          return [
-            showToast(state, {
-              id: toastIdForExample(exampleId),
-              title: 'Uh oh! Something went wrong.',
-              description: 'There was a problem with your request.',
-              timeout: 5000,
-              height: 84,
-            }),
-            [],
-          ]
-        }
-
-        return [
-          showToast(state, {
-            title: 'Event has been created',
-            description: 'Sunday, December 03, 2023 at 9:00 AM',
-            timeout: 5000,
-            height: 84,
-          }),
-          [],
-        ]
-      },
-      ClickedShowDescriptionToast: () => {
-        if (exampleId === 'shadcn/toast-simple') {
-          return [
-            showToast(state, {
-              id: toastIdForExample(exampleId),
-              description: 'Your message has been sent.',
-              timeout: 5000,
-              height: 64,
-            }),
-            [],
-          ]
-        }
-
-        return [
-          showToast(state, {
-            title: 'Event has been created',
-            description: 'Sunday, December 03, 2023 at 9:00 AM',
-            timeout: 5000,
-            height: 84,
-          }),
-          [],
-        ]
-      },
+      ClickedShowToast: () => [
+        showToast(state, {
+          title: 'Event has been created',
+          description: 'Sunday, December 03, 2023 at 9:00 AM',
+          timeout: 5000,
+          height: 84,
+        }),
+        [],
+      ],
+      ClickedShowDescriptionToast: () => [
+        showToast(state, {
+          title: 'Event has been created',
+          description: 'Sunday, December 03, 2023 at 9:00 AM',
+          timeout: 5000,
+          height: 84,
+        }),
+        [],
+      ],
       ClickedShowPositionToast: ({ position }) =>
         [
           showToast(state, {
@@ -739,33 +657,16 @@ const updateLiveExampleToastState = (
           }),
           [],
         ],
-      ClickedShowTypeToast: ({ variant }) => {
-        if (exampleId === 'shadcn/toast-destructive') {
-          return [
-            showToast(state, {
-              id: toastIdForExample(exampleId),
-              title: 'Uh oh! Something went wrong.',
-              description: 'There was a problem with your request.',
-              type: 'destructive',
-              actionLabel: 'Try again',
-              timeout: 5000,
-              height: 96,
-            }),
-            [],
-          ]
-        }
-
-        return [
-          showToast(state, {
-            title: `${variant} toast`,
-            description: 'Local Foldkit-native Sonner preview.',
-            type: variant === 'promise' ? 'default' : variant,
-            timeout: 5000,
-            height: 84,
-          }),
-          [],
-        ]
-      },
+      ClickedShowTypeToast: ({ variant }) => [
+        showToast(state, {
+          title: `${variant} toast`,
+          description: 'Local Foldkit-native Sonner preview.',
+          type: variant === 'promise' ? 'default' : variant,
+          timeout: 5000,
+          height: 84,
+        }),
+        [],
+      ],
     }),
   )
 
@@ -793,6 +694,8 @@ export const UpdatedLiveExampleInputValue = m('UpdatedLiveExampleInputValue', {
 export const UpdatedLiveExampleOtpValue = m('UpdatedLiveExampleOtpValue', {
   exampleId: S.String,
   value: S.String,
+  isComplete: S.Boolean,
+  focusSelector: S.optional(S.String),
 })
 export const UpdatedLiveExampleSliderValues = m(
   'UpdatedLiveExampleSliderValues',
@@ -1008,11 +911,7 @@ export const GotLiveExampleDatePickerMessage = m(
 )
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
-  message: S.Union([
-    ToastExampleMessage,
-    SonnerExampleMessage,
-    ShadcnToastExampleMessage,
-  ]),
+  message: S.Union([ToastExampleMessage, SonnerExampleMessage]),
 })
 export const GotLiveExampleBubbleMessage = m('GotLiveExampleBubbleMessage', {
   exampleId: S.String,
@@ -1084,6 +983,7 @@ export const Message = S.Union([
   CompletedLoadExternal,
   CompletedScrollToAnchor,
   CompletedFocusLiveExampleMenu,
+  CompletedFocusOTPFieldInput,
   ClickedLink,
   ChangedUrl,
   ClickedToggleMobileNavigation,
@@ -1393,6 +1293,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       CompletedLoadExternal: () => [model, []],
       CompletedScrollToAnchor: () => [model, []],
       CompletedFocusLiveExampleMenu: () => [model, []],
+      CompletedFocusOTPFieldInput: () => [model, []],
       ClickedLink: ({ request }) =>
         M.value(request).pipe(
           withUpdateReturn,
@@ -1441,11 +1342,13 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
-      UpdatedLiveExampleOtpValue: ({ exampleId, value }) => [
+      UpdatedLiveExampleOtpValue: ({ exampleId, value, focusSelector }) => [
         evo(model, {
           liveExampleOtpValues: EffectRecord.set(exampleId, value),
         }),
-        [],
+        focusSelector === undefined
+          ? []
+          : [FocusOTPFieldInput({ selector: focusSelector })],
       ],
       UpdatedLiveExampleSliderValues: ({ exampleId, sliderId, values }) => [
         evo(model, {
@@ -3305,11 +3208,13 @@ const examplesSectionView = (
       ),
     onOtpValueChange: (
       example: ExampleDocsArtifact,
-      change: Readonly<{ value: string }>,
+      change: OTPFieldValueChange,
     ): Message =>
       UpdatedLiveExampleOtpValue({
         exampleId: example.id,
         value: change.value,
+        isComplete: change.isComplete,
+        focusSelector: change.focusSelector,
       }),
     sliderValuesFor: (
       example: ExampleDocsArtifact,
@@ -3367,6 +3272,8 @@ const examplesSectionView = (
         EffectRecord.get(liveExampleComboboxOpenValues, example.id),
         Option.getOrElse(() => false),
       ),
+    maybeComboboxInputValueFor: (example: ExampleDocsArtifact) =>
+      EffectRecord.get(liveExampleComboboxInputValues, example.id),
     comboboxInputValueFor: (
       example: ExampleDocsArtifact,
       defaultValue: string,
@@ -3885,10 +3792,7 @@ const examplesSectionView = (
       ),
     onToastMessage: (
       example: ExampleDocsArtifact,
-      message:
-        | ToastExampleMessageType
-        | SonnerExampleMessageType
-        | ShadcnToastExampleMessageType,
+      message: ToastExampleMessageType | SonnerExampleMessageType,
     ): Message =>
       GotLiveExampleToastMessage({
         exampleId: example.id,

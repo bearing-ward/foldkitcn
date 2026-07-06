@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-06T08:29:09.260Z",
+  "generatedAt": "2026-07-06T13:08:21.265Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -486,11 +486,6 @@
       "itemId": "shadcn/textarea",
       "routePath": "/components/shadcn/textarea",
       "docsArtifactPath": "registry/docs/shadcn/textarea.json"
-    },
-    {
-      "itemId": "shadcn/toast",
-      "routePath": "/components/shadcn/toast",
-      "docsArtifactPath": "registry/docs/shadcn/toast.json"
     },
     {
       "itemId": "shadcn/toggle-group",

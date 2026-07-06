@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-06T08:29:09.260Z",
+  "generatedAt": "2026-07-06T13:08:21.265Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -10448,8 +10448,8 @@
         },
         {
           "path": "src/registry/shadcn/combobox/examples.ts",
-          "sha256": "4c71cedcda049df6eff1c34a413996efd0492766722905668cf53a9bb7ceae5b",
-          "sizeBytes": 14686,
+          "sha256": "6634e2c3227a1cddb2ad9e77b0fac4b3e800094a42a9194d7ce2c9f001937405",
+          "sizeBytes": 15164,
           "role": "source"
         }
       ]
@@ -11301,8 +11301,8 @@
         },
         {
           "path": "src/registry/shadcn/data-table/examples.ts",
-          "sha256": "ab4a5f482d30f08527380009b77710a466d0296384df43bcf2b346fd8d5a55c4",
-          "sizeBytes": 36097,
+          "sha256": "35cf91c8f2aeb128f15a4bc27bb2445da04e9154180861c584fb344d79fc6cc4",
+          "sizeBytes": 36638,
           "role": "source"
         }
       ]
@@ -12357,8 +12357,8 @@
         },
         {
           "path": "src/registry/shadcn/drawer/examples.ts",
-          "sha256": "8e4ca0965d481a1b77d65f705663adfff7089d80e563f716037fbd5b5c516c52",
-          "sizeBytes": 9565,
+          "sha256": "c16e4ca47685c9bad4465fc7bec9f152e475fac5db93bd147496500ef1c37845",
+          "sizeBytes": 9644,
           "role": "source"
         }
       ]
@@ -18889,8 +18889,8 @@
         },
         {
           "path": "src/registry/shadcn/sidebar/examples.ts",
-          "sha256": "b2abd6f5eeafd68d9b69bb67a1a96ce3974379bde579c4420355cae566a1b6f0",
-          "sizeBytes": 86491,
+          "sha256": "3127912cbcb982d25e0c8146b7e42a0d309e38352da854368f147cc68180f240",
+          "sizeBytes": 85937,
           "role": "source"
         }
       ]
@@ -20698,225 +20698,6 @@
           "path": "src/registry/shadcn/textarea/examples.ts",
           "sha256": "dc1829ccf4f079d498afaa146d6b8b7edbf4c9decaa18e11d20277729288e8d5",
           "sizeBytes": 5512,
-          "role": "source"
-        }
-      ]
-    },
-    {
-      "item": {
-        "schemaVersion": 1,
-        "id": "shadcn/toast",
-        "namespace": "shadcn",
-        "name": "Toast",
-        "kind": "component",
-        "description": "Foldkit-native shadcn Toast wrapper built on the local Base UI Toast primitive with shadcn card styling, stacked expansion, destructive variants, and live examples.",
-        "sourceRoot": "registry-src/shadcn/toast",
-        "installableSourcePaths": [
-          "src/registry/shadcn/toast/index.ts",
-          "src/registry/shadcn/toast/examples.ts"
-        ],
-        "consumedThemeTokens": [
-          "--background",
-          "--border",
-          "--destructive",
-          "--destructive-foreground",
-          "--foreground",
-          "--input",
-          "--muted",
-          "--muted-foreground",
-          "--popover",
-          "--popover-foreground",
-          "--radius"
-        ],
-        "originProvenance": [
-          {
-            "originKind": "shadcn",
-            "originName": "shadcn Toast",
-            "docsUrl": "https://ui.shadcn.com/docs/components/toast",
-            "sourceUrl": "https://github.com/shadcn-ui/ui/tree/40c7064532185f5556f6cbff7dca3544987c0fe1/apps/v4/styles/base-nova/ui/toast.tsx",
-            "localRepoPath": "repos/ui",
-            "gitRef": "40c7064532185f5556f6cbff7dca3544987c0fe1",
-            "inventoryHash": "40c7064532185f5556f6cbff7dca3544987c0fe1",
-            "sourcePaths": [],
-            "docsPaths": [
-              "repos/ui/apps/v4/content/docs/components/base/toast.mdx",
-              "repos/ui/apps/v4/content/docs/components/radix/toast.mdx"
-            ],
-            "examplePaths": [
-              "repos/ui/apps/v4/examples/base/toast-demo.tsx",
-              "repos/ui/apps/v4/examples/base/toast-simple.tsx",
-              "repos/ui/apps/v4/examples/base/toast-with-title.tsx",
-              "repos/ui/apps/v4/examples/base/toast-with-action.tsx",
-              "repos/ui/apps/v4/examples/base/toast-destructive.tsx"
-            ],
-            "testPaths": []
-          }
-        ],
-        "dependencies": {
-          "registry": [
-            {
-              "specifier": "base-ui/toast",
-              "classification": "registry-local",
-              "target": "base-ui/toast",
-              "reason": "shadcn Toast composes the local Base UI Toast primitive."
-            },
-            {
-              "specifier": "shadcn/button",
-              "classification": "registry-local",
-              "target": "shadcn/button",
-              "reason": "shadcn Toast examples compose the local shadcn Button registry item."
-            },
-            {
-              "specifier": "utils/cn",
-              "classification": "registry-local",
-              "target": "utils/cn",
-              "reason": "shadcn Toast uses local class canonicalization instead of CVA."
-            }
-          ],
-          "runtime": [
-            {
-              "specifier": "foldkit",
-              "classification": "allowed-runtime",
-              "target": "npm:foldkit",
-              "reason": "Provides Html, Attribute, and html factory APIs for the Foldkit-native wrapper."
-            },
-            {
-              "specifier": "effect",
-              "classification": "allowed-runtime",
-              "target": "npm:effect",
-              "reason": "Provides Effect Schema literals for the toast variant option and local data shaping."
-            },
-            {
-              "specifier": "clsx",
-              "classification": "allowed-runtime",
-              "target": "npm:clsx",
-              "reason": "Provided through the local utils/cn registry dependency."
-            },
-            {
-              "specifier": "tailwind-merge",
-              "classification": "allowed-runtime",
-              "target": "npm:tailwind-merge",
-              "reason": "Provided through the local utils/cn registry dependency."
-            }
-          ],
-          "development": [
-            {
-              "specifier": "react",
-              "classification": "dev-or-fixture-only",
-              "target": "",
-              "reason": "React is origin fixture evidence only, not installable Foldkit source."
-            },
-            {
-              "specifier": "@radix-ui/react-toast",
-              "classification": "dev-or-fixture-only",
-              "target": "",
-              "reason": "The upstream React toast runtime is evidence only; installable source is Foldkit-native."
-            },
-            {
-              "specifier": "sonner",
-              "classification": "dev-or-fixture-only",
-              "target": "",
-              "reason": "Sonner is origin fixture evidence only and is replaced by the local Base UI Toast primitive."
-            }
-          ]
-        },
-        "examples": [
-          {
-            "id": "shadcn/toast-demo",
-            "title": "ToastDemo",
-            "description": "Basic shadcn Toast trigger with title, description, and undo action.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          },
-          {
-            "id": "shadcn/toast-simple",
-            "title": "ToastSimple",
-            "description": "Simple shadcn Toast trigger with description only.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          },
-          {
-            "id": "shadcn/toast-with-title",
-            "title": "ToastWithTitle",
-            "description": "Toast trigger with title and description text.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          },
-          {
-            "id": "shadcn/toast-with-action",
-            "title": "ToastWithAction",
-            "description": "Toast trigger with an inline action button.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          },
-          {
-            "id": "shadcn/toast-destructive",
-            "title": "ToastDestructive",
-            "description": "Destructive Toast variant with local shadcn card styling.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          },
-          {
-            "id": "shadcn/toast-stacked",
-            "title": "ToastStacked",
-            "description": "Pre-seeded stacked toasts that expand on hover and focus.",
-            "sourcePath": "src/registry/shadcn/toast/examples.ts",
-            "kind": "demo"
-          }
-        ],
-        "parity": {
-          "itemId": "shadcn/toast",
-          "originFixturePath": "tests/parity/fixtures/origin/shadcn/entry.tsx",
-          "foldkitFixturePath": "tests/parity/fixtures/foldkit/shadcn/entry.ts",
-          "requiredComparisons": [
-            "class-tokens",
-            "attributes",
-            "dom-structure",
-            "computed-style",
-            "colors",
-            "dimensions",
-            "bounding-box",
-            "keyboard-behavior"
-          ],
-          "acceptedDeviationIds": [
-            "shadcn-toast-foldkit-native-toast-primitive"
-          ]
-        },
-        "lifecycle": {
-          "implementationStatus": "implemented",
-          "parityStatus": "accepted",
-          "driftStatus": "current",
-          "availability": "installable",
-          "docsStatus": "complete"
-        },
-        "deviations": [
-          {
-            "id": "shadcn-toast-foldkit-native-toast-primitive",
-            "summary": "The wrapper composes the local Base UI Toast primitive instead of the upstream React/Radix hook stack and global useToast store.",
-            "required": true,
-            "status": "accepted",
-            "rationale": "Installable source must stay Foldkit-native while preserving the visible shadcn toast surface and example set."
-          }
-        ]
-      },
-      "manifestHash": "fbb033e2f7d391aa4b49f374da0d6bc54b73215a667046ce3008258e9eaa2a42",
-      "artifacts": [
-        {
-          "path": "registry-src/shadcn/toast/item.json",
-          "sha256": "844ce8737a9fb146bf1d19daf1a510ba6e085a0d027442be17031a63426fd5fe",
-          "sizeBytes": 6617,
-          "role": "manifest"
-        },
-        {
-          "path": "src/registry/shadcn/toast/index.ts",
-          "sha256": "e55630a3c9b478b28b257d9364d1d00445c6cfa63776077257d08794b75fce89",
-          "sizeBytes": 14059,
-          "role": "source"
-        },
-        {
-          "path": "src/registry/shadcn/toast/examples.ts",
-          "sha256": "fec21a14018b63140ebbe9e02ce923fee935327f0bebe2c54043049f5529d5ab",
-          "sizeBytes": 6661,
           "role": "source"
         }
       ]

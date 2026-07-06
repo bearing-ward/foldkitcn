@@ -38,8 +38,8 @@ describe('origin component progress', () => {
     })
     expect(report.summary.shadcn).toStrictEqual({
       total: 64,
-      imported: 63,
-      remaining: 1,
+      imported: 62,
+      remaining: 2,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
     expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
@@ -134,7 +134,6 @@ describe('origin component progress', () => {
       'shadcn/tooltip',
       'shadcn/toggle',
       'shadcn/toggle-group',
-      'shadcn/toast',
       'shadcn/typography',
     ]
 
@@ -156,7 +155,7 @@ describe('origin component progress', () => {
     expect(requireRow('shadcn/data-table').readiness).toBe('imported')
     expect(requireRow('shadcn/date-picker').readiness).toBe('imported')
     expect(requireRow('shadcn/chart').readiness).toBe('blocked')
-    expect(requireRow('shadcn/toast').readiness).toBe('imported')
+    expect(requireRow('shadcn/toast').readiness).toBe('blocked')
     expect(requireRow('shadcn/typography').readiness).toBe('imported')
   })
 

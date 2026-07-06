@@ -2,7 +2,13 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import type { ComboboxItemDescriptor } from './index'
-import { displayValue, view as Combobox } from './index'
+import {
+  checkIcon,
+  chevronDownIcon,
+  displayValue,
+  view as Combobox,
+  xIcon,
+} from './index'
 
 const frameworks: ReadonlyArray<ComboboxItemDescriptor> = [
   { label: 'Next.js', value: 'next' },
@@ -166,7 +172,10 @@ const comboboxShell = (
                     ...attributes.chipItems.map(chip =>
                       h.div(
                         [...chip.root],
-                        [chip.item.label, h.button([...chip.remove], ['x'])],
+                        [
+                          chip.item.label,
+                          h.button([...chip.remove], [xIcon([])]),
+                        ],
                       ),
                     ),
                     h.input([
@@ -188,9 +197,12 @@ const comboboxShell = (
                         h.DataAttribute('align', 'inline-end'),
                       ],
                       [
-                        h.button([...attributes.trigger], ['v']),
+                        h.button(
+                          [...attributes.trigger],
+                          [chevronDownIcon([])],
+                        ),
                         ...(config.showClear === true
-                          ? [h.button([...attributes.clear], ['x'])]
+                          ? [h.button([...attributes.clear], [xIcon([])])]
                           : []),
                       ],
                     ),
@@ -242,7 +254,10 @@ const comboboxShell = (
                                         [...itemAttributes.text],
                                         [itemAttributes.item.label],
                                       ),
-                                      h.span([...itemAttributes.indicator], []),
+                                      h.span(
+                                        [...itemAttributes.indicator],
+                                        [checkIcon([])],
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -383,7 +398,7 @@ export const ComboboxPopup = (): Html => {
                   }),
                 ],
               ),
-              h.span([], ['v']),
+              chevronDownIcon([]),
             ],
           ),
           h.div(
@@ -411,7 +426,10 @@ export const ComboboxPopup = (): Html => {
                                 [...itemAttributes.text],
                                 [itemAttributes.item.label],
                               ),
-                              h.span([...itemAttributes.indicator], []),
+                              h.span(
+                                [...itemAttributes.indicator],
+                                [checkIcon([])],
+                              ),
                             ],
                           ),
                         ),

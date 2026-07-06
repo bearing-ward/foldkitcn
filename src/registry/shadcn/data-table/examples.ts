@@ -177,6 +177,23 @@ const paymentRows: ReadonlyArray<Payment> = [
     status: 'failed',
     amount: 721,
   },
+  ...Array.from({ length: 20 }, (_item, index) => {
+    const rowNumber = index + 6
+    const suffix = String(rowNumber).padStart(2, '0')
+    const statuses: ReadonlyArray<PaymentStatus> = [
+      'pending',
+      'processing',
+      'success',
+      'failed',
+    ]
+
+    return {
+      id: `payment-${suffix}`,
+      email: `customer${suffix}@example.com`,
+      status: statuses[index % statuses.length] ?? 'success',
+      amount: 200 + rowNumber * 11,
+    }
+  }),
 ]
 
 const taskRows: ReadonlyArray<Task> = [
@@ -286,19 +303,21 @@ const paymentRtlCopy: Copy = {
 }
 
 const pageSizeItems: ReadonlyArray<Select.SelectItemDescriptor> = [
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
-  { value: '4', label: '4' },
+  { value: '10', label: '10' },
+  { value: '20', label: '20' },
+  { value: '30', label: '30' },
+  { value: '40', label: '40' },
+  { value: '50', label: '50' },
 ]
 
 const defaultPaymentState = (): DataTable.DataTableState =>
-  DataTable.initialState({ pageSize: 2 })
+  DataTable.initialState({ pageSize: 10 })
 
 const defaultTaskState = (): DataTable.DataTableState =>
-  DataTable.initialState({ pageSize: 3 })
+  DataTable.initialState({ pageSize: 10 })
 
 const defaultRtlState = (): DataTable.DataTableState =>
-  DataTable.initialState({ pageSize: 2 })
+  DataTable.initialState({ pageSize: 10 })
 
 const paymentRowId = (payment: Payment): string => payment.id
 const taskRowId = (task: Task): string => task.id

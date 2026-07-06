@@ -1,5 +1,4 @@
 import { Array, Option, pipe } from 'effect'
-import { Scene } from 'foldkit'
 import { describe, expect, test } from 'vitest'
 
 import {
@@ -7,9 +6,12 @@ import {
   readLivePreviewGapArtifact,
 } from '../scripts/report-docs-live-preview-gaps'
 import { docsData, publicComponents } from './data'
-import { hasLiveExampleViewFor, liveExampleViewFor } from './live-examples'
+import { hasLiveExampleViewFor } from './live-examples'
 import type { LiveExampleContext } from './live-examples'
 import * as ToastPrimitive from './registry/base-ui/toast'
+import { routeInventory } from './route-inventory'
+
+import { existsSync } from 'node:fs'
 
 const liveExampleContext: LiveExampleContext<unknown> = {
   inputValueFor: (_example, defaultValue) => defaultValue,
@@ -24,6 +26,7 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   onSelectOpenChange: () => ({}),
   onSelectValueChange: () => ({}),
   comboboxIsOpenFor: () => false,
+  maybeComboboxInputValueFor: () => Option.none(),
   comboboxInputValueFor: (_example, defaultValue) => defaultValue,
   comboboxValueFor: (_example, defaultValue) => defaultValue,
   comboboxValuesFor: (_example, defaultValues) => defaultValues,
@@ -163,41 +166,43 @@ describe('generated docs data', () => {
     expect(missingLiveExampleRenderers).toStrictEqual([])
   })
 
-  test('shadcn ToastStacked live preview renders its seeded stack before interaction', () => {
-    const maybeToastStackedExample = pipe(
+  test('shadcn toast live examples are no longer registered', () => {
+    const registeredExampleExports = pipe(
       loadedPublicComponents(),
-      Array.findFirst(component => component.entry.item.id === 'shadcn/toast'),
-      Option.flatMap(component => component.maybeDocsArtifact),
-      Option.flatMap(artifact =>
-        Array.findFirst(artifact.examples, example =>
-          pipe(
-            example.previewExportName,
-            Option.match({
-              onNone: () => false,
-              onSome: exportName => exportName === 'ToastStacked',
-            }),
-          ),
-        ),
+      Array.filter(component => component.entry.item.id === 'shadcn/toast'),
+      Array.flatMap(component =>
+        Option.match(component.maybeDocsArtifact, {
+          onNone: () => [],
+          onSome: artifact =>
+            pipe(
+              artifact.examples,
+              Array.filter(example => example.previewStatus === 'live-ready'),
+              Array.filter(example => hasLiveExampleViewFor(example)),
+            ),
+        }),
       ),
     )
-    const toastStackedExample = Option.getOrThrow(maybeToastStackedExample)
-    const toastStackedView = Option.getOrThrow(
-      liveExampleViewFor(toastStackedExample, liveExampleContext),
+
+    expect(registeredExampleExports).toStrictEqual([])
+  })
+
+  test('generated registry data no longer exposes shadcn/toast', () => {
+    const maybeToastComponent = pipe(
+      loadedPublicComponents(),
+      Array.findFirst(component => component.entry.item.id === 'shadcn/toast'),
     )
 
-    expect(() => {
-      Scene.scene(
-        {
-          update: (model: unknown) => [model, []],
-          view: () => toastStackedView,
-        },
-        Scene.with({}),
-        Scene.expectAll(Scene.all.role('dialog')).toHaveCount(3),
-        Scene.expect(Scene.text('Scheduled')).toExist(),
-        Scene.expect(Scene.text('Queued')).toExist(),
-        Scene.expect(Scene.text('Ready')).toExist(),
-      )
-    }).not.toThrow()
+    expect(Option.isNone(maybeToastComponent)).toBeTruthy()
+
+    const paths = routeInventory(docsData).map(entry => entry.path)
+
+    expect(paths).not.toContain('/components/shadcn/toast')
+    expect(existsSync('registry/docs/shadcn/toast.json')).toBeFalsy()
+  })
+
+  test('shadcn toast source directories are removed from the tree', () => {
+    expect(existsSync('registry-src/shadcn/toast')).toBeFalsy()
+    expect(existsSync('src/registry/shadcn/toast')).toBeFalsy()
   })
 
   test('docs live preview gaps match the checked-in inventory', async () => {
