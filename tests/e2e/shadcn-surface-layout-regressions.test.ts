@@ -180,18 +180,30 @@ playwrightTest(
 
     await playwrightExpect(stickyDialogFooter).toBeVisible()
     await expectNonTransparentBackground(stickyDialogFooter)
-    const headerBoxBefore = await visibleBox(stickyDialogHeader)
+    const footerBoxBefore = await visibleBox(stickyDialogFooter)
     const firstParagraphBoxBefore = await visibleBox(firstParagraph)
 
     await scrollableDialogBody.evaluate(element => {
       element.scrollTop = element.scrollHeight
     })
-    await page.waitForTimeout(150)
+    await playwrightExpect
+      .poll(
+        async () =>
+          await scrollableDialogBody.evaluate(element => element.scrollTop),
+        {
+          timeout: 2000,
+        },
+      )
+      .toBeGreaterThan(0)
 
-    const headerBoxAfter = await visibleBox(stickyDialogHeader)
+    const footerBoxAfter = await visibleBox(stickyDialogFooter)
     const firstParagraphBoxAfter = await visibleBox(firstParagraph)
+    const headerPosition = await stickyDialogHeader.evaluate(
+      element => window.getComputedStyle(element).position,
+    )
 
-    playwrightExpect(headerBoxAfter).toStrictEqual(headerBoxBefore)
+    playwrightExpect(headerPosition).not.toBe('sticky')
+    playwrightExpect(footerBoxAfter.y).toBe(footerBoxBefore.y)
     playwrightExpect(firstParagraphBoxAfter.y).toBeLessThan(
       firstParagraphBoxBefore.y - 100,
     )
