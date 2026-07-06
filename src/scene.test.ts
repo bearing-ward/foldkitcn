@@ -9,6 +9,7 @@ import {
   CompletedRemoveLiveExampleToast,
   CompletedTimeoutLiveExampleToast,
   CopySnippet,
+  DocsSidebar,
   GotLiveExampleDataTableMessage,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -119,6 +120,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
+  docsSidebar: DocsSidebar({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleOtpValues: {},
@@ -988,6 +990,28 @@ describe(view, () => {
           Scene.role('link', { name: 'All components' }),
         ),
       ).not.toExist(),
+    )
+  })
+
+  test('the docs sidebar exposes a manual collapsed-state toggle', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.expect(
+        Scene.role('button', { name: 'Browse components' }),
+      ).toHaveAttr('aria-expanded', 'false'),
+      Scene.expect(Scene.selector('.docs-sidebar')).toHaveAttr(
+        'data-state',
+        'collapsed',
+      ),
+      Scene.click(Scene.role('button', { name: 'Browse components' })),
+      Scene.expect(
+        Scene.role('button', { name: 'Hide components' }),
+      ).toHaveAttr('aria-expanded', 'true'),
+      Scene.expect(Scene.selector('.docs-sidebar')).toHaveAttr(
+        'data-state',
+        'open',
+      ),
     )
   })
 

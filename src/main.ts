@@ -170,6 +170,9 @@ export {
 export const MobileNavigation = ts('MobileNavigation', { isOpen: S.Boolean })
 type MobileNavigation = typeof MobileNavigation.Type
 
+export const DocsSidebar = ts('DocsSidebar', { isOpen: S.Boolean })
+type DocsSidebar = typeof DocsSidebar.Type
+
 export const PagefindSearchResult = S.Struct({
   url: S.String,
   title: S.String,
@@ -196,6 +199,7 @@ export const Model = S.Struct({
   route: AppRoute,
   data: DocsData,
   mobileNavigation: MobileNavigation,
+  docsSidebar: DocsSidebar,
   copiedSnippets: S.HashSet(S.String),
   liveExampleInputValues: S.Record(S.String, S.String),
   liveExampleOtpValues: S.Record(S.String, S.String),
@@ -682,6 +686,7 @@ export const CompletedFocusLiveExampleMenu = m(
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
+export const ClickedToggleDocsSidebar = m('ClickedToggleDocsSidebar')
 export const ClickedCopySnippet = m('ClickedCopySnippet', { text: S.String })
 export const SucceededCopySnippet = m('SucceededCopySnippet', {
   text: S.String,
@@ -988,6 +993,7 @@ export const Message = S.Union([
   ClickedLink,
   ChangedUrl,
   ClickedToggleMobileNavigation,
+  ClickedToggleDocsSidebar,
   ClickedCopySnippet,
   SucceededCopySnippet,
   FailedCopySnippet,
@@ -1049,6 +1055,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       route: urlToAppRoute(url),
       data: docsData,
       mobileNavigation: MobileNavigation({ isOpen: false }),
+      docsSidebar: DocsSidebar({ isOpen: false }),
       copiedSnippets: HashSet.empty(),
       liveExampleInputValues: {},
       liveExampleOtpValues: {},
@@ -1310,6 +1317,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         evo(model, {
           route: () => urlToAppRoute(url),
           mobileNavigation: () => MobileNavigation({ isOpen: false }),
+          docsSidebar: () => DocsSidebar({ isOpen: false }),
         }),
         commandsForUrlHash(url),
       ],
@@ -1317,6 +1325,12 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         evo(model, {
           mobileNavigation: ({ isOpen }) =>
             MobileNavigation({ isOpen: !isOpen }),
+        }),
+        [],
+      ],
+      ClickedToggleDocsSidebar: () => [
+        evo(model, {
+          docsSidebar: ({ isOpen }) => DocsSidebar({ isOpen: !isOpen }),
         }),
         [],
       ],
@@ -2650,9 +2664,19 @@ const sidebarView = (
   groups: ReadonlyArray<NamespaceGroup>,
 ): Html => {
   const h = html<Message>()
+  const sidebarState = model.docsSidebar.isOpen ? 'open' : 'collapsed'
 
   return h.aside(
-    [h.Class('docs-sidebar'), h.DataAttribute('pagefind-ignore', '')],
+    [
+      h.Id('docs-sidebar'),
+      h.Class(
+        model.docsSidebar.isOpen
+          ? 'docs-sidebar docs-sidebar-open'
+          : 'docs-sidebar',
+      ),
+      h.DataAttribute('state', sidebarState),
+      h.DataAttribute('pagefind-ignore', ''),
+    ],
     [
       h.section([h.Class('docs-sidebar-section docs-sidebar-search')], [
         componentSearchView(model),
@@ -2664,6 +2688,21 @@ const sidebarView = (
         componentNavigationView(model, groups),
       ]),
     ],
+  )
+}
+
+const docsSidebarToggleView = (model: Model): Html => {
+  const h = html<Message>()
+
+  return h.button(
+    [
+      h.Type('button'),
+      h.Class('docs-sidebar-toggle'),
+      h.Attribute('aria-controls', 'docs-sidebar'),
+      h.AriaExpanded(model.docsSidebar.isOpen),
+      h.OnClick(ClickedToggleDocsSidebar()),
+    ],
+    [model.docsSidebar.isOpen ? 'Hide components' : 'Browse components'],
   )
 }
 
@@ -2757,6 +2796,7 @@ const shellView = (model: Model, content: Html): Html => {
     headerView(model),
     mobileNavigationView(model),
     h.div([h.Class(layoutClass)], [
+      docsSidebarToggleView(model),
       sidebarView(model, groups),
       h.main(
         [

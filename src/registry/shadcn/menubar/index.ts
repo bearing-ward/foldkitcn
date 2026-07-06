@@ -138,7 +138,7 @@ export type ViewConfig<Message> = Omit<
   }>
 
 const rootBaseClassName =
-  'flex h-8 items-center gap-0.5 rounded-lg border p-[3px]'
+  'flex h-8 items-center gap-0.5 rounded-lg border border-border p-[3px]'
 
 const triggerBaseClassName =
   'flex items-center rounded-sm px-1.5 py-[2px] text-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted'
@@ -152,18 +152,18 @@ const subContentBaseClassName =
   'cn-menu-target cn-menu-translucent min-w-32 rounded-lg bg-popover p-1 text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95'
 
 const itemBaseClassName =
-  "group/menubar-item gap-1.5 rounded-md px-1.5 py-1 text-sm focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive!"
+  "group/menubar-item relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive!"
 
 const checkedItemBaseClassName =
-  "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
 const subTriggerBaseClassName =
-  "gap-1.5 rounded-md px-1.5 py-1 text-sm focus:bg-accent focus:text-accent-foreground data-inset:pl-7 data-open:bg-accent data-open:text-accent-foreground [&_svg:not([class*='size-'])]:size-4"
+  "relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-inset:pl-7 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
 const labelBaseClassName = 'px-1.5 py-1 text-sm font-medium data-inset:pl-7'
 
 const itemIndicatorBaseClassName =
-  "pointer-events-none absolute left-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4"
+  "pointer-events-none absolute right-2 flex items-center justify-center [&_svg:not([class*='size-'])]:size-4"
 
 const separatorBaseClassName = '-mx-1 my-1 h-px bg-border'
 
@@ -496,17 +496,17 @@ const defaultItemContent = <Message>(
   const indicator =
     BaseMenubar.itemKind(itemAttributes.item) === 'checkbox' ||
     BaseMenubar.itemKind(itemAttributes.item) === 'radio'
-      ? h.span([...itemAttributes.indicator], [checkIcon([])])
-      : h.span([], [])
+      ? [h.span([...itemAttributes.indicator], [checkIcon([])])]
+      : []
   const submenuIndicator =
     BaseMenubar.itemKind(itemAttributes.item) === 'submenu-trigger'
-      ? chevronRightIcon(itemAttributes.submenuIndicator)
-      : h.span([], [])
+      ? [chevronRightIcon(itemAttributes.submenuIndicator)]
+      : []
 
   return [
-    indicator,
+    ...indicator,
     h.span([...itemAttributes.label], [itemAttributes.item.label]),
-    submenuIndicator,
+    ...submenuIndicator,
   ]
 }
 

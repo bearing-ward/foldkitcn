@@ -681,9 +681,14 @@ playwrightTest(
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/components/shadcn/button')
 
-    await playwrightExpect(page.locator('.docs-sidebar')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-sidebar')).toBeHidden()
     await playwrightExpect(page.locator('#main-content')).toBeVisible()
     await playwrightExpect(page.locator('.docs-toc')).toBeHidden()
+    await playwrightExpect(
+      page.getByRole('button', { name: 'Browse components' }),
+    ).toBeVisible()
+
+    await page.getByRole('button', { name: 'Browse components' }).click()
 
     const sidebarBox = await visibleBox(page.locator('.docs-sidebar'))
     const mobileMainBox = await visibleBox(page.locator('#main-content'))
