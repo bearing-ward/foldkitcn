@@ -37,12 +37,12 @@ describe('origin component progress', () => {
       remaining: 0,
     })
     expect(report.summary.shadcn).toStrictEqual({
-      total: 64,
+      total: 63,
       imported: 62,
-      remaining: 2,
+      remaining: 1,
     })
     expect(report.summary.shadcnSourceFileCount).toBe(60)
-    expect(report.summary.shadcnDocsExampleOnlyCount).toBe(4)
+    expect(report.summary.shadcnDocsExampleOnlyCount).toBe(3)
   })
 
   test('marks current imported items from registry source manifests', () => {
@@ -151,11 +151,11 @@ describe('origin component progress', () => {
     expect(nextItemIds).not.toContain('shadcn/native-select')
   })
 
-  test('keeps held rows blocked and visible', () => {
+  test('keeps true held rows blocked and removes placeholder docs rows', () => {
     expect(requireRow('shadcn/data-table').readiness).toBe('imported')
     expect(requireRow('shadcn/date-picker').readiness).toBe('imported')
     expect(requireRow('shadcn/chart').readiness).toBe('blocked')
-    expect(requireRow('shadcn/toast').readiness).toBe('blocked')
+    expect(rowByItemId.has('shadcn/toast')).toBeFalsy()
     expect(requireRow('shadcn/typography').readiness).toBe('imported')
   })
 

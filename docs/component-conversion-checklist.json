@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-06T10:15:09.659Z",
+  "generatedAt": "2026-07-06T15:26:40.495Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -8,13 +8,13 @@
       "remaining": 0
     },
     "shadcn": {
-      "total": 64,
+      "total": 63,
       "imported": 62,
-      "remaining": 2
+      "remaining": 1
     },
     "shadcnSourceFileCount": 60,
-    "shadcnDocsExampleOnlyCount": 4,
-    "blockedCount": 2,
+    "shadcnDocsExampleOnlyCount": 3,
+    "blockedCount": 1,
     "readyForDossierCount": 0,
     "dossierReadyCount": 0,
     "sourceRefs": {
@@ -2355,38 +2355,6 @@
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/date-picker"],
       "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 98",
       "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/toast",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/toast",
-      "originResolutionStatus": "docs-example-only",
-      "hasOriginDocs": true,
-      "hasOriginSource": false,
-      "hasRegistryItem": false,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/008-outstanding-held-component-dossiers/dossier.json",
-        "plans/artifacts/015-held-row-docs-example-only-preview/dossier.json",
-        "plans/artifacts/098-blocked-component-foundation-preview/dossier.json"
-      ],
-      "paritySlotStatus": "not-started",
-      "implementationStatus": "dossier-ready",
-      "parityStatus": "not-started",
-      "driftStatus": "current",
-      "availability": "private",
-      "blockers": [
-        "No primary base-nova shadcn component source exists; use docs/example-only and public registry JSON evidence for planning.",
-        "Notification architecture must be settled across base-ui/toast, shadcn/sonner, shadcn/toast, Foldkit messages, commands, and subscriptions.",
-        "The React hook-style origin API must be mapped to Foldkit messages, commands, and managed subscriptions."
-      ],
-      "unresolvedQuestions": [
-        "Should local notification behavior start from base-ui/toast, shadcn/sonner, or a shared Foldkit notification service?",
-        "Which lifecycle events belong in messages, commands, subscriptions, or managed resources?"
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/toast"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 99",
-      "readiness": "blocked"
     },
     {
       "itemId": "shadcn/typography",

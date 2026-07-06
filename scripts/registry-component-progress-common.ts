@@ -62,6 +62,7 @@ const baseUiDocsRoot = 'repos/base-ui/docs/src/app/(docs)/react/components'
 const shadcnDocsRoot = 'repos/ui/apps/v4/content/docs/components/base'
 const shadcnSourceRoot = 'repos/ui/apps/v4/styles/base-nova/ui'
 const dossierRoot = 'plans/artifacts'
+const excludedShadcnDocsSlugs = new Set(['toast'])
 const historicalQueuePaths = [
   'plans/artifacts/004-foundational-component-backlog/component-backlog.md',
   'plans/artifacts/007-remaining-component-queue/component-queue.md',
@@ -121,6 +122,7 @@ const enumerateShadcnDocsSlugs = (): ReadonlyArray<string> =>
   readDirectoryEntries(shadcnDocsRoot)
     .filter(entry => entry.isFile() && entry.name.endsWith('.mdx'))
     .map(entry => entry.name.slice(0, -'.mdx'.length))
+    .filter(slug => !excludedShadcnDocsSlugs.has(slug))
     .toSorted((left, right) => left.localeCompare(right))
 
 const enumerateShadcnSourceSlugs = (): ReadonlyArray<string> =>

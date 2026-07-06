@@ -409,34 +409,6 @@ const heldShadcnRowDrafts: Readonly<Record<string, HeldShadcnRowDraft>> = {
       'Which parsing and formatting dependencies are acceptable as fixture evidence versus deferred runtime behavior?',
     ],
   }),
-  toast: docsExampleOnlyShadcnRow('toast', {
-    docsPaths: [
-      'repos/ui/apps/v4/content/docs/components/base/toast.mdx',
-      'repos/ui/apps/v4/content/docs/components/radix/toast.mdx',
-    ],
-    demoPaths: [],
-    styleVariantPaths: [],
-    publicRegistryPaths: [
-      'repos/ui/apps/v4/public/r/styles/default/toast-demo.json',
-      'repos/ui/apps/v4/public/r/styles/default/toast-destructive.json',
-      'repos/ui/apps/v4/public/r/styles/default/toast-simple.json',
-      'repos/ui/apps/v4/public/r/styles/default/toast-with-action.json',
-      'repos/ui/apps/v4/public/r/styles/default/toast-with-title.json',
-      'repos/ui/apps/v4/public/r/styles/default/toast.json',
-      'repos/ui/apps/v4/public/r/styles/default/use-toast.json',
-    ],
-    registryDependencyHints: ['base-ui/toast', 'shadcn/button'],
-    runtimeDependencyHints: ['react'],
-    blockers: [
-      'No primary base-nova shadcn component source exists; use docs/example-only and public registry JSON evidence for planning.',
-      'Notification architecture must be settled across base-ui/toast, shadcn/sonner, shadcn/toast, Foldkit messages, commands, and subscriptions.',
-      'The React hook-style origin API must be mapped to Foldkit messages, commands, and managed subscriptions.',
-    ],
-    unresolvedQuestions: [
-      'Should local notification behavior start from base-ui/toast, shadcn/sonner, or a shared Foldkit notification service?',
-      'Which lifecycle events belong in messages, commands, subscriptions, or managed resources?',
-    ],
-  }),
   typography: docsExampleOnlyShadcnRow('typography', {
     docsPaths: [
       'repos/ui/apps/v4/content/docs/components/base/typography.mdx',
