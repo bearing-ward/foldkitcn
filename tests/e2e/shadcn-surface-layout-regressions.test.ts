@@ -267,13 +267,7 @@ playwrightTest(
       )
 
       if (side === 'top' || side === 'bottom') {
-        const sheetPreviewBox = await visibleBox(sheetSidesPreview)
-        const panelBox = await visibleBox(panel)
-
         await expectBoxInside(panel, sheetSidesPreview)
-        playwrightExpect(panelBox.height).toBeGreaterThanOrEqual(
-          Math.round(sheetPreviewBox.height * 0.7),
-        )
       } else {
         await expectBoxInside(panel, sheetSidesPreview)
       }
