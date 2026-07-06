@@ -245,6 +245,17 @@ playwrightTest(
       exact: true,
       name: 'View',
     })
+    const initialFileTriggerBox = await box(fileTrigger)
+    const initialEditTriggerBox = await box(editTrigger)
+    const initialViewTriggerBox = await box(viewTrigger)
+    playwrightExpect(
+      initialEditTriggerBox.x -
+        (initialFileTriggerBox.x + initialFileTriggerBox.width),
+    ).toBeLessThanOrEqual(8)
+    playwrightExpect(
+      initialViewTriggerBox.x -
+        (initialEditTriggerBox.x + initialEditTriggerBox.width),
+    ).toBeLessThanOrEqual(8)
 
     await fileTrigger.click()
     await playwrightExpect(menubarContent).toBeVisible()
@@ -270,6 +281,41 @@ playwrightTest(
     playwrightExpect(newTabShortcutBox.x).toBeGreaterThanOrEqual(
       newTabItemBox.x + newTabItemBox.width - 56,
     )
+    await editTrigger.hover()
+    await playwrightExpect(fileTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(editTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: 'Undo' }),
+    ).toBeVisible()
+    const hoveredEditTriggerBox = await box(editTrigger)
+    const hoveredEditMenuBox = await box(menubarContent)
+    playwrightExpect(hoveredEditMenuBox.x).toBeGreaterThanOrEqual(
+      hoveredEditTriggerBox.x - 8,
+    )
+    playwrightExpect(hoveredEditMenuBox.x).toBeLessThanOrEqual(
+      hoveredEditTriggerBox.x + 8,
+    )
+    await viewTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(editTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(viewTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitemcheckbox', { name: 'Full URLs' }),
+    ).toBeVisible()
+    await fileTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(viewTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(fileTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: /New Tab/u }),
+    ).toBeVisible()
     await page.keyboard.press('Escape')
     await playwrightExpect(menubarContent).not.toBeVisible()
     await editTrigger.click()

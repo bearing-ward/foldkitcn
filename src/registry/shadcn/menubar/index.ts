@@ -138,7 +138,7 @@ export type ViewConfig<Message> = Omit<
   }>
 
 const rootBaseClassName =
-  'flex h-8 items-center gap-0.5 rounded-lg border border-border p-[3px]'
+  'flex h-8 items-center gap-0.5 rounded-lg border border-border p-[3px] data-[has-submenu-open]:relative data-[has-submenu-open]:z-50'
 
 const triggerBaseClassName =
   'flex items-center rounded-sm px-1.5 py-[2px] text-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted'
@@ -177,7 +177,8 @@ export const menubarClassName = ({
 
 export const menubarMenuClassName = ({
   className,
-}: Readonly<{ className?: string | undefined }> = {}): string => cn(className)
+}: Readonly<{ className?: string | undefined }> = {}): string =>
+  cn('relative', className)
 
 export const menubarTriggerClassName = ({
   className,
@@ -410,7 +411,12 @@ const shadcnMenuAttributes = <Message>(
   ...attributes,
   root: [
     ...attributes.root,
-    ...slotAttributes(h, 'menubar-menu', menubarMenuClassName(config)),
+    h.Style({ zIndex: attributes.menu.open ? '40' : '50' }),
+    ...slotAttributes(
+      h,
+      'menubar-menu',
+      menubarMenuClassName({ className: config.menuClassName }),
+    ),
     ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
   ],
   trigger: [
