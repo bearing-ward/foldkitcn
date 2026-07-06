@@ -111,28 +111,32 @@ const componentSearchView = (model: Model): Html => {
       h.AriaLabel('Documentation search'),
     ],
     [
-      h.label([h.For('component-search-input'), h.Class('search-label')], [
-        'Search documentation',
-      ]),
-      h.div([h.Class('search-control')], [
-        h.input([
-          h.Id('component-search-input'),
-          h.Type('search'),
-          h.Placeholder('Search components and docs'),
-          h.Value(model.searchQuery),
-          h.OnInput(value => UpdatedSearchQuery({ value })),
-        ]),
-        h.button(
-          [
-            h.Type('button'),
-            h.Class('search-clear-button'),
-            h.AriaLabel('Clear component search'),
-            h.Disabled(isClearDisabled),
-            h.OnClick(ClickedClearSearch()),
-          ],
-          ['Clear'],
-        ),
-      ]),
+      h.label(
+        [h.For('component-search-input'), h.Class('search-label')],
+        ['Search documentation'],
+      ),
+      h.div(
+        [h.Class('search-control')],
+        [
+          h.input([
+            h.Id('component-search-input'),
+            h.Type('search'),
+            h.Placeholder('Search components and docs'),
+            h.Value(model.searchQuery),
+            h.OnInput(value => UpdatedSearchQuery({ value })),
+          ]),
+          h.button(
+            [
+              h.Type('button'),
+              h.Class('search-clear-button'),
+              h.AriaLabel('Clear component search'),
+              h.Disabled(isClearDisabled),
+              h.OnClick(ClickedClearSearch()),
+            ],
+            ['Clear'],
+          ),
+        ],
+      ),
       searchResultsView(model.searchQuery, results, model.pagefindSearch),
     ],
   )
@@ -190,28 +194,34 @@ const shellView = (model: Model, content: Html): Html => {
   const h = html<Message>()
   const groups = namespaceGroups(model.data)
 
-  return h.div([h.Class('app-shell')], [
-    headerView(model),
-    mobileNavigationView(model),
-    h.div([h.Class('docs-layout')], [
-      sidebarView(model, groups),
-      h.main(
+  return h.div(
+    [h.Class('app-shell')],
+    [
+      headerView(model),
+      mobileNavigationView(model),
+      h.div(
+        [h.Class('docs-layout')],
         [
-          h.Id('main-content'),
-          h.Class('docs-main'),
-          h.DataAttribute('pagefind-body', ''),
-        ],
-        [
-          h.keyed('div')(
-            model.route._tag,
-            [h.Class('route-frame')],
-            [content],
+          sidebarView(model, groups),
+          h.main(
+            [
+              h.Id('main-content'),
+              h.Class('docs-main'),
+              h.DataAttribute('pagefind-body', ''),
+            ],
+            [
+              h.keyed('div')(
+                model.route._tag,
+                [h.Class('route-frame')],
+                [content],
+              ),
+            ],
           ),
+          tableOfContentsView(model),
         ],
       ),
-      tableOfContentsView(model),
-    ]),
-  ])
+    ],
+  )
 }
 ```
 
@@ -325,13 +335,13 @@ webServer: {
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Focused Scene/Story tests | `bun run test -- src/scene.test.ts src/story.test.ts` | exit 0; all matching Vitest tests pass |
-| Focused browser docs tests | `bunx playwright test tests/e2e/docs.test.ts --grep "docs shell|documentation search|component detail"` | exit 0; Chromium tests pass |
-| Full typecheck | `bun run typecheck` | exit 0; no TypeScript errors |
-| Formatting/lint check | `bun run check` | exit 0; Ultracite reports all matched files use correct format |
-| Full build | `bun run build` | exit 0; Vite build completes |
+| Purpose                    | Command                                                                                                   | Expected on success                                            |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Focused Scene/Story tests  | `bun run test -- src/scene.test.ts src/story.test.ts`                                                     | exit 0; all matching Vitest tests pass                         |
+| Focused browser docs tests | `bunx playwright test tests/e2e/docs.test.ts --grep "docs shell\|documentation search\|component detail"` | exit 0; Chromium tests pass                                    |
+| Full typecheck             | `bun run typecheck`                                                                                       | exit 0; no TypeScript errors                                   |
+| Formatting/lint check      | `bun run check`                                                                                           | exit 0; Ultracite reports all matched files use correct format |
+| Full build                 | `bun run build`                                                                                           | exit 0; Vite build completes                                   |
 
 ## Suggested executor toolkit
 

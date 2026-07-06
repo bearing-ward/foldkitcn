@@ -165,13 +165,13 @@ const expectBoxesOrderedLeftToRight = async (
 ): Promise<void> => {
   const snapshots = await Promise.all(boxes.map(box => visibleBox(box)))
 
-  for (let index = 1; index < snapshots.length; index += 1) {
-    playwrightExpect(snapshots[index - 1]).not.toBeNull()
-    playwrightExpect(snapshots[index]).not.toBeNull()
-    playwrightExpect(
-      snapshots[index - 1].x + snapshots[index - 1].width,
-    ).toBeLessThanOrEqual(snapshots[index].x + 1)
-  }
+  snapshots.reduce((previous, current) => {
+    playwrightExpect(previous.x + previous.width).toBeLessThanOrEqual(
+      current.x + 1,
+    )
+
+    return current
+  })
 }
 
 const expectNonTransparentBackground = async (

@@ -120,7 +120,7 @@ honor its STOP conditions, and update your row when done.
 | 110 | Reopen shadcn overlay and menu regressions with exact red tests | P1 | L | 104, 107, 109 | DONE |
 | 111 | Reopen shadcn surface layout regressions with exact red tests | P1 | L | 107, 108, 109, 110 | DONE |
 | 112 | Remove shadcn toast from the public shadcn registry surface | P1 | M | 081, 082, 098 | DONE |
-| 113 | Make the docs shell responsive with a component sidebar | P1 | M | 062, 065, 066 | TODO |
+| 113 | Make the docs shell responsive with a component sidebar | P1 | M | 062, 065, 066 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
