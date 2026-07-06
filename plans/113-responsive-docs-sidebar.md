@@ -7,7 +7,7 @@
 > `plans/README.md` unless a reviewer tells you they maintain the index.
 >
 > **Drift check (run first)**:
-> `git diff --stat 1b59228e..HEAD -- src/main.ts src/styles.css src/scene.test.ts tests/e2e/docs.test.ts plans/README.md`
+> `git diff --stat de1f022e..HEAD -- src/main.ts src/styles.css src/scene.test.ts tests/e2e/docs.test.ts`
 > If any in-scope source file changed since this plan was written, compare the
 > "Current state" excerpts against the live code before proceeding. If they no
 > longer match, treat it as a STOP condition.
@@ -19,7 +19,7 @@
 - **Risk**: MED
 - **Depends on**: plans/062-replace-starter-app-with-docs-shell.md, plans/065-add-component-navigation-roadmap-search.md, plans/066-add-prerender-and-pagefind-search.md
 - **Category**: docs
-- **Planned at**: commit `1b59228e`, 2026-07-06
+- **Planned at**: commit `de1f022e`, 2026-07-06
 
 ## Why this matters
 
