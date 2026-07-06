@@ -341,7 +341,7 @@ describe('shadcn/dropdown-menu view', () => {
         ).toBeVisible(),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-separator"]'),
-        ).toBeVisible(),
+        ).not.toBeVisible(),
       )
 
       const newlyCoveredExampleIds = new Set([

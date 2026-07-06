@@ -383,7 +383,6 @@ const popupView = <Message>(
                 ),
               ),
             ),
-            h.div([...popup.separator], []),
           ],
         ),
       ],

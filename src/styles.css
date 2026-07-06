@@ -638,11 +638,10 @@ dt {
   overflow: auto;
 }
 
-.live-example-preview [id*='dropdown-menu'][id$='positioner'],
-.live-example-preview [id*='context-menu'][id$='positioner'],
+.live-example-preview
+  [id*='context-menu'][id$='positioner']:not([id*='-submenu-']),
 .live-example-preview [id*='combobox'][id$='positioner'],
 .live-example-preview [id*='hover-card'][id$='positioner'],
-.live-example-preview [id*='menubar'][id$='positioner'],
 .live-example-preview [id*='navigation-menu'][id$='positioner'],
 .live-example-preview [id*='tooltip'][id$='positioner'] {
   position: absolute !important;

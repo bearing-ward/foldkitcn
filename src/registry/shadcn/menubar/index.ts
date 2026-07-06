@@ -298,7 +298,7 @@ const shadcnItemAttributes = <Message>(
   ...itemAttributes,
   root: [
     ...itemAttributes.root,
-    h.DataAttribute('inset', config.inset === true ? 'true' : 'false'),
+    ...(config.inset === true ? [h.DataAttribute('inset', 'true')] : []),
     h.DataAttribute('variant', config.variant ?? 'default'),
     ...slotAttributes(
       h,
@@ -380,7 +380,7 @@ const shadcnPopupAttributes = <Message>(
   ],
   groupLabel: [
     ...popup.groupLabel,
-    h.DataAttribute('inset', config.inset === true ? 'true' : 'false'),
+    ...(config.inset === true ? [h.DataAttribute('inset', 'true')] : []),
     ...slotAttributes(
       h,
       'menubar-label',
@@ -536,7 +536,6 @@ const popupView = <Message>(
                 ),
               ),
             ),
-            h.div([...popup.separator], []),
           ],
         ),
       ],

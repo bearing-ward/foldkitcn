@@ -36,6 +36,23 @@ const assertSurfaceVisible = async (surface: Locator): Promise<Box> => {
   return box(surface)
 }
 
+const horizontalOverlap = (first: Box, second: Box): number =>
+  Math.max(
+    0,
+    Math.min(first.x + first.width, second.x + second.width) -
+      Math.max(first.x, second.x),
+  )
+
+const overlapArea = (first: Box, second: Box): number => {
+  const verticalOverlap = Math.max(
+    0,
+    Math.min(first.y + first.height, second.y + second.height) -
+      Math.max(first.y, second.y),
+  )
+
+  return horizontalOverlap(first, second) * verticalOverlap
+}
+
 playwrightTest(
   'dropdown, context menu, menubar, and navigation menu regressions stay anchored and dismissible',
   async ({ page }) => {
@@ -51,6 +68,9 @@ playwrightTest(
     await openMenu(basicTrigger)
     await playwrightExpect(basicMenu).toBeVisible()
     await playwrightExpect(basicMenu).toHaveAttribute('class', /min-w-32/u)
+    await playwrightExpect(basicMenu.locator('[role="separator"]')).toHaveCount(
+      0,
+    )
     await playwrightExpect(
       basicPreview.getByRole('menuitem', { name: 'API' }),
     ).toHaveAttribute('aria-disabled', 'true')
@@ -69,11 +89,22 @@ playwrightTest(
 
     await openMenu(checkTrigger)
     await playwrightExpect(checkMenu).toBeVisible()
-    await playwrightExpect(
-      checkPreview.getByRole('menuitemcheckbox', {
-        name: 'Email notifications',
-      }),
-    ).toHaveAttribute('aria-checked', 'true')
+    const emailItem = checkPreview.getByRole('menuitemcheckbox', {
+      name: 'Email notifications',
+    })
+    const emailItemBox = await box(emailItem)
+    const emailIconBox = await box(checkPreview.locator('[data-icon="mail"]'))
+    const emailLabelBox = await box(
+      checkPreview.getByText('Email notifications'),
+    )
+    const emailCheckBox = await box(
+      emailItem.locator('[data-slot="dropdown-menu-checkbox-item-indicator"]'),
+    )
+    playwrightExpect(emailIconBox.x - emailItemBox.x).toBeLessThanOrEqual(24)
+    playwrightExpect(emailLabelBox.x + emailLabelBox.width).toBeLessThanOrEqual(
+      emailCheckBox.x - 8,
+    )
+    await playwrightExpect(emailItem).toHaveAttribute('aria-checked', 'true')
     await playwrightExpect(
       checkPreview.getByRole('menuitemcheckbox', { name: 'SMS notifications' }),
     ).toHaveAttribute('aria-checked', 'false')
@@ -86,15 +117,64 @@ playwrightTest(
     await playwrightExpect(checkMenu).not.toBeVisible()
 
     await page.goto('/components/shadcn/dropdown-menu')
+    const demoPreview = page.getByLabel('DropdownMenuDemo live preview')
+    const demoTrigger = demoPreview.getByRole('button', { name: 'Open' })
+    const demoMenu = demoPreview.locator('[data-slot="dropdown-menu-content"]')
+    const demoSubmenus = demoPreview.locator(
+      '[data-slot="dropdown-menu-sub-content"][data-open]',
+    )
+
+    await openMenu(demoTrigger)
+    const demoTriggerBox = await box(demoTrigger)
+    const demoMenuBox = await assertSurfaceVisible(demoMenu)
+    playwrightExpect(overlapArea(demoTriggerBox, demoMenuBox)).toBe(0)
+    await playwrightExpect(demoSubmenus).toHaveCount(0)
+    await demoPreview.getByRole('menuitem', { name: 'Invite users' }).hover()
+    await playwrightExpect(demoSubmenus).toHaveCount(1)
+    await page.keyboard.press('Escape')
+    await playwrightExpect(demoMenu).not.toBeVisible()
+
+    await page.goto('/components/shadcn/dropdown-menu')
     const complexPreview = page.getByLabel('DropdownMenuComplex live preview')
     const complexMenu = complexPreview.locator(
       '[data-slot="dropdown-menu-content"]',
     )
+    const complexSubmenus = complexPreview.locator(
+      '[data-slot="dropdown-menu-sub-content"][data-open]',
+    )
     await openMenu(complexPreview.getByRole('button', { name: 'Complex Menu' }))
-    await playwrightExpect(complexMenu).toBeVisible()
+    const complexMenuBox = await assertSurfaceVisible(complexMenu)
+    const newFileBox = await box(
+      complexPreview.getByRole('menuitem', { name: 'New File' }),
+    )
+    const newFolderBox = await box(
+      complexPreview.getByRole('menuitem', { name: 'New Folder' }),
+    )
+    await playwrightExpect(
+      complexPreview.locator('[data-icon="folder"] path').first(),
+    ).not.toHaveAttribute('d', 'M12 5v14M5 12h14')
+    playwrightExpect(newFolderBox.height).toBeLessThanOrEqual(
+      newFileBox.height + 8,
+    )
     await complexPreview.getByRole('menuitem', { name: 'Open Recent' }).hover()
+    await playwrightExpect(complexSubmenus).toHaveCount(1)
+    const openRecentBox = await assertSurfaceVisible(complexSubmenus.first())
+    playwrightExpect(
+      horizontalOverlap(complexMenuBox, openRecentBox),
+    ).toBeLessThanOrEqual(8)
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'More Projects' }),
+    ).toBeVisible()
+    await complexPreview
+      .getByRole('menuitem', { name: 'More Projects' })
+      .hover()
+    await playwrightExpect(complexSubmenus).toHaveCount(2)
+    const moreProjectsBox = await assertSurfaceVisible(complexSubmenus.nth(1))
+    playwrightExpect(
+      horizontalOverlap(openRecentBox, moreProjectsBox),
+    ).toBeLessThanOrEqual(8)
+    await playwrightExpect(
+      complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
     ).toBeVisible()
     await complexPreview
       .getByRole('menuitem', { name: 'Project Alpha' })

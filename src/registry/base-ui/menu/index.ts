@@ -180,6 +180,14 @@ export const itemFocusSelector = (
   item: MenuItemDescriptor,
 ): string => `#${itemId(config, item)}`
 
+const rootAnchorName = (config: Pick<MenuOptions, 'id'>): string =>
+  `--${config.id}-trigger`
+
+const submenuAnchorName = (
+  config: Pick<MenuOptions, 'id'>,
+  value: string,
+): string => `--${config.id}-item-${value.replaceAll(/[^A-Za-z0-9_-]/gu, '-')}`
+
 export const itemsForParent = (
   config: Pick<MenuOptions, 'items'>,
   parentValue?: string | undefined,
@@ -591,6 +599,7 @@ const triggerAttributes = <Message>(
   h.AriaHasPopup('menu'),
   h.AriaExpanded(config.open),
   h.AriaControls(popupId(config)),
+  h.Style({ anchorName: rootAnchorName(config) }),
   ...booleanDataAttribute(h, 'disabled', config.isDisabled),
   ...(config.open ? [h.DataAttribute('popup-open', '')] : []),
   ...optionalBooleanAttribute<Message>(config.isDisabled, value =>
@@ -628,7 +637,25 @@ const positionerAttributes = <Message>(
         ...(isOpen ? [] : [h.Hidden(true)]),
         ...openStateDataAttributes(h, isOpen),
         ...placementAttributes(h, config, parentValue),
-        h.Style({ position: 'absolute', inset: 'auto', margin: '0' }),
+        h.Style(
+          parentValue === undefined
+            ? {
+                position: 'absolute',
+                positionAnchor: rootAnchorName(config),
+                inset: 'auto',
+                top: 'calc(anchor(bottom) + 4px)',
+                left: 'anchor(left)',
+                margin: '0',
+              }
+            : {
+                position: 'absolute',
+                positionAnchor: submenuAnchorName(config, parentValue),
+                inset: 'auto',
+                top: 'calc(anchor(top) - 3px)',
+                left: 'calc(anchor(right) + 4px)',
+                margin: '0',
+              },
+        ),
       ]
     : [],
   isMounted,
@@ -830,6 +857,7 @@ const itemAttributes = <Message>(
         h.AriaHasPopup('menu'),
         h.AriaExpanded(isSubmenuOpen(config, item.value)),
         h.AriaControls(popupId(config, item.value)),
+        h.Style({ anchorName: submenuAnchorName(config, item.value) }),
       ]
     : []),
   ...optionalBooleanAttribute<Message>(item.isDisabled, value =>

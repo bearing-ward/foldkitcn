@@ -116,13 +116,13 @@ const labelBaseClassName =
   'px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:pl-7'
 
 const itemBaseClassName =
-  "group/dropdown-menu-item relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive"
+  "group/dropdown-menu-item relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive"
 
 const subTriggerBaseClassName =
-  "flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-popup-open:relative data-popup-open:z-10 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:relative data-open:z-10 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:pl-7 data-popup-open:relative data-popup-open:z-10 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:relative data-open:z-10 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
 const checkedItemBaseClassName =
-  "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm whitespace-nowrap outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
 const itemIndicatorBaseClassName =
   'pointer-events-none absolute right-2 flex items-center justify-center'
@@ -130,7 +130,7 @@ const itemIndicatorBaseClassName =
 const separatorBaseClassName = '-mx-1 my-1 h-px bg-border'
 
 const shortcutBaseClassName =
-  'ml-auto text-xs tracking-widest text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground'
+  'ml-auto shrink-0 text-xs tracking-widest text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground'
 
 export const dropdownMenuClassName = ({
   className,
@@ -250,7 +250,7 @@ const shadcnItemAttributes = <Message>(
   ...itemAttributes,
   root: [
     ...itemAttributes.root,
-    h.DataAttribute('inset', config.inset === true ? 'true' : 'false'),
+    ...(config.inset === true ? [h.DataAttribute('inset', 'true')] : []),
     h.DataAttribute('variant', config.variant ?? 'default'),
     ...slotAttributes(
       h,
@@ -332,7 +332,7 @@ const shadcnPopupAttributes = <Message>(
   ],
   groupLabel: [
     ...popup.groupLabel,
-    h.DataAttribute('inset', config.inset === true ? 'true' : 'false'),
+    ...(config.inset === true ? [h.DataAttribute('inset', 'true')] : []),
     ...slotAttributes(
       h,
       'dropdown-menu-label',
@@ -475,7 +475,6 @@ const popupView = <Message>(
                 ),
               ],
             ),
-            h.div([...popup.separator], []),
           ],
         ),
       ],
