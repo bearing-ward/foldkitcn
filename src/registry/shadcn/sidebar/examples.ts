@@ -779,27 +779,10 @@ type SidebarDropdownItem = Readonly<{
 const sidebarDropdownPopup = <Message>(
   popup: DropdownMenu.MenuPopupAttributes<Message>,
   items: ReadonlyArray<SidebarDropdownItem>,
-  side: DropdownMenu.MenuSide,
   label?: string,
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
-  const popupAttributes = popup.popup.root.filter(
-    attribute => attribute._tag !== 'Popover',
-  )
-  const positionerAttributes =
-    side === 'top'
-      ? [
-          ...popup.positioner.root.filter(
-            attribute => attribute._tag !== 'Style',
-          ),
-          h.Style({
-            position: 'absolute',
-            right: '0',
-            bottom: 'calc(100% + 0.25rem)',
-            margin: '0',
-          }),
-        ]
-      : popup.positioner.root
+  const popupAttributes = popup.popup.root
 
   if (!popup.isMounted) {
     return []
@@ -808,7 +791,7 @@ const sidebarDropdownPopup = <Message>(
   return [
     h.div([...popup.backdrop.root], []),
     h.div(
-      [...positionerAttributes],
+      [...popup.positioner.root],
       [
         h.div(
           [...popupAttributes],
@@ -907,12 +890,7 @@ const sidebarDropdown = <Message>(
           config.trigger(attributes),
           h.div(
             [...attributes.portal],
-            sidebarDropdownPopup(
-              attributes.popup,
-              config.items,
-              config.side ?? 'right',
-              config.label,
-            ),
+            sidebarDropdownPopup(attributes.popup, config.items, config.label),
           ),
         ],
       )

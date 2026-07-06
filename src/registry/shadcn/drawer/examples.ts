@@ -263,6 +263,7 @@ export const DrawerDemo = <Message = never>(
           ],
         ),
       ],
+      contentClassName: 'data-[vaul-drawer-direction=bottom]:!max-h-[25vh]',
       footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
     },
     controller,
@@ -308,7 +309,7 @@ export const DrawerWithSides = <Message = never>(
           description: 'Set your daily activity goal.',
           direction,
           contentClassName:
-            'data-[vaul-drawer-direction=bottom]:max-h-[50vh] data-[vaul-drawer-direction=top]:max-h-[50vh]',
+            'data-[vaul-drawer-direction=bottom]:!max-h-[25vh] data-[vaul-drawer-direction=top]:!max-h-[25vh]',
           body: scrollableBody(),
           footer: footerButtons({ cancel: 'Cancel', submit: 'Submit' }),
         },

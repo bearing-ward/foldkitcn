@@ -244,7 +244,7 @@ export const SheetSide = <Message = never>(
             "Make changes to your profile here. Click save when you're done.",
           side,
           contentClassName:
-            'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]',
+            'data-[side=bottom]:!max-h-[25vh] data-[side=top]:!max-h-[25vh]',
           body: [scrollableBody()],
           footer: [
             button('Save changes', { type: 'submit' }),

@@ -9,6 +9,7 @@ import {
   CompletedRemoveLiveExampleToast,
   CompletedTimeoutLiveExampleToast,
   CopySnippet,
+  GotLiveExampleDataTableMessage,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
   DocsRoute,
@@ -28,17 +29,29 @@ import {
   SelectedLiveExampleTabsValue,
   SelectedLiveExampleMenuRadioValue,
   SelectedLiveExampleMenuValue,
+  SelectedLiveExampleComboboxValue,
+  SelectedLiveExampleSelectValue,
   SucceededCopySnippet,
   TimeoutLiveExampleToast,
   UpdatedLiveExampleCheckboxCheckedState,
+  UpdatedLiveExampleComboboxInputValue,
   UpdatedLiveExampleMenuChecked,
   UpdatedLiveExampleMenuOpen,
   UpdatedLiveExampleOverlayOpen,
   UpdatedLiveExampleOtpValue,
+  UpdatedLiveExampleSelectOpen,
+  UpdatedLiveExampleSliderValues,
   update,
   view,
 } from './main'
 import type { Model } from './main'
+import {
+  ClickedDataTableRowCheckbox,
+  ClickedDataTableSelectAll,
+  SelectedDataTablePageSize,
+} from './registry/shadcn/data-table/examples'
+import { DrawerDemo, DrawerWithSides } from './registry/shadcn/drawer/examples'
+import { SheetDemo, SheetSide } from './registry/shadcn/sheet/examples'
 
 const carouselLiveExampleInteractions = [
   ['CarouselDemo', 'translate3d(-100%, 0, 0)'],
@@ -68,6 +81,15 @@ const resizableLiveExampleInteractions = [
   ['ResizableVertical', 'ArrowDown', 'flex: 35 1 0px; overflow: hidden;'],
   ['ResizableRtl', 'ArrowRight', 'flex: 40 1 0px; overflow: hidden;'],
 ] as const
+
+const comboboxPopupExampleId = 'shadcn/combobox-popup'
+const comboboxCustomExampleId = 'shadcn/combobox-custom'
+const dataTableDemoExampleId = 'shadcn/data-table-demo'
+const paginationIconsOnlyExampleId = 'shadcn/pagination-icons-only'
+const inputOtpDemoExampleId = 'shadcn/input-otp-demo'
+const sliderDemoExampleId = 'shadcn/slider-demo'
+const sliderRangeExampleId = 'shadcn/slider-range'
+const sliderVerticalExampleId = 'shadcn/slider-vertical'
 
 const sidebarLiveExampleTitles = [
   'SidebarControlled',
@@ -121,6 +143,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleResizableStates: {},
   liveExampleCommandDialogOpenValues: {},
   liveExampleOverlayOpenValues: {},
+  liveExampleDataTableStates: {},
   liveExampleMenuOpenValues: {},
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
@@ -566,6 +589,95 @@ describe(view, () => {
       ).toExist(),
       Scene.expect(
         Scene.within(subPreview, Scene.text('Installation')),
+      ).toExist(),
+    )
+  })
+
+  test('Drawer live previews open their configured side surfaces', () => {
+    const demoPreview = Scene.label('DrawerDemo live preview')
+    const sidesPreview = Scene.label('DrawerWithSides live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'drawer' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(
+          demoPreview,
+          Scene.role('button', { name: 'Open Drawer' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          demoPreview,
+          Scene.selector('[data-slot="drawer-content"]'),
+        ),
+      ).toHaveAttr('data-vaul-drawer-direction', 'bottom'),
+      Scene.click(
+        Scene.within(sidesPreview, Scene.role('button', { name: 'top' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          sidesPreview,
+          Scene.selector(
+            '[data-slot="drawer-content"][data-vaul-drawer-direction="top"]',
+          ),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(sidesPreview, Scene.role('button', { name: 'bottom' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          sidesPreview,
+          Scene.selector(
+            '[data-slot="drawer-content"][data-vaul-drawer-direction="bottom"]',
+          ),
+        ),
+      ).toExist(),
+    )
+  })
+
+  test('Sheet live previews open their configured side surfaces', () => {
+    const demoPreview = Scene.label('SheetDemo live preview')
+    const sidesPreview = Scene.label('SheetSide live preview')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'sheet' }),
+        ),
+      ),
+      Scene.click(
+        Scene.within(demoPreview, Scene.role('button', { name: 'Open' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          demoPreview,
+          Scene.selector('[data-slot="sheet-content"]'),
+        ),
+      ).toHaveAttr('data-side', 'right'),
+      Scene.click(
+        Scene.within(sidesPreview, Scene.role('button', { name: 'top' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          sidesPreview,
+          Scene.selector('[data-slot="sheet-content"][data-side="top"]'),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(sidesPreview, Scene.role('button', { name: 'bottom' })),
+      ),
+      Scene.expect(
+        Scene.within(
+          sidesPreview,
+          Scene.selector('[data-slot="sheet-content"][data-side="bottom"]'),
+        ),
       ).toExist(),
     )
   })
@@ -1773,6 +1885,7 @@ describe(view, () => {
       UpdatedLiveExampleOtpValue({
         exampleId: 'shadcn/input-otp-demo',
         value: '654321',
+        isComplete: true,
       }),
     )
     const [afterSelectAll] = update(
@@ -1826,6 +1939,295 @@ describe(view, () => {
         )
       ],
     ).toBe('outline')
+  })
+
+  test('root update keeps combobox selection, clear, and custom-item state aligned', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterTyping] = update(
+      initial,
+      UpdatedLiveExampleComboboxInputValue({
+        exampleId: comboboxPopupExampleId,
+        value: 'chi',
+      }),
+    )
+    const [afterClear] = update(
+      afterTyping,
+      SelectedLiveExampleComboboxValue({
+        exampleId: comboboxPopupExampleId,
+        value: undefined,
+        values: [],
+      }),
+    )
+    const [afterCustomItem] = update(
+      afterClear,
+      SelectedLiveExampleComboboxValue({
+        exampleId: comboboxCustomExampleId,
+        value: 'argentina',
+        values: ['argentina'],
+      }),
+    )
+
+    expect(
+      afterTyping.liveExampleComboboxInputValues[comboboxPopupExampleId],
+    ).toBe('chi')
+    expect(
+      afterTyping.liveExampleComboboxOpenValues[comboboxPopupExampleId],
+    ).toBe(true)
+    expect(
+      afterClear.liveExampleComboboxValues[comboboxPopupExampleId],
+    ).toBeUndefined()
+    expect(
+      afterClear.liveExampleComboboxInputValues[comboboxPopupExampleId],
+    ).toBe('')
+    expect(
+      afterClear.liveExampleComboboxOpenValues[comboboxPopupExampleId],
+    ).toBe(false)
+    expect(
+      afterCustomItem.liveExampleComboboxValues[comboboxCustomExampleId],
+    ).toBe('argentina')
+    expect(
+      afterCustomItem.liveExampleComboboxMultipleValues[
+        comboboxCustomExampleId
+      ],
+    ).toStrictEqual(['argentina'])
+    expect(
+      afterCustomItem.liveExampleComboboxInputValues[comboboxCustomExampleId],
+    ).toBe('')
+    expect(
+      afterCustomItem.liveExampleComboboxOpenValues[comboboxCustomExampleId],
+    ).toBe(false)
+  })
+
+  test('root update keeps data table page size and row selection aggregates aligned', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+    const pageRowIds = ['m5gr84i9', '3u1reuv4', 'derv1ws0', '5kma53ae']
+
+    const [afterPageSize] = update(
+      initial,
+      GotLiveExampleDataTableMessage({
+        exampleId: dataTableDemoExampleId,
+        message: SelectedDataTablePageSize({ pageSize: 4 }),
+      }),
+    )
+    const [afterSelectAll] = update(
+      afterPageSize,
+      GotLiveExampleDataTableMessage({
+        exampleId: dataTableDemoExampleId,
+        message: ClickedDataTableSelectAll({ rowIds: pageRowIds }),
+      }),
+    )
+    const [afterRowUnchecked] = update(
+      afterSelectAll,
+      GotLiveExampleDataTableMessage({
+        exampleId: dataTableDemoExampleId,
+        message: ClickedDataTableRowCheckbox({ rowId: '3u1reuv4' }),
+      }),
+    )
+
+    expect(
+      afterPageSize.liveExampleDataTableStates?.[dataTableDemoExampleId],
+    ).toMatchObject({
+      pageIndex: 0,
+      pageSize: 4,
+    })
+    expect(
+      Object.values(
+        afterSelectAll.liveExampleDataTableStates?.[dataTableDemoExampleId]
+          ?.selectedRowIds ?? {},
+      ).filter(isSelected => isSelected === true),
+    ).toHaveLength(4)
+    expect(
+      Object.values(
+        afterRowUnchecked.liveExampleDataTableStates?.[dataTableDemoExampleId]
+          ?.selectedRowIds ?? {},
+      ).filter(isSelected => isSelected === true),
+    ).toHaveLength(3)
+  })
+
+  test('root update keeps table and sidebar action menu open state keyed by example and menu id', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterTableOpen] = update(
+      initial,
+      UpdatedLiveExampleMenuOpen({
+        exampleId: 'shadcn/table-actions',
+        menuId: 'table-actions-wireless-mouse',
+        open: true,
+      }),
+    )
+    const [afterSidebarOpen] = update(
+      afterTableOpen,
+      UpdatedLiveExampleMenuOpen({
+        exampleId: 'shadcn/sidebar-menu-action',
+        menuId: 'menu-action:Design Engineering',
+        open: true,
+      }),
+    )
+
+    expect(
+      afterSidebarOpen.liveExampleMenuOpenValues[
+        liveExampleControlStateKey(
+          'shadcn/table-actions',
+          'table-actions-wireless-mouse',
+        )
+      ],
+    ).toBe(true)
+    expect(
+      afterSidebarOpen.liveExampleMenuOpenValues[
+        liveExampleControlStateKey(
+          'shadcn/sidebar-menu-action',
+          'menu-action:Design Engineering',
+        )
+      ],
+    ).toBe(true)
+    expect(
+      afterSidebarOpen.liveExampleMenuOpenValues[
+        liveExampleControlStateKey(
+          'shadcn/table-actions',
+          'menu-action:Design Engineering',
+        )
+      ],
+    ).toBeUndefined()
+  })
+
+  test('root update keeps pagination rows-per-page select value aligned', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterOpen] = update(
+      initial,
+      UpdatedLiveExampleSelectOpen({
+        exampleId: paginationIconsOnlyExampleId,
+        open: true,
+      }),
+    )
+    const [afterSelect] = update(
+      afterOpen,
+      SelectedLiveExampleSelectValue({
+        exampleId: paginationIconsOnlyExampleId,
+        value: '10',
+      }),
+    )
+
+    expect(
+      afterOpen.liveExampleSelectOpenValues[paginationIconsOnlyExampleId],
+    ).toBe(true)
+    expect(
+      afterSelect.liveExampleSelectValues[paginationIconsOnlyExampleId],
+    ).toBe('10')
+    expect(
+      afterSelect.liveExampleSelectOpenValues[paginationIconsOnlyExampleId],
+    ).toBe(false)
+  })
+
+  test('root update keeps otp and slider live example values aligned', () => {
+    const initial = modelWithRoute(ComponentsIndexRoute({}))
+
+    const [afterOtpInsert] = update(
+      initial,
+      UpdatedLiveExampleOtpValue({
+        exampleId: inputOtpDemoExampleId,
+        value: '123456',
+        isComplete: true,
+      }),
+    )
+    const [afterOtpDelete] = update(
+      afterOtpInsert,
+      UpdatedLiveExampleOtpValue({
+        exampleId: inputOtpDemoExampleId,
+        value: '12345',
+        isComplete: false,
+      }),
+    )
+    const [afterOtpResume] = update(
+      afterOtpDelete,
+      UpdatedLiveExampleOtpValue({
+        exampleId: inputOtpDemoExampleId,
+        value: '123456',
+        isComplete: true,
+      }),
+    )
+    const [afterSliderDemo] = update(
+      afterOtpResume,
+      UpdatedLiveExampleSliderValues({
+        exampleId: sliderDemoExampleId,
+        sliderId: 'slider-demo-live',
+        values: [76],
+      }),
+    )
+    const [afterSliderRange] = update(
+      afterSliderDemo,
+      UpdatedLiveExampleSliderValues({
+        exampleId: sliderRangeExampleId,
+        sliderId: 'slider-range-live',
+        values: [30, 55],
+      }),
+    )
+    const [afterSliderVertical] = update(
+      afterSliderRange,
+      UpdatedLiveExampleSliderValues({
+        exampleId: sliderVerticalExampleId,
+        sliderId: 'slider-vertical-live',
+        values: [51],
+      }),
+    )
+
+    expect(afterOtpInsert.liveExampleOtpValues[inputOtpDemoExampleId]).toBe(
+      '123456',
+    )
+    expect(afterOtpDelete.liveExampleOtpValues[inputOtpDemoExampleId]).toBe(
+      '12345',
+    )
+    expect(afterOtpResume.liveExampleOtpValues[inputOtpDemoExampleId]).toBe(
+      '123456',
+    )
+    expect(
+      afterSliderDemo.liveExampleSliderValues[
+        liveExampleControlStateKey(sliderDemoExampleId, 'slider-demo-live')
+      ],
+    ).toStrictEqual([76])
+    expect(
+      afterSliderRange.liveExampleSliderValues[
+        liveExampleControlStateKey(sliderRangeExampleId, 'slider-range-live')
+      ],
+    ).toStrictEqual([30, 55])
+    expect(
+      afterSliderVertical.liveExampleSliderValues[
+        liveExampleControlStateKey(
+          sliderVerticalExampleId,
+          'slider-vertical-live',
+        )
+      ],
+    ).toStrictEqual([51])
+  })
+
+  test('ProgressControlled live preview renders a progressbar and slider', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'progress' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.label('ProgressControlled live preview'),
+          Scene.role('slider'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.label('ProgressControlled live preview'),
+          Scene.role('progressbar'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.label('ProgressControlled live preview'),
+          Scene.text('50%'),
+        ),
+      ).toExist(),
+    )
   })
 
   test('form and selection live previews render repaired descriptions and tabs content', () => {
@@ -1967,7 +2369,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
-      Scene.expect(Scene.text('63 of 64')).toExist(),
+      Scene.expect(Scene.text('62 of 64')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
@@ -1980,11 +2382,26 @@ describe(view, () => {
       Scene.expect(Scene.text('shadcn/chart')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Docs/example-only rows' }),
-      ).not.toExist(),
+      ).toExist(),
       Scene.expect(Scene.text('shadcn/date-picker')).not.toExist(),
       Scene.expect(
         Scene.text('plans/artifacts', { exact: false }),
       ).not.toExist(),
+    )
+  })
+
+  test('shadcn toast route now falls through to Not Found', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'toast' }),
+        ),
+      ),
+      Scene.expect(Scene.role('heading', { name: 'Page Not Found' })).toExist(),
+      Scene.expect(
+        Scene.text('The path "/components/shadcn/toast"', { exact: false }),
+      ).toExist(),
     )
   })
 

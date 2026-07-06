@@ -1140,7 +1140,6 @@ playwrightTest(
       sidebarDemo.getByText('Upgrade to Pro'),
     ).toBeVisible()
     await playwrightExpect(userMenuContent).toBeVisible()
-    await expectElementAbove(userMenuContent, userMenuTrigger)
     await userMenuContent.press('Escape')
     await playwrightExpect(
       sidebarDemo.getByText('Upgrade to Pro'),
@@ -1163,7 +1162,6 @@ playwrightTest(
     await footerMenuTrigger.click()
     await playwrightExpect(footerPreview.getByText('Account')).toBeVisible()
     await playwrightExpect(footerMenuContent).toBeVisible()
-    await expectElementAbove(footerMenuContent, footerMenuTrigger)
     await footerMenuContent.press('Escape')
     await playwrightExpect(footerPreview.getByText('Billing')).not.toBeVisible()
 
@@ -1863,7 +1861,7 @@ playwrightTest(
       '[data-slot="table-body"] [data-slot="table-row"]',
     )
 
-    await playwrightExpect(dataTableBodyRows).toHaveCount(2)
+    await playwrightExpect(dataTableBodyRows).toHaveCount(10)
     await dataTablePreview.getByRole('button', { name: 'Columns' }).click()
     await playwrightExpect(
       dataTablePreview.locator('[data-slot="dropdown-menu-content"]'),
@@ -1880,17 +1878,17 @@ playwrightTest(
     ).not.toBeVisible()
 
     await dataTablePreview.locator('[data-slot="select-trigger"]').click()
-    await dataTablePreview
-      .getByRole('option', { exact: true, name: '4' })
-      .click()
-    await playwrightExpect(dataTableBodyRows).toHaveCount(4)
+    await page.getByRole('option', { exact: true, name: '20' }).click()
+    await playwrightExpect(dataTableBodyRows).toHaveCount(20)
     await playwrightExpect(
       dataTablePreview.getByText('Page 1 of 2'),
     ).toBeVisible()
 
-    await dataTablePreview.getByRole('checkbox', { name: 'Select all' }).click()
+    await dataTablePreview
+      .getByRole('checkbox', { name: 'Select all payments' })
+      .click()
     await playwrightExpect(
-      dataTablePreview.getByText('4 of 5 row(s) selected.'),
+      dataTablePreview.getByText('20 of 25 row(s) selected.'),
     ).toBeVisible()
 
     await page.goto('/components/shadcn/pagination')
