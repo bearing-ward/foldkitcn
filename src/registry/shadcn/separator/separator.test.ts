@@ -41,14 +41,14 @@ const viewSeparator =
 describe('shadcn/separator class helper', () => {
   test('uses the exact origin base class string', () => {
     expect(baseClassName).toBe(
-      'shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch',
+      'shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch',
     )
   })
 
   test('includes base tokens by default', () => {
     expect(separatorClassName()).toContain('shrink-0')
     expect(separatorClassName()).toContain('bg-border')
-    expect(separatorClassName()).toContain('data-[orientation=horizontal]:h-px')
+    expect(separatorClassName()).toContain('data-horizontal:h-px')
   })
 
   test('preserves custom classes through local cn canonicalization', () => {

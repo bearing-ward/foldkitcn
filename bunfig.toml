@@ -1,2 +1,9 @@
 [test]
-exclude = ["repos/**/*.test.*", "repos/**/*.spec.*"]
+preload = ["./src/bun-test-setup.ts"]
+pathIgnorePatterns = [
+  "repos/**",
+  "tests/e2e/**",
+  "src/data.test.ts",
+  "src/scene.test.ts",
+  "src/story.test.ts",
+]

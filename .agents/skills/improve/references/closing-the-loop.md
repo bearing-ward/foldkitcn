@@ -52,9 +52,17 @@ Note on fresh worktrees: they share git history but not `node_modules` or build 
 Review like a tech lead reviewing a PR against the spec — never fix anything yourself:
 
 1. **Re-run every done criterion** in the worktree. Don't trust the executor's report — verify.
-2. **Scope compliance**: `git -C <worktree> diff --stat` against the plan's in-scope list. Any file outside scope fails review, full stop.
-3. **Read the full diff.** Judge it against "Why this matters" (does it solve the actual problem?) and the repo conventions named in the plan (does it look like the rest of the codebase?).
-4. **Audit the new tests.** Executors game criteria — a test that asserts nothing meaningful passes `pnpm test` and proves nothing. Read what the tests assert.
+2. **Always run the repo's test suite after execute.** Even if the plan lists
+   only targeted checks, the reviewer must run the repository's canonical full
+   test command (for example, `bun run test`, `npm test`, `pnpm test`,
+   `cargo test`, or the equivalent discovered during recon) before marking the
+   plan DONE. If the repo has more than one canonical test lane, run the
+   relevant full lanes too. For this Foldkit CN repo, that means at least
+   `bun run test`, and browser/docs work also requires the relevant Playwright
+   docs tests.
+3. **Scope compliance**: `git -C <worktree> diff --stat` against the plan's in-scope list. Any file outside scope fails review, full stop.
+4. **Read the full diff.** Judge it against "Why this matters" (does it solve the actual problem?) and the repo conventions named in the plan (does it look like the rest of the codebase?).
+5. **Audit the new tests.** Executors game criteria — a test that asserts nothing meaningful passes `pnpm test` and proves nothing. Read what the tests assert.
 
 ### Verdict
 

@@ -8,14 +8,16 @@ import { readFileSync } from 'node:fs'
 
 const SHADCN_ORIGIN_SNAPSHOT_TIMEOUT_MS = 30_000
 
-const onlySnapshot = (
+const snapshotByOriginPath = (
   snapshots: ReadonlyArray<OriginFixtureSnapshot>,
+  originFilePath: string,
 ): OriginFixtureSnapshot => {
-  expect(snapshots).toHaveLength(1)
-  const snapshot = snapshots.at(0)
+  const snapshot = snapshots.find(
+    candidate => candidate.originFilePath === originFilePath,
+  )
 
   if (snapshot === undefined) {
-    throw new Error('Expected one shadcn origin snapshot.')
+    throw new Error(`Expected shadcn origin snapshot for ${originFilePath}.`)
   }
 
   return snapshot
@@ -57,129 +59,133 @@ const attributeValue = (
 ): string | undefined =>
   node.attributes.find(attribute => attribute.name === name)?.value
 
+const expectButtonDefaultSnapshot = (snapshot: OriginFixtureSnapshot): void => {
+  expect(snapshot.originFilePath).toBe(
+    'repos/ui/apps/v4/examples/base/button-default.tsx',
+  )
+  expect({
+    hasColors: snapshot.colors.length > 0,
+    hasComputedStyle: snapshot.computedStyle.length > 0,
+    hasDimensions: snapshot.dimensions.length > 0,
+    hasHeight: snapshot.boundingBox.height > 0,
+    hasWidth: snapshot.boundingBox.width > 0,
+    height: computedStyleValue(snapshot, 'height'),
+    paddingLeft: computedStyleValue(snapshot, 'padding-left'),
+    tagName: snapshot.tagName,
+    text: snapshot.text,
+    renderedDisplay: computedStyleValue(snapshot, 'display'),
+  }).toStrictEqual({
+    hasColors: true,
+    hasComputedStyle: true,
+    hasDimensions: true,
+    hasHeight: true,
+    hasWidth: true,
+    height: '32px',
+    paddingLeft: '10px',
+    tagName: 'button',
+    text: 'Button',
+    renderedDisplay: 'inline-flex',
+  })
+  expect(snapshot.classTokens).toStrictEqual(
+    expect.arrayContaining(['group/button', 'bg-primary']),
+  )
+  expect(snapshot.attributes).toStrictEqual(
+    expect.arrayContaining([{ name: 'type', value: 'button' }]),
+  )
+}
+
+const expectButtonRenderSnapshot = (snapshot: OriginFixtureSnapshot): void => {
+  expect(snapshot.originFilePath).toBe(
+    'repos/ui/apps/v4/examples/base/button-render.tsx',
+  )
+  expect({
+    height: computedStyleValue(snapshot, 'height'),
+    tagName: snapshot.tagName,
+    text: snapshot.text,
+    renderedDisplay: computedStyleValue(snapshot, 'display'),
+  }).toStrictEqual({
+    height: '28px',
+    tagName: 'a',
+    text: 'Login',
+    renderedDisplay: 'inline-flex',
+  })
+  expect(snapshot.attributes).toStrictEqual(
+    expect.arrayContaining([{ name: 'href', value: '#' }]),
+  )
+  expect(snapshot.classTokens).toStrictEqual(
+    expect.arrayContaining([
+      'bg-secondary',
+      'h-7',
+      'text-secondary-foreground',
+    ]),
+  )
+}
+
+const expectSeparatorSnapshot = (snapshot: OriginFixtureSnapshot): void => {
+  expect(snapshot.originFilePath).toBe(
+    'repos/ui/apps/v4/examples/base/separator-demo.tsx',
+  )
+  expect({
+    hasColors: snapshot.colors.length > 0,
+    hasComputedStyle: snapshot.computedStyle.length > 0,
+    hasDimensions: snapshot.dimensions.length > 0,
+    hasHeight: snapshot.boundingBox.height > 0,
+    hasWidth: snapshot.boundingBox.width > 0,
+  }).toStrictEqual({
+    hasColors: true,
+    hasComputedStyle: true,
+    hasDimensions: true,
+    hasHeight: true,
+    hasWidth: true,
+  })
+  const separatorNode = findDomNode(
+    snapshot.domStructure,
+    node => attributeValue(node, 'data-slot') === 'separator',
+  )
+
+  if (separatorNode === undefined) {
+    throw new Error('Expected separator-demo to render a separator node.')
+  }
+
+  expect(attributeValue(separatorNode, 'class')).toStrictEqual(
+    expect.stringContaining('shrink-0'),
+  )
+  expect(attributeValue(separatorNode, 'class')).toStrictEqual(
+    expect.stringContaining('bg-border'),
+  )
+  expect(separatorNode.attributes).toStrictEqual(
+    expect.arrayContaining([
+      { name: 'data-slot', value: 'separator' },
+      { name: 'aria-orientation', value: 'horizontal' },
+    ]),
+  )
+}
+
 describe('shadcn origin fixture runner', () => {
   test(
-    'captures a browser snapshot from the pinned button-default source',
+    'captures browser snapshots from the pinned button-default button-render and separator-demo sources',
     async () => {
-      const snapshot = onlySnapshot(
-        await captureShadcnOriginSnapshots({ grep: 'button-default' }),
-      )
+      const snapshots = await captureShadcnOriginSnapshots({
+        grep: ['button-default', 'button-render', 'separator-demo'],
+      })
+      expect(snapshots).toHaveLength(3)
 
-      expect(snapshot.originFilePath).toBe(
+      const defaultSnapshot = snapshotByOriginPath(
+        snapshots,
         'repos/ui/apps/v4/examples/base/button-default.tsx',
       )
-      expect({
-        hasColors: snapshot.colors.length > 0,
-        hasComputedStyle: snapshot.computedStyle.length > 0,
-        hasDimensions: snapshot.dimensions.length > 0,
-        hasHeight: snapshot.boundingBox.height > 0,
-        hasWidth: snapshot.boundingBox.width > 0,
-        height: computedStyleValue(snapshot, 'height'),
-        paddingLeft: computedStyleValue(snapshot, 'padding-left'),
-        tagName: snapshot.tagName,
-        text: snapshot.text,
-        renderedDisplay: computedStyleValue(snapshot, 'display'),
-      }).toStrictEqual({
-        hasColors: true,
-        hasComputedStyle: true,
-        hasDimensions: true,
-        hasHeight: true,
-        hasWidth: true,
-        height: '32px',
-        paddingLeft: '10px',
-        tagName: 'button',
-        text: 'Button',
-        renderedDisplay: 'inline-flex',
-      })
-      expect(snapshot.classTokens).toStrictEqual(
-        expect.arrayContaining(['group/button', 'bg-primary']),
-      )
-      expect(snapshot.attributes).toStrictEqual(
-        expect.arrayContaining([{ name: 'type', value: 'button' }]),
-      )
-    },
-    SHADCN_ORIGIN_SNAPSHOT_TIMEOUT_MS,
-  )
-
-  test(
-    'captures the button-render class helper output on a plain anchor',
-    async () => {
-      const snapshot = onlySnapshot(
-        await captureShadcnOriginSnapshots({ grep: 'button-render' }),
-      )
-
-      expect(snapshot.originFilePath).toBe(
+      const renderSnapshot = snapshotByOriginPath(
+        snapshots,
         'repos/ui/apps/v4/examples/base/button-render.tsx',
       )
-      expect({
-        height: computedStyleValue(snapshot, 'height'),
-        tagName: snapshot.tagName,
-        text: snapshot.text,
-        renderedDisplay: computedStyleValue(snapshot, 'display'),
-      }).toStrictEqual({
-        height: '28px',
-        tagName: 'a',
-        text: 'Login',
-        renderedDisplay: 'inline-flex',
-      })
-      expect(snapshot.attributes).toStrictEqual(
-        expect.arrayContaining([{ name: 'href', value: '#' }]),
-      )
-      expect(snapshot.classTokens).toStrictEqual(
-        expect.arrayContaining([
-          'bg-secondary',
-          'h-7',
-          'text-secondary-foreground',
-        ]),
-      )
-    },
-    SHADCN_ORIGIN_SNAPSHOT_TIMEOUT_MS,
-  )
-
-  test(
-    'captures a browser snapshot from the pinned separator-demo source',
-    async () => {
-      const snapshot = onlySnapshot(
-        await captureShadcnOriginSnapshots({ grep: 'separator-demo' }),
-      )
-
-      expect(snapshot.originFilePath).toBe(
+      const separatorSnapshot = snapshotByOriginPath(
+        snapshots,
         'repos/ui/apps/v4/examples/base/separator-demo.tsx',
       )
-      expect({
-        hasColors: snapshot.colors.length > 0,
-        hasComputedStyle: snapshot.computedStyle.length > 0,
-        hasDimensions: snapshot.dimensions.length > 0,
-        hasHeight: snapshot.boundingBox.height > 0,
-        hasWidth: snapshot.boundingBox.width > 0,
-      }).toStrictEqual({
-        hasColors: true,
-        hasComputedStyle: true,
-        hasDimensions: true,
-        hasHeight: true,
-        hasWidth: true,
-      })
-      const separatorNode = findDomNode(
-        snapshot.domStructure,
-        node => attributeValue(node, 'data-slot') === 'separator',
-      )
 
-      if (separatorNode === undefined) {
-        throw new Error('Expected separator-demo to render a separator node.')
-      }
-
-      expect(attributeValue(separatorNode, 'class')).toStrictEqual(
-        expect.stringContaining('shrink-0'),
-      )
-      expect(attributeValue(separatorNode, 'class')).toStrictEqual(
-        expect.stringContaining('bg-border'),
-      )
-      expect(separatorNode.attributes).toStrictEqual(
-        expect.arrayContaining([
-          { name: 'data-slot', value: 'separator' },
-          { name: 'aria-orientation', value: 'horizontal' },
-        ]),
-      )
+      expectButtonDefaultSnapshot(defaultSnapshot)
+      expectButtonRenderSnapshot(renderSnapshot)
+      expectSeparatorSnapshot(separatorSnapshot)
     },
     SHADCN_ORIGIN_SNAPSHOT_TIMEOUT_MS,
   )

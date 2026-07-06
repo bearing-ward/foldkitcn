@@ -19,7 +19,7 @@ const parityRandomIncrement = 1_013_904_223
 const parityRandomModulus = 4_294_967_296
 
 export interface CaptureShadcnOriginSnapshotsOptions {
-  readonly grep?: string
+  readonly grep?: string | ReadonlyArray<string>
 }
 
 const repoRoot = process.cwd()
@@ -1645,18 +1645,28 @@ const serverUrl = (server: ViteDevServer): string => {
   return resolvedUrl
 }
 
-const matchingCases = (grep: string | undefined) => {
-  const normalizedGrep = grep?.toLowerCase()
+const normalizedGreps = (
+  grep: CaptureShadcnOriginSnapshotsOptions['grep'],
+): ReadonlyArray<string> | undefined =>
+  typeof grep === 'string'
+    ? [grep.toLowerCase()]
+    : grep?.map(value => value.toLowerCase())
+
+const grepLabel = (grep: CaptureShadcnOriginSnapshotsOptions['grep']): string =>
+  typeof grep === 'string' ? grep : (grep?.join(', ') ?? '<none>')
+
+const matchingCases = (grep: CaptureShadcnOriginSnapshotsOptions['grep']) => {
+  const grepValues = normalizedGreps(grep)
   const originCases =
-    normalizedGrep === undefined
+    grepValues === undefined
       ? shadcnOriginCaseMetadata
       : shadcnOriginCaseMetadata.filter(originCase =>
-          originCase.id.toLowerCase().includes(normalizedGrep),
+          grepValues.some(value => originCase.id.toLowerCase().includes(value)),
         )
 
   if (originCases.length === 0) {
     throw new Error(
-      `No shadcn origin fixture cases matched: ${grep ?? '<none>'}`,
+      `No shadcn origin fixture cases matched: ${grepLabel(grep)}`,
     )
   }
 

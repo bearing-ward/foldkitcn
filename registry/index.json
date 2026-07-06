@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-06T04:50:07.627Z",
+  "generatedAt": "2026-07-06T08:29:09.260Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -8522,8 +8522,8 @@
         },
         {
           "path": "src/registry/shadcn/button-group/index.ts",
-          "sha256": "cd19049883b8ab88dc0ada22f1e6b6e381b722575403a14015fb582c824c6f61",
-          "sizeBytes": 7898,
+          "sha256": "0139088157d74c907fd4599d44d65b6d62a8dc4b5f061b01d0aeb59ad8308ada",
+          "sizeBytes": 7922,
           "role": "source"
         },
         {
@@ -18257,8 +18257,8 @@
         },
         {
           "path": "src/registry/shadcn/separator/index.ts",
-          "sha256": "d557204e8e66196d9c02d63c43722ca4b775b8bc3f337f8f66758ace075c6f27",
-          "sizeBytes": 1669,
+          "sha256": "469460a5c3d5a31a4c12c3af3d77b67f3db1370acfc3aa8cac98b0c00787fdd5",
+          "sizeBytes": 1613,
           "role": "source"
         },
         {

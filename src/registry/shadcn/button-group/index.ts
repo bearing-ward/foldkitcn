@@ -3,7 +3,7 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { cn } from '../../../utils/cn'
-import * as ShadcnSeparator from '../separator'
+import * as BaseSeparator from '../../base-ui/separator'
 
 // MODEL
 
@@ -103,7 +103,7 @@ export const buttonGroupTextBaseClassName =
   "flex items-center gap-2 rounded-lg border bg-muted px-2.5 text-sm font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
 
 export const buttonGroupSeparatorBaseClassName =
-  'relative self-stretch bg-input data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto'
+  'shrink-0 data-horizontal:h-px data-vertical:w-px data-vertical:self-stretch relative self-stretch bg-input data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto'
 
 export const buttonGroupClassName = ({
   className,
@@ -126,9 +126,7 @@ export const buttonGroupTextClassName = ({
 export const buttonGroupSeparatorClassName = ({
   className,
 }: Pick<ButtonGroupSeparatorStyleOptions, 'className'> = {}): string =>
-  ShadcnSeparator.separatorClassName({
-    className: cn(buttonGroupSeparatorBaseClassName, className),
-  })
+  cn(buttonGroupSeparatorBaseClassName, className)
 
 const optionalDataAttribute = <Message>(
   h: ReturnType<typeof html<Message>>,
@@ -172,13 +170,14 @@ const buttonGroupTextAttributes = <Message>(
 })
 
 const buttonGroupSeparatorAttributes = <Message>(
-  attributes: ShadcnSeparator.SeparatorAttributes<Message>,
+  attributes: BaseSeparator.SeparatorAttributes<Message>,
   config: ButtonGroupSeparatorConfig<Message>,
   h: ReturnType<typeof html<Message>>,
 ): ButtonGroupSeparatorAttributes<Message> => ({
   separator: [
     ...attributes.separator,
     h.DataAttribute('slot', 'button-group-separator'),
+    h.Class(buttonGroupSeparatorClassName({ className: config.className })),
     ...(config.attributes ?? []),
   ],
 })
@@ -209,11 +208,10 @@ export const ButtonGroupSeparator = <Message>(
   config: ButtonGroupSeparatorConfig<Message> = {},
 ): Html => {
   const h = html<Message>()
-  const { className, orientation = 'vertical' } = config
+  const { orientation = 'vertical' } = config
 
-  return ShadcnSeparator.view<Message>({
+  return BaseSeparator.view<Message>({
     orientation,
-    className: cn(buttonGroupSeparatorBaseClassName, className),
     toView: attributes => {
       const separatorAttributes = buttonGroupSeparatorAttributes(
         attributes,

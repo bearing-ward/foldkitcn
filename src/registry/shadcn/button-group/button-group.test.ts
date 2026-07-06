@@ -77,6 +77,9 @@ describe('shadcn/button-group class helpers', () => {
   })
 
   test('preserves custom classes through local cn canonicalization', () => {
+    expect(ButtonGroup.buttonGroupSeparatorClassName()).toBe(
+      'shrink-0 data-horizontal:h-px data-vertical:w-px data-vertical:self-stretch relative self-stretch bg-input data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto',
+    )
     expect(
       ButtonGroup.buttonGroupClassName({
         className: 'custom-group w-fit w-full',

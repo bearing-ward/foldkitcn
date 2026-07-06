@@ -905,10 +905,11 @@ playwrightTest(
     const hoverContent = hoverPreview.locator(
       '[data-slot="hover-card-content"]',
     )
+    const hoverPositioner = hoverContent.locator('xpath=..')
 
     await hoverTrigger.hover()
     await playwrightExpect(hoverContent).toBeVisible()
-    await playwrightExpect(hoverContent).toHaveCSS('position', 'absolute')
+    await playwrightExpect(hoverPositioner).toHaveCSS('position', 'absolute')
     await page.mouse.move(0, 0)
     await page.keyboard.press('Escape')
     await playwrightExpect(hoverContent).not.toBeVisible()
