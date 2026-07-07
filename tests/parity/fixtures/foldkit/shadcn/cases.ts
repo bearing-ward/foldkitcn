@@ -299,6 +299,7 @@ import {
   TableFooterExample,
   TableRtl,
 } from '../../../../../src/registry/shadcn/table/examples'
+import { TabsDemo } from '../../../../../src/registry/shadcn/tabs/examples'
 import {
   TextareaButton,
   TextareaDemo,
@@ -823,6 +824,7 @@ const components: Readonly<Record<string, () => Html>> = {
   'switch-invalid': SwitchInvalid,
   'switch-rtl': SwitchRtl,
   'switch-sizes': SwitchSizes,
+  'tabs-demo': TabsDemo,
   'skeleton-avatar': SkeletonAvatar,
   'skeleton-card': SkeletonCard,
   'skeleton-demo': SkeletonDemo,
@@ -855,6 +857,7 @@ const foldkitSourcePrefixes: ReadonlyArray<readonly [string, string]> = [
   ['scroll-area-', 'src/registry/shadcn/scroll-area/examples.ts'],
   ['progress-', 'src/registry/shadcn/progress/examples.ts'],
   ['switch-', 'src/registry/shadcn/switch/examples.ts'],
+  ['tabs-', 'src/registry/shadcn/tabs/examples.ts'],
   ['kbd-', 'src/registry/shadcn/kbd/examples.ts'],
   ['input-group-', 'src/registry/shadcn/input-group/examples.ts'],
   ['input-', 'src/registry/shadcn/input/examples.ts'],
