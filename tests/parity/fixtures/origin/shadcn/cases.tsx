@@ -214,6 +214,7 @@ import { TableActions } from '../../../../../repos/ui/apps/v4/examples/base/tabl
 import { TableDemo } from '../../../../../repos/ui/apps/v4/examples/base/table-demo'
 import { TableFooterExample } from '../../../../../repos/ui/apps/v4/examples/base/table-footer'
 import { TableRtl } from '../../../../../repos/ui/apps/v4/examples/base/table-rtl'
+import { TabsDemo } from '../../../../../repos/ui/apps/v4/examples/base/tabs-demo'
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
@@ -1063,6 +1064,7 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'switch-invalid': SwitchInvalid,
   'switch-rtl': SwitchRtl,
   'switch-sizes': SwitchSizes,
+  'tabs-demo': TabsDemo,
   'skeleton-avatar': SkeletonAvatar,
   'skeleton-card': SkeletonCard,
   'skeleton-demo': SkeletonDemo,

@@ -121,8 +121,16 @@ const sourcePathAliases = new Map([
     'repos/ui/apps/v4/styles/base-nova/ui/collapsible.tsx',
   ],
   [
+    '@/styles/base-nova/ui/tabs',
+    'repos/ui/apps/v4/styles/base-nova/ui/tabs.tsx',
+  ],
+  [
     '@/styles/base-nova/ui-rtl/collapsible',
     'repos/ui/apps/v4/styles/base-nova/ui-rtl/collapsible.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/tabs',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/tabs.tsx',
   ],
   [
     '@/styles/base-nova/ui/direction',
@@ -150,6 +158,7 @@ const sourcePathAliases = new Map([
   ],
   ['@base-ui/react/button', 'repos/base-ui/packages/react/src/button/index.ts'],
   ['@base-ui/react/dialog', 'repos/base-ui/packages/react/src/dialog/index.ts'],
+  ['@base-ui/react/tabs', 'repos/base-ui/packages/react/src/tabs/index.ts'],
   [
     '@base-ui/react/popover',
     'repos/base-ui/packages/react/src/popover/index.ts',
@@ -1200,7 +1209,7 @@ const originAliasPlugin = (): Plugin => ({
   },
 })
 
-const createFixtureServer = async (): Promise<ViteDevServer> => {
+export const createFixtureServer = async (): Promise<ViteDevServer> => {
   const server = await createServer({
     root: fixtureRoot,
     configFile: false,
@@ -1629,7 +1638,7 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
   return server
 }
 
-const serverUrl = (server: ViteDevServer): string => {
+export const serverUrl = (server: ViteDevServer): string => {
   const address = server.httpServer?.address()
 
   if (typeof address === 'object' && address !== null) {
