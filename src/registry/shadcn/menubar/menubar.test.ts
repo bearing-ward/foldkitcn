@@ -201,6 +201,10 @@ describe('shadcn/menubar class helpers', () => {
     expect(Menubar.menubarCheckedItemClassName()).toContain('pl-7')
   })
 
+  test('keeps menu wrappers above their open backdrop without stretching triggers', () => {
+    expect(Menubar.menubarMenuClassName()).toContain('relative')
+  })
+
   test('uses origin slot class strings for submenus, labels, shortcuts, and separators', () => {
     expect(Menubar.menubarSubTriggerClassName()).toContain(
       'data-open:bg-accent',

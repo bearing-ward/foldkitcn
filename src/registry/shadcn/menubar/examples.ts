@@ -13,11 +13,14 @@ import type {
 type ExampleItem = MenuItemDescriptor &
   Readonly<{
     icon?: string
+    inset?: boolean
+    separatorBefore?: boolean
     shortcut?: string
   }>
 
 type ExampleMenu = Omit<MenubarMenuDescriptor, 'items' | 'open'> &
   Readonly<{
+    contentClassName?: string
     items: ReadonlyArray<ExampleItem>
   }>
 
@@ -43,6 +46,14 @@ const defaultRadioValuesFor = (
 
     return values
   }, {})
+
+const defaultOpenSubmenuValues = (
+  menu: Readonly<{ items: ReadonlyArray<ExampleItem> }>,
+): ReadonlyArray<string> =>
+  menu.items
+    .filter(item => item.kind === 'submenu-trigger')
+    .slice(0, 1)
+    .map(item => item.value)
 
 const itemsWithState = <Message>(
   menuId: string,
@@ -132,22 +143,37 @@ const fileItems: ReadonlyArray<ExampleItem> = [
     label: 'New Incognito Window',
     isDisabled: true,
   },
-  { value: 'share', label: 'Share', kind: 'submenu-trigger' },
+  {
+    value: 'share',
+    label: 'Share',
+    kind: 'submenu-trigger',
+    separatorBefore: true,
+  },
   { value: 'email-link', label: 'Email link', parentValue: 'share' },
   { value: 'messages', label: 'Messages', parentValue: 'share' },
   { value: 'notes', label: 'Notes', parentValue: 'share' },
-  { value: 'print', label: 'Print...', shortcut: '⌘P' },
+  {
+    value: 'print',
+    label: 'Print...',
+    separatorBefore: true,
+    shortcut: '⌘P',
+  },
 ]
 
 const editItems: ReadonlyArray<ExampleItem> = [
   { value: 'undo', label: 'Undo', shortcut: '⌘Z' },
   { value: 'redo', label: 'Redo', shortcut: '⇧⌘Z' },
-  { value: 'find', label: 'Find', kind: 'submenu-trigger' },
+  {
+    value: 'find',
+    label: 'Find',
+    kind: 'submenu-trigger',
+    separatorBefore: true,
+  },
   { value: 'search-web', label: 'Search the web', parentValue: 'find' },
   { value: 'find-item', label: 'Find...', parentValue: 'find' },
   { value: 'find-next', label: 'Find Next', parentValue: 'find' },
   { value: 'find-previous', label: 'Find Previous', parentValue: 'find' },
-  { value: 'cut', label: 'Cut' },
+  { value: 'cut', label: 'Cut', separatorBefore: true },
   { value: 'copy', label: 'Copy' },
   { value: 'paste', label: 'Paste' },
 ]
@@ -155,15 +181,28 @@ const editItems: ReadonlyArray<ExampleItem> = [
 const viewItems: ReadonlyArray<ExampleItem> = [
   { value: 'bookmarks-bar', label: 'Bookmarks Bar', kind: 'checkbox' },
   { value: 'full-urls', label: 'Full URLs', kind: 'checkbox', isChecked: true },
-  { value: 'reload', label: 'Reload', shortcut: '⌘R' },
+  {
+    value: 'reload',
+    label: 'Reload',
+    separatorBefore: true,
+    shortcut: '⌘R',
+  },
   {
     value: 'force-reload',
     label: 'Force Reload',
     shortcut: '⇧⌘R',
     isDisabled: true,
   },
-  { value: 'toggle-fullscreen', label: 'Toggle Fullscreen' },
-  { value: 'hide-sidebar', label: 'Hide Sidebar' },
+  {
+    value: 'toggle-fullscreen',
+    label: 'Toggle Fullscreen',
+    separatorBefore: true,
+  },
+  {
+    value: 'hide-sidebar',
+    label: 'Hide Sidebar',
+    separatorBefore: true,
+  },
 ]
 
 const profileItems: ReadonlyArray<ExampleItem> = [
@@ -186,8 +225,16 @@ const profileItems: ReadonlyArray<ExampleItem> = [
     kind: 'radio',
     radioGroupValue: 'profile',
   },
-  { value: 'edit-profile', label: 'Edit...' },
-  { value: 'add-profile', label: 'Add Profile...' },
+  {
+    value: 'edit-profile',
+    label: 'Edit...',
+    separatorBefore: true,
+  },
+  {
+    value: 'add-profile',
+    label: 'Add Profile...',
+    separatorBefore: true,
+  },
 ]
 
 const checkboxViewItems: ReadonlyArray<ExampleItem> = [
@@ -202,7 +249,12 @@ const checkboxViewItems: ReadonlyArray<ExampleItem> = [
     kind: 'checkbox',
     isChecked: true,
   },
-  { value: 'reload', label: 'Reload', shortcut: '⌘R' },
+  {
+    value: 'reload',
+    label: 'Reload',
+    separatorBefore: true,
+    shortcut: '⌘R',
+  },
   {
     value: 'force-reload',
     label: 'Force Reload',
@@ -324,16 +376,56 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
+const withClassName = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  attributes: ReadonlyArray<Attribute<Message>>,
+  className: string | undefined,
+): ReadonlyArray<Attribute<Message>> => {
+  if (className === undefined || className === '') {
+    return attributes
+  }
+
+  const hasClassAttribute = attributes.some(
+    attribute => attribute._tag === 'Class',
+  )
+  const mergedAttributes = attributes.map(attribute =>
+    attribute._tag === 'Class'
+      ? h.Class(`${attribute.value} ${className}`)
+      : attribute,
+  )
+
+  return hasClassAttribute
+    ? mergedAttributes
+    : [...attributes, h.Class(className)]
+}
+
+const itemRootAttributes = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  source: ExampleItem,
+  itemAttributes: Menubar.MenuItemAttributes<Message>,
+  reservesLeadingIconSlot: boolean,
+): ReadonlyArray<Attribute<Message>> =>
+  source.inset === true ||
+  (reservesLeadingIconSlot && source.icon === undefined)
+    ? [...itemAttributes.root, h.DataAttribute('inset', 'true')]
+    : itemAttributes.root
+
 const itemContent = <Message>(
   source: ExampleItem,
   itemAttributes: Menubar.MenuItemAttributes<Message>,
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
   const kind = Menubar.itemKind(itemAttributes.item)
+  const isChecked = itemAttributes.item.isChecked === true
   const indicator =
     kind === 'checkbox' || kind === 'radio'
-      ? h.span([...itemAttributes.indicator], [Menubar.checkIcon([])])
-      : h.span([], [])
+      ? [
+          h.span(
+            [...itemAttributes.indicator],
+            isChecked ? [Menubar.checkIcon([])] : [],
+          ),
+        ]
+      : []
   const maybeIcon = source.icon === undefined ? [] : [icon(source.icon)]
   const maybeShortcut =
     source.shortcut === undefined
@@ -345,7 +437,7 @@ const itemContent = <Message>(
       : []
 
   return [
-    indicator,
+    ...indicator,
     ...maybeIcon,
     h.span([...itemAttributes.label], [itemAttributes.item.label]),
     ...maybeShortcut,
@@ -363,6 +455,8 @@ const popupView = <Message>(
     return []
   }
 
+  const reservesLeadingIconSlot = items.some(item => item.icon !== undefined)
+
   return [
     h.div([...popup.backdrop.root], []),
     h.div(
@@ -373,15 +467,26 @@ const popupView = <Message>(
           [
             h.div(
               [...popup.group],
-              popup.items.map(itemAttributes =>
-                h.div(
-                  [...itemAttributes.root],
-                  itemContent(
-                    sourceItem(items, itemAttributes.item),
-                    itemAttributes,
+              popup.items.flatMap(itemAttributes => {
+                const source = sourceItem(items, itemAttributes.item)
+                const separator =
+                  source.separatorBefore === true
+                    ? [h.div([...popup.separator], [])]
+                    : []
+
+                return [
+                  ...separator,
+                  h.div(
+                    itemRootAttributes(
+                      h,
+                      source,
+                      itemAttributes,
+                      reservesLeadingIconSlot,
+                    ),
+                    itemContent(source, itemAttributes),
                   ),
-                ),
-              ),
+                ]
+              }),
             ),
           ],
         ),
@@ -391,7 +496,7 @@ const popupView = <Message>(
 }
 
 const menuView = <Message>(
-  items: ReadonlyArray<ExampleItem>,
+  menu: ExampleMenu,
   attributes: Menubar.MenubarMenuAttributes<Message>,
 ): Html => {
   const h = html<Message>()
@@ -403,8 +508,20 @@ const menuView = <Message>(
       h.div(
         [...attributes.portal],
         [
-          ...popupView(items, attributes.popup),
-          ...attributes.submenus.flatMap(submenu => popupView(items, submenu)),
+          ...popupView(menu.items, {
+            ...attributes.popup,
+            popup: {
+              ...attributes.popup.popup,
+              root: withClassName(
+                h,
+                attributes.popup.popup.root,
+                menu.contentClassName,
+              ),
+            },
+          }),
+          ...attributes.submenus.flatMap(submenu =>
+            popupView(menu.items, submenu),
+          ),
         ],
       ),
     ],
@@ -419,6 +536,9 @@ const menubarExampleWithController = <Message = never>(
 ): Html => {
   const itemsByMenuValue = new Map<string, ReadonlyArray<ExampleItem>>(
     menus.map(menu => [menu.value, menu.items]),
+  )
+  const menusByValue = new Map<string, ExampleMenu>(
+    menus.map(menu => [menu.value, menu]),
   )
   const defaultOpenMenuValue =
     controller === undefined ? menus.at(0)?.value : undefined
@@ -441,18 +561,8 @@ const menubarExampleWithController = <Message = never>(
       highlightedValue: menu.items.find(item => item.parentValue === undefined)
         ?.value,
       openSubmenuValues:
-        controller?.openSubmenuValuesFor(
-          id,
-          menu.value,
-          menu.items
-            .filter(item => item.kind === 'submenu-trigger')
-            .slice(0, 1)
-            .map(item => item.value),
-        ) ??
-        menu.items
-          .filter(item => item.kind === 'submenu-trigger')
-          .slice(0, 1)
-          .map(item => item.value),
+        controller?.openSubmenuValuesFor(id, menu.value, []) ??
+        defaultOpenSubmenuValues(menu),
     })),
     focusedMenuValue: openMenuValue ?? menus.at(0)?.value,
     ...(controller === undefined
@@ -491,14 +601,21 @@ const menubarExampleWithController = <Message = never>(
         }),
     ...options,
     toMenuView: attributes =>
-      menuView(itemsByMenuValue.get(attributes.menu.value) ?? [], attributes),
+      menuView(
+        menusByValue.get(attributes.menu.value) ?? {
+          value: attributes.menu.value,
+          label: attributes.menu.label,
+          items: itemsByMenuValue.get(attributes.menu.value) ?? [],
+        },
+        attributes,
+      ),
   })
 }
 
 const browserMenus: ReadonlyArray<ExampleMenu> = [
   { value: 'file', label: 'File', items: fileItems },
   { value: 'edit', label: 'Edit', items: editItems },
-  { value: 'view', label: 'View', items: viewItems },
+  { value: 'view', label: 'View', contentClassName: 'w-44', items: viewItems },
   { value: 'profiles', label: 'Profiles', items: profileItems },
 ]
 
@@ -520,7 +637,12 @@ export const MenubarCheckbox = <Message = never>(
   menubarExampleWithController(
     'menubar-checkbox',
     [
-      { value: 'view', label: 'View', items: checkboxViewItems },
+      {
+        value: 'view',
+        label: 'View',
+        contentClassName: 'w-64',
+        items: checkboxViewItems,
+      },
       { value: 'format', label: 'Format', items: formatItems },
     ],
     { className: 'w-72' },

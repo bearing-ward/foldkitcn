@@ -565,6 +565,88 @@ const placementAttributes = <Message>(
   ),
 ]
 
+const horizontalAnchorStyle = (
+  config: Pick<MenuOptions, 'align'>,
+  parentValue?: string | undefined,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config, parentValue)
+
+  if (align === 'center') {
+    return { left: 'anchor(center)', translate: '-50% 0' }
+  }
+
+  if (align === 'end') {
+    return { left: 'anchor(right)', translate: '-100% 0' }
+  }
+
+  return { left: 'anchor(left)' }
+}
+
+const verticalAnchorStyle = (
+  config: Pick<MenuOptions, 'align'>,
+  parentValue?: string | undefined,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config, parentValue)
+
+  if (align === 'center') {
+    return { top: 'anchor(center)', translate: '0 -50%' }
+  }
+
+  if (align === 'end') {
+    return { top: 'anchor(bottom)', translate: '0 -100%' }
+  }
+
+  return { top: 'anchor(top)' }
+}
+
+const sideOffset = (
+  config: Pick<MenuOptions, 'sideOffset'>,
+  parentValue?: string | undefined,
+): number =>
+  parentValue === undefined ? (config.sideOffset ?? defaultSideOffset) : 4
+
+const placementStyle = (
+  config: Pick<MenuOptions, 'align' | 'side' | 'sideOffset'>,
+  parentValue?: string | undefined,
+): Readonly<Record<string, string>> => {
+  const offset = `${sideOffset(config, parentValue)}px`
+  const side = resolvedSide(config, parentValue)
+
+  if (side === 'top') {
+    return {
+      ...horizontalAnchorStyle(config, parentValue),
+      bottom: `calc(anchor(top) + ${offset})`,
+    }
+  }
+
+  if (side === 'left' || side === 'inline-start') {
+    return {
+      ...verticalAnchorStyle(config, parentValue),
+      right: `calc(anchor(left) + ${offset})`,
+    }
+  }
+
+  if (side === 'right' || side === 'inline-end') {
+    return {
+      ...verticalAnchorStyle(config, parentValue),
+      left: `calc(anchor(right) + ${offset})`,
+    }
+  }
+
+  return {
+    ...horizontalAnchorStyle(config, parentValue),
+    top: `calc(anchor(bottom) + ${offset})`,
+  }
+}
+
+const popupAnchorName = (
+  config: Pick<MenuOptions, 'id'>,
+  parentValue?: string | undefined,
+): string =>
+  parentValue === undefined
+    ? rootAnchorName(config)
+    : submenuAnchorName(config, parentValue)
+
 const rootAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -637,25 +719,13 @@ const positionerAttributes = <Message>(
         ...(isOpen ? [] : [h.Hidden(true)]),
         ...openStateDataAttributes(h, isOpen),
         ...placementAttributes(h, config, parentValue),
-        h.Style(
-          parentValue === undefined
-            ? {
-                position: 'absolute',
-                positionAnchor: rootAnchorName(config),
-                inset: 'auto',
-                top: 'calc(anchor(bottom) + 4px)',
-                left: 'anchor(left)',
-                margin: '0',
-              }
-            : {
-                position: 'absolute',
-                positionAnchor: submenuAnchorName(config, parentValue),
-                inset: 'auto',
-                top: 'calc(anchor(top) - 3px)',
-                left: 'calc(anchor(right) + 4px)',
-                margin: '0',
-              },
-        ),
+        h.Style({
+          position: 'absolute',
+          positionAnchor: popupAnchorName(config, parentValue),
+          inset: 'auto',
+          margin: '0',
+          ...placementStyle(config, parentValue),
+        }),
       ]
     : [],
   isMounted,
@@ -754,6 +824,13 @@ const popupAttributes = <Message>(
         ...openStateDataAttributes(h, isOpen),
         ...transitionDataAttributes(h, config.transitionStatus),
         ...placementAttributes(h, config, parentValue),
+        h.Style({
+          position: 'absolute',
+          positionAnchor: popupAnchorName(config, parentValue),
+          inset: 'auto',
+          margin: '0',
+          ...placementStyle(config, parentValue),
+        }),
         h.OnKeyDownPreventDefault((key, modifiers) =>
           popupKeyboardMessage(config, key, modifiers, parentValue),
         ),

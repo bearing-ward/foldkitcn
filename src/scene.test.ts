@@ -9,6 +9,7 @@ import {
   CompletedRemoveLiveExampleToast,
   CompletedTimeoutLiveExampleToast,
   CopySnippet,
+  DocsSidebar,
   GotLiveExampleDataTableMessage,
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
@@ -119,6 +120,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   route,
   data: docsData,
   mobileNavigation: MobileNavigation({ isOpen: false }),
+  docsSidebar: DocsSidebar({ isOpen: false }),
   copiedSnippets: HashSet.empty(),
   liveExampleInputValues: {},
   liveExampleOtpValues: {},
@@ -944,6 +946,88 @@ describe(view, () => {
       Scene.click(Scene.role('button', { name: 'Clear component search' })),
       Scene.expect(Scene.label('Search documentation')).toHaveValue(''),
       Scene.expect(Scene.selector('.search-results')).not.toExist(),
+    )
+  })
+
+  test('the docs sidebar keeps search and component navigation together', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.expect(Scene.selector('.docs-sidebar')).toExist(),
+      Scene.expect(
+        Scene.selector('.docs-sidebar-section.docs-sidebar-search'),
+      ).toExist(),
+      Scene.expect(
+        Scene.selector('.docs-sidebar-section.docs-sidebar-components'),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.docs-sidebar-section.docs-sidebar-search'),
+          Scene.label('Search documentation'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.docs-sidebar-section.docs-sidebar-components'),
+          Scene.role('heading', { name: 'Components' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.docs-sidebar-section.docs-sidebar-components'),
+          Scene.role('navigation', { name: 'Component navigation' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('.docs-sidebar-section.docs-sidebar-components'),
+          Scene.role('link', { name: 'All components' }),
+        ),
+      ).toHaveAttr('aria-current', 'page'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#main-content'),
+          Scene.role('link', { name: 'All components' }),
+        ),
+      ).not.toExist(),
+    )
+  })
+
+  test('the docs sidebar exposes a manual collapsed-state toggle', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.expect(
+        Scene.role('button', { name: 'Browse components' }),
+      ).toHaveAttr('aria-expanded', 'false'),
+      Scene.expect(Scene.selector('.docs-sidebar')).toHaveAttr(
+        'data-state',
+        'collapsed',
+      ),
+      Scene.click(Scene.role('button', { name: 'Browse components' })),
+      Scene.expect(
+        Scene.role('button', { name: 'Hide components' }),
+      ).toHaveAttr('aria-expanded', 'true'),
+      Scene.expect(Scene.selector('.docs-sidebar')).toHaveAttr(
+        'data-state',
+        'open',
+      ),
+    )
+  })
+
+  test.each([
+    HomeRoute({}),
+    DocsRoute({}),
+    ComponentsIndexRoute({}),
+    RegistryRoute({}),
+    RoadmapRoute({}),
+    NotFoundRoute({ path: '/missing' }),
+  ])('the docs TOC stays off %s routes', route => {
+    Scene.scene(
+      { update, view },
+      Scene.with(modelWithRoute(route)),
+      Scene.expect(Scene.selector('.docs-toc')).not.toExist(),
+      Scene.expect(Scene.text('On this page')).not.toExist(),
     )
   })
 
@@ -2369,7 +2453,7 @@ describe(view, () => {
       Scene.with(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
-      Scene.expect(Scene.text('62 of 64')).toExist(),
+      Scene.expect(Scene.text('62 of 63')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Next candidates' }),
       ).toExist(),
@@ -2382,7 +2466,7 @@ describe(view, () => {
       Scene.expect(Scene.text('shadcn/chart')).toExist(),
       Scene.expect(
         Scene.role('heading', { name: 'Docs/example-only rows' }),
-      ).toExist(),
+      ).not.toExist(),
       Scene.expect(Scene.text('shadcn/date-picker')).not.toExist(),
       Scene.expect(
         Scene.text('plans/artifacts', { exact: false }),

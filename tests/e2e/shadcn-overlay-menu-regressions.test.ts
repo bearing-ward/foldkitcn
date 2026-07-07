@@ -53,6 +53,13 @@ const overlapArea = (first: Box, second: Box): number => {
   return horizontalOverlap(first, second) * verticalOverlap
 }
 
+const assertBelowTrigger = (trigger: Box, surface: Box): void => {
+  playwrightExpect(overlapArea(trigger, surface)).toBe(0)
+  playwrightExpect(surface.y).toBeGreaterThanOrEqual(
+    trigger.y + trigger.height - 1,
+  )
+}
+
 playwrightTest(
   'dropdown, context menu, menubar, and navigation menu regressions stay anchored and dismissible',
   async ({ page }) => {
@@ -217,6 +224,15 @@ playwrightTest(
     const menubarContent = menubarPreview.locator(
       '[data-slot="menubar-content"]',
     )
+    const menubarRoot = menubarPreview.locator('[data-slot="menubar"]')
+    await playwrightExpect(menubarRoot).not.toHaveCSS(
+      'border-top-color',
+      'rgb(0, 0, 0)',
+    )
+    await playwrightExpect(menubarRoot).not.toHaveCSS(
+      'border-top-color',
+      'oklch(0 0 0)',
+    )
     const fileTrigger = menubarPreview.getByRole('menuitem', {
       exact: true,
       name: 'File',
@@ -225,20 +241,197 @@ playwrightTest(
       exact: true,
       name: 'Edit',
     })
+    const viewTrigger = menubarPreview.getByRole('menuitem', {
+      exact: true,
+      name: 'View',
+    })
+    const initialFileTriggerBox = await box(fileTrigger)
+    const initialEditTriggerBox = await box(editTrigger)
+    const initialViewTriggerBox = await box(viewTrigger)
+    playwrightExpect(
+      initialEditTriggerBox.x -
+        (initialFileTriggerBox.x + initialFileTriggerBox.width),
+    ).toBeLessThanOrEqual(8)
+    playwrightExpect(
+      initialViewTriggerBox.x -
+        (initialEditTriggerBox.x + initialEditTriggerBox.width),
+    ).toBeLessThanOrEqual(8)
 
     await fileTrigger.click()
     await playwrightExpect(menubarContent).toBeVisible()
-    await page.keyboard.press('Escape')
-    await playwrightExpect(menubarContent).not.toBeVisible()
-    await editTrigger.click()
-    await playwrightExpect(menubarContent).toBeVisible()
+    const fileTriggerBox = await box(fileTrigger)
+    const fileMenuBox = await box(menubarContent)
+    playwrightExpect(overlapArea(fileTriggerBox, fileMenuBox)).toBe(0)
+    playwrightExpect(fileMenuBox.x).toBeGreaterThanOrEqual(fileTriggerBox.x - 8)
+    playwrightExpect(fileMenuBox.x).toBeLessThanOrEqual(fileTriggerBox.x + 8)
+    playwrightExpect(fileMenuBox.y).toBeGreaterThanOrEqual(
+      fileTriggerBox.y + fileTriggerBox.height - 1,
+    )
+    playwrightExpect(
+      fileMenuBox.y - (fileTriggerBox.y + fileTriggerBox.height),
+    ).toBeLessThanOrEqual(12)
+    const newTabItem = menubarPreview.getByRole('menuitem', {
+      name: /New Tab/u,
+    })
+    await playwrightExpect(newTabItem).toHaveCSS('display', 'flex')
+    const newTabItemBox = await box(newTabItem)
+    const newTabShortcutBox = await box(
+      newTabItem.locator('[data-slot="menubar-shortcut"]'),
+    )
+    playwrightExpect(newTabShortcutBox.x).toBeGreaterThanOrEqual(
+      newTabItemBox.x + newTabItemBox.width - 56,
+    )
+    await editTrigger.hover()
     await playwrightExpect(fileTrigger).toHaveAttribute(
       'aria-expanded',
       'false',
     )
     await playwrightExpect(editTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: 'Undo' }),
+    ).toBeVisible()
+    const hoveredEditTriggerBox = await box(editTrigger)
+    const hoveredEditMenuBox = await box(menubarContent)
+    playwrightExpect(hoveredEditMenuBox.x).toBeGreaterThanOrEqual(
+      hoveredEditTriggerBox.x - 8,
+    )
+    playwrightExpect(hoveredEditMenuBox.x).toBeLessThanOrEqual(
+      hoveredEditTriggerBox.x + 8,
+    )
+    await viewTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(editTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(viewTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitemcheckbox', { name: 'Full URLs' }),
+    ).toBeVisible()
+    await fileTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(viewTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(fileTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: /New Tab/u }),
+    ).toBeVisible()
     await page.keyboard.press('Escape')
     await playwrightExpect(menubarContent).not.toBeVisible()
+    await editTrigger.click()
+    await playwrightExpect(menubarContent).toBeVisible()
+    const editTriggerBox = await box(editTrigger)
+    const editMenuBox = await box(menubarContent)
+    playwrightExpect(overlapArea(editTriggerBox, editMenuBox)).toBe(0)
+    playwrightExpect(editMenuBox.x).toBeGreaterThanOrEqual(editTriggerBox.x - 8)
+    playwrightExpect(editMenuBox.x).toBeLessThanOrEqual(editTriggerBox.x + 8)
+    playwrightExpect(
+      editMenuBox.y - (editTriggerBox.y + editTriggerBox.height),
+    ).toBeLessThanOrEqual(12)
+    await playwrightExpect(fileTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(editTrigger).toHaveAttribute('aria-expanded', 'true')
+    const menubarSubmenus = menubarPreview.locator(
+      '[data-slot="menubar-sub-content"][data-open]',
+    )
+    await playwrightExpect(menubarSubmenus).toHaveCount(0)
+    const findItem = menubarPreview.getByRole('menuitem', {
+      exact: true,
+      name: 'Find',
+    })
+    await findItem.hover()
+    await playwrightExpect(menubarSubmenus).toHaveCount(1)
+    const findItemBox = await box(findItem)
+    const findSubmenuBox = await assertSurfaceVisible(menubarSubmenus.first())
+    playwrightExpect(horizontalOverlap(editMenuBox, findSubmenuBox)).toBe(0)
+    playwrightExpect(findSubmenuBox.x).toBeGreaterThanOrEqual(
+      findItemBox.x + findItemBox.width - 8,
+    )
+    playwrightExpect(findSubmenuBox.y).toBeGreaterThanOrEqual(findItemBox.y - 8)
+    await page.keyboard.press('Escape')
+    await playwrightExpect(menubarContent).not.toBeVisible()
+    await viewTrigger.click()
+    await playwrightExpect(menubarContent).toBeVisible()
+    const viewTriggerBox = await box(viewTrigger)
+    const viewMenuBox = await box(menubarContent)
+    playwrightExpect(
+      viewMenuBox.y - (viewTriggerBox.y + viewTriggerBox.height),
+    ).toBeLessThanOrEqual(12)
+    playwrightExpect(viewMenuBox.width).toBeGreaterThanOrEqual(176)
+    await playwrightExpect(
+      menubarContent.locator('[data-slot="menubar-separator"]'),
+    ).toHaveCount(3)
+    await playwrightExpect(
+      menubarContent.locator(
+        '[data-slot="menubar-checkbox-item-indicator"] svg',
+      ),
+    ).toHaveCount(1)
+    const bookmarksLabelBox = await box(
+      menubarPreview.getByText('Bookmarks Bar'),
+    )
+    playwrightExpect(bookmarksLabelBox.height).toBeLessThanOrEqual(24)
+    const hideSidebarLabelBox = await box(
+      menubarPreview.getByText('Hide Sidebar'),
+    )
+    playwrightExpect(hideSidebarLabelBox.height).toBeLessThanOrEqual(24)
+    playwrightExpect(hideSidebarLabelBox.y).toBeGreaterThan(viewMenuBox.y)
+    await page.keyboard.press('Escape')
+    await playwrightExpect(menubarContent).not.toBeVisible()
+
+    const checkboxMenubarPreview = page.getByLabel(
+      'MenubarCheckbox live preview',
+    )
+    const checkboxMenubarContent = checkboxMenubarPreview.locator(
+      '[data-slot="menubar-content"]',
+    )
+    const checkboxViewTrigger = checkboxMenubarPreview.getByRole('menuitem', {
+      exact: true,
+      name: 'View',
+    })
+    await checkboxViewTrigger.click()
+    const checkboxViewMenuBox = await assertSurfaceVisible(
+      checkboxMenubarContent,
+    )
+    playwrightExpect(checkboxViewMenuBox.width).toBeGreaterThanOrEqual(250)
+    const bookmarksItem = checkboxMenubarPreview.getByRole('menuitemcheckbox', {
+      name: 'Always Show Bookmarks Bar',
+    })
+    const urlsItem = checkboxMenubarPreview.getByRole('menuitemcheckbox', {
+      name: 'Always Show Full URLs',
+    })
+    const bookmarksItemBox = await box(bookmarksItem)
+    const urlsItemBox = await box(urlsItem)
+    const bookmarksFullLabelBox = await box(
+      checkboxMenubarPreview.getByText('Always Show Bookmarks Bar'),
+    )
+    const urlsFullLabelBox = await box(
+      checkboxMenubarPreview.getByText('Always Show Full URLs'),
+    )
+    const reloadFullLabelBox = await box(
+      checkboxMenubarPreview.getByText('Reload', { exact: true }),
+    )
+    playwrightExpect(bookmarksFullLabelBox.height).toBeLessThanOrEqual(24)
+    playwrightExpect(urlsFullLabelBox.height).toBeLessThanOrEqual(24)
+    playwrightExpect(
+      Math.abs(bookmarksFullLabelBox.x - urlsFullLabelBox.x),
+    ).toBeLessThanOrEqual(2)
+    playwrightExpect(
+      Math.abs(bookmarksFullLabelBox.x - reloadFullLabelBox.x),
+    ).toBeLessThanOrEqual(2)
+    const urlsCheckBox = await box(
+      urlsItem.locator('[data-slot="menubar-checkbox-item-indicator"]'),
+    )
+    playwrightExpect(urlsCheckBox.x).toBeGreaterThanOrEqual(
+      urlsItemBox.x + urlsItemBox.width - 32,
+    )
+    playwrightExpect(
+      urlsFullLabelBox.x + urlsFullLabelBox.width,
+    ).toBeLessThanOrEqual(urlsCheckBox.x - 8)
+    playwrightExpect(bookmarksItemBox.x).toBe(urlsItemBox.x)
+    await page.keyboard.press('Escape')
+    await playwrightExpect(checkboxMenubarContent).not.toBeVisible()
 
     await page.goto('/components/shadcn/navigation-menu')
     const navigationPreview = page.getByLabel('NavigationMenuDemo live preview')
@@ -347,20 +540,48 @@ playwrightTest(
     )
 
     await openMenu(startTrigger)
+    await playwrightExpect(popoverContent).toBeVisible()
+    await page.waitForTimeout(150)
     const startTriggerBox = await box(startTrigger)
     const startContentBox = await assertSurfaceVisible(popoverContent)
+    assertBelowTrigger(startTriggerBox, startContentBox)
+    playwrightExpect(startContentBox.x).toBeGreaterThanOrEqual(
+      startTriggerBox.x - 8,
+    )
+    playwrightExpect(startContentBox.x).toBeLessThanOrEqual(
+      startTriggerBox.x + 8,
+    )
     await page.mouse.click(8, 8)
     await playwrightExpect(popoverContent).not.toBeVisible()
 
     await openMenu(centerTrigger)
+    await playwrightExpect(popoverContent).toBeVisible()
+    await page.waitForTimeout(150)
     const centerTriggerBox = await box(centerTrigger)
     const centerContentBox = await assertSurfaceVisible(popoverContent)
+    assertBelowTrigger(centerTriggerBox, centerContentBox)
+    playwrightExpect(
+      Math.abs(
+        centerContentBox.x +
+          centerContentBox.width / 2 -
+          (centerTriggerBox.x + centerTriggerBox.width / 2),
+      ),
+    ).toBeLessThanOrEqual(8)
     await page.mouse.click(8, 8)
     await playwrightExpect(popoverContent).not.toBeVisible()
 
     await openMenu(endTrigger)
+    await playwrightExpect(popoverContent).toBeVisible()
+    await page.waitForTimeout(150)
     const endTriggerBox = await box(endTrigger)
     const endContentBox = await assertSurfaceVisible(popoverContent)
+    assertBelowTrigger(endTriggerBox, endContentBox)
+    playwrightExpect(
+      endContentBox.x + endContentBox.width,
+    ).toBeGreaterThanOrEqual(endTriggerBox.x + endTriggerBox.width - 8)
+    playwrightExpect(endContentBox.x + endContentBox.width).toBeLessThanOrEqual(
+      endTriggerBox.x + endTriggerBox.width + 8,
+    )
 
     const startOffset = startContentBox.x - startTriggerBox.x
     const centerOffset = centerContentBox.x - centerTriggerBox.x

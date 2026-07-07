@@ -160,6 +160,20 @@ const expectBoxInside = async (
   )
 }
 
+const expectBoxesOrderedLeftToRight = async (
+  boxes: ReadonlyArray<Locator>,
+): Promise<void> => {
+  const snapshots = await Promise.all(boxes.map(box => visibleBox(box)))
+
+  snapshots.reduce((previous, current) => {
+    playwrightExpect(previous.x + previous.width).toBeLessThanOrEqual(
+      current.x + 1,
+    )
+
+    return current
+  })
+}
+
 const expectNonTransparentBackground = async (
   element: Locator,
 ): Promise<void> => {
@@ -633,6 +647,73 @@ playwrightTest(
     await expectNoHeaderMainOverlap(page)
     await expectExampleCardsStayInsideMainColumn(page)
     await expectUsageContentStaysInsideMainColumn(page)
+  },
+)
+
+playwrightTest(
+  'docs shell keeps the sidebar and TOC responsive',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/button')
+
+    await playwrightExpect(page.locator('.docs-layout.has-toc')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-sidebar')).toBeVisible()
+    await playwrightExpect(page.locator('#main-content')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-toc')).toBeVisible()
+    await expectBoxesOrderedLeftToRight([
+      page.locator('.docs-sidebar'),
+      page.locator('#main-content'),
+      page.locator('.docs-toc'),
+    ])
+
+    await page.goto('/docs')
+    await playwrightExpect(page.locator('.docs-layout.no-toc')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-sidebar')).toBeVisible()
+    await playwrightExpect(page.locator('#main-content')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-toc')).toHaveCount(0)
+
+    const docsMainBox = await visibleBox(page.locator('#main-content'))
+
+    playwrightExpect(docsMainBox.x + docsMainBox.width).toBeGreaterThanOrEqual(
+      1200,
+    )
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/components/shadcn/button')
+
+    await playwrightExpect(page.locator('.docs-sidebar')).toBeHidden()
+    await playwrightExpect(page.locator('#main-content')).toBeVisible()
+    await playwrightExpect(page.locator('.docs-toc')).toBeHidden()
+    await playwrightExpect(
+      page.getByRole('button', { name: 'Browse components' }),
+    ).toBeVisible()
+
+    await page.getByRole('button', { name: 'Browse components' }).click()
+
+    const sidebarBox = await visibleBox(page.locator('.docs-sidebar'))
+    const mobileMainBox = await visibleBox(page.locator('#main-content'))
+    const searchInput = page.getByLabel('Search documentation')
+    const searchResultsStack = page.locator('.search-results-stack')
+
+    await expectBoxInside(searchInput, page.locator('.docs-sidebar'))
+    await searchInput.fill('button')
+    await playwrightExpect(searchResultsStack).toBeVisible()
+    await expectBoxInside(searchResultsStack, page.locator('.docs-sidebar'))
+    await expectRenderedTextStaysInside(page, '.docs-sidebar')
+
+    playwrightExpect(sidebarBox.y + sidebarBox.height).toBeLessThanOrEqual(
+      mobileMainBox.y + 1,
+    )
+    playwrightExpect(sidebarBox.x).toBeLessThanOrEqual(mobileMainBox.x + 1)
+
+    const scrollMetrics = await page.evaluate(() => ({
+      innerWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }))
+
+    playwrightExpect(scrollMetrics.scrollWidth).toBeLessThanOrEqual(
+      scrollMetrics.innerWidth + 1,
+    )
   },
 )
 

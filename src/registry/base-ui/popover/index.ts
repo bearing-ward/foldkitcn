@@ -125,6 +125,9 @@ export const triggerSelector = (
   config: Pick<PopoverOptions, 'id' | 'triggerId' | 'triggerSelector'>,
 ): string => config.triggerSelector ?? `#${triggerId(config)}`
 
+const rootAnchorName = (config: Pick<PopoverOptions, 'id'>): string =>
+  `--${config.id}-anchor`
+
 export const openChange = (
   open: boolean,
   reason: PopoverChangeReason = 'none',
@@ -322,6 +325,7 @@ const triggerAttributes = <Message>(
   h.AriaHasPopup('dialog'),
   h.AriaExpanded(config.open),
   h.AriaControls(popupId(config)),
+  h.Style({ anchorName: rootAnchorName(config) }),
   ...booleanDataAttribute(h, 'disabled', config.isDisabled),
   ...(config.open ? [h.DataAttribute('popup-open', '')] : []),
   ...(config.isDisabled === true ? [h.AriaDisabled(true)] : []),
@@ -360,6 +364,71 @@ const placementAttributes = <Message>(
   ),
 ]
 
+const horizontalAnchorStyle = (
+  config: Pick<PopoverOptions, 'align'>,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config)
+
+  if (align === 'center') {
+    return { left: 'anchor(center)', translate: '-50% 0' }
+  }
+
+  if (align === 'end') {
+    return { left: 'anchor(right)', translate: '-100% 0' }
+  }
+
+  return { left: 'anchor(left)' }
+}
+
+const verticalAnchorStyle = (
+  config: Pick<PopoverOptions, 'align'>,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config)
+
+  if (align === 'center') {
+    return { top: 'anchor(center)', translate: '0 -50%' }
+  }
+
+  if (align === 'end') {
+    return { top: 'anchor(bottom)', translate: '0 -100%' }
+  }
+
+  return { top: 'anchor(top)' }
+}
+
+const positionerPlacementStyle = (
+  config: Pick<PopoverOptions, 'align' | 'id' | 'side' | 'sideOffset'>,
+): Readonly<Record<string, string>> => {
+  const sideOffset = `${config.sideOffset ?? defaultSideOffset}px`
+  const side = resolvedSide(config)
+
+  if (side === 'top') {
+    return {
+      ...horizontalAnchorStyle(config),
+      bottom: `calc(anchor(top) + ${sideOffset})`,
+    }
+  }
+
+  if (side === 'left' || side === 'inline-start') {
+    return {
+      ...verticalAnchorStyle(config),
+      right: `calc(anchor(left) + ${sideOffset})`,
+    }
+  }
+
+  if (side === 'right' || side === 'inline-end') {
+    return {
+      ...verticalAnchorStyle(config),
+      left: `calc(anchor(right) + ${sideOffset})`,
+    }
+  }
+
+  return {
+    ...horizontalAnchorStyle(config),
+    top: `calc(anchor(bottom) + ${sideOffset})`,
+  }
+}
+
 const positionerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -373,8 +442,10 @@ const positionerAttributes = <Message>(
         ...placementAttributes(h, config),
         h.Style({
           position: 'absolute',
+          positionAnchor: rootAnchorName(config),
           inset: 'auto',
           margin: '0',
+          ...positionerPlacementStyle(config),
         }),
       ]
     : [],
@@ -428,6 +499,13 @@ const popupAttributes = <Message>(
         ...openStateDataAttributes(h, config.open),
         ...transitionDataAttributes(h, config.transitionStatus),
         ...placementAttributes(h, config),
+        h.Style({
+          position: 'absolute',
+          positionAnchor: rootAnchorName(config),
+          inset: 'auto',
+          margin: '0',
+          ...positionerPlacementStyle(config),
+        }),
         ...optionalMessageAttribute(
           openMessage(config, escapeOpenChange()),
           message =>
