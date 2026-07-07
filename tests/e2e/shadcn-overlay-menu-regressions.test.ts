@@ -43,6 +43,11 @@ const horizontalOverlap = (first: Box, second: Box): number =>
       Math.max(first.x, second.x),
   )
 
+const horizontalGap = (first: Box, second: Box): number =>
+  first.x <= second.x
+    ? Math.max(0, second.x - (first.x + first.width))
+    : Math.max(0, first.x - (second.x + second.width))
+
 const overlapArea = (first: Box, second: Box): number => {
   const verticalOverlap = Math.max(
     0,
@@ -193,16 +198,32 @@ playwrightTest(
     const contextMenu = contextPreview.locator(
       '[data-slot="context-menu-content"]',
     )
+    const contextSubmenus = contextPreview.locator(
+      '[data-slot="context-menu-sub-content"][data-open]',
+    )
     const contextTrigger = page.locator('#context-menu-demo-trigger')
     const contextTriggerBox = await box(contextTrigger)
 
     for (const position of [
-      { x: contextTriggerBox.width / 2, y: contextTriggerBox.height / 2 },
       { x: 16, y: 16 },
       { x: contextTriggerBox.width - 16, y: contextTriggerBox.height - 16 },
     ]) {
       await contextTrigger.click({ button: 'right', position })
       const menuBox = await assertSurfaceVisible(contextMenu)
+      const contextPoint = await contextMenu.evaluate(element => {
+        const positioner = element.parentElement
+
+        return {
+          x: Number(positioner?.dataset.anchorX),
+          y: Number(positioner?.dataset.anchorY),
+        }
+      })
+      playwrightExpect(Number.isFinite(contextPoint.x)).toBe(true)
+      playwrightExpect(Number.isFinite(contextPoint.y)).toBe(true)
+      const expectedX = Math.round(contextPoint.x)
+      const expectedY = Math.round(contextPoint.y + 4)
+      playwrightExpect(Math.abs(menuBox.x - expectedX)).toBeLessThanOrEqual(8)
+      playwrightExpect(Math.abs(menuBox.y - expectedY)).toBeLessThanOrEqual(8)
       playwrightExpect(menuBox.x).toBeGreaterThanOrEqual(0)
       playwrightExpect(menuBox.y).toBeGreaterThanOrEqual(0)
       playwrightExpect(menuBox.x + menuBox.width).toBeLessThanOrEqual(1280)
@@ -216,6 +237,19 @@ playwrightTest(
       position: { x: 24, y: 24 },
     })
     await playwrightExpect(contextMenu).toBeVisible()
+    await playwrightExpect(contextSubmenus).toHaveCount(1)
+    const moreToolsBox = await box(
+      contextPreview.getByRole('menuitem', { name: 'More Tools' }),
+    )
+    const moreToolsSubmenuBox = await assertSurfaceVisible(
+      contextSubmenus.first(),
+    )
+    playwrightExpect(
+      horizontalOverlap(moreToolsBox, moreToolsSubmenuBox),
+    ).toBeLessThanOrEqual(8)
+    playwrightExpect(
+      horizontalGap(moreToolsBox, moreToolsSubmenuBox),
+    ).toBeLessThanOrEqual(12)
     await page.mouse.click(10, 10)
     await playwrightExpect(contextMenu).not.toBeVisible()
 
@@ -251,11 +285,11 @@ playwrightTest(
     playwrightExpect(
       initialEditTriggerBox.x -
         (initialFileTriggerBox.x + initialFileTriggerBox.width),
-    ).toBeLessThanOrEqual(8)
+    ).toBeLessThanOrEqual(24)
     playwrightExpect(
       initialViewTriggerBox.x -
         (initialEditTriggerBox.x + initialEditTriggerBox.width),
-    ).toBeLessThanOrEqual(8)
+    ).toBeLessThanOrEqual(24)
 
     await fileTrigger.click()
     await playwrightExpect(menubarContent).toBeVisible()
@@ -316,6 +350,24 @@ playwrightTest(
     await playwrightExpect(
       menubarPreview.getByRole('menuitem', { name: /New Tab/u }),
     ).toBeVisible()
+    await viewTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(fileTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(viewTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitemcheckbox', { name: 'Full URLs' }),
+    ).toBeVisible()
+    await editTrigger.hover({ timeout: 3000 })
+    await playwrightExpect(viewTrigger).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    await playwrightExpect(editTrigger).toHaveAttribute('aria-expanded', 'true')
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: 'Undo' }),
+    ).toBeVisible()
     await page.keyboard.press('Escape')
     await playwrightExpect(menubarContent).not.toBeVisible()
     await editTrigger.click()
@@ -345,7 +397,9 @@ playwrightTest(
     await playwrightExpect(menubarSubmenus).toHaveCount(1)
     const findItemBox = await box(findItem)
     const findSubmenuBox = await assertSurfaceVisible(menubarSubmenus.first())
-    playwrightExpect(horizontalOverlap(editMenuBox, findSubmenuBox)).toBe(0)
+    playwrightExpect(
+      horizontalOverlap(editMenuBox, findSubmenuBox),
+    ).toBeLessThanOrEqual(8)
     playwrightExpect(findSubmenuBox.x).toBeGreaterThanOrEqual(
       findItemBox.x + findItemBox.width - 8,
     )

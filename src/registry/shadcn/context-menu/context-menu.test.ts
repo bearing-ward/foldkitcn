@@ -205,10 +205,19 @@ describe('shadcn/context-menu class helpers', () => {
   })
 
   test('uses origin slot class strings for submenus, separators, and shortcuts', () => {
+    const subContentClassName = ContextMenu.contextMenuSubContentClassName()
+
     expect(ContextMenu.contextMenuSubTriggerClassName()).toContain(
       'data-open:bg-accent',
     )
-    expect(ContextMenu.contextMenuSubContentClassName()).toContain('shadow-lg')
+    expect(
+      [
+        'cn-menu-target cn-menu-translucent',
+        'min-w-36',
+        'ring-1 ring-foreground/10',
+        'shadow-lg',
+      ].every(token => subContentClassName.includes(token)),
+    ).toBeTruthy()
     expect(ContextMenu.contextMenuSeparatorClassName()).toBe(
       '-mx-1 my-1 h-px bg-border',
     )
@@ -322,6 +331,30 @@ describe('shadcn/context-menu view', () => {
         Scene.expect(
           Scene.selector('#context-menu-test-positioner'),
         ).toHaveAttr('data-anchor-x', '12'),
+      )
+    }).not.toThrow()
+  })
+
+  test('uses origin context-menu placement defaults for root content and subcontent', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewMenu({}) },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.selector('[data-slot="context-menu-content"]'),
+        ).toHaveAttr('data-align', 'start'),
+        Scene.expect(
+          Scene.selector('[data-slot="context-menu-content"]'),
+        ).toHaveAttr('data-align-offset', '4'),
+        Scene.expect(
+          Scene.selector('[data-slot="context-menu-content"]'),
+        ).toHaveAttr('data-side', 'right'),
+        Scene.expect(
+          Scene.selector('[data-slot="context-menu-content"]'),
+        ).toHaveAttr('data-side-offset', '0'),
+        Scene.expect(
+          Scene.selector('[data-slot="context-menu-sub-content"]'),
+        ).toHaveAttr('class', ContextMenu.contextMenuSubContentClassName()),
       )
     }).not.toThrow()
   })

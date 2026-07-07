@@ -561,6 +561,16 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
+const itemRootAttributes = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  source: ExampleItem,
+  itemAttributes: DropdownMenu.MenuItemAttributes<Message>,
+  reservesLeadingIconSlot: boolean,
+): ReadonlyArray<Attribute<Message>> =>
+  reservesLeadingIconSlot && source.icon === undefined
+    ? [...itemAttributes.root, h.DataAttribute('inset', 'true')]
+    : itemAttributes.root
+
 const itemContent = <Message>(
   source: ExampleItem,
   itemAttributes: DropdownMenu.MenuItemAttributes<Message>,
@@ -600,6 +610,8 @@ const popupView = <Message>(
     return []
   }
 
+  const reservesLeadingIconSlot = items.some(item => item.icon !== undefined)
+
   return [
     h.div([...popup.backdrop.root], []),
     h.div(
@@ -612,7 +624,12 @@ const popupView = <Message>(
               [...popup.group],
               popup.items.map(itemAttributes =>
                 h.div(
-                  [...itemAttributes.root],
+                  itemRootAttributes(
+                    h,
+                    sourceItem(items, itemAttributes.item),
+                    itemAttributes,
+                    reservesLeadingIconSlot,
+                  ),
                   itemContent(
                     sourceItem(items, itemAttributes.item),
                     itemAttributes,

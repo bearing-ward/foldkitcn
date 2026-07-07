@@ -175,6 +175,44 @@ const currentPoint = <Message>(
   config: Pick<ViewConfig<Message>, 'contextPoint'>,
 ): ContextMenuPoint => config.contextPoint ?? keyboardPoint
 
+const contextPositionStyle = <Message>(
+  config: Pick<
+    ViewConfig<Message>,
+    'alignOffset' | 'side' | 'sideOffset' | 'contextPoint'
+  >,
+): Readonly<Record<string, string>> => {
+  const point = currentPoint(config)
+  const alignOffset = config.alignOffset ?? 0
+  const sideOffset = config.sideOffset ?? 0
+  const side = config.side ?? 'bottom'
+
+  if (side === 'left' || side === 'inline-start') {
+    return {
+      left: `${point.clientX - sideOffset}px`,
+      top: `${point.clientY + alignOffset}px`,
+    }
+  }
+
+  if (side === 'top') {
+    return {
+      left: `${point.clientX + alignOffset}px`,
+      top: `${point.clientY - sideOffset}px`,
+    }
+  }
+
+  if (side === 'right' || side === 'inline-end') {
+    return {
+      left: `${point.clientX + sideOffset}px`,
+      top: `${point.clientY + alignOffset}px`,
+    }
+  }
+
+  return {
+    left: `${point.clientX + alignOffset}px`,
+    top: `${point.clientY + sideOffset}px`,
+  }
+}
+
 const openMessage = <Message>(
   config: Pick<ViewConfig<Message>, 'contextPoint' | 'onOpenChange'>,
   change: ContextMenuOpenChange,
@@ -280,7 +318,10 @@ const triggerAttributes = <Message>(
 
 const contextPositionerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
-  config: Pick<ViewConfig<Message>, 'contextPoint'>,
+  config: Pick<
+    ViewConfig<Message>,
+    'alignOffset' | 'side' | 'sideOffset' | 'contextPoint'
+  >,
   positioner: Menu.MenuPartAttributes<Message>,
 ): Menu.MenuPartAttributes<Message> => {
   if (!positioner.isMounted) {
@@ -298,10 +339,9 @@ const contextPositionerAttributes = <Message>(
       h.DataAttribute('anchor-y', String(point.clientY)),
       h.Style({
         position: 'fixed',
-        left: `${point.clientX}px`,
-        top: `${point.clientY}px`,
         inset: 'auto',
         margin: '0',
+        ...contextPositionStyle(config),
       }),
     ],
   }
@@ -408,6 +448,29 @@ const contextPopupAttributes = <Message>(
     popup.parentValue === undefined
       ? contextPositionerAttributes(h, config, popup.positioner)
       : popup.positioner,
+  popup:
+    popup.parentValue === undefined
+      ? {
+          ...popup.popup,
+          root: [
+            ...popup.popup.root.filter(
+              attribute =>
+                attribute._tag !== 'Style' && attribute._tag !== 'Popover',
+            ),
+            h.Style({
+              position: 'fixed',
+              inset: 'auto',
+              margin: '0',
+              ...contextPositionStyle(config),
+            }),
+          ],
+        }
+      : {
+          ...popup.popup,
+          root: popup.popup.root.filter(
+            attribute => attribute._tag !== 'Popover',
+          ),
+        },
   items: popup.items.map(itemAttributes =>
     contextItemAttributes(config, itemAttributes),
   ),

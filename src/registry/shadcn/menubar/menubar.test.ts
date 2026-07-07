@@ -201,6 +201,11 @@ describe('shadcn/menubar class helpers', () => {
     expect(Menubar.menubarCheckedItemClassName()).toContain('pl-7')
   })
 
+  test('keeps checked indicators in the local right slot', () => {
+    expect(Menubar.menubarCheckedItemClassName()).toContain('pr-8')
+    expect(Menubar.menubarItemIndicatorClassName()).toContain('right-2')
+  })
+
   test('keeps menu wrappers above their open backdrop without stretching triggers', () => {
     expect(Menubar.menubarMenuClassName()).toContain('relative')
   })
@@ -312,6 +317,27 @@ describe('shadcn/menubar view', () => {
         Scene.expect(
           Scene.selector('[data-slot="menubar-trigger"]'),
         ).toHaveAttr('data-disabled', ''),
+      )
+    }).not.toThrow()
+  })
+
+  test('uses origin content offsets with the local right-check policy', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewMenubar({}) },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.selector('[data-slot="menubar-content"]'),
+        ).toHaveAttr('data-align-offset', '-4'),
+        Scene.expect(
+          Scene.selector('[data-slot="menubar-content"]'),
+        ).toHaveAttr('data-side-offset', '8'),
+        Scene.expect(
+          Scene.selector('[data-slot="menubar-checkbox-item"]'),
+        ).toHaveAttr('class', Menubar.menubarCheckedItemClassName()),
+        Scene.expect(
+          Scene.selector('[data-slot="menubar-checkbox-item-indicator"]'),
+        ).toHaveAttr('class', Menubar.menubarItemIndicatorClassName()),
       )
     }).not.toThrow()
   })

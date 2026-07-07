@@ -466,6 +466,7 @@ const defaultItemContent = <Message>(
 
 const popupView = <Message>(
   popup: MenuPopupAttributes<Message>,
+  submenus: ReadonlyArray<MenuPopupAttributes<Message>> = [],
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
 
@@ -494,6 +495,7 @@ const popupView = <Message>(
                 ),
               ],
             ),
+            ...submenus.flatMap(submenu => popupView(submenu)),
           ],
         ),
       ],
@@ -524,10 +526,7 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
           h.div([...menuAttributes.trigger], ['Right click here']),
           h.div(
             [...menuAttributes.portal],
-            [
-              ...popupView(menuAttributes.popup),
-              ...menuAttributes.submenus.flatMap(popupView),
-            ],
+            [...popupView(menuAttributes.popup, menuAttributes.submenus)],
           ),
         ],
       )

@@ -124,10 +124,15 @@ const basicItems: ReadonlyArray<ExampleItem> = [
 ]
 
 const demoItems: ReadonlyArray<ExampleItem> = [
-  { value: 'back', label: 'Back', shortcut: '⌘[' },
+  { value: 'back', label: 'Back', shortcut: '⌘[', icon: 'copy' },
   { value: 'forward', label: 'Forward', shortcut: '⌘]', isDisabled: true },
-  { value: 'reload', label: 'Reload', shortcut: '⌘R' },
-  { value: 'more-tools', label: 'More Tools', kind: 'submenu-trigger' },
+  { value: 'reload', label: 'Reload', shortcut: '⌘R', icon: 'refresh' },
+  {
+    value: 'more-tools',
+    label: 'More Tools',
+    kind: 'submenu-trigger',
+    icon: 'settings',
+  },
   { value: 'save-page', label: 'Save Page...', parentValue: 'more-tools' },
   {
     value: 'create-shortcut',
@@ -135,6 +140,14 @@ const demoItems: ReadonlyArray<ExampleItem> = [
     parentValue: 'more-tools',
   },
   { value: 'name-window', label: 'Name Window...', parentValue: 'more-tools' },
+  {
+    value: 'more-options',
+    label: 'More Options',
+    kind: 'submenu-trigger',
+    parentValue: 'more-tools',
+  },
+  { value: 'inspect', label: 'Inspect', parentValue: 'more-options' },
+  { value: 'task-manager', label: 'Task Manager', parentValue: 'more-options' },
   {
     value: 'developer-tools',
     label: 'Developer Tools',
@@ -363,6 +376,16 @@ const sourceItem = (
 ): ExampleItem =>
   items.find(candidate => candidate.value === item.value) ?? item
 
+const itemRootAttributes = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  source: ExampleItem,
+  itemAttributes: ContextMenu.MenuItemAttributes<Message>,
+  reservesLeadingIconSlot: boolean,
+): ReadonlyArray<Attribute<Message>> =>
+  reservesLeadingIconSlot && source.icon === undefined
+    ? [...itemAttributes.root, h.DataAttribute('inset', 'true')]
+    : itemAttributes.root
+
 const itemContent = <Message>(
   source: ExampleItem,
   itemAttributes: ContextMenu.MenuItemAttributes<Message>,
@@ -395,12 +418,15 @@ const itemContent = <Message>(
 const popupView = <Message>(
   items: ReadonlyArray<ExampleItem>,
   popup: ContextMenu.MenuPopupAttributes<Message>,
+  submenus: ReadonlyArray<ContextMenu.MenuPopupAttributes<Message>> = [],
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
 
   if (!popup.isMounted) {
     return []
   }
+
+  const reservesLeadingIconSlot = items.some(item => item.icon !== undefined)
 
   return [
     h.div([...popup.backdrop.root], []),
@@ -414,7 +440,12 @@ const popupView = <Message>(
               [...popup.group],
               popup.items.map(itemAttributes =>
                 h.div(
-                  [...itemAttributes.root],
+                  itemRootAttributes(
+                    h,
+                    sourceItem(items, itemAttributes.item),
+                    itemAttributes,
+                    reservesLeadingIconSlot,
+                  ),
                   itemContent(
                     sourceItem(items, itemAttributes.item),
                     itemAttributes,
@@ -422,6 +453,7 @@ const popupView = <Message>(
                 ),
               ),
             ),
+            ...submenus.flatMap(submenu => popupView(items, submenu)),
           ],
         ),
       ],
@@ -500,9 +532,10 @@ const contextMenuExampleWithController = <Message = never>(
           h.div(
             [...attributes.portal],
             [
-              ...popupView(resolvedItems, attributes.popup),
-              ...attributes.submenus.flatMap(submenu =>
-                popupView(resolvedItems, submenu),
+              ...popupView(
+                resolvedItems,
+                attributes.popup,
+                attributes.submenus,
               ),
             ],
           ),

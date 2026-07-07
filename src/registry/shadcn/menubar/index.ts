@@ -575,6 +575,11 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
 
   return BaseMenubar.view<Message>({
     ...baseConfig,
+    menus: config.menus.map(menu => ({
+      ...menu,
+      alignOffset: menu.alignOffset ?? -4,
+      sideOffset: menu.sideOffset ?? 8,
+    })),
     toMenuView: attributes => {
       const menuAttributes = shadcnMenuAttributes(h, config, attributes)
 

@@ -603,7 +603,7 @@ const sideOffset = (
   config: Pick<MenuOptions, 'sideOffset'>,
   parentValue?: string | undefined,
 ): number =>
-  parentValue === undefined ? (config.sideOffset ?? defaultSideOffset) : 4
+  parentValue === undefined ? (config.sideOffset ?? defaultSideOffset) : 0
 
 const placementStyle = (
   config: Pick<MenuOptions, 'align' | 'side' | 'sideOffset'>,

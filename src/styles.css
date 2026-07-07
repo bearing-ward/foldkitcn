@@ -633,6 +633,10 @@ dt {
   transform: translateZ(0);
 }
 
+.live-example-preview:has([data-slot='context-menu-content'][data-open]) {
+  transform: none;
+}
+
 .live-example-preview [data-slot='sidebar-wrapper'] {
   position: relative;
   align-self: stretch;
@@ -687,8 +691,6 @@ dt {
   overflow: auto;
 }
 
-.live-example-preview
-  [id*='context-menu'][id$='positioner']:not([id*='-submenu-']),
 .live-example-preview [id*='combobox'][id$='positioner'],
 .live-example-preview [id*='hover-card'][id$='positioner'],
 .live-example-preview [id*='navigation-menu'][id$='positioner'],
@@ -800,13 +802,20 @@ dt {
 }
 
 .live-example-preview
+  [data-slot='context-menu-content'][popover='manual'][data-open],
+.live-example-preview
+  [data-slot='context-menu-sub-content'][popover='manual'][data-open] {
+  display: block !important;
+  max-width: min(calc(100cqw - 2rem), calc(100vw - 4rem));
+  max-height: 20rem;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.live-example-preview
   [data-slot='dropdown-menu-content'][popover='manual'][data-open],
 .live-example-preview
   [data-slot='dropdown-menu-sub-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='context-menu-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='context-menu-sub-content'][popover='manual'][data-open],
 .live-example-preview
   [data-slot='combobox-content'][popover='manual'][data-open],
 .live-example-preview

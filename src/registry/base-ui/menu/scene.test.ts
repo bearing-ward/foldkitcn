@@ -458,6 +458,32 @@ describe('base-ui/menu view', () => {
     }).not.toThrow()
   })
 
+  test('keeps submenu placement data attributes aligned with visual offset styles', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: viewMenu({}) },
+        Scene.with({
+          ...initialModel,
+          open: true,
+          highlightedValue: 'more',
+          openSubmenuValues: ['more'],
+        }),
+        Scene.expect(
+          Scene.selector('#actions-menu-submenu-more-positioner'),
+        ).toHaveAttr('data-side', 'right'),
+        Scene.expect(
+          Scene.selector('#actions-menu-submenu-more-positioner'),
+        ).toHaveAttr('data-align-offset', '-3'),
+        Scene.expect(
+          Scene.selector('#actions-menu-submenu-more-positioner'),
+        ).toHaveAttr('data-side-offset', '0'),
+        Scene.expect(
+          Scene.selector('#actions-menu-submenu-more-positioner'),
+        ).toHaveStyle('left', 'calc(anchor(right) + 0px)'),
+      )
+    }).not.toThrow()
+  })
+
   test('emits open, item press, checkbox, radio, hover, keyboard, typeahead, and submenu messages', () => {
     expect(() => {
       Scene.scene(

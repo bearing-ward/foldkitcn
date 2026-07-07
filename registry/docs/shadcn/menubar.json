@@ -131,7 +131,7 @@
       "description": "Menubar checkbox items with local checked state.",
       "componentItemId": "shadcn/menubar",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "snippet": "export const MenubarCheckbox = <Message = never>(\n  controller?: MenubarExampleController<Message>,\n): Html =>\n  menubarExampleWithController(\n    'menubar-checkbox',\n    [\n      { value: 'view', label: 'View', items: checkboxViewItems },\n      { value: 'format', label: 'Format', items: formatItems },\n    ],\n    { className: 'w-72' },\n    controller,\n  )",
+      "snippet": "export const MenubarCheckbox = <Message = never>(\n  controller?: MenubarExampleController<Message>,\n): Html =>\n  menubarExampleWithController(\n    'menubar-checkbox',\n    [\n      {\n        value: 'view',\n        label: 'View',\n        contentClassName: 'w-64',\n        items: checkboxViewItems,\n      },\n      { value: 'format', label: 'Format', items: formatItems },\n    ],\n    { className: 'w-72' },\n    controller,\n  )",
       "previewStatus": "live-ready",
       "previewExportName": "MenubarCheckbox",
       "requiredRegistryItems": ["base-ui/menubar", "base-ui/menu", "utils/cn"],
