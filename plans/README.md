@@ -121,6 +121,7 @@ honor its STOP conditions, and update your row when done.
 | 111 | Reopen shadcn surface layout regressions with exact red tests | P1 | L | 107, 108, 109, 110 | DONE |
 | 112 | Remove shadcn toast from the public shadcn registry surface | P1 | M | 081, 082, 098 | DONE |
 | 113 | Make the docs shell responsive with a component sidebar | P1 | M | 062, 065, 066 | DONE |
+| 114 | Normalize menu-family origin parity for offsets, styling, and handoff behavior | P1 | L | 043, 046, 051, 052, 110 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -254,6 +255,11 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   the left sidebar responsible for `Search documentation` and component
   navigation, render `On this page` only on component detail routes, and record
   low-risk opportunities to dogfood local registry helpers in the site shell.
+- Plan 114 follows the completed menu foundation and regression plans because
+  Plans 043, 046, 051, 052, and 110 proved the individual pieces can work but
+  did not enforce one origin-backed parity contract for menu offsets, item slot
+  styling, checked indicators, submenu placement, and repeated menubar hover
+  handoff across dropdown menu, context menu, menubar, and navigation menu.
 
 ## Findings considered and rejected
 
