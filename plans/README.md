@@ -122,6 +122,7 @@ honor its STOP conditions, and update your row when done.
 | 112 | Remove shadcn toast from the public shadcn registry surface | P1 | M | 081, 082, 098 | DONE |
 | 113 | Make the docs shell responsive with a component sidebar | P1 | M | 062, 065, 066 | DONE |
 | 114 | Normalize menu-family origin parity for offsets, styling, and handoff behavior | P1 | L | 043, 046, 051, 052, 110 | DONE |
+| 115 | Add an agent-first shadcn parity workbench | P1 | L | 003, 016, 107 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -260,6 +261,37 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   did not enforce one origin-backed parity contract for menu offsets, item slot
   styling, checked indicators, submenu placement, and repeated menubar hover
   handoff across dropdown menu, context menu, menubar, and navigation menu.
+- Plan 115 follows the origin-fixture, aggregate parity, and visual-regression
+  foundations from Plans 003, 016, and 107. It does not reopen those completed
+  plans; it adds an agent-first diagnostic workbench that renders one selected
+  shadcn case in a real browser, captures root and declared portal/layer seams,
+  reports hard and advisory disparities, and keeps bulky outputs local by
+  default.
+- 2026-07-07 execution attempt for Plan 115 stopped in
+  `/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn-plan115`.
+  Removing out-of-scope generated registry/public artifact changes made
+  `bun run registry:check` fail with `registry/index.json is stale; run bun run
+  registry:build` on both the worker worktree and the main checkout. The
+  worker branch has unapproved partial work and should not be merged until the
+  generated-artifact baseline is reconciled and the workbench diff is reviewed
+  again.
+- 2026-07-07 retry: the generated registry/public artifact refresh is allowed
+  only as baseline reconciliation for the pre-existing `registry:check` failure,
+  and only if it is produced by `bun run registry:build` with no unrelated
+  source edits outside Plan 115.
+- 2026-07-07 retry approved in
+  `/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn-plan115` at
+  worker commit `78f626be`. The reviewed diff adds the agent-first shadcn
+  parity workbench and includes only Plan 115 files plus generated
+  `registry/**` and `public/r/**` artifacts from `bun run registry:build`.
+  Reviewer verification passed `bun run parity:workbench -- --item shadcn/tabs
+  --case tabs-demo --dry-run`, `bun run parity:workbench -- --item shadcn/tabs
+  --case tabs-demo`, `bun run parity:workbench -- --item shadcn/tabs --case
+  tabs-demo --write-fixture`, `bun run parity:check -- --grep shadcn/tabs`,
+  `bun run test -- tests/parity/workbench.test.ts`, `bun run test --
+  tests/parity`, `bun run registry:check`, `bun run typecheck`, `bun run
+  check`, `bun run test`, `bun run build`, and `git diff --check -- package.json
+  .gitignore scripts src tests plans registry public/r`.
 
 ## Findings considered and rejected
 

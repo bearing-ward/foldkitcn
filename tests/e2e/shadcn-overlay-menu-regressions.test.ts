@@ -3,7 +3,7 @@ import {
   expect as playwrightExpect,
   test as playwrightTest,
 } from '@playwright/test'
-import type { Locator } from '@playwright/test'
+import type { Locator, Page } from '@playwright/test'
 
 type Box = Readonly<{
   height: number
@@ -34,6 +34,13 @@ const openMenu = async (trigger: Locator): Promise<void> => {
 const assertSurfaceVisible = async (surface: Locator): Promise<Box> => {
   await playwrightExpect(surface).toBeVisible()
   return box(surface)
+}
+
+const moveToCenter = async (page: Page, target: Box): Promise<void> => {
+  await page.mouse.move(
+    target.x + target.width / 2,
+    target.y + target.height / 2,
+  )
 }
 
 const assertHoverBackgroundChanges = async (item: Locator): Promise<void> => {
@@ -187,6 +194,15 @@ playwrightTest(
     await playwrightExpect(demoSubmenus).toHaveCount(0)
     await demoPreview.getByRole('menuitem', { name: 'Invite users' }).hover()
     await playwrightExpect(demoSubmenus).toHaveCount(1)
+    await assertSurfaceVisible(demoSubmenus.first())
+    await moveToCenter(
+      page,
+      await box(demoPreview.getByRole('menuitem', { name: 'Email' })),
+    )
+    await playwrightExpect(demoSubmenus).toHaveCount(1)
+    await playwrightExpect(
+      demoPreview.getByRole('menuitem', { name: 'Email' }),
+    ).toBeVisible()
     await page.keyboard.press('Escape')
     await playwrightExpect(demoMenu).not.toBeVisible()
 
@@ -327,6 +343,14 @@ playwrightTest(
     const moreToolsSubmenuBox = await assertSurfaceVisible(
       contextSubmenus.first(),
     )
+    await moveToCenter(
+      page,
+      await box(contextPreview.getByRole('menuitem', { name: 'Save Page...' })),
+    )
+    await playwrightExpect(contextSubmenus).toHaveCount(1)
+    await playwrightExpect(
+      contextPreview.getByRole('menuitem', { name: 'Save Page...' }),
+    ).toBeVisible()
     await playwrightExpect(contextPreview).toHaveCSS('overflow', 'visible')
     await playwrightExpect
       .poll(() =>
@@ -537,6 +561,11 @@ playwrightTest(
     await playwrightExpect(menubarSubmenus).toHaveCount(1)
     const findItemBox = await box(findItem)
     const findSubmenuBox = await assertSurfaceVisible(menubarSubmenus.first())
+    await moveToCenter(page, findSubmenuBox)
+    await playwrightExpect(menubarSubmenus).toHaveCount(1)
+    await playwrightExpect(
+      menubarPreview.getByRole('menuitem', { name: 'Find...' }),
+    ).toBeVisible()
     playwrightExpect(
       horizontalOverlap(editMenuBox, findSubmenuBox),
     ).toBeLessThanOrEqual(8)
