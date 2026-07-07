@@ -8,7 +8,11 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
 
-import { ContextMenuBasic, contextMenuExampleViews } from './examples'
+import {
+  ContextMenuBasic,
+  ContextMenuGroups,
+  contextMenuExampleViews,
+} from './examples'
 import * as ContextMenu from './index'
 import type { MenuItemDescriptor, ViewConfig } from './index'
 
@@ -379,6 +383,18 @@ describe('shadcn/context-menu view', () => {
           ).toBeVisible(),
         )
       }
+    }).not.toThrow()
+  })
+
+  test('context menu groups example renders origin separators', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: staticExampleView(ContextMenuGroups) },
+        Scene.with(initialModel),
+        Scene.expectAll(
+          Scene.all.selector('[data-slot="context-menu-separator"]'),
+        ).toHaveCount(3),
+      )
     }).not.toThrow()
   })
 

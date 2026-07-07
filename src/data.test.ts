@@ -71,6 +71,7 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   menuIsOpenFor: (_example, _menuId, defaultOpen) => defaultOpen,
   menuOpenSubmenuValuesFor: (_example, _menuId, defaultValues) => defaultValues,
   menuContextPointFor: () => Option.none(),
+  menuHighlightedValueFor: (_example, _menuId, defaultValue) => defaultValue,
   menuValueFor: (_example, _menuId, defaultValue) => defaultValue,
   menuCheckedStateFor: (_example, _menuId, _itemValue, defaultChecked) =>
     defaultChecked,
@@ -78,6 +79,7 @@ const liveExampleContext: LiveExampleContext<unknown> = {
     defaultValue,
   onMenuOpenChange: () => ({}),
   onMenuContextPointChange: () => ({}),
+  onMenuHighlightChange: () => ({}),
   onMenuCheckedChange: () => ({}),
   onMenuRadioValueChange: () => ({}),
   onMenuValueChange: () => ({}),

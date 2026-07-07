@@ -5,6 +5,7 @@ import { html } from 'foldkit/html'
 import * as ContextMenu from './index'
 import type {
   MenuCheckedChange,
+  MenuHighlightChange,
   MenuItemDescriptor,
   MenuItemPress,
   MenuRadioValueChange,
@@ -13,6 +14,7 @@ import type {
 type ExampleItem = MenuItemDescriptor &
   Readonly<{
     icon?: string
+    separatorBefore?: boolean
     shortcut?: string
   }>
 
@@ -87,6 +89,10 @@ export type ContextMenuExampleController<Message> = Readonly<{
     menuId: string,
   ) => Option.Option<ContextMenu.ContextMenuPoint>
   isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
+  highlightedValueFor: (
+    menuId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   openSubmenuValuesFor: (
     menuId: string,
     defaultValues: ReadonlyArray<string>,
@@ -109,6 +115,7 @@ export type ContextMenuExampleController<Message> = Readonly<{
     menuId: string,
     change: ContextMenu.ContextMenuOpenChange,
   ) => Message
+  onHighlightChange: (menuId: string, change: MenuHighlightChange) => Message
   onItemPress?: (menuId: string, press: MenuItemPress) => Message
   onCheckedChange?: (menuId: string, change: MenuCheckedChange) => Message
   onRadioValueChange?: (menuId: string, change: MenuRadioValueChange) => Message
@@ -258,12 +265,12 @@ const groupItems: ReadonlyArray<ExampleItem> = [
   { value: 'new-file', label: 'New File', shortcut: '⌘N' },
   { value: 'open-file', label: 'Open File', shortcut: '⌘O' },
   { value: 'save', label: 'Save', shortcut: '⌘S' },
-  { value: 'undo', label: 'Undo', shortcut: '⌘Z' },
+  { value: 'undo', label: 'Undo', shortcut: '⌘Z', separatorBefore: true },
   { value: 'redo', label: 'Redo', shortcut: '⇧⌘Z' },
-  { value: 'cut', label: 'Cut', shortcut: '⌘X' },
+  { value: 'cut', label: 'Cut', shortcut: '⌘X', separatorBefore: true },
   { value: 'copy', label: 'Copy', shortcut: '⌘C' },
   { value: 'paste', label: 'Paste', shortcut: '⌘V' },
-  { value: 'delete', label: 'Delete', shortcut: '⌫' },
+  { value: 'delete', label: 'Delete', shortcut: '⌫', separatorBefore: true },
 ]
 
 const iconItems: ReadonlyArray<ExampleItem> = [
@@ -429,7 +436,9 @@ const popupView = <Message>(
   const reservesLeadingIconSlot = items.some(item => item.icon !== undefined)
 
   return [
-    h.div([...popup.backdrop.root], []),
+    ...(popup.parentValue === undefined
+      ? [h.div([...popup.backdrop.root], [])]
+      : []),
     h.div(
       [...popup.positioner.root],
       [
@@ -438,20 +447,26 @@ const popupView = <Message>(
           [
             h.div(
               [...popup.group],
-              popup.items.map(itemAttributes =>
-                h.div(
-                  itemRootAttributes(
-                    h,
-                    sourceItem(items, itemAttributes.item),
-                    itemAttributes,
-                    reservesLeadingIconSlot,
+              popup.items.flatMap(itemAttributes => {
+                const source = sourceItem(items, itemAttributes.item)
+                const separator =
+                  source.separatorBefore === true
+                    ? [h.div([...popup.separator], [])]
+                    : []
+
+                return [
+                  ...separator,
+                  h.div(
+                    itemRootAttributes(
+                      h,
+                      source,
+                      itemAttributes,
+                      reservesLeadingIconSlot,
+                    ),
+                    itemContent(source, itemAttributes),
                   ),
-                  itemContent(
-                    sourceItem(items, itemAttributes.item),
-                    itemAttributes,
-                  ),
-                ),
-              ),
+                ]
+              }),
             ),
             ...submenus.flatMap(submenu => popupView(items, submenu)),
           ],
@@ -490,6 +505,12 @@ const contextMenuExampleWithController = <Message = never>(
     controller?.openSubmenuValuesFor(id, defaultOpenSubmenuValues) ??
     defaultOpenSubmenuValues
   const resolvedItems = itemsWithState(id, items, controller)
+  const defaultHighlightedValue = resolvedItems.find(
+    item => item.parentValue === undefined,
+  )?.value
+  const highlightedValue =
+    controller?.highlightedValueFor(id, defaultHighlightedValue) ??
+    defaultHighlightedValue
 
   return ContextMenu.view<Message>({
     id,
@@ -499,14 +520,14 @@ const contextMenuExampleWithController = <Message = never>(
       controller === undefined
         ? ContextMenu.contextPoint(24, 32, 24, 32, 'mouse')
         : Option.getOrUndefined(controller.contextPointFor(id)),
-    highlightedValue: resolvedItems.find(item => item.parentValue === undefined)
-      ?.value,
+    highlightedValue,
     openSubmenuValues,
     triggerClassName,
     ...(controller === undefined
       ? {}
       : {
           onOpenChange: change => controller.onOpenChange(id, change),
+          onHighlightChange: change => controller.onHighlightChange(id, change),
           onPointerChange: point => controller.onContextPointChange(id, point),
         }),
     ...(onItemPress === undefined

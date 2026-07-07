@@ -227,6 +227,7 @@ export const Model = S.Struct({
   liveExampleMenuOpenValues: S.Record(S.String, S.Boolean),
   liveExampleMenuOpenSubmenuValues: S.Record(S.String, S.Array(S.String)),
   liveExampleMenuContextPoints: S.Record(S.String, ContextMenuPoint),
+  liveExampleMenuHighlightedValues: S.Record(S.String, S.String),
   liveExampleMenuValues: S.Record(S.String, S.String),
   liveExampleMenuCheckedValues: S.Record(S.String, S.Boolean),
   liveExampleMenuRadioValues: S.Record(S.String, S.String),
@@ -341,6 +342,51 @@ const updateLiveExampleMenuSubmenuValues = (
   }
 
   return values.filter(value => value !== parentValue)
+}
+
+const liveExampleMenuRootOpenValues = (
+  values: Readonly<Record<string, boolean>>,
+  stateKey: string,
+  open: boolean,
+): Readonly<Record<string, boolean>> => {
+  if (!open) {
+    return EffectRecord.set(values, stateKey, false)
+  }
+
+  return pipe(
+    Object.keys(values),
+    Array.reduce(
+      {} as Readonly<Record<string, boolean>>,
+      (closedValues, key) => EffectRecord.set(closedValues, key, false),
+    ),
+    EffectRecord.set(stateKey, true),
+  )
+}
+
+const isLiveExampleContextMenuStateKey = (key: string): boolean =>
+  key.startsWith('shadcn/context-menu#') ||
+  key.startsWith('shadcn/context-menu-')
+
+const hasOpenLiveExampleContextMenu = (
+  values: Readonly<Record<string, boolean>>,
+): boolean =>
+  Object.entries(values).some(
+    ([key, isOpen]) => isOpen && isLiveExampleContextMenuStateKey(key),
+  )
+
+const withoutLiveExampleMenuSubmenuValues = (
+  values: Readonly<Record<string, ReadonlyArray<string>>>,
+  exampleId: string,
+  menuId: string,
+): Readonly<Record<string, ReadonlyArray<string>>> => {
+  const stateKey = liveExampleControlStateKey(exampleId, menuId)
+  const nestedStateKeyPrefix = `${stateKey}:`
+
+  return Object.fromEntries(
+    Object.entries(values).filter(
+      ([key]) => key !== stateKey && !key.startsWith(nestedStateKeyPrefix),
+    ),
+  )
 }
 
 const LiveExampleResizableActiveDrag = S.Struct({
@@ -683,6 +729,12 @@ export const CompletedScrollToAnchor = m('CompletedScrollToAnchor')
 export const CompletedFocusLiveExampleMenu = m(
   'CompletedFocusLiveExampleMenu',
 )
+export const CompletedLockLiveExampleContextMenuScroll = m(
+  'CompletedLockLiveExampleContextMenuScroll',
+)
+export const CompletedUnlockLiveExampleContextMenuScroll = m(
+  'CompletedUnlockLiveExampleContextMenuScroll',
+)
 export const ClickedLink = m('ClickedLink', { request: UrlRequest })
 export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
@@ -883,6 +935,14 @@ export const UpdatedLiveExampleMenuContextPoint = m(
     point: ContextMenuPoint,
   },
 )
+export const UpdatedLiveExampleMenuHighlight = m(
+  'UpdatedLiveExampleMenuHighlight',
+  {
+    exampleId: S.String,
+    menuId: S.String,
+    itemValue: S.String,
+  },
+)
 export const SelectedLiveExampleMenuValue = m(
   'SelectedLiveExampleMenuValue',
   {
@@ -989,6 +1049,8 @@ export const Message = S.Union([
   CompletedLoadExternal,
   CompletedScrollToAnchor,
   CompletedFocusLiveExampleMenu,
+  CompletedLockLiveExampleContextMenuScroll,
+  CompletedUnlockLiveExampleContextMenuScroll,
   CompletedFocusOTPFieldInput,
   ClickedLink,
   ChangedUrl,
@@ -1025,6 +1087,7 @@ export const Message = S.Union([
   UpdatedLiveExampleMenuOpen,
   UpdatedLiveExampleMenuChecked,
   UpdatedLiveExampleMenuContextPoint,
+  UpdatedLiveExampleMenuHighlight,
   SelectedLiveExampleMenuValue,
   SelectedLiveExampleMenuRadioValue,
   GotLiveExampleDataTableMessage,
@@ -1083,6 +1146,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuOpenValues: {},
       liveExampleMenuOpenSubmenuValues: {},
       liveExampleMenuContextPoints: {},
+      liveExampleMenuHighlightedValues: {},
       liveExampleMenuValues: {},
       liveExampleMenuCheckedValues: {},
       liveExampleMenuRadioValues: {},
@@ -1138,6 +1202,40 @@ const FocusLiveExampleMenu = Command.define(
     Effect.as(CompletedFocusLiveExampleMenu()),
   ),
 )
+
+const LockLiveExampleContextMenuScroll = Command.define(
+  'LockLiveExampleContextMenuScroll',
+  CompletedLockLiveExampleContextMenuScroll,
+)(
+  Dom.lockScroll.pipe(Effect.as(CompletedLockLiveExampleContextMenuScroll())),
+)
+
+const UnlockLiveExampleContextMenuScroll = Command.define(
+  'UnlockLiveExampleContextMenuScroll',
+  CompletedUnlockLiveExampleContextMenuScroll,
+)(
+  Dom.unlockScroll.pipe(
+    Effect.as(CompletedUnlockLiveExampleContextMenuScroll()),
+  ),
+)
+
+const liveExampleContextMenuScrollCommands = (
+  beforeValues: Readonly<Record<string, boolean>>,
+  afterValues: Readonly<Record<string, boolean>>,
+): ReadonlyArray<Command.Command<Message>> => {
+  const wasOpen = hasOpenLiveExampleContextMenu(beforeValues)
+  const isOpen = hasOpenLiveExampleContextMenu(afterValues)
+
+  if (!wasOpen && isOpen) {
+    return [LockLiveExampleContextMenuScroll()]
+  }
+
+  if (wasOpen && !isOpen) {
+    return [UnlockLiveExampleContextMenuScroll()]
+  }
+
+  return []
+}
 
 const commandsForUrlHash = (url: Url): ReadonlyArray<Command.Command<Message>> =>
   Option.match(url.hash, {
@@ -1301,6 +1399,8 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       CompletedLoadExternal: () => [model, []],
       CompletedScrollToAnchor: () => [model, []],
       CompletedFocusLiveExampleMenu: () => [model, []],
+      CompletedLockLiveExampleContextMenuScroll: () => [model, []],
+      CompletedUnlockLiveExampleContextMenuScroll: () => [model, []],
       CompletedFocusOTPFieldInput: () => [model, []],
       ClickedLink: ({ request }) =>
         M.value(request).pipe(
@@ -1671,11 +1771,29 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           ]
         }
 
+        const nextOpenValues = liveExampleMenuRootOpenValues(
+          model.liveExampleMenuOpenValues,
+          stateKey,
+          open,
+        )
+        const commands = liveExampleContextMenuScrollCommands(
+          model.liveExampleMenuOpenValues,
+          nextOpenValues,
+        )
+
         return [
           evo(model, {
-            liveExampleMenuOpenValues: EffectRecord.set(stateKey, open),
+            liveExampleMenuOpenValues: () => nextOpenValues,
+            liveExampleMenuOpenSubmenuValues: values =>
+              open
+                ? {}
+                : withoutLiveExampleMenuSubmenuValues(
+                    values,
+                    exampleId,
+                    menuId,
+                  ),
           }),
-          [],
+          commands,
         ]
       },
       UpdatedLiveExampleMenuChecked: ({
@@ -1701,12 +1819,27 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      UpdatedLiveExampleMenuHighlight: ({ exampleId, menuId, itemValue }) => [
+        evo(model, {
+          liveExampleMenuHighlightedValues: EffectRecord.set(
+            liveExampleControlStateKey(exampleId, menuId),
+            itemValue,
+          ),
+        }),
+        [],
+      ],
       SelectedLiveExampleMenuValue: ({ exampleId, menuId, value }) => [
         evo(model, {
           liveExampleMenuValues: EffectRecord.set(
             liveExampleControlStateKey(exampleId, menuId),
             value ?? '',
           ),
+          liveExampleMenuOpenSubmenuValues: values =>
+            withoutLiveExampleMenuSubmenuValues(
+              values,
+              exampleId,
+              menuId,
+            ),
         }),
         [
           FocusLiveExampleMenu({
@@ -1974,7 +2107,9 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           liveExampleMenuOpenSubmenuValues: () => ({}),
           liveExampleMenuValues: () => ({}),
         }),
-        [],
+        hasOpenLiveExampleContextMenu(model.liveExampleMenuOpenValues)
+          ? [UnlockLiveExampleContextMenuScroll()]
+          : [],
       ],
       PressedPointerOutsideLiveExampleSurface: () => [
         evo(model, {
@@ -1985,7 +2120,9 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           liveExampleMenuOpenSubmenuValues: () => ({}),
           liveExampleMenuValues: () => ({}),
         }),
-        [],
+        hasOpenLiveExampleContextMenu(model.liveExampleMenuOpenValues)
+          ? [UnlockLiveExampleContextMenuScroll()]
+          : [],
       ],
       UpdatedSearchQuery: ({ value }) => {
         if (value === model.searchQuery) {
@@ -3224,6 +3361,7 @@ const examplesSectionView = (
   liveExampleMenuContextPoints: Readonly<
     Record<string, typeof ContextMenuPoint.Type>
   >,
+  liveExampleMenuHighlightedValues: Readonly<Record<string, string>>,
   liveExampleMenuValues: Readonly<Record<string, string>>,
   liveExampleMenuCheckedValues: Readonly<Record<string, boolean>>,
   liveExampleMenuRadioValues: Readonly<Record<string, string>>,
@@ -3695,14 +3833,14 @@ const examplesSectionView = (
     menuOpenSubmenuValuesFor: (
       example: ExampleDocsArtifact,
       menuId: string,
-      defaultValues: ReadonlyArray<string>,
+      _defaultValues: ReadonlyArray<string>,
     ): ReadonlyArray<string> =>
       pipe(
         EffectRecord.get(
           liveExampleMenuOpenSubmenuValues,
           liveExampleControlStateKey(example.id, menuId),
         ),
-        Option.getOrElse(() => defaultValues),
+        Option.getOrElse((): ReadonlyArray<string> => []),
       ),
     menuContextPointFor: (
       example: ExampleDocsArtifact,
@@ -3711,6 +3849,17 @@ const examplesSectionView = (
       EffectRecord.get(
         liveExampleMenuContextPoints,
         liveExampleControlStateKey(example.id, menuId),
+      ),
+    menuHighlightedValueFor: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      _defaultValue: string | undefined,
+    ): string | undefined =>
+      Option.getOrUndefined(
+        EffectRecord.get(
+          liveExampleMenuHighlightedValues,
+          liveExampleControlStateKey(example.id, menuId),
+        ),
       ),
     menuValueFor: (
       example: ExampleDocsArtifact,
@@ -3776,6 +3925,16 @@ const examplesSectionView = (
         exampleId: example.id,
         menuId,
         point,
+      }),
+    onMenuHighlightChange: (
+      example: ExampleDocsArtifact,
+      menuId: string,
+      change: Readonly<{ value: string }>,
+    ): Message =>
+      UpdatedLiveExampleMenuHighlight({
+        exampleId: example.id,
+        menuId,
+        itemValue: change.value,
       }),
     onMenuCheckedChange: (
       example: ExampleDocsArtifact,
@@ -4190,6 +4349,7 @@ const componentDetailPageView = (
           model.liveExampleMenuOpenValues,
           model.liveExampleMenuOpenSubmenuValues,
           model.liveExampleMenuContextPoints,
+          model.liveExampleMenuHighlightedValues,
           model.liveExampleMenuValues,
           model.liveExampleMenuCheckedValues,
           model.liveExampleMenuRadioValues,

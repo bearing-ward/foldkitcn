@@ -18,6 +18,7 @@ import {
 import type { InputExampleController } from './registry/base-ui/input/examples'
 import type {
   MenuCheckedChange,
+  MenuHighlightChange,
   MenuRadioValueChange,
 } from './registry/base-ui/menu'
 import type { OTPFieldValueChange } from './registry/base-ui/otp-field'
@@ -824,6 +825,11 @@ export type LiveExampleContext<Message> = Readonly<{
       pointerType: string
     }>
   >
+  menuHighlightedValueFor: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   menuValueFor: (
     example: ExampleDocsArtifact,
     menuId: string,
@@ -859,6 +865,11 @@ export type LiveExampleContext<Message> = Readonly<{
       screenY: number
       pointerType: string
     }>,
+  ) => Message
+  onMenuHighlightChange: (
+    example: ExampleDocsArtifact,
+    menuId: string,
+    change: MenuHighlightChange,
   ) => Message
   onMenuCheckedChange: (
     example: ExampleDocsArtifact,
@@ -2515,6 +2526,8 @@ const dropdownMenuExample = (
     view({
       isOpenFor: (menuId, defaultOpen) =>
         context.menuIsOpenFor(example, menuId, defaultOpen),
+      highlightedValueFor: (menuId, defaultValue) =>
+        context.menuHighlightedValueFor(example, menuId, defaultValue),
       openSubmenuValuesFor: (menuId, defaultValues) =>
         context.menuOpenSubmenuValuesFor(example, menuId, defaultValues),
       checkedStateFor: (menuId, itemValue, defaultChecked) =>
@@ -2523,6 +2536,8 @@ const dropdownMenuExample = (
         context.menuRadioValueFor(example, menuId, groupValue, defaultValue),
       onOpenChange: (menuId, change) =>
         context.onMenuOpenChange(example, menuId, change),
+      onHighlightChange: (menuId, change) =>
+        context.onMenuHighlightChange(example, menuId, change),
       onItemPress: (menuId, press) =>
         context.onMenuOpenChange(example, menuId, {
           open: false,
@@ -2564,6 +2579,8 @@ const contextMenuExample = (
       contextPointFor: menuId => context.menuContextPointFor(example, menuId),
       isOpenFor: (menuId, defaultOpen) =>
         context.menuIsOpenFor(example, menuId, defaultOpen),
+      highlightedValueFor: (menuId, defaultValue) =>
+        context.menuHighlightedValueFor(example, menuId, defaultValue),
       openSubmenuValuesFor: (menuId, defaultValues) =>
         context.menuOpenSubmenuValuesFor(example, menuId, defaultValues),
       checkedStateFor: (menuId, itemValue, defaultChecked) =>
@@ -2574,6 +2591,8 @@ const contextMenuExample = (
         context.onMenuContextPointChange(example, menuId, point),
       onOpenChange: (menuId, change) =>
         context.onMenuOpenChange(example, menuId, change),
+      onHighlightChange: (menuId, change) =>
+        context.onMenuHighlightChange(example, menuId, change),
       onItemPress: (menuId, press) =>
         context.onMenuOpenChange(example, menuId, {
           open: false,
@@ -2593,6 +2612,12 @@ const menubarExample = (view: MenubarExampleView): LiveExampleDefinition => ({
     view({
       openMenuValueFor: (menubarId, defaultValue) =>
         context.menuValueFor(example, menubarId, defaultValue),
+      highlightedValueFor: (menubarId, menuValue, defaultValue) =>
+        context.menuHighlightedValueFor(
+          example,
+          `${menubarId}:${menuValue}`,
+          defaultValue,
+        ),
       openSubmenuValuesFor: (menubarId, menuValue, defaultValues) =>
         context.menuOpenSubmenuValuesFor(
           example,
@@ -2605,6 +2630,12 @@ const menubarExample = (view: MenubarExampleView): LiveExampleDefinition => ({
         context.menuRadioValueFor(example, menuId, groupValue, defaultValue),
       onMenuOpenChange: (menubarId, change) =>
         context.onMenuOpenChange(
+          example,
+          `${menubarId}:${change.menuValue}`,
+          change,
+        ),
+      onMenuHighlightChange: (menubarId, change) =>
+        context.onMenuHighlightChange(
           example,
           `${menubarId}:${change.menuValue}`,
           change,

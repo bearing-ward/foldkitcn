@@ -4,6 +4,7 @@ import { html } from 'foldkit/html'
 import * as DropdownMenu from './index'
 import type {
   MenuCheckedChange,
+  MenuHighlightChange,
   MenuItemDescriptor,
   MenuItemPress,
   MenuRadioValueChange,
@@ -197,6 +198,10 @@ const itemsWithState = <Message>(
 
 export type DropdownMenuExampleController<Message> = Readonly<{
   isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
+  highlightedValueFor: (
+    menuId: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   openSubmenuValuesFor: (
     menuId: string,
     defaultValues: ReadonlyArray<string>,
@@ -212,6 +217,7 @@ export type DropdownMenuExampleController<Message> = Readonly<{
     defaultValue: string | undefined,
   ) => string | undefined
   onOpenChange: (menuId: string, change: DropdownMenu.MenuOpenChange) => Message
+  onHighlightChange: (menuId: string, change: MenuHighlightChange) => Message
   onItemPress?: (menuId: string, press: MenuItemPress) => Message
   onCheckedChange?: (menuId: string, change: MenuCheckedChange) => Message
   onRadioValueChange?: (menuId: string, change: MenuRadioValueChange) => Message
@@ -671,17 +677,25 @@ const menuExampleWithController = <Message = never>(
     controller?.openSubmenuValuesFor(id, defaultOpenSubmenuValues) ??
     defaultOpenSubmenuValues
   const resolvedItems = itemsWithState(id, items, controller)
+  const defaultHighlightedValue = resolvedItems.find(
+    item => item.parentValue === undefined,
+  )?.value
+  const highlightedValue =
+    controller?.highlightedValueFor(id, defaultHighlightedValue) ??
+    defaultHighlightedValue
 
   return DropdownMenu.view<Message>({
     id,
     items: resolvedItems,
     open,
-    highlightedValue: resolvedItems.find(item => item.parentValue === undefined)
-      ?.value,
+    highlightedValue,
     openSubmenuValues,
     ...(controller === undefined
       ? {}
-      : { onOpenChange: change => controller.onOpenChange(id, change) }),
+      : {
+          onOpenChange: change => controller.onOpenChange(id, change),
+          onHighlightChange: change => controller.onHighlightChange(id, change),
+        }),
     ...(onItemPress === undefined
       ? {}
       : { onItemPress: press => onItemPress(id, press) }),

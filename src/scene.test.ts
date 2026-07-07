@@ -149,6 +149,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleMenuOpenValues: {},
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
+  liveExampleMenuHighlightedValues: {},
   liveExampleMenuValues: {},
   liveExampleMenuCheckedValues: {},
   liveExampleMenuRadioValues: {},
@@ -1866,8 +1867,16 @@ describe(view, () => {
         parentValue: 'more-options',
       }),
     )
-    const [afterDropdownChecked] = update(
+    const [afterOtherMenuOpen] = update(
       afterSubmenuNestedOpen,
+      UpdatedLiveExampleMenuOpen({
+        exampleId: 'shadcn/context-menu-basic',
+        menuId: 'context-menu-basic',
+        open: true,
+      }),
+    )
+    const [afterDropdownChecked] = update(
+      afterOtherMenuOpen,
       UpdatedLiveExampleMenuChecked({
         exampleId: 'shadcn/dropdown-menu-checkboxes',
         menuId: 'dropdown-menu-checkboxes',
@@ -1920,8 +1929,24 @@ describe(view, () => {
           'shadcn/dropdown-menu-submenu',
           'dropdown-menu-submenu',
         )
+      ] ?? [],
+    ).toStrictEqual([])
+    expect(
+      afterNavigationActive.liveExampleMenuOpenValues[
+        liveExampleControlStateKey(
+          'shadcn/context-menu-basic',
+          'context-menu-basic',
+        )
       ],
-    ).toStrictEqual(['invite', 'more-options'])
+    ).toBe(true)
+    expect(
+      afterNavigationActive.liveExampleMenuOpenValues[
+        liveExampleControlStateKey(
+          'shadcn/dropdown-menu-submenu',
+          'dropdown-menu-submenu',
+        )
+      ] ?? false,
+    ).toBe(false)
     expect(
       (afterNavigationActive.liveExampleMenuRadioValues ?? {})[
         liveExampleControlStateKey(
@@ -2129,7 +2154,7 @@ describe(view, () => {
     ).toHaveLength(3)
   })
 
-  test('root update keeps table and sidebar action menu open state keyed by example and menu id', () => {
+  test('root update keeps one live example menu root open at a time', () => {
     const initial = modelWithRoute(ComponentsIndexRoute({}))
 
     const [afterTableOpen] = update(
@@ -2156,7 +2181,7 @@ describe(view, () => {
           'table-actions-wireless-mouse',
         )
       ],
-    ).toBe(true)
+    ).toBe(false)
     expect(
       afterSidebarOpen.liveExampleMenuOpenValues[
         liveExampleControlStateKey(

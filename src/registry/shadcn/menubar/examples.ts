@@ -6,6 +6,7 @@ import type {
   MenuItemDescriptor,
   MenubarMenuDescriptor,
   MenubarMenuCheckedChange,
+  MenubarMenuHighlightChange,
   MenubarMenuItemPress,
   MenubarMenuRadioValueChange,
 } from './index'
@@ -101,6 +102,11 @@ export type MenubarExampleController<Message> = Readonly<{
     menubarId: string,
     defaultValue: string | undefined,
   ) => string | undefined
+  highlightedValueFor: (
+    menubarId: string,
+    menuValue: string,
+    defaultValue: string | undefined,
+  ) => string | undefined
   openSubmenuValuesFor: (
     menubarId: string,
     menuValue: string,
@@ -109,6 +115,10 @@ export type MenubarExampleController<Message> = Readonly<{
   onMenuOpenChange: (
     menubarId: string,
     change: Menubar.MenubarMenuOpenChange,
+  ) => Message
+  onMenuHighlightChange: (
+    menubarId: string,
+    change: MenubarMenuHighlightChange,
   ) => Message
   onOpenMenuValueChange: (
     menubarId: string,
@@ -555,15 +565,25 @@ const menubarExampleWithController = <Message = never>(
 
   return Menubar.view<Message>({
     id,
-    menus: resolvedMenus.map(menu => ({
-      ...menu,
-      open: menu.value === openMenuValue,
-      highlightedValue: menu.items.find(item => item.parentValue === undefined)
-        ?.value,
-      openSubmenuValues:
-        controller?.openSubmenuValuesFor(id, menu.value, []) ??
-        defaultOpenSubmenuValues(menu),
-    })),
+    menus: resolvedMenus.map(menu => {
+      const defaultHighlightedValue = menu.items.find(
+        item => item.parentValue === undefined,
+      )?.value
+
+      return {
+        ...menu,
+        open: menu.value === openMenuValue,
+        highlightedValue:
+          controller?.highlightedValueFor(
+            id,
+            menu.value,
+            defaultHighlightedValue,
+          ) ?? defaultHighlightedValue,
+        openSubmenuValues:
+          controller?.openSubmenuValuesFor(id, menu.value, []) ??
+          defaultOpenSubmenuValues(menu),
+      }
+    }),
     focusedMenuValue: openMenuValue ?? menus.at(0)?.value,
     ...(controller === undefined
       ? {}
@@ -581,6 +601,8 @@ const menubarExampleWithController = <Message = never>(
             controller.onOpenMenuValueChange(id, {
               value: change.open ? change.value : undefined,
             }),
+          onMenuHighlightChange: change =>
+            controller.onMenuHighlightChange(id, change),
         }),
     ...(onItemPress === undefined
       ? {}

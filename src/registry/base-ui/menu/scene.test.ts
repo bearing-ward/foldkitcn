@@ -535,6 +535,10 @@ describe('base-ui/menu view', () => {
         Scene.click(Scene.role('button', { name: 'Actions' })),
         Scene.expect(Scene.text('Open trigger-press')).toBeVisible(),
         Scene.with({ ...initialModel, open: true }),
+        Scene.expect(Scene.selector('#actions-menu-popup')).toHaveHandler(
+          'contextmenu',
+        ),
+        Scene.expect(Scene.role('presentation')).toHaveHandler('contextmenu'),
         Scene.keydown(Scene.role('menu'), 'Escape'),
         Scene.expect(Scene.text('Open escape-key')).toBeVisible(),
       )

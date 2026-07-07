@@ -634,6 +634,8 @@ dt {
 }
 
 .live-example-preview:has([data-slot='context-menu-content'][data-open]) {
+  z-index: 20;
+  overflow: visible;
   transform: none;
 }
 

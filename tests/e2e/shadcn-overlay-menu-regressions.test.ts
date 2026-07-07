@@ -36,6 +36,19 @@ const assertSurfaceVisible = async (surface: Locator): Promise<Box> => {
   return box(surface)
 }
 
+const assertHoverBackgroundChanges = async (item: Locator): Promise<void> => {
+  const initialBackground = await item.evaluate(
+    element => getComputedStyle(element).backgroundColor,
+  )
+
+  await item.hover()
+  await playwrightExpect
+    .poll(() =>
+      item.evaluate(element => getComputedStyle(element).backgroundColor),
+    )
+    .not.toBe(initialBackground)
+}
+
 const horizontalOverlap = (first: Box, second: Box): number =>
   Math.max(
     0,
@@ -47,6 +60,37 @@ const horizontalGap = (first: Box, second: Box): number =>
   first.x <= second.x
     ? Math.max(0, second.x - (first.x + first.width))
     : Math.max(0, first.x - (second.x + second.width))
+
+const assertContextMenuContentOnSide = (
+  side: 'top' | 'right' | 'bottom' | 'left',
+  triggerBox: Box,
+  contentBox: Box,
+): void => {
+  const clickPoint = {
+    x: triggerBox.x + triggerBox.width / 2,
+    y: triggerBox.y + triggerBox.height / 2,
+  }
+
+  if (side === 'top') {
+    playwrightExpect(contentBox.y + contentBox.height).toBeLessThanOrEqual(
+      clickPoint.y + 2,
+    )
+  }
+
+  if (side === 'right') {
+    playwrightExpect(contentBox.x).toBeGreaterThanOrEqual(clickPoint.x - 2)
+  }
+
+  if (side === 'bottom') {
+    playwrightExpect(contentBox.y).toBeGreaterThanOrEqual(clickPoint.y - 2)
+  }
+
+  if (side === 'left') {
+    playwrightExpect(contentBox.x + contentBox.width).toBeLessThanOrEqual(
+      clickPoint.x + 2,
+    )
+  }
+}
 
 const overlapArea = (first: Box, second: Box): number => {
   const verticalOverlap = Math.max(
@@ -202,6 +246,13 @@ playwrightTest(
       '[data-slot="context-menu-sub-content"][data-open]',
     )
     const contextTrigger = page.locator('#context-menu-demo-trigger')
+    const contextBasicTrigger = page.locator('#context-menu-basic-trigger')
+    const visibleContextContents = page.locator(
+      '[data-slot="context-menu-content"]:visible',
+    )
+    const visibleContextSubmenus = page.locator(
+      '[data-slot="context-menu-sub-content"][data-open]:visible',
+    )
     const contextTriggerBox = await box(contextTrigger)
 
     for (const position of [
@@ -237,21 +288,110 @@ playwrightTest(
       position: { x: 24, y: 24 },
     })
     await playwrightExpect(contextMenu).toBeVisible()
-    await playwrightExpect(contextSubmenus).toHaveCount(1)
+    await playwrightExpect
+      .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+      .toBe('hidden')
+    const lockedScrollY = await page.evaluate(() => window.scrollY)
+    await page.mouse.wheel(0, 500)
+    await playwrightExpect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBe(lockedScrollY)
+    await page.keyboard.press('Escape')
+    await playwrightExpect(contextMenu).not.toBeVisible()
+    await playwrightExpect
+      .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+      .not.toBe('hidden')
+
+    await contextTrigger.click({
+      button: 'right',
+      position: { x: 24, y: 24 },
+    })
+    await playwrightExpect(contextMenu).toBeVisible()
+    await playwrightExpect(contextSubmenus).toHaveCount(0)
+    const backItem = contextPreview.getByRole('menuitem', { name: 'Back' })
+    const reloadItem = contextPreview.getByRole('menuitem', { name: 'Reload' })
+    await assertHoverBackgroundChanges(reloadItem)
+    await playwrightExpect(backItem).not.toHaveAttribute('data-highlighted', '')
+    const backBackground = await backItem.evaluate(
+      element => getComputedStyle(element).backgroundColor,
+    )
+    const reloadBackground = await reloadItem.evaluate(
+      element => getComputedStyle(element).backgroundColor,
+    )
+    playwrightExpect(backBackground).not.toBe(reloadBackground)
     const moreToolsBox = await box(
       contextPreview.getByRole('menuitem', { name: 'More Tools' }),
     )
+    await contextPreview.getByRole('menuitem', { name: 'More Tools' }).hover()
+    await playwrightExpect(contextSubmenus).toHaveCount(1)
     const moreToolsSubmenuBox = await assertSurfaceVisible(
       contextSubmenus.first(),
     )
+    await playwrightExpect(contextPreview).toHaveCSS('overflow', 'visible')
+    await playwrightExpect
+      .poll(() =>
+        contextSubmenus.first().evaluate(element => {
+          const parentContent = element.closest(
+            '[data-slot="context-menu-content"]',
+          )
+
+          return (
+            parentContent === null ||
+            getComputedStyle(parentContent).overflow === 'visible'
+          )
+        }),
+      )
+      .toBe(true)
     playwrightExpect(
       horizontalOverlap(moreToolsBox, moreToolsSubmenuBox),
     ).toBeLessThanOrEqual(8)
     playwrightExpect(
       horizontalGap(moreToolsBox, moreToolsSubmenuBox),
     ).toBeLessThanOrEqual(12)
-    await page.mouse.click(10, 10)
+    const contextPreviewBox = await box(contextPreview)
+    await page.mouse.click(
+      contextPreviewBox.x + contextPreviewBox.width - 8,
+      contextPreviewBox.y + 8,
+    )
+    await playwrightExpect(visibleContextContents).toHaveCount(0)
+    await playwrightExpect(visibleContextSubmenus).toHaveCount(0)
+    await contextBasicTrigger.click({
+      button: 'right',
+      position: { x: 24, y: 24 },
+    })
+    await playwrightExpect(visibleContextContents).toHaveCount(1)
+    await playwrightExpect(visibleContextSubmenus).toHaveCount(0)
+    await page.mouse.click(
+      contextPreviewBox.x + contextPreviewBox.width - 8,
+      contextPreviewBox.y + 8,
+    )
     await playwrightExpect(contextMenu).not.toBeVisible()
+
+    const sidesPreview = page.getByLabel('ContextMenuSides live preview')
+    for (const side of ['top', 'right', 'bottom', 'left'] as const) {
+      const sideTrigger = sidesPreview
+        .locator('[data-slot="context-menu-trigger"]')
+        .filter({ hasText: `Right click (${side})` })
+      const sideContents = sidesPreview.locator(
+        '[data-slot="context-menu-content"]:visible',
+      )
+      const sideTriggerBox = await box(sideTrigger)
+      await sideTrigger.click({
+        button: 'right',
+        position: {
+          x: sideTriggerBox.width / 2,
+          y: sideTriggerBox.height / 2,
+        },
+      })
+      await playwrightExpect(sideContents).toHaveCount(1)
+      assertContextMenuContentOnSide(
+        side,
+        sideTriggerBox,
+        await assertSurfaceVisible(sideContents.first()),
+      )
+      await page.keyboard.press('Escape')
+      await playwrightExpect(sideContents).toHaveCount(0)
+    }
 
     await page.goto('/components/shadcn/menubar')
     const menubarPreview = page.getByLabel('MenubarDemo live preview')

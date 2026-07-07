@@ -754,6 +754,10 @@ const backdropAttributes = <Message>(
           openMessage(config, openChange(false, 'outside-press', parentValue)),
           message => h.OnClick(message),
         ),
+        ...optionalMessageAttribute(
+          openMessage(config, openChange(false, 'outside-press', parentValue)),
+          message => h.OnContextMenu(message),
+        ),
       ]
     : [],
   isMounted,
@@ -831,6 +835,10 @@ const popupAttributes = <Message>(
           margin: '0',
           ...placementStyle(config, parentValue),
         }),
+        ...optionalMessageAttribute(
+          openMessage(config, openChange(isOpen, 'none', parentValue)),
+          message => h.OnContextMenu(message),
+        ),
         h.OnKeyDownPreventDefault((key, modifiers) =>
           popupKeyboardMessage(config, key, modifiers, parentValue),
         ),

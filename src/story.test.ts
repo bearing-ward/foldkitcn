@@ -33,6 +33,7 @@ import {
   SucceededCopySnippet,
   SelectedLiveExampleSidebarValue,
   UpdatedSearchQuery,
+  UpdatedLiveExampleMenuOpen,
   UpdatedLiveExampleSidebarOpen,
   UpdatedLiveExampleSidebarPanelOpen,
   componentDetailRouter,
@@ -83,6 +84,7 @@ const model: Model = {
   liveExampleMenuOpenValues: {},
   liveExampleMenuOpenSubmenuValues: {},
   liveExampleMenuContextPoints: {},
+  liveExampleMenuHighlightedValues: {},
   liveExampleMenuValues: {},
   liveExampleMenuCheckedValues: {},
   liveExampleMenuRadioValues: {},
@@ -414,6 +416,44 @@ describe(update, () => {
       expect(firstCommands[0]?.name).toBe('TimeoutLiveExampleToast')
       expect(secondCommands).toHaveLength(1)
       expect(secondCommands[0]?.name).toBe('TimeoutLiveExampleToast')
+    })
+  })
+
+  describe(UpdatedLiveExampleMenuOpen, () => {
+    test('context menu roots lock and unlock page scroll', () => {
+      const [afterOpen, openCommands] = update(
+        model,
+        UpdatedLiveExampleMenuOpen({
+          exampleId: 'shadcn/context-menu-demo',
+          menuId: 'context-menu-demo',
+          open: true,
+        }),
+      )
+      const [_afterDropdownOpen, dropdownCommands] = update(
+        afterOpen,
+        UpdatedLiveExampleMenuOpen({
+          exampleId: 'shadcn/dropdown-menu-basic',
+          menuId: 'dropdown-menu-basic',
+          open: true,
+        }),
+      )
+      const [_afterClose, closeCommands] = update(
+        afterOpen,
+        UpdatedLiveExampleMenuOpen({
+          exampleId: 'shadcn/context-menu-demo',
+          menuId: 'context-menu-demo',
+          open: false,
+        }),
+      )
+
+      expect(openCommands).toHaveLength(1)
+      expect(openCommands[0]?.name).toBe('LockLiveExampleContextMenuScroll')
+      expect(dropdownCommands).toHaveLength(1)
+      expect(dropdownCommands[0]?.name).toBe(
+        'UnlockLiveExampleContextMenuScroll',
+      )
+      expect(closeCommands).toHaveLength(1)
+      expect(closeCommands[0]?.name).toBe('UnlockLiveExampleContextMenuScroll')
     })
   })
 

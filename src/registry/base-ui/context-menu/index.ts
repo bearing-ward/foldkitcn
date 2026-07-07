@@ -213,6 +213,32 @@ const contextPositionStyle = <Message>(
   }
 }
 
+const contextContentTranslateStyle = <Message>(
+  config: Pick<ViewConfig<Message>, 'side'>,
+): Readonly<Record<string, string>> => {
+  const side = config.side ?? 'bottom'
+
+  if (side === 'left' || side === 'inline-start') {
+    return { translate: '-100% 0' }
+  }
+
+  if (side === 'top') {
+    return { translate: '0 -100%' }
+  }
+
+  return {}
+}
+
+const contextContentPositionStyle = <Message>(
+  config: Pick<
+    ViewConfig<Message>,
+    'alignOffset' | 'side' | 'sideOffset' | 'contextPoint'
+  >,
+): Readonly<Record<string, string>> => ({
+  ...contextPositionStyle(config),
+  ...contextContentTranslateStyle(config),
+})
+
 const openMessage = <Message>(
   config: Pick<ViewConfig<Message>, 'contextPoint' | 'onOpenChange'>,
   change: ContextMenuOpenChange,
@@ -461,7 +487,7 @@ const contextPopupAttributes = <Message>(
               position: 'fixed',
               inset: 'auto',
               margin: '0',
-              ...contextPositionStyle(config),
+              ...contextContentPositionStyle(config),
             }),
           ],
         }
