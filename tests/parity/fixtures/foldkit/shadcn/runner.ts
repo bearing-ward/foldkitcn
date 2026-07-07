@@ -24,7 +24,7 @@ export interface CaptureShadcnFoldkitSnapshotsOptions {
 const repoRoot = process.cwd()
 const fixtureRoot = path.join(repoRoot, 'tests/parity/fixtures/foldkit/shadcn')
 
-const createFixtureServer = async (): Promise<ViteDevServer> => {
+export const createFixtureServer = async (): Promise<ViteDevServer> => {
   const server = await createServer({
     root: fixtureRoot,
     configFile: false,
@@ -50,7 +50,7 @@ const createFixtureServer = async (): Promise<ViteDevServer> => {
   return server
 }
 
-const serverUrl = (server: ViteDevServer): string => {
+export const serverUrl = (server: ViteDevServer): string => {
   const address = server.httpServer?.address()
 
   if (typeof address === 'object' && address !== null) {

@@ -1377,6 +1377,11 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/table-rtl.tsx',
     },
     {
+      id: 'tabs-demo',
+      title: 'Tabs demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/tabs-demo.tsx',
+    },
+    {
       id: 'textarea-button',
       title: 'Textarea button',
       originFilePath: 'repos/ui/apps/v4/examples/base/textarea-button.tsx',

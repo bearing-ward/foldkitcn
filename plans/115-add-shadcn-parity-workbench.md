@@ -98,18 +98,18 @@ explicit and structured instead of silently normalized away.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Drift check | `git diff --stat c4315fd3..HEAD -- package.json .gitignore scripts/parity-dry-run.ts scripts/parity-origin-shadcn.ts src/registry/parity tests/parity playwright.config.ts vite.config.ts docs/decisions/0003-effect-native-tooling.md plans/README.md` | Empty unless later in-scope work changed these files |
-| Existing dry-run parity | `bun run parity:check -- --grep shadcn/tabs --dry-run` | Finds the existing shadcn tabs slot if it is still ready |
-| Existing focused parity | `bun run parity:check -- --grep shadcn/tabs` | Still exits 0 before and after this plan |
-| Workbench dry run | `bun run parity:workbench -- --item shadcn/tabs --case tabs-demo --dry-run` | Prints the selected slot, case, environment, capture zones, and output paths |
-| Workbench report | `bun run parity:workbench -- --item shadcn/tabs --case tabs-demo` | Writes JSON and Markdown report artifacts under the ignored output directory |
-| Tests | `bun run test -- tests/parity` | exits 0 |
-| Registry validation | `bun run registry:check` | exits 0 |
-| Typecheck | `bun run typecheck` | exits 0 |
-| Lint/format check | `bun run check` | exits 0 |
-| Build | `bun run build` | exits 0 |
+| Purpose                 | Command                                                                                                                                                                                                                                                 | Expected on success                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Drift check             | `git diff --stat c4315fd3..HEAD -- package.json .gitignore scripts/parity-dry-run.ts scripts/parity-origin-shadcn.ts src/registry/parity tests/parity playwright.config.ts vite.config.ts docs/decisions/0003-effect-native-tooling.md plans/README.md` | Empty unless later in-scope work changed these files                         |
+| Existing dry-run parity | `bun run parity:check -- --grep shadcn/tabs --dry-run`                                                                                                                                                                                                  | Finds the existing shadcn tabs slot if it is still ready                     |
+| Existing focused parity | `bun run parity:check -- --grep shadcn/tabs`                                                                                                                                                                                                            | Still exits 0 before and after this plan                                     |
+| Workbench dry run       | `bun run parity:workbench -- --item shadcn/tabs --case tabs-demo --dry-run`                                                                                                                                                                             | Prints the selected slot, case, environment, capture zones, and output paths |
+| Workbench report        | `bun run parity:workbench -- --item shadcn/tabs --case tabs-demo`                                                                                                                                                                                       | Writes JSON and Markdown report artifacts under the ignored output directory |
+| Tests                   | `bun run test -- tests/parity`                                                                                                                                                                                                                          | exits 0                                                                      |
+| Registry validation     | `bun run registry:check`                                                                                                                                                                                                                                | exits 0                                                                      |
+| Typecheck               | `bun run typecheck`                                                                                                                                                                                                                                     | exits 0                                                                      |
+| Lint/format check       | `bun run check`                                                                                                                                                                                                                                         | exits 0                                                                      |
+| Build                   | `bun run build`                                                                                                                                                                                                                                         | exits 0                                                                      |
 
 If `shadcn/tabs` is not ready when execution starts, choose another medium-risk
 ready shadcn slot with existing origin and Foldkit fixtures, such as
