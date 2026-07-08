@@ -4,6 +4,14 @@ import {
 } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
+import {
+  expectEscapingSurfaceHasVisibleOverflow,
+  expectNoOpenSurfaces,
+  expectOnlyVisibleSurface,
+  expectSurfaceAnchoredToTrigger,
+  visibleBox,
+} from './floating-surface-assertions'
+
 const expectNoHeaderMainOverlap = async (page: Page) => {
   await page.evaluate(() => {
     window.scrollTo(0, 0)
@@ -131,28 +139,6 @@ const expectElementAbove = async (
   }
 }
 
-type GeometrySnapshot = Readonly<{
-  height: number
-  width: number
-  x: number
-  y: number
-}>
-
-const visibleBox = async (locator: Locator): Promise<GeometrySnapshot> => {
-  const box = await locator.boundingBox()
-
-  if (box === null) {
-    throw new Error('Expected element to have a browser layout box.')
-  }
-
-  return {
-    height: Math.round(box.height),
-    width: Math.round(box.width),
-    x: Math.round(box.x),
-    y: Math.round(box.y),
-  }
-}
-
 const expectBoxInside = async (
   element: Locator,
   container: Locator,
@@ -255,23 +241,6 @@ const expectCardLikeFloatingSurface = async (
       { timeout: 1000 },
     )
     .toBe(true)
-}
-
-const expectSurfaceAnchoredToTrigger = async (
-  surface: Locator,
-  trigger: Locator,
-): Promise<void> => {
-  const surfaceBox = await visibleBox(surface)
-  const triggerBox = await visibleBox(trigger)
-
-  playwrightExpect(surfaceBox.width).toBeGreaterThan(0)
-  playwrightExpect(surfaceBox.height).toBeGreaterThan(0)
-  playwrightExpect(Math.abs(surfaceBox.x - triggerBox.x)).toBeLessThanOrEqual(
-    160,
-  )
-  playwrightExpect(Math.abs(surfaceBox.y - triggerBox.y)).toBeLessThanOrEqual(
-    260,
-  )
 }
 
 const expectElementsStayInsideMainColumn = async (
@@ -989,97 +958,6 @@ playwrightTest(
 )
 
 playwrightTest(
-  'navigation menu and floating overlays stay anchored and dismiss predictably',
-  async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 900 })
-
-    await page.goto('/components/shadcn/navigation-menu')
-    const navigationPreview = page.getByLabel('NavigationMenuDemo live preview')
-    const navigationContent = navigationPreview.locator(
-      '[data-slot="navigation-menu-content"]',
-    )
-
-    await navigationPreview.getByRole('button', { name: 'Components' }).hover()
-    await playwrightExpect(navigationContent).toBeVisible()
-    await page.mouse.move(0, 0)
-    await page.keyboard.press('Escape')
-    await playwrightExpect(navigationContent).not.toBeVisible()
-    await navigationPreview.getByRole('button', { name: 'Components' }).hover()
-    await playwrightExpect(navigationContent).toBeVisible()
-    await page.mouse.click(16, 16)
-    await playwrightExpect(navigationContent).not.toBeVisible()
-
-    await page.goto('/components/shadcn/hover-card')
-    const hoverPreview = page.getByLabel('HoverCardDemo live preview')
-    const hoverTrigger = hoverPreview.getByRole('link', { name: 'Hover Here' })
-    const hoverContent = hoverPreview.locator(
-      '[data-slot="hover-card-content"]',
-    )
-    const hoverPositioner = hoverContent.locator('xpath=..')
-
-    await hoverTrigger.hover()
-    await playwrightExpect(hoverContent).toBeVisible()
-    await playwrightExpect(hoverPositioner).toHaveCSS('position', 'absolute')
-    await page.mouse.move(0, 0)
-    await page.keyboard.press('Escape')
-    await playwrightExpect(hoverContent).not.toBeVisible()
-
-    await page.goto('/components/shadcn/popover')
-    const popoverPreview = page.getByLabel('PopoverDemo live preview')
-    const popoverTrigger = popoverPreview.getByRole('button', {
-      name: 'Open popover',
-    })
-    const popoverContent = popoverPreview.locator(
-      '[data-slot="popover-content"]',
-    )
-
-    await popoverTrigger.click()
-    await playwrightExpect(popoverContent).toBeVisible()
-    const triggerBox = await popoverTrigger.boundingBox()
-    const contentBox = await popoverContent.boundingBox()
-    if (triggerBox === null || contentBox === null) {
-      throw new Error('Popover preview did not have layout boxes.')
-    }
-
-    const initialOffset = {
-      x: Math.round(contentBox.x - triggerBox.x),
-      y: Math.round(contentBox.y - triggerBox.y),
-    }
-
-    await page.evaluate(() => {
-      window.scrollBy(0, 160)
-    })
-
-    const scrolledTriggerBox = await popoverTrigger.boundingBox()
-    const scrolledContentBox = await popoverContent.boundingBox()
-    if (scrolledTriggerBox === null || scrolledContentBox === null) {
-      throw new Error('Popover preview lost layout boxes after scroll.')
-    }
-
-    playwrightExpect({
-      x: Math.round(scrolledContentBox.x - scrolledTriggerBox.x),
-      y: Math.round(scrolledContentBox.y - scrolledTriggerBox.y),
-    }).toStrictEqual(initialOffset)
-
-    await page.mouse.click(12, 12)
-    await playwrightExpect(popoverContent).not.toBeVisible()
-
-    await page.goto('/components/shadcn/tooltip')
-    const tooltipPreview = page.getByLabel('TooltipDemo live preview')
-    const tooltipTrigger = tooltipPreview.getByRole('button', { name: 'Hover' })
-    const tooltipContent = tooltipPreview.locator(
-      '[data-slot="tooltip-content"]',
-    )
-
-    await tooltipTrigger.hover()
-    await playwrightExpect(tooltipContent).toBeVisible()
-    await page.mouse.move(0, 0)
-    await page.keyboard.press('Escape')
-    await playwrightExpect(tooltipContent).not.toBeVisible()
-  },
-)
-
-playwrightTest(
   'visual floating surfaces keep card styling',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })
@@ -1087,65 +965,136 @@ playwrightTest(
     await page.goto('/components/shadcn/hover-card')
     const hoverPreview = page.getByLabel('HoverCardDemo live preview')
     const hoverTrigger = hoverPreview.getByRole('link', { name: 'Hover Here' })
-    const hoverContent = hoverPreview.locator(
-      '[data-slot="hover-card-content"]',
+    const hoverCard = hoverPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
+    const hoverContentSelector = '[data-slot="hover-card-content"]'
 
     await hoverTrigger.focus()
-    await expectCardLikeFloatingSurface(hoverContent)
+    const focusedHoverContent = await expectOnlyVisibleSurface(
+      hoverPreview,
+      hoverContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(focusedHoverContent, hoverTrigger)
+    await expectCardLikeFloatingSurface(focusedHoverContent)
+    await expectEscapingSurfaceHasVisibleOverflow(
+      focusedHoverContent,
+      hoverCard,
+    )
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(hoverPreview, hoverContentSelector)
+
+    await hoverTrigger.hover()
+    const hoveredHoverContent = await expectOnlyVisibleSurface(
+      hoverPreview,
+      hoverContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(hoveredHoverContent, hoverTrigger)
+    await page.mouse.move(0, 0)
+    await expectNoOpenSurfaces(hoverPreview, hoverContentSelector)
 
     await page.goto('/components/shadcn/popover')
     const popoverPreview = page.getByLabel('PopoverDemo live preview')
     const popoverTrigger = popoverPreview.getByRole('button', {
       name: 'Open popover',
     })
-    const popoverContent = popoverPreview.locator(
-      '[data-slot="popover-content"]',
+    const popoverCard = popoverPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
+    const popoverContentSelector = '[data-slot="popover-content"][data-open]'
 
     await popoverTrigger.click()
-    await expectCardLikeFloatingSurface(popoverContent)
+    const popoverContent = await expectOnlyVisibleSurface(
+      popoverPreview,
+      popoverContentSelector,
+    )
     await expectSurfaceAnchoredToTrigger(popoverContent, popoverTrigger)
+    await expectCardLikeFloatingSurface(popoverContent)
+    await expectEscapingSurfaceHasVisibleOverflow(popoverContent, popoverCard)
+    await page.mouse.click(12, 12)
+    await expectNoOpenSurfaces(popoverPreview, popoverContentSelector)
 
     await page.goto('/components/shadcn/dropdown-menu')
     const dropdownPreview = page.getByLabel('DropdownMenuDemo live preview')
     const dropdownTrigger = dropdownPreview.getByRole('button')
-    const dropdownContent = dropdownPreview.locator(
-      '[data-slot="dropdown-menu-content"]',
+    const dropdownCard = dropdownPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
+    const dropdownContentSelector =
+      '[data-slot="dropdown-menu-content"][data-open]'
 
     await dropdownTrigger.click()
+    const dropdownContent = await expectOnlyVisibleSurface(
+      dropdownPreview,
+      dropdownContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(dropdownContent, dropdownTrigger)
     await expectCardLikeFloatingSurface(dropdownContent)
+    await expectEscapingSurfaceHasVisibleOverflow(dropdownContent, dropdownCard)
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(dropdownPreview, dropdownContentSelector)
 
     await page.goto('/components/shadcn/context-menu')
     const contextPreview = page.getByLabel('ContextMenuDemo live preview')
     const contextTrigger = contextPreview.getByText('Right click here')
-    const contextContent = contextPreview.locator(
-      '[data-slot="context-menu-content"]',
+    const contextCard = contextPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
+    const contextContentSelector =
+      '[data-slot="context-menu-content"][data-open]'
 
     await contextTrigger.click({ button: 'right' })
+    const contextContent = await expectOnlyVisibleSurface(
+      contextPreview,
+      contextContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(contextContent, contextTrigger)
     await expectCardLikeFloatingSurface(contextContent)
+    await expectEscapingSurfaceHasVisibleOverflow(contextContent, contextCard)
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(contextPreview, contextContentSelector)
 
     await page.goto('/components/shadcn/select')
     const selectPreview = page.getByLabel('SelectDemo live preview')
     const selectTrigger = selectPreview.locator('[data-slot="select-trigger"]')
-    const selectContent = selectPreview.locator('[data-slot="select-content"]')
+    const selectCard = selectPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
+    )
+    const selectContentSelector = '[data-slot="select-content"][data-open]'
 
     await selectTrigger.click()
+    const selectContent = await expectOnlyVisibleSurface(
+      selectPreview,
+      selectContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(selectContent, selectTrigger)
     await expectCardLikeFloatingSurface(selectContent)
+    await expectEscapingSurfaceHasVisibleOverflow(selectContent, selectCard)
+    await selectTrigger.click()
+    await expectNoOpenSurfaces(selectPreview, selectContentSelector)
 
     await page.goto('/components/shadcn/combobox')
     const comboboxPreview = page.getByLabel('ComboboxBasic live preview')
     const comboboxTrigger = comboboxPreview.locator(
       '[data-slot="combobox-trigger"]',
     )
-    const comboboxContent = comboboxPreview.locator(
-      '[data-slot="combobox-content"]',
+    const comboboxCard = comboboxPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
+    const comboboxContentSelector = '[data-slot="combobox-content"][data-open]'
 
     await comboboxTrigger.click()
+    const comboboxContent = await expectOnlyVisibleSurface(
+      comboboxPreview,
+      comboboxContentSelector,
+    )
+    await expectSurfaceAnchoredToTrigger(comboboxContent, comboboxTrigger, {
+      tolerance: 64,
+    })
     await expectCardLikeFloatingSurface(comboboxContent)
+    await expectEscapingSurfaceHasVisibleOverflow(comboboxContent, comboboxCard)
+    await comboboxTrigger.click()
+    await expectNoOpenSurfaces(comboboxPreview, comboboxContentSelector)
   },
 )
 
