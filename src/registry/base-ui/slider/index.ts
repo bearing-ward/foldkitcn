@@ -1024,10 +1024,9 @@ export const indicatorStyle = (
     state.orientation === 'vertical' ? 'bottom' : 'insetInlineStart'
   const mainSide = state.orientation === 'vertical' ? 'height' : 'width'
   const crossSide = state.orientation === 'vertical' ? 'width' : 'height'
-  const startValue =
-    state.isRange || state.orientation === 'vertical'
-      ? startPositionStyle(start, { ...config, orientation: state.orientation })
-      : '0'
+  const startValue = state.isRange
+    ? startPositionStyle(start, { ...config, orientation: state.orientation })
+    : '0'
   const sizeValue = (() => {
     if (config.thumbAlignment !== 'edge') {
       return `${size}%`

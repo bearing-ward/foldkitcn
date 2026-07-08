@@ -61,6 +61,7 @@ const model: Model = {
   liveExampleInputValues: {},
   liveExampleOtpValues: {},
   liveExampleSliderValues: {},
+  maybeLiveExampleSliderDrag: Option.none(),
   liveExampleSelectOpenValues: {},
   liveExampleSelectValues: {},
   liveExampleComboboxOpenValues: {},

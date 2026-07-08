@@ -125,6 +125,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleInputValues: {},
   liveExampleOtpValues: {},
   liveExampleSliderValues: {},
+  maybeLiveExampleSliderDrag: Option.none(),
   liveExampleSelectOpenValues: {},
   liveExampleSelectValues: {},
   liveExampleComboboxOpenValues: {},

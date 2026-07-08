@@ -46,6 +46,33 @@ const clickSliderControlAt = async (
   )
 }
 
+const dragSliderControl = async (
+  page: Page,
+  control: Locator,
+  fromXPercent: number,
+  fromYPercent: number,
+  toXPercent: number,
+  toYPercent: number,
+): Promise<void> => {
+  await control.scrollIntoViewIfNeeded()
+
+  const layoutBox = await control.boundingBox()
+
+  if (layoutBox === null) {
+    throw new Error('Expected slider control to have a browser layout box.')
+  }
+
+  const fromX = layoutBox.x + layoutBox.width * fromXPercent
+  const fromY = layoutBox.y + layoutBox.height * fromYPercent
+  const toX = layoutBox.x + layoutBox.width * toXPercent
+  const toY = layoutBox.y + layoutBox.height * toYPercent
+
+  await page.mouse.move(fromX, fromY)
+  await page.mouse.down()
+  await page.mouse.move(toX, toY, { steps: 8 })
+  await page.mouse.up()
+}
+
 const expectSliderValue = async (
   input: Locator,
   value: number,
@@ -54,6 +81,46 @@ const expectSliderValue = async (
 
   await playwrightExpect(input).toHaveAttribute('aria-valuenow', valueText)
   await playwrightExpect(input).toHaveValue(valueText)
+}
+
+const expectSliderThumbAt = async (
+  control: Locator,
+  thumb: Locator,
+  orientation: 'horizontal' | 'vertical',
+  valuePercent: number,
+): Promise<void> => {
+  const controlBox = await box(control)
+  const thumbBox = await box(thumb)
+  const thumbCenter =
+    orientation === 'vertical'
+      ? thumbBox.y + thumbBox.height / 2
+      : thumbBox.x + thumbBox.width / 2
+  const expectedCenter =
+    orientation === 'vertical'
+      ? controlBox.y + controlBox.height * (1 - valuePercent)
+      : controlBox.x + controlBox.width * valuePercent
+
+  playwrightExpect(Math.abs(thumbCenter - expectedCenter)).toBeLessThanOrEqual(
+    8,
+  )
+}
+
+const expectVerticalSliderIndicatorFill = async (
+  control: Locator,
+  indicator: Locator,
+  valuePercent: number,
+): Promise<void> => {
+  const controlBox = await box(control)
+  const indicatorBox = await box(indicator)
+
+  playwrightExpect(
+    Math.abs(indicatorBox.height - controlBox.height * valuePercent),
+  ).toBeLessThanOrEqual(8)
+  playwrightExpect(
+    Math.abs(
+      indicatorBox.y + indicatorBox.height - (controlBox.y + controlBox.height),
+    ),
+  ).toBeLessThanOrEqual(8)
 }
 
 playwrightTest(
@@ -332,6 +399,57 @@ playwrightTest('slider docs hit exact pointer values', async ({ page }) => {
   await clickSliderControlAt(page, disabledControl, 0.75, 0.5)
   await expectSliderValue(disabledInput, 50)
 })
+
+playwrightTest(
+  'slider docs support dragging without display drift',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 1200 })
+    await page.goto('/components/shadcn/slider')
+
+    const demoPreview = page.getByLabel('SliderDemo live preview')
+    const demoControl = demoPreview.locator('[data-base-ui-slider-control]')
+    const demoInput = demoPreview.locator('input[type="range"]').first()
+    const demoThumb = demoPreview.locator('[data-slot="slider-thumb"]').first()
+
+    await expectSliderValue(demoInput, 75)
+    await dragSliderControl(page, demoControl, 0.75, 0.5, 0.25, 0.5)
+    await expectSliderValue(demoInput, 25)
+    await expectSliderThumbAt(demoControl, demoThumb, 'horizontal', 0.25)
+    await dragSliderControl(page, demoControl, 0.25, 0.5, 0.75, 0.5)
+    await expectSliderValue(demoInput, 75)
+    await expectSliderThumbAt(demoControl, demoThumb, 'horizontal', 0.75)
+
+    const verticalPreview = page.getByLabel('SliderVertical live preview')
+    const verticalControl = verticalPreview.locator(
+      '[data-base-ui-slider-control]',
+    )
+    const verticalInput = verticalPreview.locator('input[type="range"]').first()
+    const verticalThumb = verticalPreview
+      .locator('[data-slot="slider-thumb"]')
+      .first()
+    const verticalIndicator = verticalPreview.locator(
+      '[data-slot="slider-range"]',
+    )
+
+    await expectSliderValue(verticalInput, 50)
+    await dragSliderControl(page, verticalControl, 0.5, 0.5, 0.5, 0.25)
+    await expectSliderValue(verticalInput, 75)
+    await expectSliderThumbAt(verticalControl, verticalThumb, 'vertical', 0.75)
+    await expectVerticalSliderIndicatorFill(
+      verticalControl,
+      verticalIndicator,
+      0.75,
+    )
+    await dragSliderControl(page, verticalControl, 0.5, 0.25, 0.5, 0.75)
+    await expectSliderValue(verticalInput, 25)
+    await expectSliderThumbAt(verticalControl, verticalThumb, 'vertical', 0.25)
+    await expectVerticalSliderIndicatorFill(
+      verticalControl,
+      verticalIndicator,
+      0.25,
+    )
+  },
+)
 
 playwrightTest(
   'slider docs preserve keyboard and native input state',

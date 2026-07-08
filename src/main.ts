@@ -206,6 +206,15 @@ export const PagefindSearch = S.Union([
 ])
 export type PagefindSearch = typeof PagefindSearch.Type
 
+const LiveExampleSliderDrag = S.Struct({
+  exampleId: S.String,
+  sliderId: S.String,
+  rect: SliderPrimitive.SliderControlRect,
+  activeThumbIndex: S.Number,
+  initialValues: S.Array(S.Number),
+})
+type LiveExampleSliderDrag = typeof LiveExampleSliderDrag.Type
+
 export const Model = S.Struct({
   route: AppRoute,
   data: DocsData,
@@ -215,6 +224,7 @@ export const Model = S.Struct({
   liveExampleInputValues: S.Record(S.String, S.String),
   liveExampleOtpValues: S.Record(S.String, S.String),
   liveExampleSliderValues: S.Record(S.String, S.Array(S.Number)),
+  maybeLiveExampleSliderDrag: S.Option(LiveExampleSliderDrag),
   liveExampleSelectOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSelectValues: S.Record(S.String, S.String),
   liveExampleComboboxOpenValues: S.Record(S.String, S.Boolean),
@@ -817,6 +827,14 @@ export const PressedLiveExampleSliderControl = m(
     rect: SliderPrimitive.SliderControlRect,
   },
 )
+export const DraggedLiveExampleSliderControl = m(
+  'DraggedLiveExampleSliderControl',
+  {
+    clientX: S.Number,
+    clientY: S.Number,
+  },
+)
+export const EndedLiveExampleSliderDrag = m('EndedLiveExampleSliderDrag')
 export const UpdatedLiveExampleSelectOpen = m('UpdatedLiveExampleSelectOpen', {
   exampleId: S.String,
   open: S.Boolean,
@@ -1120,6 +1138,8 @@ export const Message = S.Union([
   UpdatedLiveExampleOtpValue,
   UpdatedLiveExampleSliderValues,
   PressedLiveExampleSliderControl,
+  DraggedLiveExampleSliderControl,
+  EndedLiveExampleSliderDrag,
   UpdatedLiveExampleSelectOpen,
   SelectedLiveExampleSelectValue,
   UpdatedLiveExampleComboboxOpen,
@@ -1180,6 +1200,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleInputValues: {},
       liveExampleOtpValues: {},
       liveExampleSliderValues: {},
+      maybeLiveExampleSliderDrag: Option.none(),
       liveExampleSelectOpenValues: {},
       liveExampleSelectValues: {},
       liveExampleComboboxOpenValues: {},
@@ -1586,12 +1607,77 @@ export const update = (model: Model, message: Message): UpdateReturn =>
                     stateKey,
                     change.values,
                   ),
+                  maybeLiveExampleSliderDrag: () =>
+                    Option.some({
+                      exampleId,
+                      sliderId,
+                      rect,
+                      activeThumbIndex: change.activeThumbIndex,
+                      initialValues: values,
+                    }),
                 }),
                 [],
               ]
             },
           }),
         ),
+      DraggedLiveExampleSliderControl: ({ clientX, clientY }) =>
+        Option.match(model.maybeLiveExampleSliderDrag, {
+          onNone: () => [model, []],
+          onSome: drag =>
+            pipe(
+              liveExampleSliderConfigFor(drag.sliderId),
+              Option.match({
+                onNone: () => [model, []],
+                onSome: config => {
+                  if (config.isDisabled === true) {
+                    return [
+                      evo(model, {
+                        maybeLiveExampleSliderDrag: () => Option.none(),
+                      }),
+                      [],
+                    ]
+                  }
+
+                  const stateKey = liveExampleControlStateKey(
+                    drag.exampleId,
+                    drag.sliderId,
+                  )
+                  const values = pipe(
+                    EffectRecord.get(model.liveExampleSliderValues, stateKey),
+                    Option.getOrElse(() => config.defaultValues),
+                  )
+                  const change = SliderPrimitive.pointerValueChange({
+                    state: liveExampleSliderState(values, config),
+                    pointer: { clientX, clientY },
+                    rect: drag.rect,
+                    activeThumbIndex: drag.activeThumbIndex,
+                    reason: 'drag',
+                    initialValues: drag.initialValues,
+                  })
+
+                  return [
+                    evo(model, {
+                      liveExampleSliderValues: EffectRecord.set(
+                        stateKey,
+                        change.values,
+                      ),
+                      maybeLiveExampleSliderDrag: () =>
+                        Option.some({
+                          ...drag,
+                          activeThumbIndex: change.activeThumbIndex,
+                        }),
+                    }),
+                    [],
+                  ]
+                },
+              }),
+            ),
+        }),
+      EndedLiveExampleSliderDrag: () => [
+        evo(model, { maybeLiveExampleSliderDrag: () => Option.none() }),
+        [],
+      ],
       UpdatedLiveExampleSelectOpen: ({ exampleId, open }) => [
         evo(model, {
           liveExampleSelectOpenValues: EffectRecord.set(exampleId, open),
@@ -2370,17 +2456,25 @@ export const subscriptions = Subscription.make<Model, Message>()(entry => ({
     },
   ),
   liveExampleSliderPointer: entry(
-    { isComponentDetailRoute: S.Boolean },
+    {
+      isComponentDetailRoute: S.Boolean,
+      maybeLiveExampleSliderDrag: S.Option(LiveExampleSliderDrag),
+    },
     {
       modelToDependencies: model => ({
         isComponentDetailRoute: isComponentDetailRoute(model.route),
+        maybeLiveExampleSliderDrag: model.maybeLiveExampleSliderDrag,
       }),
-      dependenciesToStream: ({ isComponentDetailRoute }) =>
+      dependenciesToStream: ({
+        isComponentDetailRoute,
+        maybeLiveExampleSliderDrag,
+      }) =>
         Stream.when(
           Stream.callback<Message>(queue =>
             Effect.acquireRelease(
               Effect.sync(() => {
-                const handler = (event: PointerEvent) => {
+                const isDragging = Option.isSome(maybeLiveExampleSliderDrag)
+                const handlePointerDown = (event: PointerEvent) => {
                   if (event.button !== 0 || !(event.target instanceof Element)) {
                     return
                   }
@@ -2408,6 +2502,7 @@ export const subscriptions = Subscription.make<Model, Message>()(entry => ({
                     return
                   }
 
+                  event.preventDefault()
                   const rect = controlElement.getBoundingClientRect()
 
                   Queue.offerUnsafe(
@@ -2427,13 +2522,52 @@ export const subscriptions = Subscription.make<Model, Message>()(entry => ({
                     }),
                   )
                 }
-                document.addEventListener('pointerdown', handler)
-                return handler
+                const handlePointerMove = (event: PointerEvent) => {
+                  if (!isDragging) {
+                    return
+                  }
+
+                  event.preventDefault()
+                  Queue.offerUnsafe(
+                    queue,
+                    DraggedLiveExampleSliderControl({
+                      clientX: event.clientX,
+                      clientY: event.clientY,
+                    }),
+                  )
+                }
+                const handlePointerEnd = () => {
+                  if (!isDragging) {
+                    return
+                  }
+
+                  Queue.offerUnsafe(queue, EndedLiveExampleSliderDrag())
+                }
+
+                document.addEventListener('pointerdown', handlePointerDown)
+                document.addEventListener('pointermove', handlePointerMove)
+                document.addEventListener('pointerup', handlePointerEnd)
+                document.addEventListener('pointercancel', handlePointerEnd)
+                window.addEventListener('blur', handlePointerEnd)
+
+                return () => {
+                  document.removeEventListener(
+                    'pointerdown',
+                    handlePointerDown,
+                  )
+                  document.removeEventListener(
+                    'pointermove',
+                    handlePointerMove,
+                  )
+                  document.removeEventListener('pointerup', handlePointerEnd)
+                  document.removeEventListener(
+                    'pointercancel',
+                    handlePointerEnd,
+                  )
+                  window.removeEventListener('blur', handlePointerEnd)
+                }
               }),
-              handler =>
-                Effect.sync(() =>
-                  document.removeEventListener('pointerdown', handler),
-                ),
+              cleanup => Effect.sync(cleanup),
             ).pipe(Effect.flatMap(() => Effect.never)),
           ),
           Effect.sync(() => isComponentDetailRoute),
