@@ -123,7 +123,7 @@ honor its STOP conditions, and update your row when done.
 | 113 | Make the docs shell responsive with a component sidebar | P1 | M | 062, 065, 066 | DONE |
 | 114 | Normalize menu-family origin parity for offsets, styling, and handoff behavior | P1 | L | 043, 046, 051, 052, 110 | DONE |
 | 115 | Add an agent-first shadcn parity workbench | P1 | L | 003, 016, 107 | DONE |
-| 116 | Clone the shadcn-style docs preview and source panels | P1 | L | 062, 064, 067, 068, 113 | TODO |
+| 116 | Clone the shadcn-style docs preview and source panels | P1 | L | 062, 064, 067, 068, 113 | DONE |
 | 117 | Dogfood local Card and Button helpers in the docs shell | P2 | M | 116 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
