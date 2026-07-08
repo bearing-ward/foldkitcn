@@ -64,12 +64,14 @@ const hoverCardShell = <Message>(
           ),
           h.div(
             [...attributes.portal],
-            [
-              h.div(
-                [...attributes.positioner.root],
-                [h.div([...attributes.popup.root], config.content)],
-              ),
-            ],
+            attributes.popup.isMounted
+              ? [
+                  h.div(
+                    [...attributes.positioner.root],
+                    [h.div([...attributes.popup.root], config.content)],
+                  ),
+                ]
+              : [],
           ),
         ],
       ),

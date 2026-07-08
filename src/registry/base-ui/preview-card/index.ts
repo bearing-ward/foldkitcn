@@ -125,6 +125,9 @@ export const arrowId = (config: Pick<PreviewCardOptions, 'id'>): string =>
 export const viewportId = (config: Pick<PreviewCardOptions, 'id'>): string =>
   `${config.id}-viewport`
 
+const rootAnchorName = (config: Pick<PreviewCardOptions, 'id'>): string =>
+  `--${config.id}-anchor`
+
 export const previewCardSelector = (id: string): string => `#${popupId({ id })}`
 
 export const triggerId = (
@@ -358,6 +361,7 @@ const triggerAttributes = <Message>(
 ): ReadonlyArray<Attribute<Message>> => [
   h.Id(triggerId(config)),
   h.Attribute('aria-describedby', popupId(config)),
+  h.Style({ anchorName: rootAnchorName(config) }),
   h.DataAttribute('delay', String(resolvedDelay(config))),
   h.DataAttribute('close-delay', String(resolvedCloseDelay(config))),
   ...(config.open && activeTriggerId(config) === triggerId(config)
@@ -430,6 +434,71 @@ const placementAttributes = <Message>(
   ),
 ]
 
+const horizontalAnchorStyle = (
+  config: Pick<PreviewCardOptions, 'align'>,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config)
+
+  if (align === 'center') {
+    return { left: 'anchor(center)', translate: '-50% 0' }
+  }
+
+  if (align === 'end') {
+    return { left: 'anchor(right)', translate: '-100% 0' }
+  }
+
+  return { left: 'anchor(left)' }
+}
+
+const verticalAnchorStyle = (
+  config: Pick<PreviewCardOptions, 'align'>,
+): Readonly<Record<string, string>> => {
+  const align = resolvedAlign(config)
+
+  if (align === 'center') {
+    return { top: 'anchor(center)', translate: '0 -50%' }
+  }
+
+  if (align === 'end') {
+    return { top: 'anchor(bottom)', translate: '0 -100%' }
+  }
+
+  return { top: 'anchor(top)' }
+}
+
+const positionerPlacementStyle = (
+  config: Pick<PreviewCardOptions, 'align' | 'side' | 'sideOffset'>,
+): Readonly<Record<string, string>> => {
+  const sideOffset = `${config.sideOffset ?? defaultSideOffset}px`
+  const side = resolvedSide(config)
+
+  if (side === 'top') {
+    return {
+      ...horizontalAnchorStyle(config),
+      bottom: `calc(anchor(top) + ${sideOffset})`,
+    }
+  }
+
+  if (side === 'left' || side === 'inline-start') {
+    return {
+      ...verticalAnchorStyle(config),
+      right: `calc(anchor(left) + ${sideOffset})`,
+    }
+  }
+
+  if (side === 'right' || side === 'inline-end') {
+    return {
+      ...verticalAnchorStyle(config),
+      left: `calc(anchor(right) + ${sideOffset})`,
+    }
+  }
+
+  return {
+    ...horizontalAnchorStyle(config),
+    top: `calc(anchor(bottom) + ${sideOffset})`,
+  }
+}
+
 const positionerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -445,8 +514,10 @@ const positionerAttributes = <Message>(
         ...placementAttributes(h, config),
         h.Style({
           position: 'absolute',
+          positionAnchor: rootAnchorName(config),
           inset: 'auto',
           margin: '0',
+          ...positionerPlacementStyle(config),
         }),
       ]
     : [],

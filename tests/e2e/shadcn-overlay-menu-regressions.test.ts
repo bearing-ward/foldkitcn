@@ -116,6 +116,36 @@ const assertBelowTrigger = (trigger: Box, surface: Box): void => {
   )
 }
 
+const assertHoverCardContentOnSide = (
+  side: 'top' | 'right' | 'bottom' | 'left',
+  triggerBox: Box,
+  contentBox: Box,
+): void => {
+  if (side === 'top') {
+    playwrightExpect(contentBox.y + contentBox.height).toBeLessThanOrEqual(
+      triggerBox.y,
+    )
+  }
+
+  if (side === 'right') {
+    playwrightExpect(contentBox.x).toBeGreaterThanOrEqual(
+      triggerBox.x + triggerBox.width,
+    )
+  }
+
+  if (side === 'bottom') {
+    playwrightExpect(contentBox.y).toBeGreaterThanOrEqual(
+      triggerBox.y + triggerBox.height,
+    )
+  }
+
+  if (side === 'left') {
+    playwrightExpect(contentBox.x + contentBox.width).toBeLessThanOrEqual(
+      triggerBox.x,
+    )
+  }
+}
+
 playwrightTest(
   'dropdown, context menu, menubar, and navigation menu regressions stay anchored and dismissible',
   async ({ page }) => {
@@ -719,6 +749,34 @@ playwrightTest(
     await playwrightExpect(hoverFocusedContent).not.toBeVisible()
     await hoverFocusedTrigger.hover()
     await playwrightExpect(hoverFocusedContent).toBeVisible()
+
+    await page.goto('/components/shadcn/hover-card')
+    const hoverSidesPreview = page.getByLabel('HoverCardSides live preview')
+    await playwrightExpect(
+      hoverSidesPreview.locator('[data-slot="hover-card-content"]:visible'),
+    ).toHaveCount(0)
+    await playwrightExpect(
+      hoverSidesPreview.getByText('This hover card appears on the left side'),
+    ).toHaveCount(0)
+
+    for (const side of ['left', 'top', 'bottom', 'right'] as const) {
+      const sideTrigger = hoverSidesPreview.locator(
+        `#hover-card-ltr-${side}-trigger`,
+      )
+      const sideContent = hoverSidesPreview.locator(
+        `[data-slot="hover-card-content"][data-side="${side}"]`,
+      )
+
+      await sideTrigger.hover()
+      await assertSurfaceVisible(sideContent)
+      assertHoverCardContentOnSide(
+        side,
+        await box(sideTrigger),
+        await box(sideContent),
+      )
+      await page.mouse.move(0, 0)
+      await playwrightExpect(sideContent).not.toBeVisible()
+    }
 
     await page.goto('/components/shadcn/tooltip')
     const tooltipPreview = page.getByLabel('TooltipDemo live preview')
