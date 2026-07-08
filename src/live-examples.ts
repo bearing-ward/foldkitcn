@@ -302,6 +302,7 @@ import {
   EmptyRtl,
 } from './registry/shadcn/empty/examples'
 import {
+  FieldFieldset,
   FieldInput,
   FieldResponsive,
   FieldRtl,
@@ -340,9 +341,16 @@ import {
 } from './registry/shadcn/input-otp'
 import {
   InputBasic,
+  InputBadge,
+  InputButtonGroup,
   InputDemo,
   InputDisabled,
+  InputField,
+  InputFieldGroup,
   InputFile,
+  InputGrid,
+  InputGroupExample,
+  InputInline,
   InputInvalid,
   InputRequired,
 } from './registry/shadcn/input/examples'
@@ -3260,10 +3268,20 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
   [liveExampleKey('shadcn/input-group', 'InputGroupRtl')]:
     staticExample(InputGroupRtl),
   [liveExampleKey('shadcn/input', 'InputBasic')]: staticExample(InputBasic),
+  [liveExampleKey('shadcn/input', 'InputBadge')]: staticExample(InputBadge),
+  [liveExampleKey('shadcn/input', 'InputButtonGroup')]:
+    staticExample(InputButtonGroup),
   [liveExampleKey('shadcn/input', 'InputDemo')]: staticExample(InputDemo),
   [liveExampleKey('shadcn/input', 'InputDisabled')]:
     staticExample(InputDisabled),
+  [liveExampleKey('shadcn/input', 'InputField')]: staticExample(InputField),
+  [liveExampleKey('shadcn/input', 'InputFieldGroup')]:
+    staticExample(InputFieldGroup),
   [liveExampleKey('shadcn/input', 'InputFile')]: staticExample(InputFile),
+  [liveExampleKey('shadcn/input', 'InputGrid')]: staticExample(InputGrid),
+  [liveExampleKey('shadcn/input', 'InputGroupExample')]:
+    staticExample(InputGroupExample),
+  [liveExampleKey('shadcn/input', 'InputInline')]: staticExample(InputInline),
   [liveExampleKey('shadcn/input', 'InputInvalid')]: staticExample(InputInvalid),
   [liveExampleKey('shadcn/input', 'InputRequired')]:
     staticExample(InputRequired),
@@ -3446,6 +3464,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     split: true,
   }),
   [liveExampleKey('shadcn/field', 'FieldCheckbox')]: fieldCheckboxPreview(),
+  [liveExampleKey('shadcn/field', 'FieldFieldset')]:
+    staticExample(FieldFieldset),
   [liveExampleKey('shadcn/field', 'FieldInput')]: staticExample(FieldInput),
   [liveExampleKey('shadcn/field', 'FieldResponsive')]:
     staticExample(FieldResponsive),

@@ -33,8 +33,15 @@
       ],
       "examplePaths": [
         "repos/ui/apps/v4/examples/base/input-basic.tsx",
+        "repos/ui/apps/v4/examples/base/input-badge.tsx",
+        "repos/ui/apps/v4/examples/base/input-button-group.tsx",
         "repos/ui/apps/v4/examples/base/input-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/input-field.tsx",
+        "repos/ui/apps/v4/examples/base/input-field-group.tsx",
         "repos/ui/apps/v4/examples/base/input-file.tsx",
+        "repos/ui/apps/v4/examples/base/input-grid.tsx",
+        "repos/ui/apps/v4/examples/base/input-group.tsx",
+        "repos/ui/apps/v4/examples/base/input-inline.tsx",
         "repos/ui/apps/v4/examples/base/input-invalid.tsx",
         "repos/ui/apps/v4/examples/base/input-required.tsx"
       ],
@@ -48,6 +55,36 @@
         "classification": "registry-local",
         "target": "base-ui/input",
         "reason": "shadcn Input composes the local Base UI Input primitive."
+      },
+      {
+        "specifier": "shadcn/badge",
+        "classification": "registry-local",
+        "target": "shadcn/badge",
+        "reason": "Input badge examples compose the local shadcn Badge item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Input inline and button-group examples compose the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/button-group",
+        "classification": "registry-local",
+        "target": "shadcn/button-group",
+        "reason": "Input button-group examples compose the local shadcn Button Group item."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "Input field, field-group, inline, grid, required, badge, and group examples compose the local shadcn Field item."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "Input group examples compose the local shadcn Input Group item."
       },
       {
         "specifier": "utils/cn",
@@ -113,6 +150,20 @@
       "kind": "demo"
     },
     {
+      "id": "shadcn/input-field",
+      "title": "InputField",
+      "description": "Input with Field, FieldLabel, and FieldDescription composition.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-field-group",
+      "title": "InputFieldGroup",
+      "description": "Multiple inputs grouped with FieldGroup and form action buttons.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
       "id": "shadcn/input-disabled",
       "title": "InputDisabled",
       "description": "Disabled email input example.",
@@ -134,9 +185,44 @@
       "kind": "demo"
     },
     {
+      "id": "shadcn/input-inline",
+      "title": "InputInline",
+      "description": "Inline search input paired with a local shadcn Button.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-grid",
+      "title": "InputGrid",
+      "description": "Two-column grid input layout.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
       "id": "shadcn/input-required",
       "title": "InputRequired",
       "description": "Required input example.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-badge",
+      "title": "InputBadge",
+      "description": "Input label composed with a local shadcn Badge.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-group",
+      "title": "InputGroupExample",
+      "description": "Website URL input composed with the local shadcn Input Group item.",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "kind": "demo"
+    },
+    {
+      "id": "shadcn/input-button-group",
+      "title": "InputButtonGroup",
+      "description": "Search input composed with the local shadcn Button Group item.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
       "kind": "demo"
     }
@@ -154,7 +240,7 @@
       "dimensions",
       "bounding-box"
     ],
-    "acceptedDeviationIds": []
+    "acceptedDeviationIds": ["shadcn-input-deferred-form-example"]
   },
   "lifecycle": {
     "implementationStatus": "implemented",
@@ -163,5 +249,13 @@
     "availability": "installable",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [
+    {
+      "id": "shadcn-input-deferred-form-example",
+      "summary": "The full form example with country select is deferred from the installable Input item.",
+      "required": true,
+      "status": "accepted",
+      "rationale": "The Input item now covers the dependency-complete input, field, group, inline, grid, required, badge, input-group, and button-group examples. The full form crosses into Select-owned state and form orchestration better covered by the Field/Form components."
+    }
+  ]
 }

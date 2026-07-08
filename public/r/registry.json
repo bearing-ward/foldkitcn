@@ -1245,6 +1245,11 @@
       "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
       "registryDependencies": [
         "@foldkitcn/base-ui-input",
+        "@foldkitcn/shadcn-badge",
+        "@foldkitcn/shadcn-button",
+        "@foldkitcn/shadcn-button-group",
+        "@foldkitcn/shadcn-field",
+        "@foldkitcn/shadcn-input-group",
         "@foldkitcn/utils-cn"
       ],
       "files": [

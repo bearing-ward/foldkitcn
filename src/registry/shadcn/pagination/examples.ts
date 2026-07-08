@@ -41,6 +41,8 @@ const rowsPerPageItems: ReadonlyArray<SelectItemDescriptor> = [
   { value: '50', label: '50' },
   { value: '100', label: '100' },
 ]
+const totalPaginationRows = 25
+const defaultRowsPerPage = 25
 
 const originClosedSelectTriggerClassName =
   "flex h-8 w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm whitespace-nowrap shadow-none transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 w-20"
@@ -163,6 +165,67 @@ const rowsPerPageSelect = <Message>(
   })
 }
 
+const visibleRowsForPageSize = (pageSize: number): ReadonlyArray<number> =>
+  Array.from(
+    { length: Math.min(pageSize, totalPaginationRows) },
+    (_value, index) => index + 1,
+  )
+
+const currentRowsPerPage = <Message>(
+  controller?: PaginationExampleController<Message>,
+): number => {
+  if (controller === undefined) {
+    return defaultRowsPerPage
+  }
+
+  const parsedValue = Number.parseInt(controller.rowsPerPageValue, 10)
+
+  if (Number.isNaN(parsedValue)) {
+    return defaultRowsPerPage
+  }
+
+  return parsedValue
+}
+
+const paginationRows = <Message>(
+  controller?: PaginationExampleController<Message>,
+): Html => {
+  const h = html<Message>()
+  const rows = visibleRowsForPageSize(currentRowsPerPage(controller))
+
+  return h.div(
+    [h.Class('grid gap-2 text-sm')],
+    [
+      h.ul(
+        [
+          h.DataAttribute('slot', 'pagination-rows'),
+          h.Class('grid max-h-56 gap-1 overflow-auto rounded-lg border p-2'),
+        ],
+        rows.map(row =>
+          h.li(
+            [
+              h.Class(
+                'flex items-center justify-between rounded-md bg-muted/40 px-2 py-1',
+              ),
+            ],
+            [
+              h.span([], [`Row ${row}`]),
+              h.span(
+                [h.Class('text-xs text-muted-foreground')],
+                [`Item ${row}`],
+              ),
+            ],
+          ),
+        ),
+      ),
+      h.p(
+        [h.DataAttribute('slot', 'pagination-status')],
+        [`Showing ${rows.length} of ${totalPaginationRows} rows`],
+      ),
+    ],
+  )
+}
+
 export const PaginationDemo = (): Html =>
   paginationShell([
     paginationItem([PaginationPrevious<never>({ href: '#' })]),
@@ -179,30 +242,36 @@ export const PaginationIconsOnly = <Message = never>(
   const h = html<Message>()
 
   return h.div(
-    [h.Class('flex items-center justify-between gap-4')],
+    [h.Class('grid w-full max-w-md gap-4')],
     [
-      Field<Message>({
-        orientation: 'horizontal',
-        className: 'w-fit',
-        children: [
-          FieldLabel<Message>({
-            htmlFor: 'select-rows-per-page',
-            children: ['Rows per page'],
-          }),
-          rowsPerPageSelect(controller),
-        ],
-      }),
-      Pagination<Message>({
-        className: 'mx-0 w-auto',
-        children: [
-          PaginationContent<Message>({
+      h.div(
+        [h.Class('flex items-center justify-between gap-4')],
+        [
+          Field<Message>({
+            orientation: 'horizontal',
+            className: 'w-fit',
             children: [
-              paginationItem([PaginationPrevious<Message>({ href: '#' })]),
-              paginationItem([PaginationNext<Message>({ href: '#' })]),
+              FieldLabel<Message>({
+                htmlFor: 'select-rows-per-page',
+                children: ['Rows per page'],
+              }),
+              rowsPerPageSelect(controller),
+            ],
+          }),
+          Pagination<Message>({
+            className: 'mx-0 w-auto',
+            children: [
+              PaginationContent<Message>({
+                children: [
+                  paginationItem([PaginationPrevious<Message>({ href: '#' })]),
+                  paginationItem([PaginationNext<Message>({ href: '#' })]),
+                ],
+              }),
             ],
           }),
         ],
-      }),
+      ),
+      paginationRows(controller),
     ],
   )
 }

@@ -23,7 +23,7 @@
     },
     {
       "path": "src/registry/shadcn/input/examples.ts",
-      "content": "import type { Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { view as Input } from './index'\n\nconst input = (\n  config: Readonly<{\n    id?: string\n    type?: string\n    placeholder?: string\n    value?: string\n    disabled?: boolean\n    invalid?: boolean\n    required?: boolean\n  }>,\n): Html => {\n  const h = html<never>()\n\n  return Input<never>({\n    id: config.id,\n    type: config.type,\n    value: config.value,\n    placeholder: config.placeholder,\n    isDisabled: config.disabled,\n    isInvalid: config.invalid,\n    isRequired: config.required,\n    toView: attributes => h.input([...attributes.input]),\n  })\n}\n\nexport const InputDemo = (): Html =>\n  input({\n    id: 'input-demo-api-key',\n    type: 'password',\n    placeholder: 'sk-...',\n  })\n\nexport const InputBasic = (): Html =>\n  input({\n    id: 'input-basic',\n    placeholder: 'Enter text',\n  })\n\nexport const InputDisabled = (): Html =>\n  input({\n    id: 'input-demo-disabled',\n    disabled: true,\n    type: 'email',\n    placeholder: 'Email',\n  })\n\nexport const InputInvalid = (): Html =>\n  input({\n    id: 'input-invalid',\n    invalid: true,\n    placeholder: 'Error',\n  })\n\nexport const InputFile = (): Html =>\n  input({\n    id: 'picture',\n    type: 'file',\n  })\n\nexport const InputRequired = (): Html =>\n  input({\n    id: 'input-required',\n    required: true,\n    placeholder: 'This field is required',\n  })\n"
+      "content": "import type { Html } from 'foldkit/html'\nimport { html } from 'foldkit/html'\n\nimport { view as Badge } from '../badge'\nimport { view as Button } from '../button'\nimport { ButtonGroup } from '../button-group'\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from '../field'\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from '../input-group'\nimport { view as Input } from './index'\n\nconst input = (\n  config: Readonly<{\n    id?: string\n    type?: string\n    placeholder?: string\n    value?: string\n    disabled?: boolean\n    invalid?: boolean\n    required?: boolean\n  }>,\n): Html => {\n  const h = html<never>()\n\n  return Input<never>({\n    id: config.id,\n    type: config.type,\n    value: config.value,\n    placeholder: config.placeholder,\n    isDisabled: config.disabled,\n    isInvalid: config.invalid,\n    isRequired: config.required,\n    toView: attributes => h.input([...attributes.input]),\n  })\n}\n\nexport const InputDemo = (): Html =>\n  input({\n    id: 'input-demo-api-key',\n    type: 'password',\n    placeholder: 'sk-...',\n  })\n\nexport const InputBasic = (): Html =>\n  input({\n    id: 'input-basic',\n    placeholder: 'Enter text',\n  })\n\nexport const InputDisabled = (): Html =>\n  input({\n    id: 'input-demo-disabled',\n    disabled: true,\n    type: 'email',\n    placeholder: 'Email',\n  })\n\nexport const InputInvalid = (): Html =>\n  input({\n    id: 'input-invalid',\n    invalid: true,\n    placeholder: 'Error',\n  })\n\nexport const InputFile = (): Html =>\n  input({\n    id: 'picture',\n    type: 'file',\n  })\n\nexport const InputRequired = (): Html =>\n  input({\n    id: 'input-required',\n    required: true,\n    placeholder: 'This field is required',\n  })\n\nconst button = (text: string, variant: 'default' | 'outline' = 'default') =>\n  Button<never>({\n    variant,\n    toView: attributes => {\n      const h = html<never>()\n\n      return h.button([...attributes.button], [text])\n    },\n  })\n\nexport const InputField = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-field-username',\n        children: ['Username'],\n      }),\n      input({\n        id: 'input-field-username',\n        placeholder: 'shadcn',\n      }),\n      FieldDescription<never>({\n        children: ['Choose a unique username for your account.'],\n      }),\n    ],\n  })\n\nexport const InputFieldGroup = (): Html => {\n  const h = html<never>()\n\n  return FieldGroup<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-group-name',\n            children: ['Name'],\n          }),\n          input({ id: 'input-group-name', placeholder: 'Evil Rabbit' }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-group-email',\n            children: ['Email'],\n          }),\n          input({\n            id: 'input-group-email',\n            type: 'email',\n            placeholder: 'm@example.com',\n          }),\n          FieldDescription<never>({\n            children: [\"We'll send updates to this address.\"],\n          }),\n        ],\n      }),\n      h.div(\n        [h.Class('flex gap-2')],\n        [button('Reset', 'outline'), button('Submit')],\n      ),\n    ],\n  })\n}\n\nexport const InputInline = (): Html =>\n  Field<never>({\n    orientation: 'horizontal',\n    className: 'w-full max-w-md items-end',\n    children: [\n      FieldContent<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-inline-search',\n            children: ['Search'],\n          }),\n          input({\n            id: 'input-inline-search',\n            type: 'search',\n            placeholder: 'Search documentation...',\n          }),\n        ],\n      }),\n      button('Search'),\n    ],\n  })\n\nexport const InputGrid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full max-w-md grid-cols-2 gap-4')],\n    [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-grid-first',\n            children: ['First Name'],\n          }),\n          input({ id: 'input-grid-first', placeholder: 'Evil' }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-grid-last',\n            children: ['Last Name'],\n          }),\n          input({ id: 'input-grid-last', placeholder: 'Rabbit' }),\n        ],\n      }),\n    ],\n  )\n}\n\nexport const InputBadge = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-badge-webhook',\n        children: [\n          'Webhook URL',\n          Badge<never>({\n            variant: 'secondary',\n            toView: attributes => {\n              const h = html<never>()\n\n              return h.span([...attributes.badge], ['Beta'])\n            },\n          }),\n        ],\n      }),\n      input({\n        id: 'input-badge-webhook',\n        type: 'url',\n        placeholder: 'https://example.com/webhook',\n      }),\n    ],\n  })\n\nexport const InputGroupExample = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-group-website',\n        children: ['Website URL'],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupAddon<never>({\n            children: [InputGroupText<never>({ children: ['https://'] })],\n          }),\n          InputGroupInput<never>({\n            id: 'input-group-website',\n            placeholder: 'shadcn.com',\n          }),\n        ],\n      }),\n    ],\n  })\n\nexport const InputButtonGroup = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-button-group-search',\n        children: ['Search'],\n      }),\n      ButtonGroup<never>({\n        children: [\n          input({\n            id: 'input-button-group-search',\n            type: 'search',\n            placeholder: 'Search...',\n          }),\n          button('Search'),\n        ],\n      }),\n    ],\n  })\n"
     }
   ],
   "originProvenance": [
@@ -42,8 +42,15 @@
       ],
       "examplePaths": [
         "repos/ui/apps/v4/examples/base/input-basic.tsx",
+        "repos/ui/apps/v4/examples/base/input-badge.tsx",
+        "repos/ui/apps/v4/examples/base/input-button-group.tsx",
         "repos/ui/apps/v4/examples/base/input-disabled.tsx",
+        "repos/ui/apps/v4/examples/base/input-field.tsx",
+        "repos/ui/apps/v4/examples/base/input-field-group.tsx",
         "repos/ui/apps/v4/examples/base/input-file.tsx",
+        "repos/ui/apps/v4/examples/base/input-grid.tsx",
+        "repos/ui/apps/v4/examples/base/input-group.tsx",
+        "repos/ui/apps/v4/examples/base/input-inline.tsx",
         "repos/ui/apps/v4/examples/base/input-invalid.tsx",
         "repos/ui/apps/v4/examples/base/input-required.tsx"
       ],
@@ -57,6 +64,36 @@
         "classification": "registry-local",
         "target": "base-ui/input",
         "reason": "shadcn Input composes the local Base UI Input primitive."
+      },
+      {
+        "specifier": "shadcn/badge",
+        "classification": "registry-local",
+        "target": "shadcn/badge",
+        "reason": "Input badge examples compose the local shadcn Badge item."
+      },
+      {
+        "specifier": "shadcn/button",
+        "classification": "registry-local",
+        "target": "shadcn/button",
+        "reason": "Input inline and button-group examples compose the local shadcn Button item."
+      },
+      {
+        "specifier": "shadcn/button-group",
+        "classification": "registry-local",
+        "target": "shadcn/button-group",
+        "reason": "Input button-group examples compose the local shadcn Button Group item."
+      },
+      {
+        "specifier": "shadcn/field",
+        "classification": "registry-local",
+        "target": "shadcn/field",
+        "reason": "Input field, field-group, inline, grid, required, badge, and group examples compose the local shadcn Field item."
+      },
+      {
+        "specifier": "shadcn/input-group",
+        "classification": "registry-local",
+        "target": "shadcn/input-group",
+        "reason": "Input group examples compose the local shadcn Input Group item."
       },
       {
         "specifier": "utils/cn",
@@ -116,7 +153,15 @@
       "snippet": "export const InputDemo = (): Html =>\n  input({\n    id: 'input-demo-api-key',\n    type: 'password',\n    placeholder: 'sk-...',\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputDemo",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     },
     {
@@ -128,7 +173,55 @@
       "snippet": "export const InputBasic = (): Html =>\n  input({\n    id: 'input-basic',\n    placeholder: 'Enter text',\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputBasic",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-field",
+      "title": "InputField",
+      "description": "Input with Field, FieldLabel, and FieldDescription composition.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputField = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-field-username',\n        children: ['Username'],\n      }),\n      input({\n        id: 'input-field-username',\n        placeholder: 'shadcn',\n      }),\n      FieldDescription<never>({\n        children: ['Choose a unique username for your account.'],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputField",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-field-group",
+      "title": "InputFieldGroup",
+      "description": "Multiple inputs grouped with FieldGroup and form action buttons.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputFieldGroup = (): Html => {\n  const h = html<never>()\n\n  return FieldGroup<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-group-name',\n            children: ['Name'],\n          }),\n          input({ id: 'input-group-name', placeholder: 'Evil Rabbit' }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-group-email',\n            children: ['Email'],\n          }),\n          input({\n            id: 'input-group-email',\n            type: 'email',\n            placeholder: 'm@example.com',\n          }),\n          FieldDescription<never>({\n            children: [\"We'll send updates to this address.\"],\n          }),\n        ],\n      }),\n      h.div(\n        [h.Class('flex gap-2')],\n        [button('Reset', 'outline'), button('Submit')],\n      ),\n    ],\n  })\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputFieldGroup",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     },
     {
@@ -140,7 +233,15 @@
       "snippet": "export const InputDisabled = (): Html =>\n  input({\n    id: 'input-demo-disabled',\n    disabled: true,\n    type: 'email',\n    placeholder: 'Email',\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputDisabled",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     },
     {
@@ -152,7 +253,15 @@
       "snippet": "export const InputInvalid = (): Html =>\n  input({\n    id: 'input-invalid',\n    invalid: true,\n    placeholder: 'Error',\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputInvalid",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     },
     {
@@ -164,7 +273,55 @@
       "snippet": "export const InputFile = (): Html =>\n  input({\n    id: 'picture',\n    type: 'file',\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputFile",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-inline",
+      "title": "InputInline",
+      "description": "Inline search input paired with a local shadcn Button.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputInline = (): Html =>\n  Field<never>({\n    orientation: 'horizontal',\n    className: 'w-full max-w-md items-end',\n    children: [\n      FieldContent<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-inline-search',\n            children: ['Search'],\n          }),\n          input({\n            id: 'input-inline-search',\n            type: 'search',\n            placeholder: 'Search documentation...',\n          }),\n        ],\n      }),\n      button('Search'),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputInline",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-grid",
+      "title": "InputGrid",
+      "description": "Two-column grid input layout.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputGrid = (): Html => {\n  const h = html<never>()\n\n  return h.div(\n    [h.Class('grid w-full max-w-md grid-cols-2 gap-4')],\n    [\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-grid-first',\n            children: ['First Name'],\n          }),\n          input({ id: 'input-grid-first', placeholder: 'Evil' }),\n        ],\n      }),\n      Field<never>({\n        children: [\n          FieldLabel<never>({\n            htmlFor: 'input-grid-last',\n            children: ['Last Name'],\n          }),\n          input({ id: 'input-grid-last', placeholder: 'Rabbit' }),\n        ],\n      }),\n    ],\n  )\n}",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputGrid",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     },
     {
@@ -173,10 +330,78 @@
       "description": "Required input example.",
       "componentItemId": "shadcn/input",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "snippet": "export const InputRequired = (): Html =>\n  input({\n    id: 'input-required',\n    required: true,\n    placeholder: 'This field is required',\n  })",
+      "snippet": "export const InputRequired = (): Html =>\n  input({\n    id: 'input-required',\n    required: true,\n    placeholder: 'This field is required',\n  })\n\nconst button = (text: string, variant: 'default' | 'outline' = 'default') =>\n  Button<never>({\n    variant,\n    toView: attributes => {\n      const h = html<never>()\n\n      return h.button([...attributes.button], [text])\n    },\n  })",
       "previewStatus": "live-ready",
       "previewExportName": "InputRequired",
-      "requiredRegistryItems": ["base-ui/input", "utils/cn"],
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-badge",
+      "title": "InputBadge",
+      "description": "Input label composed with a local shadcn Badge.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputBadge = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-badge-webhook',\n        children: [\n          'Webhook URL',\n          Badge<never>({\n            variant: 'secondary',\n            toView: attributes => {\n              const h = html<never>()\n\n              return h.span([...attributes.badge], ['Beta'])\n            },\n          }),\n        ],\n      }),\n      input({\n        id: 'input-badge-webhook',\n        type: 'url',\n        placeholder: 'https://example.com/webhook',\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputBadge",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-group",
+      "title": "InputGroupExample",
+      "description": "Website URL input composed with the local shadcn Input Group item.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputGroupExample = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-group-website',\n        children: ['Website URL'],\n      }),\n      InputGroup<never>({\n        children: [\n          InputGroupAddon<never>({\n            children: [InputGroupText<never>({ children: ['https://'] })],\n          }),\n          InputGroupInput<never>({\n            id: 'input-group-website',\n            placeholder: 'shadcn.com',\n          }),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputGroupExample",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
+      "notes": []
+    },
+    {
+      "id": "shadcn/input-button-group",
+      "title": "InputButtonGroup",
+      "description": "Search input composed with the local shadcn Button Group item.",
+      "componentItemId": "shadcn/input",
+      "sourcePath": "src/registry/shadcn/input/examples.ts",
+      "snippet": "export const InputButtonGroup = (): Html =>\n  Field<never>({\n    className: 'w-full max-w-sm',\n    children: [\n      FieldLabel<never>({\n        htmlFor: 'input-button-group-search',\n        children: ['Search'],\n      }),\n      ButtonGroup<never>({\n        children: [\n          input({\n            id: 'input-button-group-search',\n            type: 'search',\n            placeholder: 'Search...',\n          }),\n          button('Search'),\n        ],\n      }),\n    ],\n  })",
+      "previewStatus": "live-ready",
+      "previewExportName": "InputButtonGroup",
+      "requiredRegistryItems": [
+        "base-ui/input",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/button-group",
+        "shadcn/field",
+        "shadcn/input-group",
+        "utils/cn"
+      ],
       "notes": []
     }
   ],
@@ -185,6 +410,14 @@
     "implementationStatus": "implemented",
     "parityStatus": "accepted",
     "driftStatus": "current",
-    "deviations": []
+    "deviations": [
+      {
+        "id": "shadcn-input-deferred-form-example",
+        "summary": "The full form example with country select is deferred from the installable Input item.",
+        "required": true,
+        "status": "accepted",
+        "rationale": "The Input item now covers the dependency-complete input, field, group, inline, grid, required, badge, input-group, and button-group examples. The full form crosses into Select-owned state and form orchestration better covered by the Field/Form components."
+      }
+    ]
   }
 }

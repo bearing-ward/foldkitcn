@@ -50,6 +50,20 @@ const expectNonTransparentBackground = async (element: Locator) => {
   playwrightExpect(backgroundColor.endsWith('/ 0)')).toBe(false)
 }
 
+const expectScrollable = async (element: Locator) => {
+  const scrollMetrics = await element.evaluate(node => ({
+    clientHeight: node.clientHeight,
+    clientWidth: node.clientWidth,
+    scrollHeight: node.scrollHeight,
+    scrollWidth: node.scrollWidth,
+  }))
+
+  playwrightExpect(
+    scrollMetrics.scrollHeight > scrollMetrics.clientHeight ||
+      scrollMetrics.scrollWidth > scrollMetrics.clientWidth,
+  ).toBe(true)
+}
+
 const openDrawer = async (
   preview: Locator,
   buttonName: string,
@@ -417,5 +431,88 @@ playwrightTest(
         ).toBeLessThanOrEqual(containerBox.x + containerBox.width + 1)
       }
     }
+  },
+)
+
+playwrightTest(
+  'attachment, data table, sidebar detail, and edge-to-edge card previews stay contained',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+
+    await page.goto('/components/shadcn/attachment')
+    const attachmentPreview = page.getByLabel(
+      'AttachmentGroupDemo live preview',
+    )
+    const attachmentGroup = attachmentPreview.locator(
+      '[data-slot="attachment-group"]',
+    )
+
+    await expectBoxInside(attachmentGroup, attachmentPreview)
+    await playwrightExpect(
+      attachmentPreview.getByRole('button', {
+        name: 'Remove briefing-notes.pdf',
+      }),
+    ).toBeVisible()
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/components/shadcn/attachment')
+    const narrowAttachmentPreview = page.getByLabel(
+      'AttachmentGroupDemo live preview',
+    )
+    const narrowAttachmentGroup = narrowAttachmentPreview.locator(
+      '[data-slot="attachment-group"]',
+    )
+
+    await expectBoxInside(narrowAttachmentGroup, narrowAttachmentPreview)
+    await expectScrollable(narrowAttachmentGroup)
+
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/data-table')
+    const tasksPreview = page.getByLabel('DataTableTasks live preview')
+    const tasksCard = tasksPreview.locator('[data-slot="card"]').first()
+    const tasksTableContainer = tasksPreview
+      .locator('[data-slot="table-container"]')
+      .first()
+
+    await expectBoxInside(tasksCard, tasksPreview)
+    await expectBoxInside(tasksTableContainer, tasksPreview)
+    await playwrightExpect(
+      tasksPreview.locator('[data-slot="card-title"]'),
+    ).toHaveText('Tasks')
+
+    await page.goto('/components/shadcn/sidebar')
+    const menuSubPreview = page.getByLabel('SidebarMenuSub live preview')
+    const menuSubContainer = menuSubPreview.locator(
+      '[data-slot="sidebar-container"]',
+    )
+    const menuSubContent = menuSubPreview.locator(
+      '[data-slot="sidebar-content"]',
+    )
+
+    await expectBoxInside(menuSubContainer, menuSubPreview)
+    await expectScrollable(menuSubContent)
+    await playwrightExpect(
+      menuSubPreview.getByText('Installation'),
+    ).toBeVisible()
+
+    const rtlPreview = page.getByLabel('SidebarRtl live preview')
+    const rtlContainer = rtlPreview.locator('[data-slot="sidebar-container"]')
+
+    await expectBoxInside(rtlContainer, rtlPreview)
+    await rtlPreview.locator('[data-slot="sidebar-trigger"]').click()
+    await playwrightExpect(
+      rtlPreview.locator('[data-slot="sidebar"]'),
+    ).toHaveAttribute('data-state', 'collapsed')
+
+    await page.goto('/components/shadcn/card')
+    const edgePreview = page.getByLabel('CardEdgeToEdge live preview')
+    const edgeCard = edgePreview.locator('[data-slot="card"]')
+    const scrollRegion = edgePreview.locator(
+      '[data-slot="card-content"] .overflow-y-scroll',
+    )
+
+    await expectBoxInside(edgeCard, edgePreview)
+    await expectBoxInside(scrollRegion, edgePreview)
+    await expectScrollable(scrollRegion)
   },
 )

@@ -251,9 +251,11 @@ describe('shadcn/pagination view', () => {
           'class',
           Pagination.paginationClassName({ className: 'mx-0 w-auto' }),
         ),
+        Scene.expect(Scene.selector('[data-slot="pagination-rows"]')).toExist(),
+        Scene.expect(Scene.text('Row 25')).toExist(),
         Scene.expect(
-          Scene.selector('[data-slot="pagination-rows"]'),
-        ).not.toExist(),
+          Scene.selector('[data-slot="pagination-status"]'),
+        ).toHaveText('Showing 25 of 25 rows'),
       )
       Scene.scene(
         {
@@ -271,6 +273,11 @@ describe('shadcn/pagination view', () => {
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveText(
           '10',
         ),
+        Scene.expect(Scene.text('Row 10')).toExist(),
+        Scene.expect(Scene.text('Row 11')).not.toExist(),
+        Scene.expect(
+          Scene.selector('[data-slot="pagination-status"]'),
+        ).toHaveText('Showing 10 of 25 rows'),
       )
       Scene.scene(
         { update, view: view(PaginationRtl()) },

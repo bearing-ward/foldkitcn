@@ -763,7 +763,6 @@ dt {
 }
 
 .live-example-preview [id*='combobox'][id$='positioner'],
-.live-example-preview [id*='hover-card'][id$='positioner'],
 .live-example-preview [id*='navigation-menu'][id$='positioner'],
 .live-example-preview [id*='tooltip'][id$='positioner'] {
   position: absolute !important;
@@ -822,39 +821,10 @@ dt {
 }
 
 .live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='bottom'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='top'] {
-  translate: -50% 0 !important;
-}
-
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='bottom'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='top'] {
-  translate: -100% 0 !important;
-}
-
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='left'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='right'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='inline-start'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='center'][data-side='inline-end'] {
-  translate: 0 -50% !important;
-}
-
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='left'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='right'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='inline-start'],
-.live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open][data-align='end'][data-side='inline-end'] {
-  translate: 0 -100% !important;
+  [data-slot='popover-content'][popover='manual'][data-open] {
+  position: static !important;
+  inset: auto !important;
+  translate: none !important;
 }
 
 .live-example-preview
@@ -889,8 +859,6 @@ dt {
   [data-slot='dropdown-menu-sub-content'][popover='manual'][data-open],
 .live-example-preview
   [data-slot='combobox-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='hover-card-content'][popover='manual'][data-open],
 .live-example-preview [data-slot='select-content'][popover='manual'][data-open],
 .live-example-preview
   [data-slot='navigation-menu-content'][popover='manual'][data-open],
@@ -941,6 +909,13 @@ dt {
 
 .live-example-preview [data-slot='sidebar-wrapper'] [data-slot='sidebar'] {
   min-height: 0;
+}
+
+.live-example-preview
+  [data-slot='sidebar-wrapper']
+  [data-slot='sidebar-content'] {
+  min-height: 0;
+  overflow: auto;
 }
 
 .live-example-preview

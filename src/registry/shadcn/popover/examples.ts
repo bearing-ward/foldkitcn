@@ -180,6 +180,7 @@ export const PopoverDemo = <Message = never>(
       trigger: 'Open popover',
       title: 'Dimensions',
       description: 'Set the dimensions for the layer.',
+      align: 'start',
       contentClassName: 'w-80',
       body: [
         h.div(

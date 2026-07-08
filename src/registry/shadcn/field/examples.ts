@@ -131,6 +131,54 @@ export const FieldTextarea = (): Html =>
     ],
   })
 
+export const FieldFieldset = (): Html =>
+  FieldSet<never>({
+    className: 'w-full max-w-sm',
+    children: [
+      FieldLegend<never>({ children: ['Address Information'] }),
+      FieldDescription<never>({
+        children: ['We need your address to deliver your order.'],
+      }),
+      FieldGroup<never>({
+        children: [
+          Field<never>({
+            children: [
+              FieldLabel<never>({
+                htmlFor: 'field-address-street',
+                children: ['Street Address'],
+              }),
+              input({
+                id: 'field-address-street',
+                placeholder: '123 Main St',
+              }),
+            ],
+          }),
+          Field<never>({
+            children: [
+              FieldLabel<never>({
+                htmlFor: 'field-address-city',
+                children: ['City'],
+              }),
+              input({ id: 'field-address-city', placeholder: 'New York' }),
+            ],
+          }),
+          Field<never>({
+            children: [
+              FieldLabel<never>({
+                htmlFor: 'field-address-postal-code',
+                children: ['Postal Code'],
+              }),
+              input({
+                id: 'field-address-postal-code',
+                placeholder: '10001',
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
+  })
+
 export const FieldCheckbox = (): Html =>
   FieldGroup<never>({
     className: 'w-full max-w-xs',
