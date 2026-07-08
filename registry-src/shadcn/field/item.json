@@ -168,6 +168,13 @@
       "kind": "demo"
     },
     {
+      "id": "shadcn/field-fieldset",
+      "title": "FieldFieldset",
+      "description": "Address FieldSet with legend, description, grouped fields, labels, and inputs.",
+      "sourcePath": "src/registry/shadcn/field/examples.ts",
+      "kind": "demo"
+    },
+    {
       "id": "shadcn/field-responsive",
       "title": "FieldResponsive",
       "description": "Responsive orientation Field with Input and Button composition.",

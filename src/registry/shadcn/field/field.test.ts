@@ -7,6 +7,7 @@ import { describe, expect, test } from 'vitest'
 
 import {
   FieldCheckbox,
+  FieldFieldset,
   FieldInput,
   FieldResponsive,
   FieldRtl,
@@ -134,6 +135,14 @@ describe('shadcn/field view', () => {
         Scene.with(initialModel),
         Scene.expect(Scene.selector('[data-slot="checkbox"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="field-separator"]')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(FieldFieldset()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="field-legend"]')).toHaveText(
+          'Address Information',
+        ),
+        Scene.expect(Scene.placeholder('10001')).toExist(),
       )
       Scene.scene(
         { update, view: view(FieldResponsive()) },

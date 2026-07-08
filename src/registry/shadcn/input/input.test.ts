@@ -6,6 +6,15 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
 
+import {
+  InputBadge,
+  InputButtonGroup,
+  InputField,
+  InputFieldGroup,
+  InputGrid,
+  InputGroupExample,
+  InputInline,
+} from './examples'
 import { inputBaseClassName, inputClassName, view as Input } from './index'
 import type { ViewConfig } from './index'
 
@@ -37,6 +46,11 @@ const viewInput =
       toView: attributes => h.input([...attributes.input]),
     })
   }
+
+const view =
+  (target: Html) =>
+  (_model: Model): Html =>
+    target
 
 describe('shadcn/input class helpers', () => {
   test('exports the base-nova class string', () => {
@@ -95,6 +109,48 @@ describe('shadcn/input view', () => {
         ),
         Scene.expect(Scene.placeholder('Email')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.placeholder('Email')).not.toHaveAttr('data-invalid'),
+      )
+    }).not.toThrow()
+  })
+
+  test('renders dependency-complete input docs examples', () => {
+    expect(() => {
+      Scene.scene(
+        { update, view: view(InputField()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="field"]')).toExist(),
+        Scene.expect(Scene.placeholder('shadcn')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(InputFieldGroup()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.text('Submit')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(InputInline()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.placeholder('Search documentation...')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(InputGrid()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.text('First Name')).toExist(),
+        Scene.expect(Scene.text('Last Name')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(InputBadge()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="badge"]')).toHaveText('Beta'),
+      )
+      Scene.scene(
+        { update, view: view(InputGroupExample()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="input-group"]')).toExist(),
+      )
+      Scene.scene(
+        { update, view: view(InputButtonGroup()) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('[data-slot="button-group"]')).toExist(),
       )
     }).not.toThrow()
   })

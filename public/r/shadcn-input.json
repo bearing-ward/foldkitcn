@@ -5,7 +5,15 @@
   "title": "Input",
   "description": "Foldkit-native shadcn base-nova Input wrapper composed from the local Base UI Input primitive and shadcn class tokens.",
   "dependencies": ["foldkit", "effect", "clsx", "tailwind-merge"],
-  "registryDependencies": ["@foldkitcn/base-ui-input", "@foldkitcn/utils-cn"],
+  "registryDependencies": [
+    "@foldkitcn/base-ui-input",
+    "@foldkitcn/shadcn-badge",
+    "@foldkitcn/shadcn-button",
+    "@foldkitcn/shadcn-button-group",
+    "@foldkitcn/shadcn-field",
+    "@foldkitcn/shadcn-input-group",
+    "@foldkitcn/utils-cn"
+  ],
   "files": [
     {
       "path": "src/registry/shadcn/input/index.ts",

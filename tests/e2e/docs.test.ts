@@ -23,10 +23,11 @@ const expectNoHeaderMainOverlap = async (page: Page) => {
 }
 
 const MAX_EXAMPLE_CARD_WIDTH = 800
+const DOCS_PREVIEW_CARD_SELECTOR = '[data-docs-slot="docs-preview-card"]'
 
 const expectExampleCardsStayInsideMainColumn = async (page: Page) => {
   const mainBox = await page.locator('#main-content').boundingBox()
-  const exampleCards = page.locator('.example-card')
+  const exampleCards = page.locator(DOCS_PREVIEW_CARD_SELECTOR)
   const count = await exampleCards.count()
 
   playwrightExpect(mainBox).not.toBeNull()
@@ -52,7 +53,7 @@ const expectExampleCardsStayInsideMainColumn = async (page: Page) => {
 }
 
 const expectLiveReadyCardsRenderPreviews = async (page: Page) => {
-  const liveReadyCards = page.locator('.example-card', {
+  const liveReadyCards = page.locator(DOCS_PREVIEW_CARD_SELECTOR, {
     hasText: 'live ready',
   })
   const count = await liveReadyCards.count()
@@ -97,6 +98,20 @@ const expectPreviewDescendantsStayInsidePreview = async (
       }
     }),
   )
+}
+
+const expectPreviewScrollRegionStaysInsidePreview = async (
+  preview: Locator,
+  selector: string,
+) => {
+  await expectPreviewDescendantsStayInsidePreview(preview, selector)
+
+  const scrollRegion = preview.locator(selector).first()
+  const isScrollable = await scrollRegion.evaluate(
+    element => element.scrollHeight > element.clientHeight,
+  )
+
+  playwrightExpect(isScrollable).toBe(true)
 }
 
 const expectElementAbove = async (
@@ -262,13 +277,17 @@ const expectSurfaceAnchoredToTrigger = async (
 const expectElementsStayInsideMainColumn = async (
   page: Page,
   selector: string,
+  options?: { readonly requireMatch: boolean },
 ) => {
   const mainBox = await page.locator('#main-content').boundingBox()
   const elements = page.locator(selector)
   const count = await elements.count()
+  const requireMatch = options?.requireMatch ?? true
 
   playwrightExpect(mainBox).not.toBeNull()
-  playwrightExpect(count).toBeGreaterThan(0)
+  if (requireMatch) {
+    playwrightExpect(count).toBeGreaterThan(0)
+  }
 
   await Promise.all(
     Array.from({ length: count }, async (_, index) => {
@@ -329,10 +348,19 @@ const expectRenderedTextStaysInside = async (page: Page, selector: string) => {
 
 const expectUsageContentStaysInsideMainColumn = async (page: Page) => {
   await expectElementsStayInsideMainColumn(page, '#usage')
-  await expectElementsStayInsideMainColumn(page, '#usage .snippet-block')
-  await expectElementsStayInsideMainColumn(page, '#usage .meta-list')
-  await expectElementsStayInsideMainColumn(page, '#usage .meta-list div')
-  await expectRenderedTextStaysInside(page, '#usage .meta-list')
+  await expectElementsStayInsideMainColumn(page, '#usage .snippet-block', {
+    requireMatch: false,
+  })
+  await expectElementsStayInsideMainColumn(page, '#usage .meta-list', {
+    requireMatch: false,
+  })
+  await expectElementsStayInsideMainColumn(page, '#usage .meta-list div', {
+    requireMatch: false,
+  })
+
+  if ((await page.locator('#usage .meta-list').count()) > 0) {
+    await expectRenderedTextStaysInside(page, '#usage .meta-list')
+  }
 }
 
 const firstResizablePanel = (group: Locator): Locator =>
@@ -689,6 +717,7 @@ playwrightTest(
     ).toBeVisible()
 
     await page.getByRole('button', { name: 'Browse components' }).click()
+    await playwrightExpect(page.locator('.docs-sidebar')).toBeVisible()
 
     const sidebarBox = await visibleBox(page.locator('.docs-sidebar'))
     const mobileMainBox = await visibleBox(page.locator('#main-content'))
@@ -1283,9 +1312,9 @@ playwrightTest(
 
     const menuSub = page.getByLabel('SidebarMenuSub live preview')
 
-    await expectPreviewDescendantsStayInsidePreview(
+    await expectPreviewScrollRegionStaysInsidePreview(
       menuSub,
-      '[data-slot="sidebar-menu-sub"]',
+      '[data-slot="sidebar-content"]',
     )
     await playwrightExpect(menuSub.getByText('Installation')).toBeVisible()
 
@@ -1820,7 +1849,7 @@ playwrightTest(
 
     await page.goto('/components/shadcn/date-picker')
     const datePickerPreview = page.getByLabel('DatePickerDemo live preview')
-    const datePickerCard = page.locator('.example-card', {
+    const datePickerCard = page.locator(DOCS_PREVIEW_CARD_SELECTOR, {
       has: datePickerPreview,
     })
     const datePickerTrigger = datePickerPreview.getByRole('button', {

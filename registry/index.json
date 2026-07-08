@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-08T08:25:07.459Z",
+  "generatedAt": "2026-07-08T11:58:20.824Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -13097,6 +13097,13 @@
             "kind": "demo"
           },
           {
+            "id": "shadcn/field-fieldset",
+            "title": "FieldFieldset",
+            "description": "Address FieldSet with legend, description, grouped fields, labels, and inputs.",
+            "sourcePath": "src/registry/shadcn/field/examples.ts",
+            "kind": "demo"
+          },
+          {
             "id": "shadcn/field-responsive",
             "title": "FieldResponsive",
             "description": "Responsive orientation Field with Input and Button composition.",
@@ -13176,12 +13183,12 @@
           }
         ]
       },
-      "manifestHash": "e52db4d8019df47d2d0a90d43bb91399661ede1ee3ffcb12a49ebfaa422c8d6d",
+      "manifestHash": "b12e359ae193a39553d46a039918876bdc6fa378527754ce3dbbc31fb4020a3d",
       "artifacts": [
         {
           "path": "registry-src/shadcn/field/item.json",
-          "sha256": "a3daa162a534a691e7da46e995de4e166f26f534bc276d7a906214e1ce445a18",
-          "sizeBytes": 9401,
+          "sha256": "65f511c51f237aada91976de931e40531b83e6d95c003adc743e24086471d9e0",
+          "sizeBytes": 9668,
           "role": "manifest"
         },
         {
@@ -13192,8 +13199,8 @@
         },
         {
           "path": "src/registry/shadcn/field/examples.ts",
-          "sha256": "abc5839b6a5eb6b0cfd218ca26b45d186e3d1623c5404907b042e73dc2cf3194",
-          "sizeBytes": 8588,
+          "sha256": "be10cc657fad0fe16d5241f03adeafc949397fe88af8cbab1efe20766bd278b0",
+          "sizeBytes": 9949,
           "role": "source"
         }
       ]
@@ -14155,8 +14162,15 @@
             ],
             "examplePaths": [
               "repos/ui/apps/v4/examples/base/input-basic.tsx",
+              "repos/ui/apps/v4/examples/base/input-badge.tsx",
+              "repos/ui/apps/v4/examples/base/input-button-group.tsx",
               "repos/ui/apps/v4/examples/base/input-disabled.tsx",
+              "repos/ui/apps/v4/examples/base/input-field.tsx",
+              "repos/ui/apps/v4/examples/base/input-field-group.tsx",
               "repos/ui/apps/v4/examples/base/input-file.tsx",
+              "repos/ui/apps/v4/examples/base/input-grid.tsx",
+              "repos/ui/apps/v4/examples/base/input-group.tsx",
+              "repos/ui/apps/v4/examples/base/input-inline.tsx",
               "repos/ui/apps/v4/examples/base/input-invalid.tsx",
               "repos/ui/apps/v4/examples/base/input-required.tsx"
             ],
@@ -14170,6 +14184,36 @@
               "classification": "registry-local",
               "target": "base-ui/input",
               "reason": "shadcn Input composes the local Base UI Input primitive."
+            },
+            {
+              "specifier": "shadcn/badge",
+              "classification": "registry-local",
+              "target": "shadcn/badge",
+              "reason": "Input badge examples compose the local shadcn Badge item."
+            },
+            {
+              "specifier": "shadcn/button",
+              "classification": "registry-local",
+              "target": "shadcn/button",
+              "reason": "Input inline and button-group examples compose the local shadcn Button item."
+            },
+            {
+              "specifier": "shadcn/button-group",
+              "classification": "registry-local",
+              "target": "shadcn/button-group",
+              "reason": "Input button-group examples compose the local shadcn Button Group item."
+            },
+            {
+              "specifier": "shadcn/field",
+              "classification": "registry-local",
+              "target": "shadcn/field",
+              "reason": "Input field, field-group, inline, grid, required, badge, and group examples compose the local shadcn Field item."
+            },
+            {
+              "specifier": "shadcn/input-group",
+              "classification": "registry-local",
+              "target": "shadcn/input-group",
+              "reason": "Input group examples compose the local shadcn Input Group item."
             },
             {
               "specifier": "utils/cn",
@@ -14235,6 +14279,20 @@
             "kind": "demo"
           },
           {
+            "id": "shadcn/input-field",
+            "title": "InputField",
+            "description": "Input with Field, FieldLabel, and FieldDescription composition.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-field-group",
+            "title": "InputFieldGroup",
+            "description": "Multiple inputs grouped with FieldGroup and form action buttons.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
             "id": "shadcn/input-disabled",
             "title": "InputDisabled",
             "description": "Disabled email input example.",
@@ -14256,9 +14314,44 @@
             "kind": "demo"
           },
           {
+            "id": "shadcn/input-inline",
+            "title": "InputInline",
+            "description": "Inline search input paired with a local shadcn Button.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-grid",
+            "title": "InputGrid",
+            "description": "Two-column grid input layout.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
             "id": "shadcn/input-required",
             "title": "InputRequired",
             "description": "Required input example.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-badge",
+            "title": "InputBadge",
+            "description": "Input label composed with a local shadcn Badge.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-group",
+            "title": "InputGroupExample",
+            "description": "Website URL input composed with the local shadcn Input Group item.",
+            "sourcePath": "src/registry/shadcn/input/examples.ts",
+            "kind": "demo"
+          },
+          {
+            "id": "shadcn/input-button-group",
+            "title": "InputButtonGroup",
+            "description": "Search input composed with the local shadcn Button Group item.",
             "sourcePath": "src/registry/shadcn/input/examples.ts",
             "kind": "demo"
           }
@@ -14276,7 +14369,7 @@
             "dimensions",
             "bounding-box"
           ],
-          "acceptedDeviationIds": []
+          "acceptedDeviationIds": ["shadcn-input-deferred-form-example"]
         },
         "lifecycle": {
           "implementationStatus": "implemented",
@@ -14285,14 +14378,22 @@
           "availability": "installable",
           "docsStatus": "missing"
         },
-        "deviations": []
+        "deviations": [
+          {
+            "id": "shadcn-input-deferred-form-example",
+            "summary": "The full form example with country select is deferred from the installable Input item.",
+            "required": true,
+            "status": "accepted",
+            "rationale": "The Input item now covers the dependency-complete input, field, group, inline, grid, required, badge, input-group, and button-group examples. The full form crosses into Select-owned state and form orchestration better covered by the Field/Form components."
+          }
+        ]
       },
-      "manifestHash": "ceb2ee233a9aa5a3bf71f0dea3e23322f6da00a68049c859f551484194236d6b",
+      "manifestHash": "8e162eef69ff021c8bcd3c02b0387c1e201082a37e43028467c71337d6b19230",
       "artifacts": [
         {
           "path": "registry-src/shadcn/input/item.json",
-          "sha256": "3924581823376d322a5eac70d81ef7f2f8fd543bf8f4b39c05e7db95851937bf",
-          "sizeBytes": 5339,
+          "sha256": "da5a7ca5c62db6a4b7d64356aa4c2a8713f33aacbbb73ec785fd196cad2fa91c",
+          "sizeBytes": 9164,
           "role": "manifest"
         },
         {
@@ -14303,8 +14404,8 @@
         },
         {
           "path": "src/registry/shadcn/input/examples.ts",
-          "sha256": "913b2d234f553ed9ea7f7fb832d8def4059d10e0d58f6150fc2e796e4317959a",
-          "sizeBytes": 1393,
+          "sha256": "bde8b922f3a7881cf2cf3e7f353abf131bc9fdf24be560132684909f77ee8a4e",
+          "sizeBytes": 6168,
           "role": "source"
         }
       ]
@@ -16689,8 +16790,8 @@
         },
         {
           "path": "src/registry/shadcn/pagination/examples.ts",
-          "sha256": "0205435496ae27dd9feb20ec7d5f1ac5339aa7a67f2f04ec634fd9f491191fab",
-          "sizeBytes": 7475,
+          "sha256": "e37e8c6201280dbb378db578c1998d5c618495982ae47f4b3e7c5fae24dcabff",
+          "sizeBytes": 9288,
           "role": "source"
         }
       ]
@@ -16942,8 +17043,8 @@
         },
         {
           "path": "src/registry/shadcn/popover/examples.ts",
-          "sha256": "bacc0e7648208240dfb12a03a584272f947ed596ca980b89cdd48aa33efca352",
-          "sizeBytes": 9204,
+          "sha256": "5aa67a5b517588832a2b32edb2eada49b76c2b23c4013015f8b3dcb332a09fef",
+          "sizeBytes": 9226,
           "role": "source"
         }
       ]
