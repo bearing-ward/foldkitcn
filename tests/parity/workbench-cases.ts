@@ -13,7 +13,11 @@ import { paritySlots } from './slots'
 
 const tabsFixturePath = 'tests/parity/fixtures/data/shadcn/tabs/tabs-demo.json'
 const tabsOriginSourcePath = 'repos/ui/apps/v4/examples/base/tabs-demo.tsx'
+const emptyFixturePath =
+  'tests/parity/fixtures/data/shadcn/empty/empty-demo.json'
+const emptyOriginSourcePath = 'repos/ui/apps/v4/examples/base/empty-demo.tsx'
 let maybeTabsFixturePromise: Promise<ParityWorkbenchNeutralFixture> | undefined
+let maybeEmptyFixturePromise: Promise<ParityWorkbenchNeutralFixture> | undefined
 
 const requireReadySlot = (itemId: string) => {
   const slot = paritySlots.find(candidate => candidate.itemId === itemId)
@@ -58,6 +62,19 @@ const loadOriginTabsCases = async () => {
   const module = await import('./fixtures/origin/shadcn/tabs.fixture')
 
   return module.cases
+}
+
+const loadOriginShadcnCaseMetadata = async (caseId: string) => {
+  const module = await import('./fixtures/origin/shadcn/case-metadata')
+  const maybeMetadata = module.shadcnOriginCaseMetadata.find(
+    metadata => metadata.id === caseId,
+  )
+
+  if (maybeMetadata === undefined) {
+    throw new Error(`Unknown shadcn origin fixture case metadata: ${caseId}`)
+  }
+
+  return maybeMetadata
 }
 
 const firstTabsFixture = async () => {
@@ -132,6 +149,32 @@ export const loadShadcnTabsWorkbenchFixture =
     return maybeTabsFixturePromise
   }
 
+const deriveEmptyNeutralFixture =
+  async (): Promise<ParityWorkbenchNeutralFixture> => {
+    const originCase = await loadOriginShadcnCaseMetadata('empty-demo')
+
+    return S.decodeUnknownSync(ParityWorkbenchNeutralFixtureSchema)({
+      schemaVersion: 1,
+      itemId: 'shadcn/empty',
+      caseId: 'empty-demo',
+      originSourcePath: originCase.originFilePath,
+      tabs: [],
+      selectedValue: '',
+      orientation: 'horizontal',
+      listVariant: '',
+      disabledValues: [],
+    })
+  }
+
+export const loadShadcnEmptyWorkbenchFixture =
+  (): Promise<ParityWorkbenchNeutralFixture> => {
+    if (maybeEmptyFixturePromise === undefined) {
+      maybeEmptyFixturePromise = deriveEmptyNeutralFixture()
+    }
+
+    return maybeEmptyFixturePromise
+  }
+
 export const shadcnTabsWorkbenchCase: ParityWorkbenchCaseType = {
   itemId: 'shadcn/tabs',
   caseId: 'tabs-demo',
@@ -183,28 +226,80 @@ export const shadcnTabsWorkbenchCase: ParityWorkbenchCaseType = {
   },
 }
 
+export const shadcnEmptyWorkbenchCase: ParityWorkbenchCaseType = {
+  itemId: 'shadcn/empty',
+  caseId: 'empty-demo',
+  originKind: 'pinned-shadcn',
+  originSourcePath: emptyOriginSourcePath,
+  originHarnessPath: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+  foldkitSourceHintPaths: [
+    'src/registry/shadcn/empty/index.ts',
+    'src/registry/shadcn/empty/examples.ts',
+  ],
+  neutralFixturePath: emptyFixturePath,
+  environment: defaultWorkbenchEnvironment,
+  captureZones: {
+    rootSelector: '[data-origin-fixture-root] > *',
+    portalSelectors: [],
+    layerSelectors: [],
+  },
+  comparisonPolicy: defaultWorkbenchComparisonPolicy,
+  interactionRecipes: [],
+  allowedDeviations: [
+    {
+      id: 'empty-screenshot-advisory',
+      scope: 'shadcn/empty#empty-demo',
+      comparison: 'screenshots',
+      reason: 'Pixel drift is advisory in workbench v1.',
+      owner: 'src/registry/shadcn/empty/examples.ts',
+    },
+  ],
+  reportPaths: {
+    outputDir: '.parity-workbench/shadcn-empty/empty-demo',
+    jsonPath: '.parity-workbench/shadcn-empty/empty-demo/report.json',
+    markdownPath: '.parity-workbench/shadcn-empty/empty-demo/report.md',
+    htmlPath: null,
+    screenshotDir: '.parity-workbench/shadcn-empty/empty-demo/screenshots',
+  },
+}
+
+export const shadcnWorkbenchCases = [
+  shadcnTabsWorkbenchCase,
+  shadcnEmptyWorkbenchCase,
+]
+
 export const shadcnTabsWorkbenchCases = [shadcnTabsWorkbenchCase]
 
 export const resolveWorkbenchCase = (
   itemId: string,
   caseId: string,
 ): ParityWorkbenchCaseType => {
-  const slot = requireReadySlot(itemId)
+  requireReadySlot(itemId)
+  const maybeWorkbenchCase = shadcnWorkbenchCases.find(
+    candidate => candidate.itemId === itemId && candidate.caseId === caseId,
+  )
 
-  if (itemId === 'shadcn/tabs' && caseId === 'tabs-demo') {
-    void slot
-    return shadcnTabsWorkbenchCase
+  if (maybeWorkbenchCase !== undefined) {
+    return maybeWorkbenchCase
   }
 
-  throw new Error(`Unknown workbench case: ${itemId}/${caseId}`)
+  throw new Error(
+    `Unknown workbench case for ready parity slot: ${itemId}/${caseId}`,
+  )
 }
 
 export const workbenchFixtureFor = (
   itemId: string,
   caseId: string,
 ): Promise<ParityWorkbenchNeutralFixture> => {
+  resolveWorkbenchCase(itemId, caseId)
+
   if (itemId === 'shadcn/tabs' && caseId === 'tabs-demo') {
     return loadShadcnTabsWorkbenchFixture()
+  }
+
+  if (itemId === 'shadcn/empty' && caseId === 'empty-demo') {
+    return loadShadcnEmptyWorkbenchFixture()
   }
 
   throw new Error(`Unknown workbench fixture: ${itemId}/${caseId}`)
@@ -212,7 +307,7 @@ export const workbenchFixtureFor = (
 
 export const validateWorkbenchCases =
   (): ReadonlyArray<ParityWorkbenchCaseType> =>
-    shadcnTabsWorkbenchCases.map(caseConfig => {
+    shadcnWorkbenchCases.map(caseConfig => {
       requireReadySlot(caseConfig.itemId)
       return caseConfig
     })

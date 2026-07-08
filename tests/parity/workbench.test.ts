@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest'
 import { renderWorkbenchMarkdownReport } from '../../src/registry/parity/workbench'
 import {
   resolveWorkbenchCase,
+  loadShadcnEmptyWorkbenchFixture,
   loadShadcnTabsWorkbenchFixture,
   validateWorkbenchCases,
   workbenchFixtureFor,
@@ -24,8 +25,33 @@ describe('parity workbench config', () => {
     expect(workbenchCase.reportPaths.jsonPath).toContain('.parity-workbench')
   })
 
+  test('resolves the shadcn empty workbench case from the ready slot', () => {
+    const workbenchCase = resolveWorkbenchCase('shadcn/empty', 'empty-demo')
+
+    expect(workbenchCase.itemId).toBe('shadcn/empty')
+    expect(workbenchCase.caseId).toBe('empty-demo')
+    expect(workbenchCase.originSourcePath).toBe(
+      'repos/ui/apps/v4/examples/base/empty-demo.tsx',
+    )
+    expect(workbenchCase.foldkitSourceHintPaths).toStrictEqual([
+      'src/registry/shadcn/empty/index.ts',
+      'src/registry/shadcn/empty/examples.ts',
+    ])
+    expect(workbenchCase.interactionRecipes).toStrictEqual([])
+  })
+
+  test('uses shadcn empty report paths under the workbench output directory', () => {
+    const workbenchCase = resolveWorkbenchCase('shadcn/empty', 'empty-demo')
+
+    expect(workbenchCase.reportPaths.jsonPath).toBe(
+      '.parity-workbench/shadcn-empty/empty-demo/report.json',
+    )
+  })
+
   test('validates the declared workbench case registry against slots', () => {
-    expect(validateWorkbenchCases()).toHaveLength(1)
+    expect(
+      validateWorkbenchCases().map(workbenchCase => workbenchCase.itemId),
+    ).toStrictEqual(['shadcn/tabs', 'shadcn/empty'])
   })
 
   test('loads the neutral tabs fixture proposal from the harvested source data', () =>
@@ -36,9 +62,44 @@ describe('parity workbench config', () => {
       caseId: 'tabs-demo',
     }))
 
+  test('loads the neutral empty fixture proposal from the aggregate source data', () =>
+    expect(
+      workbenchFixtureFor('shadcn/empty', 'empty-demo'),
+    ).resolves.toMatchObject({
+      itemId: 'shadcn/empty',
+      caseId: 'empty-demo',
+      originSourcePath: 'repos/ui/apps/v4/examples/base/empty-demo.tsx',
+      tabs: [],
+      disabledValues: [],
+    }))
+
   test('loads the harvested fixture through the lazy origin snapshot import', async () => {
     await expect(loadShadcnTabsWorkbenchFixture()).resolves.toStrictEqual(
       await workbenchFixtureFor('shadcn/tabs', 'tabs-demo'),
+    )
+  })
+
+  test('loads the empty fixture through the lazy aggregate case import', async () => {
+    await expect(loadShadcnEmptyWorkbenchFixture()).resolves.toStrictEqual(
+      await workbenchFixtureFor('shadcn/empty', 'empty-demo'),
+    )
+  })
+
+  test('reports chart as a missing workbench parity surface', () => {
+    expect(() => resolveWorkbenchCase('shadcn/chart', 'chart-demo')).toThrow(
+      'Missing parity slot for workbench item: shadcn/chart',
+    )
+  })
+
+  test('reports toast as a missing workbench parity surface', () => {
+    expect(() => resolveWorkbenchCase('shadcn/toast', 'toast-demo')).toThrow(
+      'Missing parity slot for workbench item: shadcn/toast',
+    )
+  })
+
+  test('reports an unregistered case for an otherwise ready workbench item', () => {
+    expect(() => resolveWorkbenchCase('shadcn/empty', 'empty-outline')).toThrow(
+      'Unknown workbench case for ready parity slot: shadcn/empty/empty-outline',
     )
   })
 

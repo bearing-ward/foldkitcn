@@ -22,9 +22,9 @@ import type {
 } from '../src/registry/parity/workbench'
 import type { OriginFixtureSnapshot } from '../tests/parity/fixtures/origin/shadcn/snapshot'
 import {
-  loadShadcnTabsWorkbenchFixture,
   resolveWorkbenchCase,
   validateWorkbenchCases,
+  workbenchFixtureFor,
 } from '../tests/parity/workbench-cases'
 
 import { createHash } from 'node:crypto'
@@ -927,7 +927,7 @@ const runWorkbench = async (input: WorkbenchCliInput): Promise<void> => {
   )
   logWorkbenchStage('Loading fixture data')
   const loadedFixture = await loadFixtureData(workbenchCase)
-  const harvestedFixture = await loadShadcnTabsWorkbenchFixture()
+  const harvestedFixture = await workbenchFixtureFor(input.itemId, input.caseId)
   let activeFixture = loadedFixture ?? harvestedFixture
 
   if (
