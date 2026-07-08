@@ -49,6 +49,7 @@
   "defaultImportPath": "shadcn/typography",
   "sourceRoot": "registry-src/shadcn/typography",
   "installableSourcePaths": [],
+  "sourceFiles": [],
   "originProvenance": [
     {
       "originKind": "shadcn",

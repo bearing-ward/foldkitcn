@@ -37,6 +37,7 @@ import { liveExampleViewFor } from './live-examples'
 import { roadmapSnapshot } from './roadmap'
 import type { RoadmapBlockedGroup } from './roadmap'
 import type {
+  ComponentDocsSourceFile,
   ExampleDocsArtifact,
   OriginComponentProgressReport,
   OriginComponentProgressRow,
@@ -173,6 +174,9 @@ type MobileNavigation = typeof MobileNavigation.Type
 export const DocsSidebar = ts('DocsSidebar', { isOpen: S.Boolean })
 type DocsSidebar = typeof DocsSidebar.Type
 
+const DocsInstallTabValue = S.Union([S.Literal('cli'), S.Literal('manual')])
+type DocsInstallTabValue = typeof DocsInstallTabValue.Type
+
 export const PagefindSearchResult = S.Struct({
   url: S.String,
   title: S.String,
@@ -239,6 +243,8 @@ export const Model = S.Struct({
   liveExampleSidebarOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarPanelOpenValues: S.Record(S.String, S.Boolean),
   liveExampleSidebarSelectedValues: S.Record(S.String, S.String),
+  docsPreviewCodeOpenValues: S.optional(S.Record(S.String, S.Boolean)),
+  docsInstallTabValues: S.optional(S.Record(S.String, DocsInstallTabValue)),
   searchQuery: S.String,
   pagefindSearch: PagefindSearch,
 })
@@ -740,6 +746,13 @@ export const ChangedUrl = m('ChangedUrl', { url: Url })
 export const ClickedToggleMobileNavigation = m('ClickedToggleMobileNavigation')
 export const ClickedToggleDocsSidebar = m('ClickedToggleDocsSidebar')
 export const ClickedCopySnippet = m('ClickedCopySnippet', { text: S.String })
+export const ClickedViewDocsPreviewCode = m('ClickedViewDocsPreviewCode', {
+  panelId: S.String,
+})
+export const SelectedDocsInstallTab = m('SelectedDocsInstallTab', {
+  panelId: S.String,
+  value: DocsInstallTabValue,
+})
 export const SucceededCopySnippet = m('SucceededCopySnippet', {
   text: S.String,
 })
@@ -1057,6 +1070,8 @@ export const Message = S.Union([
   ClickedToggleMobileNavigation,
   ClickedToggleDocsSidebar,
   ClickedCopySnippet,
+  ClickedViewDocsPreviewCode,
+  SelectedDocsInstallTab,
   SucceededCopySnippet,
   FailedCopySnippet,
   HidCopiedIndicator,
@@ -1156,6 +1171,8 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleSidebarOpenValues: {},
       liveExampleSidebarPanelOpenValues: {},
       liveExampleSidebarSelectedValues: {},
+      docsPreviewCodeOpenValues: {},
+      docsInstallTabValues: {},
       searchQuery: '',
       pagefindSearch: IdlePagefindSearch(),
     },
@@ -1435,6 +1452,26 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         [],
       ],
       ClickedCopySnippet: ({ text }) => [model, [CopySnippet({ text })]],
+      ClickedViewDocsPreviewCode: ({ panelId }) => [
+        evo(model, {
+          docsPreviewCodeOpenValues: values =>
+            pipe(
+              values ?? {},
+              EffectRecord.set(panelId, true),
+            ),
+        }),
+        [],
+      ],
+      SelectedDocsInstallTab: ({ panelId, value }) => [
+        evo(model, {
+          docsInstallTabValues: values =>
+            pipe(
+              values ?? {},
+              EffectRecord.set(panelId, value),
+            ),
+        }),
+        [],
+      ],
       SucceededCopySnippet: ({ text }) =>
         HashSet.has(model.copiedSnippets, text)
           ? [model, []]
@@ -3165,33 +3202,129 @@ const isDocsOnlyComponent = (component: PublicComponent): boolean =>
       Array.isReadonlyArrayEmpty(artifact.installableSourcePaths),
   })
 
-const snippetBlockView = (
-  text: string,
-  ariaLabel: string,
-  copiedSnippets: HashSet.HashSet<string>,
-): Html => {
-  const h = html<Message>()
-  const isCopied = HashSet.has(copiedSnippets, text)
+const docsInstallPanelIdFor = (itemId: string): string => `install#${itemId}`
 
-  return h.div([h.Class('snippet-block')], [
-    h.pre(
-      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
-      [h.code([], [text])],
-    ),
-    h.button(
-      [
-        h.Type('button'),
-        h.Class('copy-button'),
-        h.AriaLabel(ariaLabel),
-        h.OnClick(ClickedCopySnippet({ text })),
-      ],
-      [h.span([h.AriaHidden(true)], ['Copy'])],
-    ),
-    h.span(
-      [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
-      [isCopied ? 'Copied to clipboard' : ''],
-    ),
-  ])
+const docsPreviewPanelIdForExample = (example: ExampleDocsArtifact): string =>
+  `example#${example.id}`
+
+const DEFAULT_DOCS_CODE_TEASER_LINES = 3
+
+const docsCodeTeaser = (text: string, lineCount: number): string =>
+  text.split('\n').slice(0, lineCount).join('\n')
+
+type DocsCodePanelConfig = Readonly<{
+  panelId: string
+  text: string
+  copyLabel: string
+  copiedSnippets: HashSet.HashSet<string>
+  title: Option.Option<string>
+  isExpanded: boolean
+  revealLabel: Option.Option<string>
+  teaserLineCount: number
+}>
+
+const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
+  const h = html<Message>()
+  const isCopied = HashSet.has(config.copiedSnippets, config.text)
+  const teaser = docsCodeTeaser(config.text, config.teaserLineCount)
+  const codeAttributes = [
+    h.Class('code-block'),
+    h.DataAttribute('pagefind-ignore', ''),
+  ]
+
+  return h.div(
+    [
+      h.Class('docs-code-panel'),
+      h.DataAttribute('slot', 'docs-code-panel'),
+      h.DataAttribute('panel-id', config.panelId),
+    ],
+    [
+      Option.match(config.title, {
+        onNone: () => h.empty,
+        onSome: title => h.div([h.Class('docs-code-title')], [title]),
+      }),
+      config.isExpanded
+        ? h.pre(
+            [
+              ...codeAttributes,
+              h.Class('docs-code-full'),
+              h.DataAttribute('slot', 'docs-code-full'),
+            ],
+            [h.code([], [config.text])],
+          )
+        : h.div(
+            [
+              h.Class('docs-code-preview-shell'),
+              h.DataAttribute('slot', 'docs-code-preview'),
+            ],
+            [
+              h.pre([h.Class('code-block docs-code-preview')], [
+                h.code([], [teaser]),
+              ]),
+              Option.match(config.revealLabel, {
+                onNone: () => h.empty,
+                onSome: label =>
+                  h.div([h.Class('docs-code-reveal')], [
+                    h.button(
+                      [
+                        h.Type('button'),
+                        h.Class('docs-code-reveal-button'),
+                        h.DataAttribute('slot', 'docs-code-reveal'),
+                        h.OnClick(
+                          ClickedViewDocsPreviewCode({
+                            panelId: config.panelId,
+                          }),
+                        ),
+                      ],
+                      [label],
+                    ),
+                  ]),
+              }),
+            ],
+          ),
+      h.button(
+        [
+          h.Type('button'),
+          h.Class('copy-button docs-code-copy'),
+          h.DataAttribute('slot', 'docs-code-copy'),
+          h.AriaLabel(config.copyLabel),
+          h.OnClick(ClickedCopySnippet({ text: config.text })),
+        ],
+        [h.span([h.AriaHidden(true)], ['Copy'])],
+      ),
+      h.span(
+        [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
+        [isCopied ? 'Copied to clipboard' : ''],
+      ),
+    ],
+  )
+}
+
+const docsCodePanel = (
+  panelId: string,
+  text: string,
+  copyLabel: string,
+  copiedSnippets: HashSet.HashSet<string>,
+  options: Partial<Pick<DocsCodePanelConfig, 'isExpanded' | 'teaserLineCount'>> &
+    Readonly<{
+      title?: string
+      revealLabel?: string
+    }> = {},
+): Html => {
+  return docsCodePanelView({
+    panelId,
+    text,
+    copyLabel,
+    copiedSnippets,
+    title:
+      options.title === undefined ? Option.none() : Option.some(options.title),
+    isExpanded: options.isExpanded ?? true,
+    revealLabel:
+      options.revealLabel === undefined
+        ? Option.none()
+        : Option.some(options.revealLabel),
+    teaserLineCount: options.teaserLineCount ?? DEFAULT_DOCS_CODE_TEASER_LINES,
+  })
 }
 
 const dependenciesPanelView = (component: PublicComponent): Html => {
@@ -3220,12 +3353,62 @@ const dependenciesPanelView = (component: PublicComponent): Html => {
   })
 }
 
+const defaultDocsInstallTabValue: DocsInstallTabValue = 'cli'
+
+const selectedDocsInstallTab = (
+  docsInstallTabValues: Readonly<Record<string, DocsInstallTabValue>>,
+  panelId: string,
+): DocsInstallTabValue =>
+  pipe(
+    EffectRecord.get(docsInstallTabValues, panelId),
+    Option.getOrElse(() => defaultDocsInstallTabValue),
+  )
+
+const docsInstallTabButtonView = (
+  panelId: string,
+  value: DocsInstallTabValue,
+  label: string,
+  selectedValue: DocsInstallTabValue,
+): Html => {
+  const h = html<Message>()
+  const isSelected = value === selectedValue
+
+  return h.button(
+    [
+      h.Type('button'),
+      h.Class('docs-install-tab'),
+      h.AriaPressed(isSelected ? 'true' : 'false'),
+      h.OnClick(SelectedDocsInstallTab({ panelId, value })),
+    ],
+    [label],
+  )
+}
+
+const manualSourcePanelView = (
+  component: PublicComponent,
+  sourceFile: ComponentDocsSourceFile,
+  copiedSnippets: HashSet.HashSet<string>,
+): Html =>
+  docsCodePanel(
+    `manual-source#${component.entry.item.id}#${sourceFile.path}`,
+    sourceFile.content,
+    `Copy ${component.entry.item.name} manual source ${sourceFile.path}`,
+    copiedSnippets,
+    {
+      title: sourceFile.path,
+      isExpanded: true,
+    },
+  )
+
 const installationSectionView = (
   component: PublicComponent,
   copiedSnippets: HashSet.HashSet<string>,
+  docsInstallTabValues: Readonly<Record<string, DocsInstallTabValue>>,
 ): Html => {
   const h = html<Message>()
   const availability = component.entry.item.lifecycle.availability
+  const panelId = docsInstallPanelIdFor(component.entry.item.id)
+  const selectedTab = selectedDocsInstallTab(docsInstallTabValues, panelId)
 
   return h.section([h.Id('installation'), h.Class('content-section')], [
     h.h2([], ['Installation']),
@@ -3240,11 +3423,45 @@ const installationSectionView = (
               h.p([], [
                 'Install the component into your app, then import it from the generated local namespace.',
               ]),
-              snippetBlockView(
-                installCommandFor(component.entry.item.id),
-                `Copy ${component.entry.item.name} install command`,
-                copiedSnippets,
-              ),
+              h.div([h.Class('docs-install-tabs')], [
+                docsInstallTabButtonView(panelId, 'cli', 'CLI', selectedTab),
+                docsInstallTabButtonView(
+                  panelId,
+                  'manual',
+                  'Manual',
+                  selectedTab,
+                ),
+              ]),
+              selectedTab === 'cli'
+                ? docsCodePanel(
+                    `${panelId}#cli`,
+                    installCommandFor(component.entry.item.id),
+                    `Copy ${component.entry.item.name} install command`,
+                    copiedSnippets,
+                    { title: 'CLI' },
+                  )
+                : Option.match(component.maybeDocsArtifact, {
+                    onNone: () =>
+                      h.p([], ['Manual source files are not loaded.']),
+                    onSome: artifact =>
+                      Array.match(artifact.sourceFiles, {
+                        onEmpty: () =>
+                          h.p([], [
+                            'Manual source files are not available for this component.',
+                          ]),
+                        onNonEmpty: sourceFiles =>
+                          h.div(
+                            [h.Class('docs-manual-source-list')],
+                            sourceFiles.map(sourceFile =>
+                              manualSourcePanelView(
+                                component,
+                                sourceFile,
+                                copiedSnippets,
+                              ),
+                            ),
+                          ),
+                      }),
+                  }),
             ]),
           ),
           M.when('preview', () =>
@@ -3266,20 +3483,23 @@ const installationSectionView = (
   ])
 }
 
-const docsOnlyUsageView = (): Html => {
+const docsOnlyUsageView = (
+  copiedSnippets: HashSet.HashSet<string>,
+): Html => {
   const h = html<Message>()
+  const snippet =
+    "h.h1([h.Class('scroll-m-20 text-4xl font-extrabold tracking-tight')], ['Taxing Laughter: The Joke Tax Chronicles'])"
 
   return h.div([], [
     h.p([], [
       'Apply utility classes directly to semantic HTML inside your Foldkit views. There is no generated Typography import for this docs-only row.',
     ]),
-    h.pre(
-      [h.Class('code-block'), h.DataAttribute('pagefind-ignore', '')],
-      [
-        h.code([], [
-          "h.h1([h.Class('scroll-m-20 text-4xl font-extrabold tracking-tight')], ['Taxing Laughter: The Joke Tax Chronicles'])",
-        ]),
-      ],
+    docsCodePanel(
+      'usage#docs-only-typography',
+      snippet,
+      'Copy Typography usage snippet',
+      copiedSnippets,
+      { title: 'Usage' },
     ),
   ])
 }
@@ -3293,7 +3513,7 @@ const usageSectionView = (
   return h.section([h.Id('usage'), h.Class('content-section')], [
     h.h2([], ['Usage']),
     isDocsOnlyComponent(component)
-      ? docsOnlyUsageView()
+      ? docsOnlyUsageView(copiedSnippets)
       : Option.match(component.maybeDocsArtifact, {
           onNone: () =>
             h.p([], [
@@ -3304,10 +3524,12 @@ const usageSectionView = (
               h.p([], [
                 'Import the helper from the generated local namespace and call it from a Foldkit view after binding the Html factory.',
               ]),
-              snippetBlockView(
+              docsCodePanel(
+                `usage#${component.entry.item.id}`,
                 importSnippetFor(component),
                 `Copy ${component.entry.item.name} import snippet`,
                 copiedSnippets,
+                { title: 'Import' },
               ),
               h.dl([h.Class('meta-list wide')], [
                 h.div([], [
@@ -3324,9 +3546,66 @@ const usageSectionView = (
   ])
 }
 
+const docsPreviewCardView = (
+  example: ExampleDocsArtifact,
+  maybeLivePreview: Option.Option<Html>,
+  copiedSnippets: HashSet.HashSet<string>,
+  docsPreviewCodeOpenValues: Readonly<Record<string, boolean>>,
+): Html => {
+  const h = html<Message>()
+  const panelId = docsPreviewPanelIdForExample(example)
+  const isCodeOpen = pipe(
+    EffectRecord.get(docsPreviewCodeOpenValues, panelId),
+    Option.getOrElse(() => false),
+  )
+
+  return h.keyed('article')(
+    example.id,
+    [
+      h.Id(exampleAnchorId(example)),
+      h.Class('docs-preview-card'),
+      h.DataAttribute('slot', 'docs-preview-card'),
+    ],
+    [
+      h.div([h.Class('docs-preview-card-header')], [
+        h.div([], [
+          h.h3([], [example.title]),
+          h.p([], [example.description]),
+        ]),
+        statusBadgeView(example.previewStatus),
+      ]),
+      h.div(
+        [h.Class('docs-preview-surface'), h.DataAttribute('slot', 'docs-preview')],
+        [
+          Option.match(maybeLivePreview, {
+            onNone: () =>
+              h.div([h.Class('docs-preview-empty')], [
+                h.p([], [
+                  'Source is available for this example. No live preview renderer is registered yet.',
+                ]),
+              ]),
+            onSome: livePreview => livePreview,
+          }),
+        ],
+      ),
+      docsCodePanel(
+        panelId,
+        example.snippet,
+        `Copy ${example.title} example snippet`,
+        copiedSnippets,
+        {
+          isExpanded: isCodeOpen,
+          revealLabel: `View ${example.title} code`,
+        },
+      ),
+    ],
+  )
+}
+
 const examplesSectionView = (
   component: PublicComponent,
   copiedSnippets: HashSet.HashSet<string>,
+  docsPreviewCodeOpenValues: Readonly<Record<string, boolean>>,
   liveExampleInputValues: Readonly<Record<string, string>>,
   liveExampleOtpValues: Readonly<Record<string, string>>,
   liveExampleSliderValues: Readonly<Record<string, ReadonlyArray<number>>>,
@@ -4082,16 +4361,20 @@ const examplesSectionView = (
         value: change.value,
       }),
   }
-  const liveExamplePreviewView = (example: ExampleDocsArtifact): Html =>
+  const liveExamplePreviewView = (
+    example: ExampleDocsArtifact,
+  ): Option.Option<Html> =>
     Option.match(liveExampleViewFor(example, liveExampleContext), {
-      onNone: () => h.empty,
+      onNone: () => Option.none(),
       onSome: exampleView =>
-        h.div(
-          [
-            h.Class('live-example-preview'),
-            h.AriaLabel(`${example.title} live preview`),
-          ],
-          [exampleView],
+        Option.some(
+          h.div(
+            [
+              h.Class('live-example-preview'),
+              h.AriaLabel(`${example.title} live preview`),
+            ],
+            [exampleView],
+          ),
         ),
     })
 
@@ -4103,24 +4386,11 @@ const examplesSectionView = (
         h.div(
           [h.Class('example-list')],
           artifact.examples.map(example =>
-            h.keyed('article')(
-              example.id,
-              [h.Id(exampleAnchorId(example)), h.Class('example-card')],
-              [
-                h.div([h.Class('example-card-header')], [
-                  h.div([], [
-                    h.h3([], [example.title]),
-                    h.p([], [example.description]),
-                  ]),
-                  statusBadgeView(example.previewStatus),
-                ]),
-                liveExamplePreviewView(example),
-                snippetBlockView(
-                  example.snippet,
-                  `Copy ${example.title} example snippet`,
-                  copiedSnippets,
-                ),
-              ],
+            docsPreviewCardView(
+              example,
+              liveExamplePreviewView(example),
+              copiedSnippets,
+              docsPreviewCodeOpenValues,
             ),
           ),
         ),
@@ -4318,11 +4588,16 @@ const componentDetailPageView = (
           // h.p([], [component.entry.item.description]),
           dependenciesPanelView(component),
         ]),
-        installationSectionView(component, model.copiedSnippets),
+        installationSectionView(
+          component,
+          model.copiedSnippets,
+          model.docsInstallTabValues ?? {},
+        ),
         usageSectionView(component, model.copiedSnippets),
         examplesSectionView(
           component,
           model.copiedSnippets,
+          model.docsPreviewCodeOpenValues ?? {},
           model.liveExampleInputValues,
           model.liveExampleOtpValues,
           model.liveExampleSliderValues,

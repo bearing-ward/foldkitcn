@@ -158,6 +158,8 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleSidebarOpenValues: {},
   liveExampleSidebarPanelOpenValues: {},
   liveExampleSidebarSelectedValues: {},
+  docsPreviewCodeOpenValues: {},
+  docsInstallTabValues: {},
   searchQuery: '',
   pagefindSearch: IdlePagefindSearch(),
 })
@@ -1145,6 +1147,79 @@ describe(view, () => {
     )
   })
 
+  test('Button detail renders install tabs and shared usage code panels', () => {
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'CLI' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'Manual' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'CLI' }),
+        ),
+      ).toHaveAttr('aria-pressed', 'true'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.text('bunx foldkitcn add shadcn/button'),
+        ),
+      ).toExist(),
+      Scene.click(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'Manual' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.text('src/registry/shadcn/button/index.ts'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.text('export const Button', { exact: false }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', {
+            name: 'Copy Button manual source src/registry/shadcn/button/index.ts',
+          }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#usage'),
+          Scene.selector('[data-slot="docs-code-panel"]'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#usage'),
+          Scene.role('button', { name: 'Copy Button import snippet' }),
+        ),
+      ).toExist(),
+    )
+  })
+
   test('Typography detail renders docs-only guidance without install snippets', () => {
     Scene.scene(
       { update, view },
@@ -1165,6 +1240,7 @@ describe(view, () => {
       Scene.expect(
         Scene.text('bunx foldkitcn add shadcn/typography'),
       ).not.toExist(),
+      Scene.expect(Scene.role('button', { name: 'Manual' })).not.toExist(),
       Scene.expect(
         Scene.text(
           "import { Typography } from '@/components/foldkitcn/shadcn/typography'",
@@ -1197,6 +1273,69 @@ describe(view, () => {
       Scene.expect(Scene.text('live ready')).toExist(),
       Scene.expect(
         Scene.role('button', { name: 'Copy ButtonDefault example snippet' }),
+      ).toExist(),
+    )
+  })
+
+  test('Button detail renders examples in preview cards with collapsed source', () => {
+    const defaultCard = Scene.selector('#shadcn-button-default')
+
+    Scene.scene(
+      { update, view },
+      Scene.with(
+        modelWithRoute(
+          ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
+        ),
+      ),
+      Scene.expect(Scene.selector('[data-slot="docs-preview-card"]')).toExist(),
+      Scene.expect(
+        Scene.within(defaultCard, Scene.selector('[data-slot="docs-preview"]')),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.selector('[data-slot="docs-code-preview"]'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.role('button', { name: 'View ButtonDefault code' }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.text("['Button']", {
+            exact: false,
+          }),
+        ),
+      ).not.toExist(),
+      Scene.click(
+        Scene.within(
+          defaultCard,
+          Scene.role('button', { name: 'View ButtonDefault code' }),
+        ),
+      ),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.selector('[data-slot="docs-code-full"]'),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.text('export const ButtonDefault = (): Html => {', {
+            exact: false,
+          }),
+        ),
+      ).toExist(),
+      Scene.expect(
+        Scene.within(
+          defaultCard,
+          Scene.role('button', { name: 'Copy ButtonDefault example snippet' }),
+        ),
       ).toExist(),
     )
   })

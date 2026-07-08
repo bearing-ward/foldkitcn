@@ -124,6 +124,7 @@ honor its STOP conditions, and update your row when done.
 | 114 | Normalize menu-family origin parity for offsets, styling, and handoff behavior | P1 | L | 043, 046, 051, 052, 110 | DONE |
 | 115 | Add an agent-first shadcn parity workbench | P1 | L | 003, 016, 107 | DONE |
 | 116 | Clone the shadcn-style docs preview and source panels | P1 | L | 062, 064, 067, 068, 113 | DONE |
+| 117 | Dogfood local Card and Button helpers in the docs shell | P2 | M | 116 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -298,6 +299,11 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   the shadcn origin preview/source affordance in Foldkit-native code, then route
   examples, installation CLI/manual tabs, and usage snippets through that shared
   docs panel without importing React or changing component implementations.
+- Plan 117 follows Plan 116 because the preview/source panel cleanup created
+  the current hand-rolled docs controls and card shells. It should dogfood the
+  local `shadcn/button` and `shadcn/card` helpers in the docs shell while
+  preserving semantic HTML, Foldkit identity, docs selectors, and live-preview
+  behavior.
 
 ## Findings considered and rejected
 

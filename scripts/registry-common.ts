@@ -1316,6 +1316,10 @@ export const buildComponentDocsArtifacts = (
       defaultImportPath: item.id,
       sourceRoot: item.sourceRoot,
       installableSourcePaths: item.installableSourcePaths,
+      sourceFiles: item.installableSourcePaths.map(sourcePath => ({
+        path: sourcePath,
+        content: readFileSync(sourcePath, 'utf-8'),
+      })),
       originProvenance: item.originProvenance,
       dependencies: item.dependencies,
       examples: item.examples.map(example =>
