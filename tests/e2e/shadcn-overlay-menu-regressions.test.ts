@@ -52,6 +52,21 @@ const horizontalOverlap = (first: Box, second: Box): number =>
       Math.max(first.x, second.x),
   )
 
+const expectHorizontalOverlapAtMost = async (
+  first: Locator,
+  second: Locator,
+  expectedOverlap: number,
+): Promise<void> => {
+  await playwrightExpect
+    .poll(async () => {
+      const firstBox = await box(first)
+      const secondBox = await box(second)
+
+      return horizontalOverlap(firstBox, secondBox)
+    })
+    .toBeLessThanOrEqual(expectedOverlap)
+}
+
 const horizontalGap = (first: Box, second: Box): number =>
   first.x <= second.x
     ? Math.max(0, second.x - (first.x + first.width))
@@ -234,7 +249,7 @@ playwrightTest(
       '[data-slot="dropdown-menu-sub-content"][data-open]',
     )
     await openMenu(complexPreview.getByRole('button', { name: 'Complex Menu' }))
-    const complexMenuBox = await assertSurfaceVisible(complexMenu)
+    await assertSurfaceVisible(complexMenu)
     const newFileBox = await box(
       complexPreview.getByRole('menuitem', { name: 'New File' }),
     )
@@ -249,10 +264,8 @@ playwrightTest(
     )
     await complexPreview.getByRole('menuitem', { name: 'Open Recent' }).hover()
     await playwrightExpect(complexSubmenus).toHaveCount(1)
-    const openRecentBox = await assertSurfaceVisible(complexSubmenus.first())
-    playwrightExpect(
-      horizontalOverlap(complexMenuBox, openRecentBox),
-    ).toBeLessThanOrEqual(8)
+    await assertSurfaceVisible(complexSubmenus.first())
+    await expectHorizontalOverlapAtMost(complexMenu, complexSubmenus.first(), 8)
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'More Projects' }),
     ).toBeVisible()
@@ -260,10 +273,12 @@ playwrightTest(
       .getByRole('menuitem', { name: 'More Projects' })
       .hover()
     await playwrightExpect(complexSubmenus).toHaveCount(2)
-    const moreProjectsBox = await assertSurfaceVisible(complexSubmenus.nth(1))
-    playwrightExpect(
-      horizontalOverlap(openRecentBox, moreProjectsBox),
-    ).toBeLessThanOrEqual(8)
+    await assertSurfaceVisible(complexSubmenus.nth(1))
+    await expectHorizontalOverlapAtMost(
+      complexSubmenus.first(),
+      complexSubmenus.nth(1),
+      8,
+    )
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
     ).toBeVisible()
