@@ -125,7 +125,7 @@ honor its STOP conditions, and update your row when done.
 | 115 | Add an agent-first shadcn parity workbench | P1 | L | 003, 016, 107 | DONE |
 | 116 | Clone the shadcn-style docs preview and source panels | P1 | L | 062, 064, 067, 068, 113 | DONE |
 | 117 | Dogfood local Card and Button helpers in the docs shell | P2 | M | 116 | DONE |
-| 118 | Resolve the shadcn QA parity punch list except chart and toast | P1 | L | 109, 110, 111, 116 | TODO |
+| 118 | Resolve the shadcn QA parity punch list except chart and toast | P1 | L | 109, 110, 111, 116 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
