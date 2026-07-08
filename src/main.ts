@@ -13,7 +13,7 @@ import {
 } from 'effect'
 import type { Runtime } from 'foldkit'
 import { Command, Dom, Render, Subscription } from 'foldkit'
-import type { Document, Html } from 'foldkit/html'
+import type { Attribute, Document, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { UrlRequest, load, pushUrl } from 'foldkit/navigation'
@@ -142,6 +142,8 @@ import {
   fallbackRouteMetadata,
   routeMetadataForRoute,
 } from './route-inventory'
+import * as ShadcnButton from './registry/shadcn/button'
+import * as ShadcnCard from './registry/shadcn/card'
 
 export {
   ComponentDetailRoute,
@@ -2479,16 +2481,17 @@ const headerView = (model: Model): Html => {
           ),
         ),
       ]),
-      h.button(
-        [
-          h.Type('button'),
-          h.Class('mobile-nav-toggle'),
+      docsButtonView({
+        className: 'mobile-nav-toggle',
+        variant: 'outline',
+        size: 'sm',
+        attributes: [
           h.AriaLabel('Toggle navigation'),
           h.AriaExpanded(model.mobileNavigation.isOpen),
           h.OnClick(ClickedToggleMobileNavigation()),
         ],
-        ['Menu'],
-      ),
+        children: ['Menu'],
+      }),
     ],
   )
 }
@@ -2868,16 +2871,17 @@ const sidebarView = (
 const docsSidebarToggleView = (model: Model): Html => {
   const h = html<Message>()
 
-  return h.button(
-    [
-      h.Type('button'),
-      h.Class('docs-sidebar-toggle'),
+  return docsButtonView({
+    className: 'docs-sidebar-toggle',
+    variant: 'outline',
+    size: 'sm',
+    attributes: [
       h.Attribute('aria-controls', 'docs-sidebar'),
       h.AriaExpanded(model.docsSidebar.isOpen),
       h.OnClick(ClickedToggleDocsSidebar()),
     ],
-    [model.docsSidebar.isOpen ? 'Hide components' : 'Browse components'],
-  )
+    children: [model.docsSidebar.isOpen ? 'Hide components' : 'Browse components'],
+  })
 }
 
 const exampleAnchorId = (example: ExampleDocsArtifact): string =>
@@ -3042,12 +3046,20 @@ const homePageView = (model: Model): Html => {
         'The shell reads generated registry outputs, separates public components by namespace, and gives Registry and Roadmap pages stable URLs for the next documentation passes.',
       ]),
       h.div([h.Class('action-row')], [
-        h.a([h.Class('action-link'), h.Href(componentsIndexRouter({}))], [
-          'Browse components',
-        ]),
-        h.a([h.Class('action-link'), h.Href(registryRouter({}))], [
-          'Inspect registry',
-        ]),
+        h.a(
+          [
+            h.Class(docsLinkButtonClassName({ className: 'action-link' })),
+            h.Href(componentsIndexRouter({})),
+          ],
+          ['Browse components'],
+        ),
+        h.a(
+          [
+            h.Class(docsLinkButtonClassName({ className: 'action-link' })),
+            h.Href(registryRouter({})),
+          ],
+          ['Inspect registry'],
+        ),
       ]),
     ]),
   ])
@@ -3087,7 +3099,10 @@ const componentSummaryView = (component: PublicComponent): Html => {
 
   return h.keyed('article')(
     component.entry.item.id,
-    [h.Class('component-row')],
+    [
+      h.DataAttribute('slot', 'card'),
+      h.Class(docsCardClassName({ className: 'component-row' })),
+    ],
     [
       h.div([], [
         h.h3([], [
@@ -3264,34 +3279,36 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
               Option.match(config.revealLabel, {
                 onNone: () => h.empty,
                 onSome: label =>
-                  h.div([h.Class('docs-code-reveal')], [
-                    h.button(
-                      [
-                        h.Type('button'),
-                        h.Class('docs-code-reveal-button'),
-                        h.DataAttribute('slot', 'docs-code-reveal'),
-                        h.OnClick(
-                          ClickedViewDocsPreviewCode({
-                            panelId: config.panelId,
-                          }),
-                        ),
-                      ],
-                      [label],
-                    ),
-                  ]),
+                    h.div([h.Class('docs-code-reveal')], [
+                      docsButtonView({
+                        className: 'docs-code-reveal-button',
+                        variant: 'secondary',
+                        size: 'sm',
+                        attributes: [
+                          h.DataAttribute('docs-slot', 'docs-code-reveal'),
+                          h.OnClick(
+                            ClickedViewDocsPreviewCode({
+                              panelId: config.panelId,
+                            }),
+                          ),
+                        ],
+                        children: [label],
+                      }),
+                    ]),
               }),
             ],
           ),
-      h.button(
-        [
-          h.Type('button'),
-          h.Class('copy-button docs-code-copy'),
-          h.DataAttribute('slot', 'docs-code-copy'),
+      docsButtonView({
+        className: 'copy-button docs-code-copy',
+        variant: 'ghost',
+        size: 'xs',
+        attributes: [
+          h.DataAttribute('docs-slot', 'docs-code-copy'),
           h.AriaLabel(config.copyLabel),
           h.OnClick(ClickedCopySnippet({ text: config.text })),
         ],
-        [h.span([h.AriaHidden(true)], ['Copy'])],
-      ),
+        children: [h.span([h.AriaHidden(true)], ['Copy'])],
+      }),
       h.span(
         [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
         [isCopied ? 'Copied to clipboard' : ''],
@@ -3327,6 +3344,50 @@ const docsCodePanel = (
   })
 }
 
+type DocsButtonViewConfig = Readonly<{
+  className?: string
+  variant?: ShadcnButton.ButtonVariant
+  size?: ShadcnButton.ButtonSize
+  attributes: ReadonlyArray<Attribute<Message>>
+  children: ReadonlyArray<Html | string>
+}>
+
+const docsButtonView = (config: DocsButtonViewConfig): Html =>
+  ShadcnButton.view<Message>({
+    variant: config.variant ?? 'outline',
+    size: config.size ?? 'sm',
+    className: config.className,
+    toView: attributes => {
+      const h = html<Message>()
+
+      return h.button([...attributes.button, ...config.attributes], config.children)
+    },
+  })
+
+const docsLinkButtonClassName = (
+  options: ShadcnButton.ButtonStyleOptions = {},
+): string =>
+  ShadcnButton.buttonVariants({
+    variant: 'outline',
+    size: 'sm',
+    ...options,
+  })
+
+const docsCardClassName = (options: ShadcnCard.CardStyleOptions = {}): string =>
+  ShadcnCard.cardClassName(options)
+
+const docsCardHeaderClassName = (
+  options: ShadcnCard.CardPartStyleOptions = {},
+): string => ShadcnCard.cardHeaderClassName(options)
+
+const docsCardContentClassName = (
+  options: ShadcnCard.CardPartStyleOptions = {},
+): string => ShadcnCard.cardContentClassName(options)
+
+const docsCardFooterClassName = (
+  options: ShadcnCard.CardPartStyleOptions = {},
+): string => ShadcnCard.cardFooterClassName(options)
+
 const dependenciesPanelView = (component: PublicComponent): Html => {
   const h = html<Message>()
 
@@ -3339,7 +3400,13 @@ const dependenciesPanelView = (component: PublicComponent): Html => {
       return Array.match(registryDependencies, {
         onEmpty: () => h.empty,
         onNonEmpty: dependencies =>
-          h.aside([h.Class('relationship-panel'), h.AriaLabel('Composes')], [
+          h.aside(
+            [
+              h.DataAttribute('slot', 'card'),
+              h.Class(docsCardClassName({ className: 'relationship-panel' })),
+              h.AriaLabel('Composes'),
+            ],
+            [
             h.h2([], ['Composes']),
             h.ul(
               [h.Class('compact-list')],
@@ -3347,7 +3414,8 @@ const dependenciesPanelView = (component: PublicComponent): Html => {
                 h.li([], [h.code([], [dependency.target])]),
               ),
             ),
-          ]),
+            ],
+          ),
       })
     },
   })
@@ -3373,15 +3441,16 @@ const docsInstallTabButtonView = (
   const h = html<Message>()
   const isSelected = value === selectedValue
 
-  return h.button(
-    [
-      h.Type('button'),
-      h.Class('docs-install-tab'),
+  return docsButtonView({
+    className: 'docs-install-tab',
+    variant: isSelected ? 'secondary' : 'ghost',
+    size: 'sm',
+    attributes: [
       h.AriaPressed(isSelected ? 'true' : 'false'),
       h.OnClick(SelectedDocsInstallTab({ panelId, value })),
     ],
-    [label],
-  )
+    children: [label],
+  })
 }
 
 const manualSourcePanelView = (
@@ -3563,17 +3632,25 @@ const docsPreviewCardView = (
     example.id,
     [
       h.Id(exampleAnchorId(example)),
-      h.Class('docs-preview-card'),
-      h.DataAttribute('slot', 'docs-preview-card'),
+      h.DataAttribute('slot', 'card'),
+      h.DataAttribute('docs-slot', 'docs-preview-card'),
+      h.Class(docsCardClassName({ className: 'docs-preview-card' })),
     ],
     [
-      h.div([h.Class('docs-preview-card-header')], [
+      h.div(
+        [
+          h.Class(
+            docsCardHeaderClassName({ className: 'docs-preview-card-header' }),
+          ),
+        ],
+        [
         h.div([], [
           h.h3([], [example.title]),
           h.p([], [example.description]),
         ]),
         statusBadgeView(example.previewStatus),
-      ]),
+        ],
+      ),
       h.div(
         [h.Class('docs-preview-surface'), h.DataAttribute('slot', 'docs-preview')],
         [
@@ -4714,21 +4791,39 @@ const roadmapStatView = (
 ): Html => {
   const h = html<Message>()
 
-  return h.div([h.Class('roadmap-stat')], [
+  return h.div(
+    [
+      h.DataAttribute('slot', 'card'),
+      h.Class(docsCardClassName({ className: 'roadmap-stat' })),
+    ],
+    [
     h.dt([], [label]),
     h.dd([], [value]),
     h.p([], [detail]),
-  ])
+    ],
+  )
 }
 
 const roadmapRowView = (row: OriginComponentProgressRow): Html => {
   const h = html<Message>()
 
-  return h.li([h.Class('roadmap-row')], [
-    h.div([h.Class('roadmap-row-header')], [
+  return h.li(
+    [
+      h.DataAttribute('slot', 'card'),
+      h.Class(docsCardClassName({ className: 'roadmap-row' })),
+    ],
+    [
+    h.div(
+      [
+        h.Class(
+          docsCardHeaderClassName({ className: 'roadmap-row-header' }),
+        ),
+      ],
+      [
       h.strong([], [row.itemId]),
       statusBadgeView(row.readiness),
-    ]),
+      ],
+    ),
     h.p([], [
       row.readiness === 'blocked'
         ? `${row.blockers.length} roadmap blocker${row.blockers.length === 1 ? '' : 's'
@@ -4736,17 +4831,24 @@ const roadmapRowView = (row: OriginComponentProgressRow): Html => {
         : 'Origin evidence is available; the next step is a focused dossier.',
     ]),
     h.a([h.Class('source-link'), h.Href(row.docsUrl)], ['Origin docs']),
-  ])
+    ],
+  )
 }
 
 const roadmapBlockedGroupView = (group: RoadmapBlockedGroup): Html => {
   const h = html<Message>()
 
-  return h.article([h.Class('roadmap-group')], [
+  return h.article(
+    [
+      h.DataAttribute('slot', 'card'),
+      h.Class(docsCardClassName({ className: 'roadmap-group' })),
+    ],
+    [
     h.h3([], [group.label]),
     h.p([], [group.summary]),
     h.ul([h.Class('roadmap-list')], group.rows.map(roadmapRowView)),
-  ])
+    ],
+  )
 }
 
 const roadmapLoadedPageView = (
@@ -4838,9 +4940,13 @@ const notFoundPageView = (route: typeof NotFoundRoute.Type): Html => {
       `The path "${route.path}" was not found in the Foldkit CN docs shell.`,
     ),
     h.section([h.Id('status'), h.Class('content-section')], [
-      h.a([h.Class('action-link'), h.Href(homeRouter({}))], [
-        'Back to Foldkit CN',
-      ]),
+      h.a(
+        [
+          h.Class(docsLinkButtonClassName({ className: 'action-link' })),
+          h.Href(homeRouter({})),
+        ],
+        ['Back to Foldkit CN'],
+      ),
     ]),
   ])
 }
