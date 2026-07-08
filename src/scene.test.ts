@@ -272,6 +272,7 @@ describe(view, () => {
       Scene.expect(
         Scene.role('link', { name: 'Button (shadcn/button)' }),
       ).toHaveAttr('href', '/components/shadcn/button'),
+      Scene.expect(Scene.selector('[data-slot="card"]')).toExist(),
     )
   })
 
@@ -1172,6 +1173,18 @@ describe(view, () => {
           Scene.selector('#installation'),
           Scene.role('button', { name: 'CLI' }),
         ),
+      ).toHaveAttr('data-slot', 'button'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'Manual' }),
+        ),
+      ).toHaveAttr('data-slot', 'button'),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', { name: 'CLI' }),
+        ),
       ).toHaveAttr('aria-pressed', 'true'),
       Scene.expect(
         Scene.within(
@@ -1207,6 +1220,14 @@ describe(view, () => {
       ).toExist(),
       Scene.expect(
         Scene.within(
+          Scene.selector('#installation'),
+          Scene.role('button', {
+            name: 'Copy Button manual source src/registry/shadcn/button/index.ts',
+          }),
+        ),
+      ).toHaveAttr('data-slot', 'button'),
+      Scene.expect(
+        Scene.within(
           Scene.selector('#usage'),
           Scene.selector('[data-slot="docs-code-panel"]'),
         ),
@@ -1217,6 +1238,12 @@ describe(view, () => {
           Scene.role('button', { name: 'Copy Button import snippet' }),
         ),
       ).toExist(),
+      Scene.expect(
+        Scene.within(
+          Scene.selector('#usage'),
+          Scene.role('button', { name: 'Copy Button import snippet' }),
+        ),
+      ).toHaveAttr('data-slot', 'button'),
     )
   })
 
@@ -1287,7 +1314,6 @@ describe(view, () => {
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
       ),
-      Scene.expect(Scene.selector('[data-slot="docs-preview-card"]')).toExist(),
       Scene.expect(
         Scene.within(defaultCard, Scene.selector('[data-slot="docs-preview"]')),
       ).toExist(),
@@ -1302,6 +1328,9 @@ describe(view, () => {
           defaultCard,
           Scene.role('button', { name: 'View ButtonDefault code' }),
         ),
+      ).toExist(),
+      Scene.expect(
+        Scene.selector('[data-docs-slot="docs-preview-card"]'),
       ).toExist(),
       Scene.expect(
         Scene.within(
@@ -2635,6 +2664,7 @@ describe(view, () => {
       Scene.expect(
         Scene.text('plans/artifacts', { exact: false }),
       ).not.toExist(),
+      Scene.expect(Scene.selector('[data-slot="card"]')).toExist(),
     )
   })
 

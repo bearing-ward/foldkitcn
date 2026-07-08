@@ -40,6 +40,7 @@
 
 :root {
   color-scheme: light;
+  --radius: 0.5rem;
   --shell-bg: #f8f7f2;
   --shell-surface: #fffef9;
   --shell-border: #dfddd2;
@@ -49,6 +50,25 @@
   --shell-accent-strong: #124f4c;
   --shell-code: #f0eee5;
   --shell-shadow: 0 18px 45px rgb(36 35 31 / 8%);
+  --background: var(--shell-bg);
+  --foreground: var(--shell-text);
+  --card: var(--shell-surface);
+  --card-foreground: var(--shell-text);
+  --popover: var(--shell-surface);
+  --popover-foreground: var(--shell-text);
+  --primary: var(--shell-accent-strong);
+  --primary-foreground: var(--shell-surface);
+  --secondary: var(--shell-code);
+  --secondary-foreground: var(--shell-text);
+  --muted: var(--shell-code);
+  --muted-foreground: var(--shell-muted);
+  --accent: var(--shell-accent);
+  --accent-foreground: var(--shell-surface);
+  --destructive: #c03c3c;
+  --destructive-foreground: var(--shell-surface);
+  --border: var(--shell-border);
+  --input: var(--shell-border);
+  --ring: var(--shell-accent);
   font-family:
     Inter,
     ui-sans-serif,
@@ -62,6 +82,25 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
+    --background: var(--shell-bg);
+    --foreground: var(--shell-text);
+    --card: var(--shell-surface);
+    --card-foreground: var(--shell-text);
+    --popover: var(--shell-surface);
+    --popover-foreground: var(--shell-text);
+    --primary: var(--shell-accent);
+    --primary-foreground: #141411;
+    --secondary: var(--shell-code);
+    --secondary-foreground: var(--shell-text);
+    --muted: var(--shell-code);
+    --muted-foreground: var(--shell-muted);
+    --accent: var(--shell-accent-strong);
+    --accent-foreground: #141411;
+    --destructive: #dc6363;
+    --destructive-foreground: #141411;
+    --border: var(--shell-border);
+    --input: var(--shell-border);
+    --ring: var(--shell-accent);
     --shell-bg: #141411;
     --shell-surface: #1c1c18;
     --shell-border: #343229;
@@ -176,11 +215,6 @@ body {
 
 .mobile-nav-toggle {
   display: none;
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-  color: var(--shell-text);
-  padding: 0.55rem 0.75rem;
-  font: inherit;
 }
 
 .mobile-nav {
@@ -189,14 +223,6 @@ body {
 
 .docs-sidebar-toggle {
   display: none;
-  min-width: 0;
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-  color: var(--shell-text);
-  padding: 0.65rem 0.8rem;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 700;
 }
 
 .docs-layout {
@@ -353,13 +379,6 @@ dt {
   min-width: 0;
 }
 
-.search-result {
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-  padding: 0.65rem;
-  min-width: 0;
-}
-
 .search-result a {
   display: grid;
   gap: 0.25rem;
@@ -444,23 +463,10 @@ dt {
   margin-top: 1.25rem;
 }
 
-.action-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.5rem;
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-  padding: 0.6rem 0.85rem;
-  color: var(--shell-accent-strong);
-  font-weight: 700;
-}
-
 .component-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(10rem, 14rem);
   gap: 1rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid var(--shell-border);
 }
 
 .component-row h3 {
@@ -532,21 +538,6 @@ dt {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  min-width: 2.5rem;
-  min-height: 2rem;
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-  color: var(--shell-muted);
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.copy-button:hover,
-.copy-button:focus-visible {
-  color: var(--shell-accent-strong);
 }
 
 .docs-code-panel {
@@ -601,31 +592,8 @@ dt {
   );
 }
 
-.docs-code-reveal-button,
-.docs-install-tab {
-  min-height: 2.25rem;
-  border: 1px solid var(--shell-border);
-  border-radius: 0.375rem;
-  background: var(--shell-surface);
-  color: var(--shell-text);
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.82rem;
-  font-weight: 700;
-  white-space: normal;
-}
-
 .docs-code-reveal-button {
-  padding: 0.45rem 0.8rem;
   box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 12%);
-}
-
-.docs-code-reveal-button:hover,
-.docs-code-reveal-button:focus-visible,
-.docs-install-tab:hover,
-.docs-install-tab:focus-visible {
-  border-color: var(--shell-accent);
-  color: var(--shell-accent-strong);
 }
 
 .docs-install-tabs {
@@ -633,20 +601,6 @@ dt {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0 0.75rem;
-}
-
-.docs-install-tab {
-  padding: 0.4rem 0.75rem;
-}
-
-.docs-install-tab[aria-pressed='true'] {
-  border-color: var(--shell-accent);
-  background: color-mix(
-    in oklch,
-    var(--shell-accent) 12%,
-    var(--shell-surface)
-  );
-  color: var(--shell-accent-strong);
 }
 
 .docs-manual-source-list {
@@ -665,27 +619,6 @@ dt {
 .docs-preview-card {
   width: 100%;
   min-width: 0;
-  border: 1px solid var(--shell-border);
-  border-radius: 0.5rem;
-  background: var(--shell-surface);
-  overflow: hidden;
-}
-
-.docs-preview-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--shell-border);
-}
-
-.docs-preview-card h3 {
-  margin: 0;
-}
-
-.docs-preview-card p {
-  margin: 0.35rem 0 0;
 }
 
 .docs-preview-surface {
@@ -1100,17 +1033,6 @@ dt {
   margin: 1rem 0 0;
 }
 
-.roadmap-stat,
-.roadmap-row,
-.roadmap-group {
-  border: 1px solid var(--shell-border);
-  background: var(--shell-surface);
-}
-
-.roadmap-stat {
-  padding: 1rem;
-}
-
 .roadmap-stat dd {
   margin: 0.15rem 0;
   color: var(--shell-accent-strong);
@@ -1123,11 +1045,6 @@ dt {
   margin: 0;
   color: var(--shell-muted);
   line-height: 1.6;
-}
-
-.roadmap-row,
-.roadmap-group {
-  padding: 1rem;
 }
 
 .roadmap-row-header {
