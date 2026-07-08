@@ -419,7 +419,9 @@ const personItem = (person: Person): Html =>
     variant: 'outline',
     children: [
       ItemMedia<never>({
-        children: [avatar(person, { imageClassName: 'grayscale' })],
+        children: [
+          avatar(person, { imageClassName: 'grayscale', imageAlt: '' }),
+        ],
       }),
       ItemContent<never>({
         className: 'gap-1',
@@ -433,7 +435,6 @@ const personItem = (person: Person): Html =>
           button('', {
             variant: 'ghost',
             size: 'icon',
-            className: 'rounded-full',
             children: [icon('plus')],
           }),
         ],
@@ -466,6 +467,7 @@ export const ItemAvatar = (): Html => {
             children: [
               avatar(personByUsername('evilrabbit'), {
                 className: 'size-10',
+                imageAlt: '',
               }),
             ],
           }),
@@ -482,7 +484,6 @@ export const ItemAvatar = (): Html => {
               button('', {
                 size: 'icon-sm',
                 variant: 'outline',
-                className: 'rounded-full',
                 ariaLabel: 'Invite',
                 children: [icon('plus')],
               }),
@@ -746,7 +747,15 @@ export const ItemRtl = (): Html => {
           ItemContent<never>({
             children: [
               ItemTitle<never>({ children: [values.basicItem] }),
-              ItemDescription<never>({ children: [values.basicItemDesc] }),
+              h.p(
+                [
+                  h.DataAttribute('slot', 'item-description'),
+                  h.Class(
+                    'line-clamp-2 text-start text-sm leading-normal font-normal text-muted-foreground group-data-[size=xs]/item:text-xs [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary',
+                  ),
+                ],
+                [values.basicItemDesc],
+              ),
             ],
           }),
           ItemActions<never>({

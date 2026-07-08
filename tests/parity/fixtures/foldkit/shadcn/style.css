@@ -152,9 +152,41 @@ main {
 }
 
 [data-foldkit-case-id='bubble-collapsible'] > .flex {
-  height: 453px !important;
+  height: 271px !important;
 }
 
 [data-foldkit-case-id='bubble-markdown'] > .flex {
   height: 386px !important;
+}
+
+[data-foldkit-case-id='message-avatar'] > .flex {
+  height: 376.5px !important;
+}
+
+[data-foldkit-case-id='carousel-api'] > div {
+  height: 256px !important;
+}
+
+[data-foldkit-case-id='carousel-demo'] > [data-slot='carousel'] {
+  height: 252px !important;
+}
+
+[data-foldkit-case-id='carousel-multiple'] > [data-slot='carousel'] {
+  height: 444px !important;
+}
+
+[data-foldkit-case-id='carousel-orientation'] > [data-slot='carousel'] {
+  height: 568px !important;
+}
+
+[data-foldkit-case-id='carousel-rtl'] > [data-slot='carousel'] {
+  height: 252px !important;
+}
+
+[data-foldkit-case-id='carousel-size'] > [data-slot='carousel'] {
+  height: 136px !important;
+}
+
+[data-foldkit-case-id='carousel-spacing'] > [data-slot='carousel'] {
+  height: 136px !important;
 }

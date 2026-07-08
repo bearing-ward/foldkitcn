@@ -53,7 +53,6 @@ export type ToastExampleController<Message> = Readonly<{
 const defaultState = (): ToastPrimitive.ToastState =>
   ToastPrimitive.createToastState()
 
-const descriptionButtonClassName = 'w-fit'
 const positionButtonsClassName = 'flex flex-wrap justify-center gap-2'
 const typeButtonsClassName = 'flex flex-wrap gap-2'
 
@@ -175,13 +174,7 @@ export const SonnerDemo = <Message = never>(
 
 export const SonnerDescription = <Message = never>(
   controller: ToastExampleController<Message> = {},
-): Html =>
-  toastButton(
-    'Show Toast',
-    ClickedShowDescriptionToast(),
-    controller,
-    descriptionButtonClassName,
-  )
+): Html => toastButton('Show Toast', ClickedShowDescriptionToast(), controller)
 
 export const SonnerPosition = <Message = never>(
   controller: ToastExampleController<Message> = {},

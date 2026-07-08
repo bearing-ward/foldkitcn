@@ -247,13 +247,11 @@ export const ButtonRounded = (): Html => {
     [h.Class('flex gap-2')],
     [
       Button<never>({
-        className: 'rounded-full',
         toView: attributes => h.button([...attributes.button], ['Get Started']),
       }),
       Button<never>({
         variant: 'outline',
         size: 'icon',
-        className: 'rounded-full',
         toView: attributes => h.button([...attributes.button], [arrowUpIcon()]),
       }),
     ],

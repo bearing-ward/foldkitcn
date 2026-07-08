@@ -3,10 +3,10 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 
-import * as ToastPrimitive from '../../base-ui/toast'
+import type { ToastState } from '../../base-ui/toast'
 import { view as Collapsible } from '../collapsible'
 import { view as Popover } from '../popover'
-import { view as Sonner } from '../sonner'
+import { renderSonnerDemoToaster } from '../sonner/examples'
 import { view as Tooltip } from '../tooltip'
 import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from './index'
 
@@ -21,12 +21,9 @@ export type BubbleExampleController<Message> = Readonly<{
     controlId: string,
     change: Readonly<{ open: boolean }>,
   ) => Message
-  toastState?: ToastPrimitive.ToastState
+  toastState?: ToastState
   onBubbleMessage?: (message: BubbleExampleMessage) => Message
 }>
-
-const defaultBubbleToastState = (): ToastPrimitive.ToastState =>
-  ToastPrimitive.createToastState({ limit: 3 })
 
 const isOpenFor = <Message>(
   controller: BubbleExampleController<Message> | undefined,
@@ -133,7 +130,6 @@ const bubbleContentButton = <Message>(
       h.button(
         [
           ...attributes.content,
-          h.Type('button'),
           ...(controller?.onBubbleMessage === undefined
             ? []
             : [
@@ -389,12 +385,15 @@ export const BubbleLinkButtonDemo = <Message = never>(
         }),
       ],
     }),
-    Sonner<Message>({
-      id: 'bubble-reply-sonner',
-      state: controller?.toastState ?? defaultBubbleToastState(),
-      viewportPositioning: 'absolute',
-      viewportPosition: 'bottom-right',
-    }),
+    ...(controller === undefined
+      ? []
+      : [
+          renderSonnerDemoToaster<Message>(
+            controller.toastState === undefined
+              ? {}
+              : { state: controller.toastState },
+          ),
+        ]),
   ])
 
 export const BubbleReactionsDemo = (): Html =>
@@ -478,6 +477,45 @@ export const BubbleCollapsibleDemo = <Message = never>(
   const summary =
     'The accessibility review found two focus states that were visually too subtle in dark mode.'
 
+  if (controller === undefined) {
+    return bubbleStack([
+      Bubble<Message>({
+        variant: 'muted',
+        children: [
+          BubbleContent<Message>({ children: ['How can I help you today?'] }),
+        ],
+      }),
+      Bubble<Message>({
+        variant: 'muted',
+        align: 'end',
+        children: [
+          BubbleContent<Message>({
+            className: 'whitespace-pre-line',
+            attributes: [
+              h.Id(controlId),
+              h.DataAttribute('closed', ''),
+              h.DataAttribute('slot', 'collapsible'),
+            ],
+            children: [
+              h.p([], [summary]),
+              h.button(
+                [
+                  h.AriaExpanded(false),
+                  h.Type('button'),
+                  h.DataAttribute('slot', 'collapsible-trigger'),
+                  h.Class(
+                    'mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground',
+                  ),
+                ],
+                ['Show more'],
+              ),
+            ],
+          }),
+        ],
+      }),
+    ])
+  }
+
   return bubbleStack([
     Bubble<Message>({
       variant: 'muted',
@@ -543,6 +581,39 @@ export const BubbleTooltipDemo = <Message = never>(
   const h = html<Message>()
   const controlId = 'bubble-read-status-tooltip'
   const onOpenChange = controller?.onOpenChange
+
+  if (controller === undefined) {
+    return compactBubbleStack([
+      Bubble<Message>({
+        variant: 'secondary',
+        children: [
+          BubbleContent<Message>({
+            children: ['Did you remove the stale route?'],
+          }),
+        ],
+      }),
+      Bubble<Message>({
+        align: 'end',
+        children: [
+          BubbleContent<Message>({
+            children: ['Yes, removed it from the registry.'],
+          }),
+          bareReactions([
+            h.button(
+              [
+                h.Type('button'),
+                h.AriaLabel('Read on Jan 5, 2026 at 4:32 PM'),
+                h.Class(
+                  'inline-flex size-7 items-center justify-center rounded-full bg-transparent',
+                ),
+              ],
+              ['✓'],
+            ),
+          ]),
+        ],
+      }),
+    ])
+  }
 
   return compactBubbleStack([
     Bubble<Message>({
@@ -625,6 +696,35 @@ export const BubblePopoverDemo = <Message = never>(
   const h = html<Message>()
   const controlId = 'bubble-error-details-popover'
   const onOpenChange = controller?.onOpenChange
+
+  if (controller === undefined) {
+    return compactBubbleStack([
+      Bubble<Message>({
+        align: 'end',
+        children: [
+          BubbleContent<Message>({ children: ['Run the build script.'] }),
+        ],
+      }),
+      Bubble<Message>({
+        variant: 'destructive',
+        children: [
+          BubbleContent<Message>({ children: ['Failed to run the command.'] }),
+          bareReactions([
+            h.button(
+              [
+                h.Type('button'),
+                h.AriaLabel('Show error details'),
+                h.Class(
+                  'inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive',
+                ),
+              ],
+              ['i'],
+            ),
+          ]),
+        ],
+      }),
+    ])
+  }
 
   return compactBubbleStack([
     Bubble<Message>({

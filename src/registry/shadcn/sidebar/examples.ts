@@ -851,6 +851,14 @@ const sidebarDropdown = <Message>(
   }>,
 ): Html => {
   const { controller } = config
+  const contentClassName = [
+    config.contentClassName,
+    config.side === 'top'
+      ? 'data-[side=top]:top-auto! data-[side=top]:bottom-0!'
+      : undefined,
+  ]
+    .filter((className): className is string => className !== undefined)
+    .join(' ')
 
   return DropdownMenu.view<Message>({
     id: config.id,
@@ -862,9 +870,7 @@ const sidebarDropdown = <Message>(
     })),
     highlightedValue: config.items.find(item => item.isDisabled !== true)
       ?.value,
-    ...(config.contentClassName === undefined
-      ? {}
-      : { contentClassName: config.contentClassName }),
+    ...(contentClassName === '' ? {} : { contentClassName }),
     side: config.side ?? 'right',
     align: config.align ?? 'start',
     ...(controller === undefined
@@ -1225,7 +1231,7 @@ const sidebarDemoUser = <Message>(
             id: 'user-menu',
             controller,
             contentClassName: 'min-w-56 rounded-lg',
-            side: 'top',
+            side: 'right',
             align: 'end',
             items: [
               { value: 'upgrade', label: 'Upgrade to Pro' },
@@ -1482,8 +1488,7 @@ export const SidebarFooter = <Message = never>(
                               h.AriaHasPopup('menu'),
                             ],
                             children: [
-                              demoAvatar(),
-                              h.span([], ['Username']),
+                              'Username',
                               icon('chevronUp', 'ml-auto'),
                             ],
                           })
@@ -1496,7 +1501,6 @@ export const SidebarFooter = <Message = never>(
                             items: [
                               { value: 'account', label: 'Account' },
                               { value: 'billing', label: 'Billing' },
-                              { value: 'settings', label: 'Settings' },
                               { value: 'sign-out', label: 'Sign out' },
                             ],
                             trigger: attributes =>
@@ -1505,8 +1509,7 @@ export const SidebarFooter = <Message = never>(
                                   'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
                                 attributes: [...attributes.trigger],
                                 children: [
-                                  demoAvatar(),
-                                  h.span([], ['Username']),
+                                  'Username',
                                   icon('chevronUp', 'ml-auto'),
                                 ],
                               }),
@@ -1517,7 +1520,6 @@ export const SidebarFooter = <Message = never>(
               }),
             ],
           }),
-          sidebarRail(controller),
         ],
       }),
       Sidebar.SidebarInset<Message>({
@@ -1735,6 +1737,19 @@ export const SidebarHeader = <Message = never>(
   controller?: SidebarController<Message>,
 ): Html => {
   const h = html<Message>()
+  const workspaceItems: ReadonlyArray<SidebarDropdownItem> = [
+    { value: 'acme', label: 'Acme Inc' },
+    { value: 'evil-rabbit', label: 'Evil Rabbit' },
+    { value: 'monsters', label: 'Monsters Inc' },
+  ]
+  const selectedWorkspace = sidebarSelectedValue(
+    controller,
+    'sidebar-header-workspace-menu',
+    'Select Workspace',
+  )
+  const workspaceLabel =
+    workspaceItems.find(item => item.value === selectedWorkspace)?.label ??
+    selectedWorkspace
 
   return Sidebar.SidebarProvider<Message>({
     children: [
@@ -1748,18 +1763,35 @@ export const SidebarHeader = <Message = never>(
                 children: [
                   Sidebar.SidebarMenuItem<Message>({
                     children: [
-                      Sidebar.SidebarMenuButton<Message>({
-                        className:
-                          'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
-                        attributes: [
-                          h.AriaExpanded(false),
-                          h.AriaHasPopup('menu'),
-                        ],
-                        children: [
-                          'Select Workspace',
-                          icon('chevronDown', 'ml-auto'),
-                        ],
-                      }),
+                      controller === undefined
+                        ? Sidebar.SidebarMenuButton<Message>({
+                            className:
+                              'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
+                            attributes: [
+                              h.AriaExpanded(false),
+                              h.AriaHasPopup('menu'),
+                            ],
+                            children: [
+                              'Select Workspace',
+                              icon('chevronDown', 'ml-auto'),
+                            ],
+                          })
+                        : sidebarDropdown<Message>({
+                            id: 'sidebar-header-workspace-menu',
+                            controller,
+                            contentClassName: 'min-w-48 rounded-lg',
+                            items: workspaceItems,
+                            trigger: attributes =>
+                              Sidebar.SidebarMenuButton<Message>({
+                                className:
+                                  'data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground',
+                                attributes: [...attributes.trigger],
+                                children: [
+                                  workspaceLabel,
+                                  icon('chevronDown', 'ml-auto'),
+                                ],
+                              }),
+                          }),
                     ],
                   }),
                 ],
@@ -2080,15 +2112,41 @@ export const SidebarMenuSub = <Message = never>(
     },
     {
       title: 'Build Your Application',
-      items: ['Routing', 'Data Fetching', 'Rendering', 'Styling', 'Testing'],
+      items: [
+        'Routing',
+        'Data Fetching',
+        'Rendering',
+        'Caching',
+        'Styling',
+        'Optimizing',
+        'Configuring',
+        'Testing',
+        'Authentication',
+        'Deploying',
+        'Upgrading',
+        'Examples',
+      ],
     },
     {
       title: 'API Reference',
-      items: ['Components', 'File Conventions', 'Functions', 'CLI'],
+      items: [
+        'Components',
+        'File Conventions',
+        'Functions',
+        'next.config.js Options',
+        'CLI',
+        'Edge Runtime',
+      ],
     },
     {
       title: 'Architecture',
-      items: ['Accessibility', 'Fast Refresh', 'Supported Browsers'],
+      items: [
+        'Accessibility',
+        'Fast Refresh',
+        'Next.js Compiler',
+        'Supported Browsers',
+        'Turbopack',
+      ],
     },
   ] as const
 
@@ -2113,7 +2171,6 @@ export const SidebarMenuSub = <Message = never>(
                                 children: [h.span([], [item.title])],
                               }),
                               Sidebar.SidebarMenuSub<Message>({
-                                className: 'max-h-16 overflow-auto',
                                 children: item.items.map(subItem =>
                                   Sidebar.SidebarMenuSubItem<Message>({
                                     children: [

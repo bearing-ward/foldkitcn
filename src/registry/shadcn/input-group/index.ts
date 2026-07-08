@@ -3,8 +3,9 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
 import { cn } from '../../../utils/cn'
+import * as BaseInput from '../../base-ui/input'
 import * as ShadcnButton from '../button'
-import * as ShadcnInput from '../input'
+import type * as ShadcnInput from '../input'
 import * as ShadcnTextarea from '../textarea'
 
 // MODEL
@@ -179,23 +180,22 @@ export const inputGroupAddonRtlAlignClassNames: Readonly<
   'block-end': inputGroupAddonAlignClassNames['block-end'],
 }
 
-export const inputGroupButtonBaseClassName =
-  'flex items-center gap-2 text-sm shadow-none'
+export const inputGroupButtonBaseClassName = ''
 
 export const inputGroupButtonSizeClassNames: Readonly<
   Record<InputGroupButtonSize, string>
 > = {
-  xs: "h-6 gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
+  xs: '',
   sm: '',
-  'icon-xs': 'size-6 rounded-[calc(var(--radius)-3px)] p-0 has-[>svg]:p-0',
-  'icon-sm': 'size-8 p-0 has-[>svg]:p-0',
+  'icon-xs': '',
+  'icon-sm': '',
 }
 
 export const inputGroupTextBaseClassName =
   "flex items-center gap-2 text-sm text-muted-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
 
 export const inputGroupInputBaseClassName =
-  'flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent'
+  'h-8 w-full min-w-0 border-input px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent'
 
 export const inputGroupTextareaBaseClassName =
   'flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent'
@@ -379,13 +379,13 @@ export const InputGroupInput = <Message>(
   const h = html<Message>()
   const { attributes = [], className, toView, ...inputConfig } = config
 
-  return ShadcnInput.view<Message>({
+  return BaseInput.view<Message>({
     ...inputConfig,
-    className: inputGroupInputClassName({ className }),
     toView: inputAttributes => {
       const mergedAttributes: InputGroupInputAttributes<Message> = {
         input: [
           ...inputAttributes.input,
+          h.Class(inputGroupInputClassName({ className })),
           h.DataAttribute('slot', 'input-group-control'),
           ...attributes,
         ],

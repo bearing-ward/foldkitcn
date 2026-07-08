@@ -222,11 +222,9 @@ const loginCard = (
         children: [
           button(copy.login, {
             type: 'submit',
-            className: 'w-full',
           }),
           button(copy.loginWithGoogle, {
             variant: 'outline',
-            className: 'w-full',
           }),
         ],
       }),
@@ -403,7 +401,7 @@ export const CardImage = (): Html => {
         ],
       }),
       CardFooter<never>({
-        children: [button('View Event', { className: 'w-full' })],
+        children: [button('View Event')],
       }),
     ],
   })
@@ -443,12 +441,10 @@ export const CardSmall = (): Html => {
         children: [
           button('Set up scheduled reports', {
             size: 'sm',
-            className: 'w-full',
           }),
           button("See what's new", {
             variant: 'outline',
             size: 'sm',
-            className: 'w-full',
           }),
         ],
       }),

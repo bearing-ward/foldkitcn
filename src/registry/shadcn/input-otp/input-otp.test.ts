@@ -71,7 +71,7 @@ const viewInputOTP =
 describe('shadcn/input-otp class helpers', () => {
   test('exports base-nova class strings', () => {
     expect(inputOTPContainerClassName()).toBe(
-      'cn-input-otp relative flex items-center has-disabled:opacity-50',
+      'cn-input-otp flex items-center has-disabled:opacity-50',
     )
     expect(inputOTPInputClassName()).toBe('disabled:cursor-not-allowed')
     expect(inputOTPGroupClassName()).toContain(

@@ -80,9 +80,7 @@ describe('shadcn/input-group class helpers', () => {
         dir: 'rtl',
       }),
     ).toContain('ps-2')
-    expect(InputGroup.inputGroupButtonClassName({ size: 'icon-xs' })).toContain(
-      'size-6',
-    )
+    expect(InputGroup.inputGroupButtonClassName({ size: 'icon-xs' })).toBe('')
     expect(InputGroup.inputGroupInputClassName()).toContain('rounded-none')
   })
 

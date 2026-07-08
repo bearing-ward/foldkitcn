@@ -633,7 +633,10 @@ dt {
   transform: translateZ(0);
 }
 
-.live-example-preview:has([data-slot='context-menu-content'][data-open]) {
+.live-example-preview:has([data-slot='context-menu-content'][data-open]),
+.live-example-preview:has(
+  [data-slot='sidebar-wrapper'] [data-slot='dropdown-menu-content'][data-open]
+) {
   z-index: 20;
   overflow: visible;
   transform: none;
@@ -645,6 +648,13 @@ dt {
   width: 100%;
   min-height: 28rem;
   overflow: hidden;
+}
+
+.live-example-preview
+  [data-slot='sidebar-wrapper']:has(
+    [data-slot='dropdown-menu-content'][data-open]
+  ) {
+  overflow: visible;
 }
 
 .live-example-preview dialog {

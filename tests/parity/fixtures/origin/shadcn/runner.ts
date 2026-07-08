@@ -890,8 +890,38 @@ const originAliasPlugin = (): Plugin => ({
         const inputGroupClassName = 'group/input-group relative flex h-8 w-full min-w-0 items-center rounded-lg border border-input transition-colors outline-none in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-disabled:bg-input/50 has-disabled:opacity-50 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-3 has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-3 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto dark:bg-input/30 dark:has-disabled:bg-input/80 dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5'
         const addonBaseClassName = "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4"
         const inputClassName = 'h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent'
+        const buttonBaseClassName = "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+        const inputGroupButtonBaseClassName = 'flex items-center gap-2 text-sm shadow-none'
 
         const cx = (...classes) => classes.filter(Boolean).join(' ')
+
+        const buttonVariantClassName = variant => {
+          if (variant === 'outline') {
+            return 'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50'
+          }
+
+          if (variant === 'secondary') {
+            return 'bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground'
+          }
+
+          return 'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50'
+        }
+
+        const inputGroupButtonSizeClassName = size => {
+          if (size === 'icon-xs') {
+            return 'size-6 rounded-[calc(var(--radius)-3px)] p-0 has-[>svg]:p-0'
+          }
+
+          if (size === 'icon-sm') {
+            return 'size-8 p-0 has-[>svg]:p-0'
+          }
+
+          if (size === 'sm') {
+            return ''
+          }
+
+          return "h-6 gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>svg:not([class*='size-'])]:size-3.5"
+        }
 
         export function InputGroup({ children, className, ...props }) {
           return React.createElement(
@@ -934,8 +964,24 @@ const originAliasPlugin = (): Plugin => ({
           })
         }
 
-        export function InputGroupButton({ children, ...props }) {
-          return React.createElement('button', props, children)
+        export function InputGroupButton({ children, className, type = 'button', variant = 'ghost', size = 'xs', ...props }) {
+          return React.createElement(
+            'button',
+            {
+              ...props,
+              type,
+              'data-size': size,
+              'data-slot': 'button',
+              className: cx(
+                buttonBaseClassName,
+                buttonVariantClassName(variant),
+                inputGroupButtonBaseClassName,
+                inputGroupButtonSizeClassName(size),
+                className,
+              ),
+            },
+            children,
+          )
         }
 
         export function InputGroupText({ children, className, ...props }) {

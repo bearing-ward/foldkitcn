@@ -332,7 +332,6 @@ export const EmptyInCard = (): Html =>
           ),
           button(['Learn more ', icon('arrowUpRight')], {
             variant: 'link',
-            className: 'text-muted-foreground',
             href: '#',
           }),
         ],
@@ -366,7 +365,6 @@ export const EmptyDemo = (): Html =>
       }),
       button(['Learn More ', icon('arrowUpRight')], {
         variant: 'link',
-        className: 'text-muted-foreground',
         size: 'sm',
         href: '#',
       }),
@@ -478,7 +476,6 @@ export const EmptyRtl = (): Html => {
         ],
         {
           variant: 'link',
-          className: 'text-muted-foreground',
           size: 'sm',
           href: '#',
         },

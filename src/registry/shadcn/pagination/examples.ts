@@ -42,34 +42,6 @@ const rowsPerPageItems: ReadonlyArray<SelectItemDescriptor> = [
   { value: '100', label: '100' },
 ]
 
-const pageRows: ReadonlyArray<string> = [
-  'Invoice INV001',
-  'Invoice INV002',
-  'Invoice INV003',
-  'Invoice INV004',
-  'Invoice INV005',
-  'Invoice INV006',
-  'Invoice INV007',
-  'Invoice INV008',
-  'Invoice INV009',
-  'Invoice INV010',
-  'Invoice INV011',
-  'Invoice INV012',
-  'Invoice INV013',
-  'Invoice INV014',
-  'Invoice INV015',
-  'Invoice INV016',
-  'Invoice INV017',
-  'Invoice INV018',
-  'Invoice INV019',
-  'Invoice INV020',
-  'Invoice INV021',
-  'Invoice INV022',
-  'Invoice INV023',
-  'Invoice INV024',
-  'Invoice INV025',
-]
-
 const originClosedSelectTriggerClassName =
   "flex h-8 w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm whitespace-nowrap shadow-none transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 w-20"
 
@@ -128,66 +100,67 @@ const paginationLink = (
     children: [label],
   })
 
+const chevronDownIcon = <Message>(): Html => {
+  const h = html<Message>()
+
+  return h.svg(
+    [
+      h.Xmlns('http://www.w3.org/2000/svg'),
+      h.Width('24'),
+      h.Height('24'),
+      h.ViewBox('0 0 24 24'),
+      h.Fill('none'),
+      h.Stroke('currentColor'),
+      h.StrokeWidth('2'),
+      h.StrokeLinecap('round'),
+      h.StrokeLinejoin('round'),
+      h.Class('lucide lucide-chevron-down'),
+      h.AriaHidden(true),
+    ],
+    [h.path([h.D('m6 9 6 6 6-6')], [])],
+  )
+}
+
 const rowsPerPageSelect = <Message>(
   controller?: PaginationExampleController<Message>,
 ): Html => {
+  if (controller === undefined) {
+    const h = html<Message>()
+
+    return h.button(
+      [
+        h.Id('select-rows-per-page'),
+        h.Type('button'),
+        h.AriaHasPopup('listbox'),
+        h.AriaExpanded(false),
+        h.DataAttribute('slot', 'select-trigger'),
+        h.Class(originClosedSelectTriggerClassName),
+      ],
+      [
+        h.span(
+          [h.DataAttribute('slot', 'select-value')],
+          [h.span([h.DataAttribute('slot', 'select-value')], [])],
+        ),
+        chevronDownIcon(),
+      ],
+    )
+  }
+
   const config = {
     id: 'select-rows-per-page',
     items: rowsPerPageItems,
-    open: controller?.isRowsPerPageOpen ?? false,
-    value: controller?.rowsPerPageValue ?? '25',
-    placeholder: controller?.rowsPerPageValue ?? '25',
+    open: controller.isRowsPerPageOpen,
+    value: controller.rowsPerPageValue,
+    placeholder: controller.rowsPerPageValue,
     triggerClassName: 'w-20',
   }
 
   return Select<Message>({
     ...config,
     triggerClassName: originClosedSelectTriggerClassName,
-    ...(controller === undefined
-      ? {}
-      : {
-          onOpenChange: controller.onRowsPerPageOpenChange,
-          onValueChange: controller.onRowsPerPageValueChange,
-        }),
+    onOpenChange: controller.onRowsPerPageOpenChange,
+    onValueChange: controller.onRowsPerPageValueChange,
   })
-}
-
-const pageSizeFromController = (
-  controller: PaginationExampleController<unknown> | undefined,
-): number => Number.parseInt(controller?.rowsPerPageValue ?? '25', 10)
-
-const visibleRows = (
-  controller: PaginationExampleController<unknown> | undefined,
-): ReadonlyArray<string> =>
-  pageRows.slice(0, pageSizeFromController(controller))
-
-const paginationRows = <Message>(
-  controller?: PaginationExampleController<Message>,
-): Html => {
-  const h = html<Message>()
-  const rows = visibleRows(controller)
-
-  return h.div(
-    [h.Class('flex min-w-0 flex-col gap-2 text-sm')],
-    [
-      h.ul(
-        [h.DataAttribute('slot', 'pagination-rows'), h.Class('grid gap-1')],
-        rows.map(row =>
-          h.li(
-            [h.Key(row), h.Class('rounded-md border bg-background px-2 py-1')],
-            [row],
-          ),
-        ),
-      ),
-      h.p(
-        [
-          h.DataAttribute('slot', 'pagination-status'),
-          h.Class('text-muted-foreground'),
-        ],
-        [`Showing ${rows.length} of ${pageRows.length} rows`],
-      ),
-    ],
-  )
 }
 
 export const PaginationDemo = (): Html =>
@@ -206,36 +179,30 @@ export const PaginationIconsOnly = <Message = never>(
   const h = html<Message>()
 
   return h.div(
-    [h.Class('grid gap-4')],
+    [h.Class('flex items-center justify-between gap-4')],
     [
-      h.div(
-        [h.Class('flex items-center justify-between gap-4')],
-        [
-          Field<Message>({
-            orientation: 'horizontal',
-            className: 'w-fit',
-            children: [
-              FieldLabel<Message>({
-                htmlFor: 'select-rows-per-page',
-                children: ['Rows per page'],
-              }),
-              rowsPerPageSelect(controller),
-            ],
+      Field<Message>({
+        orientation: 'horizontal',
+        className: 'w-fit',
+        children: [
+          FieldLabel<Message>({
+            htmlFor: 'select-rows-per-page',
+            children: ['Rows per page'],
           }),
-          Pagination<Message>({
-            className: 'mx-0 w-auto',
+          rowsPerPageSelect(controller),
+        ],
+      }),
+      Pagination<Message>({
+        className: 'mx-0 w-auto',
+        children: [
+          PaginationContent<Message>({
             children: [
-              PaginationContent<Message>({
-                children: [
-                  paginationItem([PaginationPrevious<Message>({ href: '#' })]),
-                  paginationItem([PaginationNext<Message>({ href: '#' })]),
-                ],
-              }),
+              paginationItem([PaginationPrevious<Message>({ href: '#' })]),
+              paginationItem([PaginationNext<Message>({ href: '#' })]),
             ],
           }),
         ],
-      ),
-      paginationRows(controller),
+      }),
     ],
   )
 }

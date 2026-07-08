@@ -140,8 +140,8 @@ describe('shadcn/pagination class helpers', () => {
       'flex items-center gap-0.5',
     )
     expect(Pagination.paginationEllipsisClassName()).toContain('size-8')
-    expect(Pagination.paginationPreviousClassName()).toBe('pl-1.5!')
-    expect(Pagination.paginationNextClassName()).toBe('pr-1.5!')
+    expect(Pagination.paginationPreviousClassName()).toBe('')
+    expect(Pagination.paginationNextClassName()).toBe('')
   })
 
   test('preserves custom classes through local cn canonicalization', () => {
@@ -245,18 +245,15 @@ describe('shadcn/pagination view', () => {
         ),
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
           'id',
-          'select-rows-per-page-trigger',
+          'select-rows-per-page',
         ),
         Scene.expect(Scene.selector('[data-slot="pagination"]')).toHaveAttr(
           'class',
           Pagination.paginationClassName({ className: 'mx-0 w-auto' }),
         ),
-        Scene.expectAll(
-          Scene.all.selector('[data-slot="pagination-rows"] li'),
-        ).toHaveCount(25),
         Scene.expect(
-          Scene.selector('[data-slot="pagination-status"]'),
-        ).toHaveText('Showing 25 of 25 rows'),
+          Scene.selector('[data-slot="pagination-rows"]'),
+        ).not.toExist(),
       )
       Scene.scene(
         {
@@ -271,12 +268,9 @@ describe('shadcn/pagination view', () => {
           ),
         },
         Scene.with(initialModel),
-        Scene.expectAll(
-          Scene.all.selector('[data-slot="pagination-rows"] li'),
-        ).toHaveCount(10),
-        Scene.expect(
-          Scene.selector('[data-slot="pagination-status"]'),
-        ).toHaveText('Showing 10 of 25 rows'),
+        Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveText(
+          '10',
+        ),
       )
       Scene.scene(
         { update, view: view(PaginationRtl()) },

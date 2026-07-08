@@ -76,6 +76,48 @@ const expectTopBottomPanelBounded = async (
   )
 }
 
+const expectTopSideMenuAboveTrigger = async (
+  menu: Locator,
+  trigger: Locator,
+  preview: Locator,
+) => {
+  const menuBox = await visibleBox(menu)
+  const triggerBox = await visibleBox(trigger)
+  const previewBox = await visibleBox(preview)
+  const tolerance = 2
+
+  playwrightExpect(menuBox.y).toBeGreaterThanOrEqual(previewBox.y - tolerance)
+  playwrightExpect(menuBox.y + menuBox.height).toBeLessThanOrEqual(
+    previewBox.y + previewBox.height + tolerance,
+  )
+  playwrightExpect(menuBox.y + menuBox.height).toBeLessThanOrEqual(
+    triggerBox.y + tolerance,
+  )
+}
+
+const expectRightSideMenuBesideTrigger = async (
+  menu: Locator,
+  trigger: Locator,
+  preview: Locator,
+) => {
+  const menuBox = await visibleBox(menu)
+  const triggerBox = await visibleBox(trigger)
+  const previewBox = await visibleBox(preview)
+  const tolerance = 2
+
+  playwrightExpect(menuBox.x).toBeGreaterThanOrEqual(
+    triggerBox.x + triggerBox.width - tolerance,
+  )
+  playwrightExpect(menuBox.y).toBeGreaterThanOrEqual(previewBox.y - tolerance)
+  playwrightExpect(menuBox.y + menuBox.height).toBeLessThanOrEqual(
+    previewBox.y + previewBox.height + tolerance,
+  )
+  playwrightExpect(triggerBox.y).toBeLessThanOrEqual(menuBox.y + menuBox.height)
+  playwrightExpect(triggerBox.y + triggerBox.height).toBeGreaterThanOrEqual(
+    menuBox.y,
+  )
+}
+
 playwrightTest(
   'alert dialog, dialog, drawer, sheet, and sidebar layouts stay measurably bounded',
   async ({ page }) => {
@@ -289,6 +331,25 @@ playwrightTest(
       const sidebarGap = preview.locator('[data-slot="sidebar-gap"]')
       const container = preview.locator('[data-slot="sidebar-container"]')
 
+      if (label === 'SidebarDemo live preview') {
+        const userMenuTrigger = preview.getByRole('button', { name: /shadcn/u })
+        const userMenuContent = preview.locator(
+          '[data-slot="dropdown-menu-content"][data-side="right"]',
+        )
+
+        await playwrightExpect(userMenuTrigger).toBeVisible()
+        await userMenuTrigger.click()
+        await playwrightExpect(userMenuContent).toBeVisible()
+        await expectNonTransparentBackground(userMenuContent)
+        await expectRightSideMenuBesideTrigger(
+          userMenuContent,
+          userMenuTrigger,
+          preview,
+        )
+        await userMenuContent.press('Escape')
+        await userMenuContent.waitFor({ state: 'hidden' })
+      }
+
       await preview.locator('[data-slot="sidebar-trigger"]').click()
       await playwrightExpect(sidebar).toHaveAttribute('data-state', 'collapsed')
 
@@ -331,11 +392,13 @@ playwrightTest(
         await footerMenuTrigger.click()
         await playwrightExpect(footerMenuContent).toBeVisible()
         await expectNonTransparentBackground(footerMenuContent)
-        const menuBox = await visibleBox(footerMenuContent)
-
-        playwrightExpect(menuBox.y + menuBox.height).toBeGreaterThan(
-          containerBox.y + containerBox.height,
+        await expectTopSideMenuAboveTrigger(
+          footerMenuContent,
+          footerMenuTrigger,
+          preview,
         )
+        await footerMenuContent.press('Escape')
+        await footerMenuContent.waitFor({ state: 'hidden' })
       }
 
       if (label === 'SidebarHeader live preview') {

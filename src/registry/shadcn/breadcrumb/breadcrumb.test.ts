@@ -261,7 +261,7 @@ describe('shadcn/breadcrumb view', () => {
         ).toExist(),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-content"]'),
-        ).toHaveAttr('class'),
+        ).not.toExist(),
       )
       Scene.scene(
         { update, view: view(BreadcrumbDropdown()) },

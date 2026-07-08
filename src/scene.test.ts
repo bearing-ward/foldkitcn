@@ -505,7 +505,7 @@ describe(view, () => {
         Scene.within(
           preview,
           Scene.selector(
-            '[data-slot="dropdown-menu-content"][data-side="top"]',
+            '[data-slot="dropdown-menu-content"][data-side="right"]',
           ),
         ),
       ).toExist(),

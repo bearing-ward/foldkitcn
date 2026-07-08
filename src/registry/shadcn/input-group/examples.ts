@@ -310,7 +310,6 @@ const dropdownButton = (labelText: string): Html => {
       InputGroupButton<never>({
         variant: 'ghost',
         size: isIconButton ? 'icon-xs' : 'xs',
-        ...(isIconButton ? {} : { className: 'pr-1.5! text-xs' }),
         attributes: attributes.trigger.filter(
           attribute =>
             !(attribute._tag === 'DataAttribute' && attribute.key === 'slot'),
@@ -491,7 +490,6 @@ export const InputGroupBlockStart = (): Html =>
                   }),
                   InputGroupButton<never>({
                     size: 'icon-xs',
-                    className: 'ml-auto',
                     children: [
                       icon('copy'),
                       html<never>().span(
@@ -559,7 +557,6 @@ export const InputGroupBlockEnd = (): Html =>
                   InputGroupButton<never>({
                     variant: 'default',
                     size: 'sm',
-                    className: 'ml-auto',
                     children: ['Post'],
                   }),
                 ],
@@ -790,7 +787,6 @@ export const InputGroupLabel = (): Html =>
               InputGroupButton<never>({
                 variant: 'ghost',
                 ariaLabel: 'Help',
-                className: 'ml-auto rounded-full',
                 size: 'icon-xs',
                 children: [icon('info')],
               }),
@@ -881,7 +877,6 @@ export const InputGroupTextareaExample = (): Html =>
               InputGroupText<never>({ children: ['Line 1, Column 1'] }),
               InputGroupButton<never>({
                 size: 'sm',
-                className: 'ml-auto',
                 variant: 'default',
                 children: ['Run ', icon('cornerDownLeft')],
               }),
@@ -896,7 +891,6 @@ export const InputGroupTextareaExample = (): Html =>
                 children: [icon('code'), 'script.js'],
               }),
               InputGroupButton<never>({
-                className: 'ml-auto',
                 size: 'icon-xs',
                 children: [icon('refresh')],
               }),
@@ -1333,7 +1327,6 @@ export const InputGroupRtl = (): Html =>
                       InputGroupButton<never>({
                         variant: 'default',
                         size: 'sm',
-                        className: 'ms-auto',
                         children: ['نشر'],
                       }),
                     ],

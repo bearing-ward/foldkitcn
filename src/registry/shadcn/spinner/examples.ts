@@ -227,7 +227,6 @@ export const SpinnerInputGroup = (): Html => {
               spinner(),
               ' Validating...',
               InputGroupButton<never>({
-                className: 'ml-auto',
                 variant: 'default',
                 children: [
                   arrowUpIcon(),

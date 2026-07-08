@@ -219,7 +219,6 @@ const avatarDropdownShell = <Message>(
               ...attributes.trigger,
               h.Attribute('aria-haspopup', 'menu'),
               h.AriaExpanded(open),
-              h.Class('rounded-full'),
             ],
             [avatar({ ...shadcnProfile, alt: 'shadcn' })],
           ),
@@ -272,7 +271,6 @@ export const AvatarDropdown = <Message = never>(
   return Button<never>({
     variant: 'ghost',
     size: 'icon',
-    className: 'rounded-full',
     toView: attributes =>
       h.button(
         [

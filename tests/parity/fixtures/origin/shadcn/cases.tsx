@@ -776,20 +776,20 @@ const BubbleCollapsibleDemo = (): React.ReactElement => (
       <BubbleContent>How can I help you today?</BubbleContent>
     </Bubble>
     <Bubble align="end" variant="muted">
-      <BubbleContent className="whitespace-pre-line">
-        <div>
+      <BubbleContent
+        id="bubble-collapsible"
+        data-closed=""
+        data-slot="collapsible"
+        className="whitespace-pre-line"
+      >
+        <p>
           The accessibility review found two focus states that were visually too
           subtle in dark mode.
-          {'\n\n'}
-          I checked the dialog, menu, and drawer paths because each one renders
-          focusable controls inside a layered surface.
-          {'\n\n'}
-          The dialog and drawer are fine. The menu needs the hover and focus
-          tokens split so keyboard focus stays visible when the pointer is not
-          involved.
-        </div>
+        </p>
         <button
+          aria-expanded="false"
           type="button"
+          data-slot="collapsible-trigger"
           className="mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground"
         >
           Show more

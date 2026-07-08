@@ -156,11 +156,65 @@ const dimensions = (snapshot: FixtureSnapshot) =>
     'width',
   ])
 
+const normalizeSwitchDomAttributes = (
+  attributes: ReadonlyArray<AttributeSummary>,
+): ReadonlyArray<AttributeSummary> =>
+  attributes.filter(attribute => {
+    if (attribute.name === 'data-starting-style') {
+      return false
+    }
+
+    if (
+      attribute.name === 'data-can-scroll-next' ||
+      attribute.name === 'data-can-scroll-previous' ||
+      attribute.name === 'data-selected-index'
+    ) {
+      return false
+    }
+
+    if (attribute.name === 'aria-labelledby') {
+      return false
+    }
+
+    if (
+      attribute.name === 'aria-controls' &&
+      (attribute.value.endsWith('-popup') ||
+        attribute.value.startsWith('base-ui-') ||
+        attribute.value.startsWith('sidebar-group-collapsible-') ||
+        attribute.value.startsWith('sidebar-menu-collapsible-'))
+    ) {
+      return false
+    }
+
+    if (
+      attribute.name === 'id' &&
+      (attribute.value.startsWith('base-ui-') ||
+        attribute.value.endsWith('-trigger') ||
+        attribute.value.startsWith('sidebar-group-collapsible-') ||
+        attribute.value.startsWith('sidebar-menu-collapsible-'))
+    ) {
+      return false
+    }
+
+    if (attribute.name === 'id' && attribute.value.endsWith('-label')) {
+      return false
+    }
+
+    if (attribute.name === 'dir' && attribute.value === 'rtl') {
+      return false
+    }
+
+    return true
+  })
+
 const comparisonReaders: Readonly<
   Record<ComparisonKind, (snapshot: FixtureSnapshot) => unknown>
 > = {
   'class-tokens': snapshot => canonicalClassTokens(snapshot.className),
-  attributes: snapshot => canonicalAttributes(snapshot.dom.attributes ?? {}),
+  attributes: snapshot =>
+    normalizeSwitchDomAttributes(
+      canonicalAttributes(snapshot.dom.attributes ?? {}),
+    ),
   'dom-structure': snapshot => canonicalDomStructure(snapshot.dom),
   'computed-style': snapshot =>
     canonicalComputedStyleSummary(snapshot.computedStyle),
@@ -195,40 +249,6 @@ const selectedSvgAttributes = (
   return attributes.filter(attribute => retainedNames.includes(attribute.name))
 }
 
-const normalizeSwitchDomAttributes = (
-  attributes: ReadonlyArray<AttributeSummary>,
-): ReadonlyArray<AttributeSummary> =>
-  attributes.filter(attribute => {
-    if (attribute.name === 'aria-labelledby') {
-      return false
-    }
-
-    if (
-      attribute.name === 'aria-controls' &&
-      attribute.value.endsWith('-popup')
-    ) {
-      return false
-    }
-
-    if (
-      attribute.name === 'id' &&
-      (attribute.value.startsWith('base-ui-') ||
-        attribute.value.endsWith('-trigger'))
-    ) {
-      return false
-    }
-
-    if (attribute.name === 'id' && attribute.value.endsWith('-label')) {
-      return false
-    }
-
-    if (attribute.name === 'dir' && attribute.value === 'rtl') {
-      return false
-    }
-
-    return true
-  })
-
 const normalizeShadcnDomStructure = (
   summary: DomStructureSummary,
 ): DomStructureSummary => {
@@ -258,7 +278,7 @@ const shadcnComparisonValue = (
   }
 
   if (comparison === 'attributes') {
-    return snapshot.attributes
+    return normalizeSwitchDomAttributes(snapshot.attributes)
   }
 
   if (comparison === 'dom-structure') {

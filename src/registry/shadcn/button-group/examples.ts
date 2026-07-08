@@ -268,7 +268,6 @@ const buttonGroupDropdownShell = <Message>(
               button(['Follow'], { variant: 'outline' }),
               button([icon('chevronDown')], {
                 variant: 'outline',
-                className: 'pl-2!',
                 attributes: attributes.trigger,
               }),
             ],
@@ -322,7 +321,6 @@ export const ButtonGroupDropdown = <Message = never>(
       button(['Follow'], { variant: 'outline' }),
       dropdownTriggerButton('button-group-dropdown', [icon('chevronDown')], {
         variant: 'outline',
-        className: 'pl-2!',
       }),
     ],
   })

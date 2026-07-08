@@ -206,43 +206,6 @@ const breadcrumbShell = (
     children: [BreadcrumbList<never>({ children })],
   })
 
-const dropdownContent = (
-  labels: ReadonlyArray<string>,
-  config: Readonly<{
-    align?: 'start' | 'end'
-    dir?: 'ltr' | 'rtl'
-    dataLang?: string
-  }> = {},
-): Html => {
-  const h = html<never>()
-  const align = config.align ?? 'start'
-
-  return h.div(
-    [
-      h.Attribute('align', align),
-      h.DataAttribute('slot', 'dropdown-menu-content'),
-      h.Class(
-        'hidden rounded-lg border border-border bg-background p-1 text-sm shadow-sm',
-      ),
-      ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
-      ...(config.dataLang === undefined
-        ? []
-        : [h.DataAttribute('lang', config.dataLang)]),
-    ],
-    [
-      h.div(
-        [h.DataAttribute('slot', 'dropdown-menu-group')],
-        labels.map(label =>
-          h.div(
-            [h.DataAttribute('slot', 'dropdown-menu-item'), h.Role('menuitem')],
-            [label],
-          ),
-        ),
-      ),
-    ],
-  )
-}
-
 const ellipsisMenuButton = (): Html => {
   const h = html<never>()
 
@@ -292,7 +255,7 @@ export const BreadcrumbDemo = (): Html =>
   breadcrumbShell([
     breadcrumbItem([breadcrumbLink('#', 'Home')]),
     breadcrumbSeparator(),
-    breadcrumbItem([ellipsisMenuButton(), dropdownContent(dropdownItems)]),
+    breadcrumbItem([ellipsisMenuButton()]),
     breadcrumbSeparator(),
     breadcrumbItem([breadcrumbLink('#', 'Components')]),
     breadcrumbSeparator(),
@@ -315,7 +278,6 @@ export const BreadcrumbDropdown = <Message = never>(
       componentsMenuButton('Components', [
         h.DataAttribute('icon', 'inline-end'),
       ]),
-      dropdownContent(dropdownItems),
     ]),
     breadcrumbSeparator([dotIcon()]),
     breadcrumbItem([breadcrumbPage('Breadcrumb')]),
@@ -344,7 +306,7 @@ export const BreadcrumbLinkDemo = (): Html =>
 
 export const BreadcrumbRtl = (): Html => {
   const h = html<never>()
-  const { dir, language, values } = arabicBreadcrumbRtl
+  const { dir, values } = arabicBreadcrumbRtl
 
   return breadcrumbShell(
     [
@@ -365,11 +327,6 @@ export const BreadcrumbRtl = (): Html => {
             }),
           ],
         ),
-        dropdownContent([values.documentation, values.themes, values.github], {
-          align: 'end',
-          dataLang: language,
-          dir,
-        }),
       ]),
       breadcrumbSeparator([dotIcon()]),
       breadcrumbItem([breadcrumbPage(values.breadcrumb)]),

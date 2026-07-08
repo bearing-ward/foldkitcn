@@ -89,7 +89,7 @@ export type SeparatorConfig = Readonly<{
 }>
 
 export const inputOTPContainerBaseClassName =
-  'cn-input-otp relative flex items-center has-disabled:opacity-50'
+  'cn-input-otp flex items-center has-disabled:opacity-50'
 
 export const inputOTPInputBaseClassName = 'disabled:cursor-not-allowed'
 

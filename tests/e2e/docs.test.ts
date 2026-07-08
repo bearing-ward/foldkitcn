@@ -1213,7 +1213,7 @@ playwrightTest(
 
     const userMenuTrigger = sidebarDemo.getByRole('button', { name: /shadcn/u })
     const userMenuContent = sidebarDemo.locator(
-      '[data-slot="dropdown-menu-content"][data-side="top"]',
+      '[data-slot="dropdown-menu-content"][data-side="right"]',
     )
 
     await userMenuTrigger.click()
