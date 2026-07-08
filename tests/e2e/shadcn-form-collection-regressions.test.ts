@@ -26,25 +26,34 @@ const box = async (locator: Locator): Promise<Box> => {
   }
 }
 
-const dragFromCenter = async (
+const clickSliderControlAt = async (
   page: Page,
-  locator: Locator,
-  offsetX: number,
-  offsetY: number,
+  control: Locator,
+  xPercent: number,
+  yPercent: number,
 ): Promise<void> => {
-  const layoutBox = await locator.boundingBox()
+  await control.scrollIntoViewIfNeeded()
+
+  const layoutBox = await control.boundingBox()
 
   if (layoutBox === null) {
-    throw new Error('Expected draggable element to have a browser layout box.')
+    throw new Error('Expected slider control to have a browser layout box.')
   }
 
-  const startX = layoutBox.x + layoutBox.width / 2
-  const startY = layoutBox.y + layoutBox.height / 2
+  await page.mouse.click(
+    layoutBox.x + layoutBox.width * xPercent,
+    layoutBox.y + layoutBox.height * yPercent,
+  )
+}
 
-  await page.mouse.move(startX, startY)
-  await page.mouse.down()
-  await page.mouse.move(startX + offsetX, startY + offsetY)
-  await page.mouse.up()
+const expectSliderValue = async (
+  input: Locator,
+  value: number,
+): Promise<void> => {
+  const valueText = String(value)
+
+  await playwrightExpect(input).toHaveAttribute('aria-valuenow', valueText)
+  await playwrightExpect(input).toHaveValue(valueText)
 }
 
 playwrightTest(
@@ -256,67 +265,119 @@ playwrightTest(
   },
 )
 
+playwrightTest('slider docs hit exact pointer values', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 1200 })
+  await page.goto('/components/shadcn/slider')
+
+  const demoPreview = page.getByLabel('SliderDemo live preview')
+  const demoControl = demoPreview.locator('[data-base-ui-slider-control]')
+  const demoInput = demoPreview.locator('input[type="range"]').first()
+
+  await expectSliderValue(demoInput, 75)
+  await clickSliderControlAt(page, demoControl, 0.5, 0.5)
+  await expectSliderValue(demoInput, 50)
+  await clickSliderControlAt(page, demoControl, 0.25, 0.5)
+  await expectSliderValue(demoInput, 25)
+  await clickSliderControlAt(page, demoControl, 0.75, 0.5)
+  await expectSliderValue(demoInput, 75)
+
+  const rangePreview = page.getByLabel('SliderRange live preview')
+  const rangeControl = rangePreview.locator('[data-base-ui-slider-control]')
+  const rangeInputs = rangePreview.locator('input[type="range"]')
+
+  await playwrightExpect(rangeInputs).toHaveCount(2)
+  await expectSliderValue(rangeInputs.nth(0), 25)
+  await expectSliderValue(rangeInputs.nth(1), 50)
+  await clickSliderControlAt(page, rangeControl, 0.3, 0.5)
+  await expectSliderValue(rangeInputs.nth(0), 30)
+  await expectSliderValue(rangeInputs.nth(1), 50)
+  await clickSliderControlAt(page, rangeControl, 0.8, 0.5)
+  await expectSliderValue(rangeInputs.nth(0), 30)
+  await expectSliderValue(rangeInputs.nth(1), 80)
+  await clickSliderControlAt(page, rangeControl, 0.6, 0.5)
+  await expectSliderValue(rangeInputs.nth(0), 30)
+  await expectSliderValue(rangeInputs.nth(1), 60)
+
+  const rtlPreview = page.getByLabel('SliderRtl live preview')
+  const rtlControl = rtlPreview.locator('[data-base-ui-slider-control]')
+  const rtlInput = rtlPreview.locator('input[type="range"]').first()
+
+  await clickSliderControlAt(page, rtlControl, 0.25, 0.5)
+  await expectSliderValue(rtlInput, 75)
+  await clickSliderControlAt(page, rtlControl, 0.75, 0.5)
+  await expectSliderValue(rtlInput, 25)
+
+  const verticalPreview = page.getByLabel('SliderVertical live preview')
+  const verticalControl = verticalPreview.locator(
+    '[data-base-ui-slider-control]',
+  )
+  const verticalInput = verticalPreview.locator('input[type="range"]').first()
+
+  await clickSliderControlAt(page, verticalControl, 0.5, 0.25)
+  await expectSliderValue(verticalInput, 75)
+  await clickSliderControlAt(page, verticalControl, 0.5, 0.75)
+  await expectSliderValue(verticalInput, 25)
+
+  const disabledPreview = page.getByLabel('SliderDisabled live preview')
+  const disabledControl = disabledPreview.locator(
+    '[data-base-ui-slider-control]',
+  )
+  const disabledInput = disabledPreview.locator('input[type="range"]').first()
+
+  await expectSliderValue(disabledInput, 50)
+  await clickSliderControlAt(page, disabledControl, 0.25, 0.5)
+  await expectSliderValue(disabledInput, 50)
+  await clickSliderControlAt(page, disabledControl, 0.5, 0.5)
+  await expectSliderValue(disabledInput, 50)
+  await clickSliderControlAt(page, disabledControl, 0.75, 0.5)
+  await expectSliderValue(disabledInput, 50)
+})
+
 playwrightTest(
-  'slider docs respond to drag and keyboard input',
+  'slider docs preserve keyboard and native input state',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 1200 })
     await page.goto('/components/shadcn/slider')
 
     const demoPreview = page.getByLabel('SliderDemo live preview')
     const demoInput = demoPreview.locator('input[type="range"]').first()
-    const demoThumb = demoPreview.locator('[data-slot="slider-thumb"]').first()
 
-    await playwrightExpect(demoInput).toHaveAttribute('aria-valuenow', '75')
+    await expectSliderValue(demoInput, 75)
     await demoInput.focus()
     await demoInput.press('ArrowRight')
-    await playwrightExpect(demoInput).toHaveAttribute('aria-valuenow', '76')
-    const demoThumbBefore = await box(demoThumb)
-    await dragFromCenter(page, demoThumb, 80, 0)
-    await playwrightExpect(demoInput).not.toHaveAttribute('aria-valuenow', '76')
-    await playwrightExpect(await box(demoThumb)).not.toEqual(demoThumbBefore)
+    await expectSliderValue(demoInput, 76)
+    await playwrightExpect(demoInput).toHaveAttribute('min', '0')
+    await playwrightExpect(demoInput).toHaveAttribute('max', '100')
+    await playwrightExpect(demoInput).toHaveAttribute('step', '1')
+    await playwrightExpect(demoPreview.getByText('76')).toBeVisible()
 
     const rangePreview = page.getByLabel('SliderRange live preview')
     const rangeInputs = rangePreview.locator('input[type="range"]')
-    const rangeThumbs = rangePreview.locator('[data-slot="slider-thumb"]')
 
     await playwrightExpect(rangeInputs).toHaveCount(2)
     await rangeInputs.nth(0).focus()
     await rangeInputs.nth(0).press('ArrowRight')
-    await playwrightExpect(rangeInputs.nth(0)).toHaveAttribute(
-      'aria-valuenow',
-      '30',
-    )
-    const rangeThumbBefore = await box(rangeThumbs.nth(1))
-    await dragFromCenter(page, rangeThumbs.nth(1), 60, 0)
-    await playwrightExpect(rangeInputs.nth(1)).not.toHaveAttribute(
-      'aria-valuenow',
-      '50',
-    )
-    await playwrightExpect(await box(rangeThumbs.nth(1))).not.toEqual(
-      rangeThumbBefore,
-    )
+    await expectSliderValue(rangeInputs.nth(0), 30)
+    await expectSliderValue(rangeInputs.nth(1), 50)
 
-    const verticalPreview = page.getByLabel('SliderVertical live preview')
-    const verticalInputs = verticalPreview.locator('input[type="range"]')
-    const verticalThumb = verticalPreview
-      .locator('[data-slot="slider-thumb"]')
-      .first()
+    const rtlPreview = page.getByLabel('SliderRtl live preview')
+    const rtlInput = rtlPreview.locator('input[type="range"]').first()
 
-    await playwrightExpect(verticalInputs).toHaveCount(1)
-    await verticalInputs.first().focus()
-    await verticalInputs.first().press('ArrowUp')
-    await playwrightExpect(verticalInputs.first()).toHaveAttribute(
-      'aria-valuenow',
-      '51',
+    await expectSliderValue(rtlInput, 75)
+    await rtlInput.focus()
+    await rtlInput.press('ArrowRight')
+    await expectSliderValue(rtlInput, 74)
+
+    const disabledPreview = page.getByLabel('SliderDisabled live preview')
+    const disabledInput = disabledPreview.locator('input[type="range"]').first()
+    const disabledControl = disabledPreview.locator(
+      '[data-base-ui-slider-control]',
     )
-    const verticalThumbBefore = await box(verticalThumb)
-    await dragFromCenter(page, verticalThumb, 0, -60)
-    await playwrightExpect(verticalInputs.first()).not.toHaveAttribute(
-      'aria-valuenow',
-      '51',
-    )
-    await playwrightExpect(await box(verticalThumb)).not.toEqual(
-      verticalThumbBefore,
-    )
+    const disabledThumb = disabledPreview.locator('[data-slot="slider-thumb"]')
+
+    await expectSliderValue(disabledInput, 50)
+    await playwrightExpect(disabledInput).toBeDisabled()
+    await playwrightExpect(disabledControl).toHaveAttribute('data-disabled', '')
+    await playwrightExpect(disabledThumb).toHaveAttribute('data-disabled', '')
   },
 )

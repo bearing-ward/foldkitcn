@@ -199,6 +199,86 @@ describe('base-ui/slider source-port helpers', () => {
       activeThumbIndex: 1,
     })
   })
+
+  test('maps offset pointer coordinates against the measured control rect', () => {
+    const horizontalRect = {
+      left: 400,
+      right: 720,
+      bottom: 300,
+      width: 320,
+      height: 40,
+    }
+
+    expect(
+      Slider.pointerValue({
+        pointer: { clientX: 560, clientY: 0 },
+        rect: horizontalRect,
+        min: 0,
+        max: 100,
+        step: 1,
+        orientation: 'horizontal',
+        dir: 'ltr',
+      }),
+    ).toBe(50)
+
+    expect(
+      Slider.pointerValue({
+        pointer: { clientX: 480, clientY: 0 },
+        rect: horizontalRect,
+        min: 0,
+        max: 100,
+        step: 1,
+        orientation: 'horizontal',
+        dir: 'rtl',
+      }),
+    ).toBe(75)
+
+    expect(
+      Slider.pointerValue({
+        pointer: { clientX: 0, clientY: 380 },
+        rect: {
+          left: 400,
+          right: 440,
+          bottom: 500,
+          width: 40,
+          height: 160,
+        },
+        min: 0,
+        max: 100,
+        step: 1,
+        orientation: 'vertical',
+        dir: 'ltr',
+      }),
+    ).toBe(75)
+  })
+
+  test('range pointer changes choose the nearest thumb and can move back down', () => {
+    const rect = {
+      left: 400,
+      right: 720,
+      bottom: 300,
+      width: 320,
+      height: 40,
+    }
+    const state = Slider.sliderState({
+      values: [30, 80],
+      min: 0,
+      max: 100,
+      step: 5,
+    })
+
+    expect(
+      Slider.pointerValueChange({
+        state,
+        pointer: { clientX: 592, clientY: 0 },
+        rect,
+      }),
+    ).toStrictEqual({
+      values: [30, 60],
+      reason: 'track-press',
+      activeThumbIndex: 1,
+    })
+  })
 })
 
 describe('base-ui/slider view', () => {

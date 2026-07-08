@@ -1209,26 +1209,72 @@ const otpExample = (
   },
 })
 
+export type LiveExampleSliderConfig = Readonly<{
+  id: string
+  defaultValues: ReadonlyArray<number>
+  min?: number
+  max?: number
+  step?: number
+  orientation?: 'horizontal' | 'vertical'
+  dir?: 'ltr' | 'rtl'
+  className?: string
+  isDisabled?: boolean
+  label?: string
+}>
+
+export const liveExampleSliderConfigs = {
+  'slider-controlled-live': {
+    id: 'slider-controlled-live',
+    defaultValues: [0.3, 0.7],
+    min: 0,
+    max: 1,
+    step: 0.1,
+    label: 'Temperature',
+  },
+  'slider-demo-live': {
+    id: 'slider-demo-live',
+    defaultValues: [75],
+    max: 100,
+    step: 1,
+  },
+  'slider-disabled-live': {
+    id: 'slider-disabled-live',
+    defaultValues: [50],
+    max: 100,
+    step: 1,
+    isDisabled: true,
+  },
+  'slider-multiple-live': {
+    id: 'slider-multiple-live',
+    defaultValues: [10, 20, 70],
+    max: 100,
+    step: 10,
+  },
+  'slider-range-live': {
+    id: 'slider-range-live',
+    defaultValues: [25, 50],
+    max: 100,
+    step: 5,
+  },
+  'slider-rtl-live': {
+    id: 'slider-rtl-live',
+    defaultValues: [75],
+    max: 100,
+    step: 1,
+    dir: 'rtl',
+  },
+  'slider-vertical-live': {
+    id: 'slider-vertical-live',
+    defaultValues: [50],
+    max: 100,
+    step: 1,
+    orientation: 'vertical',
+    className: 'h-40',
+  },
+} as const satisfies Readonly<Record<string, LiveExampleSliderConfig>>
+
 const sliderExample = (
-  config: Readonly<{
-    id: string
-    defaultValues: ReadonlyArray<number>
-    min?: number
-    max?: number
-    step?: number
-    orientation?: 'horizontal' | 'vertical'
-    dir?: 'ltr' | 'rtl'
-    className?: string
-    isDisabled?: boolean
-    label?: string
-    controlRect?: Readonly<{
-      left: number
-      right: number
-      bottom: number
-      width: number
-      height: number
-    }>
-  }>,
+  config: LiveExampleSliderConfig,
 ): LiveExampleDefinition => ({
   render: <Message>(
     example: ExampleDocsArtifact,
@@ -1244,6 +1290,7 @@ const sliderExample = (
 
     return h.div(
       [
+        h.Attribute('data-live-example-slider-example-id', example.id),
         h.Class(
           config.orientation === 'vertical'
             ? 'mx-auto flex items-center justify-center gap-6'
@@ -1272,24 +1319,34 @@ const sliderExample = (
           dir: config.dir,
           className: config.className,
           isDisabled: config.isDisabled,
-          ...(config.controlRect === undefined
-            ? {}
-            : { controlRect: config.controlRect }),
           onValueChange: change =>
             context.onSliderValueChange(example, config.id, change),
+          toView: attributes =>
+            h.div(
+              [...attributes.root],
+              [
+                h.div(
+                  [
+                    ...attributes.control,
+                    h.Attribute('data-live-example-slider-control', config.id),
+                  ],
+                  [
+                    h.div(
+                      [...attributes.track],
+                      [h.div([...attributes.indicator], [])],
+                    ),
+                    ...attributes.thumbs.map(thumb =>
+                      h.div([...thumb.root], [h.input([...thumb.input])]),
+                    ),
+                  ],
+                ),
+              ],
+            ),
         }),
       ],
     )
   },
 })
-
-const sliderControlRect = {
-  left: 0,
-  right: 320,
-  bottom: 160,
-  width: 320,
-  height: 160,
-} as const
 
 const progressControlledExample = (): LiveExampleDefinition => ({
   render: <Message>(
@@ -3697,59 +3754,25 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     groups: selectTimezoneGroups,
   }),
   [liveExampleKey('shadcn/slider', 'SliderControlled')]: sliderExample({
-    id: 'slider-controlled-live',
-    defaultValues: [0.3, 0.7],
-    min: 0,
-    max: 1,
-    step: 0.1,
-    label: 'Temperature',
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-controlled-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderDemo')]: sliderExample({
-    id: 'slider-demo-live',
-    defaultValues: [75],
-    max: 100,
-    step: 1,
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-demo-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderDisabled')]: sliderExample({
-    id: 'slider-disabled-live',
-    defaultValues: [50],
-    max: 100,
-    step: 1,
-    isDisabled: true,
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-disabled-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderMultiple')]: sliderExample({
-    id: 'slider-multiple-live',
-    defaultValues: [10, 20, 70],
-    max: 100,
-    step: 10,
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-multiple-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderRange')]: sliderExample({
-    id: 'slider-range-live',
-    defaultValues: [25, 50],
-    max: 100,
-    step: 5,
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-range-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderRtl')]: sliderExample({
-    id: 'slider-rtl-live',
-    defaultValues: [75],
-    max: 100,
-    step: 1,
-    dir: 'rtl',
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-rtl-live'],
   }),
   [liveExampleKey('shadcn/slider', 'SliderVertical')]: sliderExample({
-    id: 'slider-vertical-live',
-    defaultValues: [50],
-    max: 100,
-    step: 1,
-    orientation: 'vertical',
-    className: 'h-40',
-    controlRect: sliderControlRect,
+    ...liveExampleSliderConfigs['slider-vertical-live'],
   }),
   [liveExampleKey('shadcn/combobox', 'ComboboxAutoHighlight')]:
     groupedComboboxExample({

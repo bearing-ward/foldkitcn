@@ -33,7 +33,11 @@ import {
   namespaceGroups,
   publicComponents,
 } from './data'
-import { liveExampleViewFor } from './live-examples'
+import {
+  type LiveExampleSliderConfig,
+  liveExampleSliderConfigs,
+  liveExampleViewFor,
+} from './live-examples'
 import { roadmapSnapshot } from './roadmap'
 import type { RoadmapBlockedGroup } from './roadmap'
 import type {
@@ -88,6 +92,7 @@ import type {
   MenuRadioValueChange,
 } from './registry/base-ui/menu'
 import * as ToastPrimitive from './registry/base-ui/toast'
+import * as SliderPrimitive from './registry/base-ui/slider'
 import {
   ToastExampleMessage,
   type ToastExampleMessage as ToastExampleMessageType,
@@ -278,6 +283,30 @@ const liveExampleControlStateKey = (
   exampleId: string,
   controlId: string,
 ): string => `${exampleId}#${controlId}`
+
+const liveExampleSliderConfigById: Readonly<
+  Record<string, LiveExampleSliderConfig>
+> = liveExampleSliderConfigs
+
+const liveExampleSliderConfigFor = (
+  sliderId: string,
+): Option.Option<LiveExampleSliderConfig> =>
+  EffectRecord.get(liveExampleSliderConfigById, sliderId)
+
+const liveExampleSliderState = (
+  values: ReadonlyArray<number>,
+  config: LiveExampleSliderConfig,
+): SliderPrimitive.SliderState =>
+  SliderPrimitive.sliderState({
+    values,
+    ...(config.min === undefined ? {} : { min: config.min }),
+    ...(config.max === undefined ? {} : { max: config.max }),
+    ...(config.step === undefined ? {} : { step: config.step }),
+    ...(config.orientation === undefined
+      ? {}
+      : { orientation: config.orientation }),
+    ...(config.dir === undefined ? {} : { dir: config.dir }),
+  })
 
 const checkboxTableRowControlIds = [
   'row-1-checkbox',
@@ -778,6 +807,16 @@ export const UpdatedLiveExampleSliderValues = m(
     values: S.Array(S.Number),
   },
 )
+export const PressedLiveExampleSliderControl = m(
+  'PressedLiveExampleSliderControl',
+  {
+    exampleId: S.String,
+    sliderId: S.String,
+    clientX: S.Number,
+    clientY: S.Number,
+    rect: SliderPrimitive.SliderControlRect,
+  },
+)
 export const UpdatedLiveExampleSelectOpen = m('UpdatedLiveExampleSelectOpen', {
   exampleId: S.String,
   open: S.Boolean,
@@ -1080,6 +1119,7 @@ export const Message = S.Union([
   UpdatedLiveExampleInputValue,
   UpdatedLiveExampleOtpValue,
   UpdatedLiveExampleSliderValues,
+  PressedLiveExampleSliderControl,
   UpdatedLiveExampleSelectOpen,
   SelectedLiveExampleSelectValue,
   UpdatedLiveExampleComboboxOpen,
@@ -1513,6 +1553,45 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
+      PressedLiveExampleSliderControl: ({
+        exampleId,
+        sliderId,
+        clientX,
+        clientY,
+        rect,
+      }) =>
+        pipe(
+          liveExampleSliderConfigFor(sliderId),
+          Option.match({
+            onNone: () => [model, []],
+            onSome: config => {
+              if (config.isDisabled === true) {
+                return [model, []]
+              }
+
+              const stateKey = liveExampleControlStateKey(exampleId, sliderId)
+              const values = pipe(
+                EffectRecord.get(model.liveExampleSliderValues, stateKey),
+                Option.getOrElse(() => config.defaultValues),
+              )
+              const change = SliderPrimitive.pointerValueChange({
+                state: liveExampleSliderState(values, config),
+                pointer: { clientX, clientY },
+                rect,
+              })
+
+              return [
+                evo(model, {
+                  liveExampleSliderValues: EffectRecord.set(
+                    stateKey,
+                    change.values,
+                  ),
+                }),
+                [],
+              ]
+            },
+          }),
+        ),
       UpdatedLiveExampleSelectOpen: ({ exampleId, open }) => [
         evo(model, {
           liveExampleSelectOpenValues: EffectRecord.set(exampleId, open),
@@ -2276,6 +2355,77 @@ export const subscriptions = Subscription.make<Model, Message>()(entry => ({
                       PressedPointerOutsideLiveExampleSurface(),
                     )
                   }
+                }
+                document.addEventListener('pointerdown', handler)
+                return handler
+              }),
+              handler =>
+                Effect.sync(() =>
+                  document.removeEventListener('pointerdown', handler),
+                ),
+            ).pipe(Effect.flatMap(() => Effect.never)),
+          ),
+          Effect.sync(() => isComponentDetailRoute),
+        ),
+    },
+  ),
+  liveExampleSliderPointer: entry(
+    { isComponentDetailRoute: S.Boolean },
+    {
+      modelToDependencies: model => ({
+        isComponentDetailRoute: isComponentDetailRoute(model.route),
+      }),
+      dependenciesToStream: ({ isComponentDetailRoute }) =>
+        Stream.when(
+          Stream.callback<Message>(queue =>
+            Effect.acquireRelease(
+              Effect.sync(() => {
+                const handler = (event: PointerEvent) => {
+                  if (event.button !== 0 || !(event.target instanceof Element)) {
+                    return
+                  }
+
+                  const controlElement = event.target.closest(
+                    '[data-live-example-slider-control]',
+                  )
+                  const exampleElement = controlElement?.closest(
+                    '[data-live-example-slider-example-id]',
+                  )
+                  const sliderId = controlElement?.getAttribute(
+                    'data-live-example-slider-control',
+                  )
+                  const exampleId = exampleElement?.getAttribute(
+                    'data-live-example-slider-example-id',
+                  )
+
+                  if (
+                    controlElement === null ||
+                    sliderId === undefined ||
+                    sliderId === null ||
+                    exampleId === undefined ||
+                    exampleId === null
+                  ) {
+                    return
+                  }
+
+                  const rect = controlElement.getBoundingClientRect()
+
+                  Queue.offerUnsafe(
+                    queue,
+                    PressedLiveExampleSliderControl({
+                      exampleId,
+                      sliderId,
+                      clientX: event.clientX,
+                      clientY: event.clientY,
+                      rect: {
+                        left: rect.left,
+                        right: rect.right,
+                        bottom: rect.bottom,
+                        width: rect.width,
+                        height: rect.height,
+                      },
+                    }),
+                  )
                 }
                 document.addEventListener('pointerdown', handler)
                 return handler
