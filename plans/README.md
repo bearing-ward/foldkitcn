@@ -125,6 +125,7 @@ honor its STOP conditions, and update your row when done.
 | 115 | Add an agent-first shadcn parity workbench | P1 | L | 003, 016, 107 | DONE |
 | 116 | Clone the shadcn-style docs preview and source panels | P1 | L | 062, 064, 067, 068, 113 | DONE |
 | 117 | Dogfood local Card and Button helpers in the docs shell | P2 | M | 116 | DONE |
+| 118 | Resolve the shadcn QA parity punch list except chart and toast | P1 | L | 109, 110, 111, 116 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -304,6 +305,13 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   local `shadcn/button` and `shadcn/card` helpers in the docs shell while
   preserving semantic HTML, Foldkit identity, docs selectors, and live-preview
   behavior.
+- Plan 118 follows the reopened regression plans and preview/source-panel work
+  because the 2026-07-08 QA sweep found remaining user-visible shadcn parity
+  gaps in rendered docs examples, not just component models. It intentionally
+  ignores `shadcn/chart` and `shadcn/toast` per operator instruction, repairs
+  stale docs-card selectors, fixes overlay anchoring and preview containment,
+  closes feasible example-content gaps, and requires a second origin-vs-local
+  QA pass before completion.
 
 ## Findings considered and rejected
 
