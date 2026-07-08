@@ -13,6 +13,7 @@
   "defaultImportPath": "local/example-preview",
   "sourceRoot": "registry-src/local/example-preview",
   "installableSourcePaths": [],
+  "sourceFiles": [],
   "originProvenance": [],
   "dependencies": {
     "registry": [],

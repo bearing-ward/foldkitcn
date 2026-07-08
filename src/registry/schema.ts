@@ -1,4 +1,4 @@
-import { Schema as S } from 'effect'
+import { Effect, Schema as S } from 'effect'
 
 export const RegistrySchemaVersion = S.Literal(1)
 export type RegistrySchemaVersion = typeof RegistrySchemaVersion.Type
@@ -356,6 +356,12 @@ export const ComponentDocsHeading = S.Struct({
 })
 export type ComponentDocsHeading = typeof ComponentDocsHeading.Type
 
+export const ComponentDocsSourceFile = S.Struct({
+  path: S.String,
+  content: S.String,
+})
+export type ComponentDocsSourceFile = typeof ComponentDocsSourceFile.Type
+
 export const ComponentDocsArtifact = S.Struct({
   schemaVersion: RegistrySchemaVersion,
   itemId: S.String,
@@ -371,6 +377,9 @@ export const ComponentDocsArtifact = S.Struct({
   defaultImportPath: S.String,
   sourceRoot: S.String,
   installableSourcePaths: S.Array(S.String),
+  sourceFiles: S.Array(ComponentDocsSourceFile).pipe(
+    S.withDecodingDefaultKey(Effect.succeed([])),
+  ),
   originProvenance: S.Array(OriginProvenance),
   dependencies: DependencyGraph,
   examples: S.Array(ExampleDocsArtifact),

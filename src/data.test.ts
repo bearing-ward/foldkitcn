@@ -9,6 +9,7 @@ import { docsData, publicComponents } from './data'
 import { hasLiveExampleViewFor } from './live-examples'
 import type { LiveExampleContext } from './live-examples'
 import * as ToastPrimitive from './registry/base-ui/toast'
+import type { ComponentDocsSourceFile } from './registry/schema'
 import { routeInventory } from './route-inventory'
 
 import { existsSync } from 'node:fs'
@@ -166,6 +167,29 @@ describe('generated docs data', () => {
       'shadcn/item',
     )
     expect(missingLiveExampleRenderers).toStrictEqual([])
+  })
+
+  test('shadcn Button docs include manual install source files', () => {
+    const buttonSourceFiles = pipe(
+      loadedPublicComponents(),
+      Array.findFirst(component => component.entry.item.id === 'shadcn/button'),
+      Option.flatMap(component => component.maybeDocsArtifact),
+      Option.map(artifact => artifact.sourceFiles),
+      Option.getOrElse((): ReadonlyArray<ComponentDocsSourceFile> => []),
+    )
+    const maybeButtonSource = pipe(
+      buttonSourceFiles,
+      Array.findFirst(
+        sourceFile => sourceFile.path === 'src/registry/shadcn/button/index.ts',
+      ),
+    )
+
+    expect(
+      Option.match(maybeButtonSource, {
+        onNone: () => '',
+        onSome: sourceFile => sourceFile.content,
+      }),
+    ).toContain('export const Button')
   })
 
   test('shadcn toast live examples are no longer registered', () => {

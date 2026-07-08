@@ -13,6 +13,12 @@
   "defaultImportPath": "utils/cn",
   "sourceRoot": "registry-src/utils/cn",
   "installableSourcePaths": ["src/utils/cn.ts"],
+  "sourceFiles": [
+    {
+      "path": "src/utils/cn.ts",
+      "content": "import { clsx } from 'clsx'\nimport type { ClassValue } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport const cn = (...inputs: ReadonlyArray<ClassValue>): string =>\n  twMerge(clsx(...inputs))\n"
+    }
+  ],
   "originProvenance": [],
   "dependencies": {
     "registry": [],
