@@ -89,6 +89,7 @@ const model: Model = {
   liveExampleMenuValues: {},
   liveExampleMenuCheckedValues: {},
   liveExampleMenuRadioValues: {},
+  liveExampleAttachmentWorkflowStates: {},
   liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},

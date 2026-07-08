@@ -179,7 +179,9 @@
       "title": "AttachmentWorkflowDemo",
       "description": "FileDrop-backed attachment workflow with accepted file rows.",
       "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "previewExportName": "AttachmentWorkflowDemo",
+      "previewStatus": "live-ready"
     },
     {
       "id": "shadcn/attachment-trigger-demo",

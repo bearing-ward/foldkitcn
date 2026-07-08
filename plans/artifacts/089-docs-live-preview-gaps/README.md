@@ -10,18 +10,16 @@ This artifact lists every generated docs example card that currently does not
 render `.live-example-preview`. Static rows are known backlog;
 `missing-live-renderer` rows are a stop condition.
 
-- Total example cards: 411
-- Cards with `.live-example-preview`: 410
-- Cards missing `.live-example-preview`: 1
+- Total example cards: 442
+- Cards with `.live-example-preview`: 442
+- Cards missing `.live-example-preview`: 0
 
 ## Missing Count By Reason
 
-| Reason          | Missing preview cards |
-| --------------- | --------------------- |
-| `static-status` | 1                     |
+| Reason | Missing preview cards |
+| ------ | --------------------- |
 
 ## Missing Count By Component
 
-| Component           | Missing preview cards |
-| ------------------- | --------------------- |
-| `shadcn/attachment` | 1                     |
+| Component | Missing preview cards |
+| --------- | --------------------- |

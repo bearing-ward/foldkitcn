@@ -1,11 +1,1 @@
-[
-  {
-    "routePath": "/components/shadcn/attachment",
-    "itemId": "shadcn/attachment",
-    "exampleId": "shadcn/attachment-workflow-demo",
-    "title": "AttachmentWorkflowDemo",
-    "previewExportName": "AttachmentWorkflowDemo",
-    "previewStatus": "static",
-    "reason": "static-status"
-  }
-]
+[]

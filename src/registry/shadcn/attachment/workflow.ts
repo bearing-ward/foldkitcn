@@ -75,7 +75,7 @@ const fileMeta = (file: File.File): string => {
   return mimeType === '' ? size : `${mimeType} · ${size}`
 }
 
-const attachmentRow = (file: File.File): Html => {
+const attachmentRow = <Message>(file: File.File): Html => {
   const h = html<Message>()
 
   return Attachment<Message>({
@@ -158,8 +158,23 @@ export const update = (model: Model, message: Message): UpdateReturn =>
 const fileDropZoneClassName =
   'flex cursor-pointer flex-col gap-2 rounded-xl border-2 border-dashed border-border bg-card px-4 py-5 text-sm transition-colors hover:border-foreground/30 hover:bg-muted/40 data-[drag-over]:border-foreground/50 data-[drag-over]:bg-muted/60'
 
-export const view = (model: Model): Html => {
-  const h = html<Message>()
+export type ViewConfig<ParentMessage> = Readonly<{
+  toParentMessage: (message: Message) => ParentMessage
+}>
+
+export function view(model: Model): Html
+export function view<ParentMessage>(
+  model: Model,
+  config: ViewConfig<ParentMessage>,
+): Html
+export function view<ParentMessage>(
+  model: Model,
+  config?: ViewConfig<ParentMessage>,
+): Html {
+  type RenderMessage = Message | ParentMessage
+  const h = html<RenderMessage>()
+  const toParentMessage = (message: Message): RenderMessage =>
+    config === undefined ? message : config.toParentMessage(message)
 
   return h.div(
     [h.Class('flex w-full max-w-xl flex-col gap-4')],
@@ -187,7 +202,8 @@ export const view = (model: Model): Html => {
               ],
             ),
         },
-        toParentMessage: message => GotFileDropMessage({ message }),
+        toParentMessage: message =>
+          toParentMessage(GotFileDropMessage({ message })),
       }),
       Array.match(model.files, {
         onEmpty: () =>
@@ -198,9 +214,9 @@ export const view = (model: Model): Html => {
             ],
           ),
         onNonEmpty: files =>
-          AttachmentGroup<Message>({
+          AttachmentGroup<RenderMessage>({
             className: 'w-full',
-            children: files.map(attachmentRow),
+            children: files.map(attachmentRow<RenderMessage>),
           }),
       }),
     ],

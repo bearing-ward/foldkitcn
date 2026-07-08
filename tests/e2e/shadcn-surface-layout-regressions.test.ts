@@ -516,3 +516,42 @@ playwrightTest(
     await expectScrollable(scrollRegion)
   },
 )
+
+playwrightTest(
+  'AttachmentWorkflowDemo live preview accepts a file',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/attachment')
+
+    const workflowPreview = page.getByLabel(
+      'AttachmentWorkflowDemo live preview',
+    )
+    await playwrightExpect(workflowPreview).toBeVisible()
+    await playwrightExpect(
+      workflowPreview.getByText(
+        'Accepted files will appear here after they are dropped or chosen.',
+      ),
+    ).toBeVisible()
+
+    await workflowPreview.locator('input[type="file"]').setInputFiles({
+      name: 'workflow-brief.pdf',
+      mimeType: 'application/pdf',
+      buffer: Buffer.from('workflow brief'),
+    })
+
+    await playwrightExpect(
+      workflowPreview.getByText(
+        'Accepted files will appear here after they are dropped or chosen.',
+      ),
+    ).toBeHidden()
+    await playwrightExpect(
+      workflowPreview.locator('[data-slot="attachment-group"]'),
+    ).toBeVisible()
+    await playwrightExpect(
+      workflowPreview.getByText('workflow-brief.pdf'),
+    ).toBeVisible()
+    await playwrightExpect(
+      workflowPreview.getByText(/application\/pdf/u),
+    ).toBeVisible()
+  },
+)

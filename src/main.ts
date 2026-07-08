@@ -125,6 +125,13 @@ import {
   toggleSort as toggleLiveExampleDataTableSort,
 } from './registry/shadcn/data-table'
 import {
+  Message as AttachmentWorkflowMessage,
+  Model as AttachmentWorkflowModel,
+  type Message as AttachmentWorkflowMessageType,
+  type Model as AttachmentWorkflowModelType,
+  update as updateAttachmentWorkflow,
+} from './registry/shadcn/attachment/workflow'
+import {
   type DatePickerMessage as DatePickerMessageType,
   DatePickerMessage,
   DatePickerModel,
@@ -254,6 +261,10 @@ export const Model = S.Struct({
   liveExampleMenuRadioValues: S.Record(S.String, S.String),
   liveExampleDataTableStates: S.optional(
     S.Record(S.String, LiveExampleDataTableState),
+  ),
+  liveExampleAttachmentWorkflowStates: S.Record(
+    S.String,
+    AttachmentWorkflowModel,
   ),
   liveExampleDatePickerStates: S.Record(S.String, DatePickerModel),
   liveExampleToastStates: S.Record(S.String, ToastPrimitive.ToastState),
@@ -1047,6 +1058,14 @@ export const GotLiveExampleDatePickerMessage = m(
     initialModel: DatePickerModel,
   },
 )
+export const GotLiveExampleAttachmentWorkflowMessage = m(
+  'GotLiveExampleAttachmentWorkflowMessage',
+  {
+    exampleId: S.String,
+    message: AttachmentWorkflowMessage,
+    initialModel: AttachmentWorkflowModel,
+  },
+)
 export const GotLiveExampleToastMessage = m('GotLiveExampleToastMessage', {
   exampleId: S.String,
   message: S.Union([ToastExampleMessage, SonnerExampleMessage]),
@@ -1169,6 +1188,7 @@ export const Message = S.Union([
   SelectedLiveExampleMenuRadioValue,
   GotLiveExampleDataTableMessage,
   GotLiveExampleDatePickerMessage,
+  GotLiveExampleAttachmentWorkflowMessage,
   GotLiveExampleToastMessage,
   GotLiveExampleBubbleMessage,
   UpdatedLiveExampleSidebarOpen,
@@ -1229,6 +1249,7 @@ export const init: Runtime.RoutingApplicationInit<Model, Message> = (
       liveExampleMenuCheckedValues: {},
       liveExampleMenuRadioValues: {},
       liveExampleDataTableStates: {},
+      liveExampleAttachmentWorkflowStates: {},
       liveExampleDatePickerStates: {},
       liveExampleToastStates: {},
       liveExampleSidebarOpenValues: {},
@@ -2135,6 +2156,36 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           }),
           Command.mapMessages(commands, nextMessage =>
             GotLiveExampleDatePickerMessage({
+              exampleId,
+              message: nextMessage,
+              initialModel,
+            }),
+          ),
+        ]
+      },
+      GotLiveExampleAttachmentWorkflowMessage: ({
+        exampleId,
+        message,
+        initialModel,
+      }) => {
+        const state = pipe(
+          EffectRecord.get(
+            model.liveExampleAttachmentWorkflowStates,
+            exampleId,
+          ),
+          Option.getOrElse(() => initialModel),
+        )
+        const [nextState, commands] = updateAttachmentWorkflow(state, message)
+
+        return [
+          evo(model, {
+            liveExampleAttachmentWorkflowStates: EffectRecord.set(
+              exampleId,
+              nextState,
+            ),
+          }),
+          Command.mapMessages(commands, nextMessage =>
+            GotLiveExampleAttachmentWorkflowMessage({
               exampleId,
               message: nextMessage,
               initialModel,
@@ -4008,6 +4059,9 @@ const examplesSectionView = (
   liveExampleDataTableStates: Readonly<
     Record<string, typeof LiveExampleDataTableState.Type>
   >,
+  liveExampleAttachmentWorkflowStates: Readonly<
+    Record<string, AttachmentWorkflowModelType>
+  >,
   liveExampleDatePickerStates: Readonly<Record<string, DatePickerModelType>>,
   liveExampleToastStates: Readonly<Record<string, ToastPrimitive.ToastState>>,
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
@@ -4642,6 +4696,24 @@ const examplesSectionView = (
         message,
         initialModel,
       }),
+    attachmentWorkflowStateFor: (
+      example: ExampleDocsArtifact,
+      initialModel: AttachmentWorkflowModelType,
+    ): AttachmentWorkflowModelType =>
+      pipe(
+        EffectRecord.get(liveExampleAttachmentWorkflowStates, example.id),
+        Option.getOrElse(() => initialModel),
+      ),
+    onAttachmentWorkflowMessage: (
+      example: ExampleDocsArtifact,
+      message: AttachmentWorkflowMessageType,
+      initialModel: AttachmentWorkflowModelType,
+    ): Message =>
+      GotLiveExampleAttachmentWorkflowMessage({
+        exampleId: example.id,
+        message,
+        initialModel,
+      }),
     toastStateFor: (example: ExampleDocsArtifact): ToastPrimitive.ToastState =>
       pipe(
         EffectRecord.get(liveExampleToastStates, example.id),
@@ -4990,6 +5062,7 @@ const componentDetailPageView = (
           model.liveExampleMenuCheckedValues,
           model.liveExampleMenuRadioValues,
           model.liveExampleDataTableStates ?? {},
+          model.liveExampleAttachmentWorkflowStates,
           model.liveExampleDatePickerStates,
           model.liveExampleToastStates,
           model.liveExampleSidebarOpenValues,

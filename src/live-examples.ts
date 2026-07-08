@@ -79,6 +79,14 @@ import {
   AttachmentTriggerDemo,
 } from './registry/shadcn/attachment/examples'
 import {
+  init as initAttachmentWorkflow,
+  view as viewAttachmentWorkflow,
+} from './registry/shadcn/attachment/workflow'
+import type {
+  Message as AttachmentWorkflowMessage,
+  Model as AttachmentWorkflowModel,
+} from './registry/shadcn/attachment/workflow'
+import {
   AvatarBadgeIconExample,
   AvatarBasic,
   AvatarDemo,
@@ -928,6 +936,15 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     message: DatePickerMessage,
     initialModel: DatePickerModel,
+  ) => Message
+  attachmentWorkflowStateFor?: (
+    example: ExampleDocsArtifact,
+    initialModel: AttachmentWorkflowModel,
+  ) => AttachmentWorkflowModel
+  onAttachmentWorkflowMessage?: (
+    example: ExampleDocsArtifact,
+    message: AttachmentWorkflowMessage,
+    initialModel: AttachmentWorkflowModel,
   ) => Message
   toastStateFor: (example: ExampleDocsArtifact) => ToastState
   onToastMessage: (
@@ -2572,6 +2589,28 @@ const datePickerExample = (
   },
 })
 
+const attachmentWorkflowExample = (): LiveExampleDefinition => ({
+  render: <Message>(
+    example: ExampleDocsArtifact,
+    context: LiveExampleContext<Message>,
+  ) => {
+    const initialModel = initAttachmentWorkflow()
+
+    return viewAttachmentWorkflow<Message | AttachmentWorkflowMessage>(
+      context.attachmentWorkflowStateFor?.(example, initialModel) ??
+        initialModel,
+      {
+        toParentMessage: message =>
+          context.onAttachmentWorkflowMessage?.(
+            example,
+            message,
+            initialModel,
+          ) ?? message,
+      },
+    )
+  },
+})
+
 const overlayController = <Message>(
   example: ExampleDocsArtifact,
   context: LiveExampleContext<Message>,
@@ -2973,6 +3012,8 @@ const liveExampleViews: Readonly<Record<string, LiveExampleDefinition>> = {
     staticExample(AttachmentSizes),
   [liveExampleKey('shadcn/attachment', 'AttachmentStates')]:
     staticExample(AttachmentStates),
+  [liveExampleKey('shadcn/attachment', 'AttachmentWorkflowDemo')]:
+    attachmentWorkflowExample(),
   [liveExampleKey('shadcn/attachment', 'AttachmentTriggerDemo')]: staticExample(
     AttachmentTriggerDemo,
   ),

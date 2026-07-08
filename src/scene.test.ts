@@ -154,6 +154,7 @@ const modelWithRoute = (route: Model['route']): Model => ({
   liveExampleMenuValues: {},
   liveExampleMenuCheckedValues: {},
   liveExampleMenuRadioValues: {},
+  liveExampleAttachmentWorkflowStates: {},
   liveExampleDatePickerStates: {},
   liveExampleToastStates: {},
   liveExampleSidebarOpenValues: {},

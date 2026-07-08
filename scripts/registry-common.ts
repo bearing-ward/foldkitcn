@@ -1058,6 +1058,7 @@ const liveReadyExampleExportsByItemId: Readonly<
     'AttachmentImage',
     'AttachmentSizes',
     'AttachmentStates',
+    'AttachmentWorkflowDemo',
     'AttachmentTriggerDemo',
   ]),
   'shadcn/breadcrumb': new Set([

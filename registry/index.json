@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-08T11:58:20.824Z",
+  "generatedAt": "2026-07-08T17:26:54.115Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -4875,8 +4875,8 @@
         },
         {
           "path": "src/registry/base-ui/slider/index.ts",
-          "sha256": "31140864f86c8f4d143b2be830c9b8a5a28e1310028de6df3875f32fcbd40dc1",
-          "sizeBytes": 34664,
+          "sha256": "727e9a168b545a2cf903e0b87a6510dca913b5d447d4f0fa75f4b6bf79a0eba8",
+          "sizeBytes": 34620,
           "role": "source"
         }
       ]
@@ -7063,6 +7063,7 @@
             "title": "AttachmentWorkflowDemo",
             "description": "FileDrop-backed attachment workflow with accepted file rows.",
             "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
+            "previewExportName": "AttachmentWorkflowDemo",
             "kind": "demo"
           },
           {
@@ -7105,12 +7106,12 @@
           }
         ]
       },
-      "manifestHash": "a7215fc0271efda6df0ca8f25dc59aaf4765247b89adf3ea95969fbd08d5de19",
+      "manifestHash": "198710d2f2908c50e7c02106b182024f5369758d81253e20edad5ae0fa867b67",
       "artifacts": [
         {
           "path": "registry-src/shadcn/attachment/item.json",
-          "sha256": "2556ba3faba8611f19f80acae3c0d3d6d60322eb186f0c48da325b4e86dc94fd",
-          "sizeBytes": 8181,
+          "sha256": "a1973bdc791e05fc2cf298dc22f2736c7f4290be8af6b78af37702780482cab9",
+          "sizeBytes": 8271,
           "role": "manifest"
         },
         {
@@ -7127,8 +7128,8 @@
         },
         {
           "path": "src/registry/shadcn/attachment/workflow.ts",
-          "sha256": "c34192be7a64ba568b7b4b2ee72306953838617af6688e02908f744aaf529264",
-          "sizeBytes": 5824,
+          "sha256": "e0c764d275fcc3633e3e7b22d3a393e0ad61b50887570f7ca04f1b9fb1cbd1ff",
+          "sizeBytes": 6370,
           "role": "source"
         }
       ]
