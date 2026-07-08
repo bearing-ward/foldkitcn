@@ -990,6 +990,8 @@ playwrightTest(
       hoverContentSelector,
     )
     await expectSurfaceAnchoredToTrigger(hoveredHoverContent, hoverTrigger)
+    const hoverPositioner = hoveredHoverContent.locator('xpath=..')
+    await playwrightExpect(hoverPositioner).toHaveCSS('position', 'absolute')
     await page.mouse.move(0, 0)
     await expectNoOpenSurfaces(hoverPreview, hoverContentSelector)
 
@@ -1009,6 +1011,21 @@ playwrightTest(
       popoverContentSelector,
     )
     await expectSurfaceAnchoredToTrigger(popoverContent, popoverTrigger)
+    const initialTriggerBox = await visibleBox(popoverTrigger)
+    const initialContentBox = await visibleBox(popoverContent)
+    const initialOffset = {
+      x: initialContentBox.x - initialTriggerBox.x,
+      y: initialContentBox.y - initialTriggerBox.y,
+    }
+    await page.evaluate(() => {
+      window.scrollBy(0, 160)
+    })
+    const scrolledTriggerBox = await visibleBox(popoverTrigger)
+    const scrolledContentBox = await visibleBox(popoverContent)
+    playwrightExpect({
+      x: scrolledContentBox.x - scrolledTriggerBox.x,
+      y: scrolledContentBox.y - scrolledTriggerBox.y,
+    }).toStrictEqual(initialOffset)
     await expectCardLikeFloatingSurface(popoverContent)
     await expectEscapingSurfaceHasVisibleOverflow(popoverContent, popoverCard)
     await page.mouse.click(12, 12)

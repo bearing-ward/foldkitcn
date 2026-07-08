@@ -263,7 +263,7 @@ playwrightTest(
     const moreProjectsBox = await assertSurfaceVisible(complexSubmenus.nth(1))
     playwrightExpect(
       horizontalOverlap(openRecentBox, moreProjectsBox),
-    ).toBeLessThanOrEqual(64)
+    ).toBeLessThanOrEqual(8)
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
     ).toBeVisible()
