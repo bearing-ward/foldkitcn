@@ -1,0 +1,1944 @@
+{
+  "generatedAt": "2026-07-08T16:39:55.513Z",
+  "originIndexUrl": "https://ui.shadcn.com/docs/components",
+  "localIndexUrl": "http://localhost:5173/components/shadcn",
+  "components": [
+    {
+      "slug": "accordion",
+      "title": "Accordion",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/accordion",
+      "localUrl": "http://localhost:5173/components/shadcn/accordion",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/accordion/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/accordion/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/accordion/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/accordion/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "alert",
+      "title": "Alert",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/alert",
+      "localUrl": "http://localhost:5173/components/shadcn/alert",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "alert-dialog",
+      "title": "Alert Dialog",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/alert-dialog",
+      "localUrl": "http://localhost:5173/components/shadcn/alert-dialog",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert-dialog/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert-dialog/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert-dialog/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/alert-dialog/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "aspect-ratio",
+      "title": "Aspect Ratio",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/aspect-ratio",
+      "localUrl": "http://localhost:5173/components/shadcn/aspect-ratio",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/aspect-ratio/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/aspect-ratio/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/aspect-ratio/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/aspect-ratio/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "attachment",
+      "title": "Attachment",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/attachment",
+      "localUrl": "http://localhost:5173/components/shadcn/attachment",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "minor-disparities",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/attachment/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/attachment/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/attachment/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/attachment/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      },
+      "finding": "docs:live-preview-gaps reports one static-status example card without .live-example-preview."
+    },
+    {
+      "slug": "avatar",
+      "title": "Avatar",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/avatar",
+      "localUrl": "http://localhost:5173/components/shadcn/avatar",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/avatar/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/avatar/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/avatar/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/avatar/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "badge",
+      "title": "Badge",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/badge",
+      "localUrl": "http://localhost:5173/components/shadcn/badge",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/badge/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/badge/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/badge/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/badge/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "breadcrumb",
+      "title": "Breadcrumb",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/breadcrumb",
+      "localUrl": "http://localhost:5173/components/shadcn/breadcrumb",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/breadcrumb/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/breadcrumb/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/breadcrumb/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/breadcrumb/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "bubble",
+      "title": "Bubble",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/bubble",
+      "localUrl": "http://localhost:5173/components/shadcn/bubble",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/bubble/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/bubble/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/bubble/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/bubble/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "button",
+      "title": "Button",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/button",
+      "localUrl": "http://localhost:5173/components/shadcn/button",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "button-group",
+      "title": "Button Group",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/button-group",
+      "localUrl": "http://localhost:5173/components/shadcn/button-group",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button-group/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button-group/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button-group/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/button-group/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "calendar",
+      "title": "Calendar",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/calendar",
+      "localUrl": "http://localhost:5173/components/shadcn/calendar",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/calendar/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/calendar/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/calendar/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/calendar/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "card",
+      "title": "Card",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/card",
+      "localUrl": "http://localhost:5173/components/shadcn/card",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/card/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/card/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/card/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/card/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "carousel",
+      "title": "Carousel",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/carousel",
+      "localUrl": "http://localhost:5173/components/shadcn/carousel",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/carousel/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/carousel/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/carousel/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/carousel/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "chart",
+      "title": "Chart",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/chart",
+      "localUrl": "http://localhost:5173/components/shadcn/chart",
+      "surfaceStatus": "origin-only",
+      "qaStatus": "blocked",
+      "blocker": "ADR 0001 gates charts on an explicit native chart foundation.",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/chart/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/chart/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/chart/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/chart/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "checkbox",
+      "title": "Checkbox",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/checkbox",
+      "localUrl": "http://localhost:5173/components/shadcn/checkbox",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/checkbox/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/checkbox/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/checkbox/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/checkbox/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "collapsible",
+      "title": "Collapsible",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/collapsible",
+      "localUrl": "http://localhost:5173/components/shadcn/collapsible",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/collapsible/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/collapsible/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/collapsible/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/collapsible/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "combobox",
+      "title": "Combobox",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/combobox",
+      "localUrl": "http://localhost:5173/components/shadcn/combobox",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/combobox/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/combobox/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/combobox/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/combobox/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "command",
+      "title": "Command",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/command",
+      "localUrl": "http://localhost:5173/components/shadcn/command",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/command/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/command/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/command/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/command/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "context-menu",
+      "title": "Context Menu",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/context-menu",
+      "localUrl": "http://localhost:5173/components/shadcn/context-menu",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/context-menu/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/context-menu/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/context-menu/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/context-menu/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "data-table",
+      "title": "Data Table",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/data-table",
+      "localUrl": "http://localhost:5173/components/shadcn/data-table",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/data-table/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/data-table/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/data-table/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/data-table/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "date-picker",
+      "title": "Date Picker",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/date-picker",
+      "localUrl": "http://localhost:5173/components/shadcn/date-picker",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/date-picker/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/date-picker/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/date-picker/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/date-picker/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "dialog",
+      "title": "Dialog",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/dialog",
+      "localUrl": "http://localhost:5173/components/shadcn/dialog",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dialog/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dialog/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dialog/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dialog/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "direction",
+      "title": "Direction",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/direction",
+      "localUrl": "http://localhost:5173/components/shadcn/direction",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/direction/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/direction/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/direction/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/direction/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "drawer",
+      "title": "Drawer",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/drawer",
+      "localUrl": "http://localhost:5173/components/shadcn/drawer",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/drawer/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/drawer/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/drawer/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/drawer/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "dropdown-menu",
+      "title": "Dropdown Menu",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/dropdown-menu",
+      "localUrl": "http://localhost:5173/components/shadcn/dropdown-menu",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dropdown-menu/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dropdown-menu/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dropdown-menu/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/dropdown-menu/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "empty",
+      "title": "Empty",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/empty",
+      "localUrl": "http://localhost:5173/components/shadcn/empty",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/empty/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/empty/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/empty/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/empty/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      },
+      "finding": "Visible screenshot/page evidence shows the local Empty page loads; an earlier hidden-text not-found detector was a false positive."
+    },
+    {
+      "slug": "field",
+      "title": "Field",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/field",
+      "localUrl": "http://localhost:5173/components/shadcn/field",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/field/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/field/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/field/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/field/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "hover-card",
+      "title": "Hover Card",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/hover-card",
+      "localUrl": "http://localhost:5173/components/shadcn/hover-card",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/hover-card/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/hover-card/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/hover-card/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/hover-card/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "input",
+      "title": "Input",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/input",
+      "localUrl": "http://localhost:5173/components/shadcn/input",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "input-group",
+      "title": "Input Group",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/input-group",
+      "localUrl": "http://localhost:5173/components/shadcn/input-group",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-group/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-group/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-group/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-group/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "input-otp",
+      "title": "Input Otp",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/input-otp",
+      "localUrl": "http://localhost:5173/components/shadcn/input-otp",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-otp/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-otp/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-otp/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/input-otp/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "item",
+      "title": "Item",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/item",
+      "localUrl": "http://localhost:5173/components/shadcn/item",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/item/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/item/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/item/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/item/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "kbd",
+      "title": "Kbd",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/kbd",
+      "localUrl": "http://localhost:5173/components/shadcn/kbd",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/kbd/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/kbd/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/kbd/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/kbd/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "label",
+      "title": "Label",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/label",
+      "localUrl": "http://localhost:5173/components/shadcn/label",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/label/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/label/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/label/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/label/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "marker",
+      "title": "Marker",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/marker",
+      "localUrl": "http://localhost:5173/components/shadcn/marker",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/marker/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/marker/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/marker/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/marker/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "menubar",
+      "title": "Menubar",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/menubar",
+      "localUrl": "http://localhost:5173/components/shadcn/menubar",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/menubar/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/menubar/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/menubar/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/menubar/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "message",
+      "title": "Message",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/message",
+      "localUrl": "http://localhost:5173/components/shadcn/message",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "message-scroller",
+      "title": "Message Scroller",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/message-scroller",
+      "localUrl": "http://localhost:5173/components/shadcn/message-scroller",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message-scroller/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message-scroller/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message-scroller/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/message-scroller/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "native-select",
+      "title": "Native Select",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/native-select",
+      "localUrl": "http://localhost:5173/components/shadcn/native-select",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/native-select/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/native-select/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/native-select/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/native-select/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "navigation-menu",
+      "title": "Navigation Menu",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/navigation-menu",
+      "localUrl": "http://localhost:5173/components/shadcn/navigation-menu",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/navigation-menu/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/navigation-menu/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/navigation-menu/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/navigation-menu/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "pagination",
+      "title": "Pagination",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/pagination",
+      "localUrl": "http://localhost:5173/components/shadcn/pagination",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/pagination/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/pagination/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/pagination/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/pagination/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "popover",
+      "title": "Popover",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/popover",
+      "localUrl": "http://localhost:5173/components/shadcn/popover",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/popover/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/popover/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/popover/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/popover/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "progress",
+      "title": "Progress",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/progress",
+      "localUrl": "http://localhost:5173/components/shadcn/progress",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/progress/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/progress/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/progress/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/progress/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "radio-group",
+      "title": "Radio Group",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/radio-group",
+      "localUrl": "http://localhost:5173/components/shadcn/radio-group",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/radio-group/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/radio-group/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/radio-group/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/radio-group/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "resizable",
+      "title": "Resizable",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/resizable",
+      "localUrl": "http://localhost:5173/components/shadcn/resizable",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/resizable/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/resizable/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/resizable/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/resizable/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "scroll-area",
+      "title": "Scroll Area",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/scroll-area",
+      "localUrl": "http://localhost:5173/components/shadcn/scroll-area",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/scroll-area/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/scroll-area/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/scroll-area/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/scroll-area/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "select",
+      "title": "Select",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/select",
+      "localUrl": "http://localhost:5173/components/shadcn/select",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/select/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/select/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/select/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/select/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "separator",
+      "title": "Separator",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/separator",
+      "localUrl": "http://localhost:5173/components/shadcn/separator",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/separator/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/separator/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/separator/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/separator/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "sheet",
+      "title": "Sheet",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/sheet",
+      "localUrl": "http://localhost:5173/components/shadcn/sheet",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sheet/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sheet/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sheet/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sheet/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "sidebar",
+      "title": "Sidebar",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/sidebar",
+      "localUrl": "http://localhost:5173/components/shadcn/sidebar",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sidebar/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sidebar/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sidebar/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sidebar/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "skeleton",
+      "title": "Skeleton",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/skeleton",
+      "localUrl": "http://localhost:5173/components/shadcn/skeleton",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/skeleton/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/skeleton/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/skeleton/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/skeleton/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "slider",
+      "title": "Slider",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/slider",
+      "localUrl": "http://localhost:5173/components/shadcn/slider",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/slider/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/slider/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/slider/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/slider/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "sonner",
+      "title": "Sonner",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/sonner",
+      "localUrl": "http://localhost:5173/components/shadcn/sonner",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sonner/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sonner/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sonner/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/sonner/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "spinner",
+      "title": "Spinner",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/spinner",
+      "localUrl": "http://localhost:5173/components/shadcn/spinner",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/spinner/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/spinner/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/spinner/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/spinner/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "switch",
+      "title": "Switch",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/switch",
+      "localUrl": "http://localhost:5173/components/shadcn/switch",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/switch/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/switch/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/switch/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/switch/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "table",
+      "title": "Table",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/table",
+      "localUrl": "http://localhost:5173/components/shadcn/table",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/table/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/table/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/table/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/table/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "tabs",
+      "title": "Tabs",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/tabs",
+      "localUrl": "http://localhost:5173/components/shadcn/tabs",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tabs/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tabs/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tabs/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tabs/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "textarea",
+      "title": "Textarea",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/textarea",
+      "localUrl": "http://localhost:5173/components/shadcn/textarea",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/textarea/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/textarea/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/textarea/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/textarea/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "toast",
+      "title": "Toast",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/toast",
+      "localUrl": "http://localhost:5173/components/shadcn/toast",
+      "surfaceStatus": "origin-only",
+      "qaStatus": "major-disparities",
+      "blocker": "Plan 112 removed toast from the public shadcn registry surface; the current complete-origin-parity goal reopens it as a missing surface gap.",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toast/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toast/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toast/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toast/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    },
+    {
+      "slug": "toggle",
+      "title": "Toggle",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/toggle",
+      "localUrl": "http://localhost:5173/components/shadcn/toggle",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "toggle-group",
+      "title": "Toggle Group",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/toggle-group",
+      "localUrl": "http://localhost:5173/components/shadcn/toggle-group",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle-group/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle-group/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle-group/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/toggle-group/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "tooltip",
+      "title": "Tooltip",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/tooltip",
+      "localUrl": "http://localhost:5173/components/shadcn/tooltip",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tooltip/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tooltip/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tooltip/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/tooltip/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": {
+          "status": "assessed",
+          "artifact": "plans/artifacts/120-shadcn-ui-ux-parity-audit/interaction-pass.json",
+          "checks": [
+            "Keyboard Tab focus trace",
+            "Escape key sent",
+            "pointer click event dispatched on first visible button when present",
+            "mobile viewport load and overflow check"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "typography",
+      "title": "Typography",
+      "originUrl": "https://ui.shadcn.com/docs/components/base/typography",
+      "localUrl": "http://localhost:5173/components/shadcn/typography",
+      "surfaceStatus": "present-in-both",
+      "qaStatus": "matches",
+      "evidence": {
+        "screenshots": {
+          "originDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/typography/origin-desktop.png",
+          "localDesktop": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/typography/local-desktop.png",
+          "originMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/typography/origin-mobile.png",
+          "localMobile": "plans/artifacts/120-shadcn-ui-ux-parity-audit/screenshots/typography/local-mobile.png"
+        },
+        "httpStatus": {
+          "originDesktop": 200,
+          "localDesktop": 200,
+          "originMobile": 200,
+          "localMobile": 200,
+          "originSummary": 200,
+          "localSummary": 200
+        },
+        "behaviorPass": "visual/structural pass only"
+      }
+    }
+  ]
+}

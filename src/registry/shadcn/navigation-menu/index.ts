@@ -12,7 +12,13 @@ export type NavigationMenuActivationDirection =
 export type NavigationMenuAlign = BaseNavigationMenu.NavigationMenuAlign
 export type NavigationMenuInstant = BaseNavigationMenu.NavigationMenuInstant
 export type NavigationMenuItemDescriptor =
-  BaseNavigationMenu.NavigationMenuItemDescriptor
+  BaseNavigationMenu.NavigationMenuItemDescriptor &
+    Readonly<{
+      className?: string | undefined
+      popupHeight?: string | undefined
+      popupWidth?: string | undefined
+      positionerLeft?: string | undefined
+    }>
 export type NavigationMenuItemKind = BaseNavigationMenu.NavigationMenuItemKind
 export type NavigationMenuOrientation =
   BaseNavigationMenu.NavigationMenuOrientation
@@ -79,17 +85,27 @@ export const {
 
 export type NavigationMenuPartAttributes<Message> =
   BaseNavigationMenu.NavigationMenuPartAttributes<Message>
-export type NavigationMenuItemAttributes<Message> =
-  BaseNavigationMenu.NavigationMenuItemAttributes<Message>
-export type NavigationMenuAttributes<Message> =
-  BaseNavigationMenu.NavigationMenuAttributes<Message>
+export type NavigationMenuItemAttributes<Message> = Omit<
+  BaseNavigationMenu.NavigationMenuItemAttributes<Message>,
+  'item'
+> &
+  Readonly<{ item: NavigationMenuItemDescriptor }>
+export type NavigationMenuAttributes<Message> = Omit<
+  BaseNavigationMenu.NavigationMenuAttributes<Message>,
+  'activeItem' | 'items'
+> &
+  Readonly<{
+    items: ReadonlyArray<NavigationMenuItemAttributes<Message>>
+    activeItem?: NavigationMenuItemAttributes<Message> | undefined
+  }>
 
 export type ViewConfig<Message> = Omit<
   BaseNavigationMenu.ViewConfig<Message>,
-  'toView'
+  'items' | 'toView'
 > &
   NavigationMenuStyleOptions &
   Readonly<{
+    items: ReadonlyArray<NavigationMenuItemDescriptor>
     toView?: (attributes: NavigationMenuAttributes<Message>) => Html
   }>
 
@@ -201,18 +217,57 @@ const partAttributes = <Message>(
       : attributes.root,
 })
 
+const mergeStyleAttributes = <Message>(
+  h: ReturnType<typeof html<Message>>,
+  attributes: ReadonlyArray<Attribute<Message>>,
+  style: Record<string, string>,
+): ReadonlyArray<Attribute<Message>> =>
+  attributes.map(attribute =>
+    attribute._tag === 'Style'
+      ? h.Style({ ...attribute.value, ...style })
+      : attribute,
+  )
+
+const popupGeometryStyle = (
+  item: NavigationMenuItemDescriptor | undefined,
+): Record<string, string> =>
+  item === undefined || item.popupWidth === undefined
+    ? {}
+    : {
+        '--popup-height': item.popupHeight ?? 'auto',
+        '--popup-width': item.popupWidth,
+      }
+
+const positionerGeometryStyle = <Message>(
+  config: ViewConfig<Message>,
+  item: NavigationMenuItemDescriptor | undefined,
+): Record<string, string> =>
+  item === undefined || item.popupWidth === undefined
+    ? {}
+    : {
+        '--available-width': 'calc(100vw - 4rem)',
+        '--positioner-height': item.popupHeight ?? 'auto',
+        '--positioner-width': item.popupWidth,
+        left: item.positionerLeft ?? '0',
+        top: `calc(100% + ${config.sideOffset ?? 8}px)`,
+      }
+
 const shadcnItemAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
   itemAttributes: BaseNavigationMenu.NavigationMenuItemAttributes<Message>,
+  item: NavigationMenuItemDescriptor,
 ): NavigationMenuItemAttributes<Message> => ({
   ...itemAttributes,
+  item,
   root: [
     ...itemAttributes.root,
     ...slotAttributes(
       h,
       'navigation-menu-item',
-      navigationMenuItemClassName({ className: config.itemClassName }),
+      navigationMenuItemClassName({
+        className: cn(config.itemClassName, item.className),
+      }),
     ),
   ],
   trigger: [
@@ -267,8 +322,15 @@ const shadcnAttributes = <Message>(
   attributes: BaseNavigationMenu.NavigationMenuAttributes<Message>,
 ): NavigationMenuAttributes<Message> => {
   const items = attributes.items.map(itemAttributes =>
-    shadcnItemAttributes(h, config, itemAttributes),
+    shadcnItemAttributes(
+      h,
+      config,
+      itemAttributes,
+      config.items.find(item => item.value === itemAttributes.item.value) ??
+        itemAttributes.item,
+    ),
   )
+  const maybeActiveItem = items.find(item => item.isActive)?.item
 
   return {
     ...attributes,
@@ -289,23 +351,37 @@ const shadcnAttributes = <Message>(
       ...attributes.portal,
       ...optionalClassAttribute(h, cn(config.portalClassName)),
     ],
-    positioner: partAttributes(
-      h,
-      attributes.positioner,
-      navigationMenuPositionerClassName({
-        className: config.positionerClassName,
-      }),
-    ),
+    positioner: {
+      ...attributes.positioner,
+      root: mergeStyleAttributes(
+        h,
+        partAttributes(
+          h,
+          attributes.positioner,
+          navigationMenuPositionerClassName({
+            className: config.positionerClassName,
+          }),
+        ).root,
+        positionerGeometryStyle(config, maybeActiveItem),
+      ),
+    },
     backdrop: partAttributes(
       h,
       attributes.backdrop,
       cn(config.backdropClassName),
     ),
-    popup: partAttributes(
-      h,
-      attributes.popup,
-      navigationMenuPopupClassName({ className: config.popupClassName }),
-    ),
+    popup: {
+      ...attributes.popup,
+      root: mergeStyleAttributes(
+        h,
+        partAttributes(
+          h,
+          attributes.popup,
+          navigationMenuPopupClassName({ className: config.popupClassName }),
+        ).root,
+        popupGeometryStyle(maybeActiveItem),
+      ),
+    },
     viewport: partAttributes(
       h,
       attributes.viewport,

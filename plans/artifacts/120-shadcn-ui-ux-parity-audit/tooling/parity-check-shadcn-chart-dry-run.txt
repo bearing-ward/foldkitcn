@@ -1,0 +1,15 @@
+$ bun run scripts/parity-dry-run.ts --grep shadcn/chart --dry-run
+84 | const printDiscoveredSlots = (
+85 |   matchingSlots: ReadonlyArray<ParitySlot>,
+86 |   maybeGrep: string | undefined,
+87 | ): void => {
+88 |   if (matchingSlots.length === 0) {
+89 |     throw new Error(`No parity slots matched: ${maybeGrep ?? '<none>'}`)
+                   ^
+error: No parity slots matched: shadcn/chart
+      at printDiscoveredSlots (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/scripts/parity-dry-run.ts:89:15)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/scripts/parity-dry-run.ts:572:5)
+      at /Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/scripts/parity-dry-run.ts:579:9
+
+Bun v1.3.14 (macOS arm64)
+error: script "parity:check" exited with code 1

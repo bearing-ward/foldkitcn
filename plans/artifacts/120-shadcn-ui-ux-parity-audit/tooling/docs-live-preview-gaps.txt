@@ -1,0 +1,12 @@
+$ bun run scripts/report-docs-live-preview-gaps.ts
+Docs live preview gap inventory
+
+Total example cards: 442
+Cards with .live-example-preview: 441
+Cards missing .live-example-preview: 1
+
+Missing count by reason:
+- static-status: 1
+
+Missing count by component:
+- shadcn/attachment: 1

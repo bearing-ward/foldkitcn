@@ -1,0 +1,3 @@
+$ bun run scripts/parity-dry-run.ts --grep shadcn/empty --dry-run
+Discovered 1 parity slot(s):
+- shadcn/empty status=ready origin=tests/parity/fixtures/origin/shadcn/entry.tsx foldkit=tests/parity/fixtures/foldkit/shadcn/entry.ts comparisons=class-tokens,attributes,dom-structure,computed-style,colors,dimensions,bounding-box

@@ -796,6 +796,22 @@ const linkClickMessage = <Message>(
       )
     : Option.none()
 
+const linkHoverMessage = <Message>(
+  config: ViewConfig<Message>,
+  item: NavigationMenuItemDescriptor,
+): Option.Option<Message> =>
+  isOpen(config)
+    ? valueMessage(
+        config,
+        valueChange(
+          undefined,
+          'trigger-hover',
+          config.value,
+          linkFocusSelector(config, item),
+        ),
+      )
+    : Option.none()
+
 const linkAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -816,6 +832,9 @@ const linkAttributes = <Message>(
         ),
         ...optionalMessageAttribute(linkClickMessage(config, item), message =>
           h.OnClick(message),
+        ),
+        ...optionalMessageAttribute(linkHoverMessage(config, item), message =>
+          h.OnMouseEnter(message),
         ),
       ]
     : []

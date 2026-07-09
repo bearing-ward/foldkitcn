@@ -31,12 +31,22 @@ const navigationItems: ReadonlyArray<NavigationMenuItemDescriptor> = [
 // MESSAGE
 
 type Message = never
+type ExampleMessage = 'SelectedNavigationMenuValue'
+type ExampleModel = Record<string, never>
 
 // UPDATE
 
 type UpdateReturn = readonly [Model, ReadonlyArray<Command.Command<Message>>]
+type ExampleUpdateReturn = readonly [
+  ExampleModel,
+  ReadonlyArray<Command.Command<ExampleMessage>>,
+]
 
 const update = (model: Model, _message: Message): UpdateReturn => [model, []]
+const exampleUpdate = (
+  model: ExampleModel,
+  _message: ExampleMessage,
+): ExampleUpdateReturn => [model, []]
 
 // VIEW
 
@@ -263,5 +273,36 @@ describe('shadcn/navigation-menu examples', () => {
       ['shadcn/navigation-menu-demo', 'shadcn/navigation-menu-rtl'],
     )
     expect(() => NavigationMenuDemo()).not.toThrow()
+  })
+
+  test('NavigationMenuDemo matches the origin base-ui example content', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update: exampleUpdate,
+          view: () =>
+            NavigationMenuDemo<ExampleMessage>({
+              valueFor: () => 'components',
+              onValueChange: () => 'SelectedNavigationMenuValue',
+            }),
+        },
+        Scene.with({}),
+        Scene.expect(
+          Scene.selector(
+            '[data-slot="navigation-menu-item"][data-value="components"]',
+          ),
+        ).toHaveAttr('class', 'relative hidden md:flex'),
+        Scene.expect(
+          Scene.text(
+            'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
+          ),
+        ).toExist(),
+        Scene.expect(
+          Scene.text(
+            'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
+          ),
+        ).toExist(),
+      )
+    }).not.toThrow()
   })
 })
