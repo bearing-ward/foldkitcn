@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-resizable",
   "localInstallPath": "src/registry/shadcn/resizable",
   "defaultImportPath": "shadcn/resizable",
   "sourceRoot": "registry-src/shadcn/resizable",

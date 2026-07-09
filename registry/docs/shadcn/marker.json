@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-marker",
   "localInstallPath": "src/registry/shadcn/marker",
   "defaultImportPath": "shadcn/marker",
   "sourceRoot": "registry-src/shadcn/marker",

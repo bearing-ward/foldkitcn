@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-input",
   "localInstallPath": "src/registry/base-ui/input",
   "defaultImportPath": "base-ui/input",
   "sourceRoot": "registry-src/base-ui/input",

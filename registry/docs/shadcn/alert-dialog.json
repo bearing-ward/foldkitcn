@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-alert-dialog",
   "localInstallPath": "src/registry/shadcn/alert-dialog",
   "defaultImportPath": "shadcn/alert-dialog",
   "sourceRoot": "registry-src/shadcn/alert-dialog",

@@ -26,6 +26,42 @@ bun run registry:build
 - Generated component docs route artifacts live under `registry/docs`.
 - The docs site reads generated registry artifacts; it does not read `registry-src` at runtime.
 
+## Installation
+
+Add the Foldkit CN Pages registry namespace to `components.json`:
+
+```json
+{
+  "registries": {
+    "@foldkitcn": "https://<owner>.github.io/<repo>/r/{name}.json"
+  }
+}
+```
+
+Install a component through that namespace:
+
+```bash
+bunx shadcn@latest add @foldkitcn/shadcn-button
+```
+
+Public GitHub registries can also be installed directly from a repository that has a root `registry.json`:
+
+```bash
+bunx shadcn@latest add <owner>/<repo>/shadcn-button
+```
+
+Useful discovery and validation commands:
+
+```bash
+bunx shadcn@latest list <owner>/<repo>
+bunx shadcn@latest search <owner>/<repo> --query button
+bunx shadcn@latest view <owner>/<repo>/shadcn-button
+bunx shadcn@latest registry validate <owner>/<repo>
+bunx shadcn@latest add <owner>/<repo>/shadcn-button --dry-run
+```
+
+Before installing from a registry you do not control, review the repository, root `registry.json`, item files, dependencies, registry dependencies, and generated targets.
+
 ## Publishing
 
 - In GitHub Settings, open `Pages`, then set `Build and deployment` `Source` to `GitHub Actions`.
@@ -39,21 +75,5 @@ Registry URLs:
 
 - Catalog: `https://<owner>.github.io/<repo>/r/registry.json`
 - Item: `https://<owner>.github.io/<repo>/r/shadcn-button.json`
-
-`components.json` namespace snippet:
-
-```json
-{
-  "registries": {
-    "@foldkitcn": "https://<owner>.github.io/<repo>/r/{name}.json"
-  }
-}
-```
-
-Install example:
-
-```bash
-bunx shadcn@latest add @foldkitcn/shadcn-button
-```
 
 If the site is deployed at `/`, set `FOLDKITCN_BASE_PATH=/` in the Pages workflow. If it is deployed at `/<repo>/`, set `FOLDKITCN_BASE_PATH=/<repo>/`.

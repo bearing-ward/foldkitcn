@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-context-menu",
   "localInstallPath": "src/registry/base-ui/context-menu",
   "defaultImportPath": "base-ui/context-menu",
   "sourceRoot": "registry-src/base-ui/context-menu",

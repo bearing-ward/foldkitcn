@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-toggle-group",
   "localInstallPath": "src/registry/shadcn/toggle-group",
   "defaultImportPath": "shadcn/toggle-group",
   "sourceRoot": "registry-src/shadcn/toggle-group",

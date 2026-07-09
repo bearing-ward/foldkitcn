@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-popover",
   "localInstallPath": "src/registry/shadcn/popover",
   "defaultImportPath": "shadcn/popover",
   "sourceRoot": "registry-src/shadcn/popover",

@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-preview-card",
   "localInstallPath": "src/registry/base-ui/preview-card",
   "defaultImportPath": "base-ui/preview-card",
   "sourceRoot": "registry-src/base-ui/preview-card",

@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-field",
   "localInstallPath": "src/registry/base-ui/field",
   "defaultImportPath": "base-ui/field",
   "sourceRoot": "registry-src/base-ui/field",

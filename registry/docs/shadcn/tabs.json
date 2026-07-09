@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-tabs",
   "localInstallPath": "src/registry/shadcn/tabs",
   "defaultImportPath": "shadcn/tabs",
   "sourceRoot": "registry-src/shadcn/tabs",

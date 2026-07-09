@@ -1132,7 +1132,9 @@ describe(view, () => {
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
       ),
-      Scene.expect(Scene.text('bunx foldkitcn add shadcn/button')).toExist(),
+      Scene.expect(
+        Scene.text('bunx shadcn@latest add @foldkitcn/shadcn-button'),
+      ).toExist(),
       Scene.expect(
         Scene.text(
           "import { Button } from '@/components/foldkitcn/shadcn/button'",
@@ -1191,7 +1193,7 @@ describe(view, () => {
       Scene.expect(
         Scene.within(
           Scene.selector('#installation'),
-          Scene.text('bunx foldkitcn add shadcn/button'),
+          Scene.text('bunx shadcn@latest add @foldkitcn/shadcn-button'),
         ),
       ).toExist(),
       Scene.click(
@@ -1976,7 +1978,7 @@ describe(view, () => {
   })
 
   test('Copy controls are accessible and announce copied status', () => {
-    const text = 'bunx foldkitcn add shadcn/button'
+    const text = 'bunx shadcn@latest add @foldkitcn/shadcn-button'
 
     Scene.scene(
       { update, view },

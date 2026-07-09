@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-navigation-menu",
   "localInstallPath": "src/registry/shadcn/navigation-menu",
   "defaultImportPath": "shadcn/navigation-menu",
   "sourceRoot": "registry-src/shadcn/navigation-menu",

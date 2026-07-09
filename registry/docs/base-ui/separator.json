@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-separator",
   "localInstallPath": "src/registry/base-ui/separator",
   "defaultImportPath": "base-ui/separator",
   "sourceRoot": "registry-src/base-ui/separator",

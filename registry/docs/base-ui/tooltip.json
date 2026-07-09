@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-tooltip",
   "localInstallPath": "src/registry/base-ui/tooltip",
   "defaultImportPath": "base-ui/tooltip",
   "sourceRoot": "registry-src/base-ui/tooltip",

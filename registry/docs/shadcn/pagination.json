@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-pagination",
   "localInstallPath": "src/registry/shadcn/pagination",
   "defaultImportPath": "shadcn/pagination",
   "sourceRoot": "registry-src/shadcn/pagination",

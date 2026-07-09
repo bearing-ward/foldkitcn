@@ -242,13 +242,19 @@ const publicRegistryItemPath = (
 export const publicNameForItemId = (itemId: string): string =>
   itemId.replaceAll('/', '-')
 
+export const publicRegistryAddressForItemId = (itemId: string): string =>
+  `@foldkitcn/${publicNameForItemId(itemId)}`
+
+export const publicInstallCommandForItemId = (itemId: string): string =>
+  `bunx shadcn@latest add ${publicRegistryAddressForItemId(itemId)}`
+
 const publicRegistryTypeForItem = (item: RegistryItemManifest) =>
   item.kind === 'utility' || item.namespace === 'utils'
     ? ('registry:lib' as const)
     : ('registry:ui' as const)
 
 const publicRegistryDependencyForTarget = (target: string): string =>
-  `@foldkitcn/${publicNameForItemId(target)}`
+  publicRegistryAddressForItemId(target)
 
 const publicRegistryDependenciesForItem = (
   item: RegistryItemManifest,
@@ -1320,7 +1326,10 @@ export const buildComponentDocsArtifacts = (
       markdownPath: hasMarkdown ? docsMarkdownPath : null,
       markdown: hasMarkdown ? markdown : null,
       headings: hasMarkdown ? extractMarkdownHeadings(markdown) : [],
-      installCommand: null,
+      installCommand:
+        item.lifecycle.availability === 'installable'
+          ? publicInstallCommandForItemId(item.id)
+          : null,
       localInstallPath: localInstallPathForItem(item),
       defaultImportPath: item.id,
       sourceRoot: item.sourceRoot,

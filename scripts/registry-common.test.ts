@@ -10,6 +10,7 @@ import {
   componentDocsRouteForItem,
   checkPublicRegistryCurrent,
   registryIndexIsCurrent,
+  publicInstallCommandForItemId,
   publicNameForItemId,
   selectRegistryGeneratedAt,
   writePublicRegistryArtifacts,
@@ -283,18 +284,35 @@ describe('registry build helpers', () => {
     const index = registryIndexWithDocsItems()
     const docs = buildComponentDocsArtifacts(index)
 
-    expect(docs.artifacts[0]?.dependencies.registry[0]?.target).toBe(
-      'base-ui/button',
-    )
-    expect(docs.artifacts[0]?.installableSourcePaths).toStrictEqual([
-      'src/registry/shadcn/button/index.ts',
-    ])
-    expect(docs.artifacts[1]?.sourceRoot).toBe(
-      'registry-src/local/example-preview',
-    )
-    expect(docs.artifacts[1]?.dependencies.runtime[0]?.specifier).toBe(
-      'foldkit',
-    )
+    expect({
+      buttonInstallCommand:
+        docs.artifacts[0] === undefined
+          ? ''
+          : Option.match(docs.artifacts[0].installCommand, {
+              onNone: () => '',
+              onSome: value => value,
+            }),
+      buttonRegistryDependency:
+        docs.artifacts[0]?.dependencies.registry[0]?.target,
+      buttonSourcePaths: docs.artifacts[0]?.installableSourcePaths,
+    }).toStrictEqual({
+      buttonInstallCommand: 'bunx shadcn@latest add @foldkitcn/shadcn-button',
+      buttonRegistryDependency: 'base-ui/button',
+      buttonSourcePaths: ['src/registry/shadcn/button/index.ts'],
+    })
+    expect({
+      previewInstallCommandIsNone:
+        docs.artifacts[1] === undefined
+          ? true
+          : Option.isNone(docs.artifacts[1].installCommand),
+      previewRuntimeDependency:
+        docs.artifacts[1]?.dependencies.runtime[0]?.specifier,
+      previewSourceRoot: docs.artifacts[1]?.sourceRoot,
+    }).toStrictEqual({
+      previewInstallCommandIsNone: true,
+      previewRuntimeDependency: 'foldkit',
+      previewSourceRoot: 'registry-src/local/example-preview',
+    })
   })
 })
 
@@ -303,6 +321,9 @@ describe('public registry build helpers', () => {
     expect(publicNameForItemId('shadcn/button')).toBe('shadcn-button')
     expect(publicNameForItemId('base-ui/button')).toBe('base-ui-button')
     expect(publicNameForItemId('utils/cn')).toBe('utils-cn')
+    expect(publicInstallCommandForItemId('shadcn/button')).toBe(
+      'bunx shadcn@latest add @foldkitcn/shadcn-button',
+    )
   })
 
   test('builds a public catalog and item payloads from the current registry index', () => {

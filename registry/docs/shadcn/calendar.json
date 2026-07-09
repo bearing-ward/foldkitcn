@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-calendar",
   "localInstallPath": "src/registry/shadcn/calendar",
   "defaultImportPath": "shadcn/calendar",
   "sourceRoot": "registry-src/shadcn/calendar",
