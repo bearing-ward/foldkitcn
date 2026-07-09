@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "format": "oxfmt --write .",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "lint": "oxlint",
     "check": "ultracite check --disable-nested-config",
     "fix": "ultracite fix",

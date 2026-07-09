@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-09T01:37:16.372Z",
+  "generatedAt": "2026-07-09T18:14:06.789Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -11302,8 +11302,8 @@
         },
         {
           "path": "src/registry/shadcn/data-table/examples.ts",
-          "sha256": "35cf91c8f2aeb128f15a4bc27bb2445da04e9154180861c584fb344d79fc6cc4",
-          "sizeBytes": 36638,
+          "sha256": "c3873c39e1888dc5e671f68475a107c9d42f222ab5faf752611bebeba6631f68",
+          "sizeBytes": 37564,
           "role": "source"
         }
       ]
@@ -12652,14 +12652,14 @@
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/index.ts",
-          "sha256": "618f2491d689939d2351bf2e3dbe816750d6658907aef0200c72892fc66fd292",
-          "sizeBytes": 17541,
+          "sha256": "a900ccb648c9f27e25afc6c8682a731fdd7672570a3d63962badbc9b8c67e246",
+          "sizeBytes": 17787,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/examples.ts",
-          "sha256": "f484a930d0be68bcf3151efc89c5252f311c5756846731572db569b5c23deb35",
-          "sizeBytes": 25371,
+          "sha256": "efa5daf73830426cc43e1dbd3a4ec477eb38f002d1c4e1573fa4fe1adf69226f",
+          "sizeBytes": 25465,
           "role": "source"
         }
       ]
@@ -18166,8 +18166,8 @@
         },
         {
           "path": "src/registry/shadcn/select/index.ts",
-          "sha256": "288e6c0ca4073a34732cb286bd0fad4ff2cc5dc6ab53764239218d7be9f5229a",
-          "sizeBytes": 19808,
+          "sha256": "bc53b4ca446dd9d92596be528bf3fded4008bda06b3a8ea7ea3aaefb03f61394",
+          "sizeBytes": 20110,
           "role": "source"
         },
         {
