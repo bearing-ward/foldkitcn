@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-09T22:09:59.143Z",
+  "generatedAt": "2026-07-09T22:54:49.317Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -3672,8 +3672,8 @@
         },
         {
           "path": "src/registry/base-ui/popover/index.ts",
-          "sha256": "9df74715f9eb854e145763573e52351ccd66bbd594f7c74e3c3b4529e3b28b70",
-          "sizeBytes": 17658,
+          "sha256": "05aa89997c99e81efa78562eef6b2d290a0adf7fbbcc522d6612459c7a69333b",
+          "sizeBytes": 17775,
           "role": "source"
         }
       ]
