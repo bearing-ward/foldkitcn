@@ -583,10 +583,12 @@ const itemContent = <Message>(
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
   const kind = DropdownMenu.itemKind(itemAttributes.item)
-  const indicator =
-    kind === 'checkbox' || kind === 'radio'
-      ? h.span([...itemAttributes.indicator], [DropdownMenu.checkIcon([])])
-      : h.span([], [])
+  const hasMountedIndicator =
+    itemAttributes.item.isChecked === true &&
+    (kind === 'checkbox' || kind === 'radio')
+  const indicator = hasMountedIndicator
+    ? h.span([...itemAttributes.indicator], [DropdownMenu.checkIcon([])])
+    : h.span([], [])
   const maybeIcon = source.icon === undefined ? [] : [icon(source.icon)]
   const maybeShortcut =
     source.shortcut === undefined

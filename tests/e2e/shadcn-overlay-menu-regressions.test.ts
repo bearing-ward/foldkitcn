@@ -206,6 +206,11 @@ playwrightTest(
       checkPreview.getByRole('menuitemcheckbox', { name: 'SMS notifications' }),
     ).toHaveAttribute('aria-checked', 'false')
     await playwrightExpect(
+      checkPreview
+        .getByRole('menuitemcheckbox', { name: 'SMS notifications' })
+        .locator('[data-slot="dropdown-menu-checkbox-item-indicator"] svg'),
+    ).toHaveCount(0)
+    await playwrightExpect(
       checkPreview.getByRole('menuitemcheckbox', {
         name: 'Push notifications',
       }),

@@ -700,6 +700,7 @@ dt {
 
 .live-example-preview:has([data-slot='context-menu-content'][data-open]),
 .live-example-preview:has([data-slot='navigation-menu-content'][data-open]),
+.live-example-preview:has([data-slot='select-content'][data-open]),
 .live-example-preview:has(
   [data-slot='sidebar-wrapper'] [data-slot='dropdown-menu-content'][data-open]
 ) {

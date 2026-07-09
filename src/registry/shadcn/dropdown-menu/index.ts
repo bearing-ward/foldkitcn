@@ -259,18 +259,21 @@ const shadcnItemAttributes = <Message>(
     ),
     ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
   ],
-  indicator: [
-    ...itemAttributes.indicator,
-    ...slotAttributes(
-      h,
-      BaseMenu.itemKind(itemAttributes.item) === 'checkbox'
-        ? 'dropdown-menu-checkbox-item-indicator'
-        : 'dropdown-menu-radio-item-indicator',
-      dropdownMenuItemIndicatorClassName({
-        className: config.itemIndicatorClassName,
-      }),
-    ),
-  ],
+  indicator:
+    itemAttributes.item.isChecked === true
+      ? [
+          ...itemAttributes.indicator,
+          ...slotAttributes(
+            h,
+            BaseMenu.itemKind(itemAttributes.item) === 'checkbox'
+              ? 'dropdown-menu-checkbox-item-indicator'
+              : 'dropdown-menu-radio-item-indicator',
+            dropdownMenuItemIndicatorClassName({
+              className: config.itemIndicatorClassName,
+            }),
+          ),
+        ]
+      : itemAttributes.indicator,
   submenuIndicator: [
     ...itemAttributes.submenuIndicator,
     ...slotAttributes(h, 'dropdown-menu-sub-indicator', 'cn-rtl-flip ml-auto'),
@@ -428,11 +431,13 @@ const defaultItemContent = <Message>(
   itemAttributes: MenuItemAttributes<Message>,
 ): ReadonlyArray<Html> => {
   const h = html<Message>()
-  const indicator =
-    BaseMenu.itemKind(itemAttributes.item) === 'checkbox' ||
-    BaseMenu.itemKind(itemAttributes.item) === 'radio'
-      ? h.span([...itemAttributes.indicator], [checkIcon([])])
-      : h.span([], [])
+  const hasMountedIndicator =
+    itemAttributes.item.isChecked === true &&
+    (BaseMenu.itemKind(itemAttributes.item) === 'checkbox' ||
+      BaseMenu.itemKind(itemAttributes.item) === 'radio')
+  const indicator = hasMountedIndicator
+    ? h.span([...itemAttributes.indicator], [checkIcon([])])
+    : h.span([], [])
   const submenuIndicator =
     BaseMenu.itemKind(itemAttributes.item) === 'submenu-trigger'
       ? chevronRightIcon(itemAttributes.submenuIndicator)

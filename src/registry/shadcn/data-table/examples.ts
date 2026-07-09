@@ -339,6 +339,34 @@ const checkedStateFor = (
   return 'indeterminate'
 }
 
+const checkboxIndicatorIcon = (
+  checkedState: Checkbox.CheckboxCheckedState,
+): Html => {
+  const h = html<never>()
+  const path = checkedState === 'indeterminate' ? 'M5 12h14' : 'M20 6 9 17l-5-5'
+  const className =
+    checkedState === 'indeterminate'
+      ? 'lucide lucide-minus size-3.5'
+      : 'lucide lucide-check size-3.5'
+
+  return h.svg(
+    [
+      h.Xmlns('http://www.w3.org/2000/svg'),
+      h.Width('24'),
+      h.Height('24'),
+      h.ViewBox('0 0 24 24'),
+      h.Fill('none'),
+      h.Stroke('currentColor'),
+      h.StrokeWidth('2'),
+      h.StrokeLinecap('round'),
+      h.StrokeLinejoin('round'),
+      h.Class(className),
+      h.AriaHidden(true),
+    ],
+    [h.path([h.D(path)], [])],
+  )
+}
+
 const buttonMessageAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   controller: DataTableExampleController<Message>,
@@ -372,7 +400,12 @@ const checkboxView = <Message>(
       h.span(
         [...attributes.root, h.AriaLabel(label)],
         attributes.indicator.length > 0
-          ? [h.span([...attributes.indicator], [])]
+          ? [
+              h.span(
+                [...attributes.indicator],
+                [checkboxIndicatorIcon(checkedState)],
+              ),
+            ]
           : [],
       ),
   })
@@ -684,11 +717,12 @@ const defaultMenuItemContent = <Message>(
   const hasIndicator =
     DropdownMenu.itemKind(attributes.item) === 'checkbox' ||
     DropdownMenu.itemKind(attributes.item) === 'radio'
+  const hasMountedIndicator = hasIndicator && attributes.item.isChecked === true
 
   return [
     h.span(
       [...attributes.indicator],
-      hasIndicator ? [DropdownMenu.checkIcon([])] : [],
+      hasMountedIndicator ? [DropdownMenu.checkIcon([])] : [],
     ),
     h.span([...attributes.label], [attributes.item.label]),
   ]
@@ -797,7 +831,7 @@ const rowsPerPageSelect = <Message>(
     value: String(state.pageSize),
     placeholder: String(state.pageSize),
     triggerClassName: 'h-8 w-16',
-    contentClassName: 'w-16',
+    contentClassName: 'min-w-0 w-16',
     ...(onSelectOpenChange === undefined
       ? {}
       : {

@@ -289,6 +289,8 @@ const liveExampleSidebarStateKey = (
   panelId: string,
 ): string => `${exampleId}#${panelId}`
 
+const dataTableRowsPerPageSelectId = 'data-table-rows-per-page'
+
 const initialLiveExampleDataTableState = (
   exampleId: string,
 ): typeof LiveExampleDataTableState.Type => ({
@@ -297,7 +299,7 @@ const initialLiveExampleDataTableState = (
   hiddenColumnIds: [],
   selectedRowIds: {},
   pageIndex: 0,
-  pageSize: exampleId.endsWith('data-table-tasks') ? 3 : 2,
+  pageSize: exampleId.endsWith('data-table-tasks') ? 3 : 10,
 })
 
 const liveExampleControlStateKey = (
@@ -2086,14 +2088,31 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         [],
       ],
-      GotLiveExampleDataTableMessage: ({ exampleId, message }) => {
-        const state = pipe(
-          EffectRecord.get(model.liveExampleDataTableStates ?? {}, exampleId),
-          Option.getOrElse(() => initialLiveExampleDataTableState(exampleId)),
-        )
-        const nextState = M.value(message).pipe(
-          M.withReturnType<typeof LiveExampleDataTableState.Type>(),
-          M.tagsExhaustive({
+	    GotLiveExampleDataTableMessage: ({ exampleId, message }) => {
+	        const state = pipe(
+	          EffectRecord.get(model.liveExampleDataTableStates ?? {}, exampleId),
+	          Option.getOrElse(() => initialLiveExampleDataTableState(exampleId)),
+	        )
+	        const closesRowsPerPageSelect = M.value(message).pipe(
+	          M.withReturnType<boolean>(),
+	          M.tagsExhaustive({
+	            UpdatedDataTableFilter: () => false,
+	            ClickedDataTableSort: () => false,
+	            ClickedDataTableRowCheckbox: () => false,
+	            ClickedDataTableSelectAll: () => false,
+	            ClickedDataTableColumnVisibility: () => false,
+	            ClickedDataTablePreviousPage: () => false,
+	            ClickedDataTableNextPage: () => false,
+	            ClickedDataTableFirstPage: () => false,
+	            ClickedDataTableLastPage: () => false,
+	            SelectedDataTablePageSize: () => true,
+	            ClickedDataTableAction: () => false,
+	            ClickedDataTableClearFilters: () => false,
+	          }),
+	        )
+	        const nextState = M.value(message).pipe(
+	          M.withReturnType<typeof LiveExampleDataTableState.Type>(),
+	          M.tagsExhaustive({
             UpdatedDataTableFilter: ({ columnId, value }) =>
               setLiveExampleDataTableFilter(state, columnId, value),
             ClickedDataTableSort: ({ columnId }) =>
@@ -2124,18 +2143,31 @@ export const update = (model: Model, message: Message): UpdateReturn =>
           }),
         )
 
-        return [
-          evo(model, {
-            liveExampleDataTableStates: () =>
-              EffectRecord.set(
-                model.liveExampleDataTableStates ?? {},
-                exampleId,
-                nextState,
-              ),
-          }),
-          [],
-        ]
-      },
+	        return [
+	          evo(model, {
+	            liveExampleDataTableStates: () =>
+	              EffectRecord.set(
+	                model.liveExampleDataTableStates ?? {},
+	                exampleId,
+	                nextState,
+	              ),
+	            ...(closesRowsPerPageSelect
+	              ? {
+	                  liveExampleSelectOpenValues: () =>
+	                    EffectRecord.set(
+	                      model.liveExampleSelectOpenValues,
+	                      liveExampleControlStateKey(
+	                        exampleId,
+	                        dataTableRowsPerPageSelectId,
+	                      ),
+	                      false,
+	                    ),
+	                }
+	              : {}),
+	          }),
+	          [],
+	        ]
+	      },
       GotLiveExampleDatePickerMessage: ({
         exampleId,
         message,

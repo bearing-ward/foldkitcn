@@ -195,11 +195,32 @@ playwrightTest(
       '[data-slot="table-body"] [data-slot="table-row"]',
     )
     const pageSizeTrigger = preview.locator('[data-slot="select-trigger"]')
+    const pageSizeContent = page.locator(
+      '[data-slot="select-content"][data-open]',
+    )
     const pageSizeOptions = ['10', '20', '30', '40', '50'] as const
     const pageSizeOption = (value: string) =>
       page.getByRole('option', { exact: true, name: value })
 
     await playwrightExpect(bodyRows).toHaveCount(10)
+    await playwrightExpect(pageSizeTrigger).toHaveText('10')
+    await preview
+      .getByRole('checkbox', { name: 'Select payment' })
+      .first()
+      .click()
+    await playwrightExpect(bodyRows).toHaveCount(10)
+    await playwrightExpect(pageSizeTrigger).toHaveText('10')
+    await playwrightExpect(
+      preview.getByText('1 of 25 row(s) selected.'),
+    ).toBeVisible()
+    await preview
+      .getByRole('checkbox', { name: 'Select payment' })
+      .first()
+      .click()
+    await playwrightExpect(
+      preview.getByText('0 of 25 row(s) selected.'),
+    ).toBeVisible()
+
     await pageSizeTrigger.click()
     await playwrightExpect(pageSizeOption(pageSizeOptions[0])).toHaveAttribute(
       'aria-selected',
@@ -209,6 +230,23 @@ playwrightTest(
       'data-selected',
       '',
     )
+    const pageSizeTriggerBox = await box(pageSizeTrigger)
+    const pageSizeContentBox = await box(pageSizeContent)
+    const previewOverflow = await preview.evaluate(
+      element => getComputedStyle(element).overflow,
+    )
+
+    playwrightExpect(previewOverflow).toBe('visible')
+    playwrightExpect(pageSizeContentBox.width).toBe(pageSizeTriggerBox.width)
+    playwrightExpect(
+      Math.abs(pageSizeContentBox.x - pageSizeTriggerBox.x),
+    ).toBeLessThanOrEqual(2)
+    playwrightExpect(pageSizeContentBox.y).toBeGreaterThan(pageSizeTriggerBox.y)
+    await playwrightExpect(
+      pageSizeOption(pageSizeOptions[0]).locator(
+        '[data-slot="select-item-indicator"] svg',
+      ),
+    ).toHaveCount(1)
     await playwrightExpect(pageSizeOption(pageSizeOptions[1])).toHaveAttribute(
       'aria-selected',
       'false',
@@ -225,14 +263,41 @@ playwrightTest(
       'aria-selected',
       'false',
     )
+    await playwrightExpect(
+      pageSizeOption(pageSizeOptions[1]).locator(
+        '[data-slot="select-item-indicator"] svg',
+      ),
+    ).toHaveCount(0)
+    await playwrightExpect(
+      pageSizeOption(pageSizeOptions[2]).locator(
+        '[data-slot="select-item-indicator"] svg',
+      ),
+    ).toHaveCount(0)
+    await playwrightExpect(
+      pageSizeOption(pageSizeOptions[3]).locator(
+        '[data-slot="select-item-indicator"] svg',
+      ),
+    ).toHaveCount(0)
+    await playwrightExpect(
+      pageSizeOption(pageSizeOptions[4]).locator(
+        '[data-slot="select-item-indicator"] svg',
+      ),
+    ).toHaveCount(0)
     await pageSizeOption(pageSizeOptions[1]).click()
     await playwrightExpect(bodyRows).toHaveCount(20)
     await playwrightExpect(preview.getByText('Page 1 of 2')).toBeVisible()
     await playwrightExpect(pageSizeTrigger).toHaveText('20')
+    await playwrightExpect(pageSizeContent).not.toBeVisible()
 
     await preview.getByRole('checkbox', { name: 'Select all payments' }).click()
     await playwrightExpect(
       preview.getByText('20 of 25 row(s) selected.'),
+    ).toBeVisible()
+    await playwrightExpect(
+      preview
+        .getByRole('checkbox', { name: 'Select payment' })
+        .first()
+        .locator('[data-slot="checkbox-indicator"] svg'),
     ).toBeVisible()
     await preview
       .getByRole('checkbox', { name: 'Select payment' })
@@ -244,6 +309,39 @@ playwrightTest(
     await playwrightExpect(
       preview.getByRole('checkbox', { name: 'Select all payments' }),
     ).toHaveAttribute('aria-checked', 'mixed')
+    await playwrightExpect(
+      preview
+        .getByRole('checkbox', { name: 'Select payment' })
+        .nth(1)
+        .locator('[data-slot="checkbox-indicator"]'),
+    ).toHaveCount(0)
+
+    await preview.getByRole('button', { name: 'Columns' }).click()
+    const amountColumnItem = preview.getByRole('menuitemcheckbox', {
+      name: 'Amount',
+    })
+    await playwrightExpect(amountColumnItem).toHaveAttribute(
+      'aria-checked',
+      'true',
+    )
+    await playwrightExpect(
+      amountColumnItem.locator(
+        '[data-slot="dropdown-menu-checkbox-item-indicator"] svg',
+      ),
+    ).toBeVisible()
+    await amountColumnItem.click()
+    await playwrightExpect(
+      preview.getByRole('columnheader', { name: 'Amount' }),
+    ).not.toBeVisible()
+    await playwrightExpect(amountColumnItem).toHaveAttribute(
+      'aria-checked',
+      'false',
+    )
+    await playwrightExpect(
+      amountColumnItem.locator(
+        '[data-slot="dropdown-menu-checkbox-item-indicator"] svg',
+      ),
+    ).toHaveCount(0)
   },
 )
 

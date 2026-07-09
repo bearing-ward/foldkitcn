@@ -251,17 +251,20 @@ const shadcnItemAttributes = <Message>(
       selectItemTextClassName({ className: config.itemTextClassName }),
     ),
   ],
-  indicator: [
-    ...itemAttributes.indicator,
-    ...slotAttributes(
-      h,
-      'select-item-indicator',
-      selectItemIndicatorClassName({
-        className: config.itemIndicatorClassName,
-        dir: config.dir,
-      }),
-    ),
-  ],
+  indicator:
+    config.value === itemAttributes.item.value
+      ? [
+          ...itemAttributes.indicator,
+          ...slotAttributes(
+            h,
+            'select-item-indicator',
+            selectItemIndicatorClassName({
+              className: config.itemIndicatorClassName,
+              dir: config.dir,
+            }),
+          ),
+        ]
+      : itemAttributes.indicator,
 })
 
 const shadcnAttributes = <Message>(
@@ -524,10 +527,12 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
                                         [...itemAttributes.text],
                                         [itemAttributes.item.label],
                                       ),
-                                      h.span(
-                                        [...itemAttributes.indicator],
-                                        [checkIcon([])],
-                                      ),
+                                      itemAttributes.item.value === config.value
+                                        ? h.span(
+                                            [...itemAttributes.indicator],
+                                            [checkIcon([])],
+                                          )
+                                        : h.span([], []),
                                     ],
                                   ),
                                 ),
