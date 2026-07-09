@@ -1,0 +1,23 @@
+$ bun run scripts/parity-workbench.ts --item shadcn/empty --case empty-demo --output "plans/artifacts/120-shadcn-ui-ux-parity-audit/workbench" --dry-run
+194 |   if (itemId === 'shadcn/tabs' && caseId === 'tabs-demo') {
+195 |     void slot
+196 |     return shadcnTabsWorkbenchCase
+197 |   }
+198 |
+199 |   throw new Error(`Unknown workbench case: ${itemId}/${caseId}`)
+                  ^
+error: Unknown workbench case: shadcn/empty/empty-demo
+      at resolveWorkbenchCase (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/tests/parity/workbench-cases.ts:199:13)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/scripts/parity-workbench.ts:917:25)
+      at ~effect/Utils/internal (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/Utils.js:89:16)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:691:3)
+      at ~effect/Effect/evaluate (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:719:22)
+      at runLoop (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:444:98)
+      at evaluate (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:412:23)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:2127:9)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:2179:19)
+      at <anonymous> (/Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/node_modules/.pnpm/effect@4.0.0-beta.83/node_modules/effect/dist/internal/effect.js:2190:31)
+      at /Volumes/Sync/Development/Bearing-Ward/projects/repos/foldkitcn/scripts/parity-workbench.ts:1124:16
+
+Bun v1.3.14 (macOS arm64)
+error: script "parity:workbench" exited with code 1

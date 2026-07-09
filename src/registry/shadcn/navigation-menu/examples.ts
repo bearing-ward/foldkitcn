@@ -60,20 +60,39 @@ const components: ReadonlyArray<ComponentLink> = [
     title: 'Tabs',
     href: '/docs/primitives/tabs',
     description:
-      'A set of layered sections of content that are displayed one at a time.',
+      'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
   },
   {
     title: 'Tooltip',
     href: '/docs/primitives/tooltip',
     description:
-      'A popup that displays information related to an element on focus or hover.',
+      'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
   },
 ]
 
 const navigationItems: ReadonlyArray<NavigationMenuItemDescriptor> = [
-  { value: 'getting-started', label: 'Getting started' },
-  { value: 'components', label: 'Components' },
-  { value: 'with-icon', label: 'With Icon' },
+  {
+    value: 'getting-started',
+    label: 'Getting started',
+    popupHeight: '169px',
+    popupWidth: '390px',
+    positionerLeft: '0',
+  },
+  {
+    value: 'components',
+    label: 'Components',
+    className: 'hidden md:flex',
+    popupHeight: '245px',
+    popupWidth: '606px',
+    positionerLeft: '136px',
+  },
+  {
+    value: 'with-icon',
+    label: 'With Icon',
+    popupHeight: '116px',
+    popupWidth: '207px',
+    positionerLeft: '256px',
+  },
   {
     value: 'docs',
     label: 'Docs',

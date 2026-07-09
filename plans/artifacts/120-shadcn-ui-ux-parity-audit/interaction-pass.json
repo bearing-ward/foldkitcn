@@ -1,0 +1,4445 @@
+{
+  "generatedAt": "2026-07-08T16:55:37.817Z",
+  "components": {
+    "accordion": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 206,
+          "buttonCount": 45,
+          "inputCount": 1,
+          "roleCount": 21
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 77,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 154,
+          "buttonCount": 30,
+          "inputCount": 1,
+          "roleCount": 14
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 32,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "alert-dialog": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 195,
+          "buttonCount": 32,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 65,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 153,
+          "buttonCount": 27,
+          "inputCount": 1,
+          "roleCount": 11
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 29,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "calendar": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 699,
+          "buttonCount": 492,
+          "inputCount": 11,
+          "roleCount": 475
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 562,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 284,
+          "buttonCount": 161,
+          "inputCount": 1,
+          "roleCount": 12
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 163,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "carousel": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 228,
+          "buttonCount": 48,
+          "inputCount": 1,
+          "roleCount": 57
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 96,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 159,
+          "buttonCount": 33,
+          "inputCount": 1,
+          "roleCount": 53
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 33,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "checkbox": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 228,
+          "buttonCount": 25,
+          "inputCount": 22,
+          "roleCount": 52
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 98,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 165,
+          "buttonCount": 21,
+          "inputCount": 1,
+          "roleCount": 31
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 40,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "collapsible": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 201,
+          "buttonCount": 41,
+          "inputCount": 3,
+          "roleCount": 20
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 73,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 153,
+          "buttonCount": 27,
+          "inputCount": 3,
+          "roleCount": 9
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 31,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "combobox": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 261,
+          "buttonCount": 45,
+          "inputCount": 24,
+          "roleCount": 49
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 122,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 179,
+          "buttonCount": 38,
+          "inputCount": 12,
+          "roleCount": 46
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 51,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "command": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 191,
+          "buttonCount": 27,
+          "inputCount": 3,
+          "roleCount": 45
+        },
+        "focusTrace": [
+          {
+            "tag": "PRE",
+            "role": "",
+            "text": "\"use client\" import * as React from \"react\""
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "View Code"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "API Reference#"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "cmdk"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Combobox"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Context Menu"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "About"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Installation"
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 62,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 161,
+          "buttonCount": 23,
+          "inputCount": 3,
+          "roleCount": 37
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 37,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "context-menu": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 203,
+          "buttonCount": 29,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 70,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 171,
+          "buttonCount": 27,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 43,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "data-table": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 312,
+          "buttonCount": 69,
+          "inputCount": 9,
+          "roleCount": 35
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 162,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 218,
+          "buttonCount": 49,
+          "inputCount": 7,
+          "roleCount": 51
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 98,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "date-picker": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 186,
+          "buttonCount": 25,
+          "inputCount": 4,
+          "roleCount": 16
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 57,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 145,
+          "buttonCount": 20,
+          "inputCount": 2,
+          "roleCount": 10
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 23,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "dialog": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 187,
+          "buttonCount": 29,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 59,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 148,
+          "buttonCount": 23,
+          "inputCount": 1,
+          "roleCount": 10
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 25,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "direction": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 159,
+          "buttonCount": 20,
+          "inputCount": 3,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 38,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 142,
+          "buttonCount": 15,
+          "inputCount": 5,
+          "roleCount": 6
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 23,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "drawer": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 228,
+          "buttonCount": 44,
+          "inputCount": 0,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 96,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 143,
+          "buttonCount": 20,
+          "inputCount": 1,
+          "roleCount": 8
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 22,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "dropdown-menu": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 222,
+          "buttonCount": 43,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 87,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 176,
+          "buttonCount": 44,
+          "inputCount": 1,
+          "roleCount": 17
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 46,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "hover-card": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 193,
+          "buttonCount": 35,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 65,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 144,
+          "buttonCount": 11,
+          "inputCount": 1,
+          "roleCount": 7
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 24,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "input": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 240,
+          "buttonCount": 38,
+          "inputCount": 22,
+          "roleCount": 42
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 105,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 182,
+          "buttonCount": 35,
+          "inputCount": 16,
+          "roleCount": 29
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 52,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "input-group": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 281,
+          "buttonCount": 50,
+          "inputCount": 32,
+          "roleCount": 101
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 139,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 248,
+          "buttonCount": 58,
+          "inputCount": 54,
+          "roleCount": 163
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 113,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "input-otp": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 217,
+          "buttonCount": 30,
+          "inputCount": 11,
+          "roleCount": 26
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 84,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 222,
+          "buttonCount": 25,
+          "inputCount": 69,
+          "roleCount": 24
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 95,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "menubar": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 197,
+          "buttonCount": 39,
+          "inputCount": 1,
+          "roleCount": 37
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 69,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 158,
+          "buttonCount": 33,
+          "inputCount": 1,
+          "roleCount": 32
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 35,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "navigation-menu": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 175,
+          "buttonCount": 26,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 49,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 138,
+          "buttonCount": 15,
+          "inputCount": 1,
+          "roleCount": 6
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 19,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "pagination": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 201,
+          "buttonCount": 25,
+          "inputCount": 2,
+          "roleCount": 39
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 73,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 155,
+          "buttonCount": 14,
+          "inputCount": 2,
+          "roleCount": 30
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 34,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "popover": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 189,
+          "buttonCount": 34,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 62,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 157,
+          "buttonCount": 27,
+          "inputCount": 7,
+          "roleCount": 9
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 35,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "radio-group": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 213,
+          "buttonCount": 24,
+          "inputCount": 22,
+          "roleCount": 61
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 84,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 173,
+          "buttonCount": 19,
+          "inputCount": 22,
+          "roleCount": 39
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 49,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "resizable": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 188,
+          "buttonCount": 21,
+          "inputCount": 1,
+          "roleCount": 22
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 59,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 142,
+          "buttonCount": 13,
+          "inputCount": 1,
+          "roleCount": 20
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 21,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "scroll-area": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 172,
+          "buttonCount": 20,
+          "inputCount": 1,
+          "roleCount": 121
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 47,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 136,
+          "buttonCount": 11,
+          "inputCount": 1,
+          "roleCount": 113
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 16,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "select": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 203,
+          "buttonCount": 32,
+          "inputCount": 9,
+          "roleCount": 27
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 74,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 159,
+          "buttonCount": 26,
+          "inputCount": 8,
+          "roleCount": 11
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 35,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "sheet": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 180,
+          "buttonCount": 28,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 54,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 143,
+          "buttonCount": 20,
+          "inputCount": 1,
+          "roleCount": 8
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 22,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "sidebar": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 263,
+          "buttonCount": 44,
+          "inputCount": 0,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 116,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 271,
+          "buttonCount": 72,
+          "inputCount": 1,
+          "roleCount": 17
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 38,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "slider": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 193,
+          "buttonCount": 23,
+          "inputCount": 13,
+          "roleCount": 23
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 65,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 156,
+          "buttonCount": 19,
+          "inputCount": 12,
+          "roleCount": 18
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 32,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "sonner": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 184,
+          "buttonCount": 33,
+          "inputCount": 0,
+          "roleCount": 14
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 58,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 150,
+          "buttonCount": 27,
+          "inputCount": 1,
+          "roleCount": 8
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 29,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "switch": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 198,
+          "buttonCount": 23,
+          "inputCount": 10,
+          "roleCount": 32
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 70,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 153,
+          "buttonCount": 19,
+          "inputCount": 1,
+          "roleCount": 20
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 29,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "tabs": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 201,
+          "buttonCount": 41,
+          "inputCount": 1,
+          "roleCount": 41
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 73,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 163,
+          "buttonCount": 35,
+          "inputCount": 1,
+          "roleCount": 37
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 40,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "textarea": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 181,
+          "buttonCount": 23,
+          "inputCount": 7,
+          "roleCount": 19
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 55,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 149,
+          "buttonCount": 18,
+          "inputCount": 7,
+          "roleCount": 14
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 26,
+          "hasHorizontalOverflow": true
+        }
+      }
+    },
+    "toggle": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 187,
+          "buttonCount": 32,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 60,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 152,
+          "buttonCount": 27,
+          "inputCount": 1,
+          "roleCount": 10
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 29,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "toggle-group": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 223,
+          "buttonCount": 55,
+          "inputCount": 1,
+          "roleCount": 25
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 91,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 177,
+          "buttonCount": 50,
+          "inputCount": 1,
+          "roleCount": 22
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 52,
+          "hasHorizontalOverflow": false
+        }
+      }
+    },
+    "tooltip": {
+      "origin": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 192,
+          "buttonCount": 36,
+          "inputCount": 1,
+          "roleCount": 15
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Blocks"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Charts"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Directory"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Create"
+          },
+          {
+            "tag": "BUTTON",
+            "role": "",
+            "text": "Search documentation...Search..."
+          }
+        ],
+        "pointerClick": "clicked:Search documentation...Search...",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 65,
+          "hasHorizontalOverflow": false
+        }
+      },
+      "local": {
+        "status": 200,
+        "mobileStatus": 200,
+        "desktop": {
+          "focusableCount": 152,
+          "buttonCount": 28,
+          "inputCount": 1,
+          "roleCount": 9
+        },
+        "focusTrace": [
+          {
+            "tag": "A",
+            "role": "",
+            "text": "FFoldkitCN"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Home"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Docs"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Components"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Registry"
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "Roadmap"
+          },
+          {
+            "tag": "INPUT",
+            "role": "",
+            "text": ""
+          },
+          {
+            "tag": "A",
+            "role": "",
+            "text": "All components"
+          }
+        ],
+        "pointerClick": "clicked:×",
+        "mobile": {
+          "width": 390,
+          "height": 844,
+          "focusableCount": 30,
+          "hasHorizontalOverflow": false
+        }
+      }
+    }
+  }
+}

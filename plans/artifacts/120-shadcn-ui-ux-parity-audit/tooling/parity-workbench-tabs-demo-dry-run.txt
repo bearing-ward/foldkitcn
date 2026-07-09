@@ -1,0 +1,14 @@
+$ bun run scripts/parity-workbench.ts --item shadcn/tabs --case tabs-demo --output "plans/artifacts/120-shadcn-ui-ux-parity-audit/workbench" --dry-run
+Workbench item: shadcn/tabs
+Workbench case: tabs-demo
+Origin kind: pinned-shadcn
+Origin source: repos/ui/apps/v4/examples/base/tabs-demo.tsx
+Origin harness: tests/parity/fixtures/origin/shadcn/tabs.fixture.ts
+Environment: {"viewport":{"width":800,"height":400},"colorScheme":"light","reducedMotion":"reduce","locale":"en-US","direction":"ltr"}
+Capture root: [data-origin-fixture-root] > *
+Portal selectors: none
+Layer selectors: none
+Comparison policy: {"hard":["dom-structure","attributes","roles","aria-state","accessible-name","class-tokens","computed-style","colors","dimensions","geometry","fixture-data","interaction-state"],"advisory":["screenshots","all-computed-style","accessibility-tree","animation-timing"]}
+Report JSON: plans/artifacts/120-shadcn-ui-ux-parity-audit/workbench/shadcn-tabs/tabs-demo/report.json
+Report Markdown: plans/artifacts/120-shadcn-ui-ux-parity-audit/workbench/shadcn-tabs/tabs-demo/report.md
+Screenshot dir: plans/artifacts/120-shadcn-ui-ux-parity-audit/workbench/shadcn-tabs/tabs-demo/screenshots

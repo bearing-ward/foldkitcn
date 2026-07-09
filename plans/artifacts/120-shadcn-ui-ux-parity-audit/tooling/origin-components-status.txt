@@ -1,0 +1,8 @@
+$ bun run scripts/registry-component-progress.ts status
+Base UI: 38/38 imported (0 remaining)
+shadcn: 62/63 imported (1 remaining)
+shadcn source-backed files: 60
+Blocked: 1
+Ready for dossier: 0
+Dossier ready: 0
+Checklist: docs/component-conversion-checklist.md
