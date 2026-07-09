@@ -5,27 +5,16 @@ import {
 } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
-type Box = Readonly<{
-  height: number
-  width: number
-  x: number
-  y: number
-}>
+import {
+  expectEscapingSurfaceHasVisibleOverflow,
+  expectNoOpenSurfaces,
+  expectOnlyVisibleSurface,
+  expectSurfaceAnchoredToTrigger,
+  visibleBox,
+} from './floating-surface-assertions'
+import type { Box } from './floating-surface-assertions'
 
-const box = async (locator: Locator): Promise<Box> => {
-  const layoutBox = await locator.boundingBox()
-
-  if (layoutBox === null) {
-    throw new Error('Expected element to have a browser layout box.')
-  }
-
-  return {
-    height: Math.round(layoutBox.height),
-    width: Math.round(layoutBox.width),
-    x: Math.round(layoutBox.x),
-    y: Math.round(layoutBox.y),
-  }
-}
+const box = visibleBox
 
 const openMenu = async (trigger: Locator): Promise<void> => {
   await trigger.click()
@@ -33,7 +22,7 @@ const openMenu = async (trigger: Locator): Promise<void> => {
 
 const assertSurfaceVisible = async (surface: Locator): Promise<Box> => {
   await playwrightExpect(surface).toBeVisible()
-  return box(surface)
+  return visibleBox(surface)
 }
 
 const moveToCenter = async (page: Page, target: Box): Promise<void> => {
@@ -62,6 +51,21 @@ const horizontalOverlap = (first: Box, second: Box): number =>
     Math.min(first.x + first.width, second.x + second.width) -
       Math.max(first.x, second.x),
   )
+
+const expectHorizontalOverlapAtMost = async (
+  first: Locator,
+  second: Locator,
+  expectedOverlap: number,
+): Promise<void> => {
+  await playwrightExpect
+    .poll(async () => {
+      const firstBox = await box(first)
+      const secondBox = await box(second)
+
+      return horizontalOverlap(firstBox, secondBox)
+    })
+    .toBeLessThanOrEqual(expectedOverlap)
+}
 
 const horizontalGap = (first: Box, second: Box): number =>
   first.x <= second.x
@@ -245,7 +249,7 @@ playwrightTest(
       '[data-slot="dropdown-menu-sub-content"][data-open]',
     )
     await openMenu(complexPreview.getByRole('button', { name: 'Complex Menu' }))
-    const complexMenuBox = await assertSurfaceVisible(complexMenu)
+    await assertSurfaceVisible(complexMenu)
     const newFileBox = await box(
       complexPreview.getByRole('menuitem', { name: 'New File' }),
     )
@@ -260,10 +264,8 @@ playwrightTest(
     )
     await complexPreview.getByRole('menuitem', { name: 'Open Recent' }).hover()
     await playwrightExpect(complexSubmenus).toHaveCount(1)
-    const openRecentBox = await assertSurfaceVisible(complexSubmenus.first())
-    playwrightExpect(
-      horizontalOverlap(complexMenuBox, openRecentBox),
-    ).toBeLessThanOrEqual(8)
+    await assertSurfaceVisible(complexSubmenus.first())
+    await expectHorizontalOverlapAtMost(complexMenu, complexSubmenus.first(), 8)
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'More Projects' }),
     ).toBeVisible()
@@ -271,10 +273,12 @@ playwrightTest(
       .getByRole('menuitem', { name: 'More Projects' })
       .hover()
     await playwrightExpect(complexSubmenus).toHaveCount(2)
-    const moreProjectsBox = await assertSurfaceVisible(complexSubmenus.nth(1))
-    playwrightExpect(
-      horizontalOverlap(openRecentBox, moreProjectsBox),
-    ).toBeLessThanOrEqual(8)
+    await assertSurfaceVisible(complexSubmenus.nth(1))
+    await expectHorizontalOverlapAtMost(
+      complexSubmenus.first(),
+      complexSubmenus.nth(1),
+      8,
+    )
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
     ).toBeVisible()
@@ -518,8 +522,15 @@ playwrightTest(
     await playwrightExpect(
       menubarPreview.getByRole('menuitem', { name: 'Undo' }),
     ).toBeVisible()
+    const hoveredEditMenu = await expectOnlyVisibleSurface(
+      menubarPreview,
+      '[data-slot="menubar-content"]',
+    )
+    await expectSurfaceAnchoredToTrigger(hoveredEditMenu, editTrigger, {
+      settleMs: 300,
+    })
     const hoveredEditTriggerBox = await box(editTrigger)
-    const hoveredEditMenuBox = await box(menubarContent)
+    const hoveredEditMenuBox = await box(hoveredEditMenu)
     playwrightExpect(hoveredEditMenuBox.x).toBeGreaterThanOrEqual(
       hoveredEditTriggerBox.x - 8,
     )
@@ -565,9 +576,16 @@ playwrightTest(
     await page.keyboard.press('Escape')
     await playwrightExpect(menubarContent).not.toBeVisible()
     await editTrigger.click()
+    const clickedEditMenu = await expectOnlyVisibleSurface(
+      menubarPreview,
+      '[data-slot="menubar-content"]',
+    )
+    await expectSurfaceAnchoredToTrigger(clickedEditMenu, editTrigger, {
+      settleMs: 300,
+    })
     await playwrightExpect(menubarContent).toBeVisible()
     const editTriggerBox = await box(editTrigger)
-    const editMenuBox = await box(menubarContent)
+    const editMenuBox = await box(clickedEditMenu)
     playwrightExpect(overlapArea(editTriggerBox, editMenuBox)).toBe(0)
     playwrightExpect(editMenuBox.x).toBeGreaterThanOrEqual(editTriggerBox.x - 8)
     playwrightExpect(editMenuBox.x).toBeLessThanOrEqual(editTriggerBox.x + 8)
@@ -688,27 +706,75 @@ playwrightTest(
 
     await page.goto('/components/shadcn/navigation-menu')
     const navigationPreview = page.getByLabel('NavigationMenuDemo live preview')
-    const navigationContent = navigationPreview.locator(
-      '[data-slot="navigation-menu-content"]',
+    const navigationMenu = navigationPreview.locator(
+      '[data-slot="navigation-menu"]',
     )
+    const navigationCard = navigationPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
+    )
+    const navigationContentSelector =
+      '[data-slot="navigation-menu-content"][data-open]'
     const componentsTrigger = navigationPreview.getByRole('button', {
       name: 'Components',
     })
     const gettingStartedTrigger = navigationPreview.getByRole('button', {
       name: 'Getting started',
     })
+    const docsTrigger = navigationPreview.getByText('Docs', { exact: true })
 
-    await componentsTrigger.hover()
-    await playwrightExpect(navigationContent).toBeVisible()
+    const expectNavigationPanel = async (
+      trigger: Locator,
+      expectedText: string,
+      expectedWidth: number,
+    ): Promise<void> => {
+      await trigger.hover()
+      const navigationContent = await expectOnlyVisibleSurface(
+        navigationPreview,
+        navigationContentSelector,
+      )
+      await expectSurfaceAnchoredToTrigger(navigationContent, trigger, {
+        settleMs: 300,
+      })
+      await playwrightExpect(navigationContent).toContainText(expectedText)
+      await playwrightExpect(navigationMenu).toHaveAttribute(
+        'data-orientation',
+        'horizontal',
+      )
+      const navigationContentBox = await visibleBox(navigationContent)
+
+      playwrightExpect(navigationContentBox.width).toBeGreaterThanOrEqual(
+        expectedWidth - 12,
+      )
+      playwrightExpect(navigationContentBox.width).toBeLessThanOrEqual(
+        expectedWidth + 12,
+      )
+      await expectEscapingSurfaceHasVisibleOverflow(
+        navigationContent,
+        navigationCard,
+      )
+    }
+
+    await playwrightExpect(navigationMenu).toBeVisible()
+    await expectNavigationPanel(gettingStartedTrigger, 'Introduction', 390)
     await playwrightExpect(gettingStartedTrigger).toBeVisible()
+    await expectNavigationPanel(componentsTrigger, 'Alert Dialog', 606)
+    await expectNavigationPanel(
+      navigationPreview.getByRole('button', {
+        name: 'With Icon',
+      }),
+      'Backlog',
+      207,
+    )
+    await docsTrigger.hover()
+    await expectNoOpenSurfaces(navigationPreview, navigationContentSelector)
     await page.mouse.move(0, 0)
     await page.keyboard.press('Escape')
-    await playwrightExpect(navigationContent).not.toBeVisible()
+    await expectNoOpenSurfaces(navigationPreview, navigationContentSelector)
     await page.mouse.move(0, 0)
     await componentsTrigger.hover()
-    await playwrightExpect(navigationContent).toBeVisible()
+    await expectOnlyVisibleSurface(navigationPreview, navigationContentSelector)
     await page.mouse.click(8, 8)
-    await playwrightExpect(navigationContent).not.toBeVisible()
+    await expectNoOpenSurfaces(navigationPreview, navigationContentSelector)
   },
 )
 
@@ -880,15 +946,23 @@ playwrightTest(
 
     await page.goto('/components/shadcn/table')
     const tablePreview = page.getByLabel('TableActions live preview')
-    const tableMenu = tablePreview.locator(
-      '[data-slot="dropdown-menu-content"]',
+    const tableCard = tablePreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
     )
     const tableBox = await box(tablePreview)
     const tableButtons = tablePreview.getByRole('button', { name: 'Open menu' })
+    const tableMenuSelector = '[data-slot="dropdown-menu-content"][data-open]'
 
     for (let index = 0; index < 3; index += 1) {
       const button = tableButtons.nth(index)
       await openMenu(button)
+      const tableMenu = await expectOnlyVisibleSurface(
+        tablePreview,
+        tableMenuSelector,
+      )
+      await expectSurfaceAnchoredToTrigger(tableMenu, button, {
+        settleMs: 150,
+      })
       const menuBox = await assertSurfaceVisible(tableMenu)
       playwrightExpect(menuBox.x + menuBox.width).toBeLessThanOrEqual(
         tableBox.x + tableBox.width + 32,
@@ -896,20 +970,29 @@ playwrightTest(
       playwrightExpect(menuBox.y + menuBox.height).toBeLessThanOrEqual(
         tableBox.y + tableBox.height + 16,
       )
+      await expectEscapingSurfaceHasVisibleOverflow(tableMenu, tableCard)
       await tablePreview.getByRole('menuitem', { name: 'Duplicate' }).click()
-      await playwrightExpect(tableMenu).not.toBeVisible()
+      await expectNoOpenSurfaces(tablePreview, tableMenuSelector)
     }
 
     await page.goto('/components/shadcn/sidebar')
     const sidebarPreview = page.getByLabel('SidebarMenuAction live preview')
-    const sidebarMenu = sidebarPreview.locator(
-      '[data-slot="dropdown-menu-content"]',
+    const sidebarCard = sidebarPreview.locator(
+      'xpath=ancestor::*[@data-docs-slot="docs-preview-card"][1]',
+    )
+    const sidebarWrapper = sidebarPreview.locator(
+      '[data-slot="sidebar-wrapper"]',
     )
     const sidebarTrigger = sidebarPreview.getByRole('button', {
       name: 'More Design Engineering',
     })
+    const sidebarMenuSelector = '[data-slot="dropdown-menu-content"][data-open]'
 
     await openMenu(sidebarTrigger)
+    const sidebarMenu = await expectOnlyVisibleSurface(
+      sidebarPreview,
+      sidebarMenuSelector,
+    )
     const triggerBox = await box(sidebarTrigger)
     const menuBox = await assertSurfaceVisible(sidebarMenu)
 
@@ -918,8 +1001,10 @@ playwrightTest(
 
     playwrightExpect(Math.min(leftGap, rightGap)).toBeLessThanOrEqual(48)
     playwrightExpect(Math.abs(menuBox.y - triggerBox.y)).toBeLessThanOrEqual(24)
+    await expectEscapingSurfaceHasVisibleOverflow(sidebarMenu, sidebarWrapper)
+    await expectEscapingSurfaceHasVisibleOverflow(sidebarMenu, sidebarCard)
 
     await sidebarPreview.getByRole('menuitem', { name: 'View Project' }).click()
-    await playwrightExpect(sidebarMenu).not.toBeVisible()
+    await expectNoOpenSurfaces(sidebarPreview, sidebarMenuSelector)
   },
 )

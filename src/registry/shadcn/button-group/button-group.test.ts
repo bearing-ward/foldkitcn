@@ -240,6 +240,63 @@ describe('shadcn/button-group view', () => {
       )
     }).not.toThrow()
   })
+
+  test('controlled popover example only mounts portal content while open', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update,
+          view: () =>
+            ButtonGroupPopover({
+              openFor: () => false,
+            }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(Scene.role('button', { name: 'Open Popover' })).toExist(),
+        Scene.expect(
+          Scene.selector('[data-slot="popover-content"]'),
+        ).not.toExist(),
+      )
+      Scene.scene(
+        {
+          update,
+          view: () =>
+            ButtonGroupPopover({
+              openFor: () => true,
+            }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(
+          Scene.selector('[data-slot="popover-content"]'),
+        ).toHaveText(
+          'Button group popoverFloating content remains anchored to the trigger.Pick a follow-up action or close the surface.',
+        ),
+      )
+    }).not.toThrow()
+  })
+
+  test('controlled select example keeps the send action in the outer button group', () => {
+    expect(() => {
+      Scene.scene(
+        {
+          update,
+          view: () =>
+            ButtonGroupSelect<string>({
+              isOpenFor: () => false,
+              valueFor: (_selectId, defaultValue) => defaultValue,
+              onOpenChange: () => 'ignored',
+              onValueChange: () => 'ignored',
+            }),
+        },
+        Scene.with(initialModel),
+        Scene.expect(Scene.role('group')).toHaveAttr(
+          'class',
+          ButtonGroup.buttonGroupClassName(),
+        ),
+        Scene.expect(Scene.role('button', { name: 'Send' })).toExist(),
+      )
+    }).not.toThrow()
+  })
 })
 
 describe('shadcn/button-group installable source', () => {

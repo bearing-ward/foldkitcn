@@ -382,35 +382,40 @@ const buttonGroupPopoverShell = <Message>(
           }),
           h.div(
             [...attributes.portal],
-            [
-              h.div([...attributes.backdrop.root], []),
-              h.div(
-                [...attributes.positioner.root],
-                [
+            attributes.isMounted
+              ? [
+                  h.div([...attributes.backdrop.root], []),
                   h.div(
-                    [...attributes.popup.root],
+                    [...attributes.positioner.root],
                     [
                       h.div(
-                        [...attributes.header],
+                        [...attributes.popup.root],
                         [
-                          h.h4([...attributes.title], ['Button group popover']),
-                          h.p(
-                            [...attributes.description],
+                          h.div(
+                            [...attributes.header],
                             [
-                              'Floating content remains anchored to the trigger.',
+                              h.h4(
+                                [...attributes.title],
+                                ['Button group popover'],
+                              ),
+                              h.p(
+                                [...attributes.description],
+                                [
+                                  'Floating content remains anchored to the trigger.',
+                                ],
+                              ),
                             ],
+                          ),
+                          h.p(
+                            [],
+                            ['Pick a follow-up action or close the surface.'],
                           ),
                         ],
                       ),
-                      h.p(
-                        [],
-                        ['Pick a follow-up action or close the surface.'],
-                      ),
                     ],
                   ),
-                ],
-              ),
-            ],
+                ]
+              : [],
           ),
         ],
       ),
@@ -517,16 +522,20 @@ const buttonGroupSelectShell = <Message>(
         [
           ButtonGroup<Message>({
             children: [
-              currencySelect(attributes.trigger, label),
-              input('10.00', [h.Attribute('pattern', '[0-9]*')]),
-            ],
-          }),
-          ButtonGroup<Message>({
-            children: [
-              button([icon('arrowRight')], {
-                variant: 'outline',
-                size: 'icon',
-                ariaLabel: 'Send',
+              ButtonGroup<Message>({
+                children: [
+                  currencySelect(attributes.trigger, label),
+                  input('10.00', [h.Attribute('pattern', '[0-9]*')]),
+                ],
+              }),
+              ButtonGroup<Message>({
+                children: [
+                  button([icon('arrowRight')], {
+                    variant: 'outline',
+                    size: 'icon',
+                    ariaLabel: 'Send',
+                  }),
+                ],
               }),
             ],
           }),
