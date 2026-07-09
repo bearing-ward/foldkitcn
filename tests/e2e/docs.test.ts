@@ -826,27 +826,75 @@ playwrightTest(
     await buttonGroupDropdown.getByRole('menuitem', { name: 'Mute' }).click()
     await playwrightExpect(buttonGroupDropdownMenu).not.toBeVisible()
 
+    await page.goto(
+      '/components/shadcn/button-group#shadcn-button-group-popover',
+    )
     const buttonGroupPopover = page.getByLabel(
       'ButtonGroupPopover live preview',
     )
     const buttonGroupPopoverContent = buttonGroupPopover.locator(
-      '[data-slot="popover-content"]',
+      '[data-slot="popover-content"][data-open]',
     )
+    const buttonGroupPopoverTrigger = buttonGroupPopover.getByRole('button', {
+      name: 'Open Popover',
+    })
+    const buttonGroupPopoverRoot = buttonGroupPopover.locator(
+      '[data-slot="button-group"]',
+    )
+    const closedPopoverRootBox = await visibleBox(buttonGroupPopoverRoot)
+    const closedPopoverTriggerBox = await visibleBox(buttonGroupPopoverTrigger)
 
-    await buttonGroupPopover
-      .getByRole('button', { name: 'Open Popover' })
-      .click()
+    await buttonGroupPopoverTrigger.click()
     await playwrightExpect(buttonGroupPopoverContent).toBeVisible()
+    await expectSurfaceAnchoredToTrigger(
+      buttonGroupPopoverContent,
+      buttonGroupPopoverTrigger,
+    )
+    const openPopoverRootBox = await visibleBox(buttonGroupPopoverRoot)
+    const openPopoverTriggerBox = await visibleBox(buttonGroupPopoverTrigger)
+
+    playwrightExpect(openPopoverRootBox).toStrictEqual(closedPopoverRootBox)
+    playwrightExpect(openPopoverTriggerBox).toStrictEqual(
+      closedPopoverTriggerBox,
+    )
     await page.mouse.click(8, 8)
     await playwrightExpect(buttonGroupPopoverContent).not.toBeVisible()
 
+    await page.goto(
+      '/components/shadcn/button-group#shadcn-button-group-select',
+    )
     const buttonGroupSelect = page.getByLabel('ButtonGroupSelect live preview')
     const buttonGroupSelectPopup = buttonGroupSelect.locator(
       '[data-slot="select-content"]',
     )
+    const buttonGroupSelectTrigger = buttonGroupSelect.locator(
+      '[data-slot="select-trigger"]',
+    )
+    const buttonGroupSelectInput = buttonGroupSelect.getByRole('textbox', {
+      name: '10.00',
+    })
+    const buttonGroupSelectSend = buttonGroupSelect.getByRole('button', {
+      name: 'Send',
+    })
+    const closedSelectTriggerBox = await visibleBox(buttonGroupSelectTrigger)
+    const closedSelectInputBox = await visibleBox(buttonGroupSelectInput)
+    const closedSelectSendBox = await visibleBox(buttonGroupSelectSend)
 
-    await buttonGroupSelect.locator('button').first().click()
+    playwrightExpect(closedSelectInputBox.y).toBe(closedSelectTriggerBox.y)
+    playwrightExpect(closedSelectSendBox.y).toBe(closedSelectTriggerBox.y)
+    playwrightExpect(closedSelectSendBox.x).toBeGreaterThan(
+      closedSelectInputBox.x + closedSelectInputBox.width,
+    )
+
+    await buttonGroupSelectTrigger.click()
     await playwrightExpect(buttonGroupSelectPopup).toBeVisible()
+    const openSelectTriggerBox = await visibleBox(buttonGroupSelectTrigger)
+    const openSelectInputBox = await visibleBox(buttonGroupSelectInput)
+    const openSelectSendBox = await visibleBox(buttonGroupSelectSend)
+
+    playwrightExpect(openSelectTriggerBox).toStrictEqual(closedSelectTriggerBox)
+    playwrightExpect(openSelectInputBox).toStrictEqual(closedSelectInputBox)
+    playwrightExpect(openSelectSendBox).toStrictEqual(closedSelectSendBox)
     await buttonGroupSelect.getByRole('option', { name: 'EUR' }).click()
     await playwrightExpect(buttonGroupSelectPopup).not.toBeVisible()
 
