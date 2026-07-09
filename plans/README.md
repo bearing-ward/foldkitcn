@@ -132,7 +132,7 @@ honor its STOP conditions, and update your row when done.
 | 122 | Expand shadcn parity workbench coverage | P3 | M | 120 | DONE |
 | 123 | Add reusable floating-surface preview guards | P2 | M | 120 | DONE |
 | 124 | Resolve DropdownMenuComplex nested submenu overlap | P1 | S | 120 | DONE |
-| 125 | Refresh shadcn installation docs | P1 | M | 103, 116 | TODO |
+| 125 | Refresh shadcn installation docs | P1 | M | 103, 116 | DONE |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
