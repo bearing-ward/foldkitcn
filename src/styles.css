@@ -828,13 +828,6 @@ dt {
 }
 
 .live-example-preview
-  [data-slot='popover-content'][popover='manual'][data-open] {
-  position: static !important;
-  inset: auto !important;
-  translate: none !important;
-}
-
-.live-example-preview
   [data-slot='menubar-content'][popover='manual'][data-open],
 .live-example-preview
   [data-slot='menubar-sub-content'][popover='manual'][data-open] {

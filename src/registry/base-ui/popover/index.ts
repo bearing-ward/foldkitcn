@@ -70,6 +70,7 @@ export const PopoverOptions = S.Struct({
   collisionPadding: S.optional(S.Number),
   arrowWidth: S.optional(S.Number),
   arrowHeight: S.optional(S.Number),
+  dir: S.optional(S.String),
 })
 export type PopoverOptions = typeof PopoverOptions.Type
 
@@ -429,6 +430,34 @@ const positionerPlacementStyle = (
   }
 }
 
+const positionArea = (
+  config: Pick<PopoverOptions, 'align' | 'side'>,
+): string => {
+  const align = resolvedAlign(config)
+  const side = resolvedSide(config)
+  const inlineAlignments = {
+    start: 'span-inline-start',
+    center: 'center',
+    end: 'span-inline-end',
+  }
+  const blockAlignments = {
+    start: 'span-block-start',
+    center: 'center',
+    end: 'span-block-end',
+  }
+
+  if (side === 'top') {
+    return `block-start ${inlineAlignments[align]}`
+  }
+  if (side === 'bottom') {
+    return `block-end ${inlineAlignments[align]}`
+  }
+  if (side === 'left' || side === 'inline-start') {
+    return `inline-start ${blockAlignments[align]}`
+  }
+  return `inline-end ${blockAlignments[align]}`
+}
+
 const positionerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -488,6 +517,7 @@ const popupAttributes = <Message>(
 ): PopoverPartAttributes<Message> => ({
   root: isMounted
     ? [
+        h.Key(`${popupId(config)}-${config.open ? 'open' : 'closed'}`),
         h.Id(popupId(config)),
         h.Popover('manual'),
         h.Role('dialog'),
@@ -500,11 +530,13 @@ const popupAttributes = <Message>(
         ...transitionDataAttributes(h, config.transitionStatus),
         ...placementAttributes(h, config),
         h.Style({
-          position: 'absolute',
+          position: 'fixed',
           positionAnchor: rootAnchorName(config),
-          inset: 'auto',
+          positionArea: positionArea(config),
           margin: '0',
-          ...positionerPlacementStyle(config),
+          ...((config.collisionAvoidance ?? defaultCollisionAvoidance)
+            ? { positionTryFallbacks: 'flip-inline, flip-block' }
+            : {}),
         }),
         ...optionalMessageAttribute(
           openMessage(config, escapeOpenChange()),

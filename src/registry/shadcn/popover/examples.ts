@@ -35,6 +35,7 @@ const popoverShell = <Message>(
     contentClassName?: string
     dir?: string
     body?: ReadonlyArray<Html>
+    defaultOpen?: boolean
   }>,
   controller: PopoverExampleController<Message>,
 ): Html => {
@@ -43,7 +44,7 @@ const popoverShell = <Message>(
 
   return Popover<Message>({
     id: config.id,
-    open: isOpenFor(controller, config.id, true),
+    open: isOpenFor(controller, config.id, config.defaultOpen ?? true),
     ...(onOpenChange === undefined
       ? {}
       : { onOpenChange: change => onOpenChange(config.id, change) }),
@@ -165,6 +166,7 @@ export const PopoverBasic = <Message = never>(
       title: 'Dimensions',
       description: 'Set the dimensions for the layer.',
       align: 'start',
+      defaultOpen: false,
     },
     controller,
   )

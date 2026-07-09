@@ -1216,6 +1216,34 @@ playwrightTest(
 )
 
 playwrightTest(
+  'popover keeps its surface inside a narrow viewport',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/components/shadcn/popover')
+
+    const preview = page.getByLabel('PopoverBasic live preview')
+    const trigger = preview.getByRole('button', { name: 'Open Popover' })
+    await trigger.click()
+    const content = await expectOnlyVisibleSurface(
+      preview,
+      '[data-slot="popover-content"][data-open]',
+    )
+    await playwrightExpect(content).toHaveCSS('position', 'fixed')
+    await page.waitForTimeout(100)
+    const box = await visibleBox(content)
+
+    playwrightExpect(box.x).toBeGreaterThanOrEqual(-1)
+    playwrightExpect(box.x + box.width).toBeLessThanOrEqual(391)
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(
+      preview,
+      '[data-slot="popover-content"][data-open]',
+    )
+    await playwrightExpect(trigger).toBeFocused()
+  },
+)
+
+playwrightTest(
   'tooltip visual geometry stays stable across cycles',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })

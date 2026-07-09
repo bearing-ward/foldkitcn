@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-09T19:39:39.201Z",
+  "generatedAt": "2026-07-09T22:09:59.143Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -3672,8 +3672,8 @@
         },
         {
           "path": "src/registry/base-ui/popover/index.ts",
-          "sha256": "d2dc7db22ede2838dbf9542f5c0d3820acb813e0ee5a93f5a9c405be96326dbe",
-          "sizeBytes": 16837,
+          "sha256": "9df74715f9eb854e145763573e52351ccd66bbd594f7c74e3c3b4529e3b28b70",
+          "sizeBytes": 17658,
           "role": "source"
         }
       ]
@@ -17044,8 +17044,8 @@
         },
         {
           "path": "src/registry/shadcn/popover/examples.ts",
-          "sha256": "5aa67a5b517588832a2b32edb2eada49b76c2b23c4013015f8b3dcb332a09fef",
-          "sizeBytes": 9226,
+          "sha256": "d89516b1417a38c0084af4c33702baf855f290f3e206c3b77d7b584f460a2093",
+          "sizeBytes": 9300,
           "role": "source"
         }
       ]
