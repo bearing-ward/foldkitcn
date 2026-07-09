@@ -80,7 +80,7 @@ export const ShowDialog = Command.define(
     onNone: () => ({}),
     onSome: focusSelector => ({ focusSelector }),
   })
-  const show = Dom.showModal(dialogSelector(id), focusOptions)
+  const show = Dom.showDialog(dialogSelector(id), focusOptions)
 
   if (modal === true) {
     return Dom.lockScroll.pipe(
@@ -102,7 +102,7 @@ export const CloseDialog = Command.define(
   { id: S.String, modal: DialogModalMode },
   CompletedCloseDialog,
 )(({ id, modal }) => {
-  const close = Dom.closeModal(dialogSelector(id))
+  const close = Dom.closeDialog(dialogSelector(id))
 
   if (modal === true) {
     return close.pipe(
