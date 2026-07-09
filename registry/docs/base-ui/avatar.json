@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-avatar",
   "localInstallPath": "src/registry/base-ui/avatar",
   "defaultImportPath": "base-ui/avatar",
   "sourceRoot": "registry-src/base-ui/avatar",

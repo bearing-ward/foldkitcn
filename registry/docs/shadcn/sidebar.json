@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-sidebar",
   "localInstallPath": "src/registry/shadcn/sidebar",
   "defaultImportPath": "shadcn/sidebar",
   "sourceRoot": "registry-src/shadcn/sidebar",

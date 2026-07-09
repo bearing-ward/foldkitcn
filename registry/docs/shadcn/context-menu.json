@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-context-menu",
   "localInstallPath": "src/registry/shadcn/context-menu",
   "defaultImportPath": "shadcn/context-menu",
   "sourceRoot": "registry-src/shadcn/context-menu",

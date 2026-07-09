@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-input-group",
   "localInstallPath": "src/registry/shadcn/input-group",
   "defaultImportPath": "shadcn/input-group",
   "sourceRoot": "registry-src/shadcn/input-group",

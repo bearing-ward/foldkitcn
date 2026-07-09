@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-toolbar",
   "localInstallPath": "src/registry/base-ui/toolbar",
   "defaultImportPath": "base-ui/toolbar",
   "sourceRoot": "registry-src/base-ui/toolbar",

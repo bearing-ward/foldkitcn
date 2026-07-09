@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-drawer",
   "localInstallPath": "src/registry/shadcn/drawer",
   "defaultImportPath": "shadcn/drawer",
   "sourceRoot": "registry-src/shadcn/drawer",

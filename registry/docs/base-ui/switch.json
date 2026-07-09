@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-switch",
   "localInstallPath": "src/registry/base-ui/switch",
   "defaultImportPath": "base-ui/switch",
   "sourceRoot": "registry-src/base-ui/switch",

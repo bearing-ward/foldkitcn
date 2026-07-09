@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-form",
   "localInstallPath": "src/registry/base-ui/form",
   "defaultImportPath": "base-ui/form",
   "sourceRoot": "registry-src/base-ui/form",

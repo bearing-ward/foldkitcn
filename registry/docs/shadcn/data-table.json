@@ -49,7 +49,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-data-table",
   "localInstallPath": "src/registry/shadcn/data-table",
   "defaultImportPath": "shadcn/data-table",
   "sourceRoot": "registry-src/shadcn/data-table",

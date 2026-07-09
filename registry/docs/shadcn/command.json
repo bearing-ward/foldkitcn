@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-command",
   "localInstallPath": "src/registry/shadcn/command",
   "defaultImportPath": "shadcn/command",
   "sourceRoot": "registry-src/shadcn/command",

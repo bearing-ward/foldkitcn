@@ -648,6 +648,58 @@ playwrightTest(
 )
 
 playwrightTest(
+  'installation docs use shadcn registry commands',
+  async ({ page }) => {
+    await page.goto('/components/shadcn/button')
+
+    const componentInstallation = page.locator('#installation')
+
+    await playwrightExpect(
+      componentInstallation.getByText(
+        'bunx shadcn@latest add @foldkitcn/shadcn-button',
+      ),
+    ).toBeVisible()
+    await playwrightExpect(page.locator('body')).not.toContainText(
+      'bunx foldkitcn add shadcn/button',
+    )
+    await playwrightExpect(page.locator('body')).not.toContainText(
+      'foldkitcn add',
+    )
+
+    await componentInstallation.getByRole('button', { name: 'Manual' }).click()
+    await playwrightExpect(
+      componentInstallation.getByText('src/registry/shadcn/button/index.ts'),
+    ).toBeVisible()
+
+    await page.goto('/docs')
+
+    const docsInstallation = page.locator('#installation')
+
+    await playwrightExpect(
+      docsInstallation.getByRole('heading', {
+        exact: true,
+        level: 2,
+        name: 'Installation',
+      }),
+    ).toBeVisible()
+    await playwrightExpect(
+      docsInstallation.getByText('components.json', { exact: true }),
+    ).toBeVisible()
+    await playwrightExpect(
+      docsInstallation.getByText('@foldkitcn').first(),
+    ).toBeVisible()
+    await playwrightExpect(
+      docsInstallation.getByText(
+        'bunx shadcn@latest add @foldkitcn/shadcn-button',
+      ),
+    ).toBeVisible()
+    await playwrightExpect(
+      docsInstallation.getByText('<owner>/<repo>/shadcn-button'),
+    ).toBeVisible()
+  },
+)
+
+playwrightTest(
   'docs shell keeps the sidebar and TOC responsive',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })

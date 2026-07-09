@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-accordion",
   "localInstallPath": "src/registry/shadcn/accordion",
   "defaultImportPath": "shadcn/accordion",
   "sourceRoot": "registry-src/shadcn/accordion",

@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-breadcrumb",
   "localInstallPath": "src/registry/shadcn/breadcrumb",
   "defaultImportPath": "shadcn/breadcrumb",
   "sourceRoot": "registry-src/shadcn/breadcrumb",

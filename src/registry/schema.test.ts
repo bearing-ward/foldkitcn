@@ -233,7 +233,7 @@ describe('generated docs artifact schemas', () => {
       markdownPath: 'registry-src/shadcn/button/docs.md',
       markdown: '# Usage\n',
       headings: [{ id: 'usage', text: 'Usage', level: 1 }],
-      installCommand: null,
+      installCommand: 'bunx shadcn@latest add @foldkitcn/shadcn-button',
       localInstallPath: 'src/registry/shadcn/button',
       defaultImportPath: 'shadcn/button',
       sourceRoot: 'registry-src/shadcn/button',

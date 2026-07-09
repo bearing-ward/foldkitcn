@@ -8,7 +8,7 @@
   "markdownPath": null,
   "markdown": null,
   "headings": [],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/base-ui-alert-dialog",
   "localInstallPath": "src/registry/base-ui/alert-dialog",
   "defaultImportPath": "base-ui/alert-dialog",
   "sourceRoot": "registry-src/base-ui/alert-dialog",

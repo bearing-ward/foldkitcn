@@ -3402,6 +3402,12 @@ const homePageView = (model: Model): Html => {
 
 const docsPageView = (): Html => {
   const h = html<Message>()
+  const copiedSnippets = HashSet.empty<string>()
+  const namespaceSnippet = `{
+  "registries": {
+    "@foldkitcn": "https://<owner>.github.io/<repo>/r/{name}.json"
+  }
+}`
 
   return h.article([], [
     pageHeaderView(
@@ -3424,6 +3430,33 @@ const docsPageView = (): Html => {
           h.a([h.Href(registryLifecycleRouter({}))], ['Registry Lifecycle']),
           ' explains availability, parity, drift, and docs readiness.',
         ]),
+      ]),
+    ]),
+    h.section([h.Id('installation'), h.Class('content-section')], [
+      h.h2([], ['Installation']),
+      h.p([], [
+        'Add the Foldkit CN namespace to components.json, then install components with the shadcn CLI.',
+      ]),
+      docsCodePanel(
+        'docs#installation#components-json',
+        namespaceSnippet,
+        'Copy Foldkit CN components.json registry namespace',
+        copiedSnippets,
+        { title: 'components.json' },
+      ),
+      docsCodePanel(
+        'docs#installation#command',
+        'bunx shadcn@latest add @foldkitcn/shadcn-button',
+        'Copy Foldkit CN shadcn button install command',
+        copiedSnippets,
+        { title: 'CLI' },
+      ),
+      h.p([], [
+        'Public GitHub registries can also use ',
+        h.code([], ['bunx shadcn@latest add <owner>/<repo>/shadcn-button']),
+        '. See ',
+        h.a([h.Href(componentsIndexRouter({}))], ['component pages']),
+        ' for item-specific commands.',
       ]),
     ]),
   ])
@@ -3530,8 +3563,11 @@ const componentsNamespacePageView = (
   })
 }
 
+const publicRegistryItemNameFor = (itemId: string): string =>
+  itemId.replaceAll('/', '-')
+
 const installCommandFor = (itemId: string): string =>
-  `bunx foldkitcn add ${itemId}`
+  `bunx shadcn@latest add @foldkitcn/${publicRegistryItemNameFor(itemId)}`
 
 const physicalInstallPathFor = (itemId: string): string =>
   `src/components/foldkitcn/${itemId}.ts`
@@ -3813,6 +3849,14 @@ const installationSectionView = (
   const availability = component.entry.item.lifecycle.availability
   const panelId = docsInstallPanelIdFor(component.entry.item.id)
   const selectedTab = selectedDocsInstallTab(docsInstallTabValues, panelId)
+  const installCommand = Option.match(component.maybeDocsArtifact, {
+    onNone: () => installCommandFor(component.entry.item.id),
+    onSome: artifact =>
+      Option.match(artifact.installCommand, {
+        onNone: () => installCommandFor(component.entry.item.id),
+        onSome: command => command,
+      }),
+  })
 
   return h.section([h.Id('installation'), h.Class('content-section')], [
     h.h2([], ['Installation']),
@@ -3822,11 +3866,11 @@ const installationSectionView = (
         ])
       : M.value(availability).pipe(
           M.withReturnType<Html>(),
-          M.when('installable', () =>
-            h.div([], [
-              h.p([], [
-                'Install the component into your app, then import it from the generated local namespace.',
-              ]),
+	          M.when('installable', () =>
+	            h.div([], [
+	              h.p([], [
+	                'After adding the Foldkit CN registry to components.json, install the component with the shadcn CLI and import it from the generated local namespace.',
+	              ]),
               h.div([h.Class('docs-install-tabs')], [
                 docsInstallTabButtonView(panelId, 'cli', 'CLI', selectedTab),
                 docsInstallTabButtonView(
@@ -3837,12 +3881,12 @@ const installationSectionView = (
                 ),
               ]),
               selectedTab === 'cli'
-                ? docsCodePanel(
-                    `${panelId}#cli`,
-                    installCommandFor(component.entry.item.id),
-                    `Copy ${component.entry.item.name} install command`,
-                    copiedSnippets,
-                    { title: 'CLI' },
+	                ? docsCodePanel(
+	                    `${panelId}#cli`,
+	                    installCommand,
+	                    `Copy ${component.entry.item.name} install command`,
+	                    copiedSnippets,
+	                    { title: 'CLI' },
                   )
                 : Option.match(component.maybeDocsArtifact, {
                     onNone: () =>

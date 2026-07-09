@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-radio-group",
   "localInstallPath": "src/registry/shadcn/radio-group",
   "defaultImportPath": "shadcn/radio-group",
   "sourceRoot": "registry-src/shadcn/radio-group",

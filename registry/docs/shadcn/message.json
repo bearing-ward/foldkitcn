@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-message",
   "localInstallPath": "src/registry/shadcn/message",
   "defaultImportPath": "shadcn/message",
   "sourceRoot": "registry-src/shadcn/message",

@@ -44,7 +44,7 @@
       "level": 2
     }
   ],
-  "installCommand": null,
+  "installCommand": "bunx shadcn@latest add @foldkitcn/shadcn-sonner",
   "localInstallPath": "src/registry/shadcn/sonner",
   "defaultImportPath": "shadcn/sonner",
   "sourceRoot": "registry-src/shadcn/sonner",
