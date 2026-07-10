@@ -423,14 +423,16 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
         id: 'focus-slider',
         title: 'Focus SliderDemo',
         steps: [
-          { kind: 'focus', selector: '[role="slider"]' },
+          {
+            kind: 'focus',
+            selector: '[data-slot="slider-thumb"] input, [role="slider"]',
+          },
           { kind: 'press-key', key: 'ArrowRight' },
           { kind: 'wait-for-stable-layout' },
         ],
       },
     ],
-    '[data-origin-fixture-root] > *',
-    fixtureShimComparisonPolicy,
+    '[data-slot="slider"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/bubble',

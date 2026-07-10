@@ -48,5 +48,8 @@ The pinned Base Nova Dialog source now resolves through the existing Base UI
 aliases, and origin capture uses the repository's pinned `lucide-react`
 dependency instead of the incomplete virtual icon shim. Dialog examples now
 default closed like origin, the open/Escape interaction completes against both
-real implementations, and its stable comparison policy is hard. Slider remains
-the only synthetic high-risk origin surface.
+real implementations, and its stable comparison policy is hard. Slider now
+also resolves through the pinned Base Nova and Base UI sources. Its focused
+ArrowRight recipe completes with no hard differences. The remaining Plan 136
+scope is limited to Date Picker and Data Table after their held fixture
+contracts land.

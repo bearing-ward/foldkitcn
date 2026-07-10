@@ -95,13 +95,16 @@ const virtualModuleAliases = new Map([
   ['@/styles/base-nova/ui/popover', popoverShimModuleId],
   ['@/styles/base-nova/ui-rtl/popover', popoverShimModuleId],
   ['@/styles/base-nova/ui/select', selectShimModuleId],
-  ['@/styles/base-nova/ui/slider', sliderShimModuleId],
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
   ['@/styles/base-nova/ui-rtl/tooltip', tooltipShimModuleId],
   ['@/components/markdown', markdownShimModuleId],
 ])
 
 const sourcePathAliases = new Map([
+  [
+    '@/styles/base-nova/ui/slider',
+    'repos/ui/apps/v4/styles/base-nova/ui/slider.tsx',
+  ],
   [
     '@/styles/base-nova/ui/dialog',
     'repos/ui/apps/v4/styles/base-nova/ui/dialog.tsx',
@@ -197,6 +200,7 @@ const sourcePathAliases = new Map([
     'repos/base-ui/packages/react/src/scroll-area/index.ts',
   ],
   ['@base-ui/react/switch', 'repos/base-ui/packages/react/src/switch/index.ts'],
+  ['@base-ui/react/slider', 'repos/base-ui/packages/react/src/slider/index.ts'],
   ['@base-ui/react/select', 'repos/base-ui/packages/react/src/select/index.ts'],
   ['@base-ui/react/avatar', 'repos/base-ui/packages/react/src/avatar/index.ts'],
   [
