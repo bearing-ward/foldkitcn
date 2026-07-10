@@ -33,7 +33,11 @@ fixture-root failures. Their initial reports currently contain hard parity
 differences (8–10 findings each), which are the next calibration/fix backlog;
 the reports are intentionally not accepted as green evidence yet.
 
-The remaining work is to add executable interaction recipes for these cases,
-calibrate stable geometry/style/ARIA comparisons against origin, and add the
-Date Picker/Data Table cases after Plans 132 and 133 supply their fixture
-contracts.
+PopoverBasic now has an executable open/Escape recipe, and the comparator honors
+case policies while using client geometry for narrowed roots. Select, Tooltip,
+Dropdown Menu, and Sonner have calibrated capture roots; Dialog and Slider keep
+geometry advisory because their origin browser shims are synthetic controls.
+
+The remaining work is to add recipes for the other cases, replace those two
+synthetic shims with faithful origin surfaces, and add the Date Picker/Data
+Table cases after Plans 132 and 133 supply their fixture contracts.
