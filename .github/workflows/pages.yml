@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Install Playwright Chromium
+        run: bun x playwright install --with-deps chromium
+
       - name: Verify registry artifacts
         run: bun run registry:check
 
