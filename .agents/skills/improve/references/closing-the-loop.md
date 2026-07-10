@@ -16,7 +16,19 @@ The founding rule survives unchanged: **the advisor never edits source code.** I
 
 ### Dispatch
 
-Spawn **one** `general-purpose` subagent with `isolation: "worktree"`. Executor model: default `sonnet`; use what the user named if they named one (`execute 003 haiku`).
+Spawn **one** `general-purpose` subagent with `isolation: "worktree"`.
+
+When the delegation surface supports explicit model and reasoning selection, use:
+
+- `gpt-5.5` with low reasoning for a bounded implementation plan;
+- `gpt-5.5` with medium or high reasoning for the advisor's architecture,
+  audit synthesis, and final review; and
+- a smaller fast worker only for deterministic inventory, search, or mechanical
+  metadata work.
+
+Honor a model explicitly requested by the user. If the available delegation
+tool does not expose a model selector, report that routing cannot be enforced;
+do not claim a model choice was applied.
 
 The subagent prompt must contain:
 
