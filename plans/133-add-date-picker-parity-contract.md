@@ -22,5 +22,5 @@ the pinned origin demo requires `date-fns`, `lucide-react`, and the origin
 Calendar module in addition to the already-shimmed Popover. The parity runner
 does not currently provide those aliases, so a ready slot would be
 unverifiable. Keep the exception until a bounded origin adapter is added and
- the open, navigation, selection, dismissal, and mobile containment recipes
- can be captured against both implementations.
+the open, navigation, selection, dismissal, and mobile containment recipes
+can be captured against both implementations.

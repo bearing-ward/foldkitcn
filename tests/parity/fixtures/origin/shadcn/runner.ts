@@ -71,6 +71,7 @@ const commandDialogShimModuleId =
   '\0foldkitcn-shadcn-origin-command-dialog-shim'
 const cmdkShimModuleId = '\0foldkitcn-shadcn-origin-cmdk-shim'
 const markdownShimModuleId = '\0foldkitcn-shadcn-origin-markdown-shim'
+const lucideReactShimModuleId = '\0foldkitcn-shadcn-origin-lucide-react-shim'
 
 const virtualModuleAliases = new Map([
   ['cmdk', cmdkShimModuleId],
@@ -100,6 +101,7 @@ const virtualModuleAliases = new Map([
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
   ['@/styles/base-nova/ui-rtl/tooltip', tooltipShimModuleId],
   ['@/components/markdown', markdownShimModuleId],
+  ['lucide-react', lucideReactShimModuleId],
 ])
 
 const sourcePathAliases = new Map([
@@ -217,6 +219,44 @@ const sourcePathAlias = (source: string): string | null => {
 }
 
 const staticShimSources = new Map([
+  [
+    lucideReactShimModuleId,
+    `
+        import * as React from 'react'
+
+        const paths = {
+          ArrowUpDown: 'm7 15 5 5 5-5M7 9l5-5 5 5',
+          ChevronDownIcon: 'm6 9 6 6 6-6',
+          MoreHorizontal: 'M12 12h.01M19 12h.01M5 12h.01',
+        }
+
+        const icon = (name, props) => {
+          const { children, className, ...rest } = props
+          const classes = ['lucide', 'lucide-' + name.replace(/[A-Z]/g, match => '-' + match.toLowerCase()).replace(/^-/, ''), className].filter(Boolean).join(' ')
+          return React.createElement(
+            'svg',
+            {
+              ...rest,
+              className: classes,
+              'aria-hidden': rest['aria-label'] ? undefined : 'true',
+              focusable: 'false',
+              viewBox: '0 0 24 24',
+              fill: 'none',
+              stroke: 'currentColor',
+              'stroke-width': 2,
+              'stroke-linecap': 'round',
+              'stroke-linejoin': 'round',
+            },
+            React.createElement('path', { d: paths[name] }),
+            children,
+          )
+        }
+
+        export const ArrowUpDown = props => icon('ArrowUpDown', props)
+        export const ChevronDownIcon = props => icon('ChevronDownIcon', props)
+        export const MoreHorizontal = props => icon('MoreHorizontal', props)
+      `,
+  ],
   [
     nextImageShimModuleId,
     `
