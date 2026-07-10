@@ -134,56 +134,12 @@ const paritySlotExceptions = new Map<string, PublicParityException>([
     },
   ],
 ])
-const mobileOverflowItems = new Set([
-  'shadcn/accordion',
-  'shadcn/attachment',
-  'shadcn/avatar',
-  'shadcn/breadcrumb',
-  'shadcn/bubble',
-  'shadcn/button',
-  'shadcn/calendar',
-  'shadcn/carousel',
-  'shadcn/checkbox',
-  'shadcn/collapsible',
-  'shadcn/combobox',
-  'shadcn/command',
-  'shadcn/dialog',
-  'shadcn/direction',
-  'shadcn/drawer',
-  'shadcn/marker',
-  'shadcn/menubar',
-  'shadcn/message',
-  'shadcn/pagination',
-  'shadcn/popover',
-  'shadcn/progress',
-  'shadcn/resizable',
-  'shadcn/select',
-  'shadcn/separator',
-  'shadcn/sidebar',
-  'shadcn/skeleton',
-  'shadcn/slider',
-  'shadcn/sonner',
-  'shadcn/spinner',
-  'shadcn/switch',
-  'shadcn/textarea',
-  'shadcn/toggle',
-  'shadcn/tooltip',
-])
-
 const exceptionFor = (itemId: string): Option.Option<PublicParityException> => {
   const paritySlotException = paritySlotExceptions.get(itemId)
 
   if (paritySlotException !== undefined) {
     return Option.some(paritySlotException)
   }
-  if (mobileOverflowItems.has(itemId)) {
-    return Option.some({
-      reason: 'The 390px docs host has measured horizontal overflow.',
-      owner: 'plans/135-resolve-public-mobile-overflow.md',
-      reviewDate: '2026-10-09',
-    })
-  }
-
   return Option.none()
 }
 

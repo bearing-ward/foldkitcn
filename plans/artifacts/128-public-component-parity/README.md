@@ -9,7 +9,7 @@ live-example renderer registry. Do not edit the matrix by hand.
 - Source-backed examples: 454
 - Docs/example-only examples: 23
 - Examples on routes without a parity slot: 23
-- Active exceptions: 243
+- Active exceptions: 23
 
 Every example declares a profile, desktop and 390px viewports, required
 interaction recipes, origin evidence mode, live-renderer status, and parity

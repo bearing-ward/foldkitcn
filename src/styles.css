@@ -457,6 +457,10 @@ dt {
   line-height: 1.7;
 }
 
+.content-section .compact-list code {
+  overflow-wrap: anywhere;
+}
+
 .action-row {
   flex-wrap: wrap;
   gap: 0.75rem;

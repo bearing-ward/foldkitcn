@@ -13,10 +13,9 @@ lands. The exceptions expire on 2026-10-09.
 
 No missing live renderers, unprofiled routes, or origin-unmapped routes remain.
 
-The 390px docs-host run also found measured horizontal overflow on 33 shadcn
-routes. They are owned by `plans/135-resolve-public-mobile-overflow.md`; the
-generated matrix lists the exact affected routes and gives each exception the
-same 2026-10-09 review date. New overflow on any other route still fails CI.
+The former 33-route 390px overflow backlog is resolved. Long source paths now
+wrap inside the shared Source section, and every route is held to the strict
+desktop and mobile docs-host overflow contract.
 
 The workbench currently has executable cases only for Tabs and Empty. The
 required high-risk family expansion is owned by

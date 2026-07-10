@@ -6,7 +6,7 @@
 - **Effort**: L
 - **Risk**: MED
 - **Depends on**: Plan 128
-- **State**: IN PROGRESS
+- **State**: DONE, 2026-07-10
 
 ## Goal
 
@@ -33,3 +33,11 @@ The first batch is the lowest-risk starting point because its overflow is
 likely owned by intrinsic control sizing rather than portal geometry. Each
 route must be re-measured at 390px in the real docs host before its exception
 is removed; no page-level `overflow-x: hidden` workaround is allowed.
+
+## Result
+
+The 33-route backlog shared one docs-shell cause: unbroken source-path code in
+the Source section expanded `#main-content`. Allowing those compact-list code
+values to wrap removed the overflow without clipping component previews or
+changing component geometry. The complete desktop/390px public contract matrix
+passes with all mobile-overflow exceptions removed.
