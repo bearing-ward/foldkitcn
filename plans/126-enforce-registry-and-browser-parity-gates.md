@@ -73,14 +73,14 @@ Relevant architecture constraints:
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
+| Purpose                   | Command                  | Expected on success                                  |
+| ------------------------- | ------------------------ | ---------------------------------------------------- |
 | Check generated artifacts | `bun run registry:check` | exits 0; reports the index and checklist are current |
-| Regenerate registry | `bun run registry:build` | exits 0; only generator-owned artifacts change |
-| Unit suite | `bun run test` | exits 0 |
-| Browser suite | `bun run test:e2e` | exits 0; Playwright runs all E2E tests |
-| Typecheck | `bun run typecheck` | exits 0 |
-| Code quality | `bun run check` | exits 0 |
+| Regenerate registry       | `bun run registry:build` | exits 0; only generator-owned artifacts change       |
+| Unit suite                | `bun run test`           | exits 0                                              |
+| Browser suite             | `bun run test:e2e`       | exits 0; Playwright runs all E2E tests               |
+| Typecheck                 | `bun run typecheck`      | exits 0                                              |
+| Code quality              | `bun run check`          | exits 0                                              |
 
 ## Scope
 
@@ -181,7 +181,7 @@ marking the plan complete.
 ## Done criteria
 
 - [ ] `bun run registry:check` exits 0 in a clean checkout after committed
-  generator-owned artifact updates.
+      generator-owned artifact updates.
 - [ ] `package.json` has `test:e2e` and `bun run test:e2e` exits 0.
 - [ ] Pages CI invokes `bun run test:e2e` after the existing Chromium install.
 - [ ] CI still runs registry validation, typecheck, Vitest, and Ultracite.

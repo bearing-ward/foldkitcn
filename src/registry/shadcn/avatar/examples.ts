@@ -205,6 +205,9 @@ const avatarDropdownShell = <Message>(
           onOpenChange: change =>
             controller.onOpenChange('avatar-dropdown', change),
         }),
+    ...(controller?.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     ...(onItemPress === undefined
       ? {}
       : {

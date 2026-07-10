@@ -33,6 +33,18 @@ const expectNoHeaderMainOverlap = async (page: Page) => {
 const MAX_EXAMPLE_CARD_WIDTH = 800
 const DOCS_PREVIEW_CARD_SELECTOR = '[data-docs-slot="docs-preview-card"]'
 
+const expectSurfaceWithinNarrowViewport = async (
+  surface: Locator,
+): Promise<void> => {
+  await playwrightExpect(surface).toHaveCSS('position', 'absolute')
+  const box = await visibleBox(surface)
+
+  playwrightExpect(box.x).toBeGreaterThanOrEqual(-1)
+  playwrightExpect(box.y).toBeGreaterThanOrEqual(-1)
+  playwrightExpect(box.x + box.width).toBeLessThanOrEqual(391)
+  playwrightExpect(box.y + box.height).toBeLessThanOrEqual(845)
+}
+
 const expectExampleCardsStayInsideMainColumn = async (page: Page) => {
   const mainBox = await page.locator('#main-content').boundingBox()
   const exampleCards = page.locator(DOCS_PREVIEW_CARD_SELECTOR)
@@ -120,23 +132,6 @@ const expectPreviewScrollRegionStaysInsidePreview = async (
   )
 
   playwrightExpect(isScrollable).toBe(true)
-}
-
-const expectElementAbove = async (
-  element: Locator,
-  anchor: Locator,
-): Promise<void> => {
-  const elementBox = await element.boundingBox()
-  const anchorBox = await anchor.boundingBox()
-
-  playwrightExpect(elementBox).not.toBeNull()
-  playwrightExpect(anchorBox).not.toBeNull()
-
-  if (elementBox !== null && anchorBox !== null) {
-    playwrightExpect(elementBox.y + elementBox.height).toBeLessThanOrEqual(
-      anchorBox.y + 1,
-    )
-  }
 }
 
 const expectBoxInside = async (
@@ -1244,6 +1239,88 @@ playwrightTest(
 )
 
 playwrightTest(
+  'native overlay primitives keep their anchored surfaces inside a narrow viewport',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+
+    await page.goto('/components/shadcn/tooltip')
+    const tooltipPreview = page.getByLabel('TooltipDemo live preview')
+    const tooltipTrigger = tooltipPreview.getByRole('button', { name: 'Hover' })
+    await tooltipTrigger.hover()
+    const tooltip = await expectOnlyVisibleSurface(
+      tooltipPreview,
+      '[data-slot="tooltip-content"][data-open]',
+    )
+    await expectSurfaceAnchoredToTrigger(tooltip, tooltipTrigger, {
+      tolerance: 16,
+    })
+    await expectSurfaceWithinNarrowViewport(tooltip)
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(
+      tooltipPreview,
+      '[data-slot="tooltip-content"][data-open]',
+    )
+
+    await page.goto('/components/shadcn/dropdown-menu')
+    const menuPreview = page.getByLabel('DropdownMenuDemo live preview')
+    const menuTrigger = menuPreview.getByRole('button')
+    await menuTrigger.click()
+    const menu = await expectOnlyVisibleSurface(
+      menuPreview,
+      '[data-slot="dropdown-menu-content"][data-open]',
+    )
+    await expectSurfaceAnchoredToTrigger(menu, menuTrigger, { tolerance: 16 })
+    await expectSurfaceWithinNarrowViewport(menu)
+    await page.keyboard.press('Escape')
+    await expectNoOpenSurfaces(
+      menuPreview,
+      '[data-slot="dropdown-menu-content"][data-open]',
+    )
+
+    const submenuPreview = page.getByLabel('DropdownMenuSubmenu live preview')
+    const submenuTrigger = submenuPreview.getByRole('button')
+    await submenuTrigger.click()
+    await submenuPreview.getByRole('menuitem', { name: 'Invite' }).hover()
+    const submenu = await expectOnlyVisibleSurface(
+      submenuPreview,
+      '[data-slot="dropdown-menu-sub-content"][data-open]',
+    )
+    await expectSurfaceAnchoredToTrigger(
+      submenu,
+      submenuPreview.getByRole('menuitem', { name: 'Invite' }),
+      { tolerance: 16 },
+    )
+    await expectSurfaceWithinNarrowViewport(submenu)
+    await page.mouse.click(8, 8)
+    await expectNoOpenSurfaces(
+      submenuPreview,
+      '[data-slot="dropdown-menu-content"][data-open]',
+    )
+
+    await page.goto('/components/shadcn/select')
+    const selectPreview = page.getByLabel('SelectDemo live preview')
+    const selectTrigger = selectPreview.locator('[data-slot="select-trigger"]')
+    await selectTrigger.click()
+    const select = await expectOnlyVisibleSurface(
+      selectPreview,
+      '[data-slot="select-content"][data-open]',
+    )
+    await expectSurfaceAnchoredToTrigger(select, selectTrigger, {
+      tolerance: 16,
+    })
+    await expectSurfaceWithinNarrowViewport(select)
+    await selectPreview
+      .getByRole('option', { exact: true, name: 'Apple' })
+      .click()
+    await expectNoOpenSurfaces(
+      selectPreview,
+      '[data-slot="select-content"][data-open]',
+    )
+    await playwrightExpect(selectTrigger).toContainText('Apple')
+  },
+)
+
+playwrightTest(
   'tooltip visual geometry stays stable across cycles',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })
@@ -1508,7 +1585,9 @@ playwrightTest(
     await popoverTrigger.click()
     await playwrightExpect(popoverContent).toBeVisible()
     await playwrightExpect(popover.getByText('Command failed')).toBeVisible()
-    await expectElementAbove(popoverContent, popoverTrigger)
+    await expectSurfaceAnchoredToTrigger(popoverContent, popoverTrigger, {
+      tolerance: 64,
+    })
     await page.mouse.click(10, 10)
     await playwrightExpect(popoverContent).not.toBeVisible()
     await popoverTrigger.click()

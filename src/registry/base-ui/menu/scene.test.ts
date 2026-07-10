@@ -169,6 +169,7 @@ const viewMenu =
     const h = html<Message>()
 
     return Menu.view<Message>({
+      positioning: 'static',
       id: 'actions-menu',
       items: menuItems(model),
       open: model.open,
@@ -386,6 +387,7 @@ describe('base-ui/menu helpers', () => {
     const itemAttributeTags = new Map<string, ReadonlyArray<string>>()
 
     Menu.view<Message>({
+      positioning: 'static',
       id: 'disabled-menu',
       items: disabledItems,
       open: true,

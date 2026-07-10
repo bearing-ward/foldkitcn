@@ -55,7 +55,14 @@
     }
   ],
   "dependencies": {
-    "registry": [],
+    "registry": [
+      {
+        "specifier": "utils/anchor-positioning",
+        "classification": "registry-local",
+        "target": "utils/anchor-positioning",
+        "reason": "Tooltip uses the shared Foldkit lifecycle adapter for origin-equivalent anchored geometry."
+      }
+    ],
     "runtime": [
       {
         "specifier": "foldkit",

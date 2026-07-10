@@ -280,6 +280,7 @@ const viewMenubar =
     const h = html<Message>()
 
     return Menubar.view<Message>({
+      positioning: 'static',
       id: config.id ?? 'browser-menubar',
       menus: menus(model),
       focusedMenuValue: model.focusedMenuValue,

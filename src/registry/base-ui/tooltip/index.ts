@@ -1,9 +1,16 @@
 import { Effect, Option, Predicate, Schema as S } from 'effect'
+import { Mount } from 'foldkit'
 import * as Command from 'foldkit/command'
 import * as Dom from 'foldkit/dom'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import {
+  anchorPlacement,
+  PositionAnchoredSurface,
+} from '../../../utils/anchor-positioning'
+import type { AnchorPositioningConfig } from '../../../utils/anchor-positioning'
 
 // MODEL
 
@@ -154,6 +161,9 @@ export const triggerSelector = (
   config: Pick<TooltipOptions, 'id' | 'triggerId' | 'triggerSelector'>,
 ): string => config.triggerSelector ?? `#${triggerId(config)}`
 
+const rootAnchorName = (config: Pick<TooltipOptions, 'id'>): string =>
+  `--${config.id}-anchor`
+
 export const openChange = (
   open: boolean,
   reason: TooltipChangeReason = 'none',
@@ -259,7 +269,8 @@ export type ViewConfig<Message> = TooltipOptions &
   Readonly<{
     toView: (attributes: TooltipAttributes<Message>) => Html
     onOpenChange?: (change: TooltipOpenChange) => Message
-  }>
+  }> &
+  AnchorPositioningConfig<Message>
 
 const resolvedSide = (config: Pick<TooltipOptions, 'side'>): TooltipSide =>
   config.side ?? defaultSide
@@ -399,6 +410,7 @@ const triggerAttributes = <Message>(
     'close-on-click',
     String(config.closeOnClick ?? defaultCloseOnClick),
   ),
+  h.Style({ anchorName: rootAnchorName(config) }),
   ...(config.open ? [h.DataAttribute('popup-open', '')] : []),
   ...(config.isDisabled === true
     ? [h.AriaDisabled(true), h.DataAttribute('trigger-disabled', '')]
@@ -467,6 +479,34 @@ const placementAttributes = <Message>(
   ),
 ]
 
+const positionArea = (
+  config: Pick<TooltipOptions, 'align' | 'side'>,
+): string => {
+  const align = resolvedAlign(config)
+  const side = resolvedSide(config)
+  const inlineAlignments = {
+    start: 'span-inline-start',
+    center: 'center',
+    end: 'span-inline-end',
+  }
+  const blockAlignments = {
+    start: 'span-block-start',
+    center: 'center',
+    end: 'span-block-end',
+  }
+
+  if (side === 'top') {
+    return `block-start ${inlineAlignments[align]}`
+  }
+  if (side === 'bottom') {
+    return `block-end ${inlineAlignments[align]}`
+  }
+  if (side === 'left' || side === 'inline-start') {
+    return `inline-start ${blockAlignments[align]}`
+  }
+  return `inline-end ${blockAlignments[align]}`
+}
+
 const positionerAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -482,6 +522,7 @@ const positionerAttributes = <Message>(
         ...placementAttributes(h, config),
         h.Style({
           position: 'absolute',
+          positionAnchor: rootAnchorName(config),
           inset: 'auto',
           margin: '0',
         }),
@@ -498,6 +539,7 @@ const popupAttributes = <Message>(
 ): TooltipPartAttributes<Message> => ({
   root: isMounted
     ? [
+        h.Key(`${popupId(config)}-${config.open ? 'open' : 'closed'}`),
         h.Id(popupId(config)),
         h.Role('tooltip'),
         ...(config.open ? [] : [h.Hidden(true)]),
@@ -505,6 +547,42 @@ const popupAttributes = <Message>(
         ...transitionDataAttributes(h, config.transitionStatus),
         ...instantDataAttribute(h, config.instant),
         ...placementAttributes(h, config),
+        ...(config.open && config.onPositioned !== undefined
+          ? [
+              h.OnMount(
+                Mount.mapMessage(
+                  PositionAnchoredSurface({
+                    id: popupId(config),
+                    anchorId: activeTriggerId(config),
+                    placement: anchorPlacement(
+                      resolvedSide(config),
+                      resolvedAlign(config),
+                    ),
+                    gap: config.sideOffset ?? defaultSideOffset,
+                    offset: config.alignOffset ?? defaultAlignOffset,
+                    padding: config.collisionPadding ?? defaultCollisionPadding,
+                    collisionAvoidance:
+                      config.collisionAvoidance ?? defaultCollisionAvoidance,
+                  }),
+                  config.onPositioned,
+                ),
+              ),
+            ]
+          : []),
+        h.Style({
+          position: config.onPositioned === undefined ? 'fixed' : 'absolute',
+          ...(config.onPositioned === undefined
+            ? {
+                positionAnchor: rootAnchorName(config),
+                positionArea: positionArea(config),
+              }
+            : { inset: 'auto' }),
+          margin: '0',
+          ...(config.onPositioned === undefined &&
+          (config.collisionAvoidance ?? defaultCollisionAvoidance)
+            ? { positionTryFallbacks: 'flip-inline, flip-block' }
+            : {}),
+        }),
         ...optionalMessageAttribute(
           openMessage(config, escapeOpenChange()),
           message =>
@@ -570,6 +648,16 @@ const arrowAttributes = <Message>(
 })
 
 export const view = <Message>(config: ViewConfig<Message>): Html => {
+  if (
+    config.onOpenChange !== undefined &&
+    config.onPositioned === undefined &&
+    config.positioning !== 'static'
+  ) {
+    throw new Error(
+      'Interactive Tooltip positioning requires an onPositioned Message mapper.',
+    )
+  }
+
   const h = html<Message>()
   const isMounted = mounted(config)
 

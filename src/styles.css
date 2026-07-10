@@ -770,8 +770,7 @@ dt {
   overflow: auto;
 }
 
-.live-example-preview [id*='combobox'][id$='positioner'],
-.live-example-preview [id*='tooltip'][id$='positioner'] {
+.live-example-preview [id*='combobox'][id$='positioner'] {
   position: absolute !important;
   inset: 4rem auto auto 1rem !important;
   top: 4rem !important;
@@ -854,14 +853,7 @@ dt {
 }
 
 .live-example-preview
-  [data-slot='dropdown-menu-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='dropdown-menu-sub-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='combobox-content'][popover='manual'][data-open],
-.live-example-preview [data-slot='select-content'][popover='manual'][data-open],
-.live-example-preview
-  [data-slot='tooltip-content'][popover='manual'][data-open] {
+  [data-slot='combobox-content'][popover='manual'][data-open] {
   position: absolute !important;
   top: 0 !important;
   right: auto !important;

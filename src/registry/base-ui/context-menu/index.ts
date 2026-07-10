@@ -525,10 +525,12 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
   return onOpenChange === undefined
     ? Menu.view<Message>({
         ...menuConfig,
+        positioning: 'static',
         toView: toContextView,
       })
     : Menu.view<Message>({
         ...menuConfig,
+        positioning: 'static',
         onOpenChange: change =>
           onOpenChange(
             openChange(

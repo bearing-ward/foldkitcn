@@ -6,6 +6,7 @@ import { docsData, publicComponents } from './data'
 import {
   ComponentDetailRoute,
   CompleteLiveExampleToastWait,
+  CompletedPositionLiveExampleSurface,
   CompletedRemoveLiveExampleToast,
   CompletedTimeoutLiveExampleToast,
   CopySnippet,
@@ -53,6 +54,7 @@ import {
 } from './registry/shadcn/data-table/examples'
 import { DrawerDemo, DrawerWithSides } from './registry/shadcn/drawer/examples'
 import { SheetDemo, SheetSide } from './registry/shadcn/sheet/examples'
+import { PositionAnchoredSurface } from './utils/anchor-positioning'
 
 const carouselLiveExampleInteractions = [
   ['CarouselDemo', 'translate3d(-100%, 0, 0)'],
@@ -477,8 +479,13 @@ describe(view, () => {
       Scene.click(
         Scene.within(preview, Scene.role('button', { name: /Acme Inc/ })),
       ),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({ id: 'team-switcher-popup' }),
+      ),
       Scene.expect(Scene.within(preview, Scene.text('Acme Corp.'))).toExist(),
       Scene.click(Scene.within(preview, Scene.text('Acme Corp.'))),
+      Scene.Mount.expectEnded(PositionAnchoredSurface),
       Scene.expect(Scene.within(preview, Scene.text('Startup'))).toExist(),
     )
   })
@@ -499,9 +506,19 @@ describe(view, () => {
           Scene.role('button', { name: 'More Design Engineering' }),
         ),
       ),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({
+          id: 'project-actions:Design Engineering-popup',
+        }),
+      ),
       Scene.expect(Scene.within(preview, Scene.text('View Project'))).toExist(),
       Scene.click(
         Scene.within(preview, Scene.role('button', { name: /shadcn/ })),
+      ),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({ id: 'user-menu-popup' }),
       ),
       Scene.expect(
         Scene.within(preview, Scene.text('Upgrade to Pro')),
@@ -530,6 +547,12 @@ describe(view, () => {
       Scene.click(
         Scene.within(preview, Scene.role('button', { name: /Username/ })),
       ),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({
+          id: 'sidebar-footer-user-menu-popup',
+        }),
+      ),
       Scene.expect(Scene.within(preview, Scene.text('Account'))).toExist(),
       Scene.expect(
         Scene.within(
@@ -540,6 +563,7 @@ describe(view, () => {
         ),
       ).toExist(),
       Scene.click(Scene.within(preview, Scene.text('Account'))),
+      Scene.Mount.expectEnded(PositionAnchoredSurface),
       Scene.expect(Scene.within(preview, Scene.text('Billing'))).not.toExist(),
     )
   })
@@ -582,10 +606,17 @@ describe(view, () => {
           Scene.role('button', { name: 'More Design Engineering' }),
         ),
       ),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({
+          id: 'menu-action:Design Engineering-popup',
+        }),
+      ),
       Scene.expect(
         Scene.within(actionPreview, Scene.text('View Project')),
       ).toExist(),
       Scene.click(Scene.within(actionPreview, Scene.text('Share Project'))),
+      Scene.Mount.expectEnded(PositionAnchoredSurface),
       Scene.expect(
         Scene.within(actionPreview, Scene.text('Archive Project')),
       ).not.toExist(),
@@ -764,6 +795,12 @@ describe(view, () => {
           Scene.selector('[data-slot="tooltip-content"]'),
         ),
       ).toExist(),
+      Scene.Mount.resolve(
+        PositionAnchoredSurface,
+        CompletedPositionLiveExampleSurface({
+          id: 'bubble-read-status-tooltip-popup',
+        }),
+      ),
       Scene.click(
         Scene.within(
           popoverPreview,

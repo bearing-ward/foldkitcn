@@ -3,6 +3,7 @@ import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import type { ToastState } from '../../base-ui/toast'
 import { view as Collapsible } from '../collapsible'
 import { view as Popover } from '../popover'
@@ -23,6 +24,7 @@ export type BubbleExampleController<Message> = Readonly<{
   ) => Message
   toastState?: ToastState
   onBubbleMessage?: (message: BubbleExampleMessage) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 const isOpenFor = <Message>(
@@ -639,6 +641,9 @@ export const BubbleTooltipDemo = <Message = never>(
             ...(onOpenChange === undefined
               ? {}
               : { onOpenChange: change => onOpenChange(controlId, change) }),
+            ...(controller?.onPositioned === undefined
+              ? { positioning: 'static' as const }
+              : { onPositioned: controller.onPositioned }),
             toView: attributes =>
               h.div(
                 [...attributes.provider],

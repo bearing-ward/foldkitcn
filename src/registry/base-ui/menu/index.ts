@@ -1,8 +1,14 @@
 import { Option, Predicate, Schema as S } from 'effect'
+import { Mount } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import {
+  anchorPlacement,
+  PositionAnchoredSurface,
+} from '../../../utils/anchor-positioning'
+import type { AnchorPositioningConfig } from '../../../utils/anchor-positioning'
 import * as Popover from '../popover'
 
 // MODEL
@@ -403,7 +409,8 @@ export type ViewConfig<Message> = MenuOptions &
     onRadioValueChange?: (change: MenuRadioValueChange) => Message
     onFocus?: Message
     onBlur?: Message
-  }>
+  }> &
+  AnchorPositioningConfig<Message>
 
 const resolvedSide = (
   config: Pick<MenuOptions, 'side'>,
@@ -418,6 +425,20 @@ const resolvedAlign = (
   parentValue === undefined
     ? (config.align ?? defaultAlign)
     : defaultSubmenuAlign
+
+const positioningAnchorId = (
+  config: Pick<MenuOptions, 'id' | 'items' | 'triggerId'>,
+  parentValue?: string | undefined,
+): string => {
+  if (parentValue === undefined) {
+    return triggerId(config)
+  }
+
+  const parentItem = config.items.find(item => item.value === parentValue)
+  return parentItem === undefined
+    ? triggerId(config)
+    : itemId(config, parentItem)
+}
 
 const mounted = (
   config: Pick<MenuOptions, 'forceMount' | 'open' | 'transitionStatus'>,
@@ -639,6 +660,35 @@ const placementStyle = (
   }
 }
 
+const positionArea = (
+  config: Pick<MenuOptions, 'align' | 'side'>,
+  parentValue?: string | undefined,
+): string => {
+  const align = resolvedAlign(config, parentValue)
+  const side = resolvedSide(config, parentValue)
+  const inlineAlignments = {
+    start: 'span-inline-start',
+    center: 'center',
+    end: 'span-inline-end',
+  }
+  const blockAlignments = {
+    start: 'span-block-start',
+    center: 'center',
+    end: 'span-block-end',
+  }
+
+  if (side === 'top') {
+    return `block-start ${inlineAlignments[align]}`
+  }
+  if (side === 'bottom') {
+    return `block-end ${inlineAlignments[align]}`
+  }
+  if (side === 'left' || side === 'inline-start') {
+    return `inline-start ${blockAlignments[align]}`
+  }
+  return `inline-end ${blockAlignments[align]}`
+}
+
 const popupAnchorName = (
   config: Pick<MenuOptions, 'id'>,
   parentValue?: string | undefined,
@@ -820,6 +870,7 @@ const popupAttributes = <Message>(
 ): MenuPartAttributes<Message> => ({
   root: isMounted
     ? [
+        h.Key(`${popupId(config, parentValue)}-${isOpen ? 'open' : 'closed'}`),
         h.Id(popupId(config, parentValue)),
         h.Popover('manual'),
         h.Role('menu'),
@@ -828,12 +879,45 @@ const popupAttributes = <Message>(
         ...openStateDataAttributes(h, isOpen),
         ...transitionDataAttributes(h, config.transitionStatus),
         ...placementAttributes(h, config, parentValue),
+        ...(isOpen && config.onPositioned !== undefined
+          ? [
+              h.OnMount(
+                Mount.mapMessage(
+                  PositionAnchoredSurface({
+                    id: popupId(config, parentValue),
+                    anchorId: positioningAnchorId(config, parentValue),
+                    placement: anchorPlacement(
+                      resolvedSide(config, parentValue),
+                      resolvedAlign(config, parentValue),
+                    ),
+                    gap: sideOffset(config, parentValue),
+                    offset:
+                      parentValue === undefined
+                        ? (config.alignOffset ?? defaultAlignOffset)
+                        : defaultAlignOffset,
+                    padding: config.collisionPadding ?? defaultCollisionPadding,
+                    collisionAvoidance:
+                      config.collisionAvoidance ?? defaultCollisionAvoidance,
+                  }),
+                  config.onPositioned,
+                ),
+              ),
+            ]
+          : []),
         h.Style({
-          position: 'absolute',
-          positionAnchor: popupAnchorName(config, parentValue),
-          inset: 'auto',
+          display: 'block',
+          position: config.onPositioned === undefined ? 'fixed' : 'absolute',
           margin: '0',
-          ...placementStyle(config, parentValue),
+          ...(config.onPositioned === undefined
+            ? {
+                positionAnchor: popupAnchorName(config, parentValue),
+                positionArea: positionArea(config, parentValue),
+              }
+            : { inset: 'auto' }),
+          ...(config.onPositioned === undefined &&
+          (config.collisionAvoidance ?? defaultCollisionAvoidance)
+            ? { positionTryFallbacks: 'flip-inline, flip-block' }
+            : {}),
         }),
         ...optionalMessageAttribute(
           openMessage(config, openChange(isOpen, 'none', parentValue)),
@@ -1036,6 +1120,16 @@ const popupParts = <Message>(
 }
 
 export const view = <Message>(config: ViewConfig<Message>): Html => {
+  if (
+    config.onOpenChange !== undefined &&
+    config.onPositioned === undefined &&
+    config.positioning !== 'static'
+  ) {
+    throw new Error(
+      'Interactive Menu positioning requires an onPositioned Message mapper.',
+    )
+  }
+
   const h = html<Message>()
   const submenus = config.items
     .filter(item => itemKind(item) === 'submenu-trigger')

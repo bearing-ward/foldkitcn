@@ -2,6 +2,7 @@ import { Array as EffectArray, pipe } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Button from '../button'
 import * as DropdownMenu from '../dropdown-menu'
 import {
@@ -175,6 +176,7 @@ export type TableActionsController<Message> = Readonly<{
   isOpenFor: (menuId: string, defaultOpen: boolean) => boolean
   onOpenChange: (menuId: string, change: DropdownMenu.MenuOpenChange) => Message
   onItemPress?: (menuId: string, press: DropdownMenu.MenuItemPress) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 const triggerBehaviorAttributes = <Message>(
@@ -242,6 +244,9 @@ const actionMenu = <Message>(
     ...(onItemPress === undefined
       ? {}
       : { onItemPress: press => onItemPress(id, press) }),
+    ...(controller?.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     variant: 'destructive',
     toView: attributes =>
       h.div(

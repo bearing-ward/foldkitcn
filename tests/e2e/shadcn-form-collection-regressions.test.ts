@@ -241,7 +241,17 @@ playwrightTest(
     playwrightExpect(
       Math.abs(pageSizeContentBox.x - pageSizeTriggerBox.x),
     ).toBeLessThanOrEqual(2)
-    playwrightExpect(pageSizeContentBox.y).toBeGreaterThan(pageSizeTriggerBox.y)
+    const verticalGap = Math.min(
+      Math.abs(
+        pageSizeContentBox.y -
+          (pageSizeTriggerBox.y + pageSizeTriggerBox.height),
+      ),
+      Math.abs(
+        pageSizeTriggerBox.y -
+          (pageSizeContentBox.y + pageSizeContentBox.height),
+      ),
+    )
+    playwrightExpect(verticalGap).toBeLessThanOrEqual(8)
     await playwrightExpect(
       pageSizeOption(pageSizeOptions[0]).locator(
         '[data-slot="select-item-indicator"] svg',

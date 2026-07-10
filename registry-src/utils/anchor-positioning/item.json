@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "utils/anchor-positioning",
+  "namespace": "utils",
+  "name": "Anchor Positioning",
+  "kind": "utility",
+  "description": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+  "sourceRoot": "registry-src/utils/anchor-positioning",
+  "installableSourcePaths": ["src/utils/anchor-positioning.ts"],
+  "consumedThemeTokens": [],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "@floating-ui/dom",
+        "classification": "allowed-runtime",
+        "target": "npm:@floating-ui/dom",
+        "reason": "Measures anchors and applies origin-equivalent flip, shift, offset, and size middleware."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema and scoped resource composition."
+      },
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides the lifecycle-scoped Mount and message boundary."
+      }
+    ],
+    "development": []
+  },
+  "examples": [],
+  "parity": {
+    "itemId": "utils/anchor-positioning",
+    "originFixturePath": "",
+    "foldkitFixturePath": "",
+    "requiredComparisons": [],
+    "acceptedDeviationIds": []
+  },
+  "lifecycle": {
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "availability": "installable",
+    "docsStatus": "missing"
+  },
+  "deviations": []
+}

@@ -1,6 +1,7 @@
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as DropdownMenu from './index'
 import type {
   MenuCheckedChange,
@@ -221,6 +222,7 @@ export type DropdownMenuExampleController<Message> = Readonly<{
   onItemPress?: (menuId: string, press: MenuItemPress) => Message
   onCheckedChange?: (menuId: string, change: MenuCheckedChange) => Message
   onRadioValueChange?: (menuId: string, change: MenuRadioValueChange) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 const basicItems: ReadonlyArray<ExampleItem> = [
@@ -697,6 +699,9 @@ const menuExampleWithController = <Message = never>(
       : {
           onOpenChange: change => controller.onOpenChange(id, change),
           onHighlightChange: change => controller.onHighlightChange(id, change),
+          ...(controller.onPositioned === undefined
+            ? { positioning: 'static' as const }
+            : { onPositioned: controller.onPositioned }),
         }),
     ...(onItemPress === undefined
       ? {}

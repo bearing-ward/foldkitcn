@@ -53,11 +53,14 @@ export const expectSurfaceAnchoredToTrigger = async (
   const horizontalOverlap =
     Math.min(surfaceBox.x + surfaceBox.width, triggerBox.x + triggerBox.width) -
     Math.max(surfaceBox.x, triggerBox.x)
+  const verticalOverlap =
+    Math.min(
+      surfaceBox.y + surfaceBox.height,
+      triggerBox.y + triggerBox.height,
+    ) - Math.max(surfaceBox.y, triggerBox.y)
 
   playwrightExpect(horizontalOverlap).toBeGreaterThanOrEqual(-tolerance)
-  playwrightExpect(surfaceBox.y).toBeGreaterThanOrEqual(
-    triggerBox.y - triggerBox.height - tolerance,
-  )
+  playwrightExpect(verticalOverlap).toBeGreaterThanOrEqual(-tolerance)
 }
 
 export const expectEscapingSurfaceHasVisibleOverflow = async (

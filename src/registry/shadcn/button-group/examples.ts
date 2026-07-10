@@ -1,6 +1,7 @@
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Button from '../button'
 import * as DropdownMenu from '../dropdown-menu'
 import type { DropdownMenuExampleController } from '../dropdown-menu/examples'
@@ -35,6 +36,7 @@ type ButtonGroupSelectController<Message> = Readonly<{
   valueFor: (selectId: string, defaultValue?: string) => string | undefined
   onOpenChange: (selectId: string, change: SelectOpenChange) => Message
   onValueChange: (selectId: string, change: SelectValueChange) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
@@ -245,6 +247,9 @@ const buttonGroupDropdownShell = <Message>(
   const open = isOpenFor('button-group-dropdown', false)
 
   return DropdownMenu.view<Message>({
+    ...(controller.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     id: 'button-group-dropdown',
     items: [
       { value: 'mute', label: 'Mute' },
@@ -509,6 +514,9 @@ const buttonGroupSelectShell = <Message>(
   })
 
   return Select<Message>({
+    ...(controller.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     id: 'button-group-select',
     items: currencyItems,
     open,

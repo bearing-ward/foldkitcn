@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-09T22:54:49.317Z",
+  "generatedAt": "2026-07-10T00:36:49.341Z",
   "routes": [
     {
       "itemId": "base-ui/accordion",
@@ -506,6 +506,11 @@
       "itemId": "shadcn/typography",
       "routePath": "/components/shadcn/typography",
       "docsArtifactPath": "registry/docs/shadcn/typography.json"
+    },
+    {
+      "itemId": "utils/anchor-positioning",
+      "routePath": "/components/utils/anchor-positioning",
+      "docsArtifactPath": "registry/docs/utils/anchor-positioning.json"
     },
     {
       "itemId": "utils/cn",

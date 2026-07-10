@@ -789,6 +789,10 @@ export const CompletedScrollToAnchor = m('CompletedScrollToAnchor')
 export const CompletedFocusLiveExampleMenu = m(
   'CompletedFocusLiveExampleMenu',
 )
+export const CompletedPositionLiveExampleSurface = m(
+  'CompletedPositionLiveExampleSurface',
+  { id: S.String },
+)
 export const CompletedLockLiveExampleContextMenuScroll = m(
   'CompletedLockLiveExampleContextMenuScroll',
 )
@@ -1142,6 +1146,7 @@ export const Message = S.Union([
   CompletedLoadExternal,
   CompletedScrollToAnchor,
   CompletedFocusLiveExampleMenu,
+  CompletedPositionLiveExampleSurface,
   CompletedLockLiveExampleContextMenuScroll,
   CompletedUnlockLiveExampleContextMenuScroll,
   CompletedFocusOTPFieldInput,
@@ -1502,6 +1507,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
       CompletedLoadExternal: () => [model, []],
       CompletedScrollToAnchor: () => [model, []],
       CompletedFocusLiveExampleMenu: () => [model, []],
+      CompletedPositionLiveExampleSurface: () => [model, []],
       CompletedLockLiveExampleContextMenuScroll: () => [model, []],
       CompletedUnlockLiveExampleContextMenuScroll: () => [model, []],
       CompletedFocusOTPFieldInput: () => [model, []],
@@ -4588,6 +4594,8 @@ const examplesSectionView = (
         overlayId,
         open: change.open,
       }),
+    onPositionedSurface: message =>
+      CompletedPositionLiveExampleSurface({ id: message.id }),
     menuIsOpenFor: (
       example: ExampleDocsArtifact,
       menuId: string,
