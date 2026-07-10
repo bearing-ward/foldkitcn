@@ -80,8 +80,6 @@ const virtualModuleAliases = new Map([
   ['next-themes', nextThemesShimModuleId],
   ['sonner', sonnerShimModuleId],
   ['react-resizable-panels', resizablePanelsShimModuleId],
-  ['@/styles/base-nova/ui/dialog', commandDialogShimModuleId],
-  ['@/styles/base-nova/ui-rtl/dialog', commandDialogShimModuleId],
   ['@/styles/base-nova/ui/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui-rtl/dropdown-menu', dropdownMenuShimModuleId],
   ['@/styles/base-nova/ui/carousel', carouselShimModuleId],
@@ -101,10 +99,17 @@ const virtualModuleAliases = new Map([
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
   ['@/styles/base-nova/ui-rtl/tooltip', tooltipShimModuleId],
   ['@/components/markdown', markdownShimModuleId],
-  ['lucide-react', lucideReactShimModuleId],
 ])
 
 const sourcePathAliases = new Map([
+  [
+    '@/styles/base-nova/ui/dialog',
+    'repos/ui/apps/v4/styles/base-nova/ui/dialog.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/dialog',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/dialog.tsx',
+  ],
   [
     '@base-ui/react/merge-props',
     'repos/base-ui/packages/react/src/merge-props/index.ts',

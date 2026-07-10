@@ -43,3 +43,10 @@ declared and resolve in dry-run. Remaining work is to replace the Dialog and
 Slider synthetic shims with faithful origin surfaces, and add the Date
 Picker/Data Table cases after Plans 132 and 133 supply their fixture
 contracts.
+
+The pinned Base Nova Dialog source now resolves through the existing Base UI
+aliases, and origin capture uses the repository's pinned `lucide-react`
+dependency instead of the incomplete virtual icon shim. Initial Dialog capture
+is faithful. The interaction run now reaches both real implementations; its
+remaining failure is local harness state reuse, which leaves the Foldkit dialog
+open before the recipe's click step and lets the overlay intercept that click.
