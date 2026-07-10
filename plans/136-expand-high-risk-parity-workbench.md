@@ -27,8 +27,13 @@ has completed a real origin/local capture.
 
 ## Remaining
 
-The dedicated fixture entrypoints for Popover, Tooltip, Select, Dialog, and
-Slider are not part of the aggregate runner. They need a harness seam that can
-select those fixture modules without importing browser-only Foldkit modules in
-the CLI process. Do not substitute aggregate proxies for those component-owned
-cases.
+The aggregate runner now exposes direct origin/local cases for PopoverBasic,
+TooltipDemo, SelectDemo, DialogDemo, and SliderDemo. All five capture without
+fixture-root failures. Their initial reports currently contain hard parity
+differences (8–10 findings each), which are the next calibration/fix backlog;
+the reports are intentionally not accepted as green evidence yet.
+
+The remaining work is to add executable interaction recipes for these cases,
+calibrate stable geometry/style/ARIA comparisons against origin, and add the
+Date Picker/Data Table cases after Plans 132 and 133 supply their fixture
+contracts.

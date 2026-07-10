@@ -126,6 +126,7 @@ import {
   CommandWithShortcuts,
 } from '../../../../../src/registry/shadcn/command/examples'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
+import { DialogDemo } from '../../../../../src/registry/shadcn/dialog/examples'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
 import {
   EmptyAvatar,
@@ -220,6 +221,7 @@ import {
   PaginationRtl,
   PaginationSimple,
 } from '../../../../../src/registry/shadcn/pagination/examples'
+import { PopoverBasic } from '../../../../../src/registry/shadcn/popover/examples'
 import {
   ProgressControlled,
   ProgressDemo,
@@ -237,6 +239,7 @@ import {
   ScrollAreaHorizontalDemo,
   ScrollAreaRtl,
 } from '../../../../../src/registry/shadcn/scroll-area/examples'
+import { SelectDemo } from '../../../../../src/registry/shadcn/select/examples'
 import {
   SeparatorDemo,
   SeparatorList,
@@ -268,6 +271,7 @@ import {
   SkeletonTable,
   SkeletonText,
 } from '../../../../../src/registry/shadcn/skeleton/examples'
+import { SliderDemo } from '../../../../../src/registry/shadcn/slider/examples'
 import {
   SonnerDemo,
   SonnerDescription,
@@ -304,6 +308,7 @@ import {
   TextareaButton,
   TextareaDemo,
 } from '../../../../../src/registry/shadcn/textarea/examples'
+import { TooltipDemo } from '../../../../../src/registry/shadcn/tooltip/examples'
 import type { ShadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 import { shadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 
@@ -793,6 +798,11 @@ const components: Readonly<Record<string, () => Html>> = {
   'empty-outline': EmptyOutline,
   'empty-rtl': EmptyRtl,
   'native-select-demo': NativeSelectDemo,
+  'popover-basic': PopoverBasic,
+  'select-demo': SelectDemo,
+  'slider-demo': SliderDemo,
+  'tooltip-demo': TooltipDemo,
+  'dialog-demo': DialogDemo,
   'native-select-disabled': NativeSelectDisabled,
   'native-select-groups': NativeSelectGroups,
   'native-select-invalid': NativeSelectInvalid,

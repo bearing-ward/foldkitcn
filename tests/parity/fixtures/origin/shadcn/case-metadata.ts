@@ -12,6 +12,31 @@ export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
       originFilePath: 'repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx',
     },
     {
+      id: 'popover-basic',
+      title: 'Popover basic',
+      originFilePath: 'repos/ui/apps/v4/examples/base/popover-basic.tsx',
+    },
+    {
+      id: 'tooltip-demo',
+      title: 'Tooltip demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/tooltip-demo.tsx',
+    },
+    {
+      id: 'select-demo',
+      title: 'Select demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/select-demo.tsx',
+    },
+    {
+      id: 'dialog-demo',
+      title: 'Dialog demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/dialog-demo.tsx',
+    },
+    {
+      id: 'slider-demo',
+      title: 'Slider demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/slider-demo.tsx',
+    },
+    {
       id: 'aspect-ratio-portrait',
       title: 'Aspect Ratio portrait',
       originFilePath:

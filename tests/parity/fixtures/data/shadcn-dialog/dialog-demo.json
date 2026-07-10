@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/dialog",
+  "caseId": "dialog-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/dialog-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

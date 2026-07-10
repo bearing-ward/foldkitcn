@@ -605,13 +605,36 @@ const originAliasPlugin = (): Plugin => ({
         export function DialogTitle({ children, className, ...props }) {
           return React.createElement('h2', { ...props, 'data-slot': 'dialog-title', className }, children)
         }
+
+        export function DialogClose({ children, ...props }) {
+          return React.createElement('button', { ...props, type: 'button' }, children)
+        }
+
+        export function DialogTrigger({ children, ...props }) {
+          return React.createElement('button', { ...props, type: 'button' }, children)
+        }
+
+        export function DialogFooter({ children, className, ...props }) {
+          return React.createElement('div', { ...props, 'data-slot': 'dialog-footer', className }, children)
+        }
       `
     }
 
     if (id === sliderShimModuleId) {
       return `
-        export function Slider() {
-          return null
+        import * as React from 'react'
+
+        export function Slider({ defaultValue = [0], min = 0, max = 100, step = 1, className, ...props }) {
+          return React.createElement('input', {
+            ...props,
+            type: 'range',
+            role: 'slider',
+            className,
+            min,
+            max,
+            step,
+            defaultValue: defaultValue[0],
+          })
         }
       `
     }

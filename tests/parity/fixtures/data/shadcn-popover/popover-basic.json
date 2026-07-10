@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/popover",
+  "caseId": "popover-basic",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/popover-basic.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

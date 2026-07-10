@@ -335,6 +335,56 @@ const aggregateWorkbenchCase = (
 
 const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
   aggregateWorkbenchCase(
+    'shadcn/popover',
+    'popover-basic',
+    'repos/ui/apps/v4/examples/base/popover-basic.tsx',
+    [
+      'src/registry/shadcn/popover/index.ts',
+      'src/registry/shadcn/popover/examples.ts',
+    ],
+    [],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/tooltip',
+    'tooltip-demo',
+    'repos/ui/apps/v4/examples/base/tooltip-demo.tsx',
+    [
+      'src/registry/shadcn/tooltip/index.ts',
+      'src/registry/shadcn/tooltip/examples.ts',
+    ],
+    [],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/select',
+    'select-demo',
+    'repos/ui/apps/v4/examples/base/select-demo.tsx',
+    [
+      'src/registry/shadcn/select/index.ts',
+      'src/registry/shadcn/select/examples.ts',
+    ],
+    [],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/dialog',
+    'dialog-demo',
+    'repos/ui/apps/v4/examples/base/dialog-demo.tsx',
+    [
+      'src/registry/shadcn/dialog/index.ts',
+      'src/registry/shadcn/dialog/examples.ts',
+    ],
+    [],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/slider',
+    'slider-demo',
+    'repos/ui/apps/v4/examples/base/slider-demo.tsx',
+    [
+      'src/registry/shadcn/slider/index.ts',
+      'src/registry/shadcn/slider/examples.ts',
+    ],
+    [],
+  ),
+  aggregateWorkbenchCase(
     'shadcn/bubble',
     'bubble-tooltip',
     'repos/ui/apps/v4/examples/base/bubble-tooltip.tsx',

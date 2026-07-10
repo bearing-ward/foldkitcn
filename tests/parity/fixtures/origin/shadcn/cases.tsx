@@ -89,6 +89,7 @@ import { CommandWithGroups } from '../../../../../repos/ui/apps/v4/examples/base
 import { CommandRtl } from '../../../../../repos/ui/apps/v4/examples/base/command-rtl'
 import { CommandManyItems } from '../../../../../repos/ui/apps/v4/examples/base/command-scrollable'
 import { CommandWithShortcuts } from '../../../../../repos/ui/apps/v4/examples/base/command-shortcuts'
+import { DialogDemo } from '../../../../../repos/ui/apps/v4/examples/base/dialog-demo'
 import EmptyAvatar from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar'
 import EmptyAvatarGroup from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar-group'
 import { EmptyMuted } from '../../../../../repos/ui/apps/v4/examples/base/empty-background'
@@ -156,6 +157,7 @@ import PaginationDemo from '../../../../../repos/ui/apps/v4/examples/base/pagina
 import { PaginationIconsOnly } from '../../../../../repos/ui/apps/v4/examples/base/pagination-icons-only'
 import { PaginationRtl } from '../../../../../repos/ui/apps/v4/examples/base/pagination-rtl'
 import { PaginationSimple } from '../../../../../repos/ui/apps/v4/examples/base/pagination-simple'
+import { PopoverBasic } from '../../../../../repos/ui/apps/v4/examples/base/popover-basic'
 import { ProgressControlled } from '../../../../../repos/ui/apps/v4/examples/base/progress-controlled'
 import ProgressDemo from '../../../../../repos/ui/apps/v4/examples/base/progress-demo'
 import { ProgressWithLabel } from '../../../../../repos/ui/apps/v4/examples/base/progress-label'
@@ -166,6 +168,7 @@ import { ResizableRtl } from '../../../../../repos/ui/apps/v4/examples/base/resi
 import { ScrollAreaDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-demo'
 import { ScrollAreaHorizontalDemo } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-horizontal-demo'
 import { ScrollAreaRtl } from '../../../../../repos/ui/apps/v4/examples/base/scroll-area-rtl'
+import { SelectDemo } from '../../../../../repos/ui/apps/v4/examples/base/select-demo'
 import SeparatorDemo from '../../../../../repos/ui/apps/v4/examples/base/separator-demo'
 import { SeparatorList } from '../../../../../repos/ui/apps/v4/examples/base/separator-list'
 import { SeparatorMenu } from '../../../../../repos/ui/apps/v4/examples/base/separator-menu'
@@ -191,6 +194,7 @@ import { SkeletonForm } from '../../../../../repos/ui/apps/v4/examples/base/skel
 import { SkeletonRtl } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-rtl'
 import { SkeletonTable } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-table'
 import { SkeletonText } from '../../../../../repos/ui/apps/v4/examples/base/skeleton-text'
+import { SliderDemo } from '../../../../../repos/ui/apps/v4/examples/base/slider-demo'
 import { SonnerDemo } from '../../../../../repos/ui/apps/v4/examples/base/sonner-demo'
 import { SonnerDescription } from '../../../../../repos/ui/apps/v4/examples/base/sonner-description'
 import { SonnerPosition } from '../../../../../repos/ui/apps/v4/examples/base/sonner-position'
@@ -217,6 +221,7 @@ import { TableRtl } from '../../../../../repos/ui/apps/v4/examples/base/table-rt
 import { TabsDemo } from '../../../../../repos/ui/apps/v4/examples/base/tabs-demo'
 import { TextareaButton } from '../../../../../repos/ui/apps/v4/examples/base/textarea-button'
 import TextareaDemo from '../../../../../repos/ui/apps/v4/examples/base/textarea-demo'
+import { TooltipDemo } from '../../../../../repos/ui/apps/v4/examples/base/tooltip-demo'
 import { Input as InputPrimitive } from '../../../../../repos/ui/apps/v4/styles/base-nova/ui/input'
 import {
   ResizableHandle,
@@ -1037,6 +1042,11 @@ const components: Readonly<Record<string, () => React.ReactElement>> = {
   'native-select-groups': NativeSelectGroups,
   'native-select-invalid': NativeSelectInvalid,
   'native-select-rtl': NativeSelectRtl,
+  'popover-basic': PopoverBasic,
+  'select-demo': SelectDemo,
+  'slider-demo': SliderDemo,
+  'tooltip-demo': TooltipDemo,
+  'dialog-demo': DialogDemo,
   'pagination-demo': PaginationDemo,
   'pagination-icons-only': PaginationIconsOnly,
   'pagination-rtl': PaginationRtl,

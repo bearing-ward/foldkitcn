@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/tooltip",
+  "caseId": "tooltip-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/tooltip-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}
