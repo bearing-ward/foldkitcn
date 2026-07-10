@@ -1,6 +1,11 @@
 {
   "name": "foldkitcn",
   "version": "0.1.0",
+  "homepage": "https://bearing-ward.github.io/foldkitcn/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bearing-ward/foldkitcn.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

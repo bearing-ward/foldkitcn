@@ -2,6 +2,11 @@
 
 Foldkit CN is a Foldkit-native component registry and documentation shell for installable UI primitives, shadcn-style wrappers, utilities, and future component packs.
 
+## Documentation
+
+The component documentation and public registry are published through GitHub
+Pages at [bearing-ward.github.io/foldkitcn](https://bearing-ward.github.io/foldkitcn/).
+
 ## Commands
 
 ```bash
@@ -33,7 +38,7 @@ Add the Foldkit CN Pages registry namespace to `components.json`:
 ```json
 {
   "registries": {
-    "@foldkitcn": "https://<owner>.github.io/<repo>/r/{name}.json"
+    "@foldkitcn": "https://bearing-ward.github.io/foldkitcn/r/{name}.json"
   }
 }
 ```
@@ -69,11 +74,11 @@ Before installing from a registry you do not control, review the repository, roo
 - Direct registry installs require the Pages URL to be reachable by the shadcn CLI.
 - Submitting to the public shadcn registry directory requires an open-source, publicly accessible registry.
 
-Project Pages usually live at `https://<owner>.github.io/<repo>/`.
+Foldkit CN is published at `https://bearing-ward.github.io/foldkitcn/`.
 
 Registry URLs:
 
-- Catalog: `https://<owner>.github.io/<repo>/r/registry.json`
-- Item: `https://<owner>.github.io/<repo>/r/shadcn-button.json`
+- Catalog: `https://bearing-ward.github.io/foldkitcn/r/registry.json`
+- Item: `https://bearing-ward.github.io/foldkitcn/r/shadcn-button.json`
 
 If the site is deployed at `/`, set `FOLDKITCN_BASE_PATH=/` in the Pages workflow. If it is deployed at `/<repo>/`, set `FOLDKITCN_BASE_PATH=/<repo>/`.

@@ -1,4 +1,4 @@
-name: pages
+name: Deploy docs and registry
 
 on:
   push:
@@ -99,3 +99,17 @@ jobs:
       - name: Deploy GitHub Pages artifact
         id: deployment
         uses: actions/deploy-pages@v5
+
+  smoke:
+    if: github.event_name != 'pull_request'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Smoke check public docs and registry
+        env:
+          PUBLIC_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: |
+          curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/"
+          curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/components/shadcn/button/"
+          curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/r/registry.json" | jq -e '.items | length > 0'
+          curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/r/shadcn-button.json" | jq -e '.name == "shadcn-button"'
