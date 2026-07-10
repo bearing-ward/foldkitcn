@@ -20,40 +20,46 @@ declare global {
   }
 }
 
-const fixtureRoot = document.querySelector('#root')
-
-if (fixtureRoot === null) {
-  throw new Error('Missing shadcn Foldkit fixture root element.')
-}
-
 const searchParams = new URLSearchParams(window.location.search)
-const foldkitCase = findShadcnFoldkitCase(
-  searchParams.get('case') ?? 'button-default',
-)
-const rootElement = document.createElement('div')
-rootElement.dataset.foldkitFixtureRoot = ''
-rootElement.dataset.foldkitCaseId = foldkitCase.id
-rootElement.dataset.foldkitFilePath = foldkitCase.originFilePath
-rootElement.append(htmlToElement(foldkitCase.view()))
-fixtureRoot.append(rootElement)
+const requestedCaseId = searchParams.get('case') ?? 'button-default'
 
-window.__SHADCN_FOLDKIT_FIXTURE__ = {
-  selectedCase: {
-    id: foldkitCase.id,
-    title: foldkitCase.title,
-    originFilePath: foldkitCase.originFilePath,
-  },
-  captureSnapshot: () => {
-    const fixtureElement = document.querySelector('[data-foldkit-fixture-root]')
-    const targetElement = fixtureElement?.firstElementChild
+if (requestedCaseId === 'date-picker-demo') {
+  await import('./date-picker-entry')
+} else {
+  const fixtureRoot = document.querySelector('#root')
 
-    if (targetElement === undefined || targetElement === null) {
-      throw new Error(`No rendered element found for ${foldkitCase.id}.`)
-    }
+  if (fixtureRoot === null) {
+    throw new Error('Missing shadcn Foldkit fixture root element.')
+  }
 
-    return captureOriginSnapshot(targetElement, {
-      caseId: foldkitCase.id,
+  const foldkitCase = findShadcnFoldkitCase(requestedCaseId)
+  const rootElement = document.createElement('div')
+  rootElement.dataset.foldkitFixtureRoot = ''
+  rootElement.dataset.foldkitCaseId = foldkitCase.id
+  rootElement.dataset.foldkitFilePath = foldkitCase.originFilePath
+  rootElement.append(htmlToElement(foldkitCase.view()))
+  fixtureRoot.append(rootElement)
+
+  window.__SHADCN_FOLDKIT_FIXTURE__ = {
+    selectedCase: {
+      id: foldkitCase.id,
+      title: foldkitCase.title,
       originFilePath: foldkitCase.originFilePath,
-    })
-  },
+    },
+    captureSnapshot: () => {
+      const fixtureElement = document.querySelector(
+        '[data-foldkit-fixture-root]',
+      )
+      const targetElement = fixtureElement?.firstElementChild
+
+      if (targetElement === undefined || targetElement === null) {
+        throw new Error(`No rendered element found for ${foldkitCase.id}.`)
+      }
+
+      return captureOriginSnapshot(targetElement, {
+        caseId: foldkitCase.id,
+        originFilePath: foldkitCase.originFilePath,
+      })
+    },
+  }
 }

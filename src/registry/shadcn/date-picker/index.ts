@@ -371,6 +371,7 @@ export const DatePicker = <Message = DatePickerMessage>(
         ? {}
         : { isDisabled: config.isDisabled }),
       className: datePickerClassName(config.className),
+      triggerAttributes: [h.DataAttribute('slot', 'popover-trigger')],
       triggerClassName: datePickerTriggerClassName(
         config.triggerClassName,
         config.compact === true,
