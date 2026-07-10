@@ -126,6 +126,7 @@ import {
   CommandWithShortcuts,
 } from '../../../../../src/registry/shadcn/command/examples'
 import * as ContextMenuLocal from '../../../../../src/registry/shadcn/context-menu'
+import { DataTableDemo } from '../../../../../src/registry/shadcn/data-table/examples'
 import { DatePickerDemo } from '../../../../../src/registry/shadcn/date-picker/examples'
 import { DialogDemo } from '../../../../../src/registry/shadcn/dialog/examples'
 import * as DropdownMenuLocal from '../../../../../src/registry/shadcn/dropdown-menu'
@@ -574,6 +575,7 @@ const MessageScrollerOpeningPositionParity = (): Html =>
 const MessageScrollerEmptyParity = (): Html => MessageScrollerParity('empty')
 
 const components: Readonly<Record<string, () => Html>> = {
+  'data-table-demo': DataTableDemo,
   'date-picker-demo': DatePickerDemo,
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,

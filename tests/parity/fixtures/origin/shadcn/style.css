@@ -4,6 +4,9 @@
 @source "../../../../../repos/ui/apps/v4/examples/base/date-picker-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/calendar.tsx";
 @source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/popover.tsx";
+@source "../../../../../repos/ui/apps/v4/examples/base/data-table-demo.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/checkbox.tsx";
+@source "../../../../../repos/ui/apps/v4/styles/base-nova/ui/table.tsx";
 
 @source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx";
 @source "../../../../../repos/ui/apps/v4/examples/base/aspect-ratio-portrait.tsx";

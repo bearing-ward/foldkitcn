@@ -3,6 +3,8 @@
 
 @source "../../../../../src/registry/shadcn/date-picker/index.ts";
 @source "../../../../../src/registry/shadcn/date-picker/examples.ts";
+@source "../../../../../src/registry/shadcn/data-table/index.ts";
+@source "../../../../../src/registry/shadcn/data-table/examples.ts";
 
 @source "../../../../../src/registry/shadcn/aspect-ratio/index.ts";
 @source "../../../../../src/registry/shadcn/aspect-ratio/examples.ts";

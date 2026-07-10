@@ -23,7 +23,9 @@ declare global {
 const searchParams = new URLSearchParams(window.location.search)
 const requestedCaseId = searchParams.get('case') ?? 'button-default'
 
-if (requestedCaseId === 'date-picker-demo') {
+if (requestedCaseId === 'data-table-demo') {
+  await import('./data-table-entry')
+} else if (requestedCaseId === 'date-picker-demo') {
   await import('./date-picker-entry')
 } else {
   const fixtureRoot = document.querySelector('#root')

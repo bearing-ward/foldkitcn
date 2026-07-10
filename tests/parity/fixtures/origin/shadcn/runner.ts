@@ -1347,6 +1347,19 @@ const originAliasPlugin = (): Plugin => ({
           )
         }
 
+        export function DropdownMenuCheckboxItem({ children, checked = false, ...props }) {
+          return React.createElement(
+            'div',
+            {
+              ...props,
+              'data-slot': 'dropdown-menu-checkbox-item',
+              role: 'menuitemcheckbox',
+              'aria-checked': checked,
+            },
+            children,
+          )
+        }
+
         export function DropdownMenuLabel({ children, ...props }) {
           return React.createElement('div', { ...props, 'data-slot': 'dropdown-menu-label' }, children)
         }
@@ -1491,6 +1504,12 @@ export const createFixtureServer = async (): Promise<ViteDevServer> => {
           find: '@/styles/base-nova/ui/button',
           replacement: repoPath(
             'repos/ui/apps/v4/styles/base-nova/ui/button.tsx',
+          ),
+        },
+        {
+          find: '@/styles/base-nova/ui/checkbox',
+          replacement: repoPath(
+            'repos/ui/apps/v4/styles/base-nova/ui/checkbox.tsx',
           ),
         },
         {

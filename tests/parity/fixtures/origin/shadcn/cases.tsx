@@ -89,6 +89,7 @@ import { CommandWithGroups } from '../../../../../repos/ui/apps/v4/examples/base
 import { CommandRtl } from '../../../../../repos/ui/apps/v4/examples/base/command-rtl'
 import { CommandManyItems } from '../../../../../repos/ui/apps/v4/examples/base/command-scrollable'
 import { CommandWithShortcuts } from '../../../../../repos/ui/apps/v4/examples/base/command-shortcuts'
+import { DataTableDemo } from '../../../../../repos/ui/apps/v4/examples/base/data-table-demo'
 import { DatePickerDemo } from '../../../../../repos/ui/apps/v4/examples/base/date-picker-demo'
 import { DialogDemo } from '../../../../../repos/ui/apps/v4/examples/base/dialog-demo'
 import EmptyAvatar from '../../../../../repos/ui/apps/v4/examples/base/empty-avatar'
@@ -806,6 +807,7 @@ const BubbleCollapsibleDemo = (): React.ReactElement => (
 )
 
 const components: Readonly<Record<string, () => React.ReactElement>> = {
+  'data-table-demo': DataTableDemo,
   'date-picker-demo': DatePickerDemo,
   'aspect-ratio-demo': AspectRatioDemo,
   'aspect-ratio-portrait': AspectRatioPortrait,

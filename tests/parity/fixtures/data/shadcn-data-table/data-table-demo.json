@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/data-table",
+  "caseId": "data-table-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/data-table-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}
