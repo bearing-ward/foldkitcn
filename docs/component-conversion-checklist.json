@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-06T15:26:40.495Z",
+  "generatedAt": "2026-07-10T19:53:41.500Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -2306,7 +2306,7 @@
         "plans/artifacts/015-held-row-docs-example-only-preview/dossier.json",
         "plans/artifacts/098-blocked-component-foundation-preview/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
+      "paritySlotStatus": "ready",
       "implementationStatus": "implemented",
       "parityStatus": "accepted",
       "driftStatus": "current",
@@ -2338,7 +2338,7 @@
         "plans/artifacts/015-held-row-docs-example-only-preview/dossier.json",
         "plans/artifacts/098-blocked-component-foundation-preview/dossier.json"
       ],
-      "paritySlotStatus": "not-started",
+      "paritySlotStatus": "ready",
       "implementationStatus": "implemented",
       "parityStatus": "accepted",
       "driftStatus": "current",

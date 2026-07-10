@@ -6,7 +6,7 @@
 - **Effort**: L
 - **Risk**: MED
 - **Depends on**: Plans 128, 132, 133
-- **State**: IN PROGRESS, 2026-07-09
+- **State**: DONE, 2026-07-10
 
 ## Goal
 
@@ -51,5 +51,6 @@ default closed like origin, the open/Escape interaction completes against both
 real implementations, and its stable comparison policy is hard. Slider now
 also resolves through the pinned Base Nova and Base UI sources. Its focused
 ArrowRight recipe completes with no hard differences. The remaining Plan 136
-scope is limited to Data Table after its held fixture contract lands. Date
-Picker now has faithful origin/local fixtures and a green open/Escape case.
+scope is complete. Date Picker and Data Table now have faithful origin/local
+fixtures and green interaction cases alongside the previously promoted
+high-risk families.

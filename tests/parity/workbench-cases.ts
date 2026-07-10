@@ -326,6 +326,27 @@ const aggregateWorkbenchCase = (
 
 const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
   aggregateWorkbenchCase(
+    'shadcn/data-table',
+    'data-table-demo',
+    'repos/ui/apps/v4/examples/base/data-table-demo.tsx',
+    [
+      'src/registry/shadcn/data-table/index.ts',
+      'src/registry/shadcn/data-table/examples.ts',
+    ],
+    [
+      {
+        id: 'sort-and-select-row',
+        title: 'Sort by email and select the first row',
+        steps: [
+          { kind: 'click', selector: 'button:has-text("Email")' },
+          { kind: 'click', selector: '[role="checkbox"]' },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
+    '[data-slot="table-container"]',
+  ),
+  aggregateWorkbenchCase(
     'shadcn/date-picker',
     'date-picker-demo',
     'repos/ui/apps/v4/examples/base/date-picker-demo.tsx',

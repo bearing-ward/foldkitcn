@@ -54,6 +54,8 @@ describe('parity workbench config', () => {
     ).toStrictEqual([
       'shadcn/tabs',
       'shadcn/empty',
+      'shadcn/data-table',
+      'shadcn/date-picker',
       'shadcn/popover',
       'shadcn/tooltip',
       'shadcn/select',

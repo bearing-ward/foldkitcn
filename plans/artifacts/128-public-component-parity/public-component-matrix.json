@@ -7117,7 +7117,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/data-table.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7127,11 +7127,7 @@
       "empty-or-boundary-state",
       "mobile-overflow"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/132-add-data-table-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/data-table",
@@ -7151,7 +7147,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/data-table.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7161,11 +7157,7 @@
       "empty-or-boundary-state",
       "mobile-overflow"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/132-add-data-table-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/data-table",
@@ -7185,7 +7177,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/data-table.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7195,11 +7187,7 @@
       "empty-or-boundary-state",
       "mobile-overflow"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/132-add-data-table-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/date-picker",

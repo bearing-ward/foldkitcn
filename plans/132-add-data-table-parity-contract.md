@@ -6,7 +6,7 @@
 - **Effort**: M
 - **Risk**: MED
 - **Depends on**: Plan 128
-- **State**: IN PROGRESS
+- **State**: DONE, 2026-07-10
 
 ## Goal
 
@@ -15,12 +15,13 @@ Add pinned docs-origin fixture evidence and a ready parity slot for
 and constrained desktop/mobile layout. Remove its Plan 128 exception only when
 the fixture and workbench case pass.
 
-## Current blocker (2026-07-10)
+## Result
 
 The pinned TanStack demo now captures directly with the origin app's Base UI,
 Lucide, Checkbox, Input, Table, and TanStack dependencies. A runtime-backed
 Foldkit fixture drives native Data Table state, and sort plus row-selection
 playback completes on both sides. The remaining red evidence is row density:
-the five-row origin table is 244.5px tall and Foldkit is 264.5px, a consistent
-4px difference per row. Resolve that component-level density mismatch before
-registering the ready slot and removing the Plan 128 exception.
+the five-row origin table and Foldkit table now share the same density after
+aligning the row action with origin's icon-only control. Sort and row-selection
+playback pass without hard differences, the ready slot is registered, and the
+Plan 128 exception is removed.

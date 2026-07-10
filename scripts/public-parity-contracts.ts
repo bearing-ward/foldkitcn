@@ -109,14 +109,6 @@ const dataTimeLayouts = new Set([
 
 const paritySlotExceptions = new Map<string, PublicParityException>([
   [
-    'shadcn/data-table',
-    {
-      reason: 'Docs/example-only evidence needs a dedicated parity fixture.',
-      owner: 'plans/132-add-data-table-parity-contract.md',
-      reviewDate: '2026-10-09',
-    },
-  ],
-  [
     'shadcn/typography',
     {
       reason:

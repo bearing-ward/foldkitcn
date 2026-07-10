@@ -6,9 +6,9 @@
 - **Effort**: L
 - **Risk**: MED
 - **Depends on**: Plans 126 and 131
-- **State**: IN PROGRESS, 2026-07-09
+- **State**: DONE, 2026-07-10
 
-## Completed slice
+## Result
 
 The public surface is now generated from checked-in docs artifacts and enforced
 as 100 route contracts plus 442 example contracts. Every row declares an origin
@@ -19,9 +19,10 @@ Pages CI runs both artifact freshness validation and the profile-driven browser
 matrix. The browser matrix exercises every public route in its actual docs host
 at 1280px and 390px, rejects missing live cards, and rejects unowned overflow.
 
-This slice does not yet satisfy the original plan's evidence-capture or
-executable-recipe requirements. Plan 128 remains in progress until the
-high-risk workbench and origin/local capture records land.
+The high-risk workbench now covers the promoted interaction families with
+checked-in origin and runtime fixtures, including Data Table and Date Picker.
+The full unit and browser suites enforce those contracts alongside registry and
+artifact freshness checks.
 
 ## Classified backlog
 
@@ -30,5 +31,6 @@ high-risk workbench and origin/local capture records land.
 - Plan 135 burns down the 33 measured mobile-overflow exceptions.
 - Plan 136 expands the executable workbench across high-risk families.
 
-All exceptions expire on 2026-10-09. The generated audit lives under
-`plans/artifacts/128-public-component-parity/`.
+Plans 132 through 136 are complete. Typography remains an intentional docs-only
+origin surface rather than a missing fixture contract. The generated audit
+lives under `plans/artifacts/128-public-component-parity/`.

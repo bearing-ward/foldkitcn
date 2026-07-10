@@ -867,7 +867,7 @@ const actionButton = <Message>(
 
   return Button.view<Message>({
     variant: 'ghost',
-    size: 'sm',
+    size: 'icon-xs',
     toView: attributes =>
       h.button(
         [
@@ -878,7 +878,13 @@ const actionButton = <Message>(
             ClickedDataTableAction({ actionId }),
           ),
         ],
-        [label],
+        [
+          icon(
+            'M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2',
+            'lucide lucide-ellipsis size-4',
+          ),
+          h.span([h.Class('sr-only')], [label]),
+        ],
       ),
   })
 }
@@ -1067,7 +1073,7 @@ const renderDataTable = <Message, Row>(
                               }),
                             ),
                             Table.TableCell<Message>({
-                              className: amountColumnClassName,
+                              className: `${amountColumnClassName} py-[7.5px]`,
                               children: [
                                 actionButton(
                                   controller,
