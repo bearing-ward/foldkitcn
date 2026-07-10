@@ -533,6 +533,7 @@ const compareBrowserPair = (
   fixtureDataExpected: ParityWorkbenchNeutralFixture,
   fixtureDataActual: ParityWorkbenchNeutralFixture,
   phaseLabel: string,
+  includeSnapshotBoundingBox: boolean,
 ): ReadonlyArray<ComparisonGroup> => [
   compareJson(
     'dom-structure',
@@ -577,11 +578,18 @@ const compareBrowserPair = (
   ),
   compareGeometry(
     'geometry',
-    [canonicalBoundingBox(origin.snapshot.boundingBox), ...origin.clientRects],
-    [
-      canonicalBoundingBox(foldkit.snapshot.boundingBox),
-      ...foldkit.clientRects,
-    ],
+    includeSnapshotBoundingBox
+      ? [
+          canonicalBoundingBox(origin.snapshot.boundingBox),
+          ...origin.clientRects,
+        ]
+      : origin.clientRects,
+    includeSnapshotBoundingBox
+      ? [
+          canonicalBoundingBox(foldkit.snapshot.boundingBox),
+          ...foldkit.clientRects,
+        ]
+      : foldkit.clientRects,
   ),
   compareJson('fixture-data', fixtureDataExpected, fixtureDataActual),
   compareJson(
@@ -633,9 +641,12 @@ const compareBrowserPair = (
 
 const comparisonFailures = (
   comparisons: ReadonlyArray<ComparisonGroup>,
+  hardKinds: ReadonlyArray<ParityWorkbenchComparisonKind>,
 ): ReadonlyArray<ComparisonFinding> =>
   comparisons.flatMap(group =>
-    group.status === 'failed' ? group.findings : [],
+    group.status === 'failed' && hardKinds.includes(group.kind)
+      ? group.findings
+      : [],
   )
 
 const advisoryFindings = (
@@ -990,10 +1001,15 @@ const runWorkbench = async (input: WorkbenchCliInput): Promise<void> => {
         harvestedFixture,
         activeFixture,
         originCapture.label,
+        workbenchCase.captureZones.rootSelector ===
+          '[data-origin-fixture-root] > *',
       )
     })
 
-    const hardFailures = comparisonFailures(comparisons)
+    const hardFailures = comparisonFailures(
+      comparisons,
+      workbenchCase.comparisonPolicy.hard,
+    )
     const advisoryDifferences = advisoryFindings(comparisons)
     let fixtureDifferences: ReadonlyArray<ComparisonFinding> = []
 

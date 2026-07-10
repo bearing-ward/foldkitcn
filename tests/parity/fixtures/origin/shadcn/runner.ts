@@ -611,7 +611,7 @@ const originAliasPlugin = (): Plugin => ({
         }
 
         export function DialogTrigger({ children, ...props }) {
-          return React.createElement('button', { ...props, type: 'button' }, children)
+          return React.createElement('button', { ...props, type: 'button', 'data-slot': 'dialog-trigger' }, children)
         }
 
         export function DialogFooter({ children, className, ...props }) {
@@ -629,6 +629,7 @@ const originAliasPlugin = (): Plugin => ({
             ...props,
             type: 'range',
             role: 'slider',
+            'data-slot': 'slider-root',
             className,
             min,
             max,
@@ -1128,6 +1129,7 @@ const originAliasPlugin = (): Plugin => ({
               'aria-haspopup': 'listbox',
               'aria-expanded': false,
               className: [triggerClassName, className].filter(Boolean).join(' '),
+              style: { width: '100%', maxWidth: '12rem' },
             },
             React.createElement('span', { 'data-slot': 'select-value' }, children),
             React.createElement(

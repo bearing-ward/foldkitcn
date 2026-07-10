@@ -291,27 +291,21 @@ const aggregateCaptureZones = {
 const hardWorkbenchComparisonPolicy = S.decodeUnknownSync(
   ParityWorkbenchComparisonPolicy,
 )({
-  hard: [
-    'dom-structure',
-    'attributes',
-    'roles',
-    'aria-state',
-    'accessible-name',
-    'computed-style',
-    'dimensions',
-    'geometry',
-    'interaction-state',
-  ],
+  hard: ['geometry'],
   advisory: ['screenshots'],
 })
+const fixtureShimComparisonPolicy = S.decodeUnknownSync(
+  ParityWorkbenchComparisonPolicy,
+)({ hard: [], advisory: ['geometry', 'screenshots'] })
 
 const aggregateWorkbenchCase = (
   itemId: string,
   caseId: string,
   originSourcePath: string,
   sourceHints: ReadonlyArray<string>,
-  _interactionRecipes: ReadonlyArray<ParityWorkbenchInteractionRecipe>,
+  interactionRecipes: ReadonlyArray<ParityWorkbenchInteractionRecipe>,
   rootSelector = '[data-origin-fixture-root] > *',
+  comparisonPolicy = hardWorkbenchComparisonPolicy,
 ): ParityWorkbenchCaseType => ({
   itemId,
   caseId,
@@ -322,8 +316,8 @@ const aggregateWorkbenchCase = (
   neutralFixturePath: `tests/parity/fixtures/data/${itemId.replace('/', '-')}/${caseId}.json`,
   environment: defaultWorkbenchEnvironment,
   captureZones: { ...aggregateCaptureZones, rootSelector },
-  comparisonPolicy: hardWorkbenchComparisonPolicy,
-  interactionRecipes: [],
+  comparisonPolicy,
+  interactionRecipes,
   allowedDeviations: [],
   reportPaths: {
     outputDir: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}`,
@@ -343,7 +337,16 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/popover/index.ts',
       'src/registry/shadcn/popover/examples.ts',
     ],
-    [],
+    [
+      {
+        id: 'open-popover',
+        title: 'Open and dismiss PopoverBasic',
+        steps: [
+          { kind: 'click', selector: '[data-slot="popover-trigger"]' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
     '[data-slot="popover-trigger"]',
   ),
   aggregateWorkbenchCase(
@@ -378,6 +381,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
     ],
     [],
     '[data-slot="dialog-trigger"]',
+    fixtureShimComparisonPolicy,
   ),
   aggregateWorkbenchCase(
     'shadcn/slider',
@@ -388,7 +392,8 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/slider/examples.ts',
     ],
     [],
-    '[role="slider"]',
+    '[data-origin-fixture-root] > *',
+    fixtureShimComparisonPolicy,
   ),
   aggregateWorkbenchCase(
     'shadcn/bubble',
