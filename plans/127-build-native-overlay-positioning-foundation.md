@@ -77,7 +77,7 @@ positioning system or a source fork.
 - `src/styles.css:701-710` and `773-880` use preview-specific `:has()` and
   fixed/static coordinate overrides to keep open overlays inspectable. In
   particular, combobox/tooltip positioners are forced to `top: 4rem; left:
-  1rem`, and several manual-popover surfaces are forced to `top: 0; left: 0`.
+1rem`, and several manual-popover surfaces are forced to `top: 0; left: 0`.
 - `tests/e2e/shadcn-overlay-menu-regressions.test.ts` and
   `tests/e2e/docs.test.ts:1193-1248` contain local geometry/dismissal checks,
   but the current Combobox anchoring tolerance is 64px and Tooltip only checks
@@ -101,15 +101,15 @@ Foldkit constraints to preserve:
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Current artifact contract | `bun run registry:check` | exits 0 |
-| Focused overlay browser tests | `bunx playwright test tests/e2e/shadcn-overlay-menu-regressions.test.ts tests/e2e/docs.test.ts --workers=1` | exits 0 |
-| Focused parity tests | `bunx vitest run tests/parity` | exits 0 |
-| Full unit suite | `bun run test` | exits 0 |
-| Full browser suite | `bun run test:e2e` | exits 0 |
-| Typecheck | `bun run typecheck` | exits 0 |
-| Code quality | `bun run check` | exits 0 |
+| Purpose                       | Command                                                                                                     | Expected on success |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------- |
+| Current artifact contract     | `bun run registry:check`                                                                                    | exits 0             |
+| Focused overlay browser tests | `bunx playwright test tests/e2e/shadcn-overlay-menu-regressions.test.ts tests/e2e/docs.test.ts --workers=1` | exits 0             |
+| Focused parity tests          | `bunx vitest run tests/parity`                                                                              | exits 0             |
+| Full unit suite               | `bun run test`                                                                                              | exits 0             |
+| Full browser suite            | `bun run test:e2e`                                                                                          | exits 0             |
+| Typecheck                     | `bun run typecheck`                                                                                         | exits 0             |
+| Code quality                  | `bun run check`                                                                                             | exits 0             |
 
 ## Scope
 
@@ -280,19 +280,19 @@ and the working tree contains only in-scope changes.
 ## Done criteria
 
 - [ ] Tooltip, Popover, Menu, and Select resolve placement/collision through
-  one local, Mount-backed compatibility bridge, not docs-host coordinate
-  overrides or per-component geometry code.
+      one local, Mount-backed compatibility bridge, not docs-host coordinate
+      overrides or per-component geometry code.
 - [ ] Geometry is origin-characterized at desktop and 390px for each migrated
-  primitive, including an edge/collision case.
+      primitive, including an edge/collision case.
 - [ ] Keyboard, outside-click, focus, and close-on-select behavior remain
-  covered and passing.
+      covered and passing.
 - [ ] At least two high-risk parity workbench cases exercise layers and
-  interactions with non-advisory geometry evidence.
+      interactions with non-advisory geometry evidence.
 - [ ] `bun run registry:check`, `bun run test`, `bun run test:e2e`,
-  `bun run typecheck`, and `bun run check` all exit 0.
+      `bun run typecheck`, and `bun run check` all exit 0.
 - [ ] No React, Radix, Base UI React, or global docs-shell visual rewrite is
-  introduced. The sole direct positioning dependency is `@floating-ui/dom`,
-  isolated to the compatibility bridge.
+      introduced. The sole direct positioning dependency is `@floating-ui/dom`,
+      isolated to the compatibility bridge.
 
 ## STOP conditions
 

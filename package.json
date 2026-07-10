@@ -26,6 +26,8 @@
     "origin:components:write": "bun run scripts/registry-component-progress.ts write",
     "origin:components:check": "bun run scripts/registry-component-progress.ts check",
     "parity:check": "bun run scripts/parity-dry-run.ts",
+    "parity:contracts": "bun run scripts/report-public-parity-contracts.ts",
+    "parity:contracts:write": "bun run scripts/report-public-parity-contracts.ts --write",
     "parity:origin:shadcn": "bun run scripts/parity-origin-shadcn.ts",
     "parity:workbench": "bun run scripts/parity-workbench.ts"
   },

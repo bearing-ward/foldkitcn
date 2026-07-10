@@ -9,6 +9,7 @@ const ignorePatterns = [
   '.agents/skills/generate-program/**',
   '.agents/skills/improve/**',
   'plans/001-establish-registry-foundation.md',
+  'plans/artifacts/128-public-component-parity/public-component-matrix.json',
   'plans/README.md',
   'src/main.ts',
   '*.tsbuildinfo',
