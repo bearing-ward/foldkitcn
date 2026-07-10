@@ -357,7 +357,17 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/tooltip/index.ts',
       'src/registry/shadcn/tooltip/examples.ts',
     ],
-    [],
+    [
+      {
+        id: 'open-tooltip',
+        title: 'Open and dismiss TooltipDemo',
+        steps: [
+          { kind: 'hover', selector: '[data-slot="tooltip-trigger"]' },
+          { kind: 'wait-for-stable-layout' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
     '[data-slot="tooltip-trigger"]',
   ),
   aggregateWorkbenchCase(
@@ -368,7 +378,16 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/select/index.ts',
       'src/registry/shadcn/select/examples.ts',
     ],
-    [],
+    [
+      {
+        id: 'open-select',
+        title: 'Open and dismiss SelectDemo',
+        steps: [
+          { kind: 'click', selector: '[data-slot="select-trigger"]' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
     '[data-slot="select-trigger"]',
   ),
   aggregateWorkbenchCase(
@@ -379,7 +398,16 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/dialog/index.ts',
       'src/registry/shadcn/dialog/examples.ts',
     ],
-    [],
+    [
+      {
+        id: 'open-dialog',
+        title: 'Open and dismiss DialogDemo',
+        steps: [
+          { kind: 'click', selector: '[data-slot="dialog-trigger"]' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
     '[data-slot="dialog-trigger"]',
     fixtureShimComparisonPolicy,
   ),
@@ -391,7 +419,17 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/slider/index.ts',
       'src/registry/shadcn/slider/examples.ts',
     ],
-    [],
+    [
+      {
+        id: 'focus-slider',
+        title: 'Focus SliderDemo',
+        steps: [
+          { kind: 'focus', selector: '[role="slider"]' },
+          { kind: 'press-key', key: 'ArrowRight' },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
     '[data-origin-fixture-root] > *',
     fixtureShimComparisonPolicy,
   ),
