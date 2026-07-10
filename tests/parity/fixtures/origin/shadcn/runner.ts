@@ -177,12 +177,7 @@ const sourcePathAliases = new Map([
     'repos/ui/apps/v4/styles/base-nova/ui-rtl/sidebar.tsx',
   ],
   ['@base-ui/react/button', 'repos/base-ui/packages/react/src/button/index.ts'],
-  ['@base-ui/react/dialog', 'repos/base-ui/packages/react/src/dialog/index.ts'],
   ['@base-ui/react/tabs', 'repos/base-ui/packages/react/src/tabs/index.ts'],
-  [
-    '@base-ui/react/popover',
-    'repos/base-ui/packages/react/src/popover/index.ts',
-  ],
   [
     '@base-ui/react/collapsible',
     'repos/base-ui/packages/react/src/collapsible/index.ts',
@@ -210,7 +205,6 @@ const sourcePathAliases = new Map([
     'repos/base-ui/packages/react/src/scroll-area/index.ts',
   ],
   ['@base-ui/react/switch', 'repos/base-ui/packages/react/src/switch/index.ts'],
-  ['@base-ui/react/slider', 'repos/base-ui/packages/react/src/slider/index.ts'],
   ['@base-ui/react/select', 'repos/base-ui/packages/react/src/select/index.ts'],
   ['@base-ui/react/avatar', 'repos/base-ui/packages/react/src/avatar/index.ts'],
   [

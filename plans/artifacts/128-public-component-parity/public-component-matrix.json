@@ -7233,7 +7233,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7243,11 +7243,7 @@
       "edge-collision",
       "keyboard-dismissal"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/133-add-date-picker-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/date-picker",
@@ -7281,7 +7277,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7291,11 +7287,7 @@
       "edge-collision",
       "keyboard-dismissal"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/133-add-date-picker-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/date-picker",
@@ -7329,7 +7321,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7339,11 +7331,7 @@
       "edge-collision",
       "keyboard-dismissal"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/133-add-date-picker-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/date-picker",
@@ -7377,7 +7365,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7387,11 +7375,7 @@
       "edge-collision",
       "keyboard-dismissal"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/133-add-date-picker-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/date-picker",
@@ -7425,7 +7409,7 @@
       "repos/ui/apps/v4/content/docs/components/radix/date-picker.mdx"
     ],
     "livePreview": true,
-    "paritySlotStatus": "missing",
+    "paritySlotStatus": "ready",
     "requiredViewports": [
       "desktop",
       "mobile-390"
@@ -7435,11 +7419,7 @@
       "edge-collision",
       "keyboard-dismissal"
     ],
-    "exception": {
-      "reason": "Docs/example-only evidence needs a dedicated parity fixture.",
-      "owner": "plans/133-add-date-picker-parity-contract.md",
-      "reviewDate": "2026-10-09"
-    }
+    "exception": null
   },
   {
     "itemId": "shadcn/dialog",

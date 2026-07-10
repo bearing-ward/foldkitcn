@@ -10,6 +10,23 @@ export interface ParitySlot {
 
 export const paritySlots: ReadonlyArray<ParitySlot> = [
   {
+    itemId: 'shadcn/date-picker',
+    status: 'ready',
+    originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',
+    foldkitFixtureEntrypoint:
+      'tests/parity/fixtures/foldkit/shadcn/date-picker-entry.ts',
+    comparisons: [
+      'class-tokens',
+      'attributes',
+      'dom-structure',
+      'computed-style',
+      'colors',
+      'dimensions',
+      'bounding-box',
+      'keyboard-behavior',
+    ],
+  },
+  {
     itemId: 'shadcn/aspect-ratio',
     status: 'ready',
     originFixtureEntrypoint: 'tests/parity/fixtures/origin/shadcn/entry.tsx',

@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @import '../../../../../repos/ui/packages/shadcn/src/tailwind.css';
 
+@source "../../../../../src/registry/shadcn/date-picker/index.ts";
+@source "../../../../../src/registry/shadcn/date-picker/examples.ts";
+
 @source "../../../../../src/registry/shadcn/aspect-ratio/index.ts";
 @source "../../../../../src/registry/shadcn/aspect-ratio/examples.ts";
 @source "../../../../../src/registry/shadcn/alert/index.ts";

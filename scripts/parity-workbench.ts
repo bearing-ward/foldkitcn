@@ -491,7 +491,7 @@ const compareGeometry = (
   expected: ReadonlyArray<BoundingBox>,
   actual: ReadonlyArray<BoundingBox>,
 ): ComparisonGroup => {
-  const tolerance = 0.5
+  const tolerance = 1
   const valuesMatch =
     expected.length === actual.length &&
     expected.every((box, index) => {

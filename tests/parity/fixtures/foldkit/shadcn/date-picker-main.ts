@@ -39,6 +39,7 @@ export const view = (model: Model): Document => {
       [
         h.DataAttribute('foldkit-fixture-root', ''),
         h.DataAttribute('foldkit-case-id', 'date-picker-demo'),
+        h.Class('p-6'),
       ],
       [
         DatePickerDemo<Message>({

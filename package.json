@@ -44,6 +44,7 @@
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
+    "@base-ui/react": "1.5.0",
     "@floating-ui/utils": "^0.2.11",
     "@foldkit/devtools-mcp": "^0.13.1",
     "@foldkit/oxlint-plugin": "^0.3.0",

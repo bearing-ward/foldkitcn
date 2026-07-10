@@ -51,5 +51,5 @@ default closed like origin, the open/Escape interaction completes against both
 real implementations, and its stable comparison policy is hard. Slider now
 also resolves through the pinned Base Nova and Base UI sources. Its focused
 ArrowRight recipe completes with no hard differences. The remaining Plan 136
-scope is limited to Date Picker and Data Table after their held fixture
-contracts land.
+scope is limited to Data Table after its held fixture contract lands. Date
+Picker now has faithful origin/local fixtures and a green open/Escape case.

@@ -56,7 +56,7 @@ const defaultAnchor: AnchorConfig = {
 }
 
 const triggerBaseClassName =
-  'inline-flex h-8 w-fit min-w-48 items-center justify-between gap-2 rounded-lg border border-input bg-background px-2.5 py-1 text-sm font-normal whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[placeholder=true]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50'
+  'inline-flex h-8 w-fit items-center justify-between gap-2 rounded-lg border border-input bg-background px-2.5 py-1 text-sm font-normal whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[placeholder=true]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50'
 
 const triggerCompactClassName = 'h-7 min-w-36 gap-1.5 px-2 text-xs'
 
@@ -138,11 +138,6 @@ const icon = <Message>(path: string, className = 'size-4 shrink-0'): Html => {
   )
 }
 
-const calendarIcon = <Message>(): Html =>
-  icon<Message>(
-    'M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2',
-  )
-
 const chevronDownIcon = <Message>(): Html => icon<Message>('m6 9 6 6 6-6')
 
 const chevronLeftIcon = <Message>(): Html =>
@@ -170,13 +165,12 @@ const renderTriggerContent = <Message>(
   const placeholder = config.placeholder ?? 'Pick a date'
 
   return h.span(
-    [h.Class('flex w-full min-w-0 items-center justify-between gap-2')],
+    [h.Class('flex w-full min-w-0 items-center justify-between gap-1.5')],
     [
       h.span(
         [h.Class('truncate')],
         [triggerLabel(maybeDate, locale, placeholder)],
       ),
-      ...(config.compact === true ? [] : [calendarIcon<Message>()]),
       chevronDownIcon<Message>(),
     ],
   )

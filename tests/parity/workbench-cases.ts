@@ -294,10 +294,6 @@ const hardWorkbenchComparisonPolicy = S.decodeUnknownSync(
   hard: ['geometry'],
   advisory: ['screenshots'],
 })
-const fixtureShimComparisonPolicy = S.decodeUnknownSync(
-  ParityWorkbenchComparisonPolicy,
-)({ hard: [], advisory: ['geometry', 'screenshots'] })
-
 const aggregateWorkbenchCase = (
   itemId: string,
   caseId: string,
@@ -329,6 +325,26 @@ const aggregateWorkbenchCase = (
 })
 
 const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
+  aggregateWorkbenchCase(
+    'shadcn/date-picker',
+    'date-picker-demo',
+    'repos/ui/apps/v4/examples/base/date-picker-demo.tsx',
+    [
+      'src/registry/shadcn/date-picker/index.ts',
+      'src/registry/shadcn/date-picker/examples.ts',
+    ],
+    [
+      {
+        id: 'open-date-picker',
+        title: 'Open and dismiss DatePickerDemo',
+        steps: [
+          { kind: 'click', selector: '[data-slot="popover-trigger"]' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
+    '[data-slot="popover-trigger"]',
+  ),
   aggregateWorkbenchCase(
     'shadcn/popover',
     'popover-basic',

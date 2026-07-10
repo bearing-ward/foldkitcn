@@ -6,7 +6,7 @@
 - **Effort**: M
 - **Risk**: MED
 - **Depends on**: Plan 128
-- **State**: IN PROGRESS
+- **State**: DONE, 2026-07-10
 
 ## Goal
 
@@ -15,15 +15,14 @@ Add pinned docs-origin fixture evidence and a ready parity slot for
 keyboard dismissal, collision behavior, and 390px containment. Remove its Plan
 128 exception only when the fixture and workbench case pass.
 
-## Current blocker (2026-07-10)
+## Result
 
 The local Date Picker examples and native Foldkit implementation exist. The
 parity workspace now installs the origin app's `date-fns` and
 `react-day-picker` development dependencies, resolves the pinned Base Nova
 Calendar and Popover sources, and captures the origin `date-picker-demo` with
-neutral fixture data prepared. A dedicated runtime-backed Foldkit fixture now
-mounts the Date Picker Submodel and completes open/Escape playback on both
-sides. The remaining red evidence is five geometry comparisons: the captured
-origin trigger is 114.5px wide while the Foldkit shadcn wrapper applies a 192px
-minimum. Resolve that trigger-width contract, then register the ready slot and
-workbench case permanently.
+neutral fixture data. A dedicated runtime-backed Foldkit fixture mounts the
+Date Picker Submodel and completes open/Escape playback on both sides. The
+local trigger now matches origin's intrinsic icon-and-label structure, and the
+workbench passes with the ready slot registered. The public exception is
+removed.
