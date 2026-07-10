@@ -57,15 +57,15 @@ when Foldkit exposes the same option.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-| --- | --- | --- |
-| Install | `bun install` | exits 0 |
-| Focused docs browser test | `bunx playwright test tests/e2e/docs.test.ts --workers=1` | exits 0 |
-| Registry | `bun run registry:check` | exits 0 |
-| Typecheck | `bun run typecheck` | exits 0 |
-| Unit suite | `bun run test` | exits 0 |
-| Browser suite | `bun run test:e2e` | exits 0 |
-| Quality | `bun run check` | exits 0, except a pre-existing unrelated documented failure |
+| Purpose                   | Command                                                   | Expected result                                             |
+| ------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| Install                   | `bun install`                                             | exits 0                                                     |
+| Focused docs browser test | `bunx playwright test tests/e2e/docs.test.ts --workers=1` | exits 0                                                     |
+| Registry                  | `bun run registry:check`                                  | exits 0                                                     |
+| Typecheck                 | `bun run typecheck`                                       | exits 0                                                     |
+| Unit suite                | `bun run test`                                            | exits 0                                                     |
+| Browser suite             | `bun run test:e2e`                                        | exits 0                                                     |
+| Quality                   | `bun run check`                                           | exits 0, except a pre-existing unrelated documented failure |
 
 ## Scope
 
@@ -166,11 +166,11 @@ table and remove `test-results/` before committing.
 ## Done criteria
 
 - [ ] One named no-message lifecycle bridge exists; no direct geometry logic is added to
-  Popover view/update code.
+      Popover view/update code.
 - [ ] PopoverBasic is a bounded, visible card anchored to its trigger at 390px.
 - [ ] `collisionAvoidance: false` remains observably distinct from true.
 - [ ] `bun run registry:check`, `bun run typecheck`, `bun run test`, and
-  `bun run test:e2e` exit 0.
+      `bun run test:e2e` exit 0.
 - [ ] No out-of-scope primitive or docs-shell files changed.
 
 ## STOP conditions

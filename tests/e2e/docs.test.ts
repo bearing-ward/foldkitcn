@@ -1223,6 +1223,8 @@ playwrightTest(
       preview,
       '[data-slot="popover-content"][data-open]',
     )
+    await expectSurfaceAnchoredToTrigger(content, trigger, { tolerance: 16 })
+    await expectCardLikeFloatingSurface(content)
     await playwrightExpect(content).toHaveCSS('position', 'fixed')
     await page.waitForTimeout(100)
     const box = await visibleBox(content)

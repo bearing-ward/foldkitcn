@@ -134,10 +134,15 @@ honor its STOP conditions, and update your row when done.
 | 124 | Resolve DropdownMenuComplex nested submenu overlap | P1 | S | 120 | DONE |
 | 125 | Refresh shadcn installation docs | P1 | M | 103, 116 | DONE |
 | 126 | Enforce registry freshness and browser parity in continuous integration | P0 | M | - | DONE |
-| 127 | Build a Foldkit-version-compatible anchored-overlay bridge | P1 | L | 126 | BLOCKED (one bridge cannot be safely proven across four primitives before its Mount contract is established) |
-| 128 | Audit and enforce public component parity contracts | P1 | L | 126, 131 | TODO |
+| 127 | Build a Foldkit-version-compatible anchored-overlay bridge | P1 | L | 126 | REJECTED (superseded by the lifecycle-scoped Plan 131 implementation) |
+| 128 | Audit and enforce public component parity contracts | P1 | L | 126, 131 | IN PROGRESS |
 | 130 | Prove native anchored positioning with Popover | P1 | M | 126 | DONE (`8d5df78`, generated artifacts corrected by `f735a95`) |
 | 131 | Roll out native anchoring to overlay primitives | P1 | L | 130 | DONE (`5dc9ffb8`, merged by `bc8cd9ca`) |
+| 132 | Add the Data Table parity contract | P1 | M | 128 | TODO |
+| 133 | Add the Date Picker parity contract | P1 | M | 128 | TODO |
+| 134 | Formalize Typography docs-only parity | P2 | S | 128 | TODO |
+| 135 | Resolve public mobile overflow | P1 | L | 128 | TODO |
+| 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
