@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/dropdown-menu",
+  "caseId": "dropdown-menu-submenu",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

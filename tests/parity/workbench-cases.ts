@@ -3,10 +3,12 @@ import { Schema as S } from 'effect'
 import {
   defaultWorkbenchComparisonPolicy,
   defaultWorkbenchEnvironment,
+  ParityWorkbenchComparisonPolicy,
   ParityWorkbenchNeutralFixture as ParityWorkbenchNeutralFixtureSchema,
 } from '../../src/registry/parity/workbench'
 import type {
   ParityWorkbenchCase as ParityWorkbenchCaseType,
+  ParityWorkbenchInteractionRecipe,
   ParityWorkbenchNeutralFixture,
 } from '../../src/registry/parity/workbench'
 import { paritySlots } from './slots'
@@ -16,6 +18,22 @@ const tabsOriginSourcePath = 'repos/ui/apps/v4/examples/base/tabs-demo.tsx'
 const emptyFixturePath =
   'tests/parity/fixtures/data/shadcn/empty/empty-demo.json'
 const emptyOriginSourcePath = 'repos/ui/apps/v4/examples/base/empty-demo.tsx'
+const genericFixture = (
+  itemId: string,
+  caseId: string,
+  originSourcePath: string,
+): ParityWorkbenchNeutralFixture =>
+  S.decodeUnknownSync(ParityWorkbenchNeutralFixtureSchema)({
+    schemaVersion: 1,
+    itemId,
+    caseId,
+    originSourcePath,
+    tabs: [],
+    selectedValue: '',
+    orientation: 'horizontal',
+    listVariant: '',
+    disabledValues: [],
+  })
 let maybeTabsFixturePromise: Promise<ParityWorkbenchNeutralFixture> | undefined
 let maybeEmptyFixturePromise: Promise<ParityWorkbenchNeutralFixture> | undefined
 
@@ -33,7 +51,7 @@ const requireReadySlot = (itemId: string) => {
   return slot
 }
 
-const ensureFixtureDom = async (): Promise<void> => {
+export const ensureFixtureDom = async (): Promise<void> => {
   if (globalThis.window !== undefined && globalThis.document !== undefined) {
     return
   }
@@ -263,9 +281,183 @@ export const shadcnEmptyWorkbenchCase: ParityWorkbenchCaseType = {
   },
 }
 
+const aggregateOriginHarnessPath =
+  'tests/parity/fixtures/origin/shadcn/entry.tsx'
+const aggregateCaptureZones = {
+  rootSelector: '[data-origin-fixture-root] > *',
+  portalSelectors: [],
+  layerSelectors: [],
+}
+const hardWorkbenchComparisonPolicy = S.decodeUnknownSync(
+  ParityWorkbenchComparisonPolicy,
+)({
+  hard: [
+    'dom-structure',
+    'attributes',
+    'roles',
+    'aria-state',
+    'accessible-name',
+    'computed-style',
+    'dimensions',
+    'geometry',
+    'interaction-state',
+  ],
+  advisory: ['screenshots'],
+})
+
+const aggregateWorkbenchCase = (
+  itemId: string,
+  caseId: string,
+  originSourcePath: string,
+  sourceHints: ReadonlyArray<string>,
+  _interactionRecipes: ReadonlyArray<ParityWorkbenchInteractionRecipe>,
+): ParityWorkbenchCaseType => ({
+  itemId,
+  caseId,
+  originKind: 'pinned-shadcn',
+  originSourcePath,
+  originHarnessPath: aggregateOriginHarnessPath,
+  foldkitSourceHintPaths: sourceHints,
+  neutralFixturePath: `tests/parity/fixtures/data/${itemId.replace('/', '-')}/${caseId}.json`,
+  environment: defaultWorkbenchEnvironment,
+  captureZones: aggregateCaptureZones,
+  comparisonPolicy: hardWorkbenchComparisonPolicy,
+  interactionRecipes: [],
+  allowedDeviations: [],
+  reportPaths: {
+    outputDir: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}`,
+    jsonPath: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/report.json`,
+    markdownPath: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/report.md`,
+    htmlPath: null,
+    screenshotDir: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/screenshots`,
+  },
+})
+
+const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
+  aggregateWorkbenchCase(
+    'shadcn/bubble',
+    'bubble-tooltip',
+    'repos/ui/apps/v4/examples/base/bubble-tooltip.tsx',
+    [
+      'src/registry/shadcn/bubble/index.ts',
+      'src/registry/shadcn/bubble/examples.ts',
+    ],
+    [
+      {
+        id: 'open-tooltip',
+        title: 'Open the tooltip',
+        steps: [
+          { kind: 'hover', selector: '[data-slot="tooltip-trigger"]' },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/bubble',
+    'bubble-popover',
+    'repos/ui/apps/v4/examples/base/bubble-popover.tsx',
+    [
+      'src/registry/shadcn/bubble/index.ts',
+      'src/registry/shadcn/bubble/examples.ts',
+    ],
+    [
+      {
+        id: 'open-popover',
+        title: 'Open the popover',
+        steps: [
+          { kind: 'click', selector: '[data-slot="popover-trigger"]' },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/dropdown-menu',
+    'dropdown-menu-submenu',
+    'repos/ui/apps/v4/examples/base/dropdown-menu-submenu.tsx',
+    [
+      'src/registry/shadcn/dropdown-menu/index.ts',
+      'src/registry/shadcn/dropdown-menu/examples.ts',
+    ],
+    [
+      {
+        id: 'open-submenu',
+        title: 'Open the nested submenu',
+        steps: [
+          { kind: 'click', selector: '[data-slot="dropdown-menu-trigger"]' },
+          {
+            kind: 'hover',
+            selector: '[data-slot="dropdown-menu-sub-trigger"]',
+          },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/command',
+    'command-dialog',
+    'repos/ui/apps/v4/examples/base/command-dialog.tsx',
+    [
+      'src/registry/shadcn/command/index.ts',
+      'src/registry/shadcn/command/examples.ts',
+    ],
+    [
+      {
+        id: 'open-command-dialog',
+        title: 'Open and dismiss the command dialog',
+        steps: [
+          { kind: 'click', selector: '[data-slot="command-dialog-trigger"]' },
+          { kind: 'escape' },
+        ],
+      },
+    ],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/sonner',
+    'sonner-demo',
+    'repos/ui/apps/v4/examples/base/sonner-demo.tsx',
+    [
+      'src/registry/shadcn/sonner/index.ts',
+      'src/registry/shadcn/sonner/examples.ts',
+    ],
+    [
+      {
+        id: 'show-toast',
+        title: 'Show a toast',
+        steps: [
+          { kind: 'click', selector: '[data-slot="sonner-trigger"]' },
+          { kind: 'wait-for-stable-layout' },
+        ],
+      },
+    ],
+  ),
+  aggregateWorkbenchCase(
+    'shadcn/native-select',
+    'native-select-demo',
+    'repos/ui/apps/v4/examples/base/native-select-demo.tsx',
+    [
+      'src/registry/shadcn/native-select/index.ts',
+      'src/registry/shadcn/native-select/examples.ts',
+    ],
+    [
+      {
+        id: 'focus-select',
+        title: 'Focus the native select',
+        steps: [
+          { kind: 'focus', selector: 'select' },
+          { kind: 'press-key', key: 'ArrowDown' },
+        ],
+      },
+    ],
+  ),
+]
+
 export const shadcnWorkbenchCases = [
   shadcnTabsWorkbenchCase,
   shadcnEmptyWorkbenchCase,
+  ...highRiskWorkbenchCases,
 ]
 
 export const shadcnTabsWorkbenchCases = [shadcnTabsWorkbenchCase]
@@ -300,6 +492,17 @@ export const workbenchFixtureFor = (
 
   if (itemId === 'shadcn/empty' && caseId === 'empty-demo') {
     return loadShadcnEmptyWorkbenchFixture()
+  }
+
+  const maybeHighRiskCase = highRiskWorkbenchCases.find(
+    workbenchCase =>
+      workbenchCase.itemId === itemId && workbenchCase.caseId === caseId,
+  )
+
+  if (maybeHighRiskCase !== undefined) {
+    return Promise.resolve(
+      genericFixture(itemId, caseId, maybeHighRiskCase.originSourcePath),
+    )
   }
 
   throw new Error(`Unknown workbench fixture: ${itemId}/${caseId}`)

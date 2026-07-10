@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/command",
+  "caseId": "command-dialog",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/command-dialog.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

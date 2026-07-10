@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/native-select",
+  "caseId": "native-select-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/native-select-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

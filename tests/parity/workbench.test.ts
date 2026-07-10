@@ -51,7 +51,16 @@ describe('parity workbench config', () => {
   test('validates the declared workbench case registry against slots', () => {
     expect(
       validateWorkbenchCases().map(workbenchCase => workbenchCase.itemId),
-    ).toStrictEqual(['shadcn/tabs', 'shadcn/empty'])
+    ).toStrictEqual([
+      'shadcn/tabs',
+      'shadcn/empty',
+      'shadcn/bubble',
+      'shadcn/bubble',
+      'shadcn/dropdown-menu',
+      'shadcn/command',
+      'shadcn/sonner',
+      'shadcn/native-select',
+    ])
   })
 
   test('loads the neutral tabs fixture proposal from the harvested source data', () =>

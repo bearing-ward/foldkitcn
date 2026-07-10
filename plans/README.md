@@ -142,7 +142,7 @@ honor its STOP conditions, and update your row when done.
 | 133 | Add the Date Picker parity contract | P1 | M | 128 | TODO |
 | 134 | Formalize Typography docs-only parity | P2 | S | 128 | TODO |
 | 135 | Resolve public mobile overflow | P1 | L | 128 | TODO |
-| 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | TODO |
+| 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | IN PROGRESS |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 

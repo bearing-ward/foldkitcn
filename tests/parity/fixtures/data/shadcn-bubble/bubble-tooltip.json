@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/bubble",
+  "caseId": "bubble-tooltip",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/bubble-tooltip.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}

@@ -22,6 +22,7 @@ import type {
 } from '../src/registry/parity/workbench'
 import type { OriginFixtureSnapshot } from '../tests/parity/fixtures/origin/shadcn/snapshot'
 import {
+  ensureFixtureDom,
   resolveWorkbenchCase,
   validateWorkbenchCases,
   workbenchFixtureFor,
@@ -938,6 +939,8 @@ const runWorkbench = async (input: WorkbenchCliInput): Promise<void> => {
     await writeJson(workbenchCase.neutralFixturePath, harvestedFixture)
     activeFixture = harvestedFixture
   }
+
+  await ensureFixtureDom()
 
   const {
     createFixtureServer: createOriginFixtureServer,

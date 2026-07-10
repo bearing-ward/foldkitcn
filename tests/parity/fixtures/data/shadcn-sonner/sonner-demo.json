@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/sonner",
+  "caseId": "sonner-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/sonner-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}
