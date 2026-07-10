@@ -36,23 +36,11 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Install Playwright Chromium
-        run: bun x playwright install --with-deps chromium
-
       - name: Verify registry artifacts
         run: bun run registry:check
 
       - name: Verify public parity contracts
         run: bun run parity:contracts
-
-      - name: Test
-        run: bun run test
-
-      - name: Browser parity tests
-        run: bun run test:e2e
-
-      - name: Lint and checks
-        run: bun run check
 
       - name: Build site for GitHub Pages
         run: FOLDKITCN_BASE_PATH=/${{ github.event.repository.name }}/ bun run build
@@ -82,6 +70,40 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
+
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Check out origin evidence
+        run: git submodule update --init --depth 1 repos/base-ui repos/ui
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: bun x playwright install --with-deps chromium
+
+      - name: Typecheck
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: bun run typecheck
+
+      - name: Test
+        run: bun run test
+
+      - name: Browser parity tests
+        run: bun run test:e2e
+
+      - name: Lint and checks
+        run: bun run check
 
   deploy:
     if: github.event_name != 'pull_request'
