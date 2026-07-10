@@ -228,6 +228,37 @@ const staticShimSources = new Map([
           ArrowUpDown: 'm7 15 5 5 5-5M7 9l5-5 5 5',
           ChevronDownIcon: 'm6 9 6 6 6-6',
           MoreHorizontal: 'M12 12h.01M19 12h.01M5 12h.01',
+          CheckCircle2Icon: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Zm-2-10 2 2 4-4',
+          Check: 'm9 12 2 2 4-4',
+          X: 'm18 6-12 12M6 6l12 12',
+          Search: 'm21 21-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15',
+          AlertTriangleIcon: 'm21 12-9 9-9-9 9-9 9 9Z',
+          CircleHelp: 'M12 17h.01M12 13a3 3 0 1 0-3-3',
+          Info: 'M12 16v-4M12 8h.01',
+          Loader2: 'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83',
+          Plus: 'M5 12h14M12 5v14',
+          Minus: 'M5 12h14',
+          ChevronUp: 'm18 15-6-6-6 6',
+          ChevronLeft: 'm15 18-6-6 6-6',
+          ChevronRight: 'm9 18 6-6-6-6',
+          CalendarIcon: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z',
+          InfoIcon: 'M12 16v-4M12 8h.01',
+          CheckIcon: 'm9 12 2 2 4-4',
+          XIcon: 'm18 6-12 12M6 6l12 12',
+          Ellipsis: 'M12 12h.01M19 12h.01M5 12h.01',
+          AlertCircleIcon: 'M12 8v4M12 16h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+          Ban: 'm4.9 4.9 14.2 14.2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z',
+          Bell: 'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4',
+          CircleCheck: 'M22 11.1V12a10 10 0 1 1-5.9-9.1M22 4 12 14.01l-3-3',
+          CircleX: 'm15 9-6 6m0-6 6 6M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z',
+          Download: 'M12 3v12m0 0 4-4m-4 4-4-4M5 21h14',
+          ExternalLink: 'M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
+          File: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z',
+          Menu: 'M4 6h16M4 12h16M4 18h16',
+          RefreshCw: 'M21 12a9 9 0 0 1-15.3 6.4L3 16m0 0v5m0-5h5M3 12A9 9 0 0 1 18.3 5.6L21 8m0 0V3m0 5h-5',
+          Settings: 'M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z',
+          SlidersHorizontal: 'M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3',
+          Trash2: 'M3 6h18M8 6V4h8v2m-9 0 1 15h8l1-15M10 11v6M14 11v6',
         }
 
         const icon = (name, props) => {
@@ -255,6 +286,37 @@ const staticShimSources = new Map([
         export const ArrowUpDown = props => icon('ArrowUpDown', props)
         export const ChevronDownIcon = props => icon('ChevronDownIcon', props)
         export const MoreHorizontal = props => icon('MoreHorizontal', props)
+        export const CheckCircle2Icon = props => icon('CheckCircle2Icon', props)
+        export const Check = props => icon('Check', props)
+        export const X = props => icon('X', props)
+        export const Search = props => icon('Search', props)
+        export const AlertTriangleIcon = props => icon('AlertTriangleIcon', props)
+        export const CircleHelp = props => icon('CircleHelp', props)
+        export const Info = props => icon('Info', props)
+        export const Loader2 = props => icon('Loader2', props)
+        export const Plus = props => icon('Plus', props)
+        export const Minus = props => icon('Minus', props)
+        export const ChevronUp = props => icon('ChevronUp', props)
+        export const ChevronLeft = props => icon('ChevronLeft', props)
+        export const ChevronRight = props => icon('ChevronRight', props)
+        export const CalendarIcon = props => icon('CalendarIcon', props)
+        export const InfoIcon = props => icon('InfoIcon', props)
+        export const CheckIcon = props => icon('CheckIcon', props)
+        export const XIcon = props => icon('XIcon', props)
+        export const Ellipsis = props => icon('Ellipsis', props)
+        export const AlertCircleIcon = props => icon('AlertCircleIcon', props)
+        export const Ban = props => icon('Ban', props)
+        export const Bell = props => icon('Bell', props)
+        export const CircleCheck = props => icon('CircleCheck', props)
+        export const CircleX = props => icon('CircleX', props)
+        export const Download = props => icon('Download', props)
+        export const ExternalLink = props => icon('ExternalLink', props)
+        export const File = props => icon('File', props)
+        export const Menu = props => icon('Menu', props)
+        export const RefreshCw = props => icon('RefreshCw', props)
+        export const Settings = props => icon('Settings', props)
+        export const SlidersHorizontal = props => icon('SlidersHorizontal', props)
+        export const Trash2 = props => icon('Trash2', props)
       `,
   ],
   [
