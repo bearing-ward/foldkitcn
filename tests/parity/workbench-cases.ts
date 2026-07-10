@@ -311,6 +311,7 @@ const aggregateWorkbenchCase = (
   originSourcePath: string,
   sourceHints: ReadonlyArray<string>,
   _interactionRecipes: ReadonlyArray<ParityWorkbenchInteractionRecipe>,
+  rootSelector = '[data-origin-fixture-root] > *',
 ): ParityWorkbenchCaseType => ({
   itemId,
   caseId,
@@ -320,7 +321,7 @@ const aggregateWorkbenchCase = (
   foldkitSourceHintPaths: sourceHints,
   neutralFixturePath: `tests/parity/fixtures/data/${itemId.replace('/', '-')}/${caseId}.json`,
   environment: defaultWorkbenchEnvironment,
-  captureZones: aggregateCaptureZones,
+  captureZones: { ...aggregateCaptureZones, rootSelector },
   comparisonPolicy: hardWorkbenchComparisonPolicy,
   interactionRecipes: [],
   allowedDeviations: [],
@@ -343,6 +344,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/popover/examples.ts',
     ],
     [],
+    '[data-slot="popover-trigger"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/tooltip',
@@ -353,6 +355,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/tooltip/examples.ts',
     ],
     [],
+    '[data-slot="tooltip-trigger"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/select',
@@ -363,6 +366,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/select/examples.ts',
     ],
     [],
+    '[data-slot="select-trigger"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/dialog',
@@ -373,6 +377,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/dialog/examples.ts',
     ],
     [],
+    '[data-slot="dialog-trigger"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/slider',
@@ -383,6 +388,7 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       'src/registry/shadcn/slider/examples.ts',
     ],
     [],
+    '[role="slider"]',
   ),
   aggregateWorkbenchCase(
     'shadcn/bubble',
