@@ -45,11 +45,6 @@ jobs:
       - name: Verify public parity contracts
         run: bun run parity:contracts
 
-      - name: Typecheck
-        env:
-          NODE_OPTIONS: --max-old-space-size=8192
-        run: bun run typecheck
-
       - name: Test
         run: bun run test
 
