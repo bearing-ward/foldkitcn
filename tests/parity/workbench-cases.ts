@@ -409,7 +409,6 @@ const highRiskWorkbenchCases: ReadonlyArray<ParityWorkbenchCaseType> = [
       },
     ],
     '[data-slot="dialog-trigger"]',
-    fixtureShimComparisonPolicy,
   ),
   aggregateWorkbenchCase(
     'shadcn/slider',

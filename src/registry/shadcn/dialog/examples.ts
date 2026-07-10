@@ -48,7 +48,7 @@ const dialogShell = <Message>(
 
   return Dialog<Message>({
     id: config.id,
-    open: isOpenFor(controller, config.id, true),
+    open: isOpenFor(controller, config.id, false),
     ...(onOpenChange === undefined
       ? {}
       : { onOpenChange: change => onOpenChange(config.id, change) }),

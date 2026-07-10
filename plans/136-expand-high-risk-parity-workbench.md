@@ -46,7 +46,7 @@ contracts.
 
 The pinned Base Nova Dialog source now resolves through the existing Base UI
 aliases, and origin capture uses the repository's pinned `lucide-react`
-dependency instead of the incomplete virtual icon shim. Initial Dialog capture
-is faithful. The interaction run now reaches both real implementations; its
-remaining failure is local harness state reuse, which leaves the Foldkit dialog
-open before the recipe's click step and lets the overlay intercept that click.
+dependency instead of the incomplete virtual icon shim. Dialog examples now
+default closed like origin, the open/Escape interaction completes against both
+real implementations, and its stable comparison policy is hard. Slider remains
+the only synthetic high-risk origin surface.
