@@ -2,6 +2,7 @@ import { Schema as S } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningConfig } from '../../../utils/anchor-positioning'
 import { cn } from '../../../utils/cn'
 import * as BaseMenu from '../../base-ui/menu'
 
@@ -98,11 +99,15 @@ export type MenuAttributes<Message> = Omit<
     submenus: ReadonlyArray<MenuPopupAttributes<Message>>
   }>
 
-export type ViewConfig<Message> = Omit<BaseMenu.ViewConfig<Message>, 'toView'> &
+export type ViewConfig<Message> = Omit<
+  BaseMenu.ViewConfig<Message>,
+  'onPositioned' | 'positioning' | 'toView'
+> &
   DropdownMenuStyleOptions &
   Readonly<{
     toView?: (attributes: MenuAttributes<Message>) => Html
-  }>
+  }> &
+  AnchorPositioningConfig<Message>
 
 const positionerBaseClassName = 'isolate z-50 outline-none'
 

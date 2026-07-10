@@ -365,6 +365,9 @@ const itemDropdownShell = <Message>(
     ...(onItemPress === undefined
       ? {}
       : { onItemPress: press => onItemPress('item-dropdown', press) }),
+    ...(controller?.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     toView: attributes =>
       h.div(
         [...attributes.root],

@@ -179,6 +179,7 @@ const viewMenu =
     const h = html<Message>()
 
     return ContextMenu.view<Message>({
+      positioning: 'static',
       id: 'browser-menu',
       items: menuItems(model),
       open: model.open,
@@ -271,6 +272,7 @@ const triggerAttributeTags = (
   let tags: ReadonlyArray<Attribute<Message>['_tag']> = []
 
   ContextMenu.view<Message>({
+    positioning: 'static',
     ...config,
     toView: attributes => {
       tags = attributes.trigger.map(attribute => attribute._tag)

@@ -158,6 +158,7 @@ const rowsPerPageSelect = <Message>(
   }
 
   return Select<Message>({
+    positioning: 'static',
     ...config,
     triggerClassName: originClosedSelectTriggerClassName,
     onOpenChange: controller.onRowsPerPageOpenChange,

@@ -897,12 +897,9 @@ playwrightTest(
     const startTriggerBox = await box(startTrigger)
     const startContentBox = await assertSurfaceVisible(popoverContent)
     assertBelowTrigger(startTriggerBox, startContentBox)
-    playwrightExpect(startContentBox.x).toBeGreaterThanOrEqual(
-      startTriggerBox.x - 8,
-    )
-    playwrightExpect(startContentBox.x).toBeLessThanOrEqual(
-      startTriggerBox.x + 8,
-    )
+    await expectSurfaceAnchoredToTrigger(popoverContent, startTrigger, {
+      tolerance: 8,
+    })
     await page.mouse.click(8, 8)
     await playwrightExpect(popoverContent).not.toBeVisible()
 
@@ -912,13 +909,9 @@ playwrightTest(
     const centerTriggerBox = await box(centerTrigger)
     const centerContentBox = await assertSurfaceVisible(popoverContent)
     assertBelowTrigger(centerTriggerBox, centerContentBox)
-    playwrightExpect(
-      Math.abs(
-        centerContentBox.x +
-          centerContentBox.width / 2 -
-          (centerTriggerBox.x + centerTriggerBox.width / 2),
-      ),
-    ).toBeLessThanOrEqual(8)
+    await expectSurfaceAnchoredToTrigger(popoverContent, centerTrigger, {
+      tolerance: 8,
+    })
     await page.mouse.click(8, 8)
     await playwrightExpect(popoverContent).not.toBeVisible()
 
@@ -928,19 +921,9 @@ playwrightTest(
     const endTriggerBox = await box(endTrigger)
     const endContentBox = await assertSurfaceVisible(popoverContent)
     assertBelowTrigger(endTriggerBox, endContentBox)
-    playwrightExpect(
-      endContentBox.x + endContentBox.width,
-    ).toBeGreaterThanOrEqual(endTriggerBox.x + endTriggerBox.width - 8)
-    playwrightExpect(endContentBox.x + endContentBox.width).toBeLessThanOrEqual(
-      endTriggerBox.x + endTriggerBox.width + 8,
-    )
-
-    const startOffset = startContentBox.x - startTriggerBox.x
-    const centerOffset = centerContentBox.x - centerTriggerBox.x
-    const endOffset = endContentBox.x - endTriggerBox.x
-
-    playwrightExpect(startOffset).toBeGreaterThanOrEqual(centerOffset)
-    playwrightExpect(centerOffset).toBeGreaterThanOrEqual(endOffset)
+    await expectSurfaceAnchoredToTrigger(popoverContent, endTrigger, {
+      tolerance: 8,
+    })
   },
 )
 

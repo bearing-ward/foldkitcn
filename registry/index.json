@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-09T22:54:49.317Z",
+  "generatedAt": "2026-07-10T00:36:49.341Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1585,8 +1585,8 @@
         },
         {
           "path": "src/registry/base-ui/context-menu/index.ts",
-          "sha256": "8ce1a1553764b3aa17fefd48e07485281fdff7d44190f5c9edd4849a4e552e41",
-          "sizeBytes": 14536,
+          "sha256": "a889695a3107abe97cce517202fae1d20a5cc641aa6b1d71f4ad695dbd1e196c",
+          "sizeBytes": 14598,
           "role": "source"
         }
       ]
@@ -2589,6 +2589,12 @@
         "dependencies": {
           "registry": [
             {
+              "specifier": "utils/anchor-positioning",
+              "classification": "registry-local",
+              "target": "utils/anchor-positioning",
+              "reason": "Menu and submenus use the shared Foldkit lifecycle adapter for origin-equivalent anchored geometry."
+            },
+            {
               "specifier": "base-ui/popover",
               "classification": "registry-local",
               "target": "base-ui/popover",
@@ -2682,18 +2688,18 @@
           }
         ]
       },
-      "manifestHash": "d1232bbdbda7fefc9bec2a9a4fe383e2e11896d2aeb74aaecb23991a13c47ec5",
+      "manifestHash": "7c6f1fe384ff1d933330d4d824f4f8e3a127cb98e7bc3db0df8f9e67d5d97501",
       "artifacts": [
         {
           "path": "registry-src/base-ui/menu/item.json",
-          "sha256": "de3f652eb1c6f727c878fa254f3532416c44607283f421b0ea7ee0c7825d5e83",
-          "sizeBytes": 6681,
+          "sha256": "5760667d89a7d7fcfa73acd956a312beabe8758cf38b8c351da3caba03827dfd",
+          "sizeBytes": 6957,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/menu/index.ts",
-          "sha256": "000518e269967964d277f761e388d13275fe7bcc1e9c6465213673a6eaa1eeca",
-          "sizeBytes": 30992,
+          "sha256": "80bee6e391f03e1a6a821ba5c4b968f58b036ace10153ed85979ebaa8a132388",
+          "sizeBytes": 34157,
           "role": "source"
         }
       ]
@@ -2858,8 +2864,8 @@
         },
         {
           "path": "src/registry/base-ui/menubar/index.ts",
-          "sha256": "0a4c29787637aea20b99bddf38542b0f976f55715c3fdf1cfe420baf614078fe",
-          "sizeBytes": 21058,
+          "sha256": "ec605af0ed62e1da673ce7933cd36bbd4857c018627ab755f187b776a1f93372",
+          "sizeBytes": 21085,
           "role": "source"
         }
       ]
@@ -4498,6 +4504,12 @@
         "dependencies": {
           "registry": [
             {
+              "specifier": "utils/anchor-positioning",
+              "classification": "registry-local",
+              "target": "utils/anchor-positioning",
+              "reason": "Select uses the shared Foldkit lifecycle adapter for origin-equivalent anchored geometry."
+            },
+            {
               "specifier": "base-ui/popover",
               "classification": "registry-local",
               "target": "base-ui/popover",
@@ -4591,18 +4603,18 @@
           }
         ]
       },
-      "manifestHash": "032b3944926556115637404673cb78d2787001b42824b6db575dd58ac5a7f0cb",
+      "manifestHash": "ff1b8f8bf55ebd24e2629e3f8c1317e11de0b736ab94dc147ffe312309775cf2",
       "artifacts": [
         {
           "path": "registry-src/base-ui/select/item.json",
-          "sha256": "f76d92de312344a838634ee2e0b95791ed093555fb5217170be99238788bbd58",
-          "sizeBytes": 8494,
+          "sha256": "2b3f44f9fabeae06e58b06f64c029713f4297011c21b1596451a0d8a6a7e2303",
+          "sizeBytes": 8760,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/select/index.ts",
-          "sha256": "1f1efd07444da397c85483d93b52ffc8f86b81c3f10704ffa1de1846b4054749",
-          "sizeBytes": 24723,
+          "sha256": "f4334264ba5afb3f3f9dd78dc2c162105542fd2d9b775e27511c20ecffca66ab",
+          "sizeBytes": 27668,
           "role": "source"
         }
       ]
@@ -5835,7 +5847,14 @@
           }
         ],
         "dependencies": {
-          "registry": [],
+          "registry": [
+            {
+              "specifier": "utils/anchor-positioning",
+              "classification": "registry-local",
+              "target": "utils/anchor-positioning",
+              "reason": "Tooltip uses the shared Foldkit lifecycle adapter for origin-equivalent anchored geometry."
+            }
+          ],
           "runtime": [
             {
               "specifier": "foldkit",
@@ -5923,18 +5942,18 @@
           }
         ]
       },
-      "manifestHash": "1e9cf092ebb3c8287a22ea8ae796c7459d23c2178de522f9ca9e4256551e4722",
+      "manifestHash": "e407f28019158f9a185427f2c7c5ba3c4d406355c7aa4a09bd4ba28abbeb6080",
       "artifacts": [
         {
           "path": "registry-src/base-ui/tooltip/item.json",
-          "sha256": "186a38ff250bf296b4ba9b1a43def449507d75e66e7a27324f7743dec8714ed2",
-          "sizeBytes": 7060,
+          "sha256": "1724706ff00e4b7fc008374f60d610c2bcdcd1a7572daacc940e1e85996b51cf",
+          "sizeBytes": 7331,
           "role": "manifest"
         },
         {
           "path": "src/registry/base-ui/tooltip/index.ts",
-          "sha256": "9e870783d1db4d87d3bac327c367f615f94722ccf253110a4c199f85f8b1f689",
-          "sizeBytes": 18010,
+          "sha256": "7ad2e8d96aea1744db1f67625c40bd417f217f129cc44cf007ac0863a53809d9",
+          "sizeBytes": 20937,
           "role": "source"
         }
       ]
@@ -7402,8 +7421,8 @@
         },
         {
           "path": "src/registry/shadcn/avatar/examples.ts",
-          "sha256": "e76cb650e65074c01a9018c70d3548c5126d48ff0f6873e12897d905bcecc622",
-          "sizeBytes": 8247,
+          "sha256": "00fab662503514d91b83d92ef2c4080056acc4b58a684f106a29b2b423f9dff5",
+          "sizeBytes": 8389,
           "role": "source"
         }
       ]
@@ -7921,8 +7940,8 @@
         },
         {
           "path": "src/registry/shadcn/breadcrumb/examples.ts",
-          "sha256": "648c56de8e345342e29d193a9695ff7f1a6f1b8edb24f79b09e96c62830d14e2",
-          "sizeBytes": 10132,
+          "sha256": "a25bac7feadcaad7e9984005bd87d44af6b775fad71dac2ef6fe94285d489937",
+          "sizeBytes": 10274,
           "role": "source"
         }
       ]
@@ -8188,8 +8207,8 @@
         },
         {
           "path": "src/registry/shadcn/bubble/examples.ts",
-          "sha256": "7ce38edc3a84c908ad9e484f947771931532ae94b15106741902baecfea0a74d",
-          "sizeBytes": 25419,
+          "sha256": "b183f384a28ba68dfa210c0333b9fbfb71bdb3ade12a1686705285df45950759",
+          "sizeBytes": 25731,
           "role": "source"
         }
       ]
@@ -8529,8 +8548,8 @@
         },
         {
           "path": "src/registry/shadcn/button-group/examples.ts",
-          "sha256": "16bcea22358c386733c30bb03ff1b6df6e306cfb7dfc128c25c6b09adb5c08f1",
-          "sizeBytes": 21412,
+          "sha256": "61e9daa0dd473c41f376879810d01cf7bdeeddc9620dfb679ff41a603fe4dce5",
+          "sizeBytes": 21840,
           "role": "source"
         }
       ]
@@ -11302,8 +11321,8 @@
         },
         {
           "path": "src/registry/shadcn/data-table/examples.ts",
-          "sha256": "c3873c39e1888dc5e671f68475a107c9d42f222ab5faf752611bebeba6631f68",
-          "sizeBytes": 37564,
+          "sha256": "ab0121fbf3c7e2851eb541fc071d8abfb8f4adf02eaf387bb3e3f653112e4e64",
+          "sizeBytes": 37992,
           "role": "source"
         }
       ]
@@ -12652,14 +12671,14 @@
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/index.ts",
-          "sha256": "a900ccb648c9f27e25afc6c8682a731fdd7672570a3d63962badbc9b8c67e246",
-          "sizeBytes": 17787,
+          "sha256": "63c04ef9f5b10106fb6100c5f0125fbda69c086d4fdc2a3b08b3df2d19ed7d42",
+          "sizeBytes": 17944,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/examples.ts",
-          "sha256": "efa5daf73830426cc43e1dbd3a4ec477eb38f002d1c4e1573fa4fe1adf69226f",
-          "sizeBytes": 25465,
+          "sha256": "a2fe5179bcc5f322c7e227793b4a0b8ee62666d28395615d6e339056a98b8404",
+          "sizeBytes": 25770,
           "role": "source"
         }
       ]
@@ -14715,8 +14734,8 @@
         },
         {
           "path": "src/registry/shadcn/item/examples.ts",
-          "sha256": "8ce87b81cc286c59aa00c1e1324170c5896a48389334a0ba5b25261d3c56efe9",
-          "sizeBytes": 22897,
+          "sha256": "dac142d3f6ab753fffd1c262c32dee8e46bc6590cac145cb1da25545b9543303",
+          "sizeBytes": 23039,
           "role": "source"
         }
       ]
@@ -16791,8 +16810,8 @@
         },
         {
           "path": "src/registry/shadcn/pagination/examples.ts",
-          "sha256": "e37e8c6201280dbb378db578c1998d5c618495982ae47f4b3e7c5fae24dcabff",
-          "sizeBytes": 9288,
+          "sha256": "87722bbe816c5cdb7f613cd3ed45d2a70cc969927b1f66953b1e42762bb32912",
+          "sizeBytes": 9315,
           "role": "source"
         }
       ]
@@ -18166,8 +18185,8 @@
         },
         {
           "path": "src/registry/shadcn/select/index.ts",
-          "sha256": "bc53b4ca446dd9d92596be528bf3fded4008bda06b3a8ea7ea3aaefb03f61394",
-          "sizeBytes": 20110,
+          "sha256": "2f7e9d1c6ead621c0c8c502931e2e1a3a33b73dd3064eb387f33c861d8aaa7d4",
+          "sizeBytes": 20261,
           "role": "source"
         },
         {
@@ -18991,8 +19010,8 @@
         },
         {
           "path": "src/registry/shadcn/sidebar/examples.ts",
-          "sha256": "2677c5253195a481664e3e61a5bf9fc6ce8d5945663ea06221f7413d9db2cc52",
-          "sizeBytes": 87679,
+          "sha256": "5e3c7eeb1c15d289c4a96aca96184524d25afb42e7d4785f3351a1dd9034b9d5",
+          "sizeBytes": 87984,
           "role": "source"
         }
       ]
@@ -20341,8 +20360,8 @@
         },
         {
           "path": "src/registry/shadcn/table/examples.ts",
-          "sha256": "1dc49ef53d244270e3a1491c19d25d9413fe20b538dc602a8b62be435eafedc1",
-          "sizeBytes": 11409,
+          "sha256": "730ed66119ac7d2cf75ee4da48d2c206cc76229a1ca278ab91b7b7666cca0b97",
+          "sizeBytes": 11697,
           "role": "source"
         }
       ]
@@ -21535,14 +21554,14 @@
         },
         {
           "path": "src/registry/shadcn/tooltip/index.ts",
-          "sha256": "3f8a901fc4e4aeb560a6b63b11f37c3f557c41a870a00bd14273912509ee3758",
-          "sizeBytes": 10133,
+          "sha256": "12bc4cf9b3531ad3c5d44214b734027e5b6a43bb3f2ae697218fd1f4a575d272",
+          "sizeBytes": 10284,
           "role": "source"
         },
         {
           "path": "src/registry/shadcn/tooltip/examples.ts",
-          "sha256": "499520a8ed38beb7158d7ff9144a4a649ccb4a5bd26eb366c3d11a9217bf8b48",
-          "sizeBytes": 6085,
+          "sha256": "8cfd1a2fb0d6f8c545d41f0a8c32a95d705b605b936fd27d96b7f86a576e4ac1",
+          "sizeBytes": 6372,
           "role": "source"
         }
       ]
@@ -21753,6 +21772,75 @@
           "sha256": "8ba5001153056151554c6a3aef3182e5b1619567a82af21ecdc081c8ff28392a",
           "sizeBytes": 7321,
           "role": "manifest"
+        }
+      ]
+    },
+    {
+      "item": {
+        "schemaVersion": 1,
+        "id": "utils/anchor-positioning",
+        "namespace": "utils",
+        "name": "Anchor Positioning",
+        "kind": "utility",
+        "description": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+        "sourceRoot": "registry-src/utils/anchor-positioning",
+        "installableSourcePaths": ["src/utils/anchor-positioning.ts"],
+        "consumedThemeTokens": [],
+        "originProvenance": [],
+        "dependencies": {
+          "registry": [],
+          "runtime": [
+            {
+              "specifier": "@floating-ui/dom",
+              "classification": "allowed-runtime",
+              "target": "npm:@floating-ui/dom",
+              "reason": "Measures anchors and applies origin-equivalent flip, shift, offset, and size middleware."
+            },
+            {
+              "specifier": "effect",
+              "classification": "allowed-runtime",
+              "target": "npm:effect",
+              "reason": "Provides Schema and scoped resource composition."
+            },
+            {
+              "specifier": "foldkit",
+              "classification": "allowed-runtime",
+              "target": "npm:foldkit",
+              "reason": "Provides the lifecycle-scoped Mount and message boundary."
+            }
+          ],
+          "development": []
+        },
+        "examples": [],
+        "parity": {
+          "itemId": "utils/anchor-positioning",
+          "originFixturePath": "",
+          "foldkitFixturePath": "",
+          "requiredComparisons": [],
+          "acceptedDeviationIds": []
+        },
+        "lifecycle": {
+          "implementationStatus": "implemented",
+          "parityStatus": "waived",
+          "driftStatus": "current",
+          "availability": "installable",
+          "docsStatus": "missing"
+        },
+        "deviations": []
+      },
+      "manifestHash": "6f950eb93556581ec4b59347511a7468d72d38b7aeb03556a10449e354991917",
+      "artifacts": [
+        {
+          "path": "registry-src/utils/anchor-positioning/item.json",
+          "sha256": "334efaf9b841ee08e34f6a9943d2797c8614e67ee1a35360cd740da2030c56f0",
+          "sizeBytes": 1578,
+          "role": "manifest"
+        },
+        {
+          "path": "src/utils/anchor-positioning.ts",
+          "sha256": "49196c80a046eeee646be50296204789c71972ce44dc78e2c86476b044372cac",
+          "sizeBytes": 4971,
+          "role": "source"
         }
       ]
     },

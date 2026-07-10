@@ -669,6 +669,7 @@ const renderMenu = <Message>(
   } = config
 
   return Menu.view<Message>({
+    positioning: 'static',
     ...menuOptions(config, menu),
     ...(onMenuOpenChange === undefined
       ? {}

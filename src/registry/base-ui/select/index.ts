@@ -1,8 +1,14 @@
 import { Option, Predicate, Schema as S } from 'effect'
+import { Mount } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import {
+  anchorPlacement,
+  PositionAnchoredSurface,
+} from '../../../utils/anchor-positioning'
+import type { AnchorPositioningConfig } from '../../../utils/anchor-positioning'
 import * as Popover from '../popover'
 
 // MODEL
@@ -138,6 +144,9 @@ export const {
 
 export const triggerId = (config: Pick<SelectOptions, 'id'>): string =>
   `${config.id}-trigger`
+
+const rootAnchorName = (config: Pick<SelectOptions, 'id'>): string =>
+  `--${config.id}-anchor`
 
 export const popupId = (config: Pick<SelectOptions, 'id'>): string =>
   `${config.id}-popup`
@@ -362,7 +371,8 @@ export type ViewConfig<Message> = SelectOptions &
     onHighlightChange?: (change: SelectHighlightChange) => Message
     onFocus?: Message
     onBlur?: Message
-  }>
+  }> &
+  AnchorPositioningConfig<Message>
 
 const resolvedSide = (config: Pick<SelectOptions, 'side'>): SelectSide =>
   config.side ?? defaultSide
@@ -479,6 +489,34 @@ const placementAttributes = <Message>(
   ),
 ]
 
+const positionArea = (
+  config: Pick<SelectOptions, 'align' | 'side'>,
+): string => {
+  const align = resolvedAlign(config)
+  const side = resolvedSide(config)
+  const inlineAlignments = {
+    start: 'span-inline-start',
+    center: 'center',
+    end: 'span-inline-end',
+  }
+  const blockAlignments = {
+    start: 'span-block-start',
+    center: 'center',
+    end: 'span-block-end',
+  }
+
+  if (side === 'top') {
+    return `block-start ${inlineAlignments[align]}`
+  }
+  if (side === 'bottom') {
+    return `block-end ${inlineAlignments[align]}`
+  }
+  if (side === 'left' || side === 'inline-start') {
+    return `inline-start ${blockAlignments[align]}`
+  }
+  return `inline-end ${blockAlignments[align]}`
+}
+
 const rootAttributes = <Message>(
   h: ReturnType<typeof html<Message>>,
   config: ViewConfig<Message>,
@@ -521,6 +559,7 @@ const triggerAttributes = <Message>(
   h.AriaExpanded(config.open),
   h.AriaControls(popupId(config)),
   h.AriaLabelledBy(valueId(config)),
+  h.Style({ anchorName: rootAnchorName(config) }),
   ...(config.highlightedValue === undefined
     ? []
     : [
@@ -606,6 +645,7 @@ const positionerAttributes = <Message>(
         ...placementAttributes(h, config),
         h.Style({
           position: 'absolute',
+          positionAnchor: rootAnchorName(config),
           inset: 'auto',
           margin: '0',
         }),
@@ -677,6 +717,7 @@ const popupAttributes = <Message>(
 ): SelectPartAttributes<Message> => ({
   root: mounted
     ? [
+        h.Key(`${popupId(config)}-${config.open ? 'open' : 'closed'}`),
         h.Id(popupId(config)),
         h.Popover('manual'),
         h.Role('listbox'),
@@ -690,6 +731,43 @@ const popupAttributes = <Message>(
           'align-trigger',
           String(config.alignItemWithTrigger ?? defaultAlignItemWithTrigger),
         ),
+        ...(config.open && config.onPositioned !== undefined
+          ? [
+              h.OnMount(
+                Mount.mapMessage(
+                  PositionAnchoredSurface({
+                    id: popupId(config),
+                    anchorId: triggerId(config),
+                    placement: anchorPlacement(
+                      resolvedSide(config),
+                      resolvedAlign(config),
+                    ),
+                    gap: config.sideOffset ?? defaultSideOffset,
+                    offset: config.alignOffset ?? defaultAlignOffset,
+                    padding: config.collisionPadding ?? defaultCollisionPadding,
+                    collisionAvoidance:
+                      config.collisionAvoidance ?? defaultCollisionAvoidance,
+                  }),
+                  config.onPositioned,
+                ),
+              ),
+            ]
+          : []),
+        h.Style({
+          display: 'block',
+          position: config.onPositioned === undefined ? 'fixed' : 'absolute',
+          ...(config.onPositioned === undefined
+            ? {
+                positionAnchor: rootAnchorName(config),
+                positionArea: positionArea(config),
+              }
+            : { inset: 'auto' }),
+          margin: '0',
+          ...(config.onPositioned === undefined &&
+          (config.collisionAvoidance ?? defaultCollisionAvoidance)
+            ? { positionTryFallbacks: 'flip-inline, flip-block' }
+            : {}),
+        }),
         h.OnKeyDownPreventDefault((key, modifiers) =>
           popupKeyboardMessage(config, key, modifiers),
         ),
@@ -790,6 +868,16 @@ const hiddenInputAttributes = <Message>(
       ]
 
 export const view = <Message>(config: ViewConfig<Message>): Html => {
+  if (
+    config.onOpenChange !== undefined &&
+    config.onPositioned === undefined &&
+    config.positioning !== 'static'
+  ) {
+    throw new Error(
+      'Interactive Select positioning requires an onPositioned Message mapper.',
+    )
+  }
+
   const h = html<Message>()
   const mounted = isMounted(config)
 

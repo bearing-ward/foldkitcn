@@ -117,6 +117,7 @@ const viewSelect =
     const h = html<Message>()
 
     return Select.view<Message>({
+      positioning: 'static',
       id: 'fruit-select',
       items: fruitItems,
       open: model.open,

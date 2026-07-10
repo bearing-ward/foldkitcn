@@ -629,6 +629,7 @@ import {
   TypographySmall,
   TypographyTable,
 } from './registry/shadcn/typography/examples'
+import type { AnchorPositioningMessage } from './utils/anchor-positioning'
 
 export type LiveExampleContext<Message> = Readonly<{
   inputValueFor: (example: ExampleDocsArtifact, defaultValue: string) => string
@@ -819,6 +820,7 @@ export type LiveExampleContext<Message> = Readonly<{
     overlayId: string,
     change: Readonly<{ open: boolean }>,
   ) => Message
+  onPositionedSurface: (message: AnchorPositioningMessage) => Message
   menuIsOpenFor: (
     example: ExampleDocsArtifact,
     menuId: string,
@@ -1508,6 +1510,7 @@ const groupedSelectExample = (
       ...(config.dir === undefined ? {} : { dir: config.dir }),
       onOpenChange: change => context.onSelectOpenChange(example, change),
       onValueChange: change => context.onSelectValueChange(example, change),
+      onPositioned: context.onPositionedSurface,
       toView: attributes =>
         h.div(
           [...attributes.root, h.Class('relative')],
@@ -2520,6 +2523,7 @@ const dataTableExample = (
           },
           change,
         ),
+      onPositioned: context.onPositionedSurface,
       ...(onDataTableMessage === undefined
         ? {}
         : {
@@ -2621,6 +2625,7 @@ const overlayController = <Message>(
     overlayId: string,
     change: Readonly<{ open: boolean }>,
   ): Message => context.onOverlayOpenChange(example, overlayId, change),
+  onPositioned: context.onPositionedSurface,
 })
 
 const dropdownMenuExample = (
@@ -2653,6 +2658,7 @@ const dropdownMenuExample = (
         context.onMenuCheckedChange(example, menuId, change),
       onRadioValueChange: (menuId, change) =>
         context.onMenuRadioValueChange(example, menuId, change),
+      onPositioned: context.onPositionedSurface,
     }),
 })
 
@@ -2672,6 +2678,7 @@ const tableActionsExample = (
             ? { parentValue: press.value }
             : {}),
         }),
+      onPositioned: context.onPositionedSurface,
     }),
 })
 
@@ -2803,6 +2810,7 @@ const buttonGroupSelectExample = (
         context.onSelectOpenChange(example, change),
       onValueChange: (_selectId, change) =>
         context.onSelectValueChange(example, change),
+      onPositioned: context.onPositionedSurface,
     }),
 })
 
@@ -2830,6 +2838,7 @@ const bubbleExample = (view: BubbleExampleView): LiveExampleDefinition => ({
             }),
       toastState: context.toastStateFor(example),
       onBubbleMessage: message => context.onBubbleMessage(example, message),
+      onPositioned: context.onPositionedSurface,
     }),
 })
 
@@ -2849,6 +2858,7 @@ const sidebarExample = (
         context.sidebarSelectedValueFor(example, panelId, defaultValue),
       onSelectedValueChange: change =>
         context.onSidebarSelectedValueChange(example, change),
+      onPositioned: context.onPositionedSurface,
     }),
 })
 

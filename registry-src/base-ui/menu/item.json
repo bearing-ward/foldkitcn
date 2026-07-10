@@ -53,6 +53,12 @@
   "dependencies": {
     "registry": [
       {
+        "specifier": "utils/anchor-positioning",
+        "classification": "registry-local",
+        "target": "utils/anchor-positioning",
+        "reason": "Menu and submenus use the shared Foldkit lifecycle adapter for origin-equivalent anchored geometry."
+      },
+      {
         "specifier": "base-ui/popover",
         "classification": "registry-local",
         "target": "base-ui/popover",

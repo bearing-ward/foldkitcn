@@ -68,6 +68,7 @@ const viewTooltip =
     const h = html<Message>()
 
     return Tooltip.view<Message>({
+      positioning: 'static',
       id: 'library-tooltip',
       open: model.open,
       activeTriggerId: model.activeTriggerId,

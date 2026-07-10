@@ -2,6 +2,7 @@ import { Schema as S } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningConfig } from '../../../utils/anchor-positioning'
 import { cn } from '../../../utils/cn'
 import * as BaseTooltip from '../../base-ui/tooltip'
 
@@ -65,12 +66,13 @@ export type TooltipPartAttributes<Message> =
 
 export type ViewConfig<Message> = Omit<
   BaseTooltip.ViewConfig<Message>,
-  'toView'
+  'onPositioned' | 'positioning' | 'toView'
 > &
   TooltipStyleOptions &
   Readonly<{
     toView?: (attributes: TooltipAttributes<Message>) => Html
-  }>
+  }> &
+  AnchorPositioningConfig<Message>
 
 const positionerBaseClassName = 'isolate z-50'
 

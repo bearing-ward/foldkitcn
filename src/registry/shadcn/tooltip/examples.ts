@@ -1,6 +1,7 @@
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Button from '../button'
 import * as Kbd from '../kbd'
 import { view as Tooltip } from './index'
@@ -9,6 +10,7 @@ import type { TooltipOpenChange, TooltipSide } from './index'
 export type TooltipExampleController<Message> = Readonly<{
   openFor?: (tooltipId: string, defaultOpen: boolean) => boolean
   onOpenChange?: (tooltipId: string, change: TooltipOpenChange) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 const isOpenFor = <Message>(
@@ -54,6 +56,9 @@ const tooltipShell = <Message>(
     ...(onOpenChange === undefined
       ? {}
       : { onOpenChange: change => onOpenChange(config.id, change) }),
+    ...(controller.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     side: config.side,
     dir: config.dir,
     contentClassName: config.contentClassName,

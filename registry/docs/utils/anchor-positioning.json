@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "itemId": "utils/anchor-positioning",
+  "routePath": "/components/utils/anchor-positioning",
+  "title": "Anchor Positioning",
+  "description": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+  "docsStatus": "missing",
+  "markdownPath": null,
+  "markdown": null,
+  "headings": [],
+  "installCommand": "bunx shadcn@latest add @foldkitcn/utils-anchor-positioning",
+  "localInstallPath": "src/utils",
+  "defaultImportPath": "utils/anchor-positioning",
+  "sourceRoot": "registry-src/utils/anchor-positioning",
+  "installableSourcePaths": ["src/utils/anchor-positioning.ts"],
+  "sourceFiles": [
+    {
+      "path": "src/utils/anchor-positioning.ts",
+      "content": "import {\n  autoUpdate,\n  computePosition,\n  flip,\n  offset as floatingOffset,\n  shift,\n  size,\n} from '@floating-ui/dom'\nimport type { Placement } from '@floating-ui/dom'\nimport { Effect, Function, Schema as S } from 'effect'\nimport { Mount } from 'foldkit'\nimport { m } from 'foldkit/message'\n\n/** Floating UI placement values accepted by the shared anchor lifecycle. */\nexport const AnchorPlacement = S.Literals([\n  'top',\n  'right',\n  'bottom',\n  'left',\n  'top-start',\n  'top-end',\n  'right-start',\n  'right-end',\n  'bottom-start',\n  'bottom-end',\n  'left-start',\n  'left-end',\n])\nexport type AnchorPlacement = typeof AnchorPlacement.Type\n\n/** Acknowledges that an anchored surface acquired its positioning lifecycle. */\nexport const CompletedPositionAnchoredSurface = m(\n  'CompletedPositionAnchoredSurface',\n  { id: S.String },\n)\nexport type AnchorPositioningMessage =\n  typeof CompletedPositionAnchoredSurface.Type\n\n/**\n * Makes interactive positioning explicit while allowing inert documentation\n * fixtures to opt into CSS-only static rendering.\n */\nexport type AnchorPositioningConfig<Message> =\n  | Readonly<{\n      onPositioned: (message: AnchorPositioningMessage) => Message\n      positioning?: 'floating-ui'\n    }>\n  | Readonly<{\n      onPositioned?: never\n      positioning: 'static'\n    }>\n\n/** Converts Base UI side/alignment values into Floating UI placement syntax. */\nexport const anchorPlacement = (\n  side: 'bottom' | 'inline-end' | 'inline-start' | 'left' | 'right' | 'top',\n  align: 'center' | 'end' | 'start',\n): AnchorPlacement => {\n  if (side === 'inline-start') {\n    return align === 'center' ? 'left' : `left-${align}`\n  }\n\n  if (side === 'inline-end') {\n    return align === 'center' ? 'right' : `right-${align}`\n  }\n\n  return align === 'center' ? side : `${side}-${align}`\n}\n\nconst resolvedSideAndAlign = (\n  placement: Placement,\n): Readonly<{ side: string; align: string }> => {\n  const [side, align = 'center'] = placement.split('-')\n  return { side: side ?? 'bottom', align }\n}\n\nconst setupAnchorPositioning = (\n  config: Readonly<{\n    anchorId: string\n    placement: AnchorPlacement\n    gap: number\n    offset: number\n    padding: number\n    collisionAvoidance: boolean\n  }>,\n  element: Element,\n): (() => void) => {\n  const root = element.getRootNode()\n  const owner = root instanceof ShadowRoot ? root : document\n  const anchor = owner.querySelector(`#${CSS.escape(config.anchorId)}`)\n\n  if (!(anchor instanceof HTMLElement) || !(element instanceof HTMLElement)) {\n    return Function.constVoid\n  }\n\n  element.style.position = 'absolute'\n  element.style.inset = 'auto'\n  element.style.margin = '0'\n  element.style.visibility = 'hidden'\n\n  let isActive = true\n  let isFirstUpdate = true\n  const cleanup = autoUpdate(anchor, element, () => {\n    const updatePosition = async (): Promise<void> => {\n      try {\n        const { x, y, placement } = await computePosition(anchor, element, {\n          placement: config.placement,\n          strategy: 'absolute',\n          middleware: [\n            floatingOffset({ mainAxis: config.gap, crossAxis: config.offset }),\n            ...(config.collisionAvoidance\n              ? [\n                  flip({ padding: config.padding }),\n                  shift({ padding: config.padding }),\n                  size({\n                    padding: config.padding,\n                    apply({ availableHeight, availableWidth }) {\n                      if (isActive) {\n                        element.style.maxHeight = `${availableHeight}px`\n                        element.style.maxWidth = `${availableWidth}px`\n                      }\n                    },\n                  }),\n                ]\n              : []),\n          ],\n        })\n\n        if (isActive) {\n          const { side, align } = resolvedSideAndAlign(placement)\n          element.style.left = `${x}px`\n          element.style.top = `${y}px`\n          element.dataset.side = side\n          element.dataset.align = align\n\n          if (isFirstUpdate) {\n            isFirstUpdate = false\n            element.style.visibility = ''\n          }\n        }\n      } catch {\n        if (isActive) {\n          element.style.visibility = ''\n        }\n      }\n    }\n\n    void updatePosition()\n  })\n\n  return () => {\n    isActive = false\n    cleanup()\n  }\n}\n\n/** Lifecycle-scoped Floating UI positioning for one anchored surface. */\nexport const PositionAnchoredSurface = Mount.define(\n  'PositionAnchoredSurface',\n  {\n    id: S.String,\n    anchorId: S.String,\n    placement: AnchorPlacement,\n    gap: S.Number,\n    offset: S.Number,\n    padding: S.Number,\n    collisionAvoidance: S.Boolean,\n  },\n  CompletedPositionAnchoredSurface,\n)(\n  config => element =>\n    Effect.gen(function* positionAnchoredSurface() {\n      yield* Effect.acquireRelease(\n        Effect.sync(() => setupAnchorPositioning(config, element)),\n        cleanup => Effect.sync(cleanup),\n      )\n      return CompletedPositionAnchoredSurface({ id: config.id })\n    }),\n)\n"
+    }
+  ],
+  "originProvenance": [],
+  "dependencies": {
+    "registry": [],
+    "runtime": [
+      {
+        "specifier": "@floating-ui/dom",
+        "classification": "allowed-runtime",
+        "target": "npm:@floating-ui/dom",
+        "reason": "Measures anchors and applies origin-equivalent flip, shift, offset, and size middleware."
+      },
+      {
+        "specifier": "effect",
+        "classification": "allowed-runtime",
+        "target": "npm:effect",
+        "reason": "Provides Schema and scoped resource composition."
+      },
+      {
+        "specifier": "foldkit",
+        "classification": "allowed-runtime",
+        "target": "npm:foldkit",
+        "reason": "Provides the lifecycle-scoped Mount and message boundary."
+      }
+    ],
+    "development": []
+  },
+  "examples": [],
+  "quality": {
+    "availability": "installable",
+    "implementationStatus": "implemented",
+    "parityStatus": "waived",
+    "driftStatus": "current",
+    "deviations": []
+  }
+}

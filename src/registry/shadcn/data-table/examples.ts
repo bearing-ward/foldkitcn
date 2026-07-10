@@ -3,6 +3,7 @@ import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 
+import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Badge from '../badge'
 import * as Button from '../button'
 import * as Card from '../card'
@@ -142,6 +143,7 @@ export type DataTableExampleController<Message> = Readonly<{
     selectId: string,
     change: Select.SelectOpenChange,
   ) => Message
+  onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
 
 // DATA
@@ -758,6 +760,9 @@ const columnVisibilityMenu = <Message, Row>(
     ...(onMenuOpenChange === undefined
       ? {}
       : { onOpenChange: change => onMenuOpenChange(menuId, change) }),
+    ...(controller.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     ...(onDataTableMessage === undefined
       ? {}
       : {
@@ -837,6 +842,9 @@ const rowsPerPageSelect = <Message>(
       : {
           onOpenChange: change => onSelectOpenChange(selectId, change),
         }),
+    ...(controller.onPositioned === undefined
+      ? { positioning: 'static' as const }
+      : { onPositioned: controller.onPositioned }),
     ...(onDataTableMessage === undefined
       ? {}
       : {

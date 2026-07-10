@@ -349,7 +349,7 @@ const runtimeSourcePathsForItem = (
 ): ReadonlyArray<string> =>
   entry.item.installableSourcePaths.filter(
     sourcePath =>
-      sourcePath.endsWith('/index.ts') || sourcePath === 'src/utils/cn.ts',
+      sourcePath.endsWith('/index.ts') || entry.item.kind === 'utility',
   )
 
 const dropTsExtension = (path: string): string =>
