@@ -92,8 +92,6 @@ const virtualModuleAliases = new Map([
     'use-sync-external-store/shim/with-selector',
     useSyncExternalStoreWithSelectorShimModuleId,
   ],
-  ['@/styles/base-nova/ui/popover', popoverShimModuleId],
-  ['@/styles/base-nova/ui-rtl/popover', popoverShimModuleId],
   ['@/styles/base-nova/ui/select', selectShimModuleId],
   ['@/styles/base-nova/ui/tooltip', tooltipShimModuleId],
   ['@/styles/base-nova/ui-rtl/tooltip', tooltipShimModuleId],
@@ -101,6 +99,18 @@ const virtualModuleAliases = new Map([
 ])
 
 const sourcePathAliases = new Map([
+  [
+    '@/styles/base-nova/ui/popover',
+    'repos/ui/apps/v4/styles/base-nova/ui/popover.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui-rtl/popover',
+    'repos/ui/apps/v4/styles/base-nova/ui-rtl/popover.tsx',
+  ],
+  [
+    '@/styles/base-nova/ui/calendar',
+    'repos/ui/apps/v4/styles/base-nova/ui/calendar.tsx',
+  ],
   [
     '@/styles/base-nova/ui/slider',
     'repos/ui/apps/v4/styles/base-nova/ui/slider.tsx',

@@ -7,6 +7,11 @@ export interface ShadcnOriginCaseMetadata {
 export const shadcnOriginCaseMetadata: ReadonlyArray<ShadcnOriginCaseMetadata> =
   [
     {
+      id: 'date-picker-demo',
+      title: 'Date Picker demo',
+      originFilePath: 'repos/ui/apps/v4/examples/base/date-picker-demo.tsx',
+    },
+    {
       id: 'aspect-ratio-demo',
       title: 'Aspect Ratio demo',
       originFilePath: 'repos/ui/apps/v4/examples/base/aspect-ratio-demo.tsx',

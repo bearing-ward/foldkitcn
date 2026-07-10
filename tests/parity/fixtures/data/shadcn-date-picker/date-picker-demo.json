@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "itemId": "shadcn/date-picker",
+  "caseId": "date-picker-demo",
+  "originSourcePath": "repos/ui/apps/v4/examples/base/date-picker-demo.tsx",
+  "tabs": [],
+  "selectedValue": "",
+  "orientation": "horizontal",
+  "listVariant": "",
+  "disabledValues": []
+}
