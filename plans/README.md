@@ -140,7 +140,7 @@ honor its STOP conditions, and update your row when done.
 | 131 | Roll out native anchoring to overlay primitives | P1 | L | 130 | DONE (`5dc9ffb8`, merged by `bc8cd9ca`) |
 | 132 | Add the Data Table parity contract | P1 | M | 128 | TODO |
 | 133 | Add the Date Picker parity contract | P1 | M | 128 | TODO |
-| 134 | Formalize Typography docs-only parity | P2 | S | 128 | TODO |
+| 134 | Formalize Typography docs-only parity | P2 | S | 128 | DONE |
 | 135 | Resolve public mobile overflow | P1 | L | 128 | TODO |
 | 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | IN PROGRESS |
 

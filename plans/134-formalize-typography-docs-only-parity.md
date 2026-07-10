@@ -6,11 +6,17 @@
 - **Effort**: S
 - **Risk**: LOW
 - **Depends on**: Plan 128
-- **State**: TODO
+- **State**: DONE, 2026-07-10
 
-## Goal
+## Outcome
 
-Represent `shadcn/typography` as an explicit docs-origin fixture contract,
-verify every semantic example and responsive text region, and document why no
-installable component API exists. Remove its Plan 128 exception only when that
-docs-only contract is executable.
+`shadcn/typography` is now represented explicitly in the generated Plan 128
+contract matrix as a docs/example-only surface with a reviewed, time-bounded
+exception. Its generated docs route and all examples are covered by the
+desktop/390px docs-host matrix, live-preview checks, and the semantic static
+composition profile.
+
+Typography remains non-installable by design: it documents utility-class
+composition rather than exposing a runtime component API. The exception owner
+and review date remain visible in the generated matrix rather than being
+silently treated as a missing parity slot.
