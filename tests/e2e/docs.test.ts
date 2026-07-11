@@ -17,6 +17,31 @@ playwrightTest.beforeEach(async ({ page }) => {
   await installAdditionalExamplesAutoReveal(page)
 })
 
+playwrightTest(
+  'global shell links project sources and repository',
+  async ({ page }) => {
+    await page.goto('/')
+
+    await playwrightExpect(
+      page.getByRole('link', { name: 'Foldkit CN on GitHub' }),
+    ).toHaveAttribute('href', 'https://github.com/bearing-ward/foldkitcn')
+    await playwrightExpect(
+      page.getByRole('link', { name: 'Foldkit', exact: true }),
+    ).toHaveAttribute('href', 'https://foldkit.dev/')
+    await playwrightExpect(
+      page.getByRole('link', { name: 'shadcn' }),
+    ).toHaveAttribute('href', 'https://ui.shadcn.com/')
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    await playwrightExpect(
+      page.getByRole('link', { name: 'Foldkit CN on GitHub' }),
+    ).toBeVisible()
+    await playwrightExpect(
+      page.getByRole('button', { name: 'Toggle navigation' }),
+    ).toBeVisible()
+  },
+)
+
 const expectNoHeaderMainOverlap = async (page: Page) => {
   await page.evaluate(() => {
     window.scrollTo(0, 0)

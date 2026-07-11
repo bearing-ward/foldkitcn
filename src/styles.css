@@ -178,6 +178,7 @@ body {
 
 .brand-link,
 .desktop-nav,
+.header-actions,
 .action-row,
 .meta-list div {
   display: flex;
@@ -214,6 +215,22 @@ body {
   gap: 0.2rem;
 }
 
+.header-actions {
+  gap: 0.5rem;
+}
+
+.github-link {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  color: var(--shell-muted);
+}
+
+.github-link:hover {
+  color: var(--shell-text);
+}
+
 .docs-nav-link {
   padding: 0.55rem 0.75rem;
   color: var(--shell-muted);
@@ -240,6 +257,18 @@ body {
 
 .mobile-nav {
   display: none;
+}
+
+.site-footer {
+  padding: 1.25rem clamp(1rem, 4vw, 2rem) 2rem;
+  border-top: 1px solid var(--shell-border);
+  color: var(--shell-muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
 }
 
 .docs-sidebar-toggle {
