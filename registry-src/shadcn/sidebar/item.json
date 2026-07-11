@@ -205,7 +205,9 @@
       "description": "Controlled sidebar shell example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarControlled"
+      "previewExportName": "SidebarControlled",
+      "distinguishes": "Controlled sidebar shell example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-demo",
@@ -213,7 +215,9 @@
       "description": "Full sidebar shell with groups, badges, tooltip, and footer account menu.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarDemo"
+      "previewExportName": "SidebarDemo",
+      "distinguishes": "Full sidebar shell with groups, badges, tooltip, and footer account menu.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-footer",
@@ -221,7 +225,9 @@
       "description": "Footer-focused sidebar shell example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarFooter"
+      "previewExportName": "SidebarFooter",
+      "distinguishes": "Footer-focused sidebar shell example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-group-action",
@@ -229,7 +235,9 @@
       "description": "Sidebar group action example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarGroupAction"
+      "previewExportName": "SidebarGroupAction",
+      "distinguishes": "Sidebar group action example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-group-collapsible",
@@ -237,7 +245,9 @@
       "description": "Collapsible sidebar group example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarGroupCollapsible"
+      "previewExportName": "SidebarGroupCollapsible",
+      "distinguishes": "Collapsible sidebar group example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-header",
@@ -245,7 +255,9 @@
       "description": "Header-focused sidebar shell example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarHeader"
+      "previewExportName": "SidebarHeader",
+      "distinguishes": "Header-focused sidebar shell example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-menu-action",
@@ -253,7 +265,9 @@
       "description": "Menu action example with a dropdown menu trigger.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarMenuAction"
+      "previewExportName": "SidebarMenuAction",
+      "distinguishes": "Menu action example with a dropdown menu trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-menu-badge",
@@ -261,7 +275,9 @@
       "description": "Menu badge example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarMenuBadge"
+      "previewExportName": "SidebarMenuBadge",
+      "distinguishes": "Menu badge example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-menu-collapsible",
@@ -269,7 +285,9 @@
       "description": "Collapsible menu and submenu example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarMenuCollapsible"
+      "previewExportName": "SidebarMenuCollapsible",
+      "distinguishes": "Collapsible menu and submenu example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-menu-sub",
@@ -277,7 +295,9 @@
       "description": "Nested submenu example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarMenuSub"
+      "previewExportName": "SidebarMenuSub",
+      "distinguishes": "Nested submenu example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-menu",
@@ -285,7 +305,9 @@
       "description": "Basic sidebar menu example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarMenu"
+      "previewExportName": "SidebarMenu",
+      "distinguishes": "Basic sidebar menu example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-rsc",
@@ -293,7 +315,9 @@
       "description": "Server-style sidebar example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarRsc"
+      "previewExportName": "SidebarRsc",
+      "distinguishes": "Server-style sidebar example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sidebar-rtl",
@@ -301,7 +325,9 @@
       "description": "RTL sidebar example.",
       "sourcePath": "src/registry/shadcn/sidebar/examples.ts",
       "kind": "demo",
-      "previewExportName": "SidebarRtl"
+      "previewExportName": "SidebarRtl",
+      "distinguishes": "RTL sidebar example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -345,5 +371,10 @@
       "status": "accepted",
       "rationale": "Global listeners hidden in view code are forbidden here. Keyboard shortcut facts must be explicit model or command boundary events."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn sidebar shell built from local shell, menu, tooltip, collapsible, sheet, avatar, and input primitives with explicit parent-controlled state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

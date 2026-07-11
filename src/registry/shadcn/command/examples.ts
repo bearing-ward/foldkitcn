@@ -24,8 +24,10 @@ type CommandExampleDefinition = Readonly<{
 export type CommandDialogExampleController<Message> = Readonly<{
   id?: string
   isOpen?: boolean
+  query?: string
   onOpen?: Message
   onOpenChange?: (change: DialogOpenChange) => Message
+  onQueryChange?: (value: string) => Message
 }>
 
 type IconName =
@@ -244,39 +246,74 @@ const commandGroup = (
     children: group.items.map(item => commandItem(item, config)),
   })
 
-const commandMenu = (
+const commandMenu = <Message = never>(
   groups: ReadonlyArray<CommandGroupDefinition>,
   config: Readonly<{
     dir?: 'rtl'
     placeholder?: string
     empty?: string
     className?: string
+    query?: string
+    onQueryChange?: (value: string) => Message
+    isAutofocus?: boolean
   }> = {},
-): Html =>
-  Command<never>({
+): Html => {
+  const normalizedQuery = (config.query ?? '').trim().toLowerCase()
+  const filteredGroups = groups
+    .map(group => ({
+      ...group,
+      items: group.items.filter(item =>
+        item.label.toLowerCase().includes(normalizedQuery),
+      ),
+    }))
+    .filter(group => group.items.length > 0)
+
+  return Command<Message>({
     className: config.className ?? 'max-w-sm rounded-lg border',
     ...(config.dir === undefined ? {} : { dir: config.dir }),
     children: [
-      CommandInput<never>({
+      CommandInput<Message>({
         placeholder: config.placeholder ?? 'Type a command or search...',
+        value: config.query ?? '',
+        isAutofocus: config.isAutofocus ?? false,
+        ...(config.onQueryChange === undefined
+          ? {}
+          : { onQueryChange: config.onQueryChange }),
         ...(config.dir === undefined ? {} : { dir: config.dir }),
       }),
-      CommandList<never>({
-        children: [
-          CommandEmpty<never>({
-            children: [config.empty ?? 'No results found.'],
-          }),
-          ...groups.flatMap((group, index) => [
-            ...(index === 0 ? [] : [CommandSeparator<never>()]),
-            commandGroup(
-              group,
-              config.dir === undefined ? {} : { dir: config.dir },
-            ),
-          ]),
-        ],
+      CommandList<Message>({
+        children:
+          filteredGroups.length === 0
+            ? [
+                CommandEmpty<Message>({
+                  children: [config.empty ?? 'No results found.'],
+                }),
+              ]
+            : filteredGroups.flatMap((group, index) => [
+                ...(index === 0 ? [] : [CommandSeparator<never>()]),
+                commandGroup(
+                  group,
+                  config.dir === undefined ? {} : { dir: config.dir },
+                ),
+              ]),
       }),
     ],
   })
+}
+
+const commandMenuControllerConfig = <Message>(
+  controller: CommandDialogExampleController<Message> | undefined,
+): Readonly<{
+  query: string
+  onQueryChange?: (value: string) => Message
+  isAutofocus: boolean
+}> => ({
+  query: controller?.query ?? '',
+  isAutofocus: true,
+  ...(controller?.onQueryChange === undefined
+    ? {}
+    : { onQueryChange: controller.onQueryChange }),
+})
 
 const openMenuButton = <Message = never>(
   controller?: CommandDialogExampleController<Message>,
@@ -334,16 +371,19 @@ export const CommandBasic = <Message = never>(
     [
       openMenuButton(controller),
       commandDialogShell(controller, [
-        commandMenu([
-          {
-            heading: 'Suggestions',
-            items: [
-              { label: 'Calendar' },
-              { label: 'Search Emoji' },
-              { label: 'Calculator' },
-            ],
-          },
-        ]),
+        commandMenu<Message>(
+          [
+            {
+              heading: 'Suggestions',
+              items: [
+                { label: 'Calendar' },
+                { label: 'Search Emoji' },
+                { label: 'Calculator' },
+              ],
+            },
+          ],
+          commandMenuControllerConfig(controller),
+        ),
       ]),
     ],
   )
@@ -378,7 +418,10 @@ export const CommandDialogDemo = <Message = never>(
     [
       shortcutHint,
       commandDialogShell(controller, [
-        commandMenu([commandSuggestions, commandSettings]),
+        commandMenu<Message>(
+          [commandSuggestions, commandSettings],
+          commandMenuControllerConfig(controller),
+        ),
       ]),
     ],
   )
@@ -389,12 +432,22 @@ export const CommandWithGroups = <Message = never>(
 ): Html =>
   commandButtonDialogExample(
     controller,
-    commandMenu([commandSuggestions, commandSettings]),
+    commandMenu<Message>(
+      [commandSuggestions, commandSettings],
+      commandMenuControllerConfig(controller),
+    ),
   )
 
 export const CommandManyItems = <Message = never>(
   controller?: CommandDialogExampleController<Message>,
-): Html => commandButtonDialogExample(controller, CommandManyItemsMenu())
+): Html =>
+  commandButtonDialogExample(
+    controller,
+    commandMenu<Message>(
+      manyCommandGroups,
+      commandMenuControllerConfig(controller),
+    ),
+  )
 
 export const CommandRtl = (): Html => {
   const { dir, values } = arabicCommand
@@ -429,12 +482,15 @@ export const CommandWithShortcuts = <Message = never>(
 ): Html =>
   commandButtonDialogExample(
     controller,
-    commandMenu([
-      {
-        heading: 'Settings',
-        items: commandSettings.items,
-      },
-    ]),
+    commandMenu<Message>(
+      [
+        {
+          heading: 'Settings',
+          items: commandSettings.items,
+        },
+      ],
+      commandMenuControllerConfig(controller),
+    ),
   )
 
 export const commandExampleViews: ReadonlyArray<CommandExampleDefinition> = [

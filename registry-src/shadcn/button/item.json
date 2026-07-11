@@ -135,98 +135,126 @@
       "title": "ButtonDefault",
       "description": "Default shadcn Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default shadcn Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-demo",
       "title": "ButtonDemo",
       "description": "Outline Button and icon Button demo.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Outline Button and icon Button demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-outline",
       "title": "ButtonOutline",
       "description": "Outline variant Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Outline variant Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-secondary",
       "title": "ButtonSecondary",
       "description": "Secondary variant Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Secondary variant Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-ghost",
       "title": "ButtonGhost",
       "description": "Ghost variant Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Ghost variant Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-destructive",
       "title": "ButtonDestructive",
       "description": "Destructive variant Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Destructive variant Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-link",
       "title": "ButtonLink",
       "description": "Link variant Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Link variant Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-icon",
       "title": "ButtonIcon",
       "description": "Icon-sized Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Icon-sized Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-with-icon",
       "title": "ButtonWithIcon",
       "description": "Inline start and end icon Button examples.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline start and end icon Button examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-size",
       "title": "ButtonSize",
       "description": "Button size matrix example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button size matrix example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-rounded",
       "title": "ButtonRounded",
       "description": "Rounded Button example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Rounded Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-spinner",
       "title": "ButtonSpinner",
       "description": "Disabled Button examples using an example-local spinner helper.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Button examples using an example-local spinner helper.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-render",
       "title": "ButtonRender",
       "description": "Plain anchor using the shadcn Button class helper.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Plain anchor using the shadcn Button class helper.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-rtl",
       "title": "ButtonRtl",
       "description": "RTL Button layout example.",
       "sourcePath": "src/registry/shadcn/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Button layout example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -259,5 +287,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on lucide-react or @tabler/icons-react. Local SVGs preserve the inline icon DOM role and visual footprint for Button examples without adding icon registry items."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Button wrapper using local Base UI Button behavior and pure class maps.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

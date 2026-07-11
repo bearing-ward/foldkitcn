@@ -136,49 +136,63 @@
       "title": "AlertDialogDemo",
       "description": "Default confirmation alert dialog.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default confirmation alert dialog.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-basic",
       "title": "AlertDialogBasic",
       "description": "Basic account deletion confirmation alert dialog.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic account deletion confirmation alert dialog.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-destructive",
       "title": "AlertDialogDestructive",
       "description": "Destructive chat deletion confirmation with media icon.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Destructive chat deletion confirmation with media icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-media",
       "title": "AlertDialogWithMedia",
       "description": "Project sharing confirmation with media icon.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Project sharing confirmation with media icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-small",
       "title": "AlertDialogSmall",
       "description": "Small accessory connection confirmation.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small accessory connection confirmation.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-small-media",
       "title": "AlertDialogSmallWithMedia",
       "description": "Small accessory confirmation with media icon.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small accessory confirmation with media icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/alert-dialog-rtl",
       "title": "AlertDialogRtl",
       "description": "RTL alert dialog pair with deterministic local translations.",
       "sourcePath": "src/registry/shadcn/alert-dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL alert dialog pair with deterministic local translations.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -237,5 +251,10 @@
       "status": "accepted",
       "rationale": "lucide-react is not an installable runtime dependency for this registry item."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Alert Dialog wrapper composed from the local Base UI Alert Dialog primitive, shadcn Button classes, shadcn slot classes, local class canonicalization, inline icon markup, and deterministic local examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

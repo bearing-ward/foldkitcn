@@ -156,5 +156,10 @@
       "status": "accepted",
       "rationale": "Plan 055 focuses on modal lifecycle reuse, structure, direction, ARIA, data attributes, and parity fixtures. Touch gesture physics would require a broader interaction subsystem."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Drawer primitive composed from the local Dialog lifecycle, preserving model-owned open state, modal commands, focus and dismiss behavior, Drawer popup/content data attributes, placement direction, and model-owned indent activity.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

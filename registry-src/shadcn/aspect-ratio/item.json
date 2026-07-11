@@ -96,28 +96,36 @@
       "title": "AspectRatioDemo",
       "description": "Landscape image inside a 16:9 ratio box.",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Landscape image inside a 16:9 ratio box.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/aspect-ratio-portrait",
       "title": "AspectRatioPortrait",
       "description": "Portrait image inside a 9:16 ratio box.",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Portrait image inside a 9:16 ratio box.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/aspect-ratio-rtl",
       "title": "AspectRatioRtl",
       "description": "RTL figure with a 16:9 ratio box and Arabic caption.",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL figure with a 16:9 ratio box and Arabic caption.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/aspect-ratio-square",
       "title": "AspectRatioSquare",
       "description": "Square image inside a 1:1 ratio box.",
       "sourcePath": "src/registry/shadcn/aspect-ratio/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Square image inside a 1:1 ratio box.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -150,5 +158,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on Next. The fixture shim and Foldkit examples preserve the rendered img element, classes, source, alt text, ratio box DOM, dimensions, and computed styles relevant to Aspect Ratio parity."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Aspect Ratio helper using a CSS ratio variable and cn.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

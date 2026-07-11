@@ -29,5 +29,10 @@
     "availability": "private",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Private preview fixture used to validate the registry foundation.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

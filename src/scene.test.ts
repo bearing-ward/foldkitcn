@@ -1122,7 +1122,7 @@ describe(view, () => {
         ),
       ),
       Scene.expect(Scene.role('heading', { name: 'Button' })).toExist(),
-      Scene.expect(Scene.selector('#overview')).toExist(),
+      Scene.expect(Scene.selector('#foldkit-port')).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Installation' })).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Usage' })).toExist(),
       Scene.expect(Scene.role('heading', { name: 'Examples' })).toExist(),
@@ -2065,6 +2065,7 @@ describe(view, () => {
         menuId: 'dropdown-menu-submenu',
         open: true,
         parentValue: 'invite',
+        ancestorValues: [],
       }),
     )
     const [afterSubmenuNestedOpen] = update(
@@ -2074,6 +2075,7 @@ describe(view, () => {
         menuId: 'dropdown-menu-submenu',
         open: true,
         parentValue: 'more-options',
+        ancestorValues: ['invite'],
       }),
     )
     const [afterOtherMenuOpen] = update(
@@ -2082,6 +2084,7 @@ describe(view, () => {
         exampleId: 'shadcn/context-menu-basic',
         menuId: 'context-menu-basic',
         open: true,
+        ancestorValues: [],
       }),
     )
     const [afterDropdownChecked] = update(
@@ -2372,6 +2375,7 @@ describe(view, () => {
         exampleId: 'shadcn/table-actions',
         menuId: 'table-actions-wireless-mouse',
         open: true,
+        ancestorValues: [],
       }),
     )
     const [afterSidebarOpen] = update(
@@ -2380,6 +2384,7 @@ describe(view, () => {
         exampleId: 'shadcn/sidebar-menu-action',
         menuId: 'menu-action:Design Engineering',
         open: true,
+        ancestorValues: [],
       }),
     )
 

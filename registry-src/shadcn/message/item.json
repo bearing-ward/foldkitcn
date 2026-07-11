@@ -144,49 +144,63 @@
       "title": "MessageDemo",
       "description": "Basic conversation with avatars, bubbles, grouped replies, footer metadata, and a typing marker.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic conversation with avatars, bubbles, grouped replies, footer metadata, and a typing marker.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-group",
       "title": "MessageGroupDemo",
       "description": "Grouped consecutive messages from the same sender.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped consecutive messages from the same sender.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-avatar",
       "title": "MessageAvatarDemo",
       "description": "Messages with sender avatars and grouped assistant responses.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Messages with sender avatars and grouped assistant responses.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-header-footer",
       "title": "MessageHeaderFooterDemo",
       "description": "Header and footer metadata around message bubbles.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Header and footer metadata around message bubbles.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-actions",
       "title": "MessageActionsDemo",
       "description": "Footer action buttons for copy, feedback, and retry controls.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Footer action buttons for copy, feedback, and retry controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-attachment",
       "title": "MessageAttachmentDemo",
       "description": "Message composition with image and document attachments.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Message composition with image and document attachments.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-markdown",
       "title": "MessageMarkdownDemo",
       "description": "Static markdown-style assistant response inside a ghost bubble.",
       "sourcePath": "src/registry/shadcn/message/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static markdown-style assistant response inside a ghost bubble.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -211,5 +225,10 @@
       "status": "accepted",
       "rationale": "Installable Foldkit source cannot use lucide-react or the origin Markdown runtime. The local examples preserve the message surfaces with pure Foldkit Html, local primitives, inline SVGs, and static markdown-style content."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Message composition over local Attachment, Avatar, Bubble, Button, Marker, and cn helpers with grouped rows, avatar placement, metadata, actions, attachments, and static markdown-style examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

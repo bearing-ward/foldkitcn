@@ -344,6 +344,7 @@ export const CommandInputStyleOptions = S.Struct({
   className: S.optional(S.String),
   wrapperClassName: S.optional(S.String),
   dir: S.optional(S.String),
+  isAutofocus: S.optional(S.Boolean),
 })
 export type CommandInputStyleOptions = typeof CommandInputStyleOptions.Type
 
@@ -463,10 +464,10 @@ const commandDialogShellStyle = {
 export const commandInputWrapperBaseClassName = 'p-1 pb-0'
 
 export const commandInputGroupBaseClassName =
-  'h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:pl-2!'
+  'h-8! rounded-lg! border-input/30 bg-input/30 shadow-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 *:data-[slot=input-group-addon]:pl-2!'
 
 export const commandInputGroupRtlBaseClassName =
-  'h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:ps-2!'
+  'h-8! rounded-lg! border-input/30 bg-input/30 shadow-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 *:data-[slot=input-group-addon]:ps-2!'
 
 export const commandInputBaseClassName =
   'w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50'
@@ -651,6 +652,7 @@ const commandInputAttributes = <Message>(
     h.AriaExpanded(true),
     h.AriaAutocomplete('list'),
     h.Type('text'),
+    h.Autofocus(config.isAutofocus ?? false),
     h.Value(config.value ?? ''),
     h.Class(commandInputClassName()),
     ...optionalAttribute<Message>(config.placeholder, value =>
@@ -780,16 +782,12 @@ export const CommandInput = <Message>(
           dir: config.dir,
         }),
         dir: config.dir,
-        toView: () =>
-          h.div(
-            [...attributes.inputGroup],
-            [
-              InputGroup.InputGroupAddon<Message>({
-                children: [searchIcon<Message>()],
-              }),
-              h.input([...attributes.input]),
-            ],
-          ),
+        children: [
+          h.input([...attributes.input]),
+          InputGroup.InputGroupAddon<Message>({
+            children: [searchIcon<Message>()],
+          }),
+        ],
       }),
     ],
   )

@@ -219,126 +219,162 @@
       "title": "InputGroupDemo",
       "description": "Search Input Group with start and end addons.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Search Input Group with start and end addons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-basic",
       "title": "InputGroupBasic",
       "description": "Basic, disabled, and invalid Input Group states.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic, disabled, and invalid Input Group states.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-inline-start",
       "title": "InputGroupInlineStart",
       "description": "Inline-start icon addon.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline-start icon addon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-inline-end",
       "title": "InputGroupInlineEnd",
       "description": "Inline-end icon addon.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline-end icon addon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-block-start",
       "title": "InputGroupBlockStart",
       "description": "Block-start input and textarea addons.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Block-start input and textarea addons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-block-end",
       "title": "InputGroupBlockEnd",
       "description": "Block-end input and textarea addons.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Block-end input and textarea addons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-with-buttons",
       "title": "InputGroupWithButtons",
       "description": "Input Group controls with inline buttons.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group controls with inline buttons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-button-group",
       "title": "InputGroupButtonGroup",
       "description": "Input Group nested inside Button Group text affordances.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group nested inside Button Group text affordances.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-dropdown",
       "title": "InputGroupDropdown",
       "description": "Input Group with local dropdown trigger affordances.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group with local dropdown trigger affordances.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-icon",
       "title": "InputGroupIcon",
       "description": "Input Groups with icon addons.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Groups with icon addons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-kbd",
       "title": "InputGroupKbd",
       "description": "Input Group with Kbd addon.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group with Kbd addon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-label",
       "title": "InputGroupLabel",
       "description": "Input Group with inline and block labels.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group with inline and block labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-text",
       "title": "InputGroupTextExample",
       "description": "Text addons around inputs and textareas.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Text addons around inputs and textareas.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-textarea",
       "title": "InputGroupTextareaExample",
       "description": "Textarea Input Group with block header and footer controls.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Textarea Input Group with block header and footer controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-in-card",
       "title": "InputGroupInCard",
       "description": "Input Group composed inside a local Card.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group composed inside a local Card.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-with-kbd",
       "title": "InputGroupWithKbd",
       "description": "Input Group with keyboard shortcut groups.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group with keyboard shortcut groups.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-spinner",
       "title": "InputGroupSpinner",
       "description": "Input Group examples with local Spinner and custom LoaderIcon affordances.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group examples with local Spinner and custom LoaderIcon affordances.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group-rtl",
       "title": "InputGroupRtl",
       "description": "RTL Input Group with deterministic local labels.",
       "sourcePath": "src/registry/shadcn/input-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Input Group with deterministic local labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -397,5 +433,10 @@
       "status": "accepted",
       "rationale": "Autosize behavior is not required for the installable Input Group contract and would need a separate local behavior foundation."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Input Group helper with Effect Schema addon alignment, grouped controls, text, buttons, input and textarea affordances, and local examples composed from existing shadcn registry controls.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

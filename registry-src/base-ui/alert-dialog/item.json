@@ -143,5 +143,10 @@
       "status": "accepted",
       "rationale": "Alert Dialog should present a confirmation surface; destructive and success behavior belongs in the consuming Foldkit model and update."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Alert Dialog primitive composed from the local Dialog foundation with forced modality, alertdialog popup semantics, model-owned open state, disabled outside dismissal, cancel/close facts, and consumer-owned action facts.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

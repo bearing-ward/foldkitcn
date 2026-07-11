@@ -4,6 +4,11 @@
   "routePath": "/components/utils/anchor-positioning",
   "title": "Anchor Positioning",
   "description": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+  "distinguishes": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

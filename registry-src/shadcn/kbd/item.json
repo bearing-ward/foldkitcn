@@ -122,14 +122,18 @@
       "title": "KbdButton",
       "description": "Outline Button with inline end Kbd.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Outline Button with inline end Kbd.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/kbd-demo",
       "title": "KbdDemo",
       "description": "Grouped modifier and shortcut Kbd examples.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped modifier and shortcut Kbd examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/kbd-group",
@@ -137,28 +141,36 @@
       "description": "Inline KbdGroup in muted text.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
       "previewExportName": "KbdGroupExample",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline KbdGroup in muted text.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/kbd-input-group",
       "title": "KbdInputGroup",
       "description": "Static Input Group shell with search icon and Kbd shortcut.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static Input Group shell with search icon and Kbd shortcut.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/kbd-rtl",
       "title": "KbdRtl",
       "description": "RTL grouped Kbd layout example with local direction constants.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL grouped Kbd layout example with local direction constants.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/kbd-tooltip",
       "title": "KbdTooltip",
       "description": "Static Tooltip shell examples with inline Kbd shortcuts.",
       "sourcePath": "src/registry/shadcn/kbd/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static Tooltip shell examples with inline Kbd shortcuts.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -217,5 +229,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Kbd and KbdGroup helpers using cn.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

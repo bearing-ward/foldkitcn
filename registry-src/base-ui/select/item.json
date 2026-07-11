@@ -171,5 +171,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not an ad hoc Select render helper side effect."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Select primitive preserving model-owned open, value, and highlighted-item state, popup/listbox ARIA, keyboard navigation, typeahead, grouping, labels, separators, scroll controls, selected and disabled item data attributes, deterministic placement attributes, and hidden form input wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

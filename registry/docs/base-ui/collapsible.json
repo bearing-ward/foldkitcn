@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/collapsible",
   "title": "Collapsible",
   "description": "Foldkit-native Base UI Collapsible primitive preserving model-owned open state, trigger activation, ARIA expanded and controls relationships, root/trigger/panel state data attributes, disabled trigger behavior, and panel mounting policy.",
+  "distinguishes": "Foldkit-native Base UI Collapsible primitive preserving model-owned open state, trigger activation, ARIA expanded and controls relationships, root/trigger/panel state data attributes, disabled trigger behavior, and panel mounting policy.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

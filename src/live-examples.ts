@@ -869,6 +869,7 @@ export type LiveExampleContext<Message> = Readonly<{
     example: ExampleDocsArtifact,
     menuId: string,
     change: Readonly<{
+      ancestorValues?: ReadonlyArray<string> | undefined
       open: boolean
       parentValue?: string | undefined
     }>,
@@ -1242,6 +1243,12 @@ export type LiveExampleSliderConfig = Readonly<{
 }>
 
 export const liveExampleSliderConfigs = {
+  'progress-controlled-live': {
+    id: 'progress-controlled-live',
+    defaultValues: [50],
+    max: 100,
+    step: 1,
+  },
   'slider-controlled-live': {
     id: 'slider-controlled-live',
     defaultValues: [0.3, 0.7],
@@ -1342,13 +1349,13 @@ const sliderExample = (
             context.onSliderValueChange(example, config.id, change),
           toView: attributes =>
             h.div(
-              [...attributes.root],
+              [
+                ...attributes.root,
+                h.Attribute('data-live-example-slider-control', config.id),
+              ],
               [
                 h.div(
-                  [
-                    ...attributes.control,
-                    h.Attribute('data-live-example-slider-control', config.id),
-                  ],
+                  [...attributes.control],
                   [
                     h.div(
                       [...attributes.track],
@@ -1381,7 +1388,10 @@ const progressControlledExample = (): LiveExampleDefinition => ({
     const value = values[0] ?? 50
 
     return h.div(
-      [h.Class('mx-auto grid w-full max-w-xs gap-3')],
+      [
+        h.Attribute('data-live-example-slider-example-id', example.id),
+        h.Class('mx-auto grid w-full max-w-xs gap-3'),
+      ],
       [
         h.div(
           [h.Class('flex items-center justify-between gap-2 text-sm')],
@@ -1396,18 +1406,35 @@ const progressControlledExample = (): LiveExampleDefinition => ({
           max: 100,
           step: 1,
           className: 'w-full',
-          controlRect: {
-            left: 0,
-            right: 320,
-            bottom: 160,
-            width: 320,
-            height: 160,
-          },
           onValueChange: change =>
             context.onSliderValueChange(
               example,
               'progress-controlled-live',
               change,
+            ),
+          toView: attributes =>
+            h.div(
+              [
+                ...attributes.root,
+                h.Attribute(
+                  'data-live-example-slider-control',
+                  'progress-controlled-live',
+                ),
+              ],
+              [
+                h.div(
+                  [...attributes.control],
+                  [
+                    h.div(
+                      [...attributes.track],
+                      [h.div([...attributes.indicator], [])],
+                    ),
+                    ...attributes.thumbs.map(thumb =>
+                      h.div([...thumb.root], [h.input([...thumb.input])]),
+                    ),
+                  ],
+                ),
+              ],
             ),
         }),
         ProgressView<Message>({
@@ -2380,9 +2407,11 @@ const commandDialogExample = (
     view({
       id: context.commandDialogIdFor(example),
       isOpen: context.commandDialogIsOpenFor(example),
+      query: context.inputValueFor(example, ''),
       onOpen: context.onCommandDialogOpen(example),
       onOpenChange: change =>
         context.onCommandDialogOpenChange(example, change),
+      onQueryChange: value => context.onInputValueChange(example, { value }),
     }),
 })
 

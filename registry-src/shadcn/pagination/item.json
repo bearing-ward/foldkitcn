@@ -128,28 +128,36 @@
       "title": "PaginationDemo",
       "description": "Default Pagination with previous, numbered pages, current page, ellipsis, and next controls.",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default Pagination with previous, numbered pages, current page, ellipsis, and next controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/pagination-icons-only",
       "title": "PaginationIconsOnly",
       "description": "Pagination paired with local Field and Select rows-per-page controls.",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Pagination paired with local Field and Select rows-per-page controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/pagination-rtl",
       "title": "PaginationRtl",
       "description": "RTL Pagination using local Arabic strings and numerals instead of the origin language selector runtime.",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Pagination using local Arabic strings and numerals instead of the origin language selector runtime.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/pagination-simple",
       "title": "PaginationSimple",
       "description": "Simple Pagination with numbered page links only.",
       "sourcePath": "src/registry/shadcn/pagination/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Simple Pagination with numbered page links only.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -208,5 +216,10 @@
       "status": "accepted",
       "rationale": "The selected dependencies are already local registry items and preserve the documented example without introducing upstream runtime dependencies."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Pagination helpers with navigation/list semantics, current-page state, previous and next controls, ellipsis, disabled link state, local inline icons, and local button/field/select composition.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

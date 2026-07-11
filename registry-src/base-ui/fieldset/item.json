@@ -127,5 +127,10 @@
       "status": "accepted",
       "rationale": "Root and Legend render deterministic markup, and this matches the existing static-fixture pattern for behavior primitives while pinned origin source remains available in repos/base-ui."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Fieldset primitive preserving native fieldset disabled behavior, explicit legend association, parent-disabled propagation, and root/legend data attributes without hidden runtime state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

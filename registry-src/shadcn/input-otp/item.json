@@ -126,70 +126,90 @@
       "title": "InputOTPDemo",
       "description": "Default six-slot OTP example with a complete value.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default six-slot OTP example with a complete value.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-separator",
       "title": "InputOTPSeparatorExample",
       "description": "Grouped OTP slots with separator glyphs.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped OTP slots with separator glyphs.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-disabled",
       "title": "InputOTPDisabled",
       "description": "Disabled grouped OTP example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled grouped OTP example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-alphanumeric",
       "title": "InputOTPAlphanumeric",
       "description": "Alphanumeric OTP validation example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Alphanumeric OTP validation example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-four-digits",
       "title": "InputOTPFourDigits",
       "description": "Four digit numeric OTP example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Four digit numeric OTP example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-invalid",
       "title": "InputOTPInvalid",
       "description": "Invalid OTP state example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid OTP state example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-pattern",
       "title": "InputOTPPattern",
       "description": "Field-labeled numeric OTP pattern example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Field-labeled numeric OTP pattern example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-controlled",
       "title": "InputOTPControlled",
       "description": "Model-owned controlled value example.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Model-owned controlled value example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-rtl",
       "title": "InputOTPRtl",
       "description": "RTL OTP example using local static labels.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL OTP example using local static labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-otp-form",
       "title": "InputOTPForm",
       "description": "Verification form example with local Field, Button, and static Card shell.",
       "sourcePath": "src/registry/shadcn/input-otp/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Verification form example with local Field, Button, and static Card shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -248,5 +268,10 @@
       "status": "accepted",
       "rationale": "shadcn/card is not present in this registry yet. Static local Card markup preserves the example structure without expanding the component slice."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Input OTP wrapper composed from the local Base UI OTP Field primitive and shadcn class tokens for container, group, slot, separator, and examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -126,42 +126,54 @@
       "title": "ToggleDemo",
       "description": "Bookmark Toggle demo with outline styling and a local icon.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Bookmark Toggle demo with outline styling and a local icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/toggle-disabled",
       "title": "ToggleDisabled",
       "description": "Disabled default and outline Toggle examples.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled default and outline Toggle examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/toggle-outline",
       "title": "ToggleOutline",
       "description": "Outline Toggle examples with local formatting icons.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Outline Toggle examples with local formatting icons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/toggle-rtl",
       "title": "ToggleRtl",
       "description": "RTL Toggle layout using local Arabic text.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Toggle layout using local Arabic text.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/toggle-sizes",
       "title": "ToggleSizes",
       "description": "Small, default, and large outline Toggle examples.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small, default, and large outline Toggle examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/toggle-text",
       "title": "ToggleText",
       "description": "Default text Toggle example with a local icon.",
       "sourcePath": "src/registry/shadcn/toggle/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default text Toggle example with a local icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -205,5 +217,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Toggle wrapper using the local Base UI Toggle primitive, Effect Schema variant and size literals, and pure class maps.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

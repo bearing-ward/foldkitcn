@@ -92,5 +92,10 @@
     "availability": "installable",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit-native Base UI Toggle primitive preserving controlled pressed state, aria-pressed, data-pressed, disabled behavior, and keyboard activation through the local Button conventions.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

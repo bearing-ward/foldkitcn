@@ -158,5 +158,10 @@
       "status": "accepted",
       "rationale": "Foldkit side effects belong in Commands, not render helpers. The primitive preserves scrub parts and data attributes, and exposes pure step helpers for scrub-driven value changes."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Number Field primitive preserving model-owned numeric/text state, deterministic parsing and formatting, clamping, stepping, keyboard increments, form value semantics, grouped controls, scrub parts, and origin data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

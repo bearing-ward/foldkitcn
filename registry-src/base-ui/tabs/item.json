@@ -130,5 +130,10 @@
       "status": "accepted",
       "rationale": "Installable Foldkit render helpers are pure. DOM measurement belongs in a consumer command or runtime boundary, while the primitive still exposes the origin indicator attributes and CSS variable names."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Tabs primitive preserving model-owned selected and highlighted values, root/list/tab/panel/indicator attributes, manual and automatic activation, orientation, disabled tabs, keyboard navigation, and panel mounting policy.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

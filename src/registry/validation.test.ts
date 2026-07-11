@@ -62,6 +62,8 @@ const makeManifest = ({
   name: id,
   kind: 'component',
   description: `${id} test fixture`,
+  distinguishes: `Distinguishes the ${id} test fixture.`,
+  behaviorExpectations: ['examples-render-without-errors'],
   sourceRoot,
   installableSourcePaths,
   consumedThemeTokens: [],
@@ -71,7 +73,11 @@ const makeManifest = ({
     runtime: dependencies?.runtime ?? [],
     development: dependencies?.development ?? [],
   },
-  examples: examples ?? [],
+  examples: (examples ?? []).map(example => ({
+    ...example,
+    distinguishes: `Distinguishes the ${example.title} fixture.`,
+    behaviorExpectations: ['renders-without-errors'],
+  })),
   parity: parity ?? {
     itemId: id,
     originFixturePath: '',

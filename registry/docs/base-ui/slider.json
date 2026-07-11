@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/slider",
   "title": "Slider",
   "description": "Foldkit-native Base UI Slider primitive preserving controlled value arrays, deterministic normalization, clamping, step rounding, keyboard increments, pointer geometry helpers, orientation, direction, multi-thumb ordering, data attributes, and native range input form semantics.",
+  "distinguishes": "Foldkit-native Base UI Slider primitive preserving controlled value arrays, deterministic normalization, clamping, step rounding, keyboard increments, pointer geometry helpers, orientation, direction, multi-thumb ordering, data attributes, and native range input form semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

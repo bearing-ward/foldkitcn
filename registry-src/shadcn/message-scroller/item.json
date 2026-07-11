@@ -174,35 +174,45 @@
       "title": "MessageScrollerDemo",
       "description": "Basic pinned chat viewport with deterministic turns and composer.",
       "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic pinned chat viewport with deterministic turns and composer.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-scroller-scrollable",
       "title": "MessageScrollerScrollable",
       "description": "Unpinned reader state with unread marker and active scroll button.",
       "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Unpinned reader state with unread marker and active scroll button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-scroller-load-history",
       "title": "MessageScrollerLoadHistory",
       "description": "Previous context and start-direction scroll affordance.",
       "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Previous context and start-direction scroll affordance.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-scroller-opening-position",
       "title": "MessageScrollerOpeningPosition",
       "description": "Opening-position fixture with the most recent exchange in view.",
       "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Opening-position fixture with the most recent exchange in view.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/message-scroller-empty",
       "title": "MessageScrollerEmpty",
       "description": "Empty conversation state using local Empty helpers.",
       "sourcePath": "src/registry/shadcn/message-scroller/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Empty conversation state using local Empty helpers.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -229,5 +239,10 @@
       "status": "accepted",
       "rationale": "Installable Foldkit source cannot depend on React interop, AI SDK network behavior, or animation runtime. The local item preserves origin slots and user-visible states while keeping scroll side effects in commands."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Message Scroller with model-owned pinned/unread state, explicit scroll commands, chat viewport slots, deterministic examples, and local Message/Bubble/Input Group/Empty composition.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

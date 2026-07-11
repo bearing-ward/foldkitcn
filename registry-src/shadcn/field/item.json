@@ -158,42 +158,54 @@
       "title": "FieldInput",
       "description": "FieldSet, FieldGroup, Field, FieldLabel, Input, and FieldDescription composition.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "FieldSet, FieldGroup, Field, FieldLabel, Input, and FieldDescription composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/field-checkbox",
       "title": "FieldCheckbox",
       "description": "Checkbox, horizontal Field, FieldContent, and FieldSeparator composition.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox, horizontal Field, FieldContent, and FieldSeparator composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/field-fieldset",
       "title": "FieldFieldset",
       "description": "Address FieldSet with legend, description, grouped fields, labels, and inputs.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Address FieldSet with legend, description, grouped fields, labels, and inputs.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/field-responsive",
       "title": "FieldResponsive",
       "description": "Responsive orientation Field with Input and Button composition.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Responsive orientation Field with Input and Button composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/field-rtl",
       "title": "FieldRtl",
       "description": "RTL Field composition using local static strings instead of the origin language selector.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Field composition using local static strings instead of the origin language selector.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/field-textarea",
       "title": "FieldTextarea",
       "description": "Field and Textarea composition.",
       "sourcePath": "src/registry/shadcn/field/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Field and Textarea composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -252,5 +264,10 @@
       "status": "accepted",
       "rationale": "The fixture proves the base-nova slots and class tokens without pulling React, CVA, or app-only dependencies into installable source."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Field composition helpers layered over local Base UI Field semantics with base-nova Field, FieldSet, FieldLegend, FieldGroup, FieldContent, FieldLabel, FieldDescription, FieldSeparator, FieldTitle, and FieldError classes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

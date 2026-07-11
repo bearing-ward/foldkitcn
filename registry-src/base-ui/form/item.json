@@ -139,5 +139,10 @@
       "status": "accepted",
       "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned form root, noValidate default, Field structure, and state attributes while the origin source remains checked in under repos/base-ui."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

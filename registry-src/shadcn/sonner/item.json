@@ -126,28 +126,36 @@
       "title": "SonnerDemo",
       "description": "Basic Sonner trigger example.",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Sonner trigger example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sonner-description",
       "title": "SonnerDescription",
       "description": "Sonner trigger with description text.",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Sonner trigger with description text.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sonner-position",
       "title": "SonnerPosition",
       "description": "Sonner triggers for each viewport position.",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Sonner triggers for each viewport position.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sonner-types",
       "title": "SonnerTypes",
       "description": "Sonner triggers for default, semantic, and promise toast states.",
       "sourcePath": "src/registry/shadcn/sonner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Sonner triggers for default, semantic, and promise toast states.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -181,5 +189,10 @@
       "status": "accepted",
       "rationale": "Installable Foldkit source cannot depend on the upstream Sonner runtime, next-themes, or lucide-react. The local theme attribute and icons preserve the visible notification surface and keep the wrapper installable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Sonner wrapper built on the local Base UI Toast primitive with local classes, theme handling, inline SVG icons, and interactive examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

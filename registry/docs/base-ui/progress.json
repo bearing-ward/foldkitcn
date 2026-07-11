@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/progress",
   "title": "Progress",
   "description": "Foldkit-native Base UI Progress primitive preserving root, label, track, indicator, value, ARIA, state data attributes, value clamping, formatting, and indeterminate semantics.",
+  "distinguishes": "Foldkit-native Base UI Progress primitive preserving root, label, track, indicator, value, ARIA, state data attributes, value clamping, formatting, and indeterminate semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

@@ -122,5 +122,10 @@
       "status": "accepted",
       "rationale": "Foldkit installable source is stateless and serializable. Stable caller-provided IDs preserve the public ARIA relationship without hidden runtime identity state."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Checkbox Group primitive preserving controlled multi-value group semantics, parent checkbox coordination, disabled/read-only/required/invalid states, root and checkbox data attributes, Space keyboard activation, and native checkbox form inputs without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

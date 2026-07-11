@@ -36,6 +36,7 @@ const popoverShell = <Message>(
     dir?: string
     body?: ReadonlyArray<Html>
     defaultOpen?: boolean
+    collisionAvoidance?: boolean
   }>,
   controller: PopoverExampleController<Message>,
 ): Html => {
@@ -54,6 +55,7 @@ const popoverShell = <Message>(
     contentClassName: config.contentClassName,
     titleId: `${config.id}-title`,
     descriptionId: `${config.id}-description`,
+    collisionAvoidance: config.collisionAvoidance,
     toView: attributes =>
       h.div(
         [...attributes.root],
@@ -69,30 +71,32 @@ const popoverShell = <Message>(
           ),
           h.div(
             [...attributes.portal],
-            [
-              h.div([...attributes.backdrop.root], []),
-              h.div(
-                [...attributes.positioner.root],
-                [
+            attributes.popup.isMounted
+              ? [
+                  h.div([...attributes.backdrop.root], []),
                   h.div(
-                    [...attributes.popup.root],
+                    [...attributes.positioner.root],
                     [
                       h.div(
-                        [...attributes.header],
+                        [...attributes.popup.root],
                         [
-                          h.h4([...attributes.title], [config.title]),
-                          h.p(
-                            [...attributes.description],
-                            [config.description],
+                          h.div(
+                            [...attributes.header],
+                            [
+                              h.h4([...attributes.title], [config.title]),
+                              h.p(
+                                [...attributes.description],
+                                [config.description],
+                              ),
+                            ],
                           ),
+                          ...(config.body ?? []),
                         ],
                       ),
-                      ...(config.body ?? []),
                     ],
                   ),
-                ],
-              ),
-            ],
+                ]
+              : [],
           ),
         ],
       ),
@@ -258,6 +262,7 @@ const rtlPopover = <Message>(
       description,
       side,
       dir: 'rtl',
+      collisionAvoidance: false,
     },
     controller,
   )

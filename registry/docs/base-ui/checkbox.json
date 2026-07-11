@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/checkbox",
   "title": "Checkbox",
   "description": "Foldkit-native Base UI Checkbox primitive preserving controlled checked, unchecked, and indeterminate states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyboard activation, and native checkbox form controls without internal state.",
+  "distinguishes": "Foldkit-native Base UI Checkbox primitive preserving controlled checked, unchecked, and indeterminate states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyboard activation, and native checkbox form controls without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

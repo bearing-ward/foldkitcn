@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/fieldset",
   "title": "Fieldset",
   "description": "Foldkit-native Base UI Fieldset primitive preserving native fieldset disabled behavior, explicit legend association, parent-disabled propagation, and root/legend data attributes without hidden runtime state.",
+  "distinguishes": "Foldkit-native Base UI Fieldset primitive preserving native fieldset disabled behavior, explicit legend association, parent-disabled propagation, and root/legend data attributes without hidden runtime state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

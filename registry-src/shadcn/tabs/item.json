@@ -134,42 +134,54 @@
       "title": "TabsDemo",
       "description": "Default Tabs demo with local static card markup.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default Tabs demo with local static card markup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tabs-disabled",
       "title": "TabsDisabled",
       "description": "Tabs list with a disabled trigger.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tabs list with a disabled trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tabs-icons",
       "title": "TabsIcons",
       "description": "Tabs triggers with inline icon slots.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tabs triggers with inline icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tabs-line",
       "title": "TabsLine",
       "description": "Tabs list rendered with the line variant.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tabs list rendered with the line variant.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tabs-rtl",
       "title": "TabsRtl",
       "description": "RTL Tabs demo with local translated labels.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Tabs demo with local translated labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tabs-vertical",
       "title": "TabsVertical",
       "description": "Vertical Tabs list example.",
       "sourcePath": "src/registry/shadcn/tabs/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Vertical Tabs list example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -213,5 +225,10 @@
       "status": "accepted",
       "rationale": "Card and language selector are outside this component slice. Static local markup preserves the relevant Tabs DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Tabs wrapper composed from the local Base UI Tabs primitive, shadcn root/list/trigger/content slots, local class canonicalization, and pure list variant classes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -71,105 +71,135 @@
       "title": "TypographyDemo",
       "description": "A semantic article specimen with headings, paragraphs, blockquote, list, and table utility classes.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "A semantic article specimen with headings, paragraphs, blockquote, list, and table utility classes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-h1",
       "title": "TypographyH1",
       "description": "Heading level one utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Heading level one utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-h2",
       "title": "TypographyH2",
       "description": "Heading level two utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Heading level two utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-h3",
       "title": "TypographyH3",
       "description": "Heading level three utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Heading level three utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-h4",
       "title": "TypographyH4",
       "description": "Heading level four utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Heading level four utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-p",
       "title": "TypographyP",
       "description": "Paragraph utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Paragraph utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-blockquote",
       "title": "TypographyBlockquote",
       "description": "Blockquote utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Blockquote utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-table",
       "title": "TypographyTable",
       "description": "Semantic table utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Semantic table utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-list",
       "title": "TypographyList",
       "description": "Unordered list utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Unordered list utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-inline-code",
       "title": "TypographyInlineCode",
       "description": "Inline code utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline code utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-lead",
       "title": "TypographyLead",
       "description": "Lead paragraph utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Lead paragraph utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-large",
       "title": "TypographyLarge",
       "description": "Large text utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Large text utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-small",
       "title": "TypographySmall",
       "description": "Small text utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small text utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-muted",
       "title": "TypographyMuted",
       "description": "Muted text utility-class example.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Muted text utility-class example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/typography-rtl",
       "title": "TypographyRtl",
       "description": "RTL utility-class example using deterministic local copy.",
       "sourcePath": "src/registry/shadcn/typography/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL utility-class example using deterministic local copy.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -194,5 +224,10 @@
       "status": "waived",
       "rationale": "Origin Typography is documentation and utility-class examples, not a shipped component source file. Foldkit CN mirrors that stance instead of inventing a runtime Typography API."
     }
+  ],
+  "distinguishes": "Docs-only shadcn Typography examples showing utility classes applied directly to semantic HTML; Foldkit CN does not ship default prose styles or an installable Typography helper.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

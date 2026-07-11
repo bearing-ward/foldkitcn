@@ -4,6 +4,11 @@
   "routePath": "/components/utils/cn",
   "title": "cn",
   "description": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "distinguishes": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

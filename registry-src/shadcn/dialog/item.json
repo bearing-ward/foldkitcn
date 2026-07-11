@@ -146,42 +146,54 @@
       "title": "DialogDemo",
       "description": "Profile editing dialog with local static field markup.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Profile editing dialog with local static field markup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dialog-close-button",
       "title": "DialogCloseButton",
       "description": "Share link dialog with static input and footer close button.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Share link dialog with static input and footer close button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dialog-no-close-button",
       "title": "DialogNoCloseButton",
       "description": "Dialog content without the top-right close button.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dialog content without the top-right close button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dialog-scrollable-content",
       "title": "DialogScrollableContent",
       "description": "Dialog with scrollable content body.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dialog with scrollable content body.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dialog-sticky-footer",
       "title": "DialogStickyFooter",
       "description": "Dialog with scrollable content and footer action.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dialog with scrollable content and footer action.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dialog-rtl",
       "title": "DialogRtl",
       "description": "RTL profile dialog with local static translations.",
       "sourcePath": "src/registry/shadcn/dialog/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL profile dialog with local static translations.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -232,5 +244,10 @@
       "status": "accepted",
       "rationale": "lucide-react is not an installable runtime dependency for this registry item."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Dialog wrapper composed from the local Base UI Dialog primitive, shadcn slot classes, local class canonicalization, static close icon markup, and deterministic local examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

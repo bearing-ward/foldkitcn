@@ -430,32 +430,48 @@ const positionerPlacementStyle = (
   }
 }
 
-const positionArea = (
-  config: Pick<PopoverOptions, 'align' | 'side'>,
-): string => {
-  const align = resolvedAlign(config)
+const horizontalPopupPlacementStyle = (
+  config: Pick<PopoverOptions, 'dir' | 'side'>,
+): Readonly<Record<string, string>> => {
   const side = resolvedSide(config)
-  const inlineAlignments = {
-    start: 'span-inline-start',
-    center: 'center',
-    end: 'span-inline-end',
-  }
-  const blockAlignments = {
-    start: 'span-block-start',
-    center: 'center',
-    end: 'span-block-end',
-  }
+  const isRtl = config.dir === 'rtl'
+  const physicalSide = (() => {
+    if (side === 'inline-start') {
+      return isRtl ? 'right' : 'left'
+    }
+    if (side === 'inline-end') {
+      return isRtl ? 'left' : 'right'
+    }
+    return side
+  })()
+  const translate = (() => {
+    if (side === 'inline-start') {
+      return { translate: isRtl ? '100% 0' : '-100% 0' }
+    }
+    if (side === 'inline-end') {
+      return { translate: isRtl ? '-100% 0' : '100% 0' }
+    }
+    return {}
+  })()
 
-  if (side === 'top') {
-    return `block-start ${inlineAlignments[align]}`
+  return {
+    alignSelf: 'anchor-center',
+    justifySelf: physicalSide,
+    positionArea: `${physicalSide} center`,
+    ...translate,
   }
-  if (side === 'bottom') {
-    return `block-end ${inlineAlignments[align]}`
+}
+
+const verticalPopupPlacementStyle = (
+  config: Pick<PopoverOptions, 'side'>,
+): Readonly<Record<string, string>> => {
+  const side = resolvedSide(config)
+
+  return {
+    alignSelf: side === 'top' ? 'end' : 'start',
+    justifySelf: 'anchor-center',
+    positionArea: `${side} center`,
   }
-  if (side === 'left' || side === 'inline-start') {
-    return `inline-start ${blockAlignments[align]}`
-  }
-  return `inline-end ${blockAlignments[align]}`
 }
 
 const positionerAttributes = <Message>(
@@ -532,8 +548,12 @@ const popupAttributes = <Message>(
         h.Style({
           position: 'fixed',
           positionAnchor: rootAnchorName(config),
-          positionArea: positionArea(config),
+          inset: 'auto',
           margin: '0',
+          ...(resolvedSide(config) === 'top' ||
+          resolvedSide(config) === 'bottom'
+            ? verticalPopupPlacementStyle(config)
+            : horizontalPopupPlacementStyle(config)),
           ...((config.collisionAvoidance ?? defaultCollisionAvoidance)
             ? { positionTryFallbacks: 'flip-inline, flip-block' }
             : {}),

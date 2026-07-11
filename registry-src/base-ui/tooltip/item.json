@@ -148,5 +148,10 @@
       "status": "accepted",
       "rationale": "Measured collision handling depends on runtime geometry and should be shared with Popover rather than implemented ad hoc in Tooltip."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Tooltip primitive preserving model-owned open state, trigger hover/focus/press facts, provider delay metadata, deterministic placement attributes, role=tooltip relationships, portal, positioner, popup, viewport, arrow, disabled, detached-trigger, instant, transition, and keyboard-dismiss surfaces.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

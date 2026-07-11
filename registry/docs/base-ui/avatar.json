@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/avatar",
   "title": "Avatar",
   "description": "Foldkit-native Base UI Avatar primitive preserving root, image, fallback, modeled image loading state, status data attributes, native image props, and image load/error message hooks.",
+  "distinguishes": "Foldkit-native Base UI Avatar primitive preserving root, image, fallback, modeled image loading state, status data attributes, native image props, and image load/error message hooks.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

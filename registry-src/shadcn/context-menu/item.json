@@ -128,77 +128,99 @@
       "title": "ContextMenuBasic",
       "description": "Basic browser context menu with a disabled Forward item.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic browser context menu with a disabled Forward item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-checkboxes",
       "title": "ContextMenuCheckboxes",
       "description": "Checkbox context menu items with model-owned checked state.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox context menu items with model-owned checked state.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-demo",
       "title": "ContextMenuDemo",
       "description": "Default browser context menu with shortcuts, submenu, checkbox items, and radio items.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default browser context menu with shortcuts, submenu, checkbox items, and radio items.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-destructive",
       "title": "ContextMenuDestructive",
       "description": "Context menu with destructive item styling.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Context menu with destructive item styling.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-groups",
       "title": "ContextMenuGroups",
       "description": "Grouped context menu items with labels and shortcuts.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped context menu items with labels and shortcuts.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-icons",
       "title": "ContextMenuIcons",
       "description": "Context menu items with local icon slots.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Context menu items with local icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-radio",
       "title": "ContextMenuRadio",
       "description": "Radio context menu items with model-owned selected values.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Radio context menu items with model-owned selected values.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-rtl",
       "title": "ContextMenuRtl",
       "description": "RTL context menu using local deterministic labels.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL context menu using local deterministic labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-shortcuts",
       "title": "ContextMenuShortcuts",
       "description": "Context menu with keyboard shortcut slots.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Context menu with keyboard shortcut slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-sides",
       "title": "ContextMenuSides",
       "description": "Context menu examples for top, right, bottom, and left placement attributes.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Context menu examples for top, right, bottom, and left placement attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/context-menu-submenu",
       "title": "ContextMenuSubmenu",
       "description": "Nested submenu rendered with deterministic submenu placement attributes.",
       "sourcePath": "src/registry/shadcn/context-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Nested submenu rendered with deterministic submenu placement attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -256,5 +278,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Context Menu wrapper composed from the local Base UI Context Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Context Menu demo.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -148,14 +148,18 @@
       "title": "DirectionDemo",
       "description": "LTR login card using explicit direction attributes and local shadcn form controls.",
       "sourcePath": "src/registry/shadcn/direction/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "LTR login card using explicit direction attributes and local shadcn form controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/direction-rtl-card",
       "title": "DirectionRtlCard",
       "description": "RTL login card preserving the shadcn Direction docs preview copy and direction behavior with local deterministic Arabic data.",
       "sourcePath": "src/registry/shadcn/direction/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL login card preserving the shadcn Direction docs preview copy and direction behavior with local deterministic Arabic data.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -198,5 +202,10 @@
       "status": "accepted",
       "rationale": "The Direction row should stay small and must not introduce a new Card registry item or origin language-selector dependency."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Direction helper that replaces the upstream React context provider with explicit direction data, dir attributes, local data-direction attributes, and direction-aware examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

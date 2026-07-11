@@ -6,6 +6,12 @@ import {
 } from '@playwright/test'
 import type { Locator } from '@playwright/test'
 
+import { installAdditionalExamplesAutoReveal } from './additional-examples'
+
+playwrightTest.beforeEach(async ({ page }) => {
+  await installAdditionalExamplesAutoReveal(page)
+})
+
 const visibleBox = async (locator: Locator) => {
   const box = await locator.boundingBox()
 
@@ -514,6 +520,66 @@ playwrightTest(
     await expectBoxInside(edgeCard, edgePreview)
     await expectBoxInside(scrollRegion, edgePreview)
     await expectScrollable(scrollRegion)
+  },
+)
+
+playwrightTest(
+  'command dialogs use the viewport and keep the search input in one row',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/command')
+
+    const preview = page.getByLabel('CommandBasic live preview')
+    await preview.getByRole('button', { name: 'Open Menu' }).click()
+
+    const dialog = page.locator('dialog[open]')
+    const popup = dialog.locator('[data-slot="dialog-content"]')
+    const inputGroup = dialog.locator('[data-slot="input-group"]')
+    const input = dialog.locator('[data-slot="command-input"]')
+    const searchIcon = dialog.locator('[data-slot="input-group-addon"] svg')
+    const dialogBox = await visibleBox(dialog)
+    const groupBox = await visibleBox(inputGroup)
+    const inputBox = await visibleBox(input)
+    const searchIconBox = await visibleBox(searchIcon)
+
+    playwrightExpect(dialogBox).toStrictEqual({
+      x: 0,
+      y: 0,
+      width: 1280,
+      height: 900,
+    })
+    playwrightExpect(inputBox.y).toBeGreaterThanOrEqual(groupBox.y)
+    playwrightExpect(inputBox.y + inputBox.height).toBeLessThanOrEqual(
+      groupBox.y + groupBox.height,
+    )
+    playwrightExpect(
+      Math.abs(
+        inputBox.y +
+          inputBox.height / 2 -
+          (searchIconBox.y + searchIconBox.height / 2),
+      ),
+    ).toBeLessThanOrEqual(1)
+    playwrightExpect(inputBox.width).toBeGreaterThan(groupBox.width * 0.75)
+    await playwrightExpect(input).toBeFocused()
+    playwrightExpect(
+      await input.evaluate(element => getComputedStyle(element).outlineStyle),
+    ).toBe('none')
+    playwrightExpect(
+      await inputGroup.evaluate(element => getComputedStyle(element).boxShadow),
+    ).not.toBe('none')
+
+    await playwrightExpect(dialog.getByText('No results found.')).toHaveCount(0)
+    playwrightExpect((await visibleBox(popup)).height).toBeLessThanOrEqual(320)
+
+    await input.fill('not-a-command')
+    await playwrightExpect(dialog.getByText('No results found.')).toBeVisible()
+    await playwrightExpect(dialog.getByText('Suggestions')).toHaveCount(0)
+    await playwrightExpect(dialog.getByText('Calendar')).toHaveCount(0)
+
+    await input.fill('cal')
+    await playwrightExpect(dialog.getByText('No results found.')).toHaveCount(0)
+    await playwrightExpect(dialog.getByText('Calendar')).toBeVisible()
+    await playwrightExpect(dialog.getByText('Search Emoji')).toHaveCount(0)
   },
 )
 

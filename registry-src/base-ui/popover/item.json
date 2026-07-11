@@ -148,5 +148,10 @@
       "status": "accepted",
       "rationale": "Foldkit currently provides scroll lock, focus, and dialog-specific modal helpers, but this registry item does not have a shared non-dialog focus-trap or pointer-isolation command primitive. The 'trap-focus' mode is therefore command-facing and explicit rather than hidden inside render helpers."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Popover primitive preserving model-owned open state, trigger/open/close facts, deterministic modal and placement attributes, popup ARIA relationships, command-facing focus and scroll-lock helpers, backdrop, arrow, and title/description wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

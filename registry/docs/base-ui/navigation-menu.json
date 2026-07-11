@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/navigation-menu",
   "title": "Navigation Menu",
   "description": "Foldkit-native Base UI Navigation Menu primitive preserving model-owned value/open state, trigger/list keyboard navigation, link active state, portal, positioner, popup, viewport, content, icon, arrow, backdrop, transition, activation-direction, ARIA, and deterministic placement attributes.",
+  "distinguishes": "Foldkit-native Base UI Navigation Menu primitive preserving model-owned value/open state, trigger/list keyboard navigation, link active state, portal, positioner, popup, viewport, content, icon, arrow, backdrop, transition, activation-direction, ARIA, and deterministic placement attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

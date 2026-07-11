@@ -109,5 +109,10 @@
       "status": "accepted",
       "rationale": "Foldkit render helpers are stateless and do not use hidden mutable context; callers provide a stable labelId so root aria-labelledby and label id remain explicit and deterministic."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Progress primitive preserving root, label, track, indicator, value, ARIA, state data attributes, value clamping, formatting, and indeterminate semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/menubar",
   "title": "Menubar",
   "description": "Foldkit-native Base UI Menubar primitive composed from the local Menu foundation, adding model-owned top-level menu selection, menubar root ARIA, horizontal and vertical trigger navigation, hover handoff while open, disabled propagation, and trigger roving focus metadata without duplicating Menu item, submenu, checkbox, radio, popup, or typeahead behavior.",
+  "distinguishes": "Foldkit-native Base UI Menubar primitive composed from the local Menu foundation, adding model-owned top-level menu selection, menubar root ARIA, horizontal and vertical trigger navigation, hover handoff while open, disabled propagation, and trigger roving focus metadata without duplicating Menu item, submenu, checkbox, radio, popup, or typeahead behavior.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

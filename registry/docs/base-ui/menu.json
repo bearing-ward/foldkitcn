@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/menu",
   "title": "Menu",
   "description": "Foldkit-native Base UI Menu primitive preserving model-owned open, submenu, highlighted, checked, and radio state, popup/menu ARIA, local keyboard navigation, typeahead, disabled items, grouping, separators, arrows, deterministic placement attributes, and dismiss events.",
+  "distinguishes": "Foldkit-native Base UI Menu primitive preserving model-owned open, submenu, highlighted, checked, and radio state, popup/menu ARIA, local keyboard navigation, typeahead, disabled items, grouping, separators, arrows, deterministic placement attributes, and dismiss events.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

@@ -162,77 +162,99 @@
       "title": "ItemDemo",
       "description": "Basic Item and render-as-anchor verified Item examples.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Item and render-as-anchor verified Item examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-avatar",
       "title": "ItemAvatar",
       "description": "Item examples that compose local Avatar and Button helpers.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Item examples that compose local Avatar and Button helpers.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-dropdown",
       "title": "ItemDropdown",
       "description": "Closed dropdown trigger example matching the origin Item dropdown preview root.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Closed dropdown trigger example matching the origin Item dropdown preview root.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-group",
       "title": "ItemGroupExample",
       "description": "Grouped people list using ItemGroup, ItemMedia, ItemContent, and ItemActions.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped people list using ItemGroup, ItemMedia, ItemContent, and ItemActions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-header",
       "title": "ItemHeaderDemo",
       "description": "Card-like Item grid with image headers.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Card-like Item grid with image headers.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-icon",
       "title": "ItemIcon",
       "description": "Icon media Item with an action Button.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Icon media Item with an action Button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-image",
       "title": "ItemImage",
       "description": "Linked music list Items with image media and secondary content.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Linked music list Items with image media and secondary content.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-link",
       "title": "ItemLink",
       "description": "Item rendered as internal and external anchors through toView.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Item rendered as internal and external anchors through toView.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-rtl",
       "title": "ItemRtl",
       "description": "RTL Item example using local Arabic strings instead of the origin language selector.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Item example using local Arabic strings instead of the origin language selector.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-size",
       "title": "ItemSizeDemo",
       "description": "Default, small, and extra-small Item size examples.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default, small, and extra-small Item size examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/item-variant",
       "title": "ItemVariant",
       "description": "Default, outline, and muted Item variant examples.",
       "sourcePath": "src/registry/shadcn/item/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default, outline, and muted Item variant examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -283,5 +305,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Item structural helpers with Schema-backed variant, size, and media metadata plus local class maps.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -48,5 +48,10 @@
     "availability": "installable",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit lifecycle adapter for Floating UI anchored-surface geometry and collision handling.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

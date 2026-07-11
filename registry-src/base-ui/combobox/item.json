@@ -160,5 +160,10 @@
       "status": "accepted",
       "rationale": "The local primitive preserves the origin filtering contract without importing React hooks or hiding query state outside the Foldkit model."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Combobox primitive preserving model-owned open, query, value, selected values, highlighted item, highlighted chip, filtering, popup/listbox ARIA, empty state, groups, chips, chip removal, disabled and readonly states, deterministic placement attributes, and hidden form input wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

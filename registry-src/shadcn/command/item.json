@@ -137,49 +137,95 @@
       "title": "CommandDemo",
       "description": "Static Command menu with suggestions, disabled item, settings group, shortcuts, and local inline icons.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static Command menu with suggestions, disabled item, settings group, shortcuts, and local inline icons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/command-basic",
       "title": "CommandBasic",
       "description": "Closed CommandDialog trigger matching the origin default visible surface.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Closed CommandDialog trigger matching the origin default visible surface.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "filters-to-empty-state",
+        "focuses-input-on-open",
+        "viewport-command-dialog"
+      ]
     },
     {
       "id": "shadcn/command-dialog",
       "title": "CommandDialogDemo",
       "description": "Keyboard shortcut hint for opening a closed CommandDialog.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Keyboard shortcut hint for opening a closed CommandDialog.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden"
+      ]
     },
     {
       "id": "shadcn/command-groups",
       "title": "CommandWithGroups",
       "description": "Closed grouped CommandDialog trigger.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Closed grouped CommandDialog trigger.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "filters-to-empty-state",
+        "focuses-input-on-open",
+        "viewport-command-dialog"
+      ]
     },
     {
       "id": "shadcn/command-scrollable",
       "title": "CommandManyItems",
       "description": "Closed scrollable CommandDialog trigger for a many-item command palette.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Closed scrollable CommandDialog trigger for a many-item command palette.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "filters-to-empty-state",
+        "focuses-input-on-open",
+        "viewport-command-dialog"
+      ]
     },
     {
       "id": "shadcn/command-rtl",
       "title": "CommandRtl",
       "description": "RTL Command menu using local Arabic strings instead of the origin language selector runtime.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Command menu using local Arabic strings instead of the origin language selector runtime.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/command-shortcuts",
       "title": "CommandWithShortcuts",
       "description": "Closed shortcut-focused CommandDialog trigger.",
       "sourcePath": "src/registry/shadcn/command/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Closed shortcut-focused CommandDialog trigger.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "filters-to-empty-state",
+        "focuses-input-on-open",
+        "viewport-command-dialog"
+      ]
     }
   ],
   "parity": {
@@ -237,5 +283,10 @@
       "status": "accepted",
       "rationale": "Origin examples initialize CommandDialog as closed. The Foldkit examples preserve that visible default and test open behavior through the component API."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Command helpers with local query state, filtering, keyboard highlight movement, selection, dialog composition, shortcuts, empty state, and deterministic examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

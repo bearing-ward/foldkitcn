@@ -145,28 +145,36 @@
       "title": "CalendarDemo",
       "description": "Single-date Calendar with selected date, today state, border, and dropdown-style caption.",
       "sourcePath": "src/registry/shadcn/calendar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Single-date Calendar with selected date, today state, border, and dropdown-style caption.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/calendar-basic",
       "title": "CalendarBasic",
       "description": "Basic single-month Calendar with outside days and base-nova border surface.",
       "sourcePath": "src/registry/shadcn/calendar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic single-month Calendar with outside days and base-nova border surface.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/calendar-booked-dates",
       "title": "CalendarBookedDates",
       "description": "Calendar inside a local Card with deterministic disabled booked dates.",
       "sourcePath": "src/registry/shadcn/calendar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Calendar inside a local Card with deterministic disabled booked dates.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/calendar-rtl",
       "title": "CalendarRtl",
       "description": "RTL Calendar using local direction and Intl locale data instead of the origin language selector runtime.",
       "sourcePath": "src/registry/shadcn/calendar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Calendar using local direction and Intl locale data instead of the origin language selector runtime.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -217,5 +225,10 @@
       "status": "accepted",
       "rationale": "Those examples need a larger reusable local date foundation. This slice lands the supported single-month and single-date surface without upstream runtime packages."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Calendar helper with local ISO date-grid generation, single-date selection, disabled dates, outside-month state, month navigation, keyboard focus movement, RTL rendering, and deterministic examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

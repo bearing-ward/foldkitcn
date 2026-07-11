@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/preview-card",
   "title": "Preview Card",
   "description": "Foldkit-native Base UI Preview Card primitive preserving model-owned open state, link trigger hover/focus/press facts, deterministic delay and placement attributes, portal, positioner, popup, viewport, arrow, backdrop, transition, detached-trigger, and keyboard-dismiss surfaces.",
+  "distinguishes": "Foldkit-native Base UI Preview Card primitive preserving model-owned open state, link trigger hover/focus/press facts, deterministic delay and placement attributes, portal, positioner, popup, viewport, arrow, backdrop, transition, detached-trigger, and keyboard-dismiss surfaces.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

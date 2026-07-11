@@ -152,56 +152,72 @@
       "title": "EmptyAvatarGroup",
       "description": "Empty state with an avatar group and invite action.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Empty state with an avatar group and invite action.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-avatar",
       "title": "EmptyAvatar",
       "description": "Empty state using a single Avatar as media.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Empty state using a single Avatar as media.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-background",
       "title": "EmptyMuted",
       "description": "Muted Empty background with an icon media variant.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Muted Empty background with an icon media variant.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-card",
       "title": "EmptyInCard",
       "description": "Project empty state composed for card-like surfaces.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Project empty state composed for card-like surfaces.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-demo",
       "title": "EmptyDemo",
       "description": "Default Empty demo with primary, outline, and link actions.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default Empty demo with primary, outline, and link actions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-input-group",
       "title": "EmptyInputGroup",
       "description": "Search-oriented Empty state composed with Input Group and Kbd.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Search-oriented Empty state composed with Input Group and Kbd.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-outline",
       "title": "EmptyOutline",
       "description": "Dashed-outline Empty state with upload action.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dashed-outline Empty state with upload action.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/empty-rtl",
       "title": "EmptyRtl",
       "description": "RTL Empty example using deterministic Arabic strings.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Empty example using deterministic Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -234,5 +250,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on React icon packages or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Empty examples."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Empty helper with media, header, title, description, content slots, and local examples for avatar, buttons, input groups, kbd, spinner, and RTL states.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

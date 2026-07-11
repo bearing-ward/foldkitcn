@@ -147,5 +147,10 @@
       "status": "accepted",
       "rationale": "The origin mutates scrollTop and scrollLeft from DOM events. The Foldkit implementation exposes equivalent deterministic calculations so consuming update/command code can own effects."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Scroll Area primitive preserving root, viewport, content, scrollbar, thumb, corner, orientation, overflow, scrolling, hover, and data-attribute contracts through deterministic model-owned state and geometry helpers.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

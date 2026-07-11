@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/form",
   "title": "Form",
   "description": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+  "distinguishes": "Foldkit-native Base UI Form primitive preserving native form rendering, noValidate defaults, submit/reset event payloads, validation-mode metadata, disabled/invalid data attributes, and model-owned validation/submission flow composed with local Field semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

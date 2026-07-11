@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/otp-field",
   "title": "OTP Field",
   "description": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+  "distinguishes": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

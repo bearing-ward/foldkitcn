@@ -141,70 +141,90 @@
       "title": "BubbleDemo",
       "description": "Basic bubble conversation with grouped messages and reactions.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic bubble conversation with grouped messages and reactions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-group-demo",
       "title": "BubbleGroupDemo",
       "description": "Grouped bubble conversation from the same sender.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Grouped bubble conversation from the same sender.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-variants",
       "title": "BubbleVariantsDemo",
       "description": "Default, secondary, muted, tinted, outline, ghost, and destructive bubble variants.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default, secondary, muted, tinted, outline, ghost, and destructive bubble variants.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-alignment",
       "title": "BubbleAlignmentDemo",
       "description": "Start and end bubble alignment examples.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Start and end bubble alignment examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-link-button",
       "title": "BubbleLinkButtonDemo",
       "description": "Clickable bubble content rendered as static buttons.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Clickable bubble content rendered as static buttons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-reactions",
       "title": "BubbleReactionsDemo",
       "description": "Reactions and action buttons anchored to the bubble edge.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Reactions and action buttons anchored to the bubble edge.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-collapsible",
       "title": "BubbleCollapsibleDemo",
       "description": "Static collapsed long-content preview.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static collapsed long-content preview.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-tooltip",
       "title": "BubbleTooltipDemo",
       "description": "Static bubble metadata trigger.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static bubble metadata trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-popover",
       "title": "BubblePopoverDemo",
       "description": "Static failed-action bubble with an error-details trigger.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static failed-action bubble with an error-details trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/bubble-markdown",
       "title": "BubbleMarkdownDemo",
       "description": "Static markdown-style assistant copy inside a ghost bubble.",
       "sourcePath": "src/registry/shadcn/bubble/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Static markdown-style assistant copy inside a ghost bubble.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -238,5 +258,10 @@
       "status": "accepted",
       "rationale": "Installable Foldkit source cannot use React asChild/render props or a markdown runtime. The local examples preserve the bubble surfaces with pure Foldkit Html and static markdown-style content."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Bubble wrapper with Effect Schema variants, grouped message layouts, reaction rows, clickable bubble content, and static fixture-only markdown, collapsible, tooltip, and popover examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

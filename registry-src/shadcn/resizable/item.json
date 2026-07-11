@@ -101,7 +101,9 @@
       "sourcePath": "src/registry/shadcn/resizable/examples.ts",
       "kind": "demo",
       "previewExportName": "ResizableDemo",
-      "previewStatus": "live-ready"
+      "previewStatus": "live-ready",
+      "distinguishes": "Nested horizontal and vertical Resizable layout.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/resizable-handle",
@@ -110,7 +112,9 @@
       "sourcePath": "src/registry/shadcn/resizable/examples.ts",
       "kind": "demo",
       "previewExportName": "ResizableHandleDemo",
-      "previewStatus": "live-ready"
+      "previewStatus": "live-ready",
+      "distinguishes": "Two-panel Resizable layout with visible handle affordance.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/resizable-vertical",
@@ -119,7 +123,9 @@
       "sourcePath": "src/registry/shadcn/resizable/examples.ts",
       "kind": "demo",
       "previewExportName": "ResizableVertical",
-      "previewStatus": "live-ready"
+      "previewStatus": "live-ready",
+      "distinguishes": "Vertical Resizable layout.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/resizable-rtl",
@@ -128,7 +134,9 @@
       "sourcePath": "src/registry/shadcn/resizable/examples.ts",
       "kind": "demo",
       "previewExportName": "ResizableRtl",
-      "previewStatus": "live-ready"
+      "previewStatus": "live-ready",
+      "distinguishes": "RTL nested Resizable layout with local static direction data.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -172,5 +180,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Static RTL direction preserves the rendered layout needed by parity fixtures."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Resizable split-panel primitive with local size normalization, keyboard resizing, pointer-drag messages, shadcn slots, and origin example coverage.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

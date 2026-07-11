@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/radio",
   "title": "Radio",
   "description": "Foldkit-native Base UI Radio primitive preserving controlled checked and unchecked states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyup activation, Enter suppression, and native radio form controls without internal state.",
+  "distinguishes": "Foldkit-native Base UI Radio primitive preserving controlled checked and unchecked states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyup activation, Enter suppression, and native radio form controls without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

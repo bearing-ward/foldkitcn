@@ -138,49 +138,63 @@
       "title": "BreadcrumbBasic",
       "description": "Basic Breadcrumb with Home and Components links followed by the current page.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Breadcrumb with Home and Components links followed by the current page.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-demo",
       "title": "BreadcrumbDemo",
       "description": "Default docs Breadcrumb with an ellipsis dropdown trigger.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default docs Breadcrumb with an ellipsis dropdown trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-dropdown",
       "title": "BreadcrumbDropdown",
       "description": "Breadcrumb with a custom dot separator and a components dropdown trigger.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Breadcrumb with a custom dot separator and a components dropdown trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-ellipsis",
       "title": "BreadcrumbEllipsisDemo",
       "description": "Collapsed Breadcrumb state using the ellipsis helper.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Collapsed Breadcrumb state using the ellipsis helper.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-link",
       "title": "BreadcrumbLinkDemo",
       "description": "Breadcrumb links using explicit local href attributes instead of an upstream router component.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Breadcrumb links using explicit local href attributes instead of an upstream router component.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-rtl",
       "title": "BreadcrumbRtl",
       "description": "RTL Breadcrumb using local Arabic strings instead of the origin language selector.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Breadcrumb using local Arabic strings instead of the origin language selector.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/breadcrumb-separator",
       "title": "BreadcrumbSeparatorDemo",
       "description": "Breadcrumb with custom dot separator children.",
       "sourcePath": "src/registry/shadcn/breadcrumb/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Breadcrumb with custom dot separator children.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -239,5 +253,10 @@
       "status": "accepted",
       "rationale": "Breadcrumb parity should verify breadcrumb structure while the Dropdown Menu component owns menu positioning, opening, and keyboard interaction coverage."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Breadcrumb helpers with ordered-list navigation semantics, current-page state, separators, ellipsis, and local icon rendering.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

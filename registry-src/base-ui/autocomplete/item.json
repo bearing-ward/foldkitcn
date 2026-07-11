@@ -165,5 +165,10 @@
       "status": "accepted",
       "rationale": "Combobox currently supports boolean autoHighlight-style wiring, but not the origin's distinct always semantics. The installable Autocomplete API avoids collapsing always to true."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, mode-based list/both/inline/none query behavior, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

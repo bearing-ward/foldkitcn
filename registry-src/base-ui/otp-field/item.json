@@ -134,5 +134,10 @@
       "status": "accepted",
       "rationale": "The installable source must not import upstream React. Static fixtures preserve the pinned part structure, data attributes, patterns, form input, and keyboard behavior while the origin source remains checked in under repos/base-ui."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI OTP Field primitive preserving model-owned multi-slot value projection, normalization, paste/delete facts, focus handoff commands, hidden form input semantics, data attributes, and ARIA.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

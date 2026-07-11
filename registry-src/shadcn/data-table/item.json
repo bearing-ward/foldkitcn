@@ -206,21 +206,27 @@
       "title": "DataTableDemo",
       "description": "Payments table with email filtering, sortable columns, selection, and pagination.",
       "sourcePath": "src/registry/shadcn/data-table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Payments table with email filtering, sortable columns, selection, and pagination.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/data-table-tasks",
       "title": "DataTableTasks",
       "description": "Task table with badges, column visibility, and rows-per-page controls.",
       "sourcePath": "src/registry/shadcn/data-table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Task table with badges, column visibility, and rows-per-page controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/data-table-rtl",
       "title": "DataTableRtl",
       "description": "RTL payments table with Arabic copy, selection, filtering, and pagination.",
       "sourcePath": "src/registry/shadcn/data-table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL payments table with Arabic copy, selection, filtering, and pagination.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -279,5 +285,10 @@
       "status": "accepted",
       "rationale": "The examples preserve the visible affordances while keeping the registry item installable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn Data Table composition helpers and examples built on the local Table primitive plus a small query-state model for filtering, sorting, selection, visibility, and pagination.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -4,6 +4,11 @@
   "routePath": "/components/local/example-preview",
   "title": "Example preview",
   "description": "Private preview fixture used to validate the registry foundation.",
+  "distinguishes": "Private preview fixture used to validate the registry foundation.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

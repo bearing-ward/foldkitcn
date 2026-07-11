@@ -396,12 +396,13 @@ const updateLiveExampleMenuSubmenuValues = (
   values: ReadonlyArray<string>,
   parentValue: string,
   open: boolean,
+  ancestorValues: ReadonlyArray<string>,
 ): ReadonlyArray<string> => {
   if (open) {
-    return values.includes(parentValue) ? values : [...values, parentValue]
+    return [...ancestorValues, parentValue]
   }
 
-  return values.filter(value => value !== parentValue)
+  return values.includes(parentValue) ? ancestorValues : values
 }
 
 const liveExampleMenuRootOpenValues = (
@@ -1006,6 +1007,7 @@ export const UpdatedLiveExampleMenuOpen = m('UpdatedLiveExampleMenuOpen', {
   menuId: S.String,
   open: S.Boolean,
   parentValue: S.optional(S.String),
+  ancestorValues: S.Array(S.String),
 })
 export const UpdatedLiveExampleMenuChecked = m(
   'UpdatedLiveExampleMenuChecked',
@@ -1955,7 +1957,11 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         evo(model, {
           liveExampleCommandDialogOpenValues: EffectRecord.set(exampleId, true),
         }),
-        [],
+        [
+          FocusLiveExampleMenu({
+            selector: `#${CSS.escape(`${exampleId.replaceAll(/[^a-z0-9_-]+/giu, '-')}-dialog`)} [data-slot="command-input"]`,
+          }),
+        ],
       ],
       UpdatedLiveExampleCommandDialogOpen: ({ exampleId, isOpen }) => [
         evo(model, {
@@ -1964,7 +1970,13 @@ export const update = (model: Model, message: Message): UpdateReturn =>
             isOpen,
           ),
         }),
-        [],
+        isOpen
+          ? [
+              FocusLiveExampleMenu({
+                selector: `#${CSS.escape(`${exampleId.replaceAll(/[^a-z0-9_-]+/giu, '-')}-dialog`)} [data-slot="command-input"]`,
+              }),
+            ]
+          : [],
       ],
       UpdatedLiveExampleOverlayOpen: ({ exampleId, overlayId, open }) => [
         evo(model, {
@@ -1980,6 +1992,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         menuId,
         open,
         parentValue,
+        ancestorValues,
       }) => {
         const stateKey = liveExampleControlStateKey(exampleId, menuId)
 
@@ -1997,6 +2010,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
                   currentValues,
                   parentValue,
                   open,
+                  ancestorValues,
                 ),
               ),
             }),
@@ -3164,18 +3178,25 @@ const componentNavigationView = (
       ['All components'],
     ),
     ...groups.map(group =>
-      h.section([h.Class('sidebar-group')], [
-        h.h2([h.Class('sidebar-heading')], [
-          h.a(
-            [
-              h.Href(componentsNamespaceRouter({ namespace: group.namespace })),
-              ...(isComponentNamespaceActive(model.route, group.namespace)
-                ? [h.Class('active')]
-                : []),
-            ],
-            [group.label],
-          ),
+      h.details(
+        [
+          h.Class('sidebar-group'),
+          ...(isComponentNamespaceActive(model.route, group.namespace)
+            ? [h.Attribute('open', '')]
+            : []),
+        ],
+        [
+        h.summary([h.Class('sidebar-heading')], [
+          h.span([], [group.label]),
+          h.span([h.Class('sidebar-count')], [String(group.components.length)]),
         ]),
+        h.a(
+          [
+            h.Class('sidebar-namespace-link'),
+            h.Href(componentsNamespaceRouter({ namespace: group.namespace })),
+          ],
+          [`View all ${group.label}`],
+        ),
         h.ul(
           [h.Class('sidebar-list')],
           group.components.map(component =>
@@ -3204,7 +3225,8 @@ const componentNavigationView = (
             ),
           ),
         ),
-      ]),
+        ],
+      ),
     ),
   ])
 }
@@ -3292,7 +3314,7 @@ const tableOfContentsExampleLinksView = (
         ? h.empty
         : h.ul(
           [h.Class('toc-example-list')],
-          artifact.examples.map(example =>
+          Array.take(artifact.examples, 4).map(example =>
             h.li([], [
               h.a([h.Href(`#${exampleAnchorId(example)}`)], [example.title]),
             ]),
@@ -3317,13 +3339,14 @@ const tableOfContentsView = (
         ],
         [
           h.p([h.Class('toc-heading')], ['On this page']),
-          h.a([h.Href('#overview')], ['Overview']),
           h.a([h.Href('#installation')], ['Installation']),
           h.a([h.Href('#usage')], ['Usage']),
+          h.a([h.Href('#foldkit-port')], ['Foldkit port']),
           h.div([h.Class('toc-group')], [
             h.a([h.Href('#examples')], ['Examples']),
             tableOfContentsExampleLinksView(component),
           ]),
+          h.a([h.Href('#implementation')], ['Implementation']),
           h.a([h.Href('#api')], ['API']),
           h.a([h.Href('#accessibility')], ['Accessibility']),
           h.a([h.Href('#quality')], ['Quality']),
@@ -3344,6 +3367,7 @@ const shellView = (model: Model, content: Html): Html => {
   })
 
   return h.div([h.Class('app-shell')], [
+    h.a([h.Class('skip-link'), h.Href('#main-content')], ['Skip to content']),
     headerView(model),
     mobileNavigationView(model),
     h.div([h.Class(layoutClass)], [
@@ -3395,7 +3419,7 @@ const pageHeaderView = (
 
   return h.header([h.Class('page-header')], [
     h.p(
-      [h.Class('eyebrow'), h.DataAttribute('pagefind-meta', 'section')],
+      [h.Class('page-context'), h.DataAttribute('pagefind-meta', 'section')],
       [eyebrow],
     ),
     h.h1([h.Id('overview')], [title]),
@@ -3410,13 +3434,13 @@ const homePageView = (model: Model): Html => {
     pageHeaderView(
       'Registry documentation',
       'Foldkit CN',
-      'A Foldkit-native front door for installable component registry artifacts.',
+      'shadcn components, ported to Foldkit with native state, messages, and Effect-powered behavior.',
     ),
     dataNoticeView(model.data),
     h.section([h.Id('status'), h.Class('content-section')], [
-      h.h2([], ['What is here now']),
+      h.h2([], ['Build with familiar components']),
       h.p([], [
-        'The shell reads generated registry outputs, separates public components by namespace, and gives Registry and Roadmap pages stable URLs for the next documentation passes.',
+        'Find the component you need, verify the live behavior and Foldkit translation, then install source you own directly into your application.',
       ]),
       h.div([h.Class('action-row')], [
         h.a(
@@ -3524,7 +3548,7 @@ const componentSummaryView = (component: PublicComponent): Html => {
             [component.entry.item.name],
           ),
         ]),
-        h.p([], [component.entry.item.description]),
+        h.p([], [component.entry.item.description.split('.')[0] ?? '']),
       ]),
       h.dl([h.Class('meta-list')], [
         h.div([], [
@@ -3548,10 +3572,10 @@ const componentsIndexPageView = (model: Model): Html => {
     pageHeaderView(
       'Components',
       'Components',
-      'Installable and preview components from the generated registry and docs indexes.',
+      'Search or browse shadcn components ported to Foldkit, with readiness and documentation status visible before you open a page.',
     ),
     h.section([h.Id('status'), h.Class('content-section')], [
-      h.h2([], ['Namespaces']),
+      h.h2([], ['Browse by namespace']),
       ...groups.map(group =>
         h.section([h.Class('namespace-section')], [
           h.h3([], [
@@ -3652,7 +3676,6 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
   const isCopied = HashSet.has(config.copiedSnippets, config.text)
   const teaser = docsCodeTeaser(config.text, config.teaserLineCount)
   const codeAttributes = [
-    h.Class('code-block'),
     h.DataAttribute('pagefind-ignore', ''),
   ]
 
@@ -3671,7 +3694,7 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
         ? h.pre(
             [
               ...codeAttributes,
-              h.Class('docs-code-full'),
+              h.Class('code-block docs-code-full'),
               h.DataAttribute('slot', 'docs-code-full'),
             ],
             [h.code([], [config.text])],
@@ -3716,7 +3739,9 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
           h.AriaLabel(config.copyLabel),
           h.OnClick(ClickedCopySnippet({ text: config.text })),
         ],
-        children: [h.span([h.AriaHidden(true)], ['Copy'])],
+        children: [
+          h.span([h.AriaHidden(true)], [isCopied ? 'Copied' : 'Copy']),
+        ],
       }),
       h.span(
         [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
@@ -3812,11 +3837,11 @@ const dependenciesPanelView = (component: PublicComponent): Html => {
           h.aside(
             [
               h.DataAttribute('slot', 'card'),
-              h.Class(docsCardClassName({ className: 'relationship-panel' })),
+              h.Class('relationship-panel'),
               h.AriaLabel('Composes'),
             ],
             [
-            h.h2([], ['Composes']),
+            h.h3([], ['Composes']),
             h.ul(
               [h.Class('compact-list')],
               dependencies.map(dependency =>
@@ -4049,6 +4074,7 @@ const docsPreviewCardView = (
     example.id,
     [
       h.Id(exampleAnchorId(example)),
+      h.DataAttribute('example-id', example.id),
       h.DataAttribute('slot', 'card'),
       h.DataAttribute('docs-slot', 'docs-preview-card'),
       h.Class(docsCardClassName({ className: 'docs-preview-card' })),
@@ -4682,6 +4708,7 @@ const examplesSectionView = (
       example: ExampleDocsArtifact,
       menuId: string,
       change: Readonly<{
+        ancestorValues?: ReadonlyArray<string> | undefined
         open: boolean
         parentValue?: string | undefined
       }>,
@@ -4690,6 +4717,7 @@ const examplesSectionView = (
         exampleId: example.id,
         menuId,
         open: change.open,
+        ancestorValues: change.ancestorValues ?? [],
         ...(change.parentValue === undefined
           ? {}
           : { parentValue: change.parentValue }),
@@ -4899,18 +4927,34 @@ const examplesSectionView = (
     h.h2([], ['Examples']),
     Option.match(component.maybeDocsArtifact, {
       onNone: () => h.p([], ['Example metadata is not loaded.']),
-      onSome: artifact =>
-        h.div(
-          [h.Class('example-list')],
-          artifact.examples.map(example =>
-            docsPreviewCardView(
-              example,
-              liveExamplePreviewView(example),
-              copiedSnippets,
-              docsPreviewCodeOpenValues,
-            ),
-          ),
-        ),
+      onSome: artifact => {
+        const featuredExamples = Array.take(artifact.examples, 3)
+        const additionalExamples = Array.drop(artifact.examples, 3)
+        const exampleView = (example: ExampleDocsArtifact): Html =>
+          docsPreviewCardView(
+            example,
+            liveExamplePreviewView(example),
+            copiedSnippets,
+            docsPreviewCodeOpenValues,
+          )
+
+        return h.div([h.Class('example-list')], [
+          ...featuredExamples.map(exampleView),
+          Array.match(additionalExamples, {
+            onEmpty: () => h.empty,
+            onNonEmpty: examples =>
+              h.details([h.Class('additional-examples')], [
+                h.summary([], [
+                  `Show ${examples.length} more ${examples.length === 1 ? 'example' : 'examples'}`,
+                ]),
+                h.div(
+                  [h.Class('additional-example-list')],
+                  examples.map(exampleView),
+                ),
+              ]),
+          }),
+        ])
+      },
     }),
   ])
 }
@@ -5080,6 +5124,44 @@ const foldkitDifferencesSectionView = (component: PublicComponent): Html => {
   )
 }
 
+const componentTrustSummaryView = (component: PublicComponent): Html => {
+  const h = html<Message>()
+
+  return h.div([h.Class('component-trust-summary')], [
+    h.div([h.Class('component-trust-intro')], [
+      h.h2([], ['Foldkit port']),
+      h.p([], [
+        isDocsOnlyComponent(component)
+          ? 'Documentation-only guidance translated for Foldkit applications.'
+          : 'React assumptions are replaced with Foldkit Html, explicit Messages, Schema-backed state, and Effect-native behavior.',
+      ]),
+    ]),
+    h.dl([h.Class('trust-facts')], [
+      h.div([], [
+        h.dt([], ['Availability']),
+        h.dd([], [statusText(component.entry.item.lifecycle.availability)]),
+      ]),
+      h.div([], [
+        h.dt([], ['Documentation']),
+        h.dd([], [statusText(component.entry.item.lifecycle.docsStatus)]),
+      ]),
+      h.div([], [
+        h.dt([], ['Namespace']),
+        h.dd([], [component.entry.item.namespace]),
+      ]),
+      Option.match(component.maybeDocsArtifact, {
+        onNone: () => h.empty,
+        onSome: artifact =>
+          h.div([], [
+            h.dt([], ['Parity']),
+            h.dd([], [statusText(artifact.quality.parityStatus)]),
+          ]),
+      }),
+    ]),
+    h.a([h.Href('#foldkit-differences')], ['Read the Foldkit differences']),
+  ])
+}
+
 const componentDetailPageView = (
   model: Model,
   namespace: string,
@@ -5094,23 +5176,21 @@ const componentDetailPageView = (
         NotFoundRoute({ path: componentDetailRouter({ namespace, slug }) }),
       ),
     onSome: component =>
-      h.article([], [
+      h.article([h.Class('component-detail-page')], [
         pageHeaderView(
           component.entry.item.namespace,
           component.entry.item.name,
           component.entry.item.description,
         ),
-        h.section([h.Id('overview'), h.Class('content-section')], [
-          // h.h2([], ['Overview']),
-          // h.p([], [component.entry.item.description]),
-          dependenciesPanelView(component),
-        ]),
         installationSectionView(
           component,
           model.copiedSnippets,
           model.docsInstallTabValues ?? {},
         ),
         usageSectionView(component, model.copiedSnippets),
+        h.section([h.Id('foldkit-port'), h.Class('content-section')], [
+          componentTrustSummaryView(component),
+        ]),
         examplesSectionView(
           component,
           model.copiedSnippets,
@@ -5153,6 +5233,10 @@ const componentDetailPageView = (
           model.liveExampleSidebarPanelOpenValues,
           model.liveExampleSidebarSelectedValues,
         ),
+        h.section([h.Id('implementation'), h.Class('content-section')], [
+          h.h2([], ['Implementation']),
+          dependenciesPanelView(component),
+        ]),
         apiSectionView(component),
         accessibilitySectionView(),
         qualitySectionView(component),

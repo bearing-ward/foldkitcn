@@ -143,5 +143,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the Menubar render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Menubar primitive composed from the local Menu foundation, adding model-owned top-level menu selection, menubar root ARIA, horizontal and vertical trigger navigation, hover handoff while open, disabled propagation, and trigger roving focus metadata without duplicating Menu item, submenu, checkbox, radio, popup, or typeahead behavior.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

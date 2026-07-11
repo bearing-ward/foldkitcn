@@ -65,6 +65,8 @@ interface RawExampleDocsArtifact {
   readonly id: string
   readonly title: string
   readonly description: string
+  readonly distinguishes: string
+  readonly behaviorExpectations: ExampleManifest['behaviorExpectations']
   readonly componentItemId: string
   readonly sourcePath: string
   readonly snippet: string
@@ -1234,6 +1236,8 @@ const buildExampleDocsArtifact = (
     id: example.id,
     title: example.title,
     description: example.description,
+    distinguishes: example.distinguishes,
+    behaviorExpectations: example.behaviorExpectations,
     componentItemId: item.id,
     sourcePath: example.sourcePath,
     snippet: extractExampleSnippet(source, example),
@@ -1322,6 +1326,8 @@ export const buildComponentDocsArtifacts = (
       routePath: route.routePath,
       title: item.name,
       description: item.description,
+      distinguishes: item.distinguishes,
+      behaviorExpectations: item.behaviorExpectations,
       docsStatus: hasMarkdown ? item.lifecycle.docsStatus : 'missing',
       markdownPath: hasMarkdown ? docsMarkdownPath : null,
       markdown: hasMarkdown ? markdown : null,

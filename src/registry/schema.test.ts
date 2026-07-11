@@ -4,8 +4,10 @@ import { describe, expect, test } from 'vitest'
 import {
   ComponentDocsArtifact,
   ComponentDocsRoute,
+  ComponentBehaviorExpectation,
   DocsStatus,
   ExampleDocsArtifact,
+  ExampleBehaviorExpectation,
   InstallerConfig,
   InstallerItemId,
   InstallerWritePlan,
@@ -16,10 +18,15 @@ import {
 } from './schema'
 import type { ExamplePreviewStatus } from './schema'
 
+import { readFileSync } from 'node:fs'
+
 const exampleDocsArtifact = (previewStatus: ExamplePreviewStatus) => ({
   id: `shadcn/button-${previewStatus}`,
   title: `Button ${previewStatus}`,
   description: `Button ${previewStatus} example.`,
+  distinguishes:
+    'Shows the default button treatment without additional composition.',
+  behaviorExpectations: ['renders-without-errors', 'preview-contained'],
   componentItemId: 'shadcn/button',
   sourcePath: 'src/registry/shadcn/button/examples.ts',
   snippet: 'export const ButtonDefault = (): Html => {}',
@@ -85,6 +92,9 @@ const validManifest = {
   name: 'Example preview',
   kind: 'example',
   description: 'Private preview fixture used to validate registry schemas.',
+  distinguishes:
+    'Provides a private schema fixture rather than a public UI component.',
+  behaviorExpectations: ['examples-render-without-errors'],
   sourceRoot: 'registry-src/local/example-preview',
   installableSourcePaths: [],
   consumedThemeTokens: [],
@@ -113,6 +123,23 @@ const validManifest = {
 }
 
 describe('registry item manifest schema', () => {
+  test('documents every supported behavior expectation', () => {
+    const contractDocumentation = readFileSync(
+      'docs/behavior-contracts.md',
+      'utf-8',
+    )
+    const expectationNames = [
+      ...ComponentBehaviorExpectation.literals,
+      ...ExampleBehaviorExpectation.literals,
+    ]
+
+    expect(
+      expectationNames.filter(
+        expectation => !contractDocumentation.includes(`\`${expectation}\``),
+      ),
+    ).toStrictEqual([])
+  })
+
   test('decodes a valid source manifest fixture', () => {
     const decoded = S.decodeUnknownSync(RegistryItemManifest)(validManifest)
 
@@ -132,6 +159,30 @@ describe('registry item manifest schema', () => {
     expect(() =>
       S.decodeUnknownSync(RegistryItemManifest)(invalidManifest),
     ).toThrow(/public/u)
+  })
+
+  test('requires component and example behavior declarations', () => {
+    const { distinguishes: _distinguishes, ...missingComponentDeclaration } =
+      validManifest
+
+    expect(() =>
+      S.decodeUnknownSync(RegistryItemManifest)(missingComponentDeclaration),
+    ).toThrow(/distinguishes/u)
+
+    expect(() =>
+      S.decodeUnknownSync(RegistryItemManifest)({
+        ...validManifest,
+        examples: [
+          {
+            id: 'local/example-preview-default',
+            title: 'Default',
+            description: 'Default preview.',
+            sourcePath: 'src/example.ts',
+            kind: 'demo',
+          },
+        ],
+      }),
+    ).toThrow(/distinguishes|behaviorExpectations/u)
   })
 })
 
@@ -175,6 +226,12 @@ describe('generated docs artifact schemas', () => {
       type: 'registry:ui',
       title: 'Button',
       description: 'Foldkit-native shadcn button wrapper.',
+      distinguishes:
+        'Provides Foldkit-native button semantics with shadcn styling.',
+      behaviorExpectations: [
+        'examples-render-without-errors',
+        'examples-match-declared-behavior',
+      ],
       dependencies: ['clsx'],
       registryDependencies: ['@foldkitcn/base-ui-button'],
       files: [
@@ -229,6 +286,12 @@ describe('generated docs artifact schemas', () => {
       routePath: '/components/shadcn/button',
       title: 'Button',
       description: 'Foldkit-native shadcn button wrapper.',
+      distinguishes:
+        'Provides Foldkit-native button semantics with shadcn styling.',
+      behaviorExpectations: [
+        'examples-render-without-errors',
+        'examples-match-declared-behavior',
+      ],
       docsStatus: 'complete',
       markdownPath: 'registry-src/shadcn/button/docs.md',
       markdown: '# Usage\n',
@@ -269,6 +332,9 @@ describe('generated docs artifact schemas', () => {
         routePath: '/components/local/example-preview',
         title: 'Example preview',
         description: 'Private preview fixture.',
+        distinguishes:
+          'Provides a private schema fixture rather than a public component.',
+        behaviorExpectations: ['examples-render-without-errors'],
         docsStatus: 'missing',
         markdownPath: null,
         markdown: null,

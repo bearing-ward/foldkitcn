@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/select",
   "title": "Select",
   "description": "Foldkit-native Base UI Select primitive preserving model-owned open, value, and highlighted-item state, popup/listbox ARIA, keyboard navigation, typeahead, grouping, labels, separators, scroll controls, selected and disabled item data attributes, deterministic placement attributes, and hidden form input wiring.",
+  "distinguishes": "Foldkit-native Base UI Select primitive preserving model-owned open, value, and highlighted-item state, popup/listbox ARIA, keyboard navigation, typeahead, grouping, labels, separators, scroll controls, selected and disabled item data attributes, deterministic placement attributes, and hidden form input wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

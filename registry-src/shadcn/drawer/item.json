@@ -159,28 +159,36 @@
       "title": "DrawerDemo",
       "description": "Activity goal drawer with static local controls and chart bars.",
       "sourcePath": "src/registry/shadcn/drawer/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Activity goal drawer with static local controls and chart bars.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/drawer-scrollable-content",
       "title": "DrawerScrollableContent",
       "description": "Right-side drawer with scrollable content.",
       "sourcePath": "src/registry/shadcn/drawer/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Right-side drawer with scrollable content.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/drawer-sides",
       "title": "DrawerWithSides",
       "description": "Drawer direction variants for top, right, bottom, and left.",
       "sourcePath": "src/registry/shadcn/drawer/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Drawer direction variants for top, right, bottom, and left.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/drawer-rtl",
       "title": "DrawerRtl",
       "description": "RTL drawer with local static translations.",
       "sourcePath": "src/registry/shadcn/drawer/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL drawer with local static translations.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -239,5 +247,10 @@
       "status": "accepted",
       "rationale": "Plan 055 owns Drawer only and the user explicitly asked not to implement Sheet or refactor unrelated registry items."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Drawer wrapper composed from the local Base UI Drawer primitive, shadcn slot classes, local class canonicalization, deterministic direction variants, and static local examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-10T22:24:00Z",
+  "title": "Design System: Foldkit CN",
+  "extensions": {
+    "colorMeta": {
+      "workshop-teal": {
+        "role": "primary",
+        "displayName": "Workshop Teal",
+        "canonical": "#25736f",
+        "tonalRamp": [
+          "#0b2423",
+          "#123b39",
+          "#19534f",
+          "#25736f",
+          "#42938e",
+          "#72b8b2",
+          "#a9d8d4",
+          "#ddf1ef"
+        ]
+      },
+      "deep-teal": {
+        "role": "primary",
+        "displayName": "Deep Teal",
+        "canonical": "#124f4c",
+        "tonalRamp": [
+          "#061b1a",
+          "#0a302e",
+          "#0f4542",
+          "#17615d",
+          "#34837e",
+          "#69aaa5",
+          "#a4d1cd",
+          "#dcefed"
+        ]
+      },
+      "warm-canvas": {
+        "role": "neutral",
+        "displayName": "Warm Canvas",
+        "canonical": "#f8f7f2",
+        "tonalRamp": [
+          "#262521",
+          "#47453f",
+          "#696760",
+          "#8d8a82",
+          "#b1afa7",
+          "#d1cfc8",
+          "#e9e7e1",
+          "#f8f7f2"
+        ]
+      },
+      "clean-surface": {
+        "role": "neutral",
+        "displayName": "Clean Surface",
+        "canonical": "#fffef9",
+        "tonalRamp": [
+          "#292824",
+          "#4a4943",
+          "#6d6b65",
+          "#929089",
+          "#b7b5ae",
+          "#d8d6cf",
+          "#efede7",
+          "#fffef9"
+        ]
+      },
+      "graphite-ink": {
+        "role": "neutral",
+        "displayName": "Graphite Ink",
+        "canonical": "#24231f",
+        "tonalRamp": [
+          "#24231f",
+          "#45443f",
+          "#686761",
+          "#8d8b85",
+          "#b1afa9",
+          "#d0cec8",
+          "#e8e6e0",
+          "#f7f5ef"
+        ]
+      },
+      "field-note": {
+        "role": "neutral",
+        "displayName": "Field Note",
+        "canonical": "#686257",
+        "tonalRamp": [
+          "#211f1c",
+          "#393632",
+          "#514d46",
+          "#686257",
+          "#8c8579",
+          "#b0aaa0",
+          "#d2cec7",
+          "#f1efeb"
+        ]
+      },
+      "code-wash": {
+        "role": "neutral",
+        "displayName": "Code Wash",
+        "canonical": "#f0eee5",
+        "tonalRamp": [
+          "#25241f",
+          "#44423b",
+          "#646159",
+          "#858279",
+          "#aaa69d",
+          "#cbc8bf",
+          "#e3e0d8",
+          "#f4f2ec"
+        ]
+      },
+      "structural-border": {
+        "role": "neutral",
+        "displayName": "Structural Border",
+        "canonical": "#dfddd2",
+        "tonalRamp": [
+          "#23221e",
+          "#403e38",
+          "#5d5b53",
+          "#7c7971",
+          "#9d9a91",
+          "#bdbab1",
+          "#d8d5cc",
+          "#efede7"
+        ]
+      },
+      "destructive": {
+        "role": "primary",
+        "displayName": "Destructive",
+        "canonical": "#c03c3c",
+        "tonalRamp": [
+          "#310b0d",
+          "#561417",
+          "#7c2022",
+          "#a32e2f",
+          "#c94c4b",
+          "#df7d79",
+          "#efb1ad",
+          "#f9dfdc"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Fixed 3rem desktop and 2.125rem mobile route titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Major documentation sections at 2rem."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Page summaries at 1.125rem."
+      },
+      "compact": {
+        "displayName": "Compact",
+        "purpose": "Navigation, metadata, and dense product UI at 0.875rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Documentation prose and product UI."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sparse taxonomy and metadata orientation."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shell-ambient",
+        "value": "0 18px 45px rgb(36 35 31 / 8%)",
+        "purpose": "Rare floating shell elements only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-transition",
+        "value": "150ms ease-out",
+        "purpose": "Hover, focus, and disclosure state feedback."
+      }
+    ],
+    "breakpoints": [
+      { "name": "compact-docs", "value": "960px" },
+      { "name": "collapse-toc", "value": "1120px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Active Navigation Link",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Quiet current-location treatment shared by header and sidebar navigation.",
+      "html": "<a class=\"ds-nav-active\" href=\"#\" aria-current=\"page\">Button</a>",
+      "css": ".ds-nav-active { display: inline-block; padding: 4px 6px; border-radius: 4.8px; background: color-mix(in srgb, var(--shell-accent) 10%, transparent); color: var(--shell-accent-strong); font: 700 0.92rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; text-decoration: none; } .ds-nav-active:hover { color: var(--shell-accent-strong); } .ds-nav-active:focus-visible { outline: 2px solid var(--shell-accent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Code Panel",
+      "kind": "card",
+      "refersTo": "code-panel",
+      "description": "Structural technical container with a compact title rail.",
+      "html": "<section class=\"ds-code-panel\"><div class=\"ds-code-title\">Install</div><pre><code>bunx foldkitcn add shadcn/button</code></pre></section>",
+      "css": ".ds-code-panel { overflow: hidden; border: 1px solid var(--shell-border); border-radius: 8px; background: var(--shell-code); color: var(--shell-text); } .ds-code-title { padding: 9px 14px; border-bottom: 1px solid var(--shell-border); color: var(--shell-muted); font: 700 0.78rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; } .ds-code-panel pre { margin: 0; padding: 16px; overflow: auto; font: 0.92rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; } .ds-code-panel:focus-within { outline: 2px solid var(--shell-accent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Metadata Row",
+      "kind": "custom",
+      "refersTo": "metadata-row",
+      "description": "Dense lifecycle or provenance fact with clear label-value hierarchy.",
+      "html": "<dl class=\"ds-meta\"><div><dt>Status</dt><dd>Installable</dd></div></dl>",
+      "css": ".ds-meta { margin: 0; } .ds-meta div { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px; align-items: center; padding: 9px 10px; border: 1px solid var(--shell-border); background: var(--shell-code); } .ds-meta dt { color: var(--shell-muted); font: 700 0.78rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; } .ds-meta dd { margin: 0; color: var(--shell-text); font: 400 0.9rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; text-align: right; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "description": "Compact discovery input using the shell's structural border and focus signal.",
+      "html": "<label class=\"ds-search-label\" for=\"ds-search\">Search components</label><input class=\"ds-search\" id=\"ds-search\" placeholder=\"Search components…\" />",
+      "css": ".ds-search-label { display: block; margin-bottom: 8px; color: var(--shell-muted); font: 700 0.78rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; } .ds-search { width: 100%; box-sizing: border-box; padding: 9px 10px; border: 1px solid var(--shell-border); border-radius: 6.4px; background: var(--shell-surface); color: var(--shell-text); font: 400 0.92rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; } .ds-search::placeholder { color: var(--shell-muted); opacity: 1; } .ds-search:hover { border-color: var(--shell-muted); } .ds-search:focus-visible { outline: 2px solid var(--shell-accent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Preview Surface",
+      "kind": "card",
+      "description": "Isolated origin-compatible canvas for live component examples.",
+      "html": "<section class=\"ds-preview\"><button>Preview component</button></section>",
+      "css": ".ds-preview { display: grid; min-height: 240px; place-items: center; padding: 16px; overflow: hidden; border: 1px solid #ebebeb; background: #fff; color: #000; } .ds-preview button { padding: 8px 16px; border: 0; border-radius: 6px; background: #000; color: #fff; font: 500 0.875rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; } .ds-preview button:hover { background: #2b2b2b; } .ds-preview button:focus-visible { outline: 2px solid #737373; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Foldkit Workbench",
+    "overview": "Foldkit CN is a calm technical workspace: familiar enough for a shadcn user to navigate immediately, but explicit about the Foldkit architecture underneath every component. The shell is precise, pragmatic, and compact. Content, behavior, installability, and provenance carry the visual hierarchy; decoration does not. The system uses warm neutral surfaces and restrained teal emphasis to distinguish the documentation shell from the neutral shadcn-compatible preview canvas. It rejects a superficial shadcn reskin that merely renames source material or hides how each component was translated into Foldkit.",
+    "keyCharacteristics": [
+      "Familiar documentation structure with a distinct Foldkit voice",
+      "Restrained teal reserved for navigation, focus, and meaningful action",
+      "Compact geometry, structural borders, and readable technical density",
+      "Clear separation between the Foldkit docs shell and component preview themes",
+      "Responsive navigation that preserves discovery and context"
+    ],
+    "rules": [
+      {
+        "name": "The Restrained Signal Rule",
+        "body": "Teal identifies action, focus, selection, and Foldkit-specific emphasis; it is never ambient decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-World Rule",
+        "body": "The documentation shell keeps the Foldkit palette while component previews preserve their origin-compatible tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "The Technical Hierarchy Rule",
+        "body": "Labels orient, headings structure, and body copy explains; never use label styling as decorative scaffolding.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Workbench Rule",
+        "body": "Documentation content rests on the workbench; shadows appear only when an element actually floats above it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve shadcn's familiar discovery, preview, installation, usage, and API workflow.",
+      "Do make Foldkit architecture, conventions, examples, lifecycle, and provenance conspicuous.",
+      "Do reserve Workshop Teal and Deep Teal for interaction, focus, selection, and meaningful Foldkit emphasis.",
+      "Do keep prose readable, controls keyboard-operable, focus visible, and motion compatible with reduced-motion preferences.",
+      "Do keep docs-shell tokens separate from origin-compatible preview tokens."
+    ],
+    "donts": [
+      "Don't create a superficial shadcn reskin that merely renames the source material or obscures how the component has been translated into Foldkit.",
+      "Don't apply shadcn site-level branding wholesale; familiar affordances are the structure, not the identity.",
+      "Don't turn every section into a bordered card or repeat tiny uppercase eyebrows as decorative scaffolding.",
+      "Don't pair a one-pixel border with a broad decorative shadow on the same static container.",
+      "Don't use teal as decoration, gradients on text, or glass effects as the default surface treatment."
+    ]
+  }
+}

@@ -146,5 +146,10 @@
       "status": "accepted",
       "rationale": "Pinned Base UI Accordion deprecates loopFocus and orientation-driven roving focus after the APG update. The Foldkit helper preserves orientation data attributes but does not implement arrow-key focus movement."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, Enter and Space keyboard activation, deprecated orientation data attributes, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

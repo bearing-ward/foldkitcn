@@ -116,21 +116,27 @@
       "title": "ScrollAreaDemo",
       "description": "Default vertical tag list Scroll Area demo.",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default vertical tag list Scroll Area demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/scroll-area-horizontal-demo",
       "title": "ScrollAreaHorizontalDemo",
       "description": "Horizontal artwork Scroll Area demo with local image markup.",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Horizontal artwork Scroll Area demo with local image markup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/scroll-area-rtl",
       "title": "ScrollAreaRtl",
       "description": "RTL tag list Scroll Area demo with local Arabic strings.",
       "sourcePath": "src/registry/shadcn/scroll-area/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL tag list Scroll Area demo with local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -190,5 +196,10 @@
       "status": "accepted",
       "rationale": "This keeps the wrapper pure and delegates browser measurement to consuming commands or future shared measurement infrastructure."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Scroll Area wrapper composed from the local Base UI Scroll Area primitive, shadcn slot attributes, base-nova class tokens, local class canonicalization, and deterministic local examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

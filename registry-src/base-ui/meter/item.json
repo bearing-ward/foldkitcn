@@ -110,5 +110,10 @@
       "status": "accepted",
       "rationale": "The registry item exposes Foldkit Html attributes for each named part and lets callers compose them through toView, preserving the part contract without React render/asChild interop."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Meter primitive preserving root, label, track, indicator, value, ARIA, value clamping, range normalization, and formatting semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

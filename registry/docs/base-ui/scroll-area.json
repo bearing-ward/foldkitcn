@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/scroll-area",
   "title": "Scroll Area",
   "description": "Foldkit-native Base UI Scroll Area primitive preserving root, viewport, content, scrollbar, thumb, corner, orientation, overflow, scrolling, hover, and data-attribute contracts through deterministic model-owned state and geometry helpers.",
+  "distinguishes": "Foldkit-native Base UI Scroll Area primitive preserving root, viewport, content, scrollbar, thumb, corner, orientation, overflow, scrolling, hover, and data-attribute contracts through deterministic model-owned state and geometry helpers.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

@@ -139,7 +139,9 @@
       "description": "Origin anchored toast demo with contextual copy feedback and a stacked toast trigger.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastAnchored",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Origin anchored toast demo with contextual copy feedback and a stacked toast trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-custom-position",
@@ -147,7 +149,9 @@
       "description": "Top-center toast viewport matching the origin custom-position example.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastCustomPosition",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Top-center toast viewport matching the origin custom-position example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-undo-action",
@@ -155,7 +159,9 @@
       "description": "Action toast that exposes an Undo button and closes through Foldkit state.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastUndoAction",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Action toast that exposes an Undo button and closes through Foldkit state.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-promise",
@@ -163,7 +169,9 @@
       "description": "Effect-backed waiting toast that transitions to a received result.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastPromise",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Effect-backed waiting toast that transitions to a received result.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-custom",
@@ -171,7 +179,9 @@
       "description": "Custom-data toast that renders the userId value in the toast body.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastCustom",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Custom-data toast that renders the userId value in the toast body.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-deduplicated-toast",
@@ -179,7 +189,9 @@
       "description": "Same-id save draft toast that updates in place to exercise updateKey behavior.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastDeduplicated",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Same-id save draft toast that updates in place to exercise updateKey behavior.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/toast-varying-heights",
@@ -187,7 +199,9 @@
       "description": "Varying-height toast stack with different message lengths.",
       "sourcePath": "src/registry/base-ui/toast/examples.ts",
       "previewExportName": "ToastVaryingHeights",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Varying-height toast stack with different message lengths.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -212,5 +226,10 @@
     "availability": "installable",
     "docsStatus": "complete"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit-native Base UI Toast primitive preserving notification lifecycle, viewport positioning, actions, close controls, pause and resume behavior, swipe state, and promise result state data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

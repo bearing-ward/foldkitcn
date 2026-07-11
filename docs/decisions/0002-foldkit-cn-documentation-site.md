@@ -37,6 +37,10 @@ docs. `registry/index.json` remains the catalog, while separate generated docs
 artifacts live under `registry/docs/**`. Future `docsStatus` data belongs in
 the registry/docs artifact contract, not in ad hoc route code.
 
+Every component and example carries a behavior contract. The normative
+expectations, authoring rules, and CI compliance boundary are documented in
+[`docs/behavior-contracts.md`](../behavior-contracts.md).
+
 Public navigation shows installable and preview components. Planned, private,
 and blocked rows belong on Roadmap or Registry pages where their lifecycle can
 be explained without implying that they are available to install.

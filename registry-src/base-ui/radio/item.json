@@ -114,5 +114,10 @@
       "status": "accepted",
       "rationale": "Foldkit installable source is stateless and pure. User interaction emits a typed checked-change fact, and the consuming update owns whether the radio is selected."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Radio primitive preserving controlled checked and unchecked states, root and indicator data attributes, disabled/read-only/required/invalid states, Space keyup activation, Enter suppression, and native radio form controls without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -4,6 +4,12 @@ import {
 } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
+import { installAdditionalExamplesAutoReveal } from './additional-examples'
+
+playwrightTest.beforeEach(async ({ page }) => {
+  await installAdditionalExamplesAutoReveal(page)
+})
+
 type Box = Readonly<{
   height: number
   width: number

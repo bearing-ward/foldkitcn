@@ -114,49 +114,63 @@
       "title": "SliderControlled",
       "description": "Controlled range slider rendered with deterministic static state and local label text.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Controlled range slider rendered with deterministic static state and local label text.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-demo",
       "title": "SliderDemo",
       "description": "Default one-thumb Slider demo.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default one-thumb Slider demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-disabled",
       "title": "SliderDisabled",
       "description": "Disabled Slider demo.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Slider demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-multiple",
       "title": "SliderMultiple",
       "description": "Three-thumb Slider demo.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Three-thumb Slider demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-range",
       "title": "SliderRange",
       "description": "Two-thumb range Slider demo.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Two-thumb range Slider demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-rtl",
       "title": "SliderRtl",
       "description": "RTL Slider layout example with local static direction data.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Slider layout example with local static direction data.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/slider-vertical",
       "title": "SliderVertical",
       "description": "Vertical Slider demo pair.",
       "sourcePath": "src/registry/shadcn/slider/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Vertical Slider demo pair.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -200,5 +214,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Static RTL direction preserves the rendered output needed by parity fixtures."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Slider wrapper composed from the local Base UI Slider primitive, shadcn slots, base-nova class tokens, deterministic edge thumb geometry, and local class canonicalization.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

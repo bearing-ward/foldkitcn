@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/separator",
   "title": "Separator",
   "description": "Foldkit-native Base UI Separator primitive preserving role, orientation, ARIA, and data attributes.",
+  "distinguishes": "Foldkit-native Base UI Separator primitive preserving role, orientation, ARIA, and data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

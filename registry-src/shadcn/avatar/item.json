@@ -133,70 +133,90 @@
       "title": "AvatarBadgeIconExample",
       "description": "Avatar with fixture-local Plus icon badge.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar with fixture-local Plus icon badge.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-badge",
       "title": "AvatarWithBadge",
       "description": "Avatar with status badge.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar with status badge.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-basic",
       "title": "AvatarBasic",
       "description": "Basic Avatar example.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Avatar example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-demo",
       "title": "AvatarDemo",
       "description": "Avatar demo with badge and group examples.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar demo with badge and group examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-dropdown",
       "title": "AvatarDropdown",
       "description": "Dropdown Avatar example represented by a fixture-local static dropdown shell.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dropdown Avatar example represented by a fixture-local static dropdown shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-group-count-icon",
       "title": "AvatarGroupCountIconExample",
       "description": "Avatar group count with fixture-local Plus icon.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar group count with fixture-local Plus icon.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-group-count",
       "title": "AvatarGroupCountExample",
       "description": "Avatar group count example.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar group count example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-group",
       "title": "AvatarGroupExample",
       "description": "Avatar group example.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar group example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-rtl",
       "title": "AvatarRtl",
       "description": "RTL Avatar layout example with local Arabic strings.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Avatar layout example with local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/avatar-size",
       "title": "AvatarSizeExample",
       "description": "Avatar size matrix example.",
       "sourcePath": "src/registry/shadcn/avatar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar size matrix example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -247,5 +267,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot include lucide-react. The inline Plus SVG preserves the visible icon examples as fixture-local markup."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Avatar wrapper composing the local Base UI Avatar primitive with Avatar image, fallback, badge, group, and group count styling.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

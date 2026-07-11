@@ -140,5 +140,10 @@
       "status": "accepted",
       "rationale": "Foldkit's current Dom.showModal helper intentionally traps focus. Non-modal behavior is represented without pretending modal side effects are absent."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Dialog primitive preserving model-owned open state, trigger/open/close facts, native dialog ARIA relationships, modal command helpers, backdrop and popup state data attributes, and title/description wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

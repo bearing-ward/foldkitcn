@@ -136,42 +136,54 @@
       "title": "MenubarCheckbox",
       "description": "Menubar checkbox items with local checked state.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Menubar checkbox items with local checked state.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/menubar-demo",
       "title": "MenubarDemo",
       "description": "Default browser-style menubar with grouped items, checkbox items, radio items, shortcuts, and submenus.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default browser-style menubar with grouped items, checkbox items, radio items, shortcuts, and submenus.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/menubar-icons",
       "title": "MenubarIcons",
       "description": "Menubar items with local icon slots.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Menubar items with local icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/menubar-radio",
       "title": "MenubarRadio",
       "description": "Menubar radio groups with model-owned selected values.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Menubar radio groups with model-owned selected values.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/menubar-rtl",
       "title": "MenubarRtl",
       "description": "RTL menubar using deterministic local translations.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL menubar using deterministic local translations.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/menubar-submenu",
       "title": "MenubarSubmenu",
       "description": "Menubar with nested submenu content rendered through local Menu composition.",
       "sourcePath": "src/registry/shadcn/menubar/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Menubar with nested submenu content rendered through local Menu composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -229,5 +241,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Menubar wrapper composed from the local Base UI Menubar primitive, local class canonicalization, local SVG check and chevron icons, deterministic slots, and static examples for every dossier-listed Menubar demo.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

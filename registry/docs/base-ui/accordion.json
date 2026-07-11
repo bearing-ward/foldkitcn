@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/accordion",
   "title": "Accordion",
   "description": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, Enter and Space keyboard activation, deprecated orientation data attributes, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+  "distinguishes": "Foldkit-native Base UI Accordion primitive preserving model-owned value state, single and multiple selection, disabled item behavior, Enter and Space keyboard activation, deprecated orientation data attributes, ARIA relationships, panel mounting policy, and root/item/header/trigger/panel data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

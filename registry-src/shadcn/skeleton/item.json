@@ -99,49 +99,63 @@
       "title": "SkeletonAvatar",
       "description": "Avatar and text loading placeholder.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar and text loading placeholder.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-card",
       "title": "SkeletonCard",
       "description": "Card loading placeholder using example-local Card shell classes.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Card loading placeholder using example-local Card shell classes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-demo",
       "title": "SkeletonDemo",
       "description": "Default Skeleton avatar and text demo.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default Skeleton avatar and text demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-form",
       "title": "SkeletonForm",
       "description": "Form loading placeholder.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Form loading placeholder.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-rtl",
       "title": "SkeletonRtl",
       "description": "RTL Skeleton layout example with local direction constants.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Skeleton layout example with local direction constants.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-table",
       "title": "SkeletonTable",
       "description": "Table row loading placeholders.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Table row loading placeholders.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/skeleton-text",
       "title": "SkeletonText",
       "description": "Multi-line text loading placeholder.",
       "sourcePath": "src/registry/shadcn/skeleton/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Multi-line text loading placeholder.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -184,5 +198,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local RTL constants preserve the default rendered direction while fixture aliases keep the origin evidence bundleable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Skeleton helper using cn.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

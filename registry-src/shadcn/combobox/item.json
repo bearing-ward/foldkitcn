@@ -165,77 +165,99 @@
       "title": "ComboboxBasic",
       "description": "Default framework combobox.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default framework combobox.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-clear",
       "title": "ComboboxWithClear",
       "description": "Combobox with a selected framework and clear button.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox with a selected framework and clear button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-groups",
       "title": "ComboboxWithGroupsAndSeparator",
       "description": "Combobox grouped by timezone region with separators.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox grouped by timezone region with separators.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-input-group",
       "title": "ComboxboxInputGroup",
       "description": "Combobox with input-group shell and aligned popup.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox with input-group shell and aligned popup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-multiple",
       "title": "ComboboxMultiple",
       "description": "Multiple combobox with selected chips and chip input.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Multiple combobox with selected chips and chip input.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-disabled",
       "title": "ComboboxDisabled",
       "description": "Disabled framework combobox.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled framework combobox.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-invalid",
       "title": "ComboboxInvalid",
       "description": "Invalid combobox inside a local static field shell.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid combobox inside a local static field shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-popup",
       "title": "ComboboxPopup",
       "description": "Combobox with button trigger and input rendered inside the popup.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox with button trigger and input rendered inside the popup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-auto-highlight",
       "title": "ComboboxAutoHighlight",
       "description": "Combobox with initial highlighted item.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox with initial highlighted item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-custom",
       "title": "ComboboxWithCustomItems",
       "description": "Combobox with country labels and text values.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Combobox with country labels and text values.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/combobox-rtl",
       "title": "ComboboxRtl",
       "description": "RTL multiple combobox with local Arabic strings.",
       "sourcePath": "src/registry/shadcn/combobox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL multiple combobox with local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -310,5 +332,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Combobox wrapper composed from the local Base UI Combobox primitive, local shadcn Button and Input class conventions, local class canonicalization, local SVG chevron/check/x icons, deterministic slot classes, and local static examples for basic, clear, grouped, input-group, multiple, disabled, invalid, popup, auto-highlight, custom item, and RTL variants.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

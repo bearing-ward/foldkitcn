@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/number-field",
   "title": "Number Field",
   "description": "Foldkit-native Base UI Number Field primitive preserving model-owned numeric/text state, deterministic parsing and formatting, clamping, stepping, keyboard increments, form value semantics, grouped controls, scrub parts, and origin data attributes.",
+  "distinguishes": "Foldkit-native Base UI Number Field primitive preserving model-owned numeric/text state, deterministic parsing and formatting, clamping, stepping, keyboard increments, form value semantics, grouped controls, scrub parts, and origin data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

@@ -141,56 +141,72 @@
       "title": "CheckboxDemo",
       "description": "Mixed Checkbox field group with labels, description, disabled state, and choice-card shell.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Mixed Checkbox field group with labels, description, disabled state, and choice-card shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-basic",
       "title": "CheckboxBasic",
       "description": "Basic Checkbox and FieldLabel layout.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Checkbox and FieldLabel layout.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-description",
       "title": "CheckboxDescription",
       "description": "Checked Checkbox with FieldContent and FieldDescription shells.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checked Checkbox with FieldContent and FieldDescription shells.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-disabled",
       "title": "CheckboxDisabled",
       "description": "Disabled Checkbox example with Field data-disabled shell.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Checkbox example with Field data-disabled shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-invalid",
       "title": "CheckboxInvalid",
       "description": "Invalid Checkbox example with aria-invalid and Field data-invalid shell.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid Checkbox example with aria-invalid and Field data-invalid shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-group",
       "title": "CheckboxGroup",
       "description": "Checkbox group layout using local FieldSet and FieldLegend shells.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox group layout using local FieldSet and FieldLegend shells.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-table",
       "title": "CheckboxInTable",
       "description": "Checkbox table selection layout using local Table shells and an indeterminate select-all checkbox.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox table selection layout using local Table shells and an indeterminate select-all checkbox.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/checkbox-rtl",
       "title": "CheckboxRtl",
       "description": "RTL Checkbox layout using local Arabic strings.",
       "sourcePath": "src/registry/shadcn/checkbox/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Checkbox layout using local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -242,5 +258,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Checkbox wrapper composed from the local Base UI Checkbox primitive, shadcn root and indicator slots, local inline check SVG, and local fixture shells for Field, Label, and Table example layouts.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

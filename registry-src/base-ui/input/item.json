@@ -71,14 +71,18 @@
       "title": "InputDemo",
       "description": "Default controlled Input with the Base UI hero label and placeholder.",
       "sourcePath": "src/registry/base-ui/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default controlled Input with the Base UI hero label and placeholder.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/input-disabled",
       "title": "InputDisabled",
       "description": "Disabled Input preserving native disabled behavior and data attributes.",
       "sourcePath": "src/registry/base-ui/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Input preserving native disabled behavior and data attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -103,5 +107,10 @@
     "availability": "installable",
     "docsStatus": "stub"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit-native Base UI Input primitive preserving native form attributes, controlled value changes, and Field control data attributes without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

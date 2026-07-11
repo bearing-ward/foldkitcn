@@ -116,28 +116,36 @@
       "title": "TableActions",
       "description": "Product Table with row action menus using local shadcn Button and Dropdown Menu helpers.",
       "sourcePath": "src/registry/shadcn/table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Product Table with row action menus using local shadcn Button and Dropdown Menu helpers.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/table-demo",
       "title": "TableDemo",
       "description": "Invoice Table with caption, header, body, and footer.",
       "sourcePath": "src/registry/shadcn/table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invoice Table with caption, header, body, and footer.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/table-footer",
       "title": "TableFooterExample",
       "description": "Invoice Table footer example with a subtotal row.",
       "sourcePath": "src/registry/shadcn/table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invoice Table footer example with a subtotal row.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/table-rtl",
       "title": "TableRtl",
       "description": "RTL invoice Table using local Arabic strings instead of the origin language selector.",
       "sourcePath": "src/registry/shadcn/table/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL invoice Table using local Arabic strings instead of the origin language selector.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -187,5 +195,10 @@
       "status": "accepted",
       "rationale": "The table primitive remains presentational while the action example demonstrates composition through existing local registry items."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Table structural helpers with semantic table parts, local class maps, and deterministic examples for demo, footer, actions, and RTL.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -104,5 +104,10 @@
       "status": "accepted",
       "rationale": "Foldkit registry components preserve Elm-style unidirectional data flow. The helper emits value and highlight change facts while the consuming model remains the single source of truth."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Toggle Group primitive preserving grouped pressed state, single and multiple selection, disabled items, orientation, roving focus metadata, aria-pressed, and data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

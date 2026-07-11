@@ -140,91 +140,117 @@
       "title": "InputDemo",
       "description": "Password API key input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Password API key input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-basic",
       "title": "InputBasic",
       "description": "Default text input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default text input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-field",
       "title": "InputField",
       "description": "Input with Field, FieldLabel, and FieldDescription composition.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input with Field, FieldLabel, and FieldDescription composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-field-group",
       "title": "InputFieldGroup",
       "description": "Multiple inputs grouped with FieldGroup and form action buttons.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Multiple inputs grouped with FieldGroup and form action buttons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-disabled",
       "title": "InputDisabled",
       "description": "Disabled email input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled email input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-invalid",
       "title": "InputInvalid",
       "description": "Invalid input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-file",
       "title": "InputFile",
       "description": "File input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "File input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-inline",
       "title": "InputInline",
       "description": "Inline search input paired with a local shadcn Button.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Inline search input paired with a local shadcn Button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-grid",
       "title": "InputGrid",
       "description": "Two-column grid input layout.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Two-column grid input layout.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-required",
       "title": "InputRequired",
       "description": "Required input example.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Required input example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-badge",
       "title": "InputBadge",
       "description": "Input label composed with a local shadcn Badge.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input label composed with a local shadcn Badge.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-group",
       "title": "InputGroupExample",
       "description": "Website URL input composed with the local shadcn Input Group item.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Website URL input composed with the local shadcn Input Group item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/input-button-group",
       "title": "InputButtonGroup",
       "description": "Search input composed with the local shadcn Button Group item.",
       "sourcePath": "src/registry/shadcn/input/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Search input composed with the local shadcn Button Group item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -257,5 +283,10 @@
       "status": "accepted",
       "rationale": "The Input item now covers the dependency-complete input, field, group, inline, grid, required, badge, input-group, and button-group examples. The full form crosses into Select-owned state and form orchestration better covered by the Field/Form components."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Input wrapper composed from the local Base UI Input primitive and shadcn class tokens.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

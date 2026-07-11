@@ -103,35 +103,45 @@
       "title": "SeparatorDemo",
       "description": "Heading, subtitle, separator, and description demo.",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Heading, subtitle, separator, and description demo.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/separator-list",
       "title": "SeparatorList",
       "description": "Definition-list rows separated by horizontal separators.",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Definition-list rows separated by horizontal separators.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/separator-menu",
       "title": "SeparatorMenu",
       "description": "Menu-like labels separated by vertical separators.",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Menu-like labels separated by vertical separators.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/separator-vertical",
       "title": "SeparatorVertical",
       "description": "Compact nav labels separated by vertical separators.",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Compact nav labels separated by vertical separators.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/separator-rtl",
       "title": "SeparatorRtl",
       "description": "RTL Separator layout example with local Arabic strings.",
       "sourcePath": "src/registry/shadcn/separator/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Separator layout example with local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -164,5 +174,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic example constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Separator wrapper using local Base UI Separator behavior and cn.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -147,28 +147,36 @@
       "title": "SheetDemo",
       "description": "Profile editing sheet with local shadcn field and input markup.",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Profile editing sheet with local shadcn field and input markup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sheet-side",
       "title": "SheetSide",
       "description": "Sheet side variants for top, right, bottom, and left.",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Sheet side variants for top, right, bottom, and left.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sheet-no-close-button",
       "title": "SheetNoCloseButton",
       "description": "Sheet content without the top-right close button.",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Sheet content without the top-right close button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/sheet-rtl",
       "title": "SheetRtl",
       "description": "RTL profile sheet with local static translations.",
       "sourcePath": "src/registry/shadcn/sheet/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL profile sheet with local static translations.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -227,5 +235,10 @@
       "status": "accepted",
       "rationale": "The language selector is an origin app dependency and is not needed to preserve Sheet direction, side, and layout behavior."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Sheet wrapper composed from the local Base UI Dialog primitive, local shadcn Button and form examples, side variants, shadcn slot classes, and local class canonicalization.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

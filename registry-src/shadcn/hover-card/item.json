@@ -115,21 +115,27 @@
       "title": "HoverCardDemo",
       "description": "Basic Hover Card with local Button trigger classes and default bottom content placement.",
       "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Hover Card with local Button trigger classes and default bottom content placement.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/hover-card-sides",
       "title": "HoverCardSides",
       "description": "Hover Card examples rendered across the supported physical sides.",
       "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Hover Card examples rendered across the supported physical sides.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/hover-card-rtl",
       "title": "HoverCardRtl",
       "description": "RTL Hover Card examples with physical and logical side attributes.",
       "sourcePath": "src/registry/shadcn/hover-card/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Hover Card examples with physical and logical side attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -188,5 +194,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Hover Card wrapper composed from the local Base UI Preview Card primitive, shadcn slot classes, local class canonicalization, deterministic delay and placement attributes, and local static examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

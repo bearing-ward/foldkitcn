@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/field",
   "title": "Field",
   "description": "Foldkit-native Base UI Field composition primitive preserving root, item, label, control, description, error, validity data, ARIA relationships, and validation data attributes with model-owned validation state.",
+  "distinguishes": "Foldkit-native Base UI Field composition primitive preserving root, item, label, control, description, error, validity data, ARIA relationships, and validation data attributes with model-owned validation state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

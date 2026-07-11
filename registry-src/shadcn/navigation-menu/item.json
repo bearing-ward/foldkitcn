@@ -128,14 +128,18 @@
       "title": "NavigationMenuDemo",
       "description": "Default Navigation Menu with getting started, components, icon, and docs link items.",
       "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default Navigation Menu with getting started, components, icon, and docs link items.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/navigation-menu-rtl",
       "title": "NavigationMenuRtl",
       "description": "RTL Navigation Menu with deterministic local translated labels and end alignment.",
       "sourcePath": "src/registry/shadcn/navigation-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Navigation Menu with deterministic local translated labels and end alignment.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -193,5 +197,10 @@
       "status": "accepted",
       "rationale": "Measured navigation-menu viewport sizing belongs behind a shared runtime service, not inside the shadcn wrapper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Navigation Menu wrapper composed from the local Base UI Navigation Menu primitive, local class canonicalization, local SVG chevron/status icons, origin slot classes, deterministic popup/viewport attributes, and static demo/RTL examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

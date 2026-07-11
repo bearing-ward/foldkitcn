@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/tooltip",
   "title": "Tooltip",
   "description": "Foldkit-native Base UI Tooltip primitive preserving model-owned open state, trigger hover/focus/press facts, provider delay metadata, deterministic placement attributes, role=tooltip relationships, portal, positioner, popup, viewport, arrow, disabled, detached-trigger, instant, transition, and keyboard-dismiss surfaces.",
+  "distinguishes": "Foldkit-native Base UI Tooltip primitive preserving model-owned open state, trigger hover/focus/press facts, provider delay metadata, deterministic placement attributes, role=tooltip relationships, portal, positioner, popup, viewport, arrow, disabled, detached-trigger, instant, transition, and keyboard-dismiss surfaces.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

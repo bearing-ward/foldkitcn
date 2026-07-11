@@ -5,6 +5,7 @@ import {
 } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
+import { installAdditionalExamplesAutoReveal } from './additional-examples'
 import {
   expectEscapingSurfaceHasVisibleOverflow,
   expectNoOpenSurfaces,
@@ -13,6 +14,39 @@ import {
   visibleBox,
 } from './floating-surface-assertions'
 import type { Box } from './floating-surface-assertions'
+
+playwrightTest.beforeEach(async ({ page }) => {
+  await installAdditionalExamplesAutoReveal(page)
+})
+
+playwrightTest(
+  'complex dropdown starts closed without mounted menu or submenu surfaces',
+  async ({ page }) => {
+    await page.goto('/components/shadcn/dropdown-menu')
+
+    const preview = page.getByLabel('DropdownMenuComplex live preview')
+    const trigger = preview.getByRole('button', { name: 'Complex Menu' })
+
+    await playwrightExpect(trigger).toHaveAttribute('aria-expanded', 'false')
+    await playwrightExpect(preview.getByRole('menu')).toHaveCount(0)
+    await playwrightExpect(preview.getByRole('menuitem')).toHaveCount(0)
+
+    await trigger.click()
+    const rootMenu = preview.getByRole('menu')
+    await playwrightExpect(rootMenu).toBeVisible()
+    const menuOverflow = await rootMenu.evaluate(element => ({
+      className: element.className,
+      clientHeight: element.clientHeight,
+      maxHeight: window.getComputedStyle(element).maxHeight,
+      overflowY: window.getComputedStyle(element).overflowY,
+      scrollHeight: element.scrollHeight,
+    }))
+    playwrightExpect(
+      menuOverflow.scrollHeight,
+      JSON.stringify(menuOverflow),
+    ).toBeLessThanOrEqual(menuOverflow.clientHeight)
+  },
+)
 
 const box = visibleBox
 
@@ -287,9 +321,16 @@ playwrightTest(
     await playwrightExpect(
       complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
     ).toBeVisible()
-    await complexPreview
-      .getByRole('menuitem', { name: 'Project Alpha' })
-      .click()
+    await complexPreview.getByRole('menuitem', { name: 'Theme' }).hover()
+    await playwrightExpect(complexSubmenus).toHaveCount(1)
+    await playwrightExpect(
+      complexPreview.getByRole('menuitemradio', { name: 'Light' }),
+    ).toBeVisible()
+    await playwrightExpect(
+      complexPreview.getByRole('menuitem', { name: 'Project Gamma' }),
+    ).not.toBeVisible()
+    await complexPreview.getByRole('menuitemradio', { name: 'Light' }).click()
+    await page.keyboard.press('Escape')
     await playwrightExpect(complexMenu).not.toBeVisible()
 
     await page.goto('/components/shadcn/context-menu')

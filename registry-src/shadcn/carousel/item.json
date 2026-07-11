@@ -145,49 +145,63 @@
       "title": "CarouselDemo",
       "description": "Basic Card Carousel with five square slides and previous/next controls.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Card Carousel with five square slides and previous/next controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-size",
       "title": "CarouselSize",
       "description": "Carousel item sizing example with half-width and third-width responsive slides.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Carousel item sizing example with half-width and third-width responsive slides.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-multiple",
       "title": "CarouselMultiple",
       "description": "Carousel showing multiple responsive items with breakpoint-gated controls.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Carousel showing multiple responsive items with breakpoint-gated controls.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-spacing",
       "title": "CarouselSpacing",
       "description": "Carousel custom spacing example using tighter content and item offsets.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Carousel custom spacing example using tighter content and item offsets.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-orientation",
       "title": "CarouselOrientation",
       "description": "Vertical Carousel orientation with vertical controls and keyboard handling.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Vertical Carousel orientation with vertical controls and keyboard handling.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-api",
       "title": "CarouselApi",
       "description": "Carousel status example rendered from local state as Slide 1 of 5.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Carousel status example rendered from local state as Slide 1 of 5.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/carousel-rtl",
       "title": "CarouselRtl",
       "description": "RTL Carousel using local Arabic numerals instead of the origin language selector.",
       "sourcePath": "src/registry/shadcn/carousel/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Carousel using local Arabic numerals instead of the origin language selector.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -245,5 +259,10 @@
       "status": "accepted",
       "rationale": "The origin plugin example depends on embla-carousel-autoplay. Representing autoplay idiomatically needs a broader lifecycle-command foundation, so this batch intentionally avoids timers in view code."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Carousel with local selected-index state, keyboard navigation, controls, examples, and parity fixtures without Embla runtime dependencies.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

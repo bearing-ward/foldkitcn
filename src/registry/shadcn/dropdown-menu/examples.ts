@@ -217,13 +217,30 @@ export type DropdownMenuExampleController<Message> = Readonly<{
     groupValue: string,
     defaultValue: string | undefined,
   ) => string | undefined
-  onOpenChange: (menuId: string, change: DropdownMenu.MenuOpenChange) => Message
+  onOpenChange: (
+    menuId: string,
+    change: DropdownMenu.MenuOpenChange &
+      Readonly<{ ancestorValues: ReadonlyArray<string> }>,
+  ) => Message
   onHighlightChange: (menuId: string, change: MenuHighlightChange) => Message
   onItemPress?: (menuId: string, press: MenuItemPress) => Message
   onCheckedChange?: (menuId: string, change: MenuCheckedChange) => Message
   onRadioValueChange?: (menuId: string, change: MenuRadioValueChange) => Message
   onPositioned?: (message: AnchorPositioningMessage) => Message
 }>
+
+const submenuAncestorValues = (
+  items: ReadonlyArray<ExampleItem>,
+  parentValue: string,
+): ReadonlyArray<string> => {
+  const maybeParentValue = items.find(
+    item => item.value === parentValue,
+  )?.parentValue
+
+  return maybeParentValue === undefined
+    ? []
+    : [...submenuAncestorValues(items, maybeParentValue), maybeParentValue]
+}
 
 const basicItems: ReadonlyArray<ExampleItem> = [
   { value: 'profile', label: 'Profile' },
@@ -697,7 +714,14 @@ const menuExampleWithController = <Message = never>(
     ...(controller === undefined
       ? {}
       : {
-          onOpenChange: change => controller.onOpenChange(id, change),
+          onOpenChange: change =>
+            controller.onOpenChange(id, {
+              ...change,
+              ancestorValues:
+                change.parentValue === undefined
+                  ? []
+                  : submenuAncestorValues(resolvedItems, change.parentValue),
+            }),
           onHighlightChange: change => controller.onHighlightChange(id, change),
           ...(controller.onPositioned === undefined
             ? { positioning: 'static' as const }
@@ -784,7 +808,7 @@ export const DropdownMenuComplex = <Message = never>(
     'dropdown-menu-complex',
     complexItems,
     {
-      contentClassName: 'min-w-56',
+      contentClassName: 'min-w-56 !max-h-none !overflow-y-visible',
       highlightedValue: 'open-recent',
       subContentClassName: 'min-w-48',
       trigger: ['Complex Menu'],

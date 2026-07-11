@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/autocomplete",
   "title": "Autocomplete",
   "description": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, mode-based list/both/inline/none query behavior, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
+  "distinguishes": "Foldkit-native Base UI Autocomplete primitive preserving model-owned input value, open state, highlighted item, mode-based list/both/inline/none query behavior, input-owned form value, popup/listbox ARIA, empty state, disabled/read-only states, deterministic placement attributes, and Combobox-backed filtering, collection, highlight, and selection behavior.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

@@ -74,35 +74,45 @@
       "title": "ButtonDemo",
       "description": "Enabled native Button example.",
       "sourcePath": "src/registry/base-ui/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Enabled native Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/button-disabled",
       "title": "ButtonDisabled",
       "description": "Disabled and focusable disabled Button examples.",
       "sourcePath": "src/registry/base-ui/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled and focusable disabled Button examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/button-non-native",
       "title": "ButtonNonNative",
       "description": "Non-native element rendered with button role and keyboard activation semantics.",
       "sourcePath": "src/registry/base-ui/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Non-native element rendered with button role and keyboard activation semantics.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/button-types",
       "title": "ButtonTypes",
       "description": "Native button, submit, and reset type examples.",
       "sourcePath": "src/registry/base-ui/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Native button, submit, and reset type examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "base-ui/button-loading",
       "title": "ButtonLoading",
       "description": "Disabled busy-state Button example.",
       "sourcePath": "src/registry/base-ui/button/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled busy-state Button example.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -128,5 +138,10 @@
     "availability": "installable",
     "docsStatus": "complete"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit-native Base UI Button primitive preserving native disabled, focusable disabled, non-native role, and keyboard activation semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

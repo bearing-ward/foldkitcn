@@ -139,35 +139,71 @@
       "title": "PopoverBasic",
       "description": "Popover with header, title, description, and start alignment.",
       "sourcePath": "src/registry/shadcn/popover/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Popover with header, title, description, and start alignment.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "interaction-updates-state"
+      ]
     },
     {
       "id": "shadcn/popover-demo",
       "title": "PopoverDemo",
       "description": "Dimensions popover with local static field and input markup.",
       "sourcePath": "src/registry/shadcn/popover/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dimensions popover with local static field and input markup.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "interaction-updates-state"
+      ]
     },
     {
       "id": "shadcn/popover-form",
       "title": "PopoverForm",
       "description": "Compact form popover using local static Field and Label shells.",
       "sourcePath": "src/registry/shadcn/popover/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Compact form popover using local static Field and Label shells.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "interaction-updates-state"
+      ]
     },
     {
       "id": "shadcn/popover-alignments",
       "title": "PopoverAlignments",
       "description": "Three deterministic alignments rendered from the local Popover wrapper.",
       "sourcePath": "src/registry/shadcn/popover/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Three deterministic alignments rendered from the local Popover wrapper.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "interaction-updates-state"
+      ]
     },
     {
       "id": "shadcn/popover-rtl",
       "title": "PopoverRtl",
       "description": "RTL popover examples with physical and logical side attributes.",
       "sourcePath": "src/registry/shadcn/popover/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL popover examples with physical and logical side attributes.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "interaction-updates-state",
+        "placement-correct"
+      ]
     }
   ],
   "parity": {
@@ -226,5 +262,10 @@
       "status": "accepted",
       "rationale": "The local Base UI Popover exposes modal as structured Foldkit data and commands without claiming full upstream modal parity where Foldkit has no reusable non-dialog focus-trap or pointer-isolation primitive."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Popover wrapper composed from the local Base UI Popover primitive, shadcn slot classes, local class canonicalization, deterministic modal and placement attributes, and local static examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

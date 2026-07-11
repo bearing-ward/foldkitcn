@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/dialog",
   "title": "Dialog",
   "description": "Foldkit-native Base UI Dialog primitive preserving model-owned open state, trigger/open/close facts, native dialog ARIA relationships, modal command helpers, backdrop and popup state data attributes, and title/description wiring.",
+  "distinguishes": "Foldkit-native Base UI Dialog primitive preserving model-owned open state, trigger/open/close facts, native dialog ARIA relationships, modal command helpers, backdrop and popup state data attributes, and title/description wiring.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

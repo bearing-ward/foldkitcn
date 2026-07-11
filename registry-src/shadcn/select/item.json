@@ -145,49 +145,63 @@
       "title": "SelectDemo",
       "description": "Default fruit select with label group.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default fruit select with label group.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-disabled",
       "title": "SelectDisabled",
       "description": "Disabled fruit select with a disabled item.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled fruit select with a disabled item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-groups",
       "title": "SelectGroups",
       "description": "Select grouped into fruits and vegetables.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Select grouped into fruits and vegetables.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-scrollable",
       "title": "SelectScrollable",
       "description": "Scrollable timezone select with multiple groups.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Scrollable timezone select with multiple groups.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-align-item",
       "title": "SelectAlignItem",
       "description": "Select with alignItemWithTrigger controls represented by local static switch markup.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Select with alignItemWithTrigger controls represented by local static switch markup.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-invalid",
       "title": "SelectInvalid",
       "description": "Invalid select inside a local static field shell.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid select inside a local static field shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/select-rtl",
       "title": "SelectRtl",
       "description": "RTL select example with local Arabic strings.",
       "sourcePath": "src/registry/shadcn/select/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL select example with local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -254,5 +268,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Select wrapper composed from the local Base UI Select primitive, local class canonicalization, local SVG chevron/check icons, deterministic slot classes, and local static examples for demo, disabled, groups, scrollable, align-item, invalid, and RTL variants.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

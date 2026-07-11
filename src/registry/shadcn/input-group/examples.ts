@@ -64,7 +64,10 @@ const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
     'M4.012 16.737A2.005 2.005 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1',
   ],
   cornerDownLeft: ['m9 10-4 4 4 4', 'M20 4v7a4 4 0 0 1-4 4H5'],
-  creditCard: ['rect 2 5 20 14 2', 'M2 10h20'],
+  creditCard: [
+    'M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z',
+    'M2 10h20',
+  ],
   externalLink: [
     'M15 3h6v6',
     'M10 14 21 3',
@@ -91,7 +94,10 @@ const iconPaths: Readonly<Record<IconName, ReadonlyArray<string>>> = {
     'M2 12h4',
     'm4.9 4.9 2.9 2.9',
   ],
-  mail: ['rect 2 4 20 16 2', 'm22 7-10 5L2 7'],
+  mail: [
+    'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z',
+    'm22 7-10 5L2 7',
+  ],
   mic: [
     'M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3',
     'M19 10v2a7 7 0 0 1-14 0v-2',

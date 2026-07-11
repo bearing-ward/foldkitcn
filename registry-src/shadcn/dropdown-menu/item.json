@@ -130,91 +130,123 @@
       "title": "DropdownMenuAvatar",
       "description": "Avatar-triggered dropdown menu with account actions.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Avatar-triggered dropdown menu with account actions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-basic",
       "title": "DropdownMenuBasic",
       "description": "Basic account dropdown menu with disabled API item.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic account dropdown menu with disabled API item.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-checkboxes-icons",
       "title": "DropdownMenuCheckboxesIcons",
       "description": "Checkbox menu items with local icon slots.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox menu items with local icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-checkboxes",
       "title": "DropdownMenuCheckboxes",
       "description": "Checkbox menu items with model-owned checked state.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Checkbox menu items with model-owned checked state.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-complex",
       "title": "DropdownMenuComplex",
       "description": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Complex menu combining shortcuts, checkboxes, radio items, and nested submenus.",
+      "behaviorExpectations": [
+        "renders-without-errors",
+        "preview-contained",
+        "closed-content-hidden",
+        "opens-without-scroll",
+        "single-submenu-chain"
+      ]
     },
     {
       "id": "shadcn/dropdown-menu-demo",
       "title": "DropdownMenuDemo",
       "description": "Default account dropdown menu.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default account dropdown menu.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-destructive",
       "title": "DropdownMenuDestructive",
       "description": "Destructive menu variant.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Destructive menu variant.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-icons",
       "title": "DropdownMenuIcons",
       "description": "Dropdown menu items with local icon slots.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dropdown menu items with local icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-radio-group",
       "title": "DropdownMenuRadioGroup",
       "description": "Radio menu items with model-owned selected value.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Radio menu items with model-owned selected value.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-radio-icons",
       "title": "DropdownMenuRadioIcons",
       "description": "Radio menu items with local payment icon slots.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Radio menu items with local payment icon slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-rtl",
       "title": "DropdownMenuRtl",
       "description": "RTL dropdown menu.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL dropdown menu.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-shortcuts",
       "title": "DropdownMenuShortcuts",
       "description": "Dropdown menu with keyboard shortcut slots.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Dropdown menu with keyboard shortcut slots.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/dropdown-menu-submenu",
       "title": "DropdownMenuSubmenu",
       "description": "Nested submenu rendered with deterministic submenu placement attributes.",
       "sourcePath": "src/registry/shadcn/dropdown-menu/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Nested submenu rendered with deterministic submenu placement attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -273,5 +305,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Dropdown Menu wrapper composed from the local Base UI Menu primitive, local class canonicalization, local SVG check/chevron icons, deterministic slots, and static examples for every dossier-listed Dropdown Menu demo.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

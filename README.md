@@ -7,6 +7,10 @@ Foldkit CN is a Foldkit-native component registry and documentation shell for in
 The component documentation and public registry are published through GitHub
 Pages at [bearing-ward.github.io/foldkitcn](https://bearing-ward.github.io/foldkitcn/).
 
+Component and example acceptance criteria are defined in
+[Behavior Contracts](docs/behavior-contracts.md). These declarations are part
+of the registry schema, generated docs artifacts, and browser-test gate.
+
 ## Commands
 
 ```bash

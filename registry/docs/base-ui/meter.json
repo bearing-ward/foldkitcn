@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/meter",
   "title": "Meter",
   "description": "Foldkit-native Base UI Meter primitive preserving root, label, track, indicator, value, ARIA, value clamping, range normalization, and formatting semantics.",
+  "distinguishes": "Foldkit-native Base UI Meter primitive preserving root, label, track, indicator, value, ARIA, value clamping, range normalization, and formatting semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

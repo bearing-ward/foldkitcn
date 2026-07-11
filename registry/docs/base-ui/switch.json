@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/switch",
   "title": "Switch",
   "description": "Foldkit-native Base UI Switch primitive preserving controlled checked state, root and thumb data attributes, disabled/read-only/required/invalid states, keyboard activation, and native checkbox form controls without internal state.",
+  "distinguishes": "Foldkit-native Base UI Switch primitive preserving controlled checked state, root and thumb data attributes, disabled/read-only/required/invalid states, keyboard activation, and native checkbox form controls without internal state.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

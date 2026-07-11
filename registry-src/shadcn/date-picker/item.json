@@ -198,35 +198,45 @@
       "title": "DatePickerDemo",
       "description": "Default selected-date Date Picker with shadcn trigger and native Calendar popover.",
       "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default selected-date Date Picker with shadcn trigger and native Calendar popover.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/date-picker-basic",
       "title": "DatePickerBasic",
       "description": "Compact Date Picker trigger with a deterministic selected date.",
       "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Compact Date Picker trigger with a deterministic selected date.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/date-picker-dob",
       "title": "DatePickerDob",
       "description": "Date of birth picker with native min and max date constraints.",
       "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Date of birth picker with native min and max date constraints.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/date-picker-input",
       "title": "DatePickerInput",
       "description": "Date Picker composed with an Input Group and hidden ISO field.",
       "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Date Picker composed with an Input Group and hidden ISO field.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/date-picker-rtl",
       "title": "DatePickerRtl",
       "description": "RTL Date Picker with local Calendar locale labels.",
       "sourcePath": "src/registry/shadcn/date-picker/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Date Picker with local Calendar locale labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -277,5 +287,10 @@
       "status": "accepted",
       "rationale": "Native @foldkit/ui DatePicker currently models single-date selection; advanced modes need separate Foldkit-native foundations."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn Date Picker wrapper built on the native @foldkit/ui DatePicker and Calendar submodels, with live single-date examples and deferred range, time, and natural-language parsing examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

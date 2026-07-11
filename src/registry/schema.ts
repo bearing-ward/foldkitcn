@@ -237,10 +237,35 @@ export const OriginComponentProgressReport = S.Struct({
 export type OriginComponentProgressReport =
   typeof OriginComponentProgressReport.Type
 
+const DeclaredBehaviorText = S.NonEmptyString
+
+export const ComponentBehaviorExpectation = S.Literals([
+  'examples-render-without-errors',
+  'examples-match-declared-behavior',
+])
+export type ComponentBehaviorExpectation =
+  typeof ComponentBehaviorExpectation.Type
+
+export const ExampleBehaviorExpectation = S.Literals([
+  'renders-without-errors',
+  'preview-contained',
+  'closed-content-hidden',
+  'filters-to-empty-state',
+  'focuses-input-on-open',
+  'interaction-updates-state',
+  'opens-without-scroll',
+  'placement-correct',
+  'single-submenu-chain',
+  'viewport-command-dialog',
+])
+export type ExampleBehaviorExpectation = typeof ExampleBehaviorExpectation.Type
+
 export const ExampleManifest = S.Struct({
   id: S.String,
   title: S.String,
   description: S.String,
+  distinguishes: DeclaredBehaviorText,
+  behaviorExpectations: S.NonEmptyArray(ExampleBehaviorExpectation),
   sourcePath: S.String,
   previewExportName: S.optional(S.String),
   kind: S.Union([
@@ -263,6 +288,8 @@ export const ExampleDocsArtifact = S.Struct({
   id: S.String,
   title: S.String,
   description: S.String,
+  distinguishes: DeclaredBehaviorText,
+  behaviorExpectations: S.NonEmptyArray(ExampleBehaviorExpectation),
   componentItemId: S.String,
   sourcePath: S.String,
   snippet: S.String,
@@ -330,6 +357,8 @@ export const RegistryItemManifest = S.Struct({
   name: S.String,
   kind: RegistryItemKind,
   description: S.String,
+  distinguishes: DeclaredBehaviorText,
+  behaviorExpectations: S.NonEmptyArray(ComponentBehaviorExpectation),
   sourceRoot: S.String,
   installableSourcePaths: S.Array(S.String),
   consumedThemeTokens: S.Array(S.String),
@@ -368,6 +397,8 @@ export const ComponentDocsArtifact = S.Struct({
   routePath: S.String,
   title: S.String,
   description: S.String,
+  distinguishes: DeclaredBehaviorText,
+  behaviorExpectations: S.NonEmptyArray(ComponentBehaviorExpectation),
   docsStatus: DocsStatus,
   markdownPath: S.OptionFromNullOr(S.String),
   markdown: S.OptionFromNullOr(S.String),

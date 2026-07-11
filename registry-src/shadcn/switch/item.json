@@ -129,49 +129,63 @@
       "title": "SwitchDemo",
       "description": "Airplane mode switch with a sibling label shell.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Airplane mode switch with a sibling label shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-description",
       "title": "SwitchDescription",
       "description": "Switch with local Field content and description shells.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Switch with local Field content and description shells.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-choice-card",
       "title": "SwitchChoiceCard",
       "description": "Choice-card Switch layout using local Field and Label shells.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Choice-card Switch layout using local Field and Label shells.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-disabled",
       "title": "SwitchDisabled",
       "description": "Disabled Switch example with Field data-disabled shell.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Switch example with Field data-disabled shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-invalid",
       "title": "SwitchInvalid",
       "description": "Invalid Switch example with aria-invalid and Field data-invalid shell.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Invalid Switch example with aria-invalid and Field data-invalid shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-sizes",
       "title": "SwitchSizes",
       "description": "Small and default Switch size examples.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small and default Switch size examples.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/switch-rtl",
       "title": "SwitchRtl",
       "description": "RTL Switch layout using local Arabic strings.",
       "sourcePath": "src/registry/shadcn/switch/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Switch layout using local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -211,5 +225,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on the origin app language selector. Local Arabic constants preserve the default RTL rendered output while fixture aliases keep the origin evidence bundleable."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Switch wrapper composed from the local Base UI Switch primitive, shadcn size styling, root/thumb slots, and local fixture shells for Field and Label example layouts.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

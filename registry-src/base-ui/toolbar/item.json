@@ -131,5 +131,10 @@
       "status": "accepted",
       "rationale": "Foldkit registry components preserve Elm-style unidirectional data flow. The helper emits highlight-change facts with optional focus selectors while the consuming model remains the single source of truth."
     }
+  ],
+  "distinguishes": "Foldkit-native Base UI Toolbar primitive preserving toolbar root, grouped controls, buttons, links, inputs, disabled focusability, orientation, roving focus metadata, activation, ARIA, and data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -148,35 +148,45 @@
       "title": "CollapsibleDemo",
       "description": "Order details collapsible with status row and icon trigger shell.",
       "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Order details collapsible with status row and icon trigger shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/collapsible-basic",
       "title": "CollapsibleBasic",
       "description": "Product details card with local Button and Card shells.",
       "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Product details card with local Button and Card shells.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/collapsible-settings",
       "title": "CollapsibleSettings",
       "description": "Settings panel with radius inputs revealed by a trigger.",
       "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Settings panel with radius inputs revealed by a trigger.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/collapsible-file-tree",
       "title": "CollapsibleFileTree",
       "description": "Nested collapsibles for a file-tree shell.",
       "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Nested collapsibles for a file-tree shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/collapsible-rtl",
       "title": "CollapsibleRtl",
       "description": "RTL order details layout with local static labels.",
       "sourcePath": "src/registry/shadcn/collapsible/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL order details layout with local static labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -220,5 +230,10 @@
       "status": "accepted",
       "rationale": "Those components are outside this component slice. Static local markup preserves the relevant Collapsible DOM, class, ARIA, and visual contracts without adding unavailable registry dependencies."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Collapsible wrapper composed from the local Base UI Collapsible primitive, shadcn root/trigger/content slots, local class canonicalization, and deterministic local examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

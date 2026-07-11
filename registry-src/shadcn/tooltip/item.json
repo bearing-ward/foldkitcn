@@ -124,35 +124,45 @@
       "title": "TooltipDemo",
       "description": "Basic Tooltip with local Button trigger and default top content placement.",
       "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Basic Tooltip with local Button trigger and default top content placement.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tooltip-disabled",
       "title": "TooltipDisabled",
       "description": "Tooltip over a disabled local Button trigger shell.",
       "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tooltip over a disabled local Button trigger shell.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tooltip-keyboard",
       "title": "TooltipKeyboard",
       "description": "Tooltip with a local icon shell and local Kbd composition.",
       "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tooltip with a local icon shell and local Kbd composition.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tooltip-rtl",
       "title": "TooltipRtl",
       "description": "RTL Tooltip examples with physical and logical side attributes.",
       "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Tooltip examples with physical and logical side attributes.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/tooltip-sides",
       "title": "TooltipSides",
       "description": "Tooltip examples rendered across the supported physical sides.",
       "sourcePath": "src/registry/shadcn/tooltip/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Tooltip examples rendered across the supported physical sides.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -211,5 +221,10 @@
       "status": "accepted",
       "rationale": "Measured collision behavior belongs behind a shared measurement service, not inside the shadcn render helper."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Tooltip wrapper composed from the local Base UI Tooltip primitive, shadcn slot classes, local class canonicalization, deterministic delay and placement attributes, arrow styling, and local static examples.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

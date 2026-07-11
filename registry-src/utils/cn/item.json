@@ -42,5 +42,10 @@
     "availability": "installable",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Local class-name composition utility for shadcn-style Foldkit components.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

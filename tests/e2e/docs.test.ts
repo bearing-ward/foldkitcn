@@ -4,6 +4,7 @@ import {
 } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
+import { installAdditionalExamplesAutoReveal } from './additional-examples'
 import {
   expectEscapingSurfaceHasVisibleOverflow,
   expectNoOpenSurfaces,
@@ -11,6 +12,10 @@ import {
   expectSurfaceAnchoredToTrigger,
   visibleBox,
 } from './floating-surface-assertions'
+
+playwrightTest.beforeEach(async ({ page }) => {
+  await installAdditionalExamplesAutoReveal(page)
+})
 
 const expectNoHeaderMainOverlap = async (page: Page) => {
   await page.evaluate(() => {
@@ -605,6 +610,40 @@ const expectAnchoredShuffleStackVisible = async (preview: Locator) => {
 }
 
 playwrightTest(
+  'component table of contents follows actual page section order',
+  async ({ page }) => {
+    await page.goto('/components/shadcn/button')
+
+    const sectionIds = await page
+      .locator('.component-detail-page > section[id]')
+      .evaluateAll(sections => sections.map(section => section.id))
+    const sidebarSectionIds = await page
+      .locator('.docs-toc a')
+      .evaluateAll(
+        (links, actualSectionIds) =>
+          links
+            .map(link => link.getAttribute('href')?.replace(/^#/u, '') ?? '')
+            .filter(id => actualSectionIds.includes(id)),
+        sectionIds,
+      )
+
+    playwrightExpect(sectionIds).toStrictEqual([
+      'installation',
+      'usage',
+      'foldkit-port',
+      'examples',
+      'implementation',
+      'api',
+      'accessibility',
+      'quality',
+      'source',
+      'foldkit-differences',
+    ])
+    playwrightExpect(sidebarSectionIds).toStrictEqual(sectionIds)
+  },
+)
+
+playwrightTest(
   'button docs are prerendered, searchable, and responsive',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })
@@ -727,7 +766,7 @@ playwrightTest(
 
     await playwrightExpect(page.locator('.docs-sidebar')).toBeHidden()
     await playwrightExpect(page.locator('#main-content')).toBeVisible()
-    await playwrightExpect(page.locator('.docs-toc')).toBeHidden()
+    await playwrightExpect(page.locator('.docs-toc')).toBeVisible()
     await playwrightExpect(
       page.getByRole('button', { name: 'Browse components' }),
     ).toBeVisible()
@@ -1218,6 +1257,9 @@ playwrightTest(
 
     const preview = page.getByLabel('PopoverBasic live preview')
     const trigger = preview.getByRole('button', { name: 'Open Popover' })
+    const title = preview.getByText('Dimensions', { exact: true })
+
+    await playwrightExpect(title).not.toBeVisible()
     await trigger.click()
     const content = await expectOnlyVisibleSurface(
       preview,
@@ -1236,7 +1278,89 @@ playwrightTest(
       preview,
       '[data-slot="popover-content"][data-open]',
     )
+    await playwrightExpect(title).not.toBeVisible()
     await playwrightExpect(trigger).toBeFocused()
+  },
+)
+
+playwrightTest(
+  'controlled progress follows its slider inside a narrow viewport',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/components/shadcn/progress')
+
+    const preview = page.getByLabel('ProgressControlled live preview')
+    const sliderControl = preview.locator('[data-slot="slider"]')
+    const progress = preview.getByRole('progressbar')
+
+    await sliderControl.scrollIntoViewIfNeeded()
+    const sliderControlBox = await visibleBox(sliderControl)
+
+    await page.mouse.move(
+      sliderControlBox.x + sliderControlBox.width / 2,
+      sliderControlBox.y + sliderControlBox.height / 2,
+    )
+    await page.mouse.down()
+    await page.mouse.move(
+      sliderControlBox.x + sliderControlBox.width * 0.8,
+      sliderControlBox.y + sliderControlBox.height / 2,
+      { steps: 5 },
+    )
+    await page.mouse.up()
+
+    await playwrightExpect(progress).toHaveAttribute('aria-valuenow', '80')
+  },
+)
+
+playwrightTest(
+  'RTL popover preserves physical and logical side placement',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 })
+    await page.goto('/components/shadcn/popover')
+
+    const preview = page.getByLabel('PopoverRtl live preview')
+    await preview.scrollIntoViewIfNeeded()
+
+    const expectSide = async (
+      triggerName: string,
+      expectedSide: 'bottom' | 'left' | 'right' | 'top',
+    ): Promise<void> => {
+      const trigger = preview.getByRole('button', { name: triggerName })
+      await trigger.click()
+      const content = await expectOnlyVisibleSurface(
+        preview,
+        '[data-slot="popover-content"][data-open]',
+      )
+      const triggerBox = await visibleBox(trigger)
+      const contentBox = await visibleBox(content)
+
+      if (expectedSide === 'left') {
+        playwrightExpect(contentBox.x + contentBox.width).toBeLessThanOrEqual(
+          triggerBox.x + 1,
+        )
+      } else if (expectedSide === 'right') {
+        playwrightExpect(contentBox.x).toBeGreaterThanOrEqual(
+          triggerBox.x + triggerBox.width - 1,
+        )
+      } else if (expectedSide === 'top') {
+        playwrightExpect(contentBox.y + contentBox.height).toBeLessThanOrEqual(
+          triggerBox.y + 1,
+        )
+      } else {
+        playwrightExpect(contentBox.y).toBeGreaterThanOrEqual(
+          triggerBox.y + triggerBox.height - 1,
+        )
+      }
+
+      await page.keyboard.press('Escape')
+    }
+
+    await expectSide('Left', 'left')
+    await expectSide('Top', 'top')
+    await expectSide('Bottom', 'bottom')
+    await expectSide('Right', 'right')
+    await expectSide('Inline Start', 'right')
+    await expectSide('Inline End', 'left')
   },
 )
 

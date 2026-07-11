@@ -139,56 +139,72 @@
       "title": "SpinnerDemo",
       "description": "Spinner composed inside a muted Item row.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Spinner composed inside a muted Item row.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-badge",
       "title": "SpinnerBadge",
       "description": "Badge variants with inline-start Spinner icons.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Badge variants with inline-start Spinner icons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-button",
       "title": "SpinnerButton",
       "description": "Disabled Button variants with inline-start Spinner icons.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Disabled Button variants with inline-start Spinner icons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-custom",
       "title": "SpinnerCustom",
       "description": "Custom local loader icon preserving the origin status and animation footprint.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Custom local loader icon preserving the origin status and animation footprint.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-input-group",
       "title": "SpinnerInputGroup",
       "description": "Input Group examples with disabled controls and Spinner addons.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Input Group examples with disabled controls and Spinner addons.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-empty",
       "title": "SpinnerEmpty",
       "description": "Empty state composed with Spinner media and a cancel action.",
       "sourcePath": "src/registry/shadcn/empty/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Empty state composed with Spinner media and a cancel action.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-rtl",
       "title": "SpinnerRtl",
       "description": "RTL Item row using deterministic local Arabic strings.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Item row using deterministic local Arabic strings.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/spinner-size",
       "title": "SpinnerSize",
       "description": "Spinner size overrides through class canonicalization.",
       "sourcePath": "src/registry/shadcn/spinner/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Spinner size overrides through class canonicalization.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -221,5 +237,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on lucide-react or the origin app language selector. Local SVGs and labels preserve the rendered footprint needed by Spinner examples."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Spinner helper with local inline SVG rendering, status semantics, and examples across badges, buttons, items, input groups, RTL, custom icons, and sizes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

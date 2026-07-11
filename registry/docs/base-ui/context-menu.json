@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/context-menu",
   "title": "Context Menu",
   "description": "Foldkit-native Base UI Context Menu primitive composed from the local Menu foundation, adding model-owned context points, context-key opening, context-trigger attributes, deterministic point anchoring, and Mac/non-Mac pointer-release behavior without duplicating Menu item, submenu, checked item, radio item, or roving-focus semantics.",
+  "distinguishes": "Foldkit-native Base UI Context Menu primitive composed from the local Menu foundation, adding model-owned context points, context-key opening, context-trigger attributes, deterministic point anchoring, and Mac/non-Mac pointer-release behavior without duplicating Menu item, submenu, checked item, radio item, or roving-focus semantics.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,

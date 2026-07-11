@@ -86,5 +86,10 @@
     "availability": "installable",
     "docsStatus": "missing"
   },
-  "deviations": []
+  "deviations": [],
+  "distinguishes": "Foldkit-native Base UI Separator primitive preserving role, orientation, ARIA, and data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ]
 }

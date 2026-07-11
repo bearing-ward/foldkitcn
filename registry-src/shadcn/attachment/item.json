@@ -144,35 +144,45 @@
       "title": "AttachmentDemo",
       "description": "Attachment demo with image rows, upload progress, and file actions.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Attachment demo with image rows, upload progress, and file actions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-group-demo",
       "title": "AttachmentGroupDemo",
       "description": "Scrollable attachment group with multiple file types and remove actions.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Scrollable attachment group with multiple file types and remove actions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-image",
       "title": "AttachmentImage",
       "description": "Image attachments with overlay preview triggers and external links.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Image attachments with overlay preview triggers and external links.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-sizes",
       "title": "AttachmentSizes",
       "description": "Default, small, and extra-small attachment rows.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Default, small, and extra-small attachment rows.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-states",
       "title": "AttachmentStates",
       "description": "Idle, uploading, processing, error, and done attachment states.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Idle, uploading, processing, error, and done attachment states.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-workflow-demo",
@@ -181,14 +191,18 @@
       "sourcePath": "src/registry/shadcn/attachment/workflow.ts",
       "kind": "demo",
       "previewExportName": "AttachmentWorkflowDemo",
-      "previewStatus": "live-ready"
+      "previewStatus": "live-ready",
+      "distinguishes": "FileDrop-backed attachment workflow with accepted file rows.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/attachment-trigger-demo",
       "title": "AttachmentTriggerDemo",
       "description": "Attachment preview trigger integrated with a dialog-backed preview.",
       "sourcePath": "src/registry/shadcn/attachment/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Attachment preview trigger integrated with a dialog-backed preview.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -221,5 +235,10 @@
       "status": "accepted",
       "rationale": "Installable source cannot depend on lucide-react. Local inline SVGs preserve the rendered footprint needed by the attachment demos."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Attachment helper with Effect Schema state, size, orientation, and media variants, local part renderers, dialog-trigger examples, a FileDrop-backed attachment workflow demo, and deterministic inline SVG example icons.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

@@ -200,70 +200,90 @@
       "title": "ButtonGroupDemo",
       "description": "Nested Button Groups for archive, report, snooze, and more actions.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Nested Button Groups for archive, report, snooze, and more actions.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-dropdown",
       "title": "ButtonGroupDropdown",
       "description": "Button Group with a local dropdown trigger affordance.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button Group with a local dropdown trigger affordance.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-input",
       "title": "ButtonGroupInput",
       "description": "Button Group with local Input and search Button.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button Group with local Input and search Button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-orientation",
       "title": "ButtonGroupOrientation",
       "description": "Vertical media controls Button Group.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Vertical media controls Button Group.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-popover",
       "title": "ButtonGroupPopover",
       "description": "Button Group with a local Popover trigger affordance.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button Group with a local Popover trigger affordance.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-rtl",
       "title": "ButtonGroupRtl",
       "description": "RTL Button Group with deterministic local Arabic labels.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "RTL Button Group with deterministic local Arabic labels.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-select",
       "title": "ButtonGroupSelect",
       "description": "Button Group with local Select trigger, Input, and send Button.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button Group with local Select trigger, Input, and send Button.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-separator",
       "title": "ButtonGroupSeparatorDemo",
       "description": "Button Group with local separator affordance.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Button Group with local separator affordance.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-size",
       "title": "ButtonGroupSize",
       "description": "Small, default, and large Button Group rows.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Small, default, and large Button Group rows.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     },
     {
       "id": "shadcn/button-group-split",
       "title": "ButtonGroupSplit",
       "description": "Split secondary Button Group with separator and icon action.",
       "sourcePath": "src/registry/shadcn/button-group/examples.ts",
-      "kind": "demo"
+      "kind": "demo",
+      "distinguishes": "Split secondary Button Group with separator and icon action.",
+      "behaviorExpectations": ["renders-without-errors", "preview-contained"]
     }
   ],
   "parity": {
@@ -314,5 +334,10 @@
       "status": "accepted",
       "rationale": "The core Button Group item remains installable without importing upstream input-group source. Plan 072 will unlock the two input-group-composed examples."
     }
+  ],
+  "distinguishes": "Foldkit-native shadcn base-nova Button Group helper with Effect Schema orientation options, origin slot class helpers, text and separator affordances, and local examples composed from existing shadcn registry controls.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
   ]
 }

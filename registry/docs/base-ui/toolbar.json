@@ -4,6 +4,11 @@
   "routePath": "/components/base-ui/toolbar",
   "title": "Toolbar",
   "description": "Foldkit-native Base UI Toolbar primitive preserving toolbar root, grouped controls, buttons, links, inputs, disabled focusability, orientation, roving focus metadata, activation, ARIA, and data attributes.",
+  "distinguishes": "Foldkit-native Base UI Toolbar primitive preserving toolbar root, grouped controls, buttons, links, inputs, disabled focusability, orientation, roving focus metadata, activation, ARIA, and data attributes.",
+  "behaviorExpectations": [
+    "examples-render-without-errors",
+    "examples-match-declared-behavior"
+  ],
   "docsStatus": "missing",
   "markdownPath": null,
   "markdown": null,
