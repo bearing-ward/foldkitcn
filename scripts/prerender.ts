@@ -2,13 +2,11 @@ import { Console, Effect, Schema as S } from 'effect'
 import { chromium } from 'playwright'
 import type { Browser } from 'playwright'
 
+import { ComponentDocsIndex, RegistryIndex } from '#registry/schema'
+import type { RegistryIndexEntry, RegistryNamespace } from '#registry/schema'
+
 import docsIndexJson from '../registry/docs/index.json'
 import registryIndexJson from '../registry/index.json'
-import { ComponentDocsIndex, RegistryIndex } from '../src/registry/schema'
-import type {
-  RegistryIndexEntry,
-  RegistryNamespace,
-} from '../src/registry/schema'
 
 import { spawn } from 'node:child_process'
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'

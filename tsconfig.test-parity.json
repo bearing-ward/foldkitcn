@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM"],
+    "target": "ES2023",
+    "types": ["node"]
+  },
+  "include": ["tests/parity/**/*.test.ts", "src/json.d.ts"]
+}

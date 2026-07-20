@@ -1,22 +1,15 @@
-import type { OriginFixtureSnapshot } from '../../origin/shadcn/snapshot'
+/// <reference types="vite/client" />
+
 import { captureOriginSnapshot } from '../../origin/shadcn/snapshot'
 import { htmlToElement } from '../render'
-import type { ShadcnFoldkitCase } from './cases'
 import { findShadcnFoldkitCase } from './cases'
+import type { ShadcnFoldkitFixtureApi } from './fixture-api'
 
 import './style.css'
 
-interface ShadcnFoldkitFixtureApi {
-  readonly selectedCase: Pick<
-    ShadcnFoldkitCase,
-    'id' | 'originFilePath' | 'title'
-  >
-  readonly captureSnapshot: () => OriginFixtureSnapshot
-}
-
 declare global {
   interface Window {
-    readonly __SHADCN_FOLDKIT_FIXTURE__: ShadcnFoldkitFixtureApi
+    __SHADCN_FOLDKIT_FIXTURE__: ShadcnFoldkitFixtureApi
   }
 }
 

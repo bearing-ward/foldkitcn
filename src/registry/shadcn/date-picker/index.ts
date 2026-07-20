@@ -4,7 +4,7 @@ import type { AnchorConfig } from '@foldkit/ui/popover'
 import { Match as M, Option, Schema as S } from 'effect'
 import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+import { childAttributes, html } from 'foldkit/html'
 
 import { cn } from '../../../utils/cn'
 
@@ -365,7 +365,9 @@ export const DatePicker = <Message = DatePickerMessage>(
         ? {}
         : { isDisabled: config.isDisabled }),
       className: datePickerClassName(config.className),
-      triggerAttributes: [h.DataAttribute('slot', 'popover-trigger')],
+      triggerAttributes: childAttributes([
+        h.DataAttribute('slot', 'popover-trigger'),
+      ]),
       triggerClassName: datePickerTriggerClassName(
         config.triggerClassName,
         config.compact === true,

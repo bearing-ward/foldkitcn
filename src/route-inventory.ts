@@ -1,8 +1,9 @@
 import { Array, Match as M, Option, Schema as S, pipe } from 'effect'
 
+import type { RegistryNamespace } from '#registry/schema'
+
 import { namespaceGroups, namespaceLabel, publicComponents } from './data'
 import type { DocsData, PublicComponent } from './data'
-import type { RegistryNamespace } from './registry/schema'
 import {
   ComponentDetailRoute,
   ComponentsIndexRoute,

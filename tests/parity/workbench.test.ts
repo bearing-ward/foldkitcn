@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import { describe, expect, test } from 'vitest'
 
 import { renderWorkbenchMarkdownReport } from '../../src/registry/parity/workbench'
@@ -146,15 +147,15 @@ describe('parity workbench config', () => {
         outputDir: '.parity-workbench/shadcn-tabs/tabs-demo',
         jsonPath: '.parity-workbench/shadcn-tabs/tabs-demo/report.json',
         markdownPath: '.parity-workbench/shadcn-tabs/tabs-demo/report.md',
-        htmlPath: null,
+        htmlPath: Option.none(),
         screenshotDir: '.parity-workbench/shadcn-tabs/tabs-demo/screenshots',
       },
       captures: [
         {
           kind: 'origin',
           label: 'initial',
-          recipeId: null,
-          stepIndex: null,
+          recipeId: Option.none(),
+          stepIndex: Option.none(),
           phase: 'initial',
           state: {
             snapshot: {

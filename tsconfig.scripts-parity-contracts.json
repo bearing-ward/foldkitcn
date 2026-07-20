@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM"],
+    "target": "ES2023",
+    "types": ["node"]
+  },
+  "include": [
+    "scripts/public-parity-contracts.ts",
+    "scripts/report-public-parity-contracts.ts",
+    "src/json.d.ts"
+  ]
+}

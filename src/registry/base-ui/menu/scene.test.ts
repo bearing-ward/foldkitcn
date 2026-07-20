@@ -164,7 +164,12 @@ const update = (model: Model, message: Message): UpdateReturn =>
 // VIEW
 
 const viewMenu =
-  (config: Omit<ViewConfig<Message>, 'id' | 'items' | 'open' | 'toView'>) =>
+  (
+    config: Omit<
+      ViewConfig<Message>,
+      'id' | 'items' | 'onPositioned' | 'open' | 'positioning' | 'toView'
+    >,
+  ) =>
   (model: Model): Html => {
     const h = html<Message>()
 

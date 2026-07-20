@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["src/data.test.ts", "src/json.d.ts"]
+}

@@ -5,6 +5,7 @@ repos/
 # Build outputs
 dist/
 build/
+test-results/
 
 # Environment variables
 .env
@@ -24,6 +25,7 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+.typecheck/
 
 # Parity workbench artifacts
 .parity-workbench/

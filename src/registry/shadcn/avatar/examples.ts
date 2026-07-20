@@ -203,7 +203,10 @@ const avatarDropdownShell = <Message>(
       ? {}
       : {
           onOpenChange: change =>
-            controller.onOpenChange('avatar-dropdown', change),
+            controller.onOpenChange('avatar-dropdown', {
+              ...change,
+              ancestorValues: [],
+            }),
         }),
     ...(controller?.onPositioned === undefined
       ? { positioning: 'static' as const }

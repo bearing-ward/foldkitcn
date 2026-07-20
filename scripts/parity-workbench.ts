@@ -1,6 +1,7 @@
+import { NodeServices } from '@effect/platform-node'
 import { chromium } from '@playwright/test'
 import type { Page } from '@playwright/test'
-import { Effect, Schema as S } from 'effect'
+import { Effect, Option, Schema as S } from 'effect'
 import { Command, Flag } from 'effect/unstable/cli'
 
 import { canonicalBoundingBox } from '../src/registry/parity/canonicalize'
@@ -94,8 +95,8 @@ type BrowserState = Readonly<{
 type WorkbenchCapture = Readonly<{
   kind: WorkbenchKind
   label: string
-  recipeId: string | null
-  stepIndex: number | null
+  recipeId: Option.Option<string>
+  stepIndex: Option.Option<number>
   phase: WorkbenchCapturePhase
   state: BrowserState
 }>
@@ -316,9 +317,9 @@ const accessibilitySnapshot = (
       }
 
       return {
-        role,
-        name: maybeName,
-        description: ariaDescribedBy ?? undefined,
+        ...(role === undefined ? {} : { role }),
+        ...(maybeName === undefined ? {} : { name: maybeName }),
+        ...(ariaDescribedBy === null ? {} : { description: ariaDescribedBy }),
         focused: element === document.activeElement,
         selected: element.getAttribute('aria-selected') === 'true',
         checked: element.getAttribute('aria-checked') === 'true',
@@ -327,7 +328,7 @@ const accessibilitySnapshot = (
         disabled:
           element.hasAttribute('disabled') ||
           element.getAttribute('aria-disabled') === 'true',
-        children: children.length > 0 ? children : undefined,
+        ...(children.length > 0 ? { children } : {}),
       }
     }
 
@@ -414,8 +415,8 @@ const captureLabeledState = async (
 ): Promise<WorkbenchCapture> => ({
   kind,
   label: captureLabel(recipeId, stepIndex, phase),
-  recipeId,
-  stepIndex,
+  recipeId: Option.fromNullOr(recipeId),
+  stepIndex: Option.fromNullOr(stepIndex),
   phase,
   state: await captureState(page, kind, selector, screenshotPath),
 })
@@ -869,7 +870,7 @@ const workbenchReportPaths = (
     workbenchCase.caseId,
     'report.md',
   ),
-  htmlPath: null,
+  htmlPath: Option.none(),
   screenshotDir: path.join(
     outputDir,
     workbenchCase.itemId.replaceAll('/', '-'),
@@ -956,11 +957,11 @@ const runWorkbench = async (input: WorkbenchCliInput): Promise<void> => {
   const {
     createFixtureServer: createOriginFixtureServer,
     serverUrl: originServerUrl,
-  } = await import('../tests/parity/fixtures/origin/shadcn/runner')
+  } = await import('#parity-origin-runner')
   const {
     createFixtureServer: createFoldkitFixtureServer,
     serverUrl: foldkitServerUrl,
-  } = await import('../tests/parity/fixtures/foldkit/shadcn/runner')
+  } = await import('#parity-foldkit-runner')
 
   logWorkbenchStage('Starting origin fixture server')
   const originFixtureServer = await createOriginFixtureServer()
@@ -1140,5 +1141,9 @@ export const runParityWorkbenchCli = (args: ReadonlyArray<string>) =>
   Command.runWith(createWorkbenchCommand(), { version: VERSION })(args)
 
 if (import.meta.main) {
-  await Effect.runPromise(runParityWorkbenchCli(process.argv.slice(2)))
+  await Effect.runPromise(
+    runParityWorkbenchCli(process.argv.slice(2)).pipe(
+      Effect.provide(NodeServices.layer),
+    ),
+  )
 }

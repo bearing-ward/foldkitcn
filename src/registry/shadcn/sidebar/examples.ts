@@ -1,7 +1,10 @@
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
-import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
+import type {
+  AnchorPositioningConfig,
+  AnchorPositioningMessage,
+} from '../../../utils/anchor-positioning'
 import * as Avatar from '../avatar'
 import * as Button from '../button'
 import * as Collapsible from '../collapsible'
@@ -853,6 +856,10 @@ const sidebarDropdown = <Message>(
   }>,
 ): Html => {
   const { controller } = config
+  const positioningOptions: AnchorPositioningConfig<Message> =
+    controller?.onPositioned === undefined
+      ? { positioning: 'static' }
+      : { onPositioned: controller.onPositioned }
   const contentClassName = [
     config.contentClassName,
     config.side === 'top'
@@ -875,6 +882,7 @@ const sidebarDropdown = <Message>(
     ...(contentClassName === '' ? {} : { contentClassName }),
     side: config.side ?? 'right',
     align: config.align ?? 'start',
+    ...positioningOptions,
     ...(controller === undefined
       ? {}
       : {
@@ -888,9 +896,6 @@ const sidebarDropdown = <Message>(
               panelId: config.onItemPressPanelId ?? config.id,
               value: press.value,
             }),
-          ...(controller.onPositioned === undefined
-            ? { positioning: 'static' as const }
-            : { onPositioned: controller.onPositioned }),
         }),
     toView: attributes => {
       const h = html<Message>()

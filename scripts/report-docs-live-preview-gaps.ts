@@ -4,16 +4,13 @@ import type {
   LiveExampleContext,
   hasLiveExampleViewFor as hasLiveExampleViewForType,
   liveExampleViewFor as liveExampleViewForType,
-} from '../src/live-examples'
-import type { createToastState as createToastStateType } from '../src/registry/base-ui/toast'
-import {
-  ComponentDocsArtifact,
-  ComponentDocsIndex,
-} from '../src/registry/schema'
+} from '#live-examples'
+import type { createToastState as createToastStateType } from '#registry/base-ui/toast'
+import { ComponentDocsArtifact, ComponentDocsIndex } from '#registry/schema'
 import type {
   ComponentDocsArtifact as ComponentDocsArtifactType,
   ExampleDocsArtifact,
-} from '../src/registry/schema'
+} from '#registry/schema'
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -87,7 +84,7 @@ const ensureBrowserGlobals = (): void => {
 
 export const loadLiveExampleViewFor = async (): Promise<LiveExampleViewFor> => {
   ensureBrowserGlobals()
-  const liveExamplesModule = await import('../src/live-examples')
+  const liveExamplesModule = await import('#live-examples')
 
   return liveExamplesModule.liveExampleViewFor
 }
@@ -95,14 +92,14 @@ export const loadLiveExampleViewFor = async (): Promise<LiveExampleViewFor> => {
 export const loadHasLiveExampleViewFor =
   async (): Promise<HasLiveExampleViewFor> => {
     ensureBrowserGlobals()
-    const liveExamplesModule = await import('../src/live-examples')
+    const liveExamplesModule = await import('#live-examples')
 
     return liveExamplesModule.hasLiveExampleViewFor
   }
 
 export const loadCreateToastState = async (): Promise<CreateToastState> => {
   ensureBrowserGlobals()
-  const toastModule = await import('../src/registry/base-ui/toast')
+  const toastModule = await import('#registry/base-ui/toast')
 
   return toastModule.createToastState
 }
@@ -178,6 +175,7 @@ export const createLiveExampleContext = (
   onMenuCheckedChange: () => ({}),
   onMenuRadioValueChange: () => ({}),
   onMenuValueChange: () => ({}),
+  onPositionedSurface: () => ({}),
   toastStateFor: () => createToastState(),
   onToastMessage: () => ({}),
   onBubbleMessage: () => ({}),

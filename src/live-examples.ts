@@ -2411,7 +2411,8 @@ const commandDialogExample = (
       onOpen: context.onCommandDialogOpen(example),
       onOpenChange: change =>
         context.onCommandDialogOpenChange(example, change),
-      onQueryChange: value => context.onInputValueChange(example, { value }),
+      onQueryChange: value =>
+        context.onInputValueChange(example, { value, reason: 'none' }),
     }),
 })
 

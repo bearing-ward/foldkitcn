@@ -183,7 +183,9 @@ export const createPublicParityContracts = (
     example: ComponentDocsArtifact['examples'][number],
   ) => boolean,
 ): ReadonlyArray<PublicParityContract> => {
-  const slotStatuses = new Map(slots.map(slot => [slot.itemId, slot.status]))
+  const slotStatuses = new Map<string, ParitySlot['status']>(
+    slots.map(slot => [slot.itemId, slot.status]),
+  )
 
   return artifacts
     .filter(
@@ -198,42 +200,42 @@ export const createPublicParityContracts = (
         Array.isReadonlyArrayNonEmpty(origin.sourcePaths),
       )
 
-      const examples = artifact.examples.map(example => ({
-        itemId: artifact.itemId,
-        routePath: artifact.routePath,
-        exampleId: Option.some(example.id),
-        title: example.title,
-        profile,
-        evidenceMode: sourceBacked
-          ? ('source-backed' as const)
-          : ('docs-example-only' as const),
-        originPaths,
-        livePreview: Option.some(hasLiveExampleViewFor(example)),
-        paritySlotStatus: slotStatuses.get(artifact.itemId) ?? 'missing',
-        requiredViewports: ['desktop', 'mobile-390'] as const,
-        requiredRecipes: recipesForProfile(profile),
-        exception: exceptionFor(artifact.itemId),
-      }))
+      const examples = artifact.examples.map(example =>
+        S.decodeUnknownSync(PublicParityContract)({
+          itemId: artifact.itemId,
+          routePath: artifact.routePath,
+          exampleId: Option.some(example.id),
+          title: example.title,
+          profile,
+          evidenceMode: sourceBacked ? 'source-backed' : 'docs-example-only',
+          originPaths,
+          livePreview: Option.some(hasLiveExampleViewFor(example)),
+          paritySlotStatus: slotStatuses.get(artifact.itemId) ?? 'missing',
+          requiredViewports: ['desktop', 'mobile-390'],
+          requiredRecipes: recipesForProfile(profile),
+          exception: exceptionFor(artifact.itemId),
+        }),
+      )
 
       return Array.isReadonlyArrayNonEmpty(examples)
         ? examples
         : [
-            {
+            S.decodeUnknownSync(PublicParityContract)({
               itemId: artifact.itemId,
               routePath: artifact.routePath,
               exampleId: Option.none(),
               title: artifact.title,
               profile,
               evidenceMode: sourceBacked
-                ? ('source-backed' as const)
-                : ('docs-example-only' as const),
+                ? 'source-backed'
+                : 'docs-example-only',
               originPaths,
               livePreview: Option.none(),
               paritySlotStatus: slotStatuses.get(artifact.itemId) ?? 'missing',
-              requiredViewports: ['desktop', 'mobile-390'] as const,
+              requiredViewports: ['desktop', 'mobile-390'],
               requiredRecipes: recipesForProfile(profile),
               exception: exceptionFor(artifact.itemId),
-            },
+            }),
           ]
     })
 }

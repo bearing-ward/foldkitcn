@@ -1,7 +1,10 @@
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
-import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
+import type {
+  AnchorPositioningConfig,
+  AnchorPositioningMessage,
+} from '../../../utils/anchor-positioning'
 import * as DropdownMenu from './index'
 import type {
   MenuCheckedChange,
@@ -671,10 +674,40 @@ const popupView = <Message>(
   ]
 }
 
+const menuPositioningOptions = <Message>(
+  controller: DropdownMenuExampleController<Message> | undefined,
+): AnchorPositioningConfig<Message> =>
+  controller?.onPositioned === undefined
+    ? { positioning: 'static' }
+    : { onPositioned: controller.onPositioned }
+
+const controllerOpenChange = <Message>(
+  id: string,
+  items: ReadonlyArray<ExampleItem>,
+  controller: DropdownMenuExampleController<Message>,
+  change: DropdownMenu.MenuOpenChange,
+): Message => {
+  const parentValue =
+    change.reason === 'outside-press' ? undefined : change.parentValue
+
+  return controller.onOpenChange(id, {
+    open: change.open,
+    reason: change.reason,
+    ...(parentValue === undefined ? {} : { parentValue }),
+    ancestorValues:
+      parentValue === undefined
+        ? []
+        : submenuAncestorValues(items, parentValue),
+  })
+}
+
 const menuExampleWithController = <Message = never>(
   id: string,
   items: ReadonlyArray<ExampleItem>,
-  options: Partial<DropdownMenu.ViewConfig<Message>> &
+  options: Omit<
+    Partial<DropdownMenu.ViewConfig<Message>>,
+    'onPositioned' | 'positioning'
+  > &
     Readonly<{
       trigger?: ReadonlyArray<ExampleChild>
       defaultOpen?: boolean
@@ -711,21 +744,13 @@ const menuExampleWithController = <Message = never>(
     open,
     highlightedValue,
     openSubmenuValues,
+    ...menuPositioningOptions(controller),
     ...(controller === undefined
       ? {}
       : {
           onOpenChange: change =>
-            controller.onOpenChange(id, {
-              ...change,
-              ancestorValues:
-                change.parentValue === undefined
-                  ? []
-                  : submenuAncestorValues(resolvedItems, change.parentValue),
-            }),
+            controllerOpenChange(id, resolvedItems, controller, change),
           onHighlightChange: change => controller.onHighlightChange(id, change),
-          ...(controller.onPositioned === undefined
-            ? { positioning: 'static' as const }
-            : { onPositioned: controller.onPositioned }),
         }),
     ...(onItemPress === undefined
       ? {}

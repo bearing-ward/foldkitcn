@@ -1,25 +1,18 @@
+/// <reference types="vite/client" />
+
 import * as React from 'react'
 import { flushSync } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 
-import type { ShadcnOriginCase } from './cases'
 import { findShadcnOriginCase } from './cases'
-import type { OriginFixtureSnapshot } from './snapshot'
+import type { ShadcnOriginFixtureApi } from './fixture-api'
 import { captureOriginSnapshot } from './snapshot'
 
 import './style.css'
 
-interface ShadcnOriginFixtureApi {
-  readonly selectedCase: Pick<
-    ShadcnOriginCase,
-    'id' | 'originFilePath' | 'title'
-  >
-  readonly captureSnapshot: () => OriginFixtureSnapshot
-}
-
 declare global {
   interface Window {
-    readonly __SHADCN_ORIGIN_FIXTURE__: ShadcnOriginFixtureApi
+    __SHADCN_ORIGIN_FIXTURE__: ShadcnOriginFixtureApi
   }
 }
 

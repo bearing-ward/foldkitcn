@@ -94,6 +94,11 @@ jobs:
       - name: Install Playwright Chromium
         run: bun x playwright install --with-deps chromium
 
+      - name: Typecheck
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: bun run typecheck
+
       - name: Test
         run: bun run test
 

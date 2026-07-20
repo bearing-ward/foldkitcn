@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "#live-examples": ["./.typecheck/live-examples/live-examples.d.ts"],
+      "#parity-foldkit-runner": [
+        "./.typecheck/parity-foldkit/tests/parity/fixtures/foldkit/shadcn/runner.d.ts"
+      ],
+      "#parity-origin-runner": [
+        "./.typecheck/parity-origin/tests/parity/fixtures/origin/shadcn/runner.d.ts"
+      ],
+      "#registry/schema": ["./.typecheck/live-examples/registry/schema.d.ts"],
+      "#registry/*/examples": [
+        "./.typecheck/live-examples/registry/*/examples.d.ts"
+      ],
+      "#registry/*/workflow": [
+        "./.typecheck/live-examples/registry/*/workflow.d.ts"
+      ],
+      "#registry/*": ["./.typecheck/live-examples/registry/*/index.d.ts"]
+    }
+  }
+}

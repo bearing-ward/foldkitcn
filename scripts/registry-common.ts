@@ -16,6 +16,7 @@ import type {
   PublicRegistryCatalog as PublicRegistryCatalogType,
   PublicRegistryItem as PublicRegistryItemType,
   RegistryIndex as RegistryIndexType,
+  RegistryIndexEntry,
   RegistryItemManifest,
 } from '../src/registry/schema'
 import {
@@ -583,8 +584,12 @@ export const buildRegistryIndex = (options: BuildRegistryIndexOptions = {}) => {
   return {
     ...decodedIndex,
     generatedAt: selectRegistryGeneratedAt(decodedIndex, {
-      previousIndex: options.previousIndex,
-      generatedAt: options.generatedAt,
+      ...(options.previousIndex === undefined
+        ? {}
+        : { previousIndex: options.previousIndex }),
+      ...(options.generatedAt === undefined
+        ? {}
+        : { generatedAt: options.generatedAt }),
     }),
   }
 }

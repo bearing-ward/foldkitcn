@@ -202,7 +202,13 @@ describe('registry build helpers', () => {
 
   test('builds the generated docs artifact route for shadcn button', () => {
     const index = registryIndexWithDocsItems()
-    const route = componentDocsRouteForItem(index.items[0].item)
+    const [buttonEntry] = index.items
+
+    if (buttonEntry === undefined) {
+      throw new Error('Expected the shadcn button registry fixture')
+    }
+
+    const route = componentDocsRouteForItem(buttonEntry.item)
     const docs = buildComponentDocsArtifacts(index)
 
     expect(route.docsArtifactPath).toBe('registry/docs/shadcn/button.json')
@@ -213,13 +219,19 @@ describe('registry build helpers', () => {
 
   test('generates example docs artifacts with snippets and dependencies', () => {
     const index = registryIndexWithDocsItems()
+    const [buttonEntry] = index.items
+
+    if (buttonEntry === undefined) {
+      throw new Error('Expected the shadcn button registry fixture')
+    }
+
     const docs = buildComponentDocsArtifacts({
       ...index,
       items: [
         {
-          ...index.items[0],
+          ...buttonEntry,
           item: {
-            ...index.items[0].item,
+            ...buttonEntry.item,
             examples: [
               {
                 id: 'shadcn/button-default',
@@ -267,13 +279,19 @@ describe('registry build helpers', () => {
 
   test('leaves unregistered example exports static', () => {
     const index = registryIndexWithDocsItems()
+    const [buttonEntry] = index.items
+
+    if (buttonEntry === undefined) {
+      throw new Error('Expected the shadcn button registry fixture')
+    }
+
     const docs = buildComponentDocsArtifacts({
       ...index,
       items: [
         {
-          ...index.items[0],
+          ...buttonEntry,
           item: {
-            ...index.items[0].item,
+            ...buttonEntry.item,
             id: 'base-ui/button',
             examples: [
               {

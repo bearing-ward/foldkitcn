@@ -112,7 +112,12 @@ const configured = (model: Model): Select.SelectOptions => ({
 })
 
 const viewSelect =
-  (config: Omit<ViewConfig<Message>, 'id' | 'items' | 'open' | 'toView'>) =>
+  (
+    config: Omit<
+      ViewConfig<Message>,
+      'id' | 'items' | 'onPositioned' | 'open' | 'positioning' | 'toView'
+    >,
+  ) =>
   (model: Model): Html => {
     const h = html<Message>()
 

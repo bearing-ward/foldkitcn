@@ -4,7 +4,7 @@ import type {
   OriginComponentProgressReport,
   OriginComponentProgressRow,
   OriginResolutionStatus,
-} from './registry/schema'
+} from '#registry/schema'
 
 export type RoadmapBlockedGroup = Readonly<{
   label: string

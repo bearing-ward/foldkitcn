@@ -116,6 +116,7 @@ const selectShell = (
   return Select<never>({
     id: config.id,
     open: true,
+    positioning: 'static',
     items: config.items,
     value: config.value,
     highlightedValue: config.highlightedValue,

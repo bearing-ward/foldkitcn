@@ -360,7 +360,10 @@ const itemDropdownShell = <Message>(
       ? {}
       : {
           onOpenChange: change =>
-            controller.onOpenChange('item-dropdown', change),
+            controller.onOpenChange('item-dropdown', {
+              ...change,
+              ancestorValues: [],
+            }),
         }),
     ...(onItemPress === undefined
       ? {}

@@ -145,6 +145,7 @@ const dropdownTriggerButton = (
     id,
     items: [],
     open: false,
+    positioning: 'static',
     toView: attributes =>
       button(children, {
         ...options,
@@ -258,7 +259,11 @@ const buttonGroupDropdownShell = <Message>(
     ],
     open,
     openSubmenuValues: openSubmenuValuesFor('button-group-dropdown', []),
-    onOpenChange: change => onOpenChange('button-group-dropdown', change),
+    onOpenChange: change =>
+      onOpenChange('button-group-dropdown', {
+        ...change,
+        ancestorValues: [],
+      }),
     ...(onItemPress === undefined
       ? {}
       : {

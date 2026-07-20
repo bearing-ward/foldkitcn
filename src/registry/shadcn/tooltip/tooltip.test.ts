@@ -29,7 +29,10 @@ const update = (model: Model, _message: Message): UpdateReturn => [model, []]
 
 const viewTooltip =
   (
-    config: Omit<ViewConfig<Message>, 'id' | 'open' | 'toView'> &
+    config: Omit<
+      ViewConfig<Message>,
+      'id' | 'onPositioned' | 'open' | 'positioning' | 'toView'
+    > &
       Readonly<{ open?: boolean }>,
   ) =>
   (_model: Model): Html => {
@@ -39,6 +42,7 @@ const viewTooltip =
       id: 'library-tooltip',
       open: config.open ?? true,
       ...config,
+      positioning: 'static',
       toView: attributes =>
         h.div(
           [...attributes.provider],

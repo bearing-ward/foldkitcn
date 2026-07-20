@@ -3,22 +3,23 @@
 import { Array, Match as M, Option, Order, Schema as S, pipe } from 'effect'
 import { ts } from 'foldkit/schema'
 
-import progressReportJson from '../docs/component-conversion-checklist.json'
-import docsIndexJson from '../registry/docs/index.json'
-import registryIndexJson from '../registry/index.json'
 import {
   ComponentDocsArtifact,
   ComponentDocsIndex,
   OriginComponentProgressReport,
   RegistryIndex,
-} from './registry/schema'
+} from '#registry/schema'
 import type {
   ComponentDocsArtifact as ComponentDocsArtifactType,
   ComponentDocsRoute,
   OriginComponentProgressReport as OriginComponentProgressReportType,
   RegistryIndexEntry,
   RegistryNamespace,
-} from './registry/schema'
+} from '#registry/schema'
+
+import progressReportJson from '../docs/component-conversion-checklist.json'
+import docsIndexJson from '../registry/docs/index.json'
+import registryIndexJson from '../registry/index.json'
 
 export const LoadedDocsData = ts('LoadedDocsData', {
   registry: RegistryIndex,

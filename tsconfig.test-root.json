@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  },
+  "include": [
+    "src/bun-test-setup.ts",
+    "src/vitest-setup.ts",
+    "src/route.test.ts",
+    "src/installer/**/*.test.ts",
+    "src/registry/*.test.ts",
+    "src/utils/**/*.test.ts",
+    "src/json.d.ts"
+  ]
+}

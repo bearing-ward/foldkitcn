@@ -1,4 +1,4 @@
-import { captureShadcnOriginSnapshots } from '../tests/parity/fixtures/origin/shadcn/runner'
+import { captureShadcnOriginSnapshots } from '#parity-origin-runner'
 
 const args = process.argv.slice(2)
 const grepIndex = args.indexOf('--grep')
@@ -6,7 +6,8 @@ const maybeGrep = grepIndex === -1 ? undefined : args.at(grepIndex + 1)
 
 const main = async () => {
   try {
-    const snapshots = await captureShadcnOriginSnapshots({ grep: maybeGrep })
+    const captureOptions = maybeGrep === undefined ? {} : { grep: maybeGrep }
+    const snapshots = await captureShadcnOriginSnapshots(captureOptions)
 
     console.log(`Captured ${snapshots.length} shadcn origin snapshot(s).`)
     console.log(
