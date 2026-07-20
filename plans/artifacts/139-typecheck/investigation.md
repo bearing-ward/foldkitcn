@@ -80,14 +80,19 @@ RSS. Other representative maximum RSS measurements were:
 | Parity tests     |   718,045,184 B | exit 0 |
 | Data test        |   526,598,144 B | exit 0 |
 
-The exact-once coverage test parses the 14 test configs and verifies every
+The fail-closed coverage test parses every committed source and test config,
+builds the corresponding compiler programs, and verifies every TypeScript file
+under `src/` and `scripts/` is covered. It separately verifies every
 `*.test.ts` or `*.test.tsx` under `src/`, `scripts/`, and `tests/` appears in
-exactly one shard. A compiler-file audit also found no uncovered non-test
-TypeScript files under `src/` or `scripts/`.
+exactly one of the 14 test shards. The focused coverage test uses 1,388,363,776
+bytes maximum RSS.
+
+The exact package override for `@effect/platform-node-shared` keeps the new Node
+adapter and its Effect peer on `4.0.0-beta.88`; no core dependency was upgraded.
 
 Final local gates:
 
 - `bun run typecheck`: exit 0.
-- `bun run test`: 122 files and 1,033 tests passed.
+- `bun run test`: 122 files and 1,034 tests passed.
 - `bun run test:e2e`: 344 tests passed.
 - `bun run check`: exit 0.

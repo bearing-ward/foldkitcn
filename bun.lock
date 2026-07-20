@@ -45,6 +45,9 @@
       },
     },
   },
+  "overrides": {
+    "@effect/platform-node-shared": "4.0.0-beta.88",
+  },
   "packages": {
     "@babel/runtime": ["@babel/runtime@7.29.7", "", {}, "sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw=="],
 
@@ -62,7 +65,7 @@
 
     "@effect/platform-node": ["@effect/platform-node@4.0.0-beta.88", "", { "dependencies": { "@effect/platform-node-shared": "^4.0.0-beta.88", "mime": "^4.1.0", "undici": "^8.2.0" }, "peerDependencies": { "effect": "^4.0.0-beta.88", "ioredis": "^5.7.0" } }, "sha512-k05jVJ8uYFm5VNfFFndM0kePKz9+RNW1r4ofiTMRadWzH6YqlJcuAU7Gj6RXCg2cKV+Ad/CsDqBD6QTi44ZKow=="],
 
-    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.0.0-beta.99", "", { "dependencies": { "@types/ws": "^8.18.1", "ws": "^8.21.0" }, "peerDependencies": { "effect": "^4.0.0-beta.99" } }, "sha512-POBAowafsAAb3bH1x1rJlWnv32yMAazFgEuRW5LhkW/JJA5VGoEk9OnuoUkIH1OW6K/X6IrdNpqcO+5e9lPQJA=="],
+    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.0.0-beta.88", "", { "dependencies": { "@types/ws": "^8.18.1", "ws": "^8.20.0" }, "peerDependencies": { "effect": "^4.0.0-beta.88" } }, "sha512-kkYDsnYCFFXCT9uaZQ/3hdc4fjzt0E68MImXrcHCmneX0xWCRo26m5F+iX6ryQ/lDMuhqu5lIUxIKhqhookTOw=="],
 
     "@emnapi/core": ["@emnapi/core@1.11.1", "", { "dependencies": { "@emnapi/wasi-threads": "1.2.2", "tslib": "^2.4.0" } }, "sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ=="],
 
