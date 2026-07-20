@@ -98,7 +98,7 @@ honor its STOP conditions, and update your row when done.
 | 088 | Implement shadcn Message Scroller | P1 | L | 072, 074, 085, 086, 087 | DONE |
 | 089 | Inventory docs example cards without live previews | P1 | S | 068 | DONE |
 | 090 | Normalize live preview fixture rows | P1 | M | 089 | DONE |
-| 091 | Wire visual surface live previews | P1 | M | 090 | BLOCKED (43/44 done; AttachmentWorkflowDemo needs runtime-backed FileDrop/Submodel preview support) |
+| 091 | Wire visual surface live previews | P1 | M | 090 | DONE (final Attachment workflow gap completed by Plan 121) |
 | 092 | Wire media and keyboard live previews | P1 | M | 090 | DONE |
 | 093 | Wire form control live previews | P1 | L | 090 | DONE |
 | 094 | Wire selection and collection live previews | P1 | L | 090, 093 | DONE |
@@ -143,6 +143,11 @@ honor its STOP conditions, and update your row when done.
 | 134 | Formalize Typography docs-only parity | P2 | S | 128 | DONE |
 | 135 | Resolve public mobile overflow | P1 | L | 128 | DONE |
 | 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | DONE |
+| 138 | Restore green menu and command verification | P0 | S | - | DONE (`6bf6eb69`; pre-existing overlay E2E failure remains) |
+| 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | TODO |
+| 140 | Finish PR 4 and normalize its branch and worktree | P1 | S | 138, 139 | TODO |
+| 141 | Publish a root GitHub-source registry | P1 | M | 140 | TODO |
+| 142 | Exclude vendored references from Dependabot updates | P2 | S | - | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -353,6 +358,27 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   `<= 8px` guard should stay. Execution confirmed local settled geometry also
   matches origin at roughly 4px; the blocker was the e2e guard reading before
   geometry settled, so Plan 123 can be resumed.
+- Plan 138 restores the currently red Vitest lane before any open pull request
+  is judged against CI. Plan 139 then restores a bounded, truthful TypeScript
+  gate instead of re-enabling the all-source command that currently emits a
+  multi-thousand-error complexity cascade.
+- Plan 138 is complete on `codex/138-restore-green-verification` at
+  `6bf6eb69`. Its focused tests pass 115/115, the full Vitest suite passes
+  1,032/1,032, and `bun run check` passes. The full Playwright run exposes one
+  pre-existing DropdownMenuSubmenu click-away failure (343/344); the same
+  failure reproduces on untouched `main` at `2fb34f0b`, so it is not attributed
+  to the Plan 138 patch and must be resolved before claiming the entire CI lane
+  is green.
+- Plan 140 lands only the registry dependency-lane work from PR 4. It removes
+  the unrelated branch-only Virtual List plan, requires the repaired release
+  gates, and deletes the branch/worktree only after the PR is merged.
+- Plan 141 follows Plan 140 because both change registry generation. It closes
+  issue 5 by generating a root GitHub-source catalog whose local dependencies
+  remain in the same GitHub registry, while preserving the Pages namespace
+  catalog under `public/r/`.
+- Plan 142 is independent. It configures Dependabot to maintain the root npm
+  project while excluding `repos/**`, then closes the two open bot PRs that
+  modify the read-only Foldkit evidence subtree.
 
 ## Findings considered and rejected
 
@@ -363,6 +389,10 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Re-running Plans 104-108 unchanged: rejected because those plans are already
   marked DONE and their broad tests missed the exact current reports. Plans
   109-111 add narrower red tests for the present failures instead.
+- Landing branch-only Plan 137 in FoldkitCN: rejected because its own evidence
+  says `@foldkit/ui/virtualList` is already the canonical implementation and
+  the immediate migration belongs to Jot. PR 4 should not mix that downstream
+  planning question into a registry dependency fix.
 
 ## Reconciliation log
 
@@ -375,3 +405,8 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   `date-picker`, `toast`, `typography`, and `chart`. The held rows documented
   by plan 008 remain intentionally non-executable until their local foundations
   exist.
+- 2026-07-19 at `2fb34f0b`: reconciled Plan 091 to DONE after
+  `bun run docs:live-preview-gaps` reported 442/442 live previews and direct
+  source/test inspection confirmed `AttachmentWorkflowDemo` is registered and
+  browser-covered. Added Plans 138-142 from the live GitHub, CI, branch, and
+  worktree inventory. No source, branch, worktree, PR, or issue was mutated.
