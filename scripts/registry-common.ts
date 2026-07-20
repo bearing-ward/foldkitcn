@@ -639,7 +639,9 @@ const localInstallPathForItem = (item: RegistryItemManifest): string => {
 const requiredRegistryItemsForItem = (
   item: RegistryItemManifest,
 ): ReadonlyArray<string> =>
-  item.dependencies.registry.map(dependency => dependency.target)
+  [...item.dependencies.registry, ...(item.dependencies.examples ?? [])].map(
+    dependency => dependency.target,
+  )
 
 const liveReadyExampleExportsByItemId: Readonly<
   Record<string, ReadonlySet<string>>

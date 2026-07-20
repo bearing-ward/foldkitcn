@@ -89,6 +89,7 @@ export type DependencyRecord = typeof DependencyRecord.Type
 
 export const DependencyGraph = S.Struct({
   registry: S.Array(DependencyRecord),
+  examples: S.optional(S.Array(DependencyRecord)),
   runtime: S.Array(DependencyRecord),
   development: S.Array(DependencyRecord),
 })

@@ -57,6 +57,14 @@
         "reason": "shadcn Input composes the local Base UI Input primitive."
       },
       {
+        "specifier": "utils/cn",
+        "classification": "registry-local",
+        "target": "utils/cn",
+        "reason": "shadcn Input uses the local class composition helper."
+      }
+    ],
+    "examples": [
+      {
         "specifier": "shadcn/badge",
         "classification": "registry-local",
         "target": "shadcn/badge",
@@ -85,12 +93,6 @@
         "classification": "registry-local",
         "target": "shadcn/input-group",
         "reason": "Input group examples compose the local shadcn Input Group item."
-      },
-      {
-        "specifier": "utils/cn",
-        "classification": "registry-local",
-        "target": "utils/cn",
-        "reason": "shadcn Input uses the local class composition helper."
       }
     ],
     "runtime": [

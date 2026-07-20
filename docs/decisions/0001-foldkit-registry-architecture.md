@@ -24,6 +24,8 @@ Every upstream-derived item is pinned to immutable origin provenance: origin lib
 
 Source manifests are human-authored `item.json` files validated by shared Effect schemas. Generated hashes, computed dependency graphs, parity run results, drift reports, and generated docs URLs do not belong in `item.json`.
 
+Registry dependency lanes reflect where a dependency is consumed. `dependencies.registry` contains only local registry items required by installed runtime source. `dependencies.examples` contains local registry items used only by documentation and example composition; these remain visible in generated docs but do not expand installer or public shadcn registry closure. External runtime packages remain in `dependencies.runtime`, and fixture-only packages remain in `dependencies.development`.
+
 Base UI namespace items are unstyled behavior primitives by default. Origin styled demos become executable examples layered on top.
 
 shadcn namespace items are styled Foldkit wrappers and compositions that depend on local registry primitives instead of upstream Base UI or Radix React packages.
