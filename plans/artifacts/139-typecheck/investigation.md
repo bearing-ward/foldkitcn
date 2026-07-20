@@ -92,7 +92,10 @@ adapter and its Effect peer on `4.0.0-beta.88`; no core dependency was upgraded.
 
 Final local gates:
 
+- `bun run registry:check`: 103 source manifests validated; generated registry
+  index and component conversion checklist are current.
 - `bun run typecheck`: exit 0.
 - `bun run test`: 122 files and 1,034 tests passed.
+- `bun run build`: exit 0.
 - `bun run test:e2e`: 344 tests passed.
 - `bun run check`: exit 0.
