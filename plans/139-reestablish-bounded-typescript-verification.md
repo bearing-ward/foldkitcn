@@ -7,7 +7,7 @@
 > workflow runs a truthful green typecheck.
 >
 > **Drift check (run first)**:
-> `git diff --stat 2fb34f0b..HEAD -- tsconfig.json package.json .github/workflows/pages.yml scripts src`
+> `git diff --stat 6bf6eb69..HEAD -- tsconfig.json package.json .github/workflows/pages.yml scripts src`
 > If the typecheck command or CI lane changed, rerun the baseline before using
 > this plan.
 
@@ -18,7 +18,22 @@
 - **Risk**: MED
 - **Depends on**: `plans/138-restore-green-menu-command-verification.md`
 - **Category**: dx, tests, tech-debt
-- **Planned at**: commit `2fb34f0b`, 2026-07-19
+- **Planned at**: commit `6bf6eb69`, 2026-07-19 (reconciled after Plan 138)
+
+## Execution outcome
+
+DONE on 2026-07-20. Commits `d795180d`, `32762d08`, and `cf66ea7c` on
+`codex/139-bounded-typecheck` replace the all-source compiler program with
+fail-closed declaration boundaries, bounded source lanes, and 14 test shards.
+Every TypeScript file under `src/` and `scripts/` is covered by a named config,
+and every test file under `src/`, `scripts/`, and `tests/` is covered exactly
+once.
+
+Independent review passed `bun run registry:check`, `bun run typecheck`,
+`bun run test` (1,034 tests), `bun run build`, `bun run test:e2e` (344 tests),
+and `bun run check`. No process uses a heap above 4 GB; test processes are
+capped at 2 GB. The branch is committed and clean but remains unmerged and
+unpushed for operator review.
 
 ## Why this matters
 

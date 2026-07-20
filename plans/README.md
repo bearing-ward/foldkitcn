@@ -144,10 +144,10 @@ honor its STOP conditions, and update your row when done.
 | 135 | Resolve public mobile overflow | P1 | L | 128 | DONE |
 | 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | DONE |
 | 138 | Restore green menu and command verification | P0 | S | - | DONE (`6bf6eb69`; pre-existing overlay E2E failure remains) |
-| 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | TODO |
-| 140 | Finish PR 4 and normalize its branch and worktree | P1 | S | 138, 139 | TODO |
-| 141 | Publish a root GitHub-source registry | P1 | M | 140 | TODO |
-| 142 | Exclude vendored references from Dependabot updates | P2 | S | - | TODO |
+| 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | DONE (`d795180d`, `32762d08`, `cf66ea7c`) |
+| 140 | Prepare PR 4 for merge and normalize it after operator approval | P1 | S | 138, 139 | BLOCKED (local prep approved at `c1530bc3`; awaiting dependency merges and operator publication) |
+| 141 | Publish a root GitHub-source registry | P1 | M | 140 | BLOCKED (Plan 140 is not DONE) |
+| 142 | Exclude vendored references from Dependabot updates | P2 | S | - | BLOCKED (`135a3fc2` must land before closing PRs 2 and 3) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -369,9 +369,22 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   failure reproduces on untouched `main` at `2fb34f0b`, so it is not attributed
   to the Plan 138 patch and must be resolved before claiming the entire CI lane
   is green.
-- Plan 140 lands only the registry dependency-lane work from PR 4. It removes
-  the unrelated branch-only Virtual List plan, requires the repaired release
-  gates, and deletes the branch/worktree only after the PR is merged.
+- Plan 139 is complete on `codex/139-bounded-typecheck` in `d795180d`,
+  `32762d08`, and `cf66ea7c`. Declaration boundaries keep source processes
+  below 4 GB, 14 test shards stay below 2 GB each, coverage fails closed for
+  new source or test files, and independent review passed registry freshness,
+  typecheck, 1,034 unit tests, build, 344 browser tests, and Ultracite. Plan 140
+  is now executable; Plan 141 remains blocked until Plan 140 is DONE.
+- Plan 140 first prepares the local PR branch on the approved Plan 139 tip and
+  removes the unrelated branch-only Virtual List plan. The `improve execute`
+  boundary does not push or merge: publication, GitHub checks, merge, and exact
+  branch/worktree cleanup remain an explicit operator handoff after local review.
+- Plan 140's local preparation is independently approved at `c1530bc3`. The
+  authored registry patch is equivalent to `f8f355b5`, the dependency-relative
+  diff is exactly 11 files, and focused tests, registry freshness, bounded
+  typecheck, 1,035 unit tests, build, 344 browser tests, Ultracite, and diff
+  checks pass. The unchanged remote stays at `17ba2e36`; merge Plans 138 and 139
+  before authorizing the force-push, PR merge, and exact worktree/branch cleanup.
 - Plan 141 follows Plan 140 because both change registry generation. It closes
   issue 5 by generating a root GitHub-source catalog whose local dependencies
   remain in the same GitHub registry, while preserving the Pages namespace
@@ -379,6 +392,11 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 - Plan 142 is independent. It configures Dependabot to maintain the root npm
   project while excluding `repos/**`, then closes the two open bot PRs that
   modify the read-only Foldkit evidence subtree.
+- Plan 142 has a reviewed local configuration commit, `135a3fc2`, on
+  `codex/142-dependabot-vendored-exclusion`. It changes only
+  `.github/dependabot.yml`; `bun run check` and diff checks pass. PRs 2 and 3
+  remain open and untouched until that configuration is accepted on `main`, as
+  required by the plan's ordering.
 
 ## Findings considered and rejected
 

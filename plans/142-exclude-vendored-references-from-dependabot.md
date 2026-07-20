@@ -20,6 +20,15 @@
 - **Category**: dx, dependencies
 - **Planned at**: commit `2fb34f0b`, 2026-07-19
 
+## Execution outcome
+
+BLOCKED on 2026-07-19 at the required landing boundary. The reviewed config is
+committed as `135a3fc2` on `codex/142-dependabot-vendored-exclusion`; Ultracite
+and diff checks pass, and the branch changes only `.github/dependabot.yml`.
+GitHub PRs 2 and 3 remain open and untouched because the configuration is not
+yet present on `main`. After the commit lands and GitHub accepts the config,
+resume at Step 3 and close only those two vendored-reference PRs.
+
 ## Why this matters
 
 Dependabot currently opens repository PRs against package manifests inside the
