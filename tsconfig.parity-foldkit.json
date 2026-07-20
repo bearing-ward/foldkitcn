@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "lib": ["ES2023", "DOM"],
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": ".typecheck/parity-foldkit",
+    "rootDir": ".",
+    "target": "ES2023",
+    "types": ["node", "vite/client"]
+  },
+  "include": ["tests/parity/fixtures/foldkit/shadcn/runner.ts", "src/json.d.ts"]
+}

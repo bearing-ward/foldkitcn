@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2023", "DOM"],
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": ".typecheck/parity-origin",
+    "rootDir": ".",
+    "target": "ES2023",
+    "types": ["node", "vite/client"]
+  },
+  "include": ["tests/parity/fixtures/origin/shadcn/runner.ts", "src/json.d.ts"]
+}

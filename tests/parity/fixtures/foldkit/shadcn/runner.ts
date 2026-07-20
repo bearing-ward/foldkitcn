@@ -3,10 +3,17 @@ import tailwindcss from '@tailwindcss/vite'
 import type { ViteDevServer } from 'vite'
 import { createServer } from 'vite'
 
+import { shadcnOriginCaseMetadata } from '../../origin/shadcn/case-metadata'
 import type { OriginFixtureSnapshot } from '../../origin/shadcn/snapshot'
-import { shadcnFoldkitCases } from './cases'
+import type { ShadcnFoldkitFixtureApi } from './fixture-api'
 
 import path from 'node:path'
+
+declare global {
+  interface Window {
+    __SHADCN_FOLDKIT_FIXTURE__: ShadcnFoldkitFixtureApi
+  }
+}
 
 const transparentPixelPng = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
@@ -70,8 +77,8 @@ const matchingCases = (grep: string | undefined) => {
   const normalizedGrep = grep?.toLowerCase()
   const foldkitCases =
     normalizedGrep === undefined
-      ? shadcnFoldkitCases
-      : shadcnFoldkitCases.filter(foldkitCase =>
+      ? shadcnOriginCaseMetadata
+      : shadcnOriginCaseMetadata.filter(foldkitCase =>
           foldkitCase.id.toLowerCase().includes(normalizedGrep),
         )
 

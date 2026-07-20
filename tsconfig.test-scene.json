@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "include": ["src/scene.test.ts", "src/json.d.ts"]
+}

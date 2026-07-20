@@ -35,13 +35,15 @@ export const {
   keyboardValueChange,
   pointerValue,
   pointerValueChange,
-  resolveThumbCollision,
   roundValueToStep,
   sliderState,
   validateMinimumDistance,
   valueArrayToPercentages,
   valueText,
 } = BaseSlider
+const { resolveThumbCollision: baseResolveThumbCollision } = BaseSlider
+export const resolveThumbCollision: typeof BaseSlider.resolveThumbCollision =
+  baseResolveThumbCollision
 
 // VIEW
 

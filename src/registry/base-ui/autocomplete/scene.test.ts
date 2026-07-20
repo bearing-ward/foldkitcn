@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'

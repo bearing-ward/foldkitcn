@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM"],
+    "target": "ES2023",
+    "types": ["node"]
+  },
+  "include": [
+    "scripts/build-registry.ts",
+    "scripts/check-registry.ts",
+    "scripts/draft-registry-component-plan.ts",
+    "scripts/inventory-origin.ts",
+    "scripts/origin-common.ts",
+    "scripts/registry-common.ts",
+    "scripts/registry-component-progress-common.ts",
+    "scripts/registry-component-progress.ts",
+    "scripts/resolve-origin-url.ts",
+    "src/json.d.ts"
+  ]
+}

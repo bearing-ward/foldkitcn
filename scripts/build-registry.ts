@@ -9,9 +9,9 @@ import {
 } from './registry-common'
 
 const outputPath = 'registry/index.json'
-const index = buildRegistryIndex({
-  previousIndex: readRegistryIndex(outputPath),
-})
+const previousIndex = readRegistryIndex(outputPath)
+const buildOptions = previousIndex === undefined ? {} : { previousIndex }
+const index = buildRegistryIndex(buildOptions)
 const publicRegistryArtifacts = buildPublicRegistryArtifacts(index)
 
 writeJson(outputPath, index)

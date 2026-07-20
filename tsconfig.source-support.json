@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  },
+  "include": [
+    "src/installer/**/*.ts",
+    "src/registry/base-ui/autocomplete/index.ts",
+    "src/registry/base-ui/checkbox-group/index.ts",
+    "src/registry/base-ui/fieldset/index.ts",
+    "src/registry/base-ui/form/index.ts",
+    "src/registry/base-ui/meter/index.ts",
+    "src/registry/base-ui/number-field/index.ts",
+    "src/registry/base-ui/radio/index.ts",
+    "src/registry/base-ui/toolbar/index.ts",
+    "src/registry/shadcn/checkbox/examples.ts",
+    "src/registry/shadcn/combobox/examples.ts",
+    "src/registry/shadcn/input-otp/examples.ts",
+    "src/registry/shadcn/select/examples.ts",
+    "src/registry/shadcn/slider/examples.ts",
+    "src/registry/shadcn/switch/examples.ts",
+    "src/json.d.ts"
+  ]
+}

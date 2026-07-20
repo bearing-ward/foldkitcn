@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/registry/base-ui/n*/**/*.test.ts",
+    "src/registry/base-ui/o*/**/*.test.ts",
+    "src/registry/base-ui/p*/**/*.test.ts",
+    "src/registry/base-ui/r*/**/*.test.ts",
+    "src/registry/base-ui/s*/**/*.test.ts",
+    "src/registry/base-ui/t*/**/*.test.ts",
+    "src/json.d.ts"
+  ]
+}

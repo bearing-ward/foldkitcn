@@ -90,7 +90,10 @@ const staticExampleView =
 
 const viewMenu =
   (
-    config: Omit<ViewConfig<Message>, 'id' | 'items' | 'open' | 'toView'> &
+    config: Omit<
+      ViewConfig<Message>,
+      'id' | 'items' | 'onPositioned' | 'open' | 'positioning' | 'toView'
+    > &
       Readonly<{ open?: boolean }>,
   ) =>
   (_model: Model): Html => {
@@ -103,6 +106,7 @@ const viewMenu =
       highlightedValue: 'profile',
       openSubmenuValues: ['more'],
       ...config,
+      positioning: 'static',
       toView: attributes =>
         h.div(
           [...attributes.root],

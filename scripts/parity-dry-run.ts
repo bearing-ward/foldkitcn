@@ -529,16 +529,18 @@ const captureShadcnSnapshotsForCli = async (
 
   if (fixture === 'origin') {
     const { captureShadcnOriginSnapshots } =
-      await import('../tests/parity/fixtures/origin/shadcn/runner')
-    const snapshots = await captureShadcnOriginSnapshots({ grep })
+      await import('#parity-origin-runner')
+    const captureOptions = grep === undefined ? {} : { grep }
+    const snapshots = await captureShadcnOriginSnapshots(captureOptions)
 
     process.stdout.write(JSON.stringify(snapshots))
     return
   }
 
   const { captureShadcnFoldkitSnapshots } =
-    await import('../tests/parity/fixtures/foldkit/shadcn/runner')
-  const snapshots = await captureShadcnFoldkitSnapshots({ grep })
+    await import('#parity-foldkit-runner')
+  const captureOptions = grep === undefined ? {} : { grep }
+  const snapshots = await captureShadcnFoldkitSnapshots(captureOptions)
 
   process.stdout.write(JSON.stringify(snapshots))
 }

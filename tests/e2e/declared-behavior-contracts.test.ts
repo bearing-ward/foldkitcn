@@ -60,7 +60,9 @@ playwrightTest.describe('declared component and example behavior', () => {
         if ((await additionalExamples.count()) > 0) {
           await additionalExamples.evaluateAll(details => {
             for (const detail of details) {
-              detail.open = true
+              if (detail instanceof HTMLDetailsElement) {
+                detail.open = true
+              }
             }
           })
         }

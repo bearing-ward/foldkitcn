@@ -4,10 +4,17 @@ import type { Plugin, ViteDevServer } from 'vite'
 import { createServer } from 'vite'
 
 import { shadcnOriginCaseMetadata } from './case-metadata'
+import type { ShadcnOriginFixtureApi } from './fixture-api'
 import type { OriginFixtureSnapshot } from './snapshot'
 
 import { existsSync } from 'node:fs'
 import path from 'node:path'
+
+declare global {
+  interface Window {
+    __SHADCN_ORIGIN_FIXTURE__: ShadcnOriginFixtureApi
+  }
+}
 
 const transparentPixelPng = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
@@ -1419,9 +1426,6 @@ export const createFixtureServer = async (): Promise<ViteDevServer> => {
     define: {
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.NEXT_PUBLIC_APP_URL': JSON.stringify(''),
-    },
-    esbuild: {
-      jsx: 'automatic',
     },
     optimizeDeps: {
       force: true,

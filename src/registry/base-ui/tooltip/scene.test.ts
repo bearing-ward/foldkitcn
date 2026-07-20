@@ -61,7 +61,7 @@ const viewTooltip =
   (
     config: Omit<
       ViewConfig<Message>,
-      'id' | 'onOpenChange' | 'open' | 'toView'
+      'id' | 'onOpenChange' | 'onPositioned' | 'open' | 'positioning' | 'toView'
     >,
   ) =>
   (model: Model): Html => {

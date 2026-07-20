@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/registry/shadcn/a*/**/*.test.ts",
+    "src/registry/shadcn/b*/**/*.test.ts",
+    "src/json.d.ts"
+  ]
+}

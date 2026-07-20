@@ -312,6 +312,7 @@ const dropdownButton = (labelText: string): Html => {
     id: `input-group-${labelText.toLowerCase().replaceAll(' ', '-')}`,
     items: [],
     open: false,
+    positioning: 'static',
     toView: attributes =>
       InputGroupButton<never>({
         variant: 'ghost',

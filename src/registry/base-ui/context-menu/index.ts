@@ -518,7 +518,13 @@ const contextAttributes = <Message>(
 
 export const view = <Message>(config: ViewConfig<Message>): Html => {
   const h = html<Message>()
-  const { toView, onOpenChange, ...menuConfig } = config
+  const {
+    toView,
+    onOpenChange,
+    onPositioned: _onPositioned,
+    positioning: _positioning,
+    ...menuConfig
+  } = config
   const toContextView = (attributes: Menu.MenuAttributes<Message>): Html =>
     toView(contextAttributes(h, config, attributes))
 

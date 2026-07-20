@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-11T02:36:17.125Z",
+  "generatedAt": "2026-07-20T21:14:20.736Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -1660,8 +1660,8 @@
         },
         {
           "path": "src/registry/base-ui/context-menu/index.ts",
-          "sha256": "a889695a3107abe97cce517202fae1d20a5cc641aa6b1d71f4ad695dbd1e196c",
-          "sizeBytes": 14598,
+          "sha256": "b6cc71c534991e53881e3b1162a88568107a6f71f3783e1c225f339920cd9040",
+          "sizeBytes": 14676,
           "role": "source"
         }
       ]
@@ -7911,8 +7911,8 @@
         },
         {
           "path": "src/registry/shadcn/avatar/examples.ts",
-          "sha256": "00fab662503514d91b83d92ef2c4080056acc4b58a684f106a29b2b423f9dff5",
-          "sizeBytes": 8389,
+          "sha256": "9ca6154628ed220fff42b866a0bdf19680b6f8d0079452058ded4b1557d35c10",
+          "sizeBytes": 8457,
           "role": "source"
         }
       ]
@@ -8510,8 +8510,8 @@
         },
         {
           "path": "src/registry/shadcn/breadcrumb/examples.ts",
-          "sha256": "a25bac7feadcaad7e9984005bd87d44af6b775fad71dac2ef6fe94285d489937",
-          "sizeBytes": 10274,
+          "sha256": "abe5f27edafae92a5a12308ad22d17ca770d387af6c273efa2031565e72f673e",
+          "sizeBytes": 10342,
           "role": "source"
         }
       ]
@@ -9228,8 +9228,8 @@
         },
         {
           "path": "src/registry/shadcn/button-group/examples.ts",
-          "sha256": "61e9daa0dd473c41f376879810d01cf7bdeeddc9620dfb679ff41a603fe4dce5",
-          "sizeBytes": 21840,
+          "sha256": "86c105224f643cf673e82df8174e51a36aa70efb95f1f9194f161c5cfe13ae29",
+          "sizeBytes": 21923,
           "role": "source"
         }
       ]
@@ -12776,8 +12776,8 @@
         },
         {
           "path": "src/registry/shadcn/date-picker/index.ts",
-          "sha256": "2ce4180a0dca4dd7e8eeacf68962910c6866b4361d7481e08024b678366e40d9",
-          "sizeBytes": 13703,
+          "sha256": "5e44b946721d303a9c5abae39b68e1642b64d157c99ad0411c2775967f260a78",
+          "sizeBytes": 13754,
           "role": "source"
         },
         {
@@ -13982,8 +13982,8 @@
         },
         {
           "path": "src/registry/shadcn/dropdown-menu/examples.ts",
-          "sha256": "c58763d1317fec16b107385c381f9e567541f332650fae77b0723386bde85926",
-          "sizeBytes": 26448,
+          "sha256": "500516d69d0aee18508f9ef8e9a07d02683a6049788d4d638d0951de3e4c7f3c",
+          "sizeBytes": 27059,
           "role": "source"
         }
       ]
@@ -15358,8 +15358,8 @@
         },
         {
           "path": "src/registry/shadcn/input-group/examples.ts",
-          "sha256": "35db7cfcccca4ad5ad2b862ba1774ea21d8bf5752192d65f801274ea6acffde5",
-          "sizeBytes": 38448,
+          "sha256": "d9c416a9d76535284ce3f67ee74dc56e6caa58e8e3cae59e4a8a4f089966c5d1",
+          "sizeBytes": 38475,
           "role": "source"
         }
       ]
@@ -16419,8 +16419,8 @@
         },
         {
           "path": "src/registry/shadcn/item/examples.ts",
-          "sha256": "dac142d3f6ab753fffd1c262c32dee8e46bc6590cac145cb1da25545b9543303",
-          "sizeBytes": 23039,
+          "sha256": "ccf8380771a672ca25966f954c53ef0446795d3d32310a8733fba7fe54c774af",
+          "sizeBytes": 23107,
           "role": "source"
         }
       ]
@@ -20338,8 +20338,8 @@
         },
         {
           "path": "src/registry/shadcn/select/examples.ts",
-          "sha256": "27284085a855aef6336e64173bab948b4811223327ef0f0c45e8934c072f0d20",
-          "sizeBytes": 10861,
+          "sha256": "f250175f35d874c9585482d524c7c61308aeb0c3414e4191e51af0ffedea165e",
+          "sizeBytes": 10888,
           "role": "source"
         }
       ]
@@ -21282,8 +21282,8 @@
         },
         {
           "path": "src/registry/shadcn/sidebar/examples.ts",
-          "sha256": "5e3c7eeb1c15d289c4a96aca96184524d25afb42e7d4785f3351a1dd9034b9d5",
-          "sizeBytes": 87984,
+          "sha256": "c4f26b33bd5c68e2e4d1e2f4178da5ee777d90bfe19a3a683bddaec35c7c597c",
+          "sizeBytes": 88072,
           "role": "source"
         }
       ]
@@ -21796,8 +21796,8 @@
         },
         {
           "path": "src/registry/shadcn/slider/index.ts",
-          "sha256": "b7eec474cbfbf9e4b500c844636940e7e6f2af35983ee11b9c6c72fe5467c6c5",
-          "sizeBytes": 6194,
+          "sha256": "60badc49cdc341dd191850404cac34be10d5ceffdc4e7f6095fedcd67254bd88",
+          "sizeBytes": 6347,
           "role": "source"
         },
         {

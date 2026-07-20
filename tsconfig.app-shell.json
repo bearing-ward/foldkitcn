@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.typecheck-boundary.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "tsBuildInfoFile": ".typecheck/app-shell.tsbuildinfo"
+  },
+  "include": [
+    "src/entry.ts",
+    "src/main.ts",
+    "src/data.ts",
+    "src/route.ts",
+    "src/route-inventory.ts",
+    "src/roadmap.ts",
+    "src/search/**/*.ts",
+    "src/json.d.ts"
+  ],
+  "exclude": [
+    "src/live-examples.ts",
+    "src/registry/**",
+    "**/*.test.ts",
+    "**/*.story.test.ts",
+    "**/*.scene.test.ts"
+  ]
+}

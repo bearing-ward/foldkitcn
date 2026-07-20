@@ -1,4 +1,4 @@
-import { Schema as S } from 'effect'
+import { Option, Schema as S } from 'effect'
 
 import {
   defaultWorkbenchComparisonPolicy,
@@ -122,13 +122,17 @@ const tabNodes = async () => {
 const tabValueFromId = (id: string | undefined): string =>
   id === undefined ? '' : id.replace(/-tab$/u, '')
 
+const stringAttributeValue = (
+  value: string | boolean | null | undefined,
+): string | undefined => (typeof value === 'string' ? value : undefined)
+
 const deriveNeutralFixture =
   async (): Promise<ParityWorkbenchNeutralFixture> => {
     const snapshot = await firstTabsFixture()
     const tabList = await tabNodes()
     const tabs = tabList.map(tab => ({
-      id: tab.attributes?.id ?? '',
-      value: tabValueFromId(tab.attributes?.id),
+      id: stringAttributeValue(tab.attributes?.id) ?? '',
+      value: tabValueFromId(stringAttributeValue(tab.attributes?.id)),
       label: tab.text ?? '',
     }))
     const selectedValue =
@@ -136,7 +140,7 @@ const deriveNeutralFixture =
         ?.attributes?.id ?? 'overview-tab'
     const disabledValues = tabList
       .filter(tab => tab.attributes?.['aria-disabled'] === 'true')
-      .map(tab => tabValueFromId(tab.attributes?.id))
+      .map(tab => tabValueFromId(stringAttributeValue(tab.attributes?.id)))
       .filter(Boolean)
 
     return S.decodeUnknownSync(ParityWorkbenchNeutralFixtureSchema)({
@@ -145,7 +149,7 @@ const deriveNeutralFixture =
       caseId: 'tabs-demo',
       originSourcePath: tabsOriginSourcePath,
       tabs,
-      selectedValue: tabValueFromId(selectedValue),
+      selectedValue: tabValueFromId(stringAttributeValue(selectedValue)),
       orientation:
         snapshot.dom.children?.[0]?.attributes?.['aria-orientation'] ===
         'vertical'
@@ -239,7 +243,7 @@ export const shadcnTabsWorkbenchCase: ParityWorkbenchCaseType = {
     outputDir: '.parity-workbench/shadcn-tabs/tabs-demo',
     jsonPath: '.parity-workbench/shadcn-tabs/tabs-demo/report.json',
     markdownPath: '.parity-workbench/shadcn-tabs/tabs-demo/report.md',
-    htmlPath: null,
+    htmlPath: Option.none(),
     screenshotDir: '.parity-workbench/shadcn-tabs/tabs-demo/screenshots',
   },
 }
@@ -276,7 +280,7 @@ export const shadcnEmptyWorkbenchCase: ParityWorkbenchCaseType = {
     outputDir: '.parity-workbench/shadcn-empty/empty-demo',
     jsonPath: '.parity-workbench/shadcn-empty/empty-demo/report.json',
     markdownPath: '.parity-workbench/shadcn-empty/empty-demo/report.md',
-    htmlPath: null,
+    htmlPath: Option.none(),
     screenshotDir: '.parity-workbench/shadcn-empty/empty-demo/screenshots',
   },
 }
@@ -319,7 +323,7 @@ const aggregateWorkbenchCase = (
     outputDir: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}`,
     jsonPath: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/report.json`,
     markdownPath: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/report.md`,
-    htmlPath: null,
+    htmlPath: Option.none(),
     screenshotDir: `.parity-workbench/${itemId.replace('/', '-')}/${caseId}/screenshots`,
   },
 })

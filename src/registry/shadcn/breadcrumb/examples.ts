@@ -134,7 +134,10 @@ const breadcrumbDropdownShell = <Message>(
       ? {}
       : {
           onOpenChange: change =>
-            controller.onOpenChange('breadcrumb-dropdown', change),
+            controller.onOpenChange('breadcrumb-dropdown', {
+              ...change,
+              ancestorValues: [],
+            }),
         }),
     ...(controller?.onPositioned === undefined
       ? { positioning: 'static' as const }

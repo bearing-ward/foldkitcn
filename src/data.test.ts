@@ -1,15 +1,16 @@
 import { Array, Option, pipe } from 'effect'
 import { describe, expect, test } from 'vitest'
 
+import { hasLiveExampleViewFor } from '#live-examples'
+import type { LiveExampleContext } from '#live-examples'
+import * as ToastPrimitive from '#registry/base-ui/toast'
+import type { ComponentDocsSourceFile } from '#registry/schema'
+
 import {
   createLivePreviewGapReport,
   readLivePreviewGapArtifact,
 } from '../scripts/report-docs-live-preview-gaps'
 import { docsData, publicComponents } from './data'
-import { hasLiveExampleViewFor } from './live-examples'
-import type { LiveExampleContext } from './live-examples'
-import * as ToastPrimitive from './registry/base-ui/toast'
-import type { ComponentDocsSourceFile } from './registry/schema'
 import { routeInventory } from './route-inventory'
 
 import { existsSync } from 'node:fs'
@@ -84,6 +85,7 @@ const liveExampleContext: LiveExampleContext<unknown> = {
   onMenuCheckedChange: () => ({}),
   onMenuRadioValueChange: () => ({}),
   onMenuValueChange: () => ({}),
+  onPositionedSurface: () => ({}),
   toastStateFor: () => ToastPrimitive.createToastState(),
   onToastMessage: () => ({}),
   onBubbleMessage: () => ({}),

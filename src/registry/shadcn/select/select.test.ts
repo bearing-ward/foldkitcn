@@ -45,7 +45,10 @@ const update = (model: Model, _message: Message): UpdateReturn => [model, []]
 
 const viewSelect =
   (
-    config: Omit<ViewConfig<Message>, 'id' | 'items' | 'open' | 'toView'> &
+    config: Omit<
+      ViewConfig<Message>,
+      'id' | 'items' | 'onPositioned' | 'open' | 'positioning' | 'toView'
+    > &
       Readonly<{ open?: boolean }>,
   ) =>
   (_model: Model): Html => {
@@ -57,6 +60,7 @@ const viewSelect =
       open: config.open ?? true,
       placeholder: 'Select a fruit',
       ...config,
+      positioning: 'static',
       toView: attributes =>
         h.div(
           [...attributes.root],

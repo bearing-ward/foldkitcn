@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": ".typecheck/live-examples",
+    "rootDir": "src",
+    "tsBuildInfoFile": ".typecheck/live-examples.tsbuildinfo"
+  },
+  "include": ["src/live-examples.ts", "src/json.d.ts"],
+  "exclude": ["**/*.test.ts", "**/*.story.test.ts", "**/*.scene.test.ts"]
+}

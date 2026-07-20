@@ -8,6 +8,7 @@ import {
 import type {
   AttributeSummary,
   BoundingBox,
+  DomSnapshot,
   DomStructureSummary,
 } from '../../../../../src/registry/parity/canonicalize'
 
@@ -75,7 +76,7 @@ const elementAttributes = (
     [...element.attributes].map(attribute => [attribute.name, attribute.value]),
   )
 
-const domSnapshot = (element: Element) => ({
+const domSnapshot = (element: Element): DomSnapshot => ({
   tagName: element.tagName,
   attributes: elementAttributes(element),
   text: element.textContent ?? '',

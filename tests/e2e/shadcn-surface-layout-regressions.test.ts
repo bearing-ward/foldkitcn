@@ -202,10 +202,26 @@ playwrightTest(
       alertDialogBoxes.push({ preview, contentBox })
     }
 
-    const defaultAlertDialogBox = alertDialogBoxes[0].contentBox
-    const mediaAlertDialogBox = alertDialogBoxes[1].contentBox
-    const smallAlertDialogBox = alertDialogBoxes[2].contentBox
-    const smallMediaAlertDialogBox = alertDialogBoxes[3].contentBox
+    const [
+      defaultAlertDialogEntry,
+      mediaAlertDialogEntry,
+      smallAlertDialogEntry,
+      smallMediaAlertDialogEntry,
+    ] = alertDialogBoxes
+
+    if (
+      defaultAlertDialogEntry === undefined ||
+      mediaAlertDialogEntry === undefined ||
+      smallAlertDialogEntry === undefined ||
+      smallMediaAlertDialogEntry === undefined
+    ) {
+      throw new Error('Expected all four alert dialog layout cases')
+    }
+
+    const defaultAlertDialogBox = defaultAlertDialogEntry.contentBox
+    const mediaAlertDialogBox = mediaAlertDialogEntry.contentBox
+    const smallAlertDialogBox = smallAlertDialogEntry.contentBox
+    const smallMediaAlertDialogBox = smallMediaAlertDialogEntry.contentBox
 
     playwrightExpect(defaultAlertDialogBox.width).toBeGreaterThan(
       smallAlertDialogBox.width,

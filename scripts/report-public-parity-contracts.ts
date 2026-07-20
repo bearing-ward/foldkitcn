@@ -1,3 +1,4 @@
+import { NodeServices } from '@effect/platform-node'
 import { Clock, Console, Effect, Schema as S } from 'effect'
 import { Command, Flag } from 'effect/unstable/cli'
 
@@ -111,5 +112,9 @@ export const runPublicParityContractsCli = (args: ReadonlyArray<string>) =>
   Command.runWith(command, { version: '0.1.0' })(args)
 
 if (import.meta.main) {
-  await Effect.runPromise(runPublicParityContractsCli(process.argv.slice(2)))
+  await Effect.runPromise(
+    runPublicParityContractsCli(process.argv.slice(2)).pipe(
+      Effect.provide(NodeServices.layer),
+    ),
+  )
 }

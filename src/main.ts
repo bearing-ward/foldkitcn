@@ -37,7 +37,7 @@ import {
   type LiveExampleSliderConfig,
   liveExampleSliderConfigs,
   liveExampleViewFor,
-} from './live-examples'
+} from '#live-examples'
 import { roadmapSnapshot } from './roadmap'
 import type { RoadmapBlockedGroup } from './roadmap'
 import type {
@@ -45,7 +45,7 @@ import type {
   ExampleDocsArtifact,
   OriginComponentProgressReport,
   OriginComponentProgressRow,
-} from './registry/schema'
+} from '#registry/schema'
 import {
   AppRoute,
   ComponentDetailRoute,
@@ -78,38 +78,38 @@ import {
   CarouselOrientation,
   carouselState,
   update as updateCarouselState,
-} from './registry/shadcn/carousel'
+} from '#registry/shadcn/carousel'
 import {
   ClickedCalendarNextMonth,
   ClickedCalendarPreviousMonth,
   calendarState,
   updateCalendarState,
-} from './registry/shadcn/calendar'
-import type { ComboboxValueChange } from './registry/shadcn/combobox'
-import { ContextMenuPoint } from './registry/base-ui/context-menu'
+} from '#registry/shadcn/calendar'
+import type { ComboboxValueChange } from '#registry/shadcn/combobox'
+import { ContextMenuPoint } from '#registry/base-ui/context-menu'
 import type {
   MenuCheckedChange,
   MenuRadioValueChange,
-} from './registry/base-ui/menu'
-import * as ToastPrimitive from './registry/base-ui/toast'
-import * as SliderPrimitive from './registry/base-ui/slider'
+} from '#registry/base-ui/menu'
+import * as ToastPrimitive from '#registry/base-ui/toast'
+import * as SliderPrimitive from '#registry/base-ui/slider'
 import {
   ToastExampleMessage,
   type ToastExampleMessage as ToastExampleMessageType,
-} from './registry/base-ui/toast/examples'
+} from '#registry/base-ui/toast/examples'
 import {
   BubbleExampleMessage,
-} from './registry/shadcn/bubble/examples'
+} from '#registry/shadcn/bubble/examples'
 import {
   DataTableExampleMessage,
   type DataTableExampleMessage as DataTableExampleMessageType,
-} from './registry/shadcn/data-table/examples'
+} from '#registry/shadcn/data-table/examples'
 import {
   CompletedFocusOTPFieldInput,
   FocusOTPFieldInput,
   type OTPFieldValueChange,
-} from './registry/base-ui/otp-field'
-import * as ShadcnInputGroup from './registry/shadcn/input-group'
+} from '#registry/base-ui/otp-field'
+import * as ShadcnInputGroup from '#registry/shadcn/input-group'
 import {
   DataTableState as LiveExampleDataTableState,
   clearFilters as clearLiveExampleDataTableFilters,
@@ -123,39 +123,40 @@ import {
   toggleColumnVisibility as toggleLiveExampleDataTableColumnVisibility,
   toggleRowSelection as toggleLiveExampleDataTableRowSelection,
   toggleSort as toggleLiveExampleDataTableSort,
-} from './registry/shadcn/data-table'
+} from '#registry/shadcn/data-table'
 import {
   Message as AttachmentWorkflowMessage,
   Model as AttachmentWorkflowModel,
   type Message as AttachmentWorkflowMessageType,
   type Model as AttachmentWorkflowModelType,
   update as updateAttachmentWorkflow,
-} from './registry/shadcn/attachment/workflow'
+} from '#registry/shadcn/attachment/workflow'
 import {
   type DatePickerMessage as DatePickerMessageType,
   DatePickerMessage,
   DatePickerModel,
   type DatePickerModel as DatePickerModelType,
   datePickerUpdate,
-} from './registry/shadcn/date-picker'
+} from '#registry/shadcn/date-picker'
 import {
   ToastExampleMessage as SonnerExampleMessage,
   toastViewportPositionFromPosition,
   type ToastExampleMessage as SonnerExampleMessageType,
-} from './registry/shadcn/sonner/examples'
+} from '#registry/shadcn/sonner/examples'
 import {
   EndedResizableDrag,
   MovedResizablePointer,
   ResizableMessage,
   ResizableState,
   update as updateResizableState,
-} from './registry/shadcn/resizable'
+} from '#registry/shadcn/resizable'
 import {
   fallbackRouteMetadata,
   routeMetadataForRoute,
 } from './route-inventory'
-import * as ShadcnButton from './registry/shadcn/button'
-import * as ShadcnCard from './registry/shadcn/card'
+import type { AnchorPositioningMessage } from './utils/anchor-positioning'
+import * as ShadcnButton from '#registry/shadcn/button'
+import * as ShadcnCard from '#registry/shadcn/card'
 
 export {
   ComponentDetailRoute,
@@ -4677,7 +4678,7 @@ const examplesSectionView = (
         overlayId,
         open: change.open,
       }),
-    onPositionedSurface: message =>
+    onPositionedSurface: (message: AnchorPositioningMessage): Message =>
       CompletedPositionLiveExampleSurface({ id: message.id }),
     menuIsOpenFor: (
       example: ExampleDocsArtifact,

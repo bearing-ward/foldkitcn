@@ -28,7 +28,14 @@ export const init = (): readonly [
   [],
 ]
 
-export const update = datePickerUpdate
+export const update = (
+  model: Model,
+  message: Message,
+): readonly [Model, ReadonlyArray<Command.Command<Message>>] => {
+  const [nextModel, commands] = datePickerUpdate(model, message)
+
+  return [nextModel, commands]
+}
 
 export const view = (model: Model): Document => {
   const h = html<Message>()
