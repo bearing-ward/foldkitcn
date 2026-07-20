@@ -429,6 +429,7 @@ describe(update, () => {
           exampleId: 'shadcn/context-menu-demo',
           menuId: 'context-menu-demo',
           open: true,
+          ancestorValues: [],
         }),
       )
       const [_afterDropdownOpen, dropdownCommands] = update(
@@ -437,6 +438,7 @@ describe(update, () => {
           exampleId: 'shadcn/dropdown-menu-basic',
           menuId: 'dropdown-menu-basic',
           open: true,
+          ancestorValues: [],
         }),
       )
       const [_afterClose, closeCommands] = update(
@@ -445,6 +447,7 @@ describe(update, () => {
           exampleId: 'shadcn/context-menu-demo',
           menuId: 'context-menu-demo',
           open: false,
+          ancestorValues: [],
         }),
       )
 

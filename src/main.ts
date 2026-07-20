@@ -1298,7 +1298,7 @@ export const ScrollToAnchor = Command.define(
   }).pipe(Effect.ignore, Effect.as(CompletedScrollToAnchor())),
 )
 
-const FocusLiveExampleMenu = Command.define(
+export const FocusLiveExampleMenu = Command.define(
   'FocusLiveExampleMenu',
   { selector: S.String },
   CompletedFocusLiveExampleMenu,
