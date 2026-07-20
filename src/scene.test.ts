@@ -6,6 +6,7 @@ import { docsData, publicComponents } from './data'
 import {
   ComponentDetailRoute,
   CompleteLiveExampleToastWait,
+  CompletedFocusLiveExampleMenu,
   CompletedPositionLiveExampleSurface,
   CompletedRemoveLiveExampleToast,
   CompletedTimeoutLiveExampleToast,
@@ -15,6 +16,7 @@ import {
   ComponentsIndexRoute,
   ComponentsNamespaceRoute,
   DocsRoute,
+  FocusLiveExampleMenu,
   HidCopiedIndicator,
   HideCopiedIndicator,
   HomeRoute,
@@ -1981,6 +1983,10 @@ describe(view, () => {
           Scene.selector('#shadcn-command-basic'),
           Scene.role('button', { name: 'Open Menu' }),
         ),
+      ),
+      Scene.Command.resolve(
+        FocusLiveExampleMenu,
+        CompletedFocusLiveExampleMenu(),
       ),
       Scene.expect(
         Scene.within(
