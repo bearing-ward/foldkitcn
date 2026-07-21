@@ -218,6 +218,36 @@ playwrightTest(
 )
 
 playwrightTest(
+  'combobox inputs open their popup with or without a visible trigger',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/combobox')
+
+    const basicPreview = page.getByLabel('ComboboxBasic live preview')
+    const basicInput = basicPreview.locator('[data-slot="input-group-control"]')
+    const basicContent = basicPreview.locator(
+      '[data-slot="combobox-content"][data-open]',
+    )
+
+    await basicInput.click({ position: { x: 12, y: 12 } })
+    await playwrightExpect.soft(basicContent).toBeVisible()
+    await page.keyboard.press('Escape')
+    await playwrightExpect(basicContent).toHaveCount(0)
+
+    const clearPreview = page.getByLabel('ComboboxWithClear live preview')
+    const clearInput = clearPreview.locator('[data-slot="input-group-control"]')
+    const clearTrigger = clearPreview.locator('[data-slot="combobox-trigger"]')
+    const clearContent = clearPreview.locator(
+      '[data-slot="combobox-content"][data-open]',
+    )
+
+    await playwrightExpect(clearTrigger).toBeHidden()
+    await clearInput.click({ position: { x: 12, y: 12 } })
+    await playwrightExpect(clearContent).toBeVisible()
+  },
+)
+
+playwrightTest(
   'data table docs keep page-size and selection aggregates synchronized',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })

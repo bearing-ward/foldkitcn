@@ -24,6 +24,7 @@ export type ComboboxSelectionMode = typeof ComboboxSelectionMode.Type
 
 export const ComboboxOpenChangeReason = S.Union([
   S.Literal('trigger-press'),
+  S.Literal('input-press'),
   S.Literal('input-change'),
   S.Literal('input-clear'),
   S.Literal('outside-press'),
@@ -145,6 +146,7 @@ export const ComboboxOptions = S.Struct({
   collisionPadding: S.optional(S.Number),
   anchorToChips: S.optional(S.Boolean),
   showTriggerPlaceholder: S.optional(S.Boolean),
+  openOnInputClick: S.optional(S.Boolean),
 })
 export type ComboboxOptions = typeof ComboboxOptions.Type
 
@@ -931,6 +933,15 @@ const inputAttributes = <Message>(
           ),
         ]
       : []),
+    ...optionalMessageAttribute(
+      config.open ||
+        config.openOnInputClick === false ||
+        config.isDisabled === true ||
+        config.isReadOnly === true
+        ? Option.none()
+        : openMessage(config, openChange(true, 'input-press')),
+      message => h.OnClick(message),
+    ),
     h.OnKeyDownPreventDefault((key, modifiers) =>
       inputKeyboardMessage(config, key, modifiers),
     ),

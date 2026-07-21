@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20T21:56:32.370Z",
+  "generatedAt": "2026-07-21T10:58:31.608Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -533,8 +533,8 @@
         },
         {
           "path": "src/registry/base-ui/autocomplete/index.ts",
-          "sha256": "777e282f3e8381c920aa94a0f1b8609fc55709a138d5024c6f9edf4c181bd48b",
-          "sizeBytes": 14618,
+          "sha256": "d8c61083a1c73625a3c2226b21bd434178ce452810738dd4fa88a40029c168b1",
+          "sizeBytes": 14647,
           "role": "source"
         }
       ]
@@ -1487,8 +1487,8 @@
         },
         {
           "path": "src/registry/base-ui/combobox/index.ts",
-          "sha256": "8aee0da1a1db5c5c86f835c00bb0f7dc140e4fb1dcd0bb9a703bcbe21ba8fafe",
-          "sizeBytes": 42001,
+          "sha256": "1d5d0511b89c3f176f3d18d0943cd1dca0ffd40c1bd3f90cfd49a4b164ede671",
+          "sizeBytes": 42376,
           "role": "source"
         }
       ]

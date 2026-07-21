@@ -452,6 +452,7 @@ const comboboxConfig = <Message>(
     displayInputValue: displayValue(config),
     filterValue: filterValue(config),
     items,
+    openOnInputClick: false,
     values: [],
     showTriggerPlaceholder: false,
     ...optionalComboboxOptions(config),

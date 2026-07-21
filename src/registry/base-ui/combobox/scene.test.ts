@@ -384,6 +384,8 @@ describe('base-ui/combobox view', () => {
       Scene.scene(
         { update, view: viewCombobox({}) },
         Scene.with(initialModel),
+        Scene.click(Scene.selector('#fruit-combobox-input')),
+        Scene.expect(Scene.text('Open input-press')).toExist(),
         Scene.type(Scene.selector('#fruit-combobox-input'), 'bl'),
         Scene.expect(Scene.text('Input input-change')).toExist(),
         Scene.expect(Scene.role('option', { name: 'Blueberry' })).toExist(),
@@ -478,6 +480,9 @@ describe('base-ui/combobox view', () => {
           'disabled',
           'true',
         ),
+        Scene.expect(Scene.selector('#fruit-combobox-input')).not.toHaveHandler(
+          'click',
+        ),
         Scene.expect(
           Scene.selector('#fruit-combobox-trigger'),
         ).not.toHaveHandler('click'),
@@ -492,9 +497,19 @@ describe('base-ui/combobox view', () => {
           'aria-readonly',
           'true',
         ),
+        Scene.expect(Scene.selector('#fruit-combobox-input')).not.toHaveHandler(
+          'click',
+        ),
         Scene.expect(
           Scene.selector('#fruit-combobox-trigger'),
         ).not.toHaveHandler('click'),
+      )
+      Scene.scene(
+        { update, view: viewCombobox({ openOnInputClick: false }) },
+        Scene.with(initialModel),
+        Scene.expect(Scene.selector('#fruit-combobox-input')).not.toHaveHandler(
+          'click',
+        ),
       )
     }).not.toThrow()
 
