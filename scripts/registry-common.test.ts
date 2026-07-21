@@ -409,6 +409,41 @@ describe('public registry build helpers', () => {
     ).toBeTruthy()
   })
 
+  test('publishes only installed-source registry dependencies for shadcn input', () => {
+    const index = actualRegistryIndex()
+    const publicRegistry = buildPublicRegistryArtifacts(index)
+    const docs = buildComponentDocsArtifacts(index)
+    const inputItem = publicRegistry.items.find(
+      item => item.name === 'shadcn-input',
+    )
+    const inputDocs = docs.artifacts.find(
+      artifact => artifact.itemId === 'shadcn/input',
+    )
+
+    expect(inputItem?.registryDependencies).toStrictEqual([
+      '@foldkitcn/base-ui-input',
+      '@foldkitcn/utils-cn',
+    ])
+    expect(
+      inputDocs?.dependencies.examples?.map(dependency => dependency.target),
+    ).toStrictEqual([
+      'shadcn/badge',
+      'shadcn/button',
+      'shadcn/button-group',
+      'shadcn/field',
+      'shadcn/input-group',
+    ])
+    expect(inputDocs?.examples[0]?.requiredRegistryItems).toStrictEqual([
+      'base-ui/input',
+      'utils/cn',
+      'shadcn/badge',
+      'shadcn/button',
+      'shadcn/button-group',
+      'shadcn/field',
+      'shadcn/input-group',
+    ])
+  })
+
   test('fails when public registry artifacts are stale', () => {
     const index = actualRegistryIndex()
     const fixturePath = makeTempDir()

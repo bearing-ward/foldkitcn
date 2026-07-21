@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20T21:14:20.736Z",
+  "generatedAt": "2026-07-20T21:56:32.370Z",
   "sourceRoot": "registry-src",
   "items": [
     {
@@ -15766,6 +15766,14 @@
               "reason": "shadcn Input composes the local Base UI Input primitive."
             },
             {
+              "specifier": "utils/cn",
+              "classification": "registry-local",
+              "target": "utils/cn",
+              "reason": "shadcn Input uses the local class composition helper."
+            }
+          ],
+          "examples": [
+            {
               "specifier": "shadcn/badge",
               "classification": "registry-local",
               "target": "shadcn/badge",
@@ -15794,12 +15802,6 @@
               "classification": "registry-local",
               "target": "shadcn/input-group",
               "reason": "Input group examples compose the local shadcn Input Group item."
-            },
-            {
-              "specifier": "utils/cn",
-              "classification": "registry-local",
-              "target": "utils/cn",
-              "reason": "shadcn Input uses the local class composition helper."
             }
           ],
           "runtime": [
@@ -16033,12 +16035,12 @@
           }
         ]
       },
-      "manifestHash": "9c5065e0da6c6ff17b4bae5b9659972503bd09f18e5a8474415cfc21bab0f958",
+      "manifestHash": "f5e6e5e3fcb12a3b8a7b7c43faa9d5a7fa609d06cf4a67d4354f0d06a023c316",
       "artifacts": [
         {
           "path": "registry-src/shadcn/input/item.json",
-          "sha256": "aab8d0a0941ed32cef5a4daa5d619ca340a740c1f39ec2c29cd6e00113c3123e",
-          "sizeBytes": 11329,
+          "sha256": "c8ded30f31781bf9e9fddb3ca7941ab49c2aba26d440b4241589825e8c25c359",
+          "sizeBytes": 11353,
           "role": "manifest"
         },
         {

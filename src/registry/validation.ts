@@ -219,29 +219,30 @@ const dependencyErrors = (
   manifest: RegistryItemManifestType,
   allItemIds: ReadonlySet<string>,
 ): ReadonlyArray<ValidationError> => {
-  const registryDependencyErrors = manifest.dependencies.registry.flatMap(
-    dependency => {
-      if (dependency.classification !== 'registry-local') {
-        return [
-          {
-            path: manifestPath,
-            message: `Registry dependency "${dependency.specifier}" must be classified as registry-local.`,
-          },
-        ]
-      }
+  const registryDependencyErrors = [
+    ...manifest.dependencies.registry,
+    ...(manifest.dependencies.examples ?? []),
+  ].flatMap(dependency => {
+    if (dependency.classification !== 'registry-local') {
+      return [
+        {
+          path: manifestPath,
+          message: `Registry dependency "${dependency.specifier}" must be classified as registry-local.`,
+        },
+      ]
+    }
 
-      if (!allItemIds.has(dependency.target)) {
-        return [
-          {
-            path: manifestPath,
-            message: `Registry dependency "${dependency.target}" is not present in registry-src.`,
-          },
-        ]
-      }
+    if (!allItemIds.has(dependency.target)) {
+      return [
+        {
+          path: manifestPath,
+          message: `Registry dependency "${dependency.target}" is not present in registry-src.`,
+        },
+      ]
+    }
 
-      return []
-    },
-  )
+    return []
+  })
 
   const runtimeDependencyErrors =
     manifest.lifecycle.availability === 'installable'
