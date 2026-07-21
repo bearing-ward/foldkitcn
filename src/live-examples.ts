@@ -1,4 +1,5 @@
 import { Option, pipe } from 'effect'
+import * as EffectArray from 'effect/Array'
 import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
@@ -1889,10 +1890,18 @@ const groupedComboboxExample = (
                                               [...itemAttributes.text],
                                               [itemAttributes.item.label],
                                             ),
-                                            h.span(
-                                              [...itemAttributes.indicator],
-                                              [comboboxCheckIcon([])],
-                                            ),
+                                            ...(EffectArray.isReadonlyArrayNonEmpty(
+                                              itemAttributes.indicator,
+                                            )
+                                              ? [
+                                                  h.span(
+                                                    [
+                                                      ...itemAttributes.indicator,
+                                                    ],
+                                                    [comboboxCheckIcon([])],
+                                                  ),
+                                                ]
+                                              : []),
                                           ],
                                         ),
                                       ),

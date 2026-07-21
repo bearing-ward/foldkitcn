@@ -1,4 +1,5 @@
 import { Schema as S } from 'effect'
+import * as Array from 'effect/Array'
 import type { Attribute, Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -378,16 +379,18 @@ const shadcnItemAttributes = <Message>(
       comboboxItemTextClassName({ className: config.itemTextClassName }),
     ),
   ],
-  indicator: [
-    ...itemAttributes.indicator,
-    ...optionalClassAttribute(
-      h,
-      comboboxItemIndicatorClassName({
-        className: config.itemIndicatorClassName,
-        dir: config.dir,
-      }),
-    ),
-  ],
+  indicator: Array.isReadonlyArrayNonEmpty(itemAttributes.indicator)
+    ? [
+        ...itemAttributes.indicator,
+        ...optionalClassAttribute(
+          h,
+          comboboxItemIndicatorClassName({
+            className: config.itemIndicatorClassName,
+            dir: config.dir,
+          }),
+        ),
+      ]
+    : [],
 })
 
 const shadcnChipAttributes = <Message>(
@@ -682,10 +685,16 @@ const renderContent = <Message>(
                             [...itemAttributes.text],
                             [itemAttributes.item.label],
                           ),
-                          h.span(
-                            [...itemAttributes.indicator],
-                            [checkIcon([])],
-                          ),
+                          ...(Array.isReadonlyArrayNonEmpty(
+                            itemAttributes.indicator,
+                          )
+                            ? [
+                                h.span(
+                                  [...itemAttributes.indicator],
+                                  [checkIcon([])],
+                                ),
+                              ]
+                            : []),
                         ],
                       ),
                     ),

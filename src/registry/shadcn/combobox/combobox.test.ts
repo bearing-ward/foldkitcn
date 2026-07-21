@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import { Schema as S } from 'effect'
+import * as Array from 'effect/Array'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
@@ -116,10 +117,16 @@ const viewCombobox =
                                             [...itemAttributes.text],
                                             [itemAttributes.item.label],
                                           ),
-                                          h.span(
-                                            [...itemAttributes.indicator],
-                                            [Combobox.checkIcon([])],
-                                          ),
+                                          ...(Array.isReadonlyArrayNonEmpty(
+                                            itemAttributes.indicator,
+                                          )
+                                            ? [
+                                                h.span(
+                                                  [...itemAttributes.indicator],
+                                                  [Combobox.checkIcon([])],
+                                                ),
+                                              ]
+                                            : []),
                                         ],
                                       ),
                                     ),

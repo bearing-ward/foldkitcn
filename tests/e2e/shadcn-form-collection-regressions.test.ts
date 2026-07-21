@@ -248,6 +248,33 @@ playwrightTest(
 )
 
 playwrightTest(
+  'combobox docs show checkmarks only for selected items',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/combobox')
+
+    const basicPreview = page.getByLabel('ComboboxBasic live preview')
+    const basicInput = basicPreview.locator('[data-slot="input-group-control"]')
+
+    await basicInput.click({ position: { x: 12, y: 12 } })
+    await playwrightExpect
+      .soft(basicPreview.getByRole('option').locator('svg'))
+      .toHaveCount(0)
+
+    const clearPreview = page.getByLabel('ComboboxWithClear live preview')
+    const clearInput = clearPreview.locator('[data-slot="input-group-control"]')
+
+    await clearInput.click({ position: { x: 12, y: 12 } })
+    await playwrightExpect(
+      clearPreview.getByRole('option', { selected: true }).locator('svg'),
+    ).toHaveCount(1)
+    await playwrightExpect(
+      clearPreview.getByRole('option', { selected: false }).locator('svg'),
+    ).toHaveCount(0)
+  },
+)
+
+playwrightTest(
   'data table docs keep page-size and selection aggregates synchronized',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })

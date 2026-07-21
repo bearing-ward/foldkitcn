@@ -1,3 +1,4 @@
+import * as Array from 'effect/Array'
 import type { Html } from 'foldkit/html'
 import { html } from 'foldkit/html'
 
@@ -254,10 +255,16 @@ const comboboxShell = (
                                         [...itemAttributes.text],
                                         [itemAttributes.item.label],
                                       ),
-                                      h.span(
-                                        [...itemAttributes.indicator],
-                                        [checkIcon([])],
-                                      ),
+                                      ...(Array.isReadonlyArrayNonEmpty(
+                                        itemAttributes.indicator,
+                                      )
+                                        ? [
+                                            h.span(
+                                              [...itemAttributes.indicator],
+                                              [checkIcon([])],
+                                            ),
+                                          ]
+                                        : []),
                                     ],
                                   ),
                                 ),
@@ -426,10 +433,16 @@ export const ComboboxPopup = (): Html => {
                                 [...itemAttributes.text],
                                 [itemAttributes.item.label],
                               ),
-                              h.span(
-                                [...itemAttributes.indicator],
-                                [checkIcon([])],
-                              ),
+                              ...(Array.isReadonlyArrayNonEmpty(
+                                itemAttributes.indicator,
+                              )
+                                ? [
+                                    h.span(
+                                      [...itemAttributes.indicator],
+                                      [checkIcon([])],
+                                    ),
+                                  ]
+                                : []),
                             ],
                           ),
                         ),
