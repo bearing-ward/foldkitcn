@@ -18,8 +18,8 @@
 - **Depends on**: `plans/140-finish-pr4-and-normalize-worktree.md`
 - **Category**: bug, dx
 - **Planned at**: commit `0b10f9ec`, 2026-07-20 (reconciled after Plan 140)
-- **Execution**: merged locally into `main` at `cc0ea9e6`; blocked on push,
-  merged-main smoke, and issue 5 closure
+- **Execution**: complete — merged, published, and verified by GitHub Actions
+  run `29819209198`; issue 5 closed on 2026-07-21
 
 ## Why this matters
 
@@ -170,12 +170,10 @@ comment links to a successful run rather than only a local check.
 - [x] Root `registry.json` is generator-owned and freshness-checked.
 - [x] Root local dependencies use same-repository GitHub addresses.
 - [x] Pages artifacts retain `@foldkitcn/*` dependencies.
-- [ ] Local root validation, the existing Pages smoke, and the public GitHub
-      shorthand smoke pass. Local validation passes; the merged-main shorthand
-      smoke remains pending.
+- [x] Local root validation, the existing Pages smoke, and the public GitHub
+      shorthand smoke pass.
 - [x] Full release gates pass.
-- [ ] Issue 5 is closed with a successful merged-main run (post-merge operator
-      action; keep this plan non-DONE until complete).
+- [x] Issue 5 is closed with a successful merged-main run.
 
 ## Review outcome
 
@@ -187,12 +185,9 @@ diff checks. A first review round corrected the post-deploy smoke to create a
 disposable configured consumer outside the checkout; pre-merge proof reaches
 the expected missing remote `registry.json` error without prompting.
 
-Do not mark this plan `DONE` yet. The implementation is merged locally but has
-not been published. After the commit reaches the remote default branch, require
-the workflow's exact
-`bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button --dry-run` smoke to
-succeed, comment on issue 5 with the successful run URL, close it, then update
-the plan index to `DONE`.
+Completion was verified by [GitHub Actions run 29819209198](https://github.com/bearing-ward/foldkitcn/actions/runs/29819209198): typecheck, tests, browser parity, lint, build, deploy, and the exact
+`bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button --dry-run` smoke
+all passed. Issue 5 was closed with that run URL.
 
 ## STOP conditions
 
