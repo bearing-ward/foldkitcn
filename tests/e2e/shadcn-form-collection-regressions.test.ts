@@ -191,6 +191,33 @@ playwrightTest(
 )
 
 playwrightTest(
+  'combobox docs keep the popup directly beneath the control without a duplicate label',
+  async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await page.goto('/components/shadcn/combobox')
+
+    const preview = page.getByLabel('ComboboxBasic live preview')
+    const inputGroup = preview.locator('[data-slot="input-group"]')
+    const trigger = preview.locator('[data-slot="combobox-trigger"]')
+
+    await playwrightExpect
+      .soft(preview.getByText('Select a framework', { exact: true }))
+      .toHaveCount(0)
+    await trigger.click()
+
+    const content = preview.locator('[data-slot="combobox-content"][data-open]')
+    await playwrightExpect(content).toBeVisible()
+
+    const inputGroupBox = await box(inputGroup)
+    const contentBox = await box(content)
+    const verticalGap = contentBox.y - (inputGroupBox.y + inputGroupBox.height)
+
+    playwrightExpect(verticalGap).toBeGreaterThanOrEqual(0)
+    playwrightExpect(verticalGap).toBeLessThanOrEqual(12)
+  },
+)
+
+playwrightTest(
   'data table docs keep page-size and selection aggregates synchronized',
   async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })

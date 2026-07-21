@@ -965,13 +965,13 @@ dt {
 
 .live-example-preview [id*='combobox'][id$='positioner'] {
   position: absolute !important;
-  inset: 4rem auto auto 1rem !important;
-  top: 4rem !important;
+  inset: calc(100% + 0.375rem) auto auto 0 !important;
+  top: calc(100% + 0.375rem) !important;
   right: auto !important;
   bottom: auto !important;
-  left: 1rem !important;
+  left: 0 !important;
   max-width: calc(100% - 2rem);
-  max-height: calc(100% - 5rem);
+  max-height: calc(100vh - 4rem);
   transform: none !important;
 }
 

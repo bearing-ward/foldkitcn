@@ -1913,20 +1913,6 @@ const groupedComboboxExample = (
             ...attributes.hiddenInputs.map(hiddenInput =>
               h.input([...hiddenInput]),
             ),
-            ...(config.selectionMode === 'multiple'
-              ? []
-              : [
-                  h.div(
-                    [h.Class('mt-2 text-center text-sm text-muted-foreground')],
-                    [
-                      displayComboboxValue({
-                        items: config.items,
-                        placeholder: config.placeholder,
-                        value,
-                      }),
-                    ],
-                  ),
-                ]),
           ],
         ),
     })
