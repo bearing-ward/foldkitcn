@@ -22,8 +22,7 @@
   `plans/139-reestablish-bounded-typescript-verification.md`
 - **Category**: tech-debt, dx
 - **Planned at**: reconciled against `main` commit `1386bb1e`, 2026-07-20
-- **Execution boundary**: local preparation is executable; GitHub publication,
-  merge, and cleanup require a separate operator decision
+- **Completed at**: PR 4 merge commit `dcda1faa`, 2026-07-20
 
 ## Why this matters
 
@@ -179,16 +178,32 @@ unchanged remote recovery tip remains `17ba2e36`; PR 4 remains open, draft, and
 conflicting until its dependency branches are merged and the prepared history
 is explicitly published.
 
+## Operator execution outcome
+
+DONE on 2026-07-20. Plans 138 and 139 were merged into `main` by `22502d93`
+and `f0ecbf83`. The registry patch was rebased onto the published dependency
+chain as `f3ed5732`, force-pushed with an exact lease, reviewed as an 11-file
+diff, marked ready, and merged through PR 4 by `dcda1faa` after the configured
+required `build` check passed.
+
+The operator also corrected base-branch CI defects exposed by the fresh runs:
+parity contract decoding in `ca4f9338`, the bounded shard-coverage test budget
+in `7d3ab26`, and cross-platform browser geometry guards in `013b2fac`. The
+exact registry commit is an ancestor of refreshed `origin/main`; the remote PR
+branch is gone; and the clean PR, Plan 138, and Plan 139 worktrees and local
+branches were removed. The independent, unmerged Plan 142 worktree and branch
+remain at `135a3fc2`.
+
 ## Operator completion criteria
 
-Plan 140 remains incomplete until the operator explicitly approves publication:
+Completed with operator approval on 2026-07-20:
 
-- [ ] Merge Plans 138 and 139 so `cf66ea7c` is reachable from `origin/main`.
-- [ ] Force-push the prepared PR branch with `--force-with-lease`.
-- [ ] Update PR 4 validation text, mark it ready, and wait for required checks.
-- [ ] Merge PR 4 through GitHub without bypassing protection.
-- [ ] Prove the registry commit is reachable from refreshed `origin/main`.
-- [ ] Remove only the clean merged PR worktree and local/remote branch.
+- [x] Merge Plans 138 and 139 so `cf66ea7c` is reachable from `origin/main`.
+- [x] Force-push the prepared PR branch with `--force-with-lease`.
+- [x] Update PR 4 validation text, mark it ready, and wait for required checks.
+- [x] Merge PR 4 through GitHub without bypassing protection.
+- [x] Prove the registry commit is reachable from refreshed `origin/main`.
+- [x] Remove only the clean merged PR worktree and local/remote branch.
 
 ## STOP conditions
 
@@ -208,7 +223,6 @@ Plan 140 remains incomplete until the operator explicitly approves publication:
 ## Maintenance notes
 
 Reviewers should verify that `dependencies.examples` remains visible to docs
-while only `dependencies.registry` expands installation closure. When the
-operator resumes publication, refresh PR state first: do not force-push until
-Plans 138 and 139 are on `origin/main`, and do not delete the worktree/branch
-until the rewritten registry commit is proven reachable from `origin/main`.
+while only `dependencies.registry` expands installation closure. The cleanup
+proof for this completed plan is the registry commit's ancestry from
+`origin/main`, the absent remote PR branch, and the preserved Plan 142 worktree.

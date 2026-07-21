@@ -143,10 +143,10 @@ honor its STOP conditions, and update your row when done.
 | 134 | Formalize Typography docs-only parity | P2 | S | 128 | DONE |
 | 135 | Resolve public mobile overflow | P1 | L | 128 | DONE |
 | 136 | Expand the high-risk parity workbench | P1 | L | 128, 132, 133 | DONE |
-| 138 | Restore green menu and command verification | P0 | S | - | DONE (`6bf6eb69`; pre-existing overlay E2E failure remains) |
-| 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | DONE (`d795180d`, `32762d08`, `cf66ea7c`) |
-| 140 | Prepare PR 4 for merge and normalize it after operator approval | P1 | S | 138, 139 | BLOCKED (local prep approved at `c1530bc3`; awaiting dependency merges and operator publication) |
-| 141 | Publish a root GitHub-source registry | P1 | M | 140 | BLOCKED (Plan 140 is not DONE) |
+| 138 | Restore green menu and command verification | P0 | S | - | DONE (`6bf6eb69`, merged by `22502d93`) |
+| 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | DONE (`cf66ea7c`, merged by `f0ecbf83`) |
+| 140 | Prepare PR 4 for merge and normalize it after operator approval | P1 | S | 138, 139 | DONE (`f3ed5732`, PR 4 merged by `dcda1faa`) |
+| 141 | Publish a root GitHub-source registry | P1 | M | 140 | TODO |
 | 142 | Exclude vendored references from Dependabot updates | P2 | S | - | BLOCKED (`135a3fc2` must land before closing PRs 2 and 3) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
@@ -362,29 +362,22 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   is judged against CI. Plan 139 then restores a bounded, truthful TypeScript
   gate instead of re-enabling the all-source command that currently emits a
   multi-thousand-error complexity cascade.
-- Plan 138 is complete on `codex/138-restore-green-verification` at
-  `6bf6eb69`. Its focused tests pass 115/115, the full Vitest suite passes
-  1,032/1,032, and `bun run check` passes. The full Playwright run exposes one
-  pre-existing DropdownMenuSubmenu click-away failure (343/344); the same
-  failure reproduces on untouched `main` at `2fb34f0b`, so it is not attributed
-  to the Plan 138 patch and must be resolved before claiming the entire CI lane
-  is green.
-- Plan 139 is complete on `codex/139-bounded-typecheck` in `d795180d`,
-  `32762d08`, and `cf66ea7c`. Declaration boundaries keep source processes
-  below 4 GB, 14 test shards stay below 2 GB each, coverage fails closed for
-  new source or test files, and independent review passed registry freshness,
-  typecheck, 1,034 unit tests, build, 344 browser tests, and Ultracite. Plan 140
-  is now executable; Plan 141 remains blocked until Plan 140 is DONE.
+- Plan 138 was merged into `main` by `22502d93`. Its focused tests pass
+  115/115, the full Vitest suite passes, and the later integrated Playwright
+  run passes all 344 tests.
+- Plan 139 was merged into `main` by `f0ecbf83`. Declaration boundaries keep
+  source processes below 4 GB, 14 test shards stay below 2 GB each, coverage
+  fails closed for new source or test files, and independent review passed
+  registry freshness, typecheck, unit tests, build, 344 browser tests, and
+  Ultracite.
 - Plan 140 first prepares the local PR branch on the approved Plan 139 tip and
   removes the unrelated branch-only Virtual List plan. The `improve execute`
   boundary does not push or merge: publication, GitHub checks, merge, and exact
   branch/worktree cleanup remain an explicit operator handoff after local review.
-- Plan 140's local preparation is independently approved at `c1530bc3`. The
-  authored registry patch is equivalent to `f8f355b5`, the dependency-relative
-  diff is exactly 11 files, and focused tests, registry freshness, bounded
-  typecheck, 1,035 unit tests, build, 344 browser tests, Ultracite, and diff
-  checks pass. The unchanged remote stays at `17ba2e36`; merge Plans 138 and 139
-  before authorizing the force-push, PR merge, and exact worktree/branch cleanup.
+- Plan 140 is complete. The approved registry patch was rebased as `f3ed5732`
+  with exactly 11 files and merged through PR 4 by `dcda1faa`. Its remote branch
+  and the clean PR, Plan 138, and Plan 139 local branches/worktrees were removed
+  only after ancestry proof. Plan 142 remains preserved and unmerged.
 - Plan 141 follows Plan 140 because both change registry generation. It closes
   issue 5 by generating a root GitHub-source catalog whose local dependencies
   remain in the same GitHub registry, while preserving the Pages namespace

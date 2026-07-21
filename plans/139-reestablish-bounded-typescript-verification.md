@@ -32,8 +32,8 @@ once.
 Independent review passed `bun run registry:check`, `bun run typecheck`,
 `bun run test` (1,034 tests), `bun run build`, `bun run test:e2e` (344 tests),
 and `bun run check`. No process uses a heap above 4 GB; test processes are
-capped at 2 GB. The branch is committed and clean but remains unmerged and
-unpushed for operator review.
+capped at 2 GB. The branch was merged into `main` by `f0ecbf83`; its canonical
+Typecheck step passed in GitHub Actions on the published dependency chain.
 
 ## Why this matters
 
@@ -165,13 +165,13 @@ Typecheck, Test, Browser parity tests, and Lint and checks all green.
 
 ## Done criteria
 
-- [ ] `bun run typecheck` exits 0 with no process above 4 GB.
-- [ ] Every production and test TypeScript file is covered by a named lane.
-- [ ] CI runs the canonical command before tests.
-- [ ] No casts, ignores, relaxed strictness, or blanket permanent exclusions
+- [x] `bun run typecheck` exits 0 with no process above 4 GB.
+- [x] Every production and test TypeScript file is covered by a named lane.
+- [x] CI runs the canonical command before tests.
+- [x] No casts, ignores, relaxed strictness, or blanket permanent exclusions
       were added.
-- [ ] Baseline evidence is compact and reproducible.
-- [ ] Unit, browser, and quality suites pass.
+- [x] Baseline evidence is compact and reproducible.
+- [x] Unit, browser, and quality suites pass.
 
 ## STOP conditions
 
