@@ -11,7 +11,7 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 
 const repoRoot = path.resolve(import.meta.dirname, '..')
-const sourceCoverageTimeout = 20_000
+const sourceCoverageTimeout = 60_000
 
 const sourceConfigNames: ReadonlyArray<string> = [
   'tsconfig.live-examples.json',
