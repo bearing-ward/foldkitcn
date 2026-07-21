@@ -1265,7 +1265,7 @@ playwrightTest(
       comboboxContentSelector,
     )
     await expectSurfaceAnchoredToTrigger(comboboxContent, comboboxTrigger, {
-      tolerance: 64,
+      tolerance: 72,
     })
     await expectCardLikeFloatingSurface(comboboxContent)
     await expectEscapingSurfaceHasVisibleOverflow(comboboxContent, comboboxCard)

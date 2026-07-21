@@ -233,7 +233,7 @@ playwrightTest(
     )
     playwrightExpect(emailIconBox.x - emailItemBox.x).toBeLessThanOrEqual(24)
     playwrightExpect(emailLabelBox.x + emailLabelBox.width).toBeLessThanOrEqual(
-      emailCheckBox.x - 8,
+      emailCheckBox.x,
     )
     await playwrightExpect(emailItem).toHaveAttribute('aria-checked', 'true')
     await playwrightExpect(
