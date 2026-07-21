@@ -118,14 +118,8 @@ const paritySlotExceptions = new Map<string, PublicParityException>([
     },
   ],
 ])
-const exceptionFor = (itemId: string): Option.Option<PublicParityException> => {
-  const paritySlotException = paritySlotExceptions.get(itemId)
-
-  if (paritySlotException !== undefined) {
-    return Option.some(paritySlotException)
-  }
-  return Option.none()
-}
+const exceptionFor = (itemId: string): PublicParityException | null =>
+  paritySlotExceptions.get(itemId) ?? null
 
 const componentName = (itemId: string): string => itemId.split('/').at(-1) ?? ''
 
@@ -204,12 +198,12 @@ export const createPublicParityContracts = (
         S.decodeUnknownSync(PublicParityContract)({
           itemId: artifact.itemId,
           routePath: artifact.routePath,
-          exampleId: Option.some(example.id),
+          exampleId: example.id,
           title: example.title,
           profile,
           evidenceMode: sourceBacked ? 'source-backed' : 'docs-example-only',
           originPaths,
-          livePreview: Option.some(hasLiveExampleViewFor(example)),
+          livePreview: hasLiveExampleViewFor(example),
           paritySlotStatus: slotStatuses.get(artifact.itemId) ?? 'missing',
           requiredViewports: ['desktop', 'mobile-390'],
           requiredRecipes: recipesForProfile(profile),
@@ -223,14 +217,14 @@ export const createPublicParityContracts = (
             S.decodeUnknownSync(PublicParityContract)({
               itemId: artifact.itemId,
               routePath: artifact.routePath,
-              exampleId: Option.none(),
+              exampleId: null,
               title: artifact.title,
               profile,
               evidenceMode: sourceBacked
                 ? 'source-backed'
                 : 'docs-example-only',
               originPaths,
-              livePreview: Option.none(),
+              livePreview: null,
               paritySlotStatus: slotStatuses.get(artifact.itemId) ?? 'missing',
               requiredViewports: ['desktop', 'mobile-390'],
               requiredRecipes: recipesForProfile(profile),

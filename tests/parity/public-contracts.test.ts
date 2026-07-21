@@ -1,8 +1,13 @@
 import { DateTime, Option } from 'effect'
 import { describe, expect, test } from 'vitest'
 
-import { validatePublicParityContracts } from '../../scripts/public-parity-contracts'
+import {
+  createPublicParityContracts,
+  validatePublicParityContracts,
+} from '../../scripts/public-parity-contracts'
 import type { PublicParityContract } from '../../scripts/public-parity-contracts'
+import { loadGeneratedDocsArtifacts } from '../../scripts/report-docs-live-preview-gaps'
+import { paritySlots } from './slots'
 
 const validContract: PublicParityContract = {
   itemId: 'shadcn/popover',
@@ -21,6 +26,36 @@ const validContract: PublicParityContract = {
 const nowMillis = DateTime.makeUnsafe('2026-07-09').epochMilliseconds
 
 describe('public parity contract validation', () => {
+  test('decodes optional contract fields from generated docs artifacts', async () => {
+    const contracts = createPublicParityContracts(
+      await loadGeneratedDocsArtifacts(),
+      paritySlots,
+      () => true,
+    )
+
+    expect(
+      contracts.some(
+        contract =>
+          Option.isNone(contract.exampleId) &&
+          Option.isNone(contract.livePreview),
+      ),
+    ).toBeTruthy()
+    expect(
+      contracts.some(
+        contract =>
+          Option.isSome(contract.exampleId) &&
+          Option.isSome(contract.livePreview),
+      ),
+    ).toBeTruthy()
+    expect(
+      contracts.some(
+        contract =>
+          contract.itemId === 'shadcn/typography' &&
+          Option.isSome(contract.exception),
+      ),
+    ).toBeTruthy()
+  })
+
   test('rejects an unprofiled public example', () => {
     const unprofiledContract = { ...validContract, profile: undefined }
 
