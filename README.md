@@ -53,20 +53,20 @@ Install a component through that namespace:
 bunx shadcn@latest add @foldkitcn/shadcn-button
 ```
 
-Public GitHub registries can also be installed directly from a repository that has a root `registry.json`:
+Public GitHub registries use the `<owner>/<repo>/<item>` address format and a root `registry.json`. Install Foldkit CN directly from its repository with:
 
 ```bash
-bunx shadcn@latest add <owner>/<repo>/shadcn-button
+bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button
 ```
 
 Useful discovery and validation commands:
 
 ```bash
-bunx shadcn@latest list <owner>/<repo>
-bunx shadcn@latest search <owner>/<repo> --query button
-bunx shadcn@latest view <owner>/<repo>/shadcn-button
-bunx shadcn@latest registry validate <owner>/<repo>
-bunx shadcn@latest add <owner>/<repo>/shadcn-button --dry-run
+bunx shadcn@latest list bearing-ward/foldkitcn
+bunx shadcn@latest search bearing-ward/foldkitcn --query button
+bunx shadcn@latest view bearing-ward/foldkitcn/shadcn-button
+bunx shadcn@latest registry validate bearing-ward/foldkitcn
+bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button --dry-run
 ```
 
 Before installing from a registry you do not control, review the repository, root `registry.json`, item files, dependencies, registry dependencies, and generated targets.
@@ -75,7 +75,8 @@ Before installing from a registry you do not control, review the repository, roo
 
 - In GitHub Settings, open `Pages`, then set `Build and deployment` `Source` to `GitHub Actions`.
 - GitHub Free requires a public repository for Pages. Pages output is public even when the repository is private on a plan that supports private Pages.
-- Direct registry installs require the Pages URL to be reachable by the shadcn CLI.
+- Pages namespace installs require the Pages URL to be reachable by the shadcn CLI.
+- GitHub-source installs require a public repository with a current root `registry.json`.
 - Submitting to the public shadcn registry directory requires an open-source, publicly accessible registry.
 
 Foldkit CN is published at `https://bearing-ward.github.io/foldkitcn/`.

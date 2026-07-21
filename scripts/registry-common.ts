@@ -232,7 +232,10 @@ interface PublicRegistryBuildResult {
   readonly items: ReadonlyArray<PublicRegistryItemType>
 }
 
+type RegistryDependencyAddressForItemId = (itemId: string) => string
+
 const publicRegistryOutputRoot = 'public/r'
+const githubRegistryCatalogPath = 'registry.json'
 const publicRegistryCatalogPath = (outputRoot = publicRegistryOutputRoot) =>
   pathModule.join(outputRoot, 'registry.json')
 const publicRegistryNoJekyllPath = (outputRoot = publicRegistryOutputRoot) =>
@@ -248,6 +251,31 @@ export const publicNameForItemId = (itemId: string): string =>
 export const publicRegistryAddressForItemId = (itemId: string): string =>
   `@foldkitcn/${publicNameForItemId(itemId)}`
 
+const githubRepositorySlug = (): string => {
+  const packageJson = readJson('package.json')
+  const repository = isRecord(packageJson) ? packageJson.repository : undefined
+  const repositoryUrl = isRecord(repository) ? repository.url : undefined
+
+  if (typeof repositoryUrl !== 'string') {
+    throw new TypeError('package.json must define repository.url')
+  }
+
+  const match = repositoryUrl.match(
+    /github\.com[:/](?<owner>[^/]+)\/(?<repo>[^/]+?)(?:\.git)?$/u,
+  )
+
+  if (match?.groups?.owner === undefined || match.groups.repo === undefined) {
+    throw new Error(
+      `package.json repository.url is not a GitHub repository: ${repositoryUrl}`,
+    )
+  }
+
+  return `${match.groups.owner}/${match.groups.repo}`
+}
+
+export const githubRegistryAddressForItemId = (itemId: string): string =>
+  `${githubRepositorySlug()}/${publicNameForItemId(itemId)}`
+
 export const publicInstallCommandForItemId = (itemId: string): string =>
   `bunx shadcn@latest add ${publicRegistryAddressForItemId(itemId)}`
 
@@ -256,50 +284,27 @@ const publicRegistryTypeForItem = (item: RegistryItemManifest) =>
     ? ('registry:lib' as const)
     : ('registry:ui' as const)
 
-const publicRegistryDependencyForTarget = (target: string): string =>
-  publicRegistryAddressForItemId(target)
-
 const publicRegistryDependenciesForItem = (
   item: RegistryItemManifest,
+  registryDependencyAddressForItemId: RegistryDependencyAddressForItemId,
 ): ReadonlyArray<string> => {
   const dependencies = item.dependencies.registry.map(dependency =>
-    publicRegistryDependencyForTarget(dependency.target),
+    registryDependencyAddressForItemId(dependency.target),
   )
 
   return [...new Set(dependencies)]
 }
 
-const githubRepositorySlug = (): string | undefined => {
-  try {
-    const remoteUrl = execFileSync('git', ['remote', 'get-url', 'origin'], {
-      encoding: 'utf-8',
-    }).trim()
-    const match = remoteUrl.match(
-      /github\.com[:/](?<owner>[^/]+)\/(?<repo>[^/]+?)(?:\.git)?$/u,
-    )
-
-    if (match?.groups?.owner !== undefined && match.groups.repo !== undefined) {
-      return `${match.groups.owner}/${match.groups.repo}`
-    }
-  } catch {
-    return undefined
-  }
-
-  return undefined
-}
-
 const publicRegistryHomepage = (): string => {
   const repositorySlug = githubRepositorySlug()
 
-  if (repositorySlug === undefined) {
-    return 'https://example.com/'
-  }
-
   const [owner, repo] = repositorySlug.split('/')
 
-  return owner !== undefined && repo !== undefined
-    ? `https://${owner}.github.io/${repo}/`
-    : 'https://example.com/'
+  if (owner === undefined || repo === undefined) {
+    throw new Error(`Invalid GitHub repository slug: ${repositorySlug}`)
+  }
+
+  return `https://${owner}.github.io/${repo}/`
 }
 
 const dedupeEntries = (
@@ -488,6 +493,7 @@ const publicRegistryItemFilesForEntry = (
 const publicRegistryItemForEntry = (
   entry: RegistryIndexEntry,
   moduleTargets: ReadonlyMap<string, string>,
+  registryDependencyAddressForItemId: RegistryDependencyAddressForItemId,
 ): PublicRegistryItemType =>
   S.decodeUnknownSync(PublicRegistryItem)({
     $schema: 'https://ui.shadcn.com/schema/registry-item.json',
@@ -498,12 +504,16 @@ const publicRegistryItemForEntry = (
     dependencies: entry.item.dependencies.runtime.map(
       dependency => dependency.specifier,
     ),
-    registryDependencies: publicRegistryDependenciesForItem(entry.item),
+    registryDependencies: publicRegistryDependenciesForItem(
+      entry.item,
+      registryDependencyAddressForItemId,
+    ),
     files: publicRegistryItemFilesForEntry(entry, moduleTargets),
   })
 
 export const buildPublicRegistryArtifacts = (
   registryIndex: RegistryIndexType,
+  registryDependencyAddressForItemId: RegistryDependencyAddressForItemId = publicRegistryAddressForItemId,
 ): PublicRegistryBuildResult => {
   const installableEntries = dedupeEntries(
     registryIndex.items.filter(
@@ -521,7 +531,11 @@ export const buildPublicRegistryArtifacts = (
     ),
   )
   const items = installableEntries.map(entry =>
-    publicRegistryItemForEntry(entry, moduleTargets),
+    publicRegistryItemForEntry(
+      entry,
+      moduleTargets,
+      registryDependencyAddressForItemId,
+    ),
   )
   const catalog = S.decodeUnknownSync(PublicRegistryCatalog)({
     $schema: 'https://ui.shadcn.com/schema/registry.json',
@@ -1318,6 +1332,13 @@ export const writePublicRegistryArtifacts = (
   )
 }
 
+export const writeGitHubRegistryCatalog = (
+  result: PublicRegistryBuildResult,
+  outputPath = githubRegistryCatalogPath,
+): void => {
+  writeJson(outputPath, result.catalog)
+}
+
 export const buildComponentDocsArtifacts = (
   registryIndex: RegistryIndexType,
 ): ComponentDocsBuildResult => {
@@ -1438,6 +1459,42 @@ export const checkPublicRegistryCurrent = (
   return previousCatalog
 }
 
+export const checkGitHubRegistryCurrent = (
+  registryIndex: RegistryIndexType,
+  outputPath = githubRegistryCatalogPath,
+): PublicRegistryCatalogType => {
+  if (!existsSync(outputPath)) {
+    throw new Error(`${outputPath} is missing; run bun run registry:build`)
+  }
+
+  const previousCatalog = readPublicRegistryCatalog(outputPath)
+
+  if (previousCatalog === undefined) {
+    throw new Error(`${outputPath} is invalid; run bun run registry:build`)
+  }
+
+  const namespacedDependency = previousCatalog.items
+    .flatMap(item => item.registryDependencies)
+    .find(dependency => dependency.startsWith('@foldkitcn/'))
+
+  if (namespacedDependency !== undefined) {
+    throw new Error(
+      `${outputPath} contains Pages dependency ${namespacedDependency}; run bun run registry:build`,
+    )
+  }
+
+  const nextResult = buildPublicRegistryArtifacts(
+    registryIndex,
+    githubRegistryAddressForItemId,
+  )
+
+  if (hashJson(previousCatalog) !== hashJson(nextResult.catalog)) {
+    throw new Error(`${outputPath} is stale; run bun run registry:build`)
+  }
+
+  return previousCatalog
+}
+
 export const writeComponentDocsArtifacts = (
   result: ComponentDocsBuildResult,
 ): void => {
@@ -1517,6 +1574,7 @@ export const checkRegistryIndexCurrent = (
 
   checkComponentDocsCurrent(previousIndex)
   checkPublicRegistryCurrent(previousIndex)
+  checkGitHubRegistryCurrent(previousIndex)
 
   return previousIndex
 }

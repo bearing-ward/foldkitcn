@@ -7,12 +7,15 @@ import { RegistryIndex as RegistryIndexSchema } from '../src/registry/schema'
 import {
   buildComponentDocsArtifacts,
   buildPublicRegistryArtifacts,
+  checkGitHubRegistryCurrent,
   componentDocsRouteForItem,
   checkPublicRegistryCurrent,
+  githubRegistryAddressForItemId,
   registryIndexIsCurrent,
   publicInstallCommandForItemId,
   publicNameForItemId,
   selectRegistryGeneratedAt,
+  writeGitHubRegistryCatalog,
   writePublicRegistryArtifacts,
 } from './registry-common'
 
@@ -409,6 +412,43 @@ describe('public registry build helpers', () => {
     ).toBeTruthy()
   })
 
+  test('builds Pages and GitHub catalogs with transport-specific registry dependencies', () => {
+    const index = actualRegistryIndex()
+    const pagesRegistry = buildPublicRegistryArtifacts(index)
+    const githubRegistry = buildPublicRegistryArtifacts(
+      index,
+      githubRegistryAddressForItemId,
+    )
+    const pagesButton = pagesRegistry.items.find(
+      item => item.name === 'shadcn-button',
+    )
+    const githubButton = githubRegistry.items.find(
+      item => item.name === 'shadcn-button',
+    )
+
+    expect(
+      pagesRegistry.items.map(item => ({
+        ...item,
+        registryDependencies: [],
+      })),
+    ).toStrictEqual(
+      githubRegistry.items.map(item => ({
+        ...item,
+        registryDependencies: [],
+      })),
+    )
+    expect(pagesButton?.registryDependencies).toStrictEqual([
+      '@foldkitcn/base-ui-button',
+      '@foldkitcn/utils-cn',
+    ])
+    expect(githubButton?.registryDependencies).toStrictEqual([
+      'bearing-ward/foldkitcn/base-ui-button',
+      'bearing-ward/foldkitcn/utils-cn',
+    ])
+    expect(githubButton?.dependencies).toStrictEqual(pagesButton?.dependencies)
+    expect(githubButton?.files).toStrictEqual(pagesButton?.files)
+  })
+
   test('publishes only installed-source registry dependencies for shadcn input', () => {
     const index = actualRegistryIndex()
     const publicRegistry = buildPublicRegistryArtifacts(index)
@@ -473,6 +513,63 @@ describe('public registry build helpers', () => {
 
       expect(() => checkPublicRegistryCurrent(index, fixturePath)).toThrow(
         /stale/u,
+      )
+    } finally {
+      cleanupTempDir(fixturePath)
+    }
+  }, 30_000)
+
+  test('fails when the root GitHub registry is missing', () => {
+    const index = actualRegistryIndex()
+    const fixturePath = makeTempDir()
+    const rootRegistryPath = path.join(fixturePath, 'registry.json')
+
+    try {
+      expect(() => checkGitHubRegistryCurrent(index, rootRegistryPath)).toThrow(
+        /missing/u,
+      )
+    } finally {
+      cleanupTempDir(fixturePath)
+    }
+  })
+
+  test('fails when the root GitHub registry item set is stale', () => {
+    const index = actualRegistryIndex()
+    const fixturePath = makeTempDir()
+    const rootRegistryPath = path.join(fixturePath, 'registry.json')
+
+    try {
+      const current = buildPublicRegistryArtifacts(
+        index,
+        githubRegistryAddressForItemId,
+      )
+      const [, ...staleItems] = current.catalog.items
+
+      writeFileSync(
+        rootRegistryPath,
+        `${JSON.stringify({ ...current.catalog, items: staleItems }, null, 2)}\n`,
+      )
+
+      expect(() => checkGitHubRegistryCurrent(index, rootRegistryPath)).toThrow(
+        /stale/u,
+      )
+    } finally {
+      cleanupTempDir(fixturePath)
+    }
+  })
+
+  test('fails when the root GitHub registry contains Pages dependencies', () => {
+    const index = actualRegistryIndex()
+    const fixturePath = makeTempDir()
+    const rootRegistryPath = path.join(fixturePath, 'registry.json')
+
+    try {
+      const current = buildPublicRegistryArtifacts(index)
+
+      writeGitHubRegistryCatalog(current, rootRegistryPath)
+
+      expect(() => checkGitHubRegistryCurrent(index, rootRegistryPath)).toThrow(
+        /contains Pages dependency/u,
       )
     } finally {
       cleanupTempDir(fixturePath)

@@ -42,6 +42,11 @@ jobs:
       - name: Verify registry artifacts
         run: bun run registry:check
 
+      - name: Validate root GitHub registry
+        run: |
+          test -f registry.json
+          bunx shadcn@4.13.1 registry validate ./registry.json
+
       - name: Verify public parity contracts
         run: bun run parity:contracts
 
@@ -125,6 +130,14 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Smoke check public docs and registry
         env:
           PUBLIC_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
@@ -133,3 +146,46 @@ jobs:
           curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/components/shadcn/button/"
           curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/r/registry.json" | jq -e '.items | length > 0'
           curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors "$PUBLIC_URL/r/shadcn-button.json" | jq -e '.name == "shadcn-button"'
+
+      - name: Smoke check GitHub shorthand install
+        run: |
+          consumer_fixture="$(mktemp -d)"
+          mkdir -p "$consumer_fixture/src/app"
+          jq -n '{
+            "style": "new-york",
+            "tailwind": {
+              "config": "tailwind.config.ts",
+              "css": "src/app/globals.css",
+              "baseColor": "zinc",
+              "cssVariables": true,
+              "prefix": ""
+            },
+            "rsc": false,
+            "tsx": true,
+            "aliases": {
+              "utils": "~/lib/utils",
+              "components": "~/components",
+              "lib": "~/lib",
+              "hooks": "~/lib/hooks",
+              "ui": "~/ui"
+            },
+            "iconLibrary": "lucide"
+          }' > "$consumer_fixture/components.json"
+          jq -n '{
+            "name": "foldkitcn-registry-smoke",
+            "version": "0.0.0",
+            "private": true
+          }' > "$consumer_fixture/package.json"
+          jq -n '{
+            "compilerOptions": {
+              "baseUrl": ".",
+              "paths": {
+                "~/*": ["./src/*"]
+              }
+            }
+          }' > "$consumer_fixture/tsconfig.json"
+          touch "$consumer_fixture/tailwind.config.ts"
+          printf '%s\n' '@tailwind base;' '@tailwind components;' '@tailwind utilities;' > "$consumer_fixture/src/app/globals.css"
+          before_status="$(git status --porcelain)"
+          bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button --cwd "$consumer_fixture" --dry-run
+          test "$(git status --porcelain)" = "$before_status"
