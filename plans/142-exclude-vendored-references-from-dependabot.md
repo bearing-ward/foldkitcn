@@ -1,13 +1,13 @@
 # Plan 142: Exclude vendored references from Dependabot updates
 
-> **Executor instructions**: Do not merge the two open Dependabot PRs. This
+> **Executor instructions**: Do not merge the three open Dependabot PRs. This
 > repository treats `repos/foldkit/` as read-only canonical evidence; dependency
 > updates there belong upstream and arrive through an intentional subtree
 > refresh. Add the narrow configuration first, then close only the exact PRs
 > named below.
 >
 > **Drift check (run first)**:
-> `gh pr list --state open --author app/dependabot --json number,title,files,url && test ! -f .github/dependabot.yml`
+> `gh pr list --state open --author app/dependabot --json number,title,url && test ! -f .github/dependabot.yml`
 > If the PR numbers, paths, or config presence changed, stop and refresh the
 > plan before any GitHub mutation.
 
@@ -18,16 +18,18 @@
 - **Risk**: LOW
 - **Depends on**: none
 - **Category**: dx, dependencies
-- **Planned at**: commit `2fb34f0b`, 2026-07-19
+- **Planned at**: commit `d867a0cb`, 2026-07-21 (reconciled after PR 6)
 
 ## Execution outcome
 
-BLOCKED on 2026-07-19 at the required landing boundary. The reviewed config is
-committed as `135a3fc2` on `codex/142-dependabot-vendored-exclusion`; Ultracite
-and diff checks pass, and the branch changes only `.github/dependabot.yml`.
-GitHub PRs 2 and 3 remain open and untouched because the configuration is not
-yet present on `main`. After the commit lands and GitHub accepts the config,
-resume at Step 3 and close only those two vendored-reference PRs.
+COMPLETE on 2026-07-21. `cc709c3e` landed and was pushed to `main`; its only
+change is `.github/dependabot.yml`. The executor and reviewer both passed
+`bun run check`, and the reviewer also passed 1,040 unit tests. PRs 2, 3, and 6
+were re-checked to confirm that each changed only the read-only Foldkit evidence
+subtree, then closed without merge with the upstream-ownership explanation.
+GitHub reports no remaining open Dependabot PRs. The deployment run triggered
+by `cc709c3e` is still in progress; monitor the next Dependabot evaluation for
+configuration errors or a PR targeting `repos/**`.
 
 ## Why this matters
 
@@ -45,6 +47,9 @@ updates owned by this repository.
   `repos/foldkit/repos/effect-smol/ai-docs/package.json` and its pnpm lockfile.
 - PR 3 updates undici only in
   `repos/foldkit/repos/effect-smol/pnpm-lock.yaml`.
+- PR 6 updates tar in
+  `repos/foldkit/repos/effect-smol/packages/platform-node-shared/package.json`
+  and its pnpm lockfile.
 - Root `package.json` and `bun.lock` do not declare nodemailer or undici.
 - `AGENTS.md` says `repos/foldkit/` is the canonical live framework reference,
   should be read directly, and must never be imported from project source.
@@ -53,18 +58,19 @@ updates owned by this repository.
   normalization boundary.
 - GitHub's current Dependabot configuration supports `directory`/`directories`,
   `exclude-paths`, and `open-pull-requests-limit: 0`; the latter disables
-  version-update PRs while allowing security-update customization for the
-  configured ecosystem.
+  version-update PRs while preserving security-update coverage for the
+  configured ecosystem when `directory` names the manifest path and no
+  `target-branch` is set.
 
 ## Commands you will need
 
-| Purpose            | Command                                                                         | Expected on success                   |
-| ------------------ | ------------------------------------------------------------------------------- | ------------------------------------- |
-| Inventory          | `gh pr list --state open --author app/dependabot --json number,title,files,url` | only PRs 2 and 3 at the planned paths |
-| Config diff        | `git diff --check -- .github/dependabot.yml plans`                              | exit 0                                |
-| Repo quality       | `bun run check`                                                                 | exit 0                                |
-| Close PRs          | `gh pr close 2 --comment <reason>` and `gh pr close 3 --comment <reason>`       | both report closed                    |
-| Final GitHub state | `gh pr list --state open --author app/dependabot`                               | no vendored-reference PRs             |
+| Purpose            | Command                                                                   | Expected on success                       |
+| ------------------ | ------------------------------------------------------------------------- | ----------------------------------------- |
+| Inventory          | `gh pr list --state open --author app/dependabot --json number,title,url` | only PRs 2, 3, and 6 at the planned paths |
+| Config diff        | `git diff --check -- .github/dependabot.yml plans`                        | exit 0                                    |
+| Repo quality       | `bun run check`                                                           | exit 0                                    |
+| Close PRs          | `gh pr close 2/3/6 --comment <reason>`                                    | all three report closed                   |
+| Final GitHub state | `gh pr list --state open --author app/dependabot`                         | no vendored-reference PRs                 |
 
 ## Scope
 
@@ -73,7 +79,7 @@ updates owned by this repository.
 - New `.github/dependabot.yml`.
 - Root npm/Bun dependency-update policy.
 - Explicit exclusion of `repos/**`.
-- Closing PRs 2 and 3 with a concise ownership explanation.
+- Closing PRs 2, 3, and 6 with a concise ownership explanation.
 - `plans/README.md`.
 
 **Out of scope**:
@@ -88,7 +94,7 @@ updates owned by this repository.
 
 - Branch: `codex/142-dependabot-vendored-exclusion`.
 - Commit: `chore(deps): exclude vendored references from Dependabot`.
-- Land the configuration before closing PRs so the reason is durable.
+- Rebase and land the configuration before closing PRs so the reason is durable.
 
 ## Steps
 
@@ -114,19 +120,20 @@ shows no configuration error.
 
 **Verify**: the configuration is present on `main` and GitHub reports it valid.
 
-### Step 3: Close only PRs 2 and 3
+### Step 3: Close only PRs 2, 3, and 6
 
 Re-read each PR's file list. Comment that the changed manifests are inside the
 read-only Foldkit evidence subtree, upstream owns those updates, and a future
 subtree refresh will carry accepted upstream fixes. Close without merging.
 
-**Verify**: both PRs report `CLOSED`, not `MERGED`.
+**Verify**: all three PRs report `CLOSED`, not `MERGED`.
 
 ### Step 4: Confirm repository hygiene
 
-List open PRs/issues, local branches, and worktrees. This plan should not create
-or delete a worktree. Confirm no new Dependabot PR targets `repos/**` after the
-next scheduled/security evaluation.
+List open PRs/issues, local branches, and worktrees. Confirm no new Dependabot
+PR targets `repos/**` after the next scheduled/security evaluation. Remove this
+plan's merged worktree and branch only after confirming they are clean and fully
+contained in `main`.
 
 **Verify**: any remaining open Dependabot PR, if one appears later, touches only
 the maintained root manifest/lockfile; otherwise reopen this plan with evidence.
@@ -139,18 +146,18 @@ the maintained root manifest/lockfile; otherwise reopen this plan with evidence.
 
 ## Done criteria
 
-- [ ] Dependabot config maintains root npm dependencies and excludes `repos/**`.
-- [ ] Root security updates remain enabled.
-- [ ] PRs 2 and 3 are closed without merge.
-- [ ] No file under `repos/**` changed.
-- [ ] No unrelated PR, branch, worktree, issue, or stash changed.
+- [x] Dependabot config maintains root npm dependencies and excludes `repos/**`.
+- [x] Root security updates remain enabled.
+- [x] PRs 2, 3, and 6 are closed without merge.
+- [x] No file under `repos/**` changed.
+- [x] No unrelated PR, branch, worktree, issue, or stash changed.
 
 ## STOP conditions
 
-- Either PR touches a root or non-vendored file.
+- Any targeted PR touches a root or non-vendored file.
 - GitHub rejects `exclude-paths` for the configured ecosystem/security mode.
 - The only available configuration disables all root security alerts.
-- A maintainer has taken ownership of either PR since the drift check.
+- A maintainer has taken ownership of any targeted PR since the drift check.
 
 ## Maintenance notes
 

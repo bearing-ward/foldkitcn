@@ -147,7 +147,7 @@ honor its STOP conditions, and update your row when done.
 | 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | DONE (`cf66ea7c`, merged by `f0ecbf83`) |
 | 140 | Prepare PR 4 for merge and normalize it after operator approval | P1 | S | 138, 139 | DONE (`f3ed5732`, PR 4 merged by `dcda1faa`) |
 | 141 | Publish a root GitHub-source registry | P1 | M | 140 | DONE (`cc0ea9e6`; verified by Actions run `29819209198`) |
-| 142 | Exclude vendored references from Dependabot updates | P2 | S | - | BLOCKED (`135a3fc2` must land before closing PRs 2 and 3) |
+| 142 | Exclude vendored references from Dependabot updates | P2 | S | - | DONE (`cc709c3e`; PRs 2, 3, and 6 closed) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
 
@@ -387,13 +387,12 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   browser parity, lint, build, deployment, and the GitHub shorthand smoke.
   Issue 5 is closed with that run URL.
 - Plan 142 is independent. It configures Dependabot to maintain the root npm
-  project while excluding `repos/**`, then closes the two open bot PRs that
+  project while excluding `repos/**`, then closes the three open bot PRs that
   modify the read-only Foldkit evidence subtree.
-- Plan 142 has a reviewed local configuration commit, `135a3fc2`, on
-  `codex/142-dependabot-vendored-exclusion`. It changes only
-  `.github/dependabot.yml`; `bun run check` and diff checks pass. PRs 2 and 3
-  remain open and untouched until that configuration is accepted on `main`, as
-  required by the plan's ordering.
+- Plan 142 is complete: `cc709c3e` is on `main`, and PRs 2, 3, and 6 were
+  closed without merge after confirming that each changed only the read-only
+  Foldkit evidence subtree. The root-only configuration remains responsible for
+  npm security updates while excluding `repos/**`.
 
 ## Findings considered and rejected
 
