@@ -6,9 +6,9 @@
 > `main`. Update `plans/README.md` after that smoke test.
 >
 > **Drift check (run first)**:
-> `git diff --stat 2fb34f0b..HEAD -- README.md scripts/build-registry.ts scripts/check-registry.ts scripts/registry-common.ts scripts/registry-common.test.ts .github/workflows/pages.yml registry.json public/r`
-> If Plan 140 changed registry generation, refresh all excerpts and tests before
-> editing.
+> `git diff --stat 0b10f9ec..HEAD -- README.md scripts/build-registry.ts scripts/check-registry.ts scripts/registry-common.ts scripts/registry-common.test.ts .github/workflows/pages.yml registry.json public/r`
+> Baseline `0b10f9ec` includes Plan 140's generated Pages registry and runtime
+> dependency fixes. Refresh all excerpts and tests if that baseline moves.
 
 ## Status
 
@@ -17,7 +17,9 @@
 - **Risk**: MED
 - **Depends on**: `plans/140-finish-pr4-and-normalize-worktree.md`
 - **Category**: bug, dx
-- **Planned at**: commit `2fb34f0b`, 2026-07-19
+- **Planned at**: commit `0b10f9ec`, 2026-07-20 (reconciled after Plan 140)
+- **Execution**: merged locally into `main` at `cc0ea9e6`; blocked on push,
+  merged-main smoke, and issue 5 closure
 
 ## Why this matters
 
@@ -35,19 +37,21 @@ correct dependency address syntax for each transport.
   and dry-run commands that require a root registry.
 - `scripts/build-registry.ts:15-19` builds one `PublicRegistryBuildResult` and
   writes it only through `writePublicRegistryArtifacts(...)`.
-- `scripts/registry-common.ts:234-242` fixes the output root at `public/r`.
-- `scripts/registry-common.ts:258-268` encodes local registry dependencies as
+- `scripts/registry-common.ts:235-242` fixes the output root at `public/r`.
+- `scripts/registry-common.ts:248-268` encodes local registry dependencies as
   `@foldkitcn/<name>`, which is correct for Pages namespace consumers.
 - `public/r/registry.json` is already a complete shadcn registry catalog with
   embedded installable files. Copying it byte-for-byte to the root is not
   sufficient: a GitHub-source consumer without `@foldkitcn` configured would
   fail on namespaced dependencies.
-- The vendored canonical shadcn CLI test
-  `repos/ui/packages/shadcn/src/registry/github.test.ts:285-340` proves that
-  same-repository dependencies use explicit addresses such as
-  `acme/ui/button`; bare names fall back to the built-in shadcn registry.
+- The vendored canonical shadcn documentation
+  `repos/ui/apps/v4/content/docs/registry/github.mdx:370-404` requires
+  same-repository dependencies to use explicit addresses such as
+  `acme/ui/button`; bare names target a different registry.
 - `.github/workflows/pages.yml:57-62` checks only `dist/r/*`; the post-deploy
   smoke checks only Pages URLs.
+- `package.json:5-8` supplies the deterministic canonical repository URL
+  `https://github.com/bearing-ward/foldkitcn.git`.
 
 ## Commands you will need
 
@@ -73,8 +77,9 @@ correct dependency address syntax for each transport.
 - Generated `registry/**` and `public/r/**` only when changed by the generator
 - `README.md`
 - `.github/workflows/pages.yml`
-- `plans/README.md`
-- Closing issue 5 after merged-main verification
+- `plans/README.md` only after the reviewer verdict or merged-main verification
+- Preparing the merged-main verification and issue 5 close; performing those
+  operator actions remains a post-merge handoff
 
 **Out of scope**:
 
@@ -90,6 +95,9 @@ correct dependency address syntax for each transport.
 - Commit: `fix(registry): publish GitHub source catalog`.
 - Push/open a PR only when directed; closing issue 5 requires the merged public
   smoke and is therefore a post-merge action.
+- The executor commits the locally reviewable implementation only. The advisor
+  records approval separately from the final `DONE` state until the merged-main
+  smoke succeeds and issue 5 is closed.
 
 ## Steps
 
@@ -128,10 +136,12 @@ source files/targets.
 ### Step 4: Add CI contract checks
 
 In the build job, assert `registry.json` exists and validate it with the pinned
-lockfile's shadcn CLI resolution. Keep existing `dist/r` assertions. Add a
-post-merge smoke that runs the documented GitHub shorthand with `--dry-run`
-against the default branch; it must be non-interactive and leave no tracked
-changes.
+lockfile's shadcn CLI resolution. Keep existing `dist/r` assertions. Add or
+document an operator-ready post-merge smoke that runs the documented GitHub
+shorthand with `--dry-run` against the default branch; it must be
+non-interactive and leave no tracked changes. If shadcn needs a configured
+consumer project, add the smallest disposable fixture or report the exact STOP
+condition.
 
 **Verify**: PR checks validate the local root catalog; after merge, the smoke
 job proves the remote shorthand.
@@ -140,8 +150,9 @@ job proves the remote shorthand.
 
 Replace placeholder GitHub commands in README with the real
 `bearing-ward/foldkitcn` form where appropriate, while keeping generic syntax
-explanations clear. After the merged-main smoke passes, comment on issue 5 with
-the verifying run URL and close it.
+explanations clear. Record the exact post-merge verification command in the
+executor handoff. After the merged-main smoke passes, an operator comments on
+issue 5 with the verifying run URL and closes it.
 
 **Verify**: `gh issue view 5 --json state` reports `CLOSED`, and the close
 comment links to a successful run rather than only a local check.
@@ -156,13 +167,32 @@ comment links to a successful run rather than only a local check.
 
 ## Done criteria
 
-- [ ] Root `registry.json` is generator-owned and freshness-checked.
-- [ ] Root local dependencies use same-repository GitHub addresses.
-- [ ] Pages artifacts retain `@foldkitcn/*` dependencies.
+- [x] Root `registry.json` is generator-owned and freshness-checked.
+- [x] Root local dependencies use same-repository GitHub addresses.
+- [x] Pages artifacts retain `@foldkitcn/*` dependencies.
 - [ ] Local root validation, the existing Pages smoke, and the public GitHub
-      shorthand smoke pass.
-- [ ] Full release gates pass.
-- [ ] Issue 5 is closed with a successful merged-main run.
+      shorthand smoke pass. Local validation passes; the merged-main shorthand
+      smoke remains pending.
+- [x] Full release gates pass.
+- [ ] Issue 5 is closed with a successful merged-main run (post-merge operator
+      action; keep this plan non-DONE until complete).
+
+## Review outcome
+
+The isolated implementation on `codex/141-root-github-registry` is approved at
+`cc0ea9e6`. Independent review passed 1,040 unit tests, 33 focused registry and
+schema tests, registry freshness, shadcn 4.13.1 validation of all 100 root
+items, Ultracite, the production build, YAML parsing, transport parity, and
+diff checks. A first review round corrected the post-deploy smoke to create a
+disposable configured consumer outside the checkout; pre-merge proof reaches
+the expected missing remote `registry.json` error without prompting.
+
+Do not mark this plan `DONE` yet. The implementation is merged locally but has
+not been published. After the commit reaches the remote default branch, require
+the workflow's exact
+`bunx shadcn@latest add bearing-ward/foldkitcn/shadcn-button --dry-run` smoke to
+succeed, comment on issue 5 with the successful run URL, close it, then update
+the plan index to `DONE`.
 
 ## STOP conditions
 

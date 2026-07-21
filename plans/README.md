@@ -146,7 +146,7 @@ honor its STOP conditions, and update your row when done.
 | 138 | Restore green menu and command verification | P0 | S | - | DONE (`6bf6eb69`, merged by `22502d93`) |
 | 139 | Re-establish bounded TypeScript verification | P1 | L | 138 | DONE (`cf66ea7c`, merged by `f0ecbf83`) |
 | 140 | Prepare PR 4 for merge and normalize it after operator approval | P1 | S | 138, 139 | DONE (`f3ed5732`, PR 4 merged by `dcda1faa`) |
-| 141 | Publish a root GitHub-source registry | P1 | M | 140 | TODO |
+| 141 | Publish a root GitHub-source registry | P1 | M | 140 | BLOCKED (`cc0ea9e6` merged locally; push, public smoke, and issue 5 close remain) |
 | 142 | Exclude vendored references from Dependabot updates | P2 | S | - | BLOCKED (`135a3fc2` must land before closing PRs 2 and 3) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale - finding fixed independently or approach abandoned)
@@ -382,6 +382,12 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
   issue 5 by generating a root GitHub-source catalog whose local dependencies
   remain in the same GitHub registry, while preserving the Pages namespace
   catalog under `public/r/`.
+- Plan 141's approved implementation, `cc0ea9e6`, is merged locally into
+  `main`. Root generation/freshness, 100-item shadcn validation, transport
+  parity, typecheck, 1,040 unit tests, Ultracite, and the production build pass.
+  The plan remains blocked until an operator pushes the commit, the post-deploy
+  GitHub shorthand smoke succeeds against remote `main`, and issue 5 is closed
+  with that run URL.
 - Plan 142 is independent. It configures Dependabot to maintain the root npm
   project while excluding `repos/**`, then closes the two open bot PRs that
   modify the read-only Foldkit evidence subtree.
