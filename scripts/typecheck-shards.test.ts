@@ -45,7 +45,9 @@ const filesMatching = (pattern: string): ReadonlyArray<string> => {
     ? 'src'
     : pattern.startsWith('scripts/')
       ? 'scripts'
-      : '.'
+      : pattern.startsWith('tests/')
+        ? 'tests'
+        : '.'
   return readdirSync(path.join(repoRoot, root), {
     recursive: true,
     withFileTypes: true,

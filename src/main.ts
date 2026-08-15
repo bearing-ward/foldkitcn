@@ -155,7 +155,10 @@ import {
   fallbackRouteMetadata,
   routeMetadataForRoute,
 } from './route-inventory'
-import type { AnchorPositioningMessage } from './utils/anchor-positioning'
+import {
+  CompletedPositionAnchoredSurface,
+  type AnchorPositioningMessage,
+} from './utils/anchor-positioning'
 import * as ShadcnButton from '#registry/shadcn/button'
 import * as ShadcnCard from '#registry/shadcn/card'
 
@@ -1146,6 +1149,7 @@ export const ReceivedPagefindSearchResults = m('ReceivedPagefindSearchResults', 
 export const ClickedClearSearch = m('ClickedClearSearch')
 
 export const Message = S.Union([
+  CompletedPositionAnchoredSurface,
   CompletedNavigateInternal,
   CompletedLoadExternal,
   CompletedScrollToAnchor,
@@ -1507,6 +1511,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
   M.value(message).pipe(
     withUpdateReturn,
     M.tagsExhaustive({
+      CompletedPositionAnchoredSurface: () => [model, []],
       CompletedNavigateInternal: () => [model, []],
       CompletedLoadExternal: () => [model, []],
       CompletedScrollToAnchor: () => [model, []],
