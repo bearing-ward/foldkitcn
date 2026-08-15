@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Progress from './index'
 import type { ViewConfig } from './index'
@@ -92,7 +93,7 @@ describe('base-ui/progress', () => {
           update,
           view: viewProgress({ labelId: 'download-label' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '30',
@@ -127,7 +128,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({}) },
-        Scene.with(updatedModel),
+        Scene.given(updatedModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '77',
@@ -140,7 +141,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({ min: 20, max: 40 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '30',
@@ -164,7 +165,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({ value: 50, max: 40 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '40',
@@ -184,7 +185,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({ value: 100 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr('data-complete'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveAttr(
           'data-complete',
@@ -197,7 +198,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({ value: 5, min: 5, max: 5 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '5',
@@ -218,7 +219,7 @@ describe('base-ui/progress', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({ value: null }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'data-indeterminate',
         ),

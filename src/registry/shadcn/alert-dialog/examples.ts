@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Button from '../button'
 import { view as AlertDialog } from './index'

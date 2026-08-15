@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Field from './index'
 import type { ViewConfig } from './index'
@@ -131,7 +132,7 @@ describe('base-ui/field', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewField({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('id', 'profile-name'),
         Scene.expect(Scene.label('Name')).toHaveAttr(
           'id',
@@ -162,7 +163,7 @@ describe('base-ui/field', () => {
             }),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-invalid'),
         Scene.expect(Scene.label('Name')).toHaveAttr(
@@ -191,7 +192,7 @@ describe('base-ui/field', () => {
             validation: Field.ValidFieldValidation({ value: 'Ada' }),
           }),
         },
-        Scene.with({ ...initialModel, value: 'Ada' }),
+        Scene.given({ ...initialModel, value: 'Ada' }),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-valid'),
         Scene.expect(Scene.label('Name')).not.toHaveAttr('aria-invalid'),
         Scene.expect(Scene.label('Name')).toHaveAttr(
@@ -206,7 +207,7 @@ describe('base-ui/field', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewField({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).not.toHaveAttr('data-focused'),
         Scene.focus(Scene.label('Name')),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-focused'),
@@ -235,7 +236,7 @@ describe('base-ui/field', () => {
             }),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.role('group')).toHaveAttr('data-required'),
         Scene.expect(Scene.label('Name')).toHaveAttr('disabled', 'true'),

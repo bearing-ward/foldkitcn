@@ -2,10 +2,11 @@ import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Drawer from './index'
 import type { ViewConfig } from './index'
@@ -117,7 +118,7 @@ describe('base-ui/drawer', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDrawer({ swipeDirection: 'left' }) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Open navigation' }),
         ).toHaveAttr('aria-haspopup', 'dialog'),
@@ -151,7 +152,7 @@ describe('base-ui/drawer', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDrawer({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Open navigation' })),
         Scene.expect(Scene.selector('#mobile-drawer')).toHaveAttr('open'),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
@@ -163,13 +164,13 @@ describe('base-ui/drawer', () => {
       )
       Scene.scene(
         { update, view: viewDrawer({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.selector('div[role="presentation"]')),
         Scene.expect(Scene.text('Reason outside-press')).toExist(),
       )
       Scene.scene(
         { update, view: viewDrawer({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('#mobile-drawer')).toHaveHandler('cancel'),
       )
     }).not.toThrow()
@@ -186,7 +187,7 @@ describe('base-ui/drawer', () => {
             modal: false,
           }),
         },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Open navigation' }),
         ).toHaveAttr('aria-disabled', 'true'),

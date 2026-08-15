@@ -4,10 +4,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as ToastPrimitive from '../../base-ui/toast'
 import * as SonnerExamples from './examples'
@@ -293,7 +294,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: toasterView({ theme: 'dark' }) },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).toHaveAttr('aria-live', 'polite'),
@@ -335,7 +336,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: toasterView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.click(Scene.role('button', { name: 'Undo' })),
         Scene.expect(Scene.text('Action 1')).toExist(),
         Scene.click(Scene.role('button', { name: 'Dismiss notification' })),
@@ -374,7 +375,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: toasterView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).not.toHaveAttr('data-expanded'),
@@ -413,7 +414,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: toasterView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.hover(Scene.role('region', { name: 'Notifications' })),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
@@ -448,7 +449,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: toasterView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).toHaveStyle('--toast-frontmost-height', '88px'),
@@ -467,7 +468,7 @@ describe('shadcn/sonner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: exampleWithToaster(SonnerExamples.SonnerDemo) },
-        Scene.with(initialModel(ToastPrimitive.createToastState())),
+        Scene.given(initialModel(ToastPrimitive.createToastState())),
         Scene.click(Scene.role('button', { name: 'Show Toast' })),
         Scene.expect(
           Scene.role('dialog', { name: 'Event has been created' }),
@@ -478,7 +479,7 @@ describe('shadcn/sonner view', () => {
           update,
           view: exampleWithToaster(SonnerExamples.SonnerPosition),
         },
-        Scene.with(initialModel(ToastPrimitive.createToastState())),
+        Scene.given(initialModel(ToastPrimitive.createToastState())),
         Scene.click(Scene.role('button', { name: 'Top Left' })),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
@@ -502,7 +503,7 @@ describe('shadcn/sonner view', () => {
       )
       Scene.scene(
         { update, view: exampleWithToaster(SonnerExamples.SonnerTypes) },
-        Scene.with(initialModel(ToastPrimitive.createToastState())),
+        Scene.given(initialModel(ToastPrimitive.createToastState())),
         Scene.click(Scene.role('button', { name: 'Promise' })),
         Scene.expect(Scene.text('Loading...')).toExist(),
         Scene.expect(Scene.selector('[data-type="loading"]')).toExist(),
@@ -522,7 +523,7 @@ describe('shadcn/sonner view', () => {
             update,
             view: exampleWithToaster(SonnerExamples.SonnerPosition),
           },
-          Scene.with(initialModel(ToastPrimitive.createToastState())),
+          Scene.given(initialModel(ToastPrimitive.createToastState())),
           Scene.click(Scene.role('button', { name: buttonLabel })),
           Scene.expect(
             Scene.role('region', { name: 'Notifications' }),

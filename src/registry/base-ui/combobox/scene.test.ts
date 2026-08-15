@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Combobox from './index'
 import type { ComboboxItemDescriptor, ViewConfig } from './index'
@@ -329,7 +330,7 @@ describe('base-ui/combobox view', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           inputValue: 'zz',
@@ -383,7 +384,7 @@ describe('base-ui/combobox view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCombobox({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.selector('#fruit-combobox-input')),
         Scene.expect(Scene.text('Open input-press')).toExist(),
         Scene.type(Scene.selector('#fruit-combobox-input'), 'bl'),
@@ -404,7 +405,7 @@ describe('base-ui/combobox view', () => {
           update,
           view: viewCombobox({}),
         },
-        Scene.with({ ...initialModel, open: true, highlightedValue: 'apple' }),
+        Scene.given({ ...initialModel, open: true, highlightedValue: 'apple' }),
         Scene.keydown(Scene.selector('#fruit-combobox-input'), 'ArrowDown'),
         Scene.expect(Scene.selector('#fruit-combobox-item-banana')).toHaveAttr(
           'data-highlighted',
@@ -427,7 +428,7 @@ describe('base-ui/combobox view', () => {
             name: 'fruit',
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           values: ['apple', 'banana'],
@@ -452,7 +453,7 @@ describe('base-ui/combobox view', () => {
           update,
           view: viewCombobox({ selectionMode: 'multiple' }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           values: ['apple', 'banana'],
           highlightedChipValue: 'banana',
@@ -475,7 +476,7 @@ describe('base-ui/combobox view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCombobox({ isDisabled: true, forceMount: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-combobox-input')).toHaveAttr(
           'disabled',
           'true',
@@ -488,11 +489,11 @@ describe('base-ui/combobox view', () => {
         ).not.toHaveHandler('click'),
         Scene.expect(
           Scene.selector('#fruit-combobox-item-apple'),
-        ).not.toHaveHandler('click'),
+        ).not.toExist(),
       )
       Scene.scene(
         { update, view: viewCombobox({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-combobox-input')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -506,7 +507,7 @@ describe('base-ui/combobox view', () => {
       )
       Scene.scene(
         { update, view: viewCombobox({ openOnInputClick: false }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-combobox-input')).not.toHaveHandler(
           'click',
         ),

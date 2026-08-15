@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Dialog from './index'
 import type { ViewConfig } from './index'
@@ -103,7 +104,7 @@ describe('base-ui/dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('aria-haspopup', 'dialog'),
@@ -138,7 +139,7 @@ describe('base-ui/dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDialog({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Open settings' })),
         Scene.expect(Scene.selector('#settings-dialog')).toHaveAttr('open'),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
@@ -150,13 +151,13 @@ describe('base-ui/dialog', () => {
       )
       Scene.scene(
         { update, view: viewDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.selector('div[role="presentation"]')),
         Scene.expect(Scene.text('Reason outside-press')).toExist(),
       )
       Scene.scene(
         { update, view: viewDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('#settings-dialog')).toHaveHandler(
           'cancel',
         ),
@@ -168,7 +169,7 @@ describe('base-ui/dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDialog({ isDisabled: true, modal: false }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('aria-disabled', 'true'),

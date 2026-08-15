@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as AspectRatio from './index'
 import type { ViewConfig } from './index'
@@ -73,7 +74,7 @@ describe('shadcn/aspect-ratio view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAspectRatio({ ratio: 16 / 9 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('div')).toHaveAttr(
           'data-slot',
           'aspect-ratio',

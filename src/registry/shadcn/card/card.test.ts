@@ -89,7 +89,7 @@ describe('shadcn/card view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(cardWithParts()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card"]')).toHaveAttr(
           'data-size',
           'sm',
@@ -125,7 +125,7 @@ describe('shadcn/card view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(CardDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card-title"]')).toHaveText(
           'Login to your account',
         ),
@@ -136,14 +136,14 @@ describe('shadcn/card view', () => {
       )
       Scene.scene(
         { update, view: view(CardEdgeToEdge()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card-footer"]')).toHaveText(
           'DeclineAccept',
         ),
       )
       Scene.scene(
         { update, view: view(CardImage()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('img')).toHaveAttr('alt', 'Event cover'),
         Scene.expect(Scene.selector('[data-slot="badge"]')).toHaveText(
           'Featured',
@@ -151,7 +151,7 @@ describe('shadcn/card view', () => {
       )
       Scene.scene(
         { update, view: view(CardRtl()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -159,12 +159,12 @@ describe('shadcn/card view', () => {
       )
       Scene.scene(
         { update, view: view(CardSmall()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-size="sm"]')).toExist(),
       )
       Scene.scene(
         { update, view: view(CardSpacing()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="toggle-group"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="card"]')).toExist(),
       )

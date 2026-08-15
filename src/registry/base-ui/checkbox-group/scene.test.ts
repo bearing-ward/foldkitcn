@@ -2,10 +2,11 @@ import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as CheckboxGroup from './index'
 import type { ViewConfig } from './index'
@@ -181,7 +182,7 @@ describe('base-ui/checkbox-group', () => {
             keepIndicatorMounted: true,
           }),
         },
-        Scene.with(model),
+        Scene.given(model),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'aria-labelledby',
           'fruit-label',
@@ -211,7 +212,7 @@ describe('base-ui/checkbox-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckboxGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.selector('[data-testid="checkbox-gala-apple"]')),
         Scene.expect(Scene.text('Selected gala-apple')).toExist(),
         Scene.expect(Scene.text('Changed gala-apple')).toExist(),
@@ -246,7 +247,7 @@ describe('base-ui/checkbox-group', () => {
             isRequired: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#apple-fuji-input')).toHaveAttr(
           'name',
           'apple',
@@ -276,7 +277,7 @@ describe('base-ui/checkbox-group', () => {
       )
       Scene.scene(
         { update, view: viewCheckboxGroup({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('aria-disabled', 'true'),
         Scene.expect(Scene.role('group')).toHaveAttr('data-disabled'),
         Scene.expect(
@@ -290,7 +291,7 @@ describe('base-ui/checkbox-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckboxGroup({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('aria-readonly', 'true'),
         Scene.expect(Scene.role('group')).toHaveAttr('data-readonly'),
         Scene.expect(
@@ -314,7 +315,7 @@ describe('base-ui/checkbox-group', () => {
             keepIndicatorMounted: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="parent"]')).toHaveAttr(
           'aria-controls',
           'apple-fuji apple-gala apple-granny',
@@ -365,7 +366,7 @@ describe('base-ui/checkbox-group', () => {
             allValues: ['a', 'b', 'c'],
           }),
         },
-        Scene.with(model),
+        Scene.given(model),
         Scene.expect(Scene.selector('[data-testid="parent"]')).toHaveAttr(
           'aria-checked',
           'mixed',
@@ -396,7 +397,7 @@ describe('base-ui/checkbox-group', () => {
             onBlur: BlurredCheckboxGroup(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveHandler('focus'),
         Scene.expect(Scene.role('group')).toHaveHandler('blur'),
       )

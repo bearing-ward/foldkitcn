@@ -82,7 +82,7 @@ describe('shadcn/radio-group view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr(
           'data-slot',
           'radio-group',
@@ -111,7 +111,7 @@ describe('shadcn/radio-group view', () => {
             isInvalid: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr(
           'aria-disabled',
           'true',

@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Accordion from '../../../../../src/registry/base-ui/accordion'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

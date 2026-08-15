@@ -1,7 +1,8 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Command } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import type { Command } from '#foldkit-command'
+import { html } from '#foldkit-html'
 
 import * as Popover from '../popover'
 
@@ -482,7 +483,7 @@ const popoverChangeReason = (
 export const commandForOpenChange = (
   config: Pick<ComboboxOptions, 'id'>,
   change: ComboboxOpenChange,
-): Command.Command<Popover.CommandMessage> =>
+): Command<Popover.CommandMessage> =>
   Popover.commandForOpenChange(
     {
       id: config.id,

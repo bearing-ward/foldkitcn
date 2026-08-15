@@ -6,7 +6,8 @@ import {
   Schema as S,
 } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Checkbox from '../checkbox'
 

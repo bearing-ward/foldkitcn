@@ -1,7 +1,8 @@
 import { Schema as S } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import { html } from '#foldkit-html'
 
 import * as ToastPrimitive from '../../base-ui/toast'
 import * as Button from '../button'

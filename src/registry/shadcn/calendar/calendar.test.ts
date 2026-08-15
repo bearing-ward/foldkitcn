@@ -86,7 +86,7 @@ describe('shadcn/calendar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => CalendarDemo() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.selector('[data-slot="calendar"]')).toHaveAttr(
           'class',
           calendarClassName({ className: 'rounded-lg border' }),
@@ -103,19 +103,19 @@ describe('shadcn/calendar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => CalendarBasic() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.selector('[data-slot="calendar"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => CalendarBookedDates() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(
           Scene.role('button', { name: 'Sunday, January 12, 2025' }),
         ).toHaveAttr('disabled'),
       )
       Scene.scene(
         { update, view: () => CalendarRtl() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.selector('[data-slot="calendar"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -136,7 +136,7 @@ describe('shadcn/calendar view', () => {
             onSelectDate: () => selected,
           }),
       },
-      Scene.with({}),
+      Scene.given({}),
       Scene.click(Scene.role('button', { name: 'Tuesday, January 7, 2025' })),
     )
 

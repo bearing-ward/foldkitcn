@@ -85,7 +85,7 @@ describe('shadcn/checkbox view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({ checkedState: 'checked' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'data-slot',
           'checkbox',
@@ -108,7 +108,7 @@ describe('shadcn/checkbox view', () => {
             isInvalid: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-checked',
           'mixed',
@@ -128,7 +128,7 @@ describe('shadcn/checkbox view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => CheckboxDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'data-slot',
           'checkbox',
@@ -139,7 +139,7 @@ describe('shadcn/checkbox view', () => {
       )
       Scene.scene(
         { update, view: () => CheckboxDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toHaveAttr(
           'data-disabled',
           'true',
@@ -151,7 +151,7 @@ describe('shadcn/checkbox view', () => {
       )
       Scene.scene(
         { update, view: () => CheckboxInvalid() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toHaveAttr(
           'data-invalid',
           'true',
@@ -160,19 +160,19 @@ describe('shadcn/checkbox view', () => {
       )
       Scene.scene(
         { update, view: () => CheckboxBasic() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field-label"]')).toHaveText(
           'Accept terms and conditions',
         ),
       )
       Scene.scene(
         { update, view: () => CheckboxGroup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field-set"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => CheckboxInTable() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="table"]')).toExist(),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-checked',
@@ -181,7 +181,7 @@ describe('shadcn/checkbox view', () => {
       )
       Scene.scene(
         { update, view: () => CheckboxRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

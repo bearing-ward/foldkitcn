@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   AlertVariant,
@@ -115,7 +116,7 @@ describe('shadcn/alert view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlert({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="alert"]')).toHaveAttr(
           'role',
           'alert',
@@ -132,7 +133,7 @@ describe('shadcn/alert view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlert({ variant: 'destructive' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="alert-title"]')).toHaveAttr(
           'class',
           alertTitleClassName(),

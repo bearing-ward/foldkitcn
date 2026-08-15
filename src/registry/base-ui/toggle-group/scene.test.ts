@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as ToggleGroup from './index'
 import type { ViewConfig } from './index'
@@ -92,7 +93,7 @@ describe('base-ui/toggle-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToggleGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('role', 'group'),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-orientation',
@@ -131,7 +132,7 @@ describe('base-ui/toggle-group', () => {
           update,
           view: viewToggleGroup({ selectionMode: 'multiple' }),
         },
-        Scene.with({ value: ['left'], highlightedValue: '' }),
+        Scene.given({ value: ['left'], highlightedValue: '' }),
         Scene.expect(Scene.role('group')).toHaveAttr('data-multiple'),
         Scene.expect(Scene.role('button', { name: 'Left' })).toHaveAttr(
           'aria-pressed',
@@ -172,7 +173,7 @@ describe('base-ui/toggle-group', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Center' })).toHaveAttr(
           'aria-disabled',
           'true',
@@ -183,7 +184,7 @@ describe('base-ui/toggle-group', () => {
       )
       Scene.scene(
         { update, view: viewToggleGroup({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('aria-disabled', 'true'),
         Scene.expect(Scene.role('button', { name: 'Left' })).toHaveAttr(
           'aria-disabled',
@@ -197,7 +198,7 @@ describe('base-ui/toggle-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToggleGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#align-left')).toHaveAttr('tabIndex', '0'),
         Scene.keydown(Scene.selector('#align-left'), 'ArrowRight'),
         Scene.expect(Scene.selector('#align-center')).toHaveAttr(
@@ -212,8 +213,9 @@ describe('base-ui/toggle-group', () => {
       )
       Scene.scene(
         { update, view: viewToggleGroup({ orientation: 'vertical' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#align-left'), 'ArrowRight'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.selector('#align-left')).toHaveAttr('tabIndex', '0'),
         Scene.keydown(Scene.selector('#align-left'), 'ArrowDown'),
         Scene.expect(Scene.selector('#align-center')).toHaveAttr(

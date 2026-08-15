@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Accordion from './index'
 import type { ViewConfig } from './index'
@@ -142,7 +143,7 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({ id: 'faq' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#faq')).toHaveAttr(
           'data-orientation',
           'vertical',
@@ -178,7 +179,7 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Billing' })),
         Scene.expect(Scene.text('Value billing')).toExist(),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
@@ -192,7 +193,7 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({ multiple: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Billing' })),
         Scene.expect(Scene.text('Value shipping,billing')).toExist(),
         Scene.click(Scene.role('button', { name: 'Shipping' })),
@@ -210,7 +211,7 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({ items: disabledItems }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Billing' })).toHaveAttr(
           'aria-disabled',
           'true',
@@ -224,7 +225,7 @@ describe('base-ui/accordion', () => {
       )
       Scene.scene(
         { update, view: viewAccordion({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('div[data-disabled]')).toHaveAttr(
           'data-disabled',
         ),
@@ -239,10 +240,12 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'ArrowDown'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value shipping')).toExist(),
         Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'Home'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value shipping')).toExist(),
         Scene.keydown(Scene.role('button', { name: 'Refunds' }), 'Enter'),
         Scene.expect(Scene.text('Value refunds')).toExist(),
@@ -259,12 +262,13 @@ describe('base-ui/accordion', () => {
           update,
           view: viewAccordion({ orientation: 'horizontal', dir: 'rtl' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('div[data-orientation]')).toHaveAttr(
           'data-orientation',
           'horizontal',
         ),
         Scene.keydown(Scene.role('button', { name: 'Shipping' }), 'ArrowLeft'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value shipping')).toExist(),
       )
     }).not.toThrow()
@@ -292,7 +296,7 @@ describe('base-ui/accordion', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({ items: measuredItems }) },
-        Scene.with({ ...initialModel, value: [] }),
+        Scene.given({ ...initialModel, value: [] }),
         Scene.expect(Scene.selector('#measured-panel')).toHaveAttr(
           'hidden',
           'until-found',

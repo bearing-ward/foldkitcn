@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Switch from '../../../../../src/registry/base-ui/switch'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

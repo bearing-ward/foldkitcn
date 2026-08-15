@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene, Story } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Field from '../field'
 import * as Form from './index'
@@ -191,7 +192,7 @@ describe('base-ui/form', () => {
             validationMode: 'onBlur',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#profile-form')).toHaveAttr(
           'noValidate',
           'true',
@@ -225,7 +226,7 @@ describe('base-ui/form', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewForm({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           validation: Field.InvalidFieldValidation({
             error: 'Name is required',
@@ -249,7 +250,7 @@ describe('base-ui/form', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewForm({ validationMode: 'onChange' }) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           name: 'Ada',
           validation: Field.ValidFieldValidation({ value: 'Ada' }),
@@ -266,7 +267,7 @@ describe('base-ui/form', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewForm({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.label('Name'), 'Ada'),
         Scene.expect(Scene.label('Name')).toHaveValue('Ada'),
         Scene.expect(Scene.selector('#profile-form')).toHaveAttr('data-valid'),
@@ -281,7 +282,7 @@ describe('base-ui/form', () => {
   test('reset payload emits a reset fact and the consuming update owns clearing state', () => {
     Story.story(
       update,
-      Story.with({
+      Story.given({
         ...initialModel,
         name: 'Ada',
         validation: Field.ValidFieldValidation({ value: 'Ada' }),
@@ -304,7 +305,7 @@ describe('base-ui/form', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewForm({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#profile-form')).toHaveAttr(
           'data-disabled',
         ),

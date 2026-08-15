@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Toggle from './index'
 import type { ViewConfig } from './index'
@@ -77,7 +78,7 @@ describe('base-ui/toggle', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToggle({ label: 'Bookmark' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Bookmark' })).toHaveAttr(
           'aria-pressed',
           'false',
@@ -104,7 +105,7 @@ describe('base-ui/toggle', () => {
           update,
           view: viewToggle({ label: 'Disabled', isDisabled: true }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Disabled' })).toHaveAttr(
           'disabled',
         ),
@@ -133,7 +134,7 @@ describe('base-ui/toggle', () => {
             isNativeButton: false,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Div toggle' })).toHaveAttr(
           'role',
           'button',

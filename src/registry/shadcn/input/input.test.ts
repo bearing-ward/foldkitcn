@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   InputBadge,
@@ -77,7 +78,7 @@ describe('shadcn/input view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInput({ placeholder: 'Email' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.placeholder('Email')).toHaveAttr(
           'data-slot',
           'input',
@@ -101,7 +102,7 @@ describe('shadcn/input view', () => {
             placeholder: 'Email',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.placeholder('Email')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.placeholder('Email')).toHaveAttr(
           'aria-invalid',
@@ -117,39 +118,39 @@ describe('shadcn/input view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(InputField()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toExist(),
         Scene.expect(Scene.placeholder('shadcn')).toExist(),
       )
       Scene.scene(
         { update, view: view(InputFieldGroup()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Submit')).toExist(),
       )
       Scene.scene(
         { update, view: view(InputInline()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.placeholder('Search documentation...')).toExist(),
       )
       Scene.scene(
         { update, view: view(InputGrid()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('First Name')).toExist(),
         Scene.expect(Scene.text('Last Name')).toExist(),
       )
       Scene.scene(
         { update, view: view(InputBadge()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="badge"]')).toHaveText('Beta'),
       )
       Scene.scene(
         { update, view: view(InputGroupExample()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="input-group"]')).toExist(),
       )
       Scene.scene(
         { update, view: view(InputButtonGroup()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="button-group"]')).toExist(),
       )
     }).not.toThrow()

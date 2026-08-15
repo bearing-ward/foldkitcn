@@ -1,6 +1,7 @@
 import { Option } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as NavigationMenu from './index'
 import type { NavigationMenuItemDescriptor } from './index'

@@ -1,7 +1,8 @@
 import { Schema as S } from 'effect'
 import * as Array from 'effect/Array'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import * as BaseCombobox from '../../base-ui/combobox'

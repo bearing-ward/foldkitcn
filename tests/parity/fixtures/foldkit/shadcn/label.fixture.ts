@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Label from '../../../../../src/registry/shadcn/label'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

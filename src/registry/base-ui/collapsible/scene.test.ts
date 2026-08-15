@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Collapsible from './index'
 import type { ViewConfig } from './index'
@@ -107,7 +108,7 @@ describe('base-ui/collapsible', () => {
             panel: { id: 'recovery-panel' },
           }),
         },
-        Scene.with(openModel),
+        Scene.given(openModel),
         Scene.expect(Scene.selector('#recovery-keys')).toHaveAttr('data-open'),
         Scene.expect(Scene.role('button', { name: 'Toggle' })).toHaveAttr(
           'aria-expanded',
@@ -135,7 +136,7 @@ describe('base-ui/collapsible', () => {
             panel: { id: 'recovery-panel' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#recovery-keys')).toHaveAttr(
           'data-closed',
         ),
@@ -160,7 +161,7 @@ describe('base-ui/collapsible', () => {
             panel: { id: 'recovery-panel' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Toggle' })),
         Scene.expect(Scene.text('Open true')).toExist(),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
@@ -182,7 +183,7 @@ describe('base-ui/collapsible', () => {
             panel: { id: 'disabled-panel' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Toggle' })).toHaveAttr(
           'aria-disabled',
           'true',
@@ -213,7 +214,7 @@ describe('base-ui/collapsible', () => {
             },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#kept-panel')).toHaveAttr('hidden'),
         Scene.expect(Scene.selector('#kept-panel')).toHaveAttr('data-closed'),
       )
@@ -227,7 +228,7 @@ describe('base-ui/collapsible', () => {
             },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#findable-panel')).toHaveAttr(
           'hidden',
           'until-found',
@@ -256,7 +257,7 @@ describe('base-ui/collapsible', () => {
             },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#measured-panel')).toHaveAttr(
           'data-starting-style',
         ),

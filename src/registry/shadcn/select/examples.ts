@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import type { SelectItemDescriptor } from './index'
 import { displayValue, view as Select } from './index'

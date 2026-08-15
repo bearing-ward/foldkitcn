@@ -144,7 +144,7 @@ describe('base-ui/toast update', () => {
   test('adds toasts, refreshes existing ids, and applies the limit', () => {
     Story.story(
       update,
-      Story.with(
+      Story.given(
         initialModel(
           Toast.createToastState({
             limit: 2,
@@ -212,7 +212,7 @@ describe('base-ui/toast update', () => {
   test('pauses and resumes toast timers when viewport interaction changes', () => {
     Story.story(
       update,
-      Story.with(
+      Story.given(
         initialModel(
           Toast.createToastState({
             toasts: [
@@ -255,7 +255,7 @@ describe('base-ui/toast update', () => {
   test('resolves promise toasts from loading to success', () => {
     Story.story(
       update,
-      Story.with(
+      Story.given(
         initialModel(
           Toast.startPromiseToast(Toast.createToastState(), {
             id: 'upload',
@@ -288,7 +288,7 @@ describe('base-ui/toast update', () => {
   test('closes, removes, and swipes toast state in place', () => {
     Story.story(
       update,
-      Story.with(
+      Story.given(
         initialModel(
           Toast.createToastState({
             toasts: [

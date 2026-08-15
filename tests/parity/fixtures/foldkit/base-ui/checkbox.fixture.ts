@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Checkbox from '../../../../../src/registry/base-ui/checkbox'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Avatar from './index'
 import type { ViewConfig } from './index'
@@ -109,7 +110,7 @@ describe('shadcn/avatar view', () => {
             image: { src: 'avatar.png', alt: '@shadcn' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="avatar"]')).toHaveAttr(
           'data-size',
           'lg',
@@ -132,7 +133,7 @@ describe('shadcn/avatar view', () => {
             image: { src: 'missing.png', alt: '@shadcn' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="avatar-fallback"]'),
         ).toHaveText('CN'),
@@ -166,7 +167,7 @@ describe('shadcn/avatar view', () => {
     expect(() => {
       Scene.scene(
         { update, view },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="avatar-group"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="avatar-badge"]')).toExist(),
         Scene.expect(

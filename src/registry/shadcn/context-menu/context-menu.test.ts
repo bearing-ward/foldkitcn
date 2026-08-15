@@ -5,8 +5,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ContextMenuBasic,
@@ -249,7 +250,7 @@ describe('shadcn/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({ inset: true, variant: 'destructive' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="context-menu"]')).toHaveAttr(
           'data-side',
           'right',
@@ -312,7 +313,7 @@ describe('shadcn/context-menu view', () => {
             sideOffset: 8,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="context-menu"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -343,7 +344,7 @@ describe('shadcn/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="context-menu-content"]'),
         ).toHaveAttr('data-align', 'start'),
@@ -377,7 +378,7 @@ describe('shadcn/context-menu view', () => {
       for (const example of contextMenuExampleViews) {
         Scene.scene(
           { update, view: staticExampleView(example.view) },
-          Scene.with(initialModel),
+          Scene.given(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu"]'),
           ).toBeVisible(),
@@ -390,7 +391,7 @@ describe('shadcn/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: staticExampleView(ContextMenuGroups) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expectAll(
           Scene.all.selector('[data-slot="context-menu-separator"]'),
         ).toHaveCount(3),
@@ -402,7 +403,7 @@ describe('shadcn/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ContextMenuBasic() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="context-menu-item"]'),
         ).toBeVisible(),
@@ -427,7 +428,7 @@ describe('shadcn/context-menu view', () => {
             update,
             view: staticExampleView(requireExampleView(viewById, id)),
           },
-          Scene.with(initialModel),
+          Scene.given(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu"]'),
           ).toBeVisible(),
@@ -451,7 +452,7 @@ describe('shadcn/context-menu view', () => {
             update,
             view: staticExampleView(requireExampleView(viewById, id)),
           },
-          Scene.with(initialModel),
+          Scene.given(initialModel),
           Scene.expect(
             Scene.selector('[data-slot="context-menu-sub-content"]'),
           ).toBeVisible(),
@@ -465,7 +466,7 @@ describe('shadcn/context-menu view', () => {
             requireExampleView(viewById, 'shadcn/context-menu-destructive'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="context-menu-item"]'),
         ).toHaveAttr('data-variant', 'destructive'),
@@ -477,7 +478,7 @@ describe('shadcn/context-menu view', () => {
             requireExampleView(viewById, 'shadcn/context-menu-rtl'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="context-menu"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -490,7 +491,7 @@ describe('shadcn/context-menu view', () => {
             requireExampleView(viewById, 'shadcn/context-menu-shortcuts'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="context-menu-shortcut"]'),
         ).toBeVisible(),

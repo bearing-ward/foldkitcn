@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as NavigationMenu from './index'
 import type { NavigationMenuItemDescriptor, ViewConfig } from './index'
@@ -274,7 +275,7 @@ describe('base-ui/navigation-menu view', () => {
             viewportActivationDirection: 'right',
           }),
         },
-        Scene.with({ ...initialModel, value: 'product' }),
+        Scene.given({ ...initialModel, value: 'product' }),
         Scene.expect(Scene.selector('#site-nav')).toHaveAttr('data-open', ''),
         Scene.expect(Scene.selector('#site-nav-list')).toHaveAttr(
           'data-orientation',
@@ -284,11 +285,11 @@ describe('base-ui/navigation-menu view', () => {
           'data-value',
           'product',
         ),
-        Scene.expect(Scene.role('button', { name: 'Product▼' })).toHaveAttr(
+        Scene.expect(Scene.role('button', { name: 'Product' })).toHaveAttr(
           'aria-expanded',
           'true',
         ),
-        Scene.expect(Scene.role('button', { name: 'Product▼' })).toHaveAttr(
+        Scene.expect(Scene.role('button', { name: 'Product' })).toHaveAttr(
           'aria-controls',
           'site-nav-popup',
         ),
@@ -330,32 +331,32 @@ describe('base-ui/navigation-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNavigationMenu({}) },
-        Scene.with(initialModel),
-        Scene.click(Scene.role('button', { name: 'Product▼' })),
+        Scene.given(initialModel),
+        Scene.click(Scene.role('button', { name: 'Product' })),
         Scene.expect(Scene.text('Value product')).toBeVisible(),
         Scene.expect(Scene.text('Reason trigger-press')).toBeVisible(),
-        Scene.with({ ...initialModel, value: 'product' }),
-        Scene.hover(Scene.role('button', { name: 'Solutions▼' })),
+        Scene.given({ ...initialModel, value: 'product' }),
+        Scene.hover(Scene.role('button', { name: 'Solutions' })),
         Scene.expect(Scene.text('Value solutions')).toBeVisible(),
         Scene.expect(Scene.text('Reason trigger-hover')).toBeVisible(),
         Scene.expect(Scene.text('Direction right')).toBeVisible(),
-        Scene.with({ ...initialModel, value: 'product' }),
+        Scene.given({ ...initialModel, value: 'product' }),
         Scene.keydown(Scene.selector('#site-nav-list'), 'ArrowRight'),
         Scene.expect(Scene.text('Value solutions')).toBeVisible(),
         Scene.expect(Scene.text('Reason list-navigation')).toBeVisible(),
-        Scene.with(initialModel),
-        Scene.keydown(Scene.role('button', { name: 'Product▼' }), 'ArrowDown'),
+        Scene.given(initialModel),
+        Scene.keydown(Scene.role('button', { name: 'Product' }), 'ArrowDown'),
         Scene.expect(Scene.text('Value product')).toBeVisible(),
         Scene.expect(Scene.text('Reason list-navigation')).toBeVisible(),
-        Scene.with({ ...initialModel, value: 'product' }),
+        Scene.given({ ...initialModel, value: 'product' }),
         Scene.click(Scene.role('link', { name: 'Docs' })),
         Scene.expect(Scene.text('Value none')).toBeVisible(),
         Scene.expect(Scene.text('Reason link-press')).toBeVisible(),
         Scene.expect(Scene.text('Focus #site-nav-link-docs')).toBeVisible(),
-        Scene.with({ ...initialModel, value: 'product' }),
+        Scene.given({ ...initialModel, value: 'product' }),
         Scene.click(Scene.selector('#site-nav-backdrop')),
         Scene.expect(Scene.text('Reason outside-press')).toBeVisible(),
-        Scene.with({ ...initialModel, value: 'product' }),
+        Scene.given({ ...initialModel, value: 'product' }),
         Scene.keydown(Scene.selector('#site-nav-popup'), 'Escape'),
         Scene.expect(Scene.text('Reason escape-key')).toBeVisible(),
       )
@@ -373,7 +374,7 @@ describe('base-ui/navigation-menu view', () => {
             orientation: 'vertical',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#site-nav')).toHaveAttr(
           'aria-disabled',
           'true',
@@ -390,12 +391,12 @@ describe('base-ui/navigation-menu view', () => {
           'inert',
           'true',
         ),
-        Scene.expect(Scene.role('button', { name: 'Product▼' })).toHaveAttr(
+        Scene.expect(Scene.role('button', { name: 'Product' })).toHaveAttr(
           'aria-disabled',
           'true',
         ),
         Scene.expect(
-          Scene.role('button', { name: 'Product▼' }),
+          Scene.role('button', { name: 'Product' }),
         ).not.toHaveHandler('click'),
       )
     }).not.toThrow()

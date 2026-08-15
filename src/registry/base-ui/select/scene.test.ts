@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Select from './index'
 import type { SelectItemDescriptor, ViewConfig } from './index'
@@ -254,7 +255,7 @@ describe('base-ui/select view', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Select a fruit' }),
         ).toHaveAttr('aria-haspopup', 'listbox'),
@@ -319,7 +320,7 @@ describe('base-ui/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Select a fruit' })),
         Scene.expect(Scene.selector('#fruit-select-popup')).toHaveAttr(
           'data-open',
@@ -338,7 +339,7 @@ describe('base-ui/select view', () => {
       )
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with({ ...initialModel, open: true, highlightedValue: 'apple' }),
+        Scene.given({ ...initialModel, open: true, highlightedValue: 'apple' }),
         Scene.keydown(Scene.selector('#fruit-select-popup'), 'ArrowDown'),
         Scene.expect(Scene.selector('#fruit-select-item-banana')).toHaveAttr(
           'data-highlighted',
@@ -365,7 +366,7 @@ describe('base-ui/select view', () => {
             name: 'fruit',
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           highlightedValue: 'banana',
           value: 'banana',
@@ -409,7 +410,7 @@ describe('base-ui/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -427,8 +428,9 @@ describe('base-ui/select view', () => {
       )
       Scene.scene(
         { update, view: viewSelect({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#fruit-select-trigger'), 'Enter'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
           'aria-expanded',
           'false',
@@ -442,7 +444,11 @@ describe('base-ui/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({ isReadOnly: true }) },
-        Scene.with({ ...initialModel, open: true, highlightedValue: 'banana' }),
+        Scene.given({
+          ...initialModel,
+          open: true,
+          highlightedValue: 'banana',
+        }),
         Scene.expect(
           Scene.role('option', { name: 'Banana' }),
         ).not.toHaveHandler('click'),
@@ -458,19 +464,19 @@ describe('base-ui/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.selector('div[role="presentation"]')),
         Scene.expect(Scene.text('Open outside-press')).toExist(),
       )
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.keydown(Scene.selector('#fruit-select-popup'), 'Escape'),
         Scene.expect(Scene.text('Open escape-key')).toExist(),
       )
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.hover(Scene.role('option', { name: 'Blueberry' })),
         Scene.expect(Scene.selector('#fruit-select-item-blueberry')).toHaveAttr(
           'data-highlighted',
@@ -479,7 +485,7 @@ describe('base-ui/select view', () => {
       )
       Scene.scene(
         { update, view: viewSelect({}) },
-        Scene.with({ ...initialModel, open: true, highlightedValue: 'apple' }),
+        Scene.given({ ...initialModel, open: true, highlightedValue: 'apple' }),
         Scene.keydown(Scene.role('option', { name: 'Apple' }), 'Enter'),
         Scene.expect(Scene.selector('#fruit-select-trigger')).toHaveAttr(
           'aria-expanded',
@@ -490,7 +496,7 @@ describe('base-ui/select view', () => {
       )
       Scene.scene(
         { update, view: viewSelect({ isDisabled: true, forceMount: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Select a fruit' }),
         ).not.toHaveHandler('click'),

@@ -5,8 +5,9 @@ import * as Array from 'effect/Array'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ComboxboxInputGroup,
@@ -197,7 +198,7 @@ describe('shadcn/combobox view', () => {
           update,
           view: viewCombobox({ showClear: true, value: 'banana' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="combobox"]')).toHaveAttr(
           'data-selection-mode',
           'single',
@@ -261,7 +262,7 @@ describe('shadcn/combobox view', () => {
             values: ['apple', 'banana'],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="combobox"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -302,61 +303,61 @@ describe('shadcn/combobox examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ComboboxBasic() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Next.js')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxWithClear() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="combobox-clear"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxWithGroupsAndSeparator() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Americas')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboxboxInputGroup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="input-group"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxMultiple() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="combobox-chip"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="input-group-control"]'),
         ).toHaveAttr('disabled', 'true'),
       )
       Scene.scene(
         { update, view: () => ComboboxInvalid() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Please select a framework.')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxPopup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Argentina')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxAutoHighlight() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('#combobox-auto-highlight-item-next'),
         ).toHaveAttr('data-highlighted'),
       )
       Scene.scene(
         { update, view: () => ComboboxWithCustomItems() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Argentina')).toExist(),
       )
       Scene.scene(
         { update, view: () => ComboboxRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('الفئات')).toExist(),
       )
     }).not.toThrow()

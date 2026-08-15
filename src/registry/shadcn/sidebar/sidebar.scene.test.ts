@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   SidebarControlled,
@@ -168,7 +169,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSidebar() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="sidebar-wrapper"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="sidebar"]')).toHaveAttr(
           'data-state',
@@ -196,7 +197,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSidebar({ isMobile: true, mobileOpen: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="sidebar-mobile"]')).toExist(),
       )
     }).not.toThrow()
@@ -206,7 +207,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
         Scene.expect(
           Scene.selector('[data-slot="sidebar-menu-button"]'),
@@ -225,7 +226,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="sidebar-header"]')).toHaveText(
           'Acme IncEnterprise',
         ),
@@ -240,7 +241,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarControlled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Close Sidebar' })).toExist(),
       )
     }).not.toThrow()
@@ -250,7 +251,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarMenuAction() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'More' })).toExist(),
       )
     }).not.toThrow()
@@ -260,7 +261,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarMenuCollapsible() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('link', { name: 'Installation' })).toExist(),
       )
     }).not.toThrow()
@@ -270,7 +271,7 @@ describe('shadcn/sidebar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SidebarMenuSub() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('link', { name: 'Installation' })).toExist(),
       )
     }).not.toThrow()

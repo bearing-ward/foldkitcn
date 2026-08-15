@@ -1,7 +1,8 @@
 import { Match as M } from 'effect'
 import type { Command } from 'foldkit'
 import type { Document } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as DataTable from '../../../../../src/registry/shadcn/data-table'
 import {

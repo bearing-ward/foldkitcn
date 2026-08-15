@@ -383,7 +383,7 @@ const OriginCalendar = ({
               </button>
             </div>
             <div className="flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)">
-              <span className="font-medium select-none cn-calendar-caption text-sm">
+              <span className="cn-calendar-caption text-sm font-medium select-none">
                 January 2025
               </span>
             </div>
@@ -609,7 +609,7 @@ const BubbleMarkdownDemo = (): React.ReactElement => (
           <p>
             This is perfect for assistant messages that should not have a frame
             and can take the full width of the container. You can also render{' '}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">code</code>{' '}
+            <code className="bg-muted rounded px-1 py-0.5 text-xs">code</code>{' '}
             in it.
           </p>
           <p>
@@ -663,7 +663,7 @@ const MessageScrollerParityFixture = ({
             ? 'Scroll to earlier messages'
             : 'Scroll to end'
         }
-        className="absolute border-border bg-background text-foreground"
+        className="border-border bg-background text-foreground absolute"
       />
     </div>
     {label === 'scrollable' ? (
@@ -724,7 +724,7 @@ const BubbleVariantsDemo = (): React.ReactElement => (
           <p>
             This is perfect for assistant messages that should not have a frame
             and can take the full width of the container. You can also render{' '}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">code</code>{' '}
+            <code className="bg-muted rounded px-1 py-0.5 text-xs">code</code>{' '}
             in it.
           </p>
           <p>
@@ -748,7 +748,7 @@ const BubblePopoverDemo = (): React.ReactElement => (
         <button
           type="button"
           aria-label="Show error details"
-          className="inline-flex size-7 items-center justify-center rounded-full bg-transparent text-destructive"
+          className="text-destructive inline-flex size-7 items-center justify-center rounded-full bg-transparent"
         >
           i
         </button>
@@ -797,7 +797,7 @@ const BubbleCollapsibleDemo = (): React.ReactElement => (
           aria-expanded="false"
           type="button"
           data-slot="collapsible-trigger"
-          className="mt-2 inline-flex items-center gap-1 p-0 text-muted-foreground"
+          className="text-muted-foreground mt-2 inline-flex items-center gap-1 p-0"
         >
           Show more
         </button>

@@ -2,9 +2,10 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Fieldset from './index'
 import type { ViewConfig } from './index'
@@ -108,7 +109,7 @@ describe('base-ui/fieldset', () => {
           update,
           view: viewFieldset({ id: 'billing' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr('id', 'billing'),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr(
           'aria-labelledby',
@@ -131,7 +132,7 @@ describe('base-ui/fieldset', () => {
             legendId: 'payment-heading',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr(
           'aria-labelledby',
           'payment-heading',
@@ -154,7 +155,7 @@ describe('base-ui/fieldset', () => {
             form: 'checkout',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr(
           'name',
           'shippingAddress',
@@ -174,7 +175,7 @@ describe('base-ui/fieldset', () => {
             isDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.selector('fieldset')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.selector('#disabled-legend')).toHaveAttr(
@@ -191,7 +192,7 @@ describe('base-ui/fieldset', () => {
           update,
           view: viewNestedFieldset,
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#outer')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.selector('#inner')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.selector('#inner')).toHaveAttr('data-disabled'),

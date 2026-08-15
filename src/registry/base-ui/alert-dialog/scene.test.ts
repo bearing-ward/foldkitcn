@@ -2,10 +2,11 @@ import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as AlertDialog from './index'
 import type { ViewConfig } from './index'
@@ -116,7 +117,7 @@ describe('base-ui/alert-dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlertDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Delete account' }),
         ).toHaveAttr('aria-haspopup', 'dialog'),
@@ -154,7 +155,7 @@ describe('base-ui/alert-dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlertDialog({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Delete account' })),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
         Scene.click(Scene.role('button', { name: 'Cancel' })),
@@ -162,7 +163,7 @@ describe('base-ui/alert-dialog', () => {
       )
       Scene.scene(
         { update, view: viewAlertDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.role('button', { name: 'Continue' })),
         Scene.expect(Scene.text('Actions 1')).toExist(),
         Scene.expect(Scene.text('Reason none')).toExist(),
@@ -174,7 +175,7 @@ describe('base-ui/alert-dialog', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlertDialog({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.selector('div[role="presentation"]'),
         ).not.toHaveHandler('click'),

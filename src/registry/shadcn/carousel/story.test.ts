@@ -27,7 +27,7 @@ describe('shadcn/carousel update', () => {
   test('ClickedCarouselNext advances selected index and enabled states', () => {
     Story.story(
       update,
-      Story.with(initialState()),
+      Story.given(initialState()),
       Story.message(ClickedCarouselNext()),
       Story.Command.expectNone(),
       Story.model(model => {
@@ -41,7 +41,7 @@ describe('shadcn/carousel update', () => {
   test('ClickedCarouselPrevious moves back one slide', () => {
     Story.story(
       update,
-      Story.with(initialState({ selectedIndex: 2 })),
+      Story.given(initialState({ selectedIndex: 2 })),
       Story.message(ClickedCarouselPrevious()),
       Story.Command.expectNone(),
       Story.model(model => {
@@ -55,7 +55,7 @@ describe('shadcn/carousel update', () => {
   test('next and previous clamp at boundaries', () => {
     Story.story(
       update,
-      Story.with(initialState({ selectedIndex: 2 })),
+      Story.given(initialState({ selectedIndex: 2 })),
       Story.message(ClickedCarouselNext()),
       Story.model(model => {
         expect(model.selectedIndex).toBe(2)
@@ -66,7 +66,7 @@ describe('shadcn/carousel update', () => {
 
     Story.story(
       update,
-      Story.with(initialState()),
+      Story.given(initialState()),
       Story.message(ClickedCarouselPrevious()),
       Story.model(model => {
         expect(model.selectedIndex).toBe(0)
@@ -86,7 +86,7 @@ describe('shadcn/carousel update', () => {
   test('horizontal keyboard input uses left and right arrows', () => {
     Story.story(
       update,
-      Story.with(initialState()),
+      Story.given(initialState()),
       Story.message(PressedCarouselKey({ key: 'ArrowRight' })),
       Story.model(model => {
         expect(model.selectedIndex).toBe(1)
@@ -101,7 +101,7 @@ describe('shadcn/carousel update', () => {
   test('vertical keyboard input uses up and down arrows', () => {
     Story.story(
       update,
-      Story.with(initialState({ orientation: 'vertical' })),
+      Story.given(initialState({ orientation: 'vertical' })),
       Story.message(PressedCarouselKey({ key: 'ArrowDown' })),
       Story.model(model => {
         expect(model.selectedIndex).toBe(1)
@@ -117,7 +117,7 @@ describe('shadcn/carousel update', () => {
   test('unhandled keyboard input preserves state', () => {
     Story.story(
       update,
-      Story.with(initialState({ selectedIndex: 1 })),
+      Story.given(initialState({ selectedIndex: 1 })),
       Story.message(PressedCarouselKey({ key: 'Home' })),
       Story.model(model => {
         expect(model.selectedIndex).toBe(1)

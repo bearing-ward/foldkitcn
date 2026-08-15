@@ -3,8 +3,9 @@
 import { Option, Schema as S } from 'effect'
 import { Scene, Story } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   CommandDemo,
@@ -114,7 +115,7 @@ describe('shadcn/command update', () => {
   test('filters query text and highlights the first enabled match', () => {
     Story.story(
       update,
-      Story.with(initialState()),
+      Story.given(initialState()),
       Story.message(Command.UpdatedCommandQuery({ value: 'bill' })),
       Story.Command.expectNone(),
       Story.model(model => {
@@ -127,7 +128,7 @@ describe('shadcn/command update', () => {
   test('keyboard movement skips disabled items and selects the highlight', () => {
     Story.story(
       update,
-      Story.with(initialState({ highlightedValue: Option.some('emoji') })),
+      Story.given(initialState({ highlightedValue: Option.some('emoji') })),
       Story.message(Command.PressedCommandKey({ key: 'ArrowDown' })),
       Story.model(model => {
         expect(model.highlightedValue).toStrictEqual(Option.some('profile'))
@@ -143,7 +144,7 @@ describe('shadcn/command update', () => {
   test('dialog open and escape close state without commands', () => {
     Story.story(
       update,
-      Story.with(initialState()),
+      Story.given(initialState()),
       Story.message(Command.OpenedCommandDialog()),
       Story.model(model => {
         expect(model.isDialogOpen).toBeTruthy()
@@ -173,7 +174,7 @@ describe('shadcn/command view', () => {
     expect(() => {
       Scene.scene(
         { update, view },
-        Scene.with(initialState({ highlightedValue: Option.some('profile') })),
+        Scene.given(initialState({ highlightedValue: Option.some('profile') })),
         Scene.expect(Scene.label('Command search')).toHaveValue(''),
         Scene.expect(Scene.role('listbox')).toExist(),
         Scene.expect(
@@ -194,7 +195,7 @@ describe('shadcn/command view', () => {
     expect(() => {
       Scene.scene(
         { update, view },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.type(Scene.label('Command search'), 'emoji'),
         Scene.expect(Scene.role('option', { name: 'Search Emoji' })).toExist(),
         Scene.expect(Scene.role('option', { name: 'Calendar' })).not.toExist(),
@@ -211,7 +212,7 @@ describe('shadcn/command view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => CommandDemo() },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.selector('[data-slot="command"]')).toHaveAttr(
           'class',
           Command.commandClassName({ className: 'max-w-sm rounded-lg border' }),
@@ -220,17 +221,17 @@ describe('shadcn/command view', () => {
       )
       Scene.scene(
         { update, view: () => CommandWithGroups() },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.role('button', { name: 'Open Menu' })).toExist(),
       )
       Scene.scene(
         { update, view: () => CommandDialogDemo() },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.selector('p')).toHaveText('Press ⌘J'),
       )
       Scene.scene(
         { update, view: () => CommandRtl() },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.selector('[data-slot="command"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -254,7 +255,7 @@ describe('shadcn/command view', () => {
               children: [h.div([], ['Layered command content'])],
             }),
         },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.selector('#command-layer-test')).toHaveStyle(
           'zIndex',
           '1000',
@@ -282,7 +283,7 @@ describe('shadcn/command view', () => {
               isOpen: true,
             }),
         },
-        Scene.with(initialState()),
+        Scene.given(initialState()),
         Scene.expect(Scene.selector('#command-dialog-demo-test')).toHaveAttr(
           'open',
         ),

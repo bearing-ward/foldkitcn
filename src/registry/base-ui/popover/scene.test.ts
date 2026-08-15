@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Popover from './index'
 import type { ViewConfig } from './index'
@@ -112,7 +113,7 @@ describe('base-ui/popover', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewPopover({ side: 'top', align: 'end' }) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('aria-haspopup', 'dialog'),
@@ -168,7 +169,7 @@ describe('base-ui/popover', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewPopover({ modal: true }) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('div[data-modal]')).toHaveAttr(
           'data-modal',
           'true',
@@ -180,7 +181,7 @@ describe('base-ui/popover', () => {
       )
       Scene.scene(
         { update, view: viewPopover({ modal: 'trap-focus' }) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('div[data-modal]')).toHaveAttr(
           'data-modal',
           'trap-focus',
@@ -203,7 +204,7 @@ describe('base-ui/popover', () => {
             triggerSelector: '.restore-target',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('id', 'explicit-trigger'),
@@ -215,7 +216,7 @@ describe('base-ui/popover', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewPopover({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Open settings' })),
         Scene.expect(Scene.selector('#settings-popover-popup')).toHaveAttr(
           'data-open',
@@ -229,13 +230,13 @@ describe('base-ui/popover', () => {
       )
       Scene.scene(
         { update, view: viewPopover({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.selector('div[role="presentation"]')),
         Scene.expect(Scene.text('Reason outside-press')).toExist(),
       )
       Scene.scene(
         { update, view: viewPopover({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.keydown(Scene.selector('#settings-popover-popup'), 'Escape'),
         Scene.expect(Scene.text('Reason escape-key')).toExist(),
       )
@@ -256,7 +257,7 @@ describe('base-ui/popover', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Open settings' }),
         ).toHaveAttr('aria-disabled', 'true'),

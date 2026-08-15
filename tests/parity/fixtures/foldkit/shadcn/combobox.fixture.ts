@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as ShadcnCombobox from '../../../../../src/registry/shadcn/combobox'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

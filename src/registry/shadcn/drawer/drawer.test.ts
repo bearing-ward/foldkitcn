@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Drawer from './index'
 import type { ViewConfig } from './index'
@@ -140,7 +141,7 @@ describe('shadcn/drawer view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDrawer({ direction: 'right' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="drawer-overlay"]')).toHaveAttr(
           'class',
           Drawer.drawerOverlayClassName(),
@@ -196,7 +197,7 @@ describe('shadcn/drawer view', () => {
             modal: false,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="drawer"]')).toHaveAttr(
           'data-modal',
           'false',

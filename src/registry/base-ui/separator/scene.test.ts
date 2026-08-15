@@ -2,8 +2,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Separator from './index'
 import type { ViewConfig } from './index'
@@ -54,7 +55,7 @@ describe('base-ui/separator', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toBeVisible(),
       )
     }).not.toThrow()
@@ -64,7 +65,7 @@ describe('base-ui/separator', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'aria-orientation',
           'horizontal',
@@ -81,7 +82,7 @@ describe('base-ui/separator', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({ orientation: 'vertical' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'aria-orientation',
           'vertical',
@@ -98,7 +99,7 @@ describe('base-ui/separator', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({ elementKind: 'hr' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('hr')).toHaveAttr('role', 'separator'),
         Scene.expect(Scene.selector('hr')).toHaveAttr(
           'aria-orientation',

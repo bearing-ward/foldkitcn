@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { baseClassName, separatorClassName, view as Separator } from './index'
 import type { ViewConfig } from './index'
@@ -67,7 +68,7 @@ describe('shadcn/separator view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'data-slot',
           'separator',
@@ -80,7 +81,7 @@ describe('shadcn/separator view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'aria-orientation',
           'horizontal',
@@ -97,7 +98,7 @@ describe('shadcn/separator view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSeparator({ orientation: 'vertical' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'aria-orientation',
           'vertical',

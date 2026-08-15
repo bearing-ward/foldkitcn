@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Field from '../../../../../src/registry/base-ui/field'
 import * as Form from '../../../../../src/registry/base-ui/form'

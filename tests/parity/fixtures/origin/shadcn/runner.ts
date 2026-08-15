@@ -1870,8 +1870,9 @@ const normalizedGreps = (
     ? [grep.toLowerCase()]
     : grep?.map(value => value.toLowerCase())
 
-const grepLabel = (grep: CaptureShadcnOriginSnapshotsOptions['grep']): string =>
-  typeof grep === 'string' ? grep : (grep?.join(', ') ?? '<none>')
+const grepLabel = (
+  grep: CaptureShadcnOriginSnapshotsOptions['grep'],
+): string => (typeof grep === 'string' ? grep : (grep?.join(', ') ?? '<none>'))
 
 const matchingCases = (grep: CaptureShadcnOriginSnapshotsOptions['grep']) => {
   const grepValues = normalizedGreps(grep)

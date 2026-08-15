@@ -1,6 +1,7 @@
 import { Option } from 'effect'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import type {
   ResizableMessage,

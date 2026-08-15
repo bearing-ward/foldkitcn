@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Menubar from './index'
 import type {
@@ -366,7 +367,7 @@ describe('base-ui/menubar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenubar({}) },
-        Scene.with({ ...initialModel, openMenuValue: 'file' }),
+        Scene.given({ ...initialModel, openMenuValue: 'file' }),
         Scene.expect(Scene.role('menubar')).toHaveAttr(
           'aria-orientation',
           'horizontal',
@@ -394,7 +395,7 @@ describe('base-ui/menubar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenubar({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('menuitem', { name: 'File' })),
         Scene.expect(Scene.text('Open file')).toBeVisible(),
         Scene.expect(Scene.text('Reason trigger-press')).toBeVisible(),
@@ -403,11 +404,11 @@ describe('base-ui/menubar view', () => {
         Scene.expect(
           Scene.text('Trigger reason keyboard-navigation'),
         ).toBeVisible(),
-        Scene.with({ ...initialModel, openMenuValue: 'file' }),
+        Scene.given({ ...initialModel, openMenuValue: 'file' }),
         Scene.hover(Scene.role('menuitem', { name: 'Edit' })),
         Scene.expect(Scene.text('Open edit')).toBeVisible(),
         Scene.expect(Scene.text('Trigger reason trigger-hover')).toBeVisible(),
-        Scene.with({
+        Scene.given({
           ...initialModel,
           openMenuValue: 'file',
           highlightedValue: 'new',
@@ -425,7 +426,7 @@ describe('base-ui/menubar view', () => {
           update,
           view: viewMenubar({}),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           openMenuValue: 'file',
           highlightedValue: 'new',
@@ -457,8 +458,9 @@ describe('base-ui/menubar view', () => {
           update,
           view: viewMenubar({ orientation: 'vertical', loopFocus: false }),
         },
-        Scene.with({ ...initialModel, focusedMenuValue: 'view' }),
+        Scene.given({ ...initialModel, focusedMenuValue: 'view' }),
         Scene.keydown(Scene.role('menuitem', { name: 'View' }), 'ArrowDown'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Trigger none')).toBeVisible(),
         Scene.expect(Scene.role('menubar')).toHaveAttr(
           'aria-orientation',
@@ -468,7 +470,7 @@ describe('base-ui/menubar view', () => {
 
       Scene.scene(
         { update, view: viewMenubar({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('menubar')).toHaveAttr('data-disabled', ''),
         Scene.expect(
           Scene.selector('#browser-menubar-file-trigger'),

@@ -1,8 +1,9 @@
 import { Array, Match as M, Option, Schema as S, String, pipe } from 'effect'
 import type { Command as FoldkitCommand } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import * as Dialog from '../dialog'
@@ -247,7 +248,9 @@ export type UpdateReturn = readonly [
 
 const withUpdateReturn = M.withReturnType<UpdateReturn>()
 
-export const commandKeyMessage = (key: string): Option.Option<CommandMessage> =>
+export const commandKeyMessage = (
+  key: string,
+): Option.Option<CommandMessage> =>
   commandKeyValues.some(value => value === key)
     ? Option.some(PressedCommandKey({ key }))
     : Option.none()

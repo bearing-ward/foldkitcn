@@ -1,6 +1,7 @@
 import { Schema as S } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import * as BaseProgress from '../../base-ui/progress'

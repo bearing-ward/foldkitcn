@@ -2,10 +2,11 @@ import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Radio from './index'
 import type { ViewConfig } from './index'
@@ -168,7 +169,7 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ keepIndicatorMounted: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-checked', 'false'),
         Scene.expect(Scene.role('radio')).toHaveAttr('data-unchecked'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveAttr(
@@ -177,7 +178,7 @@ describe('base-ui/radio', () => {
       )
       Scene.scene(
         { update, view: viewRadio({}) },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-checked', 'true'),
         Scene.expect(Scene.role('radio')).toHaveAttr('data-checked'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveAttr(
@@ -191,12 +192,12 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toBeAbsent(),
       )
       Scene.scene(
         { update, view: viewRadio({ keepIndicatorMounted: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toExist(),
       )
     }).not.toThrow()
@@ -220,7 +221,7 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('unchecked')).toExist(),
         Scene.click(Scene.role('radio')),
         Scene.expect(Scene.text('checked')).toExist(),
@@ -228,8 +229,9 @@ describe('base-ui/radio', () => {
       )
       Scene.scene(
         { update, view: viewRadio({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('radio'), 'Enter'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('unchecked')).toExist(),
         Scene.expect(Scene.role('radio')).toHaveHandler('keyup'),
       )
@@ -245,7 +247,7 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({}) },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-checked', 'true'),
         Scene.expect(Scene.role('radio')).not.toHaveHandler('click'),
         Scene.expect(Scene.role('radio')).not.toHaveHandler('keyup'),
@@ -264,7 +266,7 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-disabled', 'true'),
         Scene.expect(Scene.role('radio')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.role('radio')).not.toHaveHandler('click'),
@@ -288,7 +290,7 @@ describe('base-ui/radio', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadio({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-readonly', 'true'),
         Scene.expect(Scene.role('radio')).toHaveAttr('data-readonly'),
         Scene.expect(Scene.role('radio')).not.toHaveHandler('click'),
@@ -318,7 +320,7 @@ describe('base-ui/radio', () => {
             keepIndicatorMounted: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-required', 'true'),
         Scene.expect(Scene.role('radio')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.role('radio')).toHaveAttr('data-required'),
@@ -345,7 +347,7 @@ describe('base-ui/radio', () => {
             value: 'comfortable',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#density-radio')).toHaveAttr(
           'role',
           'radio',
@@ -385,7 +387,7 @@ describe('base-ui/radio', () => {
             isRequired: true,
           }),
         },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.selector('#density-radio')).toHaveAttr(
           'role',
           'radio',
@@ -425,7 +427,7 @@ describe('base-ui/radio', () => {
             onBlur: BlurredRadio(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radio')).toHaveHandler('focus'),
         Scene.expect(Scene.role('radio')).toHaveHandler('blur'),
       )

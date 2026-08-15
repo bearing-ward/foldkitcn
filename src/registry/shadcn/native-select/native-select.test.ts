@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   NativeSelectSize,
@@ -115,7 +116,7 @@ describe('shadcn/native-select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNativeSelect({ size: 'sm' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="native-select-wrapper"]'),
         ).toHaveAttr('data-size', 'sm'),
@@ -135,7 +136,7 @@ describe('shadcn/native-select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNativeSelect({ disabled: true, invalid: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="native-select"]')).toHaveAttr(
           'disabled',
           '',
@@ -152,7 +153,7 @@ describe('shadcn/native-select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNativeSelect({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="native-select-option"]'),
         ).toHaveAttr('class', optionClassName()),
@@ -170,7 +171,7 @@ describe('shadcn/native-select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNativeSelect({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="native-select-icon"]'),
         ).toHaveAttr('aria-hidden', 'true'),

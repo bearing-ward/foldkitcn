@@ -1,5 +1,6 @@
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { view as Avatar } from '../avatar'
 import { view as Button } from '../button'

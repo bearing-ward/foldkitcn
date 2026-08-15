@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as ScrollArea from '../../../../../src/registry/base-ui/scroll-area'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

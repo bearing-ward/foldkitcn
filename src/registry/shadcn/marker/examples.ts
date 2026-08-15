@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { Spinner } from '../spinner'
 import { Marker, MarkerContent, MarkerIcon } from './index'

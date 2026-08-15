@@ -2,9 +2,10 @@ import { FileDrop } from '@foldkit/ui'
 import { Array, Match as M, Option, Schema as S } from 'effect'
 import { Command, File } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
+
+import { html } from '#foldkit-html'
 
 import {
   Attachment,

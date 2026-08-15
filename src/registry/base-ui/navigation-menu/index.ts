@@ -1,9 +1,10 @@
 import { Effect, Option, Predicate, Schema as S } from 'effect'
-import * as Command from 'foldkit/command'
 import * as Dom from 'foldkit/dom'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import * as Command from '#foldkit-command'
+import { html } from '#foldkit-html'
 
 import * as PreviewCard from '../preview-card'
 

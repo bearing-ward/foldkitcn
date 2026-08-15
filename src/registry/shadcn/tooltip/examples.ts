@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Button from '../button'

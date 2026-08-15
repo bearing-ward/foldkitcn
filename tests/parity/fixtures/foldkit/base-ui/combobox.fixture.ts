@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Combobox from '../../../../../src/registry/base-ui/combobox'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

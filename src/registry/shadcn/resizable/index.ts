@@ -1,8 +1,9 @@
 import { Array as EffectArray, Match as M, Option, Schema as S } from 'effect'
 import type { Command } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 

@@ -581,7 +581,7 @@ export const InstallerWritePlan = S.Struct({
 })
 export type InstallerWritePlan = typeof InstallerWritePlan.Type
 
-export class InstallerError extends S.TaggedErrorClass<InstallerError>()(
+export class InstallerError extends S.TaggedError<InstallerError>()(
   'InstallerError',
   {
     reason: S.Union([

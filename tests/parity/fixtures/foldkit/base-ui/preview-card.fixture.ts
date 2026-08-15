@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as PreviewCard from '../../../../../src/registry/base-ui/preview-card'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

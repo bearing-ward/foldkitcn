@@ -2,7 +2,8 @@ import { Option, pipe } from 'effect'
 import * as EffectArray from 'effect/Array'
 import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import {
   ButtonDemo as BaseButtonDemo,
@@ -2569,7 +2570,7 @@ const initialDatePickerModel = (exampleId: string): DatePickerModel => {
     return datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
-      initialSelectedDate: datePickerBasicDate,
+      initialViewDate: datePickerBasicDate,
     })
   }
 
@@ -2577,7 +2578,7 @@ const initialDatePickerModel = (exampleId: string): DatePickerModel => {
     return datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
-      initialSelectedDate: datePickerDobDate,
+      initialViewDate: datePickerDobDate,
       minDate: Calendar.make(1900, 1, 1),
       maxDate: Calendar.make(2010, 12, 31),
     })
@@ -2587,7 +2588,7 @@ const initialDatePickerModel = (exampleId: string): DatePickerModel => {
     return datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
-      initialSelectedDate: datePickerDemoDate,
+      initialViewDate: datePickerDemoDate,
       locale: arabicLocale,
     })
   }
@@ -2595,7 +2596,7 @@ const initialDatePickerModel = (exampleId: string): DatePickerModel => {
   return datePickerInit({
     id: `${exampleId}-live`,
     today: datePickerToday,
-    initialSelectedDate: datePickerDemoDate,
+    initialViewDate: datePickerDemoDate,
   })
 }
 

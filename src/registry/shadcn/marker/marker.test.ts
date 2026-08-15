@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   MarkerBorder,
@@ -90,7 +91,7 @@ describe('shadcn/marker view', () => {
             variant: 'separator',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker"]')).toHaveAttr(
           'class',
           markerClassName({ variant: 'separator' }),
@@ -122,7 +123,7 @@ describe('shadcn/marker view', () => {
               ],
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker-icon"]')).toHaveAttr(
           'aria-hidden',
           'true',
@@ -144,7 +145,7 @@ describe('shadcn/marker view', () => {
               toView: attributes => h.a([...attributes.marker], ['Link']),
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('a')).toHaveText('Link'),
       )
     }).not.toThrow()
@@ -156,7 +157,7 @@ describe('shadcn/marker examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => MarkerStatus() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker"]')).toHaveAttr(
           'role',
           'status',
@@ -170,34 +171,34 @@ describe('shadcn/marker examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => MarkerDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker-icon"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => MarkerIconDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker-content"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => MarkerBorder() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => MarkerSeparator() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="marker-content"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => MarkerShimmer() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="marker-content"]'),
         ).toHaveClass('shimmer'),
       )
       Scene.scene(
         { update, view: () => MarkerLinkButton() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('a')).toExist(),
         Scene.expect(Scene.selector('button')).toExist(),
       )

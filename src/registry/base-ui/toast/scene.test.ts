@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ToastAnchored,
@@ -192,7 +193,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: renderToastView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
         ).toHaveAttr('aria-live', 'polite'),
@@ -249,7 +250,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: renderToastView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.focus(Scene.role('region', { name: 'Notifications' })),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
@@ -284,7 +285,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: renderToastView() },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.click(Scene.role('button', { name: 'Undo' })),
         Scene.click(Scene.role('button', { name: 'Dismiss' })),
         Scene.expect(Scene.text('Action 1')).toExist(),
@@ -333,7 +334,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: renderToastView() },
-        Scene.with(initialModel(swipingState)),
+        Scene.given(initialModel(swipingState)),
         Scene.expect(Scene.role('dialog', { name: 'Swipe me' })).toHaveAttr(
           'data-swiping',
         ),
@@ -341,7 +342,7 @@ describe('base-ui/toast view', () => {
       )
       Scene.scene(
         { update, view: renderToastView() },
-        Scene.with(initialModel(dismissedState)),
+        Scene.given(initialModel(dismissedState)),
         Scene.expect(Scene.text('Swipe dismissed')).toExist(),
         Scene.expect(Scene.role('dialog', { name: 'Swipe me' })).not.toHaveAttr(
           'data-swiping',
@@ -378,7 +379,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: renderToastView({ includePlacement: true }) },
-        Scene.with(initialModel(state)),
+        Scene.given(initialModel(state)),
         Scene.expect(
           Scene.selector('#notifications-anchored-positioner'),
         ).toHaveAttr('data-side', 'top'),
@@ -405,7 +406,7 @@ describe('base-ui/toast view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ToastAnchored() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(
           Scene.role('button', { name: 'Copy to clipboard' }),
         ).toExist(),
@@ -417,7 +418,7 @@ describe('base-ui/toast view', () => {
       )
       Scene.scene(
         { update, view: () => ToastCustomPosition() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(Scene.role('button', { name: 'Create toast' })).toExist(),
         Scene.expect(
           Scene.role('region', { name: 'Notifications' }),
@@ -435,7 +436,7 @@ describe('base-ui/toast view', () => {
       )
       Scene.scene(
         { update, view: () => ToastUndoAction() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(
           Scene.role('button', { name: 'Perform action' }),
         ).toExist(),
@@ -443,13 +444,13 @@ describe('base-ui/toast view', () => {
       )
       Scene.scene(
         { update, view: () => ToastPromise() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(Scene.role('button', { name: 'Run effect' })).toExist(),
         Scene.expect(Scene.text('Waiting for result...')).not.toExist(),
       )
       Scene.scene(
         { update, view: () => ToastCustom() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(
           Scene.role('button', { name: 'Create custom toast' }),
         ).toExist(),
@@ -457,13 +458,13 @@ describe('base-ui/toast view', () => {
       )
       Scene.scene(
         { update, view: () => ToastDeduplicated() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(Scene.role('button', { name: 'Save draft' })).toExist(),
         Scene.expect(Scene.text('Draft saved')).not.toExist(),
       )
       Scene.scene(
         { update, view: () => ToastVaryingHeights() },
-        Scene.with(initialModel(Toast.createToastState())),
+        Scene.given(initialModel(Toast.createToastState())),
         Scene.expect(
           Scene.role('button', { name: 'Create varying height toast' }),
         ).toExist(),

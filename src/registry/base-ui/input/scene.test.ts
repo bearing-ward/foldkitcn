@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Input from './index'
 import type { ViewConfig } from './index'
@@ -92,7 +93,7 @@ describe('base-ui/input', () => {
             isReadOnly: true,
           }),
         },
-        Scene.with({ ...initialModel, value: 'Ada' }),
+        Scene.given({ ...initialModel, value: 'Ada' }),
         Scene.expect(Scene.label('Name')).toHaveAttr('id', 'name'),
         Scene.expect(Scene.label('Name')).toHaveAttr('name', 'fullName'),
         Scene.expect(Scene.label('Name')).toHaveAttr('type', 'email'),
@@ -111,7 +112,7 @@ describe('base-ui/input', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInput({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.label('Name')).not.toHaveHandler('input'),
@@ -123,7 +124,7 @@ describe('base-ui/input', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInput({ isInvalid: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.label('Name')).not.toHaveAttr('data-invalid'),
       )
@@ -144,7 +145,7 @@ describe('base-ui/input', () => {
             isFocused: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-valid'),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-invalid'),
         Scene.expect(Scene.label('Name')).toHaveAttr('data-dirty'),
@@ -159,7 +160,7 @@ describe('base-ui/input', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInput({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.label('Name'), 'Ada'),
         Scene.expect(Scene.label('Name')).toHaveValue('Ada'),
       )
@@ -170,7 +171,7 @@ describe('base-ui/input', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInput({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveAttr('readOnly', 'true'),
         Scene.expect(Scene.label('Name')).toHaveHandler('input'),
       )
@@ -187,7 +188,7 @@ describe('base-ui/input', () => {
             onBlur: BlurredInput(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Name')).toHaveHandler('focus'),
         Scene.expect(Scene.label('Name')).toHaveHandler('blur'),
       )

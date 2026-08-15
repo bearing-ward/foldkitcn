@@ -5,8 +5,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { MenubarDemo, menubarExampleViews } from './examples'
 import * as Menubar from './index'
@@ -241,7 +242,7 @@ describe('shadcn/menubar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenubar({ inset: true, variant: 'destructive' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="menubar"]')).toHaveAttr(
           'role',
           'menubar',
@@ -305,7 +306,7 @@ describe('shadcn/menubar view', () => {
             isDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="menubar"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -325,7 +326,7 @@ describe('shadcn/menubar view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenubar({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="menubar-content"]'),
         ).toHaveAttr('data-align-offset', '-4'),
@@ -356,7 +357,7 @@ describe('shadcn/menubar view', () => {
       for (const example of menubarExampleViews) {
         Scene.scene(
           { update, view: staticExampleView(example.view) },
-          Scene.with(initialModel),
+          Scene.given(initialModel),
           Scene.expect(Scene.selector('[data-slot="menubar"]')).toBeVisible(),
         )
       }
@@ -376,7 +377,7 @@ describe('shadcn/menubar view', () => {
             requireExampleView(viewById, 'shadcn/menubar-checkbox'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="menubar-checkbox-item"]'),
         ).toBeVisible(),
@@ -389,7 +390,7 @@ describe('shadcn/menubar view', () => {
             requireExampleView(viewById, 'shadcn/menubar-radio'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="menubar-radio-item"]'),
         ).toBeVisible(),
@@ -397,7 +398,7 @@ describe('shadcn/menubar view', () => {
 
       Scene.scene(
         { update, view: () => MenubarDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="menubar-sub-trigger"]'),
         ).toBeVisible(),
@@ -410,7 +411,7 @@ describe('shadcn/menubar view', () => {
             requireExampleView(viewById, 'shadcn/menubar-submenu'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="menubar-sub-content"]'),
         ).toBeVisible(),
@@ -423,7 +424,7 @@ describe('shadcn/menubar view', () => {
             requireExampleView(viewById, 'shadcn/menubar-icons'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-icon="file"]')).toHaveAttr(
           'data-icon',
           'file',
@@ -437,7 +438,7 @@ describe('shadcn/menubar view', () => {
             requireExampleView(viewById, 'shadcn/menubar-rtl'),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="menubar"]')).toHaveAttr(
           'dir',
           'rtl',

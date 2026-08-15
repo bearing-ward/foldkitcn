@@ -1,7 +1,8 @@
 import { Option, Predicate, Schema as S } from 'effect'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { ts } from 'foldkit/schema'
+
+import { html } from '#foldkit-html'
 
 // MODEL
 

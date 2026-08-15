@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as ShadcnSelect from '../../../../../src/registry/shadcn/select'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

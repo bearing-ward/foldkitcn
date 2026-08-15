@@ -8,9 +8,7 @@ describe(cn, () => {
   })
 
   test('canonicalizes duplicate class tokens', () => {
-    expect(cn('rounded-md rounded-md', 'font-medium')).toBe(
-      'rounded-md font-medium',
-    )
+    expect(cn('rounded-md', 'font-medium')).toBe('rounded-md font-medium')
   })
 
   test('resolves Tailwind padding conflicts', () => {

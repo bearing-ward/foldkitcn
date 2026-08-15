@@ -114,7 +114,7 @@ describe('shadcn/accordion view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAccordion({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="accordion"]')).toHaveAttr(
           'class',
           Accordion.accordionClassName(),
@@ -156,7 +156,7 @@ describe('shadcn/accordion view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="accordion"]')).toHaveAttr(
           'data-orientation',
           'horizontal',

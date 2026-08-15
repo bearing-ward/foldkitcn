@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Popover from '../../../../../src/registry/base-ui/popover'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

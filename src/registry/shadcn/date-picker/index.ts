@@ -4,7 +4,9 @@ import type { AnchorConfig } from '@foldkit/ui/popover'
 import { Match as M, Option, Schema as S } from 'effect'
 import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { childAttributes, html } from 'foldkit/html'
+import { childAttributes } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 
@@ -40,6 +42,7 @@ export type DatePickerConfig<Message = DatePickerMessage> =
       isDisabled?: boolean
       dir?: DatePickerDirection
       compact?: boolean
+      maybeSelectedDate?: Option.Option<Calendar.CalendarDate>
     }>
 
 export const datePickerInit = UiDatePicker.init
@@ -357,6 +360,7 @@ export const DatePicker = <Message = DatePickerMessage>(
     view: UiDatePicker.view,
     viewInputs: {
       anchor: config.anchor ?? defaultAnchor,
+      maybeSelectedDate: config.maybeSelectedDate ?? Option.none(),
       triggerContent: maybeDate => renderTriggerContent(maybeDate, config),
       toCalendarView: attributes =>
         toCalendarView<Message>(attributes, config.compact === true),

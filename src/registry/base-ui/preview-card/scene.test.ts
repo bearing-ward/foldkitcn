@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as PreviewCard from './index'
 import type { ViewConfig } from './index'
@@ -129,7 +130,7 @@ describe('base-ui/preview-card', () => {
             viewportActivationDirection: 'left up',
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           activeTriggerId: 'profile-preview-trigger',
@@ -205,7 +206,7 @@ describe('base-ui/preview-card', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewPreviewCard({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('link', { name: 'Open profile' }),
         ).toHaveHandler('mouseenter'),
@@ -224,7 +225,7 @@ describe('base-ui/preview-card', () => {
       )
       Scene.scene(
         { update, view: viewPreviewCard({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           activeTriggerId: 'profile-preview-trigger',
@@ -259,7 +260,7 @@ describe('base-ui/preview-card', () => {
             triggerId: 'external-trigger',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('link', { name: 'Open profile' })).toHaveAttr(
           'aria-disabled',
           'true',

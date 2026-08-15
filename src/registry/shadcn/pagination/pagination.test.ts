@@ -4,9 +4,10 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   PaginationDemo,
@@ -161,7 +162,7 @@ describe('shadcn/pagination view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(paginationWithParts()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('navigation', { name: 'Results pages' }),
         ).toHaveAttr('data-slot', 'pagination'),
@@ -215,7 +216,7 @@ describe('shadcn/pagination view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewClickablePagination },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.selector('[data-slot="pagination-link"]')),
         Scene.expect(Scene.selector('[data-testid="link-state"]')).toHaveText(
           'clicked',
@@ -228,7 +229,7 @@ describe('shadcn/pagination view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(PaginationDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('navigation', { name: 'pagination' }),
         ).toHaveText('Previous123More pagesNext'),
@@ -238,7 +239,7 @@ describe('shadcn/pagination view', () => {
       )
       Scene.scene(
         { update, view: view(PaginationIconsOnly()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toHaveAttr(
           'data-orientation',
           'horizontal',
@@ -269,7 +270,7 @@ describe('shadcn/pagination view', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveText(
           '10',
         ),
@@ -281,7 +282,7 @@ describe('shadcn/pagination view', () => {
       )
       Scene.scene(
         { update, view: view(PaginationRtl()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="pagination"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -292,7 +293,7 @@ describe('shadcn/pagination view', () => {
       )
       Scene.scene(
         { update, view: view(PaginationSimple()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('navigation', { name: 'pagination' }),
         ).toHaveText('12345'),

@@ -12,9 +12,10 @@ import {
   pipe,
 } from 'effect'
 import type { Runtime } from 'foldkit'
-import { Command, Dom, Render, Subscription } from 'foldkit'
+import { Dom, Render, Subscription } from 'foldkit'
+import * as Command from '#foldkit-command'
 import type { Attribute, Document, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 import { m } from 'foldkit/message'
 import { UrlRequest, load, pushUrl } from 'foldkit/navigation'
 import { ts } from 'foldkit/schema'
@@ -1595,7 +1596,7 @@ export const update = (model: Model, message: Message): UpdateReturn =>
         }),
         focusSelector === undefined
           ? []
-          : [FocusOTPFieldInput({ selector: focusSelector })],
+          : [FocusOTPFieldInput({ selector: focusSelector }) as unknown as Command.Command<Message>],
       ],
       UpdatedLiveExampleSliderValues: ({ exampleId, sliderId, values }) => [
         evo(model, {

@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Meter from '../../../../../src/registry/base-ui/meter'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

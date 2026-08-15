@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Avatar from './index'
 import type { ViewConfig } from './index'
@@ -113,7 +114,7 @@ describe('base-ui/avatar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAvatar({ imageLoadingStatus: 'loading' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="root"]')).toHaveAttr(
           'data-loading',
         ),
@@ -125,7 +126,7 @@ describe('base-ui/avatar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAvatar({ imageLoadingStatus: 'loaded' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="root"]')).toHaveAttr(
           'data-loaded',
         ),
@@ -154,7 +155,7 @@ describe('base-ui/avatar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAvatar({ imageLoadingStatus: 'error' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="root"]')).toHaveAttr(
           'data-error',
         ),
@@ -175,7 +176,7 @@ describe('base-ui/avatar', () => {
             fallback: { delayStatus: 'waiting' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="fallback"]')).not.toExist(),
       )
     }).not.toThrow()
@@ -185,7 +186,7 @@ describe('base-ui/avatar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAvatar({ imageLoadingStatus: 'loaded' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="image"]')).toHaveHandler(
           'load',
         ),
@@ -206,7 +207,7 @@ describe('base-ui/avatar', () => {
             image: { transitionStatus: 'starting' },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="image"]')).toHaveAttr(
           'data-starting-style',
         ),

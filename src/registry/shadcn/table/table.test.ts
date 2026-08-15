@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Button from '../button'
 import {
@@ -149,7 +150,7 @@ describe('shadcn/table view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewHtml(tableWithParts()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="table-container"]'),
         ).toHaveAttr('class', Table.tableContainerClassName()),
@@ -210,7 +211,7 @@ describe('shadcn/table view', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="table-container"]'),
         ).toHaveAttr('id', 'table-container'),
@@ -234,7 +235,7 @@ describe('shadcn/table view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => TableDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="table-caption"]')).toHaveText(
           'A list of your recent invoices.',
         ),
@@ -244,14 +245,14 @@ describe('shadcn/table view', () => {
       )
       Scene.scene(
         { update, view: () => TableFooterExample() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="table-body"]')).toHaveText(
           'INV001PaidCredit Card$250.00INV002PendingPayPal$150.00INV003UnpaidBank Transfer$350.00',
         ),
       )
       Scene.scene(
         { update, view: () => TableActions() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="button"]')).toHaveAttr(
           'class',
           Button.buttonVariants({
@@ -265,7 +266,7 @@ describe('shadcn/table view', () => {
       )
       Scene.scene(
         { update, view: () => TableRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="table"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -303,7 +304,7 @@ describe('shadcn/table view', () => {
     expect(() => {
       Scene.scene(
         { update: actionsUpdate, view: actionsView },
-        Scene.with(actionsInitialModel),
+        Scene.given(actionsInitialModel),
         Scene.click(Scene.role('button', { name: 'Open menu' })),
         Scene.expect(
           Scene.selector('[data-slot="dropdown-menu-content"]'),

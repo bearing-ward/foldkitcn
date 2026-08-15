@@ -1,7 +1,8 @@
 import { Schema as S } from 'effect'
-import type * as Command from 'foldkit/command'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import type * as Command from '#foldkit-command'
+import { html } from '#foldkit-html'
 
 import * as Dialog from '../dialog'
 

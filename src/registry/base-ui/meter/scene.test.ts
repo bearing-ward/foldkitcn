@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Meter from './index'
 import type { ViewConfig } from './index'
@@ -92,7 +93,7 @@ describe('base-ui/meter', () => {
           update,
           view: viewMeter({ labelId: 'battery-label' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '30'),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuemin', '0'),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuemax', '100'),
@@ -118,7 +119,7 @@ describe('base-ui/meter', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMeter({}) },
-        Scene.with(updatedModel),
+        Scene.given(updatedModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '77'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveStyle(
           'width',
@@ -132,7 +133,7 @@ describe('base-ui/meter', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMeter({ min: 20, max: 40 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '30'),
         Scene.expect(Scene.role('meter')).toHaveAttr(
           'aria-valuetext',
@@ -153,7 +154,7 @@ describe('base-ui/meter', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMeter({ value: 150 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '100'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveStyle(
           'width',
@@ -162,7 +163,7 @@ describe('base-ui/meter', () => {
       )
       Scene.scene(
         { update, view: viewMeter({ value: -10 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '0'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveStyle(
           'width',
@@ -176,7 +177,7 @@ describe('base-ui/meter', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMeter({ value: 5, min: 5, max: 5 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '5'),
         Scene.expect(Scene.role('meter')).toHaveAttr(
           'aria-valuetext',
@@ -189,7 +190,7 @@ describe('base-ui/meter', () => {
       )
       Scene.scene(
         { update, view: viewMeter({ value: Number.NaN }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('aria-valuenow', '0'),
         Scene.expect(Scene.role('meter')).toHaveAttr(
           'aria-valuetext',
@@ -240,7 +241,7 @@ describe('base-ui/meter', () => {
           update,
           view: viewMeter({ low: 20, high: 80, optimum: 60 }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('meter')).toHaveAttr('low', '20'),
         Scene.expect(Scene.role('meter')).toHaveAttr('high', '80'),
         Scene.expect(Scene.role('meter')).toHaveAttr('optimum', '60'),
@@ -252,7 +253,7 @@ describe('base-ui/meter', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMeter({ labelId: 'battery-label' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="value"]')).toHaveAttr(
           'aria-hidden',
           'true',

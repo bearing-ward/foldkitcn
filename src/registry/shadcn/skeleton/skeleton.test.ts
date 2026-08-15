@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { baseClassName, skeletonClassName, view as Skeleton } from './index'
 import type { ViewConfig } from './index'
@@ -65,7 +66,7 @@ describe('shadcn/skeleton view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSkeleton({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('div')).toHaveAttr('data-slot', 'skeleton'),
         Scene.expect(Scene.selector('div')).toHaveAttr(
           'class',

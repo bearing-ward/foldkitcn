@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Slider from './index'
 import type { ViewConfig } from './index'
@@ -286,7 +287,7 @@ describe('base-ui/slider view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSlider({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'aria-labelledby',
           'volume-label',
@@ -327,7 +328,7 @@ describe('base-ui/slider view', () => {
           update,
           view: viewSlider({ step: 5, largeStep: 20 }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#volume-slider-input-0'), 'ArrowRight'),
         Scene.expect(Scene.text('Values 30,75')).toExist(),
         Scene.expect(Scene.text('Reason keyboard')).toExist(),
@@ -341,7 +342,7 @@ describe('base-ui/slider view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSlider({ dir: 'rtl', step: 5 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#volume-slider-input-0'), 'ArrowRight'),
         Scene.expect(Scene.text('Values 20,75')).toExist(),
       )
@@ -352,7 +353,7 @@ describe('base-ui/slider view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSlider({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.selector('[data-testid="control"]')).toHaveAttr(
           'data-disabled',
@@ -372,7 +373,7 @@ describe('base-ui/slider view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSlider({ orientation: 'vertical' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-orientation',
           'vertical',
@@ -404,7 +405,7 @@ describe('base-ui/slider view', () => {
             },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.pointerDown(Scene.selector('[data-testid="control"]'), {
           clientX: 10,
           clientY: 0,

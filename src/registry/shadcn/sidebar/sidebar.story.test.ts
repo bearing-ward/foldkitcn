@@ -69,7 +69,7 @@ describe('shadcn/sidebar story', () => {
   test('toggles desktop and mobile shell state, active item, and direction', () => {
     Story.story(
       update,
-      Story.with(initialModel),
+      Story.given(initialModel),
       Story.message(ClickedToggleSidebar()),
       Story.model(model => {
         expect(model.open).toBeFalsy()

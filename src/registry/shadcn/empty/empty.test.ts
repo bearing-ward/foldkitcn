@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   EmptyAvatarGroup,
@@ -113,7 +114,7 @@ describe('shadcn/empty view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="empty"]')).toHaveAttr(
           'class',
           emptyClassName(),
@@ -145,7 +146,7 @@ describe('shadcn/empty view', () => {
             toView: attributes => h.section([...attributes.empty], []),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('section')).toHaveAttr(
           'data-slot',
           'empty',
@@ -165,7 +166,7 @@ describe('shadcn/empty examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => EmptyDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="empty"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="empty-icon"]')).toHaveAttr(
           'data-variant',
@@ -180,18 +181,18 @@ describe('shadcn/empty examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => EmptyAvatarGroup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="avatar"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => EmptyInputGroup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="input-group"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="kbd"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => EmptyRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="empty"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -199,7 +200,7 @@ describe('shadcn/empty examples', () => {
       )
       Scene.scene(
         { update, view: () => SpinnerEmpty() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="spinner"]')).toExist(),
       )
     }).not.toThrow()

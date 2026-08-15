@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as ToggleGroup from '../../../../../src/registry/base-ui/toggle-group'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

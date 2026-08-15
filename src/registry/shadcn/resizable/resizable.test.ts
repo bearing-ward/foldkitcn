@@ -4,10 +4,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene, Story } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ResizableDemo,
@@ -151,7 +152,7 @@ describe('shadcn/resizable update', () => {
   test('keyboard resizing updates the owning state', () => {
     Story.story(
       Resizable.update,
-      Story.with(
+      Story.given(
         Resizable.resizableState({
           panels: [
             { id: 'one', defaultSize: 50, minSize: 20 },
@@ -176,7 +177,7 @@ describe('shadcn/resizable update', () => {
   test('pointer drag uses the recorded starting sizes', () => {
     Story.story(
       Resizable.update,
-      Story.with(
+      Story.given(
         Resizable.resizableState({
           panels: [
             { id: 'one', defaultSize: 50, minSize: 20 },
@@ -214,7 +215,7 @@ describe('shadcn/resizable view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewResizable({ withHandle: true }) },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel-group"]'),
         ).toHaveAttr('aria-orientation', 'horizontal'),
@@ -240,7 +241,7 @@ describe('shadcn/resizable view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewResizable() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.keydown(Scene.role('separator'), 'ArrowRight'),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel"]'),
@@ -276,7 +277,7 @@ describe('shadcn/resizable view', () => {
     expect(() => {
       Scene.scene(
         { update: staticUpdate, view: staticView(ResizableVertical()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel-group"]'),
         ).toHaveAttr('aria-orientation', 'vertical'),
@@ -290,7 +291,7 @@ describe('shadcn/resizable view', () => {
     expect(() => {
       Scene.scene(
         { update: staticUpdate, view: staticView(ResizableRtl()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="resizable-panel-group"]'),
         ).toHaveAttr('dir', 'rtl'),
@@ -312,7 +313,7 @@ describe('shadcn/resizable view', () => {
             ),
           ),
         },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expectAll(
           Scene.all.selector('[data-slot="resizable-panel-group"]'),
         ).toHaveCount(4),

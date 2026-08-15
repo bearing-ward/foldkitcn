@@ -70,7 +70,7 @@ describe('shadcn/field view', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('id', 'billing'),
         Scene.expect(Scene.role('group')).toHaveAttr('data-slot', 'field'),
         Scene.expect(Scene.role('group')).toHaveAttr(
@@ -93,7 +93,7 @@ describe('shadcn/field view', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('alert')).toHaveAttr(
           'data-slot',
           'field-error',
@@ -109,7 +109,7 @@ describe('shadcn/field view', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('alert')).toHaveText('Explicit error'),
       )
     }).not.toThrow()
@@ -119,7 +119,7 @@ describe('shadcn/field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(FieldInput()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field-set"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="field-label"]')).toHaveText(
           'Username',
@@ -127,18 +127,18 @@ describe('shadcn/field view', () => {
       )
       Scene.scene(
         { update, view: view(FieldTextarea()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="textarea"]')).toExist(),
       )
       Scene.scene(
         { update, view: view(FieldCheckbox()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="checkbox"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="field-separator"]')).toExist(),
       )
       Scene.scene(
         { update, view: view(FieldFieldset()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field-legend"]')).toHaveText(
           'Address Information',
         ),
@@ -146,14 +146,14 @@ describe('shadcn/field view', () => {
       )
       Scene.scene(
         { update, view: view(FieldResponsive()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-orientation="responsive"]'),
         ).toExist(),
       )
       Scene.scene(
         { update, view: view(FieldRtl()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

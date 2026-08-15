@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Direction from '../../../../../src/registry/shadcn/direction'
 import type { FixtureCase } from '../../../fixture'

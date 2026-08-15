@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import * as Button from '../button'
@@ -145,7 +146,7 @@ describe('shadcn/alert-dialog view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAlertDialog({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="alert-dialog-overlay"]'),
         ).toHaveAttr('class', AlertDialog.alertDialogOverlayClassName()),
@@ -197,7 +198,7 @@ describe('shadcn/alert-dialog view', () => {
             dir: 'rtl',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="alert-dialog"]')).toHaveAttr(
           'data-modal',
           'true',

@@ -4,10 +4,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Autocomplete from './index'
 import type { AutocompleteItemDescriptor, ViewConfig } from './index'
@@ -294,7 +295,7 @@ describe('base-ui/autocomplete view', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           value: 'zz',
@@ -355,7 +356,7 @@ describe('base-ui/autocomplete view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAutocomplete({ openOnInputClick: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.selector('#fruit-autocomplete-input')),
         Scene.expect(Scene.text('Open input-press')).toExist(),
         Scene.type(Scene.selector('#fruit-autocomplete-input'), 'bl'),
@@ -389,7 +390,7 @@ describe('base-ui/autocomplete view', () => {
           update,
           view: viewAutocomplete({}),
         },
-        Scene.with({ ...initialModel, open: true, highlightedValue: 'apple' }),
+        Scene.given({ ...initialModel, open: true, highlightedValue: 'apple' }),
         Scene.keydown(Scene.selector('#fruit-autocomplete-input'), 'ArrowDown'),
         Scene.expect(
           Scene.selector('#fruit-autocomplete-item-banana'),
@@ -405,7 +406,7 @@ describe('base-ui/autocomplete view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAutocomplete({ forceMount: true }) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.role('option', { name: 'Grapes' })).not.toExist(),
       )
       Scene.scene(
@@ -413,7 +414,7 @@ describe('base-ui/autocomplete view', () => {
           update,
           view: viewAutocomplete({ isDisabled: true, forceMount: true }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-autocomplete-input')).toHaveAttr(
           'disabled',
           'true',
@@ -423,11 +424,11 @@ describe('base-ui/autocomplete view', () => {
         ).not.toHaveHandler('click'),
         Scene.expect(
           Scene.selector('#fruit-autocomplete-item-apple'),
-        ).not.toHaveHandler('click'),
+        ).not.toExist(),
       )
       Scene.scene(
         { update, view: viewAutocomplete({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#fruit-autocomplete-input')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -446,7 +447,7 @@ describe('base-ui/autocomplete view', () => {
           update,
           view: viewAutocomplete({ mode: 'inline' }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           value: 'ap',

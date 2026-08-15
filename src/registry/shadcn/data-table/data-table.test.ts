@@ -3,8 +3,9 @@
 import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   DataTableDemo,
@@ -169,20 +170,20 @@ describe('shadcn/data-table view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => DataTableDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('table')).toBeVisible(),
         Scene.expect(Scene.selector('[data-slot="pagination"]')).toBeVisible(),
       )
       Scene.scene(
         { update, view: () => DataTableTasks() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card-title"]')).toHaveText(
           'Tasks',
         ),
       )
       Scene.scene(
         { update, view: () => DataTableRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toBeVisible(),
       )
     }).not.toThrow()
@@ -201,7 +202,7 @@ describe('shadcn/data-table view', () => {
           update,
           view: () => DataTableDemo({ state: emptyState }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="table-cell"]')).toHaveText(
           'No results.',
         ),

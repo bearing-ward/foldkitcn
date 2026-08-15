@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as InputOTP from '../../../../../src/registry/shadcn/input-otp'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

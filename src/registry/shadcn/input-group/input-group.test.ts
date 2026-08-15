@@ -115,7 +115,7 @@ describe('shadcn/input-group view', () => {
             children: ['One'],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('group', { name: 'Search controls' }),
         ).toHaveAttr('data-slot', 'input-group'),
@@ -154,7 +154,7 @@ describe('shadcn/input-group view', () => {
               ],
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="input-group-addon"]'),
         ).toHaveAttr('data-align', 'block-end'),
@@ -172,7 +172,7 @@ describe('shadcn/input-group view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => InputGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('textbox')).toHaveAttr(
           'placeholder',
           'Search...',
@@ -181,38 +181,38 @@ describe('shadcn/input-group view', () => {
       )
       Scene.scene(
         { update, view: () => InputGroupBasic() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Disabled')).toExist(),
         Scene.expect(Scene.text('Invalid')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupBlockStart() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('script.js')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupBlockEnd() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Post' })).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupWithButtons() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Outline' })).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupButtonGroup() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('https://')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupDropdown() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Search In...' })).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupIcon() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('textbox')).toHaveAttr(
           'placeholder',
           'Search...',
@@ -220,27 +220,27 @@ describe('shadcn/input-group view', () => {
       )
       Scene.scene(
         { update, view: () => InputGroupKbd() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('⌘K')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupLabel() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Help' })).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupTextExample() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('USD')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupTextareaExample() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Run ')).toExist(),
       )
       Scene.scene(
         { update, view: () => InputGroupRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

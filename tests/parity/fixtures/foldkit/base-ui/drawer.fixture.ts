@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Drawer from '../../../../../src/registry/base-ui/drawer'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

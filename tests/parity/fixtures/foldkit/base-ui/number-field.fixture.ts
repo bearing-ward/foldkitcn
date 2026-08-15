@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as NumberField from '../../../../../src/registry/base-ui/number-field'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

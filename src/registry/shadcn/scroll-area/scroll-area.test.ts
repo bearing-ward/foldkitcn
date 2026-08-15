@@ -81,7 +81,7 @@ describe('shadcn/scroll-area view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewScrollArea({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="scroll-area"]')).toHaveAttr(
           'class',
           ScrollArea.scrollAreaClassName(),
@@ -118,7 +118,7 @@ describe('shadcn/scroll-area view', () => {
             horizontalScrollbarClassName: 'custom-horizontal',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-orientation="horizontal"]'),
         ).toHaveAttr(
@@ -143,7 +143,7 @@ describe('shadcn/scroll-area view', () => {
             thumbClassName: 'custom-thumb',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="scroll-area"]')).toHaveAttr(
           'dir',
           'rtl',

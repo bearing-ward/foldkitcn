@@ -1,6 +1,7 @@
 import * as Array from 'effect/Array'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import type { ComboboxItemDescriptor } from './index'
 import {

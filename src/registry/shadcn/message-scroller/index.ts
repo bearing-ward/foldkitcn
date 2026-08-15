@@ -1,10 +1,11 @@
 import { Effect, Match as M, Schema as S } from 'effect'
-import * as Command from 'foldkit/command'
 import * as Dom from 'foldkit/dom'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
+
+import * as Command from '#foldkit-command'
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import * as ShadcnButton from '../button'

@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { SpinnerBadge, SpinnerDemo, SpinnerSize } from './examples'
 import {
@@ -61,7 +62,7 @@ describe('shadcn/spinner view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSpinner() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('svg')).toHaveAttr('data-slot', 'spinner'),
         Scene.expect(Scene.selector('svg')).toHaveAttr('role', 'status'),
         Scene.expect(Scene.selector('svg')).toHaveAttr('aria-label', 'Loading'),
@@ -87,7 +88,7 @@ describe('shadcn/spinner view', () => {
             attributes: [h.DataAttribute('icon', 'inline-start')],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('svg')).toHaveAttr('aria-label', 'Saving'),
         Scene.expect(Scene.selector('svg')).toHaveAttr(
           'data-icon',
@@ -112,7 +113,7 @@ describe('shadcn/spinner view', () => {
             toView: attributes => h.svg([...attributes.spinner], []),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('svg')).toHaveAttr('data-slot', 'spinner'),
       )
     }).not.toThrow()
@@ -124,7 +125,7 @@ describe('shadcn/spinner examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SpinnerDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="item"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="spinner"]')).toExist(),
       )
@@ -135,7 +136,7 @@ describe('shadcn/spinner examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SpinnerBadge() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="badge"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="spinner"]')).toHaveAttr(
           'data-icon',
@@ -149,7 +150,7 @@ describe('shadcn/spinner examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SpinnerSize() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('svg.size-8')).toExist(),
       )
     }).not.toThrow()

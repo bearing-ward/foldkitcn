@@ -34,12 +34,10 @@ describe('shadcn/date-picker model', () => {
     const model = datePickerInit({
       id: 'date-picker-test',
       today: selectedDate,
-      initialSelectedDate: selectedDate,
+      initialViewDate: selectedDate,
     })
 
-    expect(Option.getOrUndefined(model.maybeSelectedDate)).toStrictEqual(
-      selectedDate,
-    )
+    expect(model.calendar.viewYear).toBe(2025)
 
     Scene.scene(
       {
@@ -47,11 +45,12 @@ describe('shadcn/date-picker model', () => {
         view: () =>
           DatePicker({
             model,
+            maybeSelectedDate: Option.some(selectedDate),
             name: 'date',
             toParentMessage: message => message,
           }),
       },
-      Scene.with({}),
+      Scene.given({}),
       Scene.expect(Scene.selector('input[type="hidden"]')).toHaveValue(
         '2025-06-12',
       ),
@@ -66,8 +65,8 @@ describe('shadcn/date-picker model', () => {
       selectedDate,
     )
 
-    expect(Option.getOrUndefined(nextModel.maybeSelectedDate)).toStrictEqual(
-      selectedDate,
+    expect(nextModel.calendar.maybeFocusedDate).toStrictEqual(
+      Option.some(selectedDate),
     )
     expect(Option.getOrUndefined(maybeOutMessage)).toStrictEqual({
       _tag: 'SelectedDate',
@@ -89,31 +88,31 @@ describe('shadcn/date-picker view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => DatePickerDemo() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(
           Scene.role('button', { name: /June 12, 2025/u }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => DatePickerBasic() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(
           Scene.role('button', { name: /January 6, 2025/u }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => DatePickerDob() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.text('Date of birth')).toExist(),
       )
       Scene.scene(
         { update, view: () => DatePickerInput() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.selector('input')).toHaveValue('2025-06-12'),
       )
       Scene.scene(
         { update, view: () => DatePickerRtl() },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

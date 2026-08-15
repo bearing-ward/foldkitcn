@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   SelectAlignItem,
@@ -192,7 +193,7 @@ describe('shadcn/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({ value: 'banana' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select"]')).toHaveAttr(
           'data-side',
           'bottom',
@@ -260,7 +261,7 @@ describe('shadcn/select view', () => {
             sideOffset: 8,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -310,7 +311,7 @@ describe('shadcn/select view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSelect({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -331,13 +332,13 @@ describe('shadcn/select examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SelectDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Fruits')).toExist(),
         Scene.expect(Scene.text('Apple')).toExist(),
       )
       Scene.scene(
         { update, view: () => SelectDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select-trigger"]')).toHaveAttr(
           'aria-disabled',
           'true',
@@ -345,27 +346,27 @@ describe('shadcn/select examples', () => {
       )
       Scene.scene(
         { update, view: () => SelectGroups() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Vegetables')).toExist(),
       )
       Scene.scene(
         { update, view: () => SelectScrollable() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Australia & Pacific')).toExist(),
       )
       Scene.scene(
         { update, view: () => SelectAlignItem() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-checked', 'true'),
       )
       Scene.scene(
         { update, view: () => SelectInvalid() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Please select a fruit.')).toExist(),
       )
       Scene.scene(
         { update, view: () => SelectRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="select"]')).toHaveAttr(
           'dir',
           'rtl',

@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest'
 
 import * as AttachmentWorkflow from './workflow'
 
-const withInitial = Story.with(AttachmentWorkflow.init())
+const withInitial = Story.given(AttachmentWorkflow.init())
 
 describe('shadcn/attachment workflow', () => {
   test('stores received files from the FileDrop submodel', () => {

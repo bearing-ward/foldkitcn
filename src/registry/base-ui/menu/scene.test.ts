@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Menu from './index'
 import type { MenuItemDescriptor, ViewConfig } from './index'
@@ -331,7 +332,7 @@ describe('base-ui/menu helpers', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'more',
@@ -347,7 +348,7 @@ describe('base-ui/menu helpers', () => {
           'aria-checked',
           'false',
         ),
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'left',
@@ -432,7 +433,7 @@ describe('base-ui/menu view', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'status-bar',
@@ -469,7 +470,7 @@ describe('base-ui/menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'more',
@@ -495,14 +496,14 @@ describe('base-ui/menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'profile',
         }),
         Scene.click(Scene.selector('#actions-menu-item-profile')),
         Scene.expect(Scene.text('Pressed profile')).toBeVisible(),
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           highlightedValue: 'profile',
@@ -534,14 +535,14 @@ describe('base-ui/menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({ forceMount: true }) },
-        Scene.with({ ...initialModel, open: false }),
+        Scene.given({ ...initialModel, open: false }),
         Scene.expect(Scene.selector('#actions-menu-popup')).toHaveAttr(
           'hidden',
           'true',
         ),
         Scene.click(Scene.role('button', { name: 'Actions' })),
         Scene.expect(Scene.text('Open trigger-press')).toBeVisible(),
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('#actions-menu-popup')).toHaveHandler(
           'contextmenu',
         ),

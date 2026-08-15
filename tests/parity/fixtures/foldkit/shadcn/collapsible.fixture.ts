@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Collapsible from '../../../../../src/registry/shadcn/collapsible'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

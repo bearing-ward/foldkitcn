@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as ContextMenu from './index'
 import type { MenuItemDescriptor, ViewConfig } from './index'
@@ -320,7 +321,7 @@ describe('base-ui/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.pointerDown(Scene.selector('#browser-menu-trigger'), {
           button: 2,
           clientX: 20,
@@ -347,7 +348,7 @@ describe('base-ui/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#browser-menu-trigger'), 'F10', {
           shiftKey: true,
         }),
@@ -364,7 +365,7 @@ describe('base-ui/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({ forceMount: true }) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           contextPoint: ContextMenu.contextPoint(18, 22, 118, 122, 'mouse'),
@@ -412,12 +413,13 @@ describe('base-ui/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with(openModel),
+        Scene.given(openModel),
         Scene.pointerUp(Scene.selector('#browser-menu-item-back'), {
           pointerType: 'mouse',
           screenX: 112,
           screenY: 112,
         }),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Pressed none')).toBeVisible(),
         Scene.pointerUp(Scene.selector('#browser-menu-item-back'), {
           pointerType: 'mouse',
@@ -433,7 +435,7 @@ describe('base-ui/context-menu view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewMenu({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           open: true,
           contextPoint: ContextMenu.contextPoint(12, 12, 112, 112, 'mouse'),
@@ -445,6 +447,7 @@ describe('base-ui/context-menu view', () => {
           screenX: 120,
           screenY: 120,
         }),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Pressed none')).toBeVisible(),
       )
     }).not.toThrow()

@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   BadgeVariant,
@@ -92,7 +93,7 @@ describe('shadcn/badge view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewBadge({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('span')).toHaveAttr('data-slot', 'badge'),
         Scene.expect(Scene.selector('span')).toHaveAttr(
           'class',
@@ -106,7 +107,7 @@ describe('shadcn/badge view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewBadge({ elementKind: 'a', variant: 'link' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('a')).toHaveAttr('href', '#link'),
         Scene.expect(Scene.selector('a')).toHaveAttr('data-slot', 'badge'),
         Scene.expect(Scene.selector('a')).toHaveAttr(

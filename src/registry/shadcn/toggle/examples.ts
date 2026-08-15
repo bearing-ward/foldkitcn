@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { view as Toggle } from './index'
 import type { TogglePressedChange, ToggleSize, ToggleVariant } from './index'

@@ -1,7 +1,8 @@
 import { Schema as S } from 'effect'
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import { html } from '#foldkit-html'
 
 import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import * as Badge from '../badge'
@@ -742,14 +743,12 @@ const columnVisibilityMenu = <Message, Row>(
   const menuId = `${label.replaceAll(' ', '-').toLocaleLowerCase()}-columns`
   const items = columns
     .filter(column => column.isHideable !== false)
-    .map(
-      (column): DropdownMenu.MenuItemDescriptor => ({
-        value: column.id,
-        label: column.header,
-        kind: 'checkbox',
-        isChecked: !state.hiddenColumnIds.includes(column.id),
-      }),
-    )
+    .map((column): DropdownMenu.MenuItemDescriptor => ({
+      value: column.id,
+      label: column.header,
+      kind: 'checkbox',
+      isChecked: !state.hiddenColumnIds.includes(column.id),
+    }))
 
   return DropdownMenu.view<Message>({
     id: menuId,

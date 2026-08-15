@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as RadioGroup from '../../../../../src/registry/base-ui/radio-group'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

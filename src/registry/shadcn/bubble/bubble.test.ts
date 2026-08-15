@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   BubbleAlignmentDemo,
@@ -109,7 +110,7 @@ describe('shadcn/bubble view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewBubble({ align: 'end', variant: 'muted' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="bubble"]')).toHaveAttr(
           'data-align',
           'end',
@@ -144,7 +145,7 @@ describe('shadcn/bubble view', () => {
               ],
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="bubble-group"]')).toHaveAttr(
           'class',
           Bubble.bubbleGroupClassName(),
@@ -174,7 +175,7 @@ describe('shadcn/bubble view', () => {
               },
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Open bubble' })).toHaveAttr(
           'data-slot',
           'bubble-content',
@@ -189,7 +190,7 @@ describe('shadcn/bubble view', () => {
             children: ['👍'],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="bubble-reactions"]'),
         ).toHaveAttr('data-side', 'top'),
@@ -204,7 +205,7 @@ describe('shadcn/bubble view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => BubbleDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Sure. Hit me with your best demo.')).toExist(),
         Scene.expect(
           Scene.role('img', { name: 'Reaction: thumbs up' }),
@@ -212,12 +213,12 @@ describe('shadcn/bubble view', () => {
       )
       Scene.scene(
         { update, view: () => BubbleGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Find the bug and fix it.')).toExist(),
       )
       Scene.scene(
         { update, view: () => BubbleVariantsDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text('This is the default primary bubble.'),
         ).toExist(),
@@ -227,7 +228,7 @@ describe('shadcn/bubble view', () => {
       )
       Scene.scene(
         { update, view: () => BubbleAlignmentDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text(
             'This bubble is aligned to the end. Use this for user messages.',
@@ -236,14 +237,14 @@ describe('shadcn/bubble view', () => {
       )
       Scene.scene(
         { update, view: () => BubbleLinkButtonDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'I forgot my password' }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => BubbleReactionsDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Yes, run it' })).toExist(),
         Scene.expect(
           Scene.role('img', { name: 'Reactions: eyes, rocket, and 2 more' }),
@@ -251,26 +252,26 @@ describe('shadcn/bubble view', () => {
       )
       Scene.scene(
         { update, view: () => BubbleCollapsibleDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Show more' })).toExist(),
       )
       Scene.scene(
         { update, view: () => BubbleTooltipDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Read on Jan 5, 2026 at 4:32 PM' }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => BubblePopoverDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Show error details' }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => BubbleMarkdownDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text(
             'Ghost bubbles work for assistant text, bold emphasis, and other content that should not be framed.',

@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as NumberField from './index'
 import type { ViewConfig } from './index'
@@ -186,7 +187,7 @@ describe('base-ui/number-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNumberField({ min: 0, max: 200, step: 5 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#amount')).toHaveAttr('id', 'amount'),
         Scene.expect(Scene.selector('#amount-label')).toHaveText('Amount'),
         Scene.expect(Scene.role('group')).toExist(),
@@ -216,7 +217,7 @@ describe('base-ui/number-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNumberField({ min: 0, max: 120 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.label('Amount'), '130'),
         Scene.expect(Scene.text('Value 120')).toExist(),
         Scene.expect(Scene.text('Text 130')).toExist(),
@@ -230,7 +231,7 @@ describe('base-ui/number-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNumberField({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.label('Amount'), 'abc'),
         Scene.expect(Scene.text('Value empty')).toExist(),
         Scene.expect(Scene.text('Text abc')).toExist(),
@@ -243,7 +244,7 @@ describe('base-ui/number-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNumberField({ min: 0, max: 200, step: 5 }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Increase' })),
         Scene.expect(Scene.text('Value 105')).toExist(),
         Scene.expect(Scene.text('Reason increment-press')).toExist(),
@@ -261,7 +262,7 @@ describe('base-ui/number-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewNumberField({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#amount')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.role('group')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.label('Amount')).toHaveAttr('disabled', 'true'),
@@ -285,7 +286,7 @@ describe('base-ui/number-field view', () => {
             onBlur: BlurredNumberField(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Amount')).toHaveAttr('readOnly', 'true'),
         Scene.expect(Scene.label('Amount')).toHaveHandler('focus'),
         Scene.expect(Scene.label('Amount')).toHaveHandler('blur'),
@@ -309,7 +310,7 @@ describe('base-ui/number-field view', () => {
             isScrubbing: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#amount')).toHaveAttr('data-required'),
         Scene.expect(Scene.selector('#amount')).toHaveAttr('data-invalid'),
         Scene.expect(Scene.selector('#amount')).toHaveAttr('data-dirty'),

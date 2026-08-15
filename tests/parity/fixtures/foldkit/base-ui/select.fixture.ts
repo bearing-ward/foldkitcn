@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Select from '../../../../../src/registry/base-ui/select'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

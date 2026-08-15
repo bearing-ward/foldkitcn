@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   TextareaOptions,
@@ -128,7 +129,7 @@ describe('shadcn/textarea view', () => {
             isRequired: true,
           }),
         },
-        Scene.with({ value: 'Hello\nthere' }),
+        Scene.given({ value: 'Hello\nthere' }),
         Scene.expect(Scene.label('Message')).toHaveAttr(
           'data-slot',
           'textarea',
@@ -162,7 +163,7 @@ describe('shadcn/textarea view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTextarea({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Message')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.label('Message')).not.toHaveHandler('input'),
       )
@@ -173,7 +174,7 @@ describe('shadcn/textarea view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTextarea({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Message')).toHaveAttr('readOnly', 'true'),
         Scene.expect(Scene.label('Message')).toHaveHandler('input'),
       )
@@ -184,7 +185,7 @@ describe('shadcn/textarea view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTextarea({ isInvalid: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Message')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.label('Message')).not.toHaveAttr('data-invalid'),
       )
@@ -195,7 +196,7 @@ describe('shadcn/textarea view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTextarea({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.label('Message'), 'Line one\nLine two'),
         Scene.expect(Scene.label('Message')).toHaveValue('Line one\nLine two'),
       )

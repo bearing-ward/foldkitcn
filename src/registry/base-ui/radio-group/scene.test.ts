@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as RadioGroup from './index'
 import type { ViewConfig } from './index'
@@ -129,7 +130,7 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({ keepIndicatorMounted: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr('role', 'radiogroup'),
         Scene.expect(Scene.selector('[data-testid="radio-a"]')).toHaveAttr(
           'aria-checked',
@@ -156,7 +157,7 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Value a')).toExist(),
         Scene.click(Scene.selector('[data-testid="radio-b"]')),
         Scene.expect(Scene.text('Value b')).toExist(),
@@ -174,7 +175,7 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('[data-testid="radio-a"]'), 'ArrowDown'),
         Scene.expect(Scene.text('Value b')).toExist(),
         Scene.expect(Scene.text('Focus #radio-b')).toExist(),
@@ -227,11 +228,12 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewWithDisabledItem },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('[data-testid="radio-a"]'), 'ArrowDown'),
         Scene.expect(Scene.text('Value c')).toExist(),
         Scene.expect(Scene.text('Focus #radio-c')).toExist(),
         Scene.keydown(Scene.selector('[data-testid="radio-c"]'), 'ArrowDown'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value c')).toExist(),
       )
     }).not.toThrow()
@@ -241,10 +243,11 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('[data-testid="radio-a"]'), 'ArrowDown', {
           shiftKey: true,
         }),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value a')).toExist(),
       )
     }).not.toThrow()
@@ -254,7 +257,7 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr(
           'aria-disabled',
           'true',
@@ -273,7 +276,7 @@ describe('base-ui/radio-group', () => {
       )
       Scene.scene(
         { update, view: viewRadioGroup({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -303,7 +306,7 @@ describe('base-ui/radio-group', () => {
             keepIndicatorMounted: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveAttr(
           'aria-orientation',
           'horizontal',
@@ -340,7 +343,7 @@ describe('base-ui/radio-group', () => {
             isRequired: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#radio-a-input')).toHaveAttr(
           'name',
           'density',
@@ -370,11 +373,12 @@ describe('base-ui/radio-group', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewRadioGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="radio-b"]')).toHaveHandler(
           'keyup',
         ),
         Scene.keydown(Scene.selector('[data-testid="radio-b"]'), 'Enter'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value a')).toExist(),
       )
     }).not.toThrow()
@@ -390,7 +394,7 @@ describe('base-ui/radio-group', () => {
             onBlur: BlurredRadioGroup(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('radiogroup')).toHaveHandler('focus'),
         Scene.expect(Scene.role('radiogroup')).toHaveHandler('blur'),
       )

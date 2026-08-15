@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import type { TabsValueChange } from '../tabs/index'
 import { view as Collapsible } from './index'

@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Popover from './index'
 import type { ViewConfig } from './index'
@@ -130,7 +131,7 @@ describe('shadcn/popover view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewPopover({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="popover"]')).toHaveAttr(
           'data-side',
           'bottom',
@@ -175,7 +176,7 @@ describe('shadcn/popover view', () => {
             sideOffset: 4,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Open profile' })).toHaveAttr(
           'aria-disabled',
           'true',
@@ -212,7 +213,7 @@ describe('shadcn/popover view', () => {
           update,
           view: viewPopover({ modal: true }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="popover"]')).toHaveAttr(
           'data-modal',
           'true',
@@ -236,7 +237,7 @@ describe('shadcn/popover view', () => {
             side: 'inline-start',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="popover"]')).toHaveAttr(
           'dir',
           'rtl',

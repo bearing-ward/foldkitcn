@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Button from './index'
 import type { ViewConfig } from './index'
@@ -125,7 +126,7 @@ describe('base-ui/button', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewButton({ label: 'Disabled', isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Disabled' })).toHaveAttr(
           'disabled',
         ),
@@ -162,7 +163,7 @@ describe('base-ui/button', () => {
             isFocusableWhenDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Focusable disabled' }),
         ).toHaveAttr('aria-disabled', 'true'),
@@ -197,7 +198,7 @@ describe('base-ui/button', () => {
             isDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Non-native disabled' }),
         ).toHaveAttr('role', 'button'),
@@ -239,7 +240,7 @@ describe('base-ui/button', () => {
             isFocusableWhenDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Non-native focusable disabled' }),
         ).toHaveAttr('aria-disabled', 'true'),
@@ -268,7 +269,7 @@ describe('base-ui/button', () => {
             onClick: ClickedButton(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Count 0')).toExist(),
         Scene.keydown(Scene.role('button', { name: 'Div button' }), 'Enter'),
         Scene.expect(Scene.text('Count 1')).toExist(),
@@ -282,7 +283,7 @@ describe('base-ui/button', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTypeButtons },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Plain' })).toHaveAttr(
           'type',
           'button',

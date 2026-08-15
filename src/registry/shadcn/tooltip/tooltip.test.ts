@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Tooltip from './index'
 import type { ViewConfig } from './index'
@@ -118,7 +119,7 @@ describe('shadcn/tooltip view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTooltip({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="tooltip-provider"]'),
         ).toHaveAttr('data-delay', '600'),
@@ -162,7 +163,7 @@ describe('shadcn/tooltip view', () => {
             side: 'inline-start',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Hover' })).toHaveAttr(
           'data-trigger-disabled',
         ),

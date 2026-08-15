@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Checkbox from './index'
 import type { ViewConfig } from './index'
@@ -116,7 +117,7 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({ keepIndicatorMounted: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-checked',
           'false',
@@ -128,7 +129,7 @@ describe('base-ui/checkbox', () => {
       )
       Scene.scene(
         { update, view: viewCheckbox({}) },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr('aria-checked', 'true'),
         Scene.expect(Scene.role('checkbox')).toHaveAttr('data-checked'),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toHaveAttr(
@@ -137,7 +138,7 @@ describe('base-ui/checkbox', () => {
       )
       Scene.scene(
         { update, view: viewCheckbox({}) },
-        Scene.with(indeterminateModel),
+        Scene.given(indeterminateModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-checked',
           'mixed',
@@ -154,12 +155,12 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toBeAbsent(),
       )
       Scene.scene(
         { update, view: viewCheckbox({ keepIndicatorMounted: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="indicator"]')).toExist(),
       )
     }).not.toThrow()
@@ -169,12 +170,13 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('unchecked')).toExist(),
         Scene.click(Scene.role('checkbox')),
         Scene.expect(Scene.text('checked')).toExist(),
         Scene.expect(Scene.text('Reason none')).toExist(),
         Scene.keydown(Scene.role('checkbox'), 'Enter'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('checked')).toExist(),
         Scene.keydown(Scene.role('checkbox'), ' '),
         Scene.expect(Scene.text('unchecked')).toExist(),
@@ -186,7 +188,7 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-disabled',
           'true',
@@ -206,7 +208,7 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-readonly',
           'true',
@@ -227,7 +229,7 @@ describe('base-ui/checkbox', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCheckbox({}) },
-        Scene.with(indeterminateModel),
+        Scene.given(indeterminateModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-checked',
           'mixed',
@@ -255,7 +257,7 @@ describe('base-ui/checkbox', () => {
             keepIndicatorMounted: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveAttr(
           'aria-required',
           'true',
@@ -293,7 +295,7 @@ describe('base-ui/checkbox', () => {
             isRequired: true,
           }),
         },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.selector('input[type="checkbox"]')).toHaveAttr(
           'id',
           'terms',
@@ -341,7 +343,7 @@ describe('base-ui/checkbox', () => {
             uncheckedValue: 'no',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('input[type="hidden"]')).toHaveAttr(
           'name',
           'terms',
@@ -359,7 +361,7 @@ describe('base-ui/checkbox', () => {
             uncheckedValue: 'no',
           }),
         },
-        Scene.with(indeterminateModel),
+        Scene.given(indeterminateModel),
         Scene.expect(Scene.selector('input[type="hidden"]')).toHaveAttr(
           'value',
           'no',
@@ -373,7 +375,7 @@ describe('base-ui/checkbox', () => {
             uncheckedValue: 'no',
           }),
         },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.selector('input[type="hidden"]')).toBeAbsent(),
       )
     }).not.toThrow()
@@ -389,7 +391,7 @@ describe('base-ui/checkbox', () => {
             onBlur: BlurredCheckbox(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('checkbox')).toHaveHandler('focus'),
         Scene.expect(Scene.role('checkbox')).toHaveHandler('blur'),
       )

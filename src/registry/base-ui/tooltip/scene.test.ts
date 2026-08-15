@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Tooltip from './index'
 import type { ViewConfig } from './index'
@@ -131,7 +132,7 @@ describe('base-ui/tooltip', () => {
             viewportActivationDirection: 'right down',
           }),
         },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('[data-provider]')).toHaveAttr(
           'data-delay',
           '600',
@@ -200,7 +201,7 @@ describe('base-ui/tooltip', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTooltip({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Hover' })).toHaveHandler(
           'mouseenter',
         ),
@@ -219,7 +220,7 @@ describe('base-ui/tooltip', () => {
       )
       Scene.scene(
         { update, view: viewTooltip({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.keydown(Scene.selector('#library-tooltip-popup'), 'Escape'),
         Scene.expect(Scene.text('Reason escape-key')).toExist(),
       )
@@ -248,7 +249,7 @@ describe('base-ui/tooltip', () => {
             triggerId: 'external-trigger',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Hover' })).toHaveAttr(
           'aria-disabled',
           'true',

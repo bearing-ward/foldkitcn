@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ToggleDemo,
@@ -103,7 +104,7 @@ describe('shadcn/toggle view', () => {
             size: 'sm',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Toggle' })).toHaveAttr(
           'data-slot',
           'toggle',
@@ -123,7 +124,7 @@ describe('shadcn/toggle view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ToggleDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Toggle bookmark' }),
         ).toHaveAttr('data-slot', 'toggle'),
@@ -133,7 +134,7 @@ describe('shadcn/toggle view', () => {
       )
       Scene.scene(
         { update, view: () => ToggleDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Toggle disabled' }),
         ).toHaveAttr('disabled'),
@@ -143,22 +144,22 @@ describe('shadcn/toggle view', () => {
       )
       Scene.scene(
         { update, view: () => ToggleOutline() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Toggle italic' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleSizes() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Toggle large' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleText() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Toggle italic' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

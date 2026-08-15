@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Tabs from './index'
 import type { ViewConfig } from './index'
@@ -148,7 +149,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('tablist')).toHaveAttr('role', 'tablist'),
         Scene.expect(Scene.role('tab', { name: 'Overview' })).toHaveAttr(
           'aria-selected',
@@ -171,7 +172,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('tab', { name: 'Analytics' })),
         Scene.expect(Scene.text('Value analytics')).toExist(),
         Scene.expect(Scene.text('Direction right')).toExist(),
@@ -187,7 +188,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({ activationMode: 'manual' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight'),
         Scene.expect(Scene.text('Value overview')).toExist(),
         Scene.expect(Scene.text('Highlighted analytics')).toExist(),
@@ -202,7 +203,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({ activationMode: 'automatic' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight'),
         Scene.expect(Scene.text('Value analytics')).toExist(),
         Scene.expect(Scene.text('Direction right')).toExist(),
@@ -221,12 +222,13 @@ describe('base-ui/tabs', () => {
             loopFocus: false,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('tablist')).toHaveAttr(
           'aria-orientation',
           'vertical',
         ),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value overview')).toExist(),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowDown'),
         Scene.expect(Scene.text('Value analytics')).toExist(),
@@ -281,7 +283,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDisabledTabs },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('tab', { name: 'Analytics' })).toHaveAttr(
           'aria-disabled',
           'true',
@@ -300,19 +302,23 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({ activationMode: 'automatic' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight', {
           shiftKey: true,
         }),
+        Scene.expectIgnored(),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight', {
           ctrlKey: true,
         }),
+        Scene.expectIgnored(),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight', {
           altKey: true,
         }),
+        Scene.expectIgnored(),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowRight', {
           metaKey: true,
         }),
+        Scene.expectIgnored(),
         Scene.expect(Scene.text('Value overview')).toExist(),
         Scene.expect(Scene.text('Highlighted overview')).toExist(),
       )
@@ -323,7 +329,7 @@ describe('base-ui/tabs', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({ activationMode: 'automatic', dir: 'rtl' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.role('tab', { name: 'Overview' }), 'ArrowLeft'),
         Scene.expect(Scene.text('Value analytics')).toExist(),
         Scene.expect(Scene.text('Direction right')).toExist(),
@@ -350,7 +356,7 @@ describe('base-ui/tabs', () => {
             },
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[role="presentation"]')).toHaveAttr(
           'data-orientation',
           'horizontal',

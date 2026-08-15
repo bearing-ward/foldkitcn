@@ -110,7 +110,7 @@ describe('shadcn/button-group view', () => {
             children: ['One'],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group', { name: 'Actions' })).toHaveAttr(
           'data-slot',
           'button-group',
@@ -133,7 +133,7 @@ describe('shadcn/button-group view', () => {
               children: ['Edited 2m ago'],
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="button-group-text"]'),
         ).toHaveAttr('class', ButtonGroup.buttonGroupTextClassName()),
@@ -151,7 +151,7 @@ describe('shadcn/button-group view', () => {
           update,
           view: () => ButtonGroup.ButtonGroupSeparator<Message>(),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'data-slot',
           'button-group-separator',
@@ -172,18 +172,18 @@ describe('shadcn/button-group view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ButtonGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Archive' })).toExist(),
         Scene.expect(Scene.role('button', { name: 'More Options' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupDropdown() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Follow' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupInput() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('textbox')).toHaveAttr(
           'placeholder',
           'Search...',
@@ -191,7 +191,7 @@ describe('shadcn/button-group view', () => {
       )
       Scene.scene(
         { update, view: () => ButtonGroupOrientation() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('group', { name: 'Media controls' }),
         ).toHaveAttr('data-orientation', 'vertical'),
@@ -207,22 +207,22 @@ describe('shadcn/button-group view', () => {
       )
       Scene.scene(
         { update, view: () => ButtonGroupPopover() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Copilot' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupSelect() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: '$' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupSeparatorDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('separator')).toHaveAttr(
           'data-slot',
           'button-group-separator',
@@ -230,12 +230,12 @@ describe('shadcn/button-group view', () => {
       )
       Scene.scene(
         { update, view: () => ButtonGroupSize() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Large' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ButtonGroupSplit() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Button' })).toExist(),
       )
     }).not.toThrow()
@@ -251,7 +251,7 @@ describe('shadcn/button-group view', () => {
               openFor: () => false,
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Open Popover' })).toExist(),
         Scene.expect(
           Scene.selector('[data-slot="popover-content"]'),
@@ -265,7 +265,7 @@ describe('shadcn/button-group view', () => {
               openFor: () => true,
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="popover-content"]'),
         ).toHaveText(
@@ -288,7 +288,7 @@ describe('shadcn/button-group view', () => {
               onValueChange: () => 'ignored',
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'class',
           ButtonGroup.buttonGroupClassName(),

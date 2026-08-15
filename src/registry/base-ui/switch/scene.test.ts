@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Switch from './index'
 import type { ViewConfig } from './index'
@@ -105,7 +106,7 @@ describe('base-ui/switch', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSwitch({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-checked', 'false'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-unchecked'),
         Scene.expect(Scene.selector('[data-testid="thumb"]')).toHaveAttr(
@@ -114,7 +115,7 @@ describe('base-ui/switch', () => {
       )
       Scene.scene(
         { update, view: viewSwitch({}) },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-checked', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-checked'),
         Scene.expect(Scene.selector('[data-testid="thumb"]')).toHaveAttr(
@@ -128,7 +129,7 @@ describe('base-ui/switch', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSwitch({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Unchecked')).toExist(),
         Scene.click(Scene.role('switch')),
         Scene.expect(Scene.text('Checked')).toExist(),
@@ -145,7 +146,7 @@ describe('base-ui/switch', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSwitch({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-disabled', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.role('switch')).not.toHaveHandler('click'),
@@ -165,7 +166,7 @@ describe('base-ui/switch', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSwitch({ isReadOnly: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-readonly', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-readonly'),
         Scene.expect(Scene.role('switch')).not.toHaveHandler('click'),
@@ -193,7 +194,7 @@ describe('base-ui/switch', () => {
             isValid: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-required', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-required'),
@@ -228,7 +229,7 @@ describe('base-ui/switch', () => {
             isRequired: true,
           }),
         },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.selector('input[type="checkbox"]')).toHaveAttr(
           'id',
           'notifications',
@@ -272,7 +273,7 @@ describe('base-ui/switch', () => {
             uncheckedValue: 'no',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('input[type="hidden"]')).toHaveAttr(
           'name',
           'notifications',
@@ -290,7 +291,7 @@ describe('base-ui/switch', () => {
             uncheckedValue: 'no',
           }),
         },
-        Scene.with(checkedModel),
+        Scene.given(checkedModel),
         Scene.expect(Scene.selector('input[type="hidden"]')).toBeAbsent(),
       )
     }).not.toThrow()
@@ -306,7 +307,7 @@ describe('base-ui/switch', () => {
             onBlur: BlurredSwitch(),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveHandler('focus'),
         Scene.expect(Scene.role('switch')).toHaveHandler('blur'),
       )

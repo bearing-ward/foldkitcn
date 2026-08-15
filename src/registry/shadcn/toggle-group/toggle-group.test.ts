@@ -111,7 +111,7 @@ describe('shadcn/toggle-group view', () => {
             variant: 'outline',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-slot',
           'toggle-group',
@@ -151,7 +151,7 @@ describe('shadcn/toggle-group view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-orientation',
           'vertical',
@@ -172,7 +172,7 @@ describe('shadcn/toggle-group view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => ToggleGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group', { name: 'Text alignment' })).toExist(),
         Scene.expect(Scene.selector('#align-center')).toHaveAttr(
           'aria-pressed',
@@ -181,7 +181,7 @@ describe('shadcn/toggle-group view', () => {
       )
       Scene.scene(
         { update, view: () => ToggleGroupDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#format-strikethrough')).toHaveAttr(
           'aria-disabled',
           'true',
@@ -189,34 +189,34 @@ describe('shadcn/toggle-group view', () => {
       )
       Scene.scene(
         { update, view: () => ToggleGroupFontWeightSelector() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group', { name: 'Font weight' })).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleGroupOutline() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-spacing', '0'),
       )
       Scene.scene(
         { update, view: () => ToggleGroupRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleGroupSizes() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('group', { name: 'Large alignment' }),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => ToggleGroupSpacing() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-spacing', '4'),
       )
       Scene.scene(
         { update, view: () => ToggleGroupVertical() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-orientation',
           'vertical',

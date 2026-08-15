@@ -75,13 +75,13 @@ describe('installer schemas', () => {
 
   test('rejects invalid installer item ids and target paths', () => {
     expect(() => S.decodeUnknownSync(InstallerItemId)('../button')).toThrow(
-      /\.\.\/button/u,
+      /Expected a string/u,
     )
     expect(() =>
       S.decodeUnknownSync(InstallTargetPath)(
         'src/components/ui/shadcn/button.ts',
       ),
-    ).toThrow(/src\/components\/ui\/shadcn\/button\.ts/u)
+    ).toThrow(/Expected a string matching/u)
   })
 })
 
@@ -158,7 +158,7 @@ describe('registry item manifest schema', () => {
 
     expect(() =>
       S.decodeUnknownSync(RegistryItemManifest)(invalidManifest),
-    ).toThrow(/public/u)
+    ).toThrow(/availability/u)
   })
 
   test('requires component and example behavior declarations', () => {
@@ -251,7 +251,9 @@ describe('generated docs artifact schemas', () => {
 
   test('decodes docs status values', () => {
     expect(S.decodeUnknownSync(DocsStatus)('missing')).toBe('missing')
-    expect(() => S.decodeUnknownSync(DocsStatus)('draft')).toThrow(/draft/u)
+    expect(() => S.decodeUnknownSync(DocsStatus)('draft')).toThrow(
+      /missing.*stub.*complete/u,
+    )
   })
 
   test('decodes component docs routes', () => {

@@ -1,5 +1,6 @@
-import { html } from 'foldkit/html'
 import type { Html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Menubar from '../../../../../src/registry/base-ui/menubar'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

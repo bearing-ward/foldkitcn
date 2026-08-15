@@ -1,7 +1,8 @@
 import { Schema as S } from 'effect'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
+
+import { html } from '#foldkit-html'
 
 import type { AnchorPositioningMessage } from '../../../utils/anchor-positioning'
 import type { ToastState } from '../../base-ui/toast'

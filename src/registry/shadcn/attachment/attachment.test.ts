@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   AttachmentDemo,
@@ -198,7 +199,7 @@ describe('shadcn/attachment view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAttachment({ state: 'uploading' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="attachment"]')).toHaveAttr(
           'data-state',
           'uploading',
@@ -211,7 +212,7 @@ describe('shadcn/attachment view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAttachment({ state: 'uploading' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="attachment"]')).toHaveAttr(
           'data-size',
           'default',
@@ -228,7 +229,7 @@ describe('shadcn/attachment view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAttachment({ state: 'uploading' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment-media"]'),
         ).toHaveAttr('data-slot', 'attachment-media'),
@@ -249,7 +250,7 @@ describe('shadcn/attachment view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewAttachment({ state: 'uploading' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment-actions"]'),
         ).toHaveAttr('class', attachmentActionsClassName()),
@@ -283,7 +284,7 @@ describe('shadcn/attachment view', () => {
                 ),
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="attachment"]')).toHaveAttr(
           'class',
           attachmentClassName({ className: 'custom-root' }),
@@ -302,7 +303,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment-group"]'),
         ).toExist(),
@@ -314,7 +315,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="spinner"]')).toExist(),
       )
     }).not.toThrow()
@@ -324,7 +325,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="attachment"]')).toExist(),
       )
     }).not.toThrow()
@@ -332,7 +333,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentImage() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment-trigger"]'),
         ).toExist(),
@@ -345,7 +346,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentSizes() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment"][data-size="xs"]'),
         ).toExist(),
@@ -357,7 +358,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentStates() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="attachment"][data-state="error"]'),
         ).toExist(),
@@ -372,7 +373,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentTriggerDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="dialog-trigger"]')).toExist(),
         Scene.expect(Scene.selector('[data-slot="dialog-trigger"]')).toHaveAttr(
           'aria-expanded',
@@ -389,7 +390,7 @@ describe('shadcn/attachment examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => AttachmentWorkflowDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('label')).toExist(),
         Scene.expect(Scene.selector('p')).toHaveText(
           'Accepted files will appear here after they are dropped or chosen.',

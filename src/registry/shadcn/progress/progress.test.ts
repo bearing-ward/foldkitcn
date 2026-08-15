@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Progress from './index'
 import type { ViewConfig } from './index'
@@ -109,7 +110,7 @@ describe('shadcn/progress view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'data-slot',
           'progress',
@@ -122,7 +123,7 @@ describe('shadcn/progress view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewProgress({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="progress-track"]')).toHaveAttr(
           'data-progressing',
         ),
@@ -137,7 +138,7 @@ describe('shadcn/progress view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewLabeledProgress({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('progressbar')).toHaveAttr(
           'aria-valuenow',
           '56',

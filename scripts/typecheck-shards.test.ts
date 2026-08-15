@@ -1,13 +1,6 @@
-import {
-  createProgram,
-  flattenDiagnosticMessageText,
-  parseConfigFileTextToJson,
-  parseJsonConfigFileContent,
-  sys,
-} from 'typescript'
 import { describe, expect, test } from 'vitest'
 
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 
 const repoRoot = path.resolve(import.meta.dirname, '..')
@@ -46,30 +39,27 @@ const testShardConfigNames: ReadonlyArray<string> = [
 const relativePath = (filePath: string): string =>
   path.relative(repoRoot, filePath).split(path.sep).join('/')
 
+const filesMatching = (pattern: string): ReadonlyArray<string> => {
+  const suffix = pattern.replace('**/', '').replace('*', '')
+  const root = pattern.startsWith('src/')
+    ? 'src'
+    : pattern.startsWith('scripts/')
+      ? 'scripts'
+      : '.'
+  return readdirSync(path.join(repoRoot, root), {
+    recursive: true,
+    withFileTypes: true,
+  })
+    .filter(entry => entry.isFile() && entry.name.endsWith(suffix))
+    .map(entry => path.join(entry.parentPath, entry.name))
+}
+
 const parsedConfigFor = (configName: string) => {
   const configPath = path.join(repoRoot, configName)
-  const { config, error } = parseConfigFileTextToJson(
-    configPath,
-    readFileSync(configPath, 'utf-8'),
-  )
-
-  if (error !== undefined) {
-    throw new Error(flattenDiagnosticMessageText(error.messageText, '\n'))
+  const config = JSON.parse(readFileSync(configPath, 'utf-8')) as {
+    include?: ReadonlyArray<string>
   }
-
-  const parsedConfig = parseJsonConfigFileContent(config, sys, repoRoot)
-
-  if (parsedConfig.errors.length > 0) {
-    throw new Error(
-      parsedConfig.errors
-        .map(diagnostic =>
-          flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
-        )
-        .join('\n'),
-    )
-  }
-
-  return parsedConfig
+  return { fileNames: (config.include ?? []).flatMap(filesMatching) }
 }
 
 const testFilesInConfig = (configName: string): ReadonlyArray<string> =>
@@ -80,12 +70,8 @@ const testFilesInConfig = (configName: string): ReadonlyArray<string> =>
 const sourceFilesInConfig = (configName: string): ReadonlyArray<string> => {
   const parsedConfig = parsedConfigFor(configName)
 
-  return createProgram({
-    rootNames: parsedConfig.fileNames,
-    options: parsedConfig.options,
-  })
-    .getSourceFiles()
-    .map(sourceFile => relativePath(sourceFile.fileName))
+  return parsedConfig.fileNames
+    .map(relativePath)
     .filter(
       filePath =>
         filePath.startsWith('scripts/') || filePath.startsWith('src/'),
@@ -94,27 +80,13 @@ const sourceFilesInConfig = (configName: string): ReadonlyArray<string> => {
 
 const allTestFiles = (): ReadonlyArray<string> =>
   ['scripts', 'src', 'tests']
-    .flatMap(sourceRoot =>
-      sys.readDirectory(
-        path.join(repoRoot, sourceRoot),
-        ['.ts', '.tsx'],
-        undefined,
-        ['**/*.test.ts', '**/*.test.tsx'],
-      ),
-    )
+    .flatMap(sourceRoot => filesMatching(`${sourceRoot}/**/*.test.ts`))
     .map(relativePath)
     .toSorted()
 
 const allSourceAndScriptFiles = (): ReadonlyArray<string> =>
   ['scripts', 'src']
-    .flatMap(sourceRoot =>
-      sys.readDirectory(
-        path.join(repoRoot, sourceRoot),
-        ['.ts', '.tsx'],
-        undefined,
-        ['**/*.ts', '**/*.tsx'],
-      ),
-    )
+    .flatMap(sourceRoot => filesMatching(`${sourceRoot}/**/*.ts`))
     .map(relativePath)
     .toSorted()
 

@@ -2,10 +2,11 @@ import { Match as M, Option, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as OTPField from './index'
 import type { ViewConfig } from './index'
@@ -191,7 +192,7 @@ describe('base-ui/otp-field view', () => {
             isRequired: true,
           }),
         },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           value: '123456',
           isFocused: true,
@@ -223,7 +224,7 @@ describe('base-ui/otp-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOTPField({ validationType: 'numeric' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.type(Scene.selector('#otp'), '12a34'),
         Scene.expect(Scene.text('Value 1234')).toExist(),
         Scene.expect(Scene.text('Reason input-change')).toExist(),
@@ -264,7 +265,7 @@ describe('base-ui/otp-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOTPField({}) },
-        Scene.with({
+        Scene.given({
           ...initialModel,
           value: '1234',
           focusedIndex: 1,
@@ -286,7 +287,7 @@ describe('base-ui/otp-field view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOTPField({ isDisabled: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#otp')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.selector('#otp')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.selector('#otp')).not.toHaveHandler('input'),

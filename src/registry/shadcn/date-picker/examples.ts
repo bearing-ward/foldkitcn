@@ -1,7 +1,8 @@
 import { Option, Schema as S } from 'effect'
 import { Calendar } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { InputGroup, InputGroupInput, InputGroupText } from '../input-group'
 import { DatePicker, datePickerInit } from './index'
@@ -24,6 +25,7 @@ type DatePickerExampleConfig<Message> = Readonly<{
   controller?: DatePickerExampleController<Message> | undefined
   id: string
   today: Calendar.CalendarDate
+  maybeSelectedDate?: Option.Option<Calendar.CalendarDate> | undefined
   initialSelectedDate?: Calendar.CalendarDate | undefined
   minDate?: Calendar.CalendarDate | undefined
   maxDate?: Calendar.CalendarDate | undefined
@@ -94,7 +96,7 @@ const initialModel = <Message>(
     today: config.today,
     ...(config.initialSelectedDate === undefined
       ? {}
-      : { initialSelectedDate: config.initialSelectedDate }),
+      : { initialViewDate: config.initialSelectedDate }),
     ...(config.minDate === undefined ? {} : { minDate: config.minDate }),
     ...(config.maxDate === undefined ? {} : { maxDate: config.maxDate }),
     ...(config.locale === undefined ? {} : { locale: config.locale }),
@@ -129,6 +131,9 @@ const picker = <Message = DatePickerMessage>(
       : { panelClassName: config.panelClassName }),
     ...(config.dir === undefined ? {} : { dir: config.dir }),
     ...(config.compact === undefined ? {} : { compact: config.compact }),
+    ...(config.maybeSelectedDate === undefined
+      ? {}
+      : { maybeSelectedDate: config.maybeSelectedDate }),
   })
 }
 
@@ -137,8 +142,8 @@ export const decodeIsoDate = (
 ): Option.Option<Calendar.CalendarDate> =>
   S.decodeUnknownOption(Calendar.CalendarDateFromIsoString)(value)
 
-const isoValue = (model: DatePickerModel): string =>
-  Option.match(model.maybeSelectedDate, {
+const isoValue = (maybeDate: Option.Option<Calendar.CalendarDate>): string =>
+  Option.match(maybeDate, {
     onNone: () => '',
     onSome: S.encodeSync(Calendar.CalendarDateFromIsoString),
   })
@@ -151,6 +156,7 @@ export const DatePickerDemo = <Message = DatePickerMessage>(
     id: 'date-picker-demo',
     today: deterministicToday,
     initialSelectedDate: demoSelectedDate,
+    maybeSelectedDate: Option.some(demoSelectedDate),
     placeholder: 'Pick a date',
   })
 
@@ -162,6 +168,7 @@ export const DatePickerBasic = <Message = DatePickerMessage>(
     id: 'date-picker-basic',
     today: deterministicToday,
     initialSelectedDate: basicSelectedDate,
+    maybeSelectedDate: Option.some(basicSelectedDate),
     placeholder: 'Select date',
     triggerClassName: 'min-w-40',
     compact: true,
@@ -222,7 +229,7 @@ export const DatePickerInput = <Message = DatePickerMessage>(
             children: ['ISO'],
           }),
           InputGroupInput<Message | DatePickerMessage>({
-            value: isoValue(resolved.model),
+            value: isoValue(Option.some(demoSelectedDate)),
             attributes: [h.Readonly(true), h.AriaLabel('Selected ISO date')],
           }),
         ],

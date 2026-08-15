@@ -97,7 +97,7 @@ describe('shadcn/tabs view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewTabs({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="tabs"]')).toHaveAttr(
           'class',
           Tabs.tabsClassName(),
@@ -137,7 +137,7 @@ describe('shadcn/tabs view', () => {
             listVariant: 'line',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="tabs"]')).toHaveAttr(
           'data-orientation',
           'vertical',

@@ -1,5 +1,6 @@
 import type { Attribute, Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import { view as Checkbox } from './index'

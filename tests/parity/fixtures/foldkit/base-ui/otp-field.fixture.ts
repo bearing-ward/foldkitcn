@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as OTPField from '../../../../../src/registry/base-ui/otp-field'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

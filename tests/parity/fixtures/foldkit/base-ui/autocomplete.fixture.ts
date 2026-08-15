@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Autocomplete from '../../../../../src/registry/base-ui/autocomplete'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

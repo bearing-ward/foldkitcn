@@ -4,9 +4,10 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   BreadcrumbBasic,
@@ -169,7 +170,7 @@ describe('shadcn/breadcrumb view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(breadcrumbWithParts()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('navigation', { name: 'Project path' }),
         ).toHaveAttr('data-slot', 'breadcrumb'),
@@ -232,7 +233,7 @@ describe('shadcn/breadcrumb view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewClickableBreadcrumb },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('link', { name: 'Home' })),
         Scene.expect(Scene.selector('[data-testid="link-state"]')).toHaveText(
           'clicked',
@@ -245,7 +246,7 @@ describe('shadcn/breadcrumb view', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(BreadcrumbBasic()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('navigation', { name: 'breadcrumb' }),
         ).toHaveAttr('data-slot', 'breadcrumb'),
@@ -255,7 +256,7 @@ describe('shadcn/breadcrumb view', () => {
       )
       Scene.scene(
         { update, view: view(BreadcrumbDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="breadcrumb-ellipsis"]'),
         ).toExist(),
@@ -265,19 +266,19 @@ describe('shadcn/breadcrumb view', () => {
       )
       Scene.scene(
         { update, view: view(BreadcrumbDropdown()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-icon="inline-end"]')).toExist(),
       )
       Scene.scene(
         { update, view: view(BreadcrumbEllipsisDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="breadcrumb-ellipsis"]'),
         ).toExist(),
       )
       Scene.scene(
         { update, view: view(BreadcrumbLinkDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('link', { name: 'Home' })).toHaveAttr(
           'href',
           '#link-component',
@@ -285,7 +286,7 @@ describe('shadcn/breadcrumb view', () => {
       )
       Scene.scene(
         { update, view: view(BreadcrumbRtl()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="breadcrumb"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -293,7 +294,7 @@ describe('shadcn/breadcrumb view', () => {
       )
       Scene.scene(
         { update, view: view(BreadcrumbSeparatorDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="breadcrumb-separator"] svg'),
         ).toHaveAttr('class', 'lucide lucide-dot'),

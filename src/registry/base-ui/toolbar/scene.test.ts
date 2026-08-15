@@ -2,10 +2,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Toolbar from './index'
 import type {
@@ -199,7 +200,7 @@ describe('base-ui/toolbar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToolbar({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('toolbar')).toHaveAttr('role', 'toolbar'),
         Scene.expect(Scene.role('toolbar')).toHaveAttr(
           'aria-orientation',
@@ -241,7 +242,7 @@ describe('base-ui/toolbar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToolbar({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#toolbar-bold')).toHaveAttr(
           'tabIndex',
           '0',
@@ -279,8 +280,9 @@ describe('base-ui/toolbar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToolbar({ orientation: 'vertical' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#toolbar-bold'), 'ArrowRight'),
+        Scene.expectIgnored(),
         Scene.expect(Scene.selector('#toolbar-bold')).toHaveAttr(
           'tabIndex',
           '0',
@@ -293,7 +295,7 @@ describe('base-ui/toolbar', () => {
       )
       Scene.scene(
         { update, view: viewToolbar({ dir: 'rtl' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.keydown(Scene.selector('#toolbar-bold'), 'ArrowLeft'),
         Scene.expect(Scene.selector('#toolbar-docs')).toHaveAttr(
           'tabIndex',
@@ -313,7 +315,7 @@ describe('base-ui/toolbar', () => {
             buildChildren: model => defaultChildren(model),
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('toolbar')).toHaveAttr('data-disabled'),
         Scene.expect(Scene.role('button', { name: 'Bold' })).toHaveAttr(
           'aria-disabled',
@@ -363,7 +365,7 @@ describe('base-ui/toolbar', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Inside' })).toHaveAttr(
           'data-disabled',
         ),
@@ -392,7 +394,7 @@ describe('base-ui/toolbar', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'First' })).toHaveAttr(
           'disabled',
         ),
@@ -409,7 +411,7 @@ describe('base-ui/toolbar', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewToolbar({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Bold' })),
         Scene.expect(Scene.text('Pressed bold')).toExist(),
         Scene.type(Scene.label('Search'), 'abc'),

@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   ItemAvatar,
@@ -160,7 +161,7 @@ describe('shadcn/item view helpers', () => {
     expect(() => {
       Scene.scene(
         { update, view },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('list')).toHaveAttr('data-slot', 'item-group'),
         Scene.expect(Scene.selector('[data-slot="item"]')).toHaveAttr(
           'data-variant',
@@ -218,7 +219,7 @@ describe('shadcn/item view helpers', () => {
     expect(() => {
       Scene.scene(
         { update, view },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('a[data-slot="item"]')).toHaveAttr(
           'href',
           '/docs',
@@ -253,7 +254,7 @@ describe('shadcn/item examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOf(ItemDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="item"]')).toExist(),
         Scene.expect(Scene.text('Basic Item')).toExist(),
         Scene.expect(Scene.selector('a[data-slot="item"]')).toExist(),
@@ -263,7 +264,7 @@ describe('shadcn/item examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOf(ItemAvatar()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="avatar"]')).toExist(),
         Scene.expect(Scene.text('No Team Members')).toExist(),
       )
@@ -272,7 +273,7 @@ describe('shadcn/item examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewOf(ItemDropdown()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="button"]')).toHaveAttr(
           'aria-haspopup',
           'menu',

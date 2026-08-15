@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { view as Popover } from './index'
 import type { PopoverAlign, PopoverOpenChange, PopoverSide } from './index'

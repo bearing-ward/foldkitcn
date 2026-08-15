@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Progress from '../../../../../src/registry/base-ui/progress'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   MessageActionsDemo,
@@ -105,7 +106,7 @@ describe('shadcn/message view', () => {
           update,
           view: viewMessage({ align: 'end', role: 'user' }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="message"]')).toHaveAttr(
           'data-align',
           'end',
@@ -144,7 +145,7 @@ describe('shadcn/message view', () => {
               ],
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="message-group"]')).toHaveAttr(
           'class',
           Message.messageGroupClassName(),
@@ -182,7 +183,7 @@ describe('shadcn/message view', () => {
               },
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Custom content')).toExist(),
         Scene.expect(Scene.selector('[data-slot="message-content"]')).toExist(),
       )
@@ -193,13 +194,13 @@ describe('shadcn/message view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => MessageDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Deploying to prod real quick.')).toExist(),
         Scene.expect(Scene.role('status')).toExist(),
       )
       Scene.scene(
         { update, view: () => MessageGroupDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text(
             'The component and example JSON now live under the UI registry.',
@@ -208,30 +209,30 @@ describe('shadcn/message view', () => {
       )
       Scene.scene(
         { update, view: () => MessageAvatarDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="avatar"]')).toExist(),
       )
       Scene.scene(
         { update, view: () => MessageHeaderFooterDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Olivia')).toExist(),
         Scene.expect(Scene.text('Yesterday')).toExist(),
       )
       Scene.scene(
         { update, view: () => MessageActionsDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('button', { name: 'Copy' })).toExist(),
         Scene.expect(Scene.role('button', { name: 'Retry' })).toExist(),
       )
       Scene.scene(
         { update, view: () => MessageAttachmentDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('sales-dashboard.pdf')).toExist(),
         Scene.expect(Scene.role('button', { name: 'Download' })).toExist(),
       )
       Scene.scene(
         { update, view: () => MessageMarkdownDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text('How do I render markdown in a message?'),
         ).toExist(),

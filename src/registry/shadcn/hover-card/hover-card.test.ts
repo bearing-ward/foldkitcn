@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as HoverCard from './index'
 import type { ViewConfig } from './index'
@@ -109,7 +110,7 @@ describe('shadcn/hover-card view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewHoverCard({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="hover-card"]')).toHaveAttr(
           'data-side',
           'bottom',
@@ -151,7 +152,7 @@ describe('shadcn/hover-card view', () => {
             side: 'inline-start',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('link', { name: 'Hover Here' })).toHaveAttr(
           'data-trigger-disabled',
         ),

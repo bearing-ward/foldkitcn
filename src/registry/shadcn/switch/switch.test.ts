@@ -76,7 +76,7 @@ describe('shadcn/switch view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSwitch({ size: 'sm' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-slot', 'switch'),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-size', 'sm'),
         Scene.expect(Scene.selector('[data-slot="switch-thumb"]')).toHaveAttr(
@@ -98,7 +98,7 @@ describe('shadcn/switch view', () => {
             isInvalid: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-checked', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-disabled', 'true'),
         Scene.expect(Scene.role('switch')).toHaveAttr('aria-invalid', 'true'),
@@ -112,7 +112,7 @@ describe('shadcn/switch view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => SwitchDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('switch')).toHaveAttr('data-slot', 'switch'),
         Scene.expect(Scene.selector('[data-slot="label"]')).toHaveText(
           'Airplane Mode',
@@ -120,7 +120,7 @@ describe('shadcn/switch view', () => {
       )
       Scene.scene(
         { update, view: () => SwitchDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toHaveAttr(
           'data-disabled',
           'true',
@@ -129,7 +129,7 @@ describe('shadcn/switch view', () => {
       )
       Scene.scene(
         { update, view: () => SwitchInvalid() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="field"]')).toHaveAttr(
           'data-invalid',
           'true',
@@ -138,7 +138,7 @@ describe('shadcn/switch view', () => {
       )
       Scene.scene(
         { update, view: () => SwitchSizes() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-size="sm"]')).toHaveAttr(
           'data-slot',
           'switch',

@@ -71,7 +71,7 @@ describe('shadcn/collapsible view', () => {
             contentClassName: 'flex flex-col gap-2',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="collapsible"]')).toHaveAttr(
           'class',
           'flex w-[350px] flex-col gap-2',
@@ -97,7 +97,7 @@ describe('shadcn/collapsible view', () => {
             isDisabled: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="collapsible"]')).toHaveAttr(
           'data-closed',
         ),

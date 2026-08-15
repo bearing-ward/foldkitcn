@@ -32,7 +32,7 @@ describe('shadcn/typography examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewHtml(TypographyDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('h1')).toHaveText(
           'Taxing Laughter: The Joke Tax Chronicles',
         ),
@@ -56,7 +56,7 @@ describe('shadcn/typography examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewHtml(TypographyInlineCode()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('code')).toHaveText('h.code'),
       )
     }).not.toThrow()
@@ -66,7 +66,7 @@ describe('shadcn/typography examples', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewHtml(TypographyRtl()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toHaveText(
           'دليل الضحك المنظمهذا المثال يستخدم نصا عربيا ثابتا لعرض اتجاه القراءة من اليمين إلى اليسار.',
         ),

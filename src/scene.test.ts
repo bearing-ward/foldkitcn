@@ -65,7 +65,6 @@ const resolvePositionAnchoredSurface = (id: string) =>
   Scene.Mount.resolve(
     PositionAnchoredSurface,
     CompletedPositionAnchoredSurface({ id }),
-    message => CompletedPositionLiveExampleSurface({ id: message.id }),
   )
 
 const carouselLiveExampleInteractions = [
@@ -272,7 +271,7 @@ describe(view, () => {
   test('the shell renders primary navigation and component namespace groups', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.given(modelWithRoute(ComponentsIndexRoute({}))),
       Scene.expect(Scene.role('navigation', { name: 'Primary' })).toExist(),
       Scene.expect(Scene.role('link', { name: 'Components' })).toExist(),
       Scene.expect(Scene.role('link', { name: 'Registry' })).toExist(),
@@ -295,7 +294,7 @@ describe(view, () => {
   test('the shell marks the active top nav and component route', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -325,7 +324,7 @@ describe(view, () => {
 
       Scene.scene(
         { update, view },
-        Scene.with(
+        Scene.given(
           modelWithRoute(
             ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
           ),
@@ -348,7 +347,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
         ),
@@ -365,7 +364,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'carousel' }),
         ),
@@ -398,7 +397,7 @@ describe(view, () => {
 
       Scene.scene(
         { update, view },
-        Scene.with(
+        Scene.given(
           modelWithRoute(
             ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
           ),
@@ -425,7 +424,7 @@ describe(view, () => {
 
       Scene.scene(
         { update, view },
-        Scene.with(
+        Scene.given(
           modelWithRoute(
             ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
           ),
@@ -446,7 +445,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -465,7 +464,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -483,7 +482,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -504,7 +503,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -542,7 +541,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -574,7 +573,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sidebar' }),
         ),
@@ -631,7 +630,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'drawer' }),
         ),
@@ -679,7 +678,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'sheet' }),
         ),
@@ -722,7 +721,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'bubble' }),
         ),
@@ -814,7 +813,7 @@ describe(view, () => {
 
       Scene.scene(
         { update, view },
-        Scene.with(
+        Scene.given(
           modelWithRoute(
             ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
           ),
@@ -841,7 +840,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
         ),
@@ -871,7 +870,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
         ),
@@ -917,7 +916,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'resizable' }),
         ),
@@ -949,7 +948,7 @@ describe(view, () => {
   test('documentation search filters public generated records and clears', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.given(modelWithRoute(ComponentsIndexRoute({}))),
       Scene.type(Scene.label('Search documentation'), 'button'),
       Scene.Command.resolve(
         SearchPagefind({ query: 'button' }),
@@ -983,7 +982,7 @@ describe(view, () => {
   test('the docs sidebar keeps search and component navigation together', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.given(modelWithRoute(ComponentsIndexRoute({}))),
       Scene.expect(Scene.selector('.docs-sidebar')).toExist(),
       Scene.expect(
         Scene.selector('.docs-sidebar-section.docs-sidebar-search'),
@@ -1027,7 +1026,7 @@ describe(view, () => {
   test('the docs sidebar exposes a manual collapsed-state toggle', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.given(modelWithRoute(ComponentsIndexRoute({}))),
       Scene.expect(
         Scene.role('button', { name: 'Browse components' }),
       ).toHaveAttr('aria-expanded', 'false'),
@@ -1056,7 +1055,7 @@ describe(view, () => {
   ])('the docs TOC stays off %s routes', route => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(route)),
+      Scene.given(modelWithRoute(route)),
       Scene.expect(Scene.selector('.docs-toc')).not.toExist(),
       Scene.expect(Scene.text('On this page')).not.toExist(),
     )
@@ -1065,7 +1064,7 @@ describe(view, () => {
   test('Home renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(HomeRoute({}))),
+      Scene.given(modelWithRoute(HomeRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Foldkit CN' })).toExist(),
     )
   })
@@ -1073,7 +1072,7 @@ describe(view, () => {
   test('Docs renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(DocsRoute({}))),
+      Scene.given(modelWithRoute(DocsRoute({}))),
       Scene.expect(
         Scene.role('heading', { name: 'Documentation overview' }),
       ).toExist(),
@@ -1083,7 +1082,7 @@ describe(view, () => {
   test('Components renders its page heading and filters private rows out', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(ComponentsIndexRoute({}))),
+      Scene.given(modelWithRoute(ComponentsIndexRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Components' })).toExist(),
       Scene.expect(Scene.text('Example Preview')).not.toExist(),
     )
@@ -1092,7 +1091,7 @@ describe(view, () => {
   test('Component namespace renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(ComponentsNamespaceRoute({ namespace: 'base-ui' })),
       ),
       Scene.expect(
@@ -1104,7 +1103,7 @@ describe(view, () => {
   test('Component detail renders the shadcn Button docs sections', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1127,7 +1126,7 @@ describe(view, () => {
   test('Component detail renders Button relationships and quality data', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1152,7 +1151,7 @@ describe(view, () => {
   test('Button detail renders install and import snippets from the public contract', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1180,7 +1179,7 @@ describe(view, () => {
   test('Button detail renders install tabs and shared usage code panels', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1279,7 +1278,7 @@ describe(view, () => {
   test('Typography detail renders docs-only guidance without install snippets', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'typography' }),
         ),
@@ -1309,7 +1308,7 @@ describe(view, () => {
   test('Button detail renders live example previews and snippets', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1338,7 +1337,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1403,7 +1402,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'base-ui', slug: 'toast' }),
         ),
@@ -1463,7 +1462,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'base-ui', slug: 'toast' }),
         ),
@@ -1722,7 +1721,7 @@ describe(view, () => {
   test('Component detail table of contents links to individual examples', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -1740,7 +1739,7 @@ describe(view, () => {
   test('Item detail renders actual live examples from generated docs', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'item' }),
         ),
@@ -1768,7 +1767,7 @@ describe(view, () => {
   test('Button Group detail renders actual live examples from generated docs', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button-group' }),
         ),
@@ -1797,7 +1796,7 @@ describe(view, () => {
   test('Base UI Button detail renders live example previews and snippets', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'base-ui', slug: 'button' }),
         ),
@@ -1826,7 +1825,7 @@ describe(view, () => {
   test('Base UI Input detail renders usable live example previews and snippets', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'base-ui', slug: 'input' }),
         ),
@@ -1854,7 +1853,7 @@ describe(view, () => {
   test('Radio Group detail renders live example previews and snippets', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'radio-group' }),
         ),
@@ -1882,7 +1881,7 @@ describe(view, () => {
   test('Radio Group live examples update selected options', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'radio-group' }),
         ),
@@ -1917,7 +1916,7 @@ describe(view, () => {
   test('Calendar live examples update selected dates', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'calendar' }),
         ),
@@ -1953,7 +1952,7 @@ describe(view, () => {
   test('Command live examples open their menu dialogs', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'command' }),
         ),
@@ -1986,7 +1985,7 @@ describe(view, () => {
   test('Private component detail explains availability without an install command', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({
             namespace: 'local',
@@ -2011,7 +2010,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'button' }),
         ),
@@ -2519,7 +2518,7 @@ describe(view, () => {
   test('ProgressControlled live preview renders a progressbar and slider', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'progress' }),
         ),
@@ -2548,7 +2547,7 @@ describe(view, () => {
   test('form and selection live previews render repaired descriptions and tabs content', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'checkbox' }),
         ),
@@ -2571,7 +2570,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'field' }),
         ),
@@ -2586,7 +2585,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'switch' }),
         ),
@@ -2603,7 +2602,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'collapsible' }),
         ),
@@ -2624,7 +2623,7 @@ describe(view, () => {
 
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'tabs' }),
         ),
@@ -2653,7 +2652,7 @@ describe(view, () => {
   test('Registry renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(RegistryRoute({}))),
+      Scene.given(modelWithRoute(RegistryRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Registry' })).toExist(),
     )
   })
@@ -2661,7 +2660,7 @@ describe(view, () => {
   test('Registry Schema renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(RegistrySchemaRoute({}))),
+      Scene.given(modelWithRoute(RegistrySchemaRoute({}))),
       Scene.expect(
         Scene.role('heading', { name: 'Registry Schema' }),
       ).toExist(),
@@ -2671,7 +2670,7 @@ describe(view, () => {
   test('Registry Lifecycle renders its page heading', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(RegistryLifecycleRoute({}))),
+      Scene.given(modelWithRoute(RegistryLifecycleRoute({}))),
       Scene.expect(
         Scene.role('heading', { name: 'Registry Lifecycle' }),
       ).toExist(),
@@ -2681,7 +2680,7 @@ describe(view, () => {
   test('Roadmap renders structured counts, candidates, and blockers', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(RoadmapRoute({}))),
+      Scene.given(modelWithRoute(RoadmapRoute({}))),
       Scene.expect(Scene.role('heading', { name: 'Roadmap' })).toExist(),
       Scene.expect(Scene.text('38 of 38')).toExist(),
       Scene.expect(Scene.text('62 of 63')).toExist(),
@@ -2709,7 +2708,7 @@ describe(view, () => {
   test('shadcn toast route now falls through to Not Found', () => {
     Scene.scene(
       { update, view },
-      Scene.with(
+      Scene.given(
         modelWithRoute(
           ComponentDetailRoute({ namespace: 'shadcn', slug: 'toast' }),
         ),
@@ -2724,7 +2723,7 @@ describe(view, () => {
   test('Not Found renders its page heading and path', () => {
     Scene.scene(
       { update, view },
-      Scene.with(modelWithRoute(NotFoundRoute({ path: '/oops' }))),
+      Scene.given(modelWithRoute(NotFoundRoute({ path: '/oops' }))),
       Scene.expect(Scene.role('heading', { name: 'Page Not Found' })).toExist(),
       Scene.expect(Scene.text('The path "/oops"', { exact: false })).toExist(),
     )

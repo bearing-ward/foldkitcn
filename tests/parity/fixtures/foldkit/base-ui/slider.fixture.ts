@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Slider from '../../../../../src/registry/base-ui/slider'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

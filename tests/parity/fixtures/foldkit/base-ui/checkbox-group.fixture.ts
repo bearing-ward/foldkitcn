@@ -1,5 +1,6 @@
 import { Option } from 'effect'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as CheckboxGroup from '../../../../../src/registry/base-ui/checkbox-group'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

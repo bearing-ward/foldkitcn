@@ -91,7 +91,10 @@ const pageCountFor = (rowCount: number, pageSize: number): number =>
 const clampedPageIndex = (pageIndex: number, pageCount: number): number =>
   Math.min(Math.max(pageIndex, 0), maxPageIndex(pageCount))
 
-const compareValues = (left: string | number, right: string | number): number =>
+const compareValues = (
+  left: string | number,
+  right: string | number,
+): number =>
   typeof left === 'number' && typeof right === 'number'
     ? left - right
     : String(left).localeCompare(String(right))

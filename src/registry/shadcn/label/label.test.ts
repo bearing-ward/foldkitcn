@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { LabelDemo, LabelRtl } from './examples'
 import {
@@ -100,7 +101,7 @@ describe('shadcn/label view', () => {
             ariaDescribedBy: 'email-help',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="label"]')).toHaveAttr(
           'for',
           'email',
@@ -128,7 +129,7 @@ describe('shadcn/label view', () => {
             dir: 'rtl',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="label"]')).toHaveAttr(
           'for',
           'email',
@@ -157,7 +158,7 @@ describe('shadcn/label view', () => {
                 ),
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.label('Notifications')).toHaveAttr(
           'type',
           'checkbox',
@@ -187,7 +188,7 @@ describe('shadcn/label view', () => {
                 ),
             }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="label"]')).toHaveAttr(
           'data-disabled',
           'true',
@@ -200,7 +201,7 @@ describe('shadcn/label view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => LabelDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="label"]')).toHaveText(
           'Accept terms and conditions',
         ),
@@ -211,7 +212,7 @@ describe('shadcn/label view', () => {
       )
       Scene.scene(
         { update, view: () => LabelRtl() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[dir="rtl"]')).toExist(),
       )
     }).not.toThrow()

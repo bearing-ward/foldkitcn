@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   InputOTPDisabled,
@@ -96,7 +97,7 @@ describe('shadcn/input-otp view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewInputOTP({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-slot', 'input-otp'),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'class',
@@ -131,7 +132,7 @@ describe('shadcn/input-otp view', () => {
             isInvalid: true,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#otp')).toHaveAttr('disabled', 'true'),
         Scene.expect(Scene.selector('#otp')).toHaveAttr('aria-invalid', 'true'),
         Scene.expect(Scene.selector('#otp')).toHaveAttr('data-disabled'),
@@ -143,19 +144,19 @@ describe('shadcn/input-otp view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => InputOTPDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#input-otp-demo')).toHaveValue('1'),
       )
       Scene.scene(
         { update, view: () => InputOTPSeparatorExample() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="input-otp-separator"]'),
         ).toExist(),
       )
       Scene.scene(
         { update, view: () => InputOTPDisabled() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#disabled')).toHaveAttr(
           'disabled',
           'true',
@@ -163,7 +164,7 @@ describe('shadcn/input-otp view', () => {
       )
       Scene.scene(
         { update, view: () => InputOTPInvalid() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('#input-otp-invalid')).toHaveAttr(
           'aria-invalid',
           'true',
@@ -171,7 +172,7 @@ describe('shadcn/input-otp view', () => {
       )
       Scene.scene(
         { update, view: () => InputOTPForm() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Verify your login')).toExist(),
         Scene.expect(Scene.selector('#otp-verification')).toHaveAttr(
           'required',

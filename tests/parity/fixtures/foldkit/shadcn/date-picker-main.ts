@@ -1,7 +1,8 @@
 import { Calendar } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Document } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import {
   DatePickerMessage,

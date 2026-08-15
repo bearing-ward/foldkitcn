@@ -1,8 +1,9 @@
 import { Option, Predicate, Schema as S } from 'effect'
 import { Mount } from 'foldkit'
-import type { Command } from 'foldkit'
 import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import type { Command } from '#foldkit-command'
+import { html } from '#foldkit-html'
 
 import {
   anchorPlacement,
@@ -348,7 +349,7 @@ const popoverChangeReason = (
 export const commandForOpenChange = (
   config: Pick<MenuOptions, 'id' | 'triggerId' | 'triggerSelector'>,
   change: MenuOpenChange,
-): Command.Command<Popover.CommandMessage> =>
+): Command<Popover.CommandMessage> =>
   Popover.commandForOpenChange(
     {
       id: config.id,

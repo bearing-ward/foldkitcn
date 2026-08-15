@@ -170,7 +170,7 @@ describe(update, () => {
     test('updates the model route from a URL change', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(
           ChangedUrl({
             url: urlOrThrow('http://localhost/components/shadcn/button'),
@@ -187,7 +187,7 @@ describe(update, () => {
     test('an unknown path falls through to NotFound', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(
           ChangedUrl({ url: urlOrThrow('http://localhost/somewhere/else') }),
         ),
@@ -200,7 +200,7 @@ describe(update, () => {
     test('scrolls to URL hash targets after route changes', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(
           ChangedUrl({
             url: urlOrThrow(
@@ -231,7 +231,7 @@ describe(update, () => {
 
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(ClickedCopySnippet({ text })),
         Story.Command.expectExact(CopySnippet({ text })),
         Story.Command.resolve(
@@ -253,7 +253,7 @@ describe(update, () => {
 
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(SucceededCopySnippet({ text })),
         Story.model(nextModel => {
           expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
@@ -273,7 +273,7 @@ describe(update, () => {
     test('does not change copied state after a failed copy', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(FailedCopySnippet()),
         Story.model(nextModel => {
           expect(HashSet.size(nextModel.copiedSnippets)).toBe(0)
@@ -291,7 +291,7 @@ describe(update, () => {
 
       Story.story(
         update,
-        Story.with(copiedModel),
+        Story.given(copiedModel),
         Story.message(SucceededCopySnippet({ text })),
         Story.model(nextModel => {
           expect(HashSet.has(nextModel.copiedSnippets, text)).toBe(true)
@@ -305,7 +305,7 @@ describe(update, () => {
     test('toggles the CommandDialogDemo live example', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(PressedLiveExampleCommandDialogShortcut()),
         Story.model(nextModel => {
           expect(
@@ -331,7 +331,7 @@ describe(update, () => {
     test('stores component search input and starts Pagefind search', () => {
       Story.story(
         update,
-        Story.with(model),
+        Story.given(model),
         Story.message(UpdatedSearchQuery({ value: 'button' })),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('button')
@@ -361,7 +361,7 @@ describe(update, () => {
     test('clearing the search input empties the query', () => {
       Story.story(
         update,
-        Story.with({ ...model, searchQuery: 'button' }),
+        Story.given({ ...model, searchQuery: 'button' }),
         Story.message(UpdatedSearchQuery({ value: '' })),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('')
@@ -376,7 +376,7 @@ describe(update, () => {
     test('clears the stored component search query', () => {
       Story.story(
         update,
-        Story.with({ ...model, searchQuery: 'button' }),
+        Story.given({ ...model, searchQuery: 'button' }),
         Story.message(ClickedClearSearch()),
         Story.model(nextModel => {
           expect(nextModel.searchQuery).toBe('')

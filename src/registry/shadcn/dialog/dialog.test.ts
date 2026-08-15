@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as Dialog from './index'
 import type { ViewConfig } from './index'
@@ -149,7 +150,7 @@ describe('shadcn/dialog view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDialog({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="dialog-overlay"]')).toHaveAttr(
           'class',
           Dialog.dialogOverlayClassName(),
@@ -191,7 +192,7 @@ describe('shadcn/dialog view', () => {
             modal: false,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="dialog"]')).toHaveAttr(
           'data-modal',
           'false',

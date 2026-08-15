@@ -77,7 +77,7 @@ describe('shadcn/slider view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSlider({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr('data-slot', 'slider'),
         Scene.expect(Scene.selector('[data-slot="slider-track"]')).toHaveAttr(
           'class',
@@ -106,7 +106,7 @@ describe('shadcn/slider view', () => {
             className: 'h-40',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.role('group')).toHaveAttr(
           'data-orientation',
           'vertical',
@@ -134,7 +134,7 @@ describe('shadcn/slider view', () => {
             step: 10,
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-index="0"]')).toHaveStyle(
           'insetInlineStart',
           'calc(20% + 3.6px)',

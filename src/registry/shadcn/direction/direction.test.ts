@@ -4,8 +4,9 @@ import { Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { DirectionDemo, DirectionRtlCard } from './examples'
 import * as Direction from './index'
@@ -50,7 +51,7 @@ describe('shadcn/direction schema and helpers', () => {
     expect(S.decodeUnknownSync(Direction.Direction)('ltr')).toBe('ltr')
     expect(S.decodeUnknownSync(Direction.Direction)('rtl')).toBe('rtl')
     expect(() => S.decodeUnknownSync(Direction.Direction)('ttb')).toThrow(
-      /ttb/u,
+      /Expected/u,
     )
   })
 
@@ -74,7 +75,7 @@ describe('shadcn/direction view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewDirection({ direction: 'ltr', lang: 'en' }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-direction="ltr"]')).toHaveAttr(
           'dir',
           'ltr',
@@ -99,7 +100,7 @@ describe('shadcn/direction view', () => {
             className: 'direction-shell',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-direction="rtl"]')).toHaveAttr(
           'dir',
           'rtl',
@@ -121,7 +122,7 @@ describe('shadcn/direction view', () => {
     expect(() => {
       Scene.scene(
         { update, view: () => DirectionDemo() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card"]')).toHaveAttr(
           'data-direction',
           'ltr',
@@ -133,7 +134,7 @@ describe('shadcn/direction view', () => {
       )
       Scene.scene(
         { update, view: () => DirectionRtlCard() },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="card"]')).toHaveAttr(
           'data-direction',
           'rtl',

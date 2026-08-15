@@ -1,6 +1,7 @@
 import { Array as EffectArray } from 'effect'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { cn } from '../../../utils/cn'
 import { Card, CardContent } from '../card'

@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   MessageScrollerDemo,
@@ -74,7 +75,7 @@ describe('shadcn/message-scroller scene', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="message-scroller"]'),
         ).toExist(),
@@ -108,7 +109,7 @@ describe('shadcn/message-scroller scene', () => {
             }),
           ),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.role('button', { name: 'Scroll to end' }),
         ).toHaveAttr('data-active', 'false'),
@@ -120,7 +121,7 @@ describe('shadcn/message-scroller scene', () => {
     expect(() => {
       Scene.scene(
         { update, view: view(MessageScrollerDemo()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text(
             'The chat viewport should stay pinned while the assistant streams.',
@@ -130,13 +131,13 @@ describe('shadcn/message-scroller scene', () => {
       )
       Scene.scene(
         { update, view: view(MessageScrollerScrollable()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('1 new message')).toExist(),
         Scene.expect(Scene.role('status')).toExist(),
       )
       Scene.scene(
         { update, view: view(MessageScrollerLoadHistory()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Load earlier messages')).toExist(),
         Scene.expect(
           Scene.role('button', { name: 'Scroll to earlier messages' }),
@@ -144,14 +145,14 @@ describe('shadcn/message-scroller scene', () => {
       )
       Scene.scene(
         { update, view: view(MessageScrollerOpeningPosition()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.text('What happens when the reader scrolls up?'),
         ).toExist(),
       )
       Scene.scene(
         { update, view: view(MessageScrollerEmpty()) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.text('Morning, shadcn!')).toExist(),
       )
     }).not.toThrow()

@@ -1,6 +1,7 @@
 import { Array } from 'effect'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Button from '../button'
 import { Field, FieldGroup, FieldLabel } from '../field'

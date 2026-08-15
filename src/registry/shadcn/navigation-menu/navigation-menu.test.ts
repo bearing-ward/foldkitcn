@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import { NavigationMenuDemo, navigationMenuExampleViews } from './examples'
 import * as NavigationMenu from './index'
@@ -179,7 +180,7 @@ describe('shadcn/navigation-menu view', () => {
             viewportClassName: 'custom-viewport',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="navigation-menu"]'),
         ).toHaveAttr('data-side', 'bottom'),
@@ -246,7 +247,7 @@ describe('shadcn/navigation-menu view', () => {
             viewportActivationDirection: 'right',
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-slot="navigation-menu"]'),
         ).toHaveAttr('dir', 'rtl'),
@@ -286,7 +287,7 @@ describe('shadcn/navigation-menu examples', () => {
               onValueChange: () => 'SelectedNavigationMenuValue',
             }),
         },
-        Scene.with({}),
+        Scene.given({}),
         Scene.expect(
           Scene.selector(
             '[data-slot="navigation-menu-item"][data-value="components"]',

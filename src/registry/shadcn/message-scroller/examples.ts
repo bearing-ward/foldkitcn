@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { Bubble, BubbleContent } from '../bubble'
 import { view as Button } from '../button'

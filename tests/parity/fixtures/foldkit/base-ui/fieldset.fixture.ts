@@ -1,4 +1,4 @@
-import { html } from 'foldkit/html'
+import { html } from '#foldkit-html'
 
 import * as Fieldset from '../../../../../src/registry/base-ui/fieldset'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

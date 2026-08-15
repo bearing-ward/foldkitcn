@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as ScrollArea from './index'
 import type { ViewConfig } from './index'
@@ -201,7 +202,7 @@ describe('base-ui/scroll-area view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="root"]')).toHaveAttr(
           'role',
           'presentation',
@@ -252,7 +253,7 @@ describe('base-ui/scroll-area view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-testid="viewport"]')).toHaveAttr(
           'tabindex',
           '-1',
@@ -286,7 +287,7 @@ describe('base-ui/scroll-area view', () => {
             ],
           }),
         },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(
           Scene.selector('[data-testid="vertical-scrollbar"]'),
         ).toHaveAttr('data-scrolling'),

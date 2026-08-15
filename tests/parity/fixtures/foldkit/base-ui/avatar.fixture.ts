@@ -1,5 +1,6 @@
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import * as Avatar from '../../../../../src/registry/base-ui/avatar'
 import type { FixtureCase, FixtureSnapshot } from '../../../fixture'

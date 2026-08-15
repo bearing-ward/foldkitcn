@@ -1,6 +1,7 @@
 import { Array } from 'effect'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
+
+import { html } from '#foldkit-html'
 
 import { view as Drawer } from './index'
 import type { DrawerDirection, DrawerOpenChange } from './index'

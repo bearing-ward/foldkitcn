@@ -4,10 +4,11 @@ import { Array as EffectArray, Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   CarouselApi,
@@ -168,7 +169,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.expect(Scene.role('region')).toHaveAttr(
           'aria-roledescription',
           'carousel',
@@ -191,7 +192,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.expect(
           Scene.role('button', { name: 'Previous slide' }),
         ).toBeDisabled(),
@@ -218,7 +219,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.click(Scene.role('button', { name: 'Next slide' })),
         Scene.expect(
           Scene.role('button', { name: 'Previous slide' }),
@@ -238,7 +239,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.expect(
           Scene.role('button', { name: 'Previous slide' }),
         ).toBeDisabled(),
@@ -254,7 +255,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel()),
+        Scene.given(initialModel()),
         Scene.keydown(Scene.role('region'), 'ArrowRight'),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
@@ -271,7 +272,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewCarousel() },
-        Scene.with(initialModel({ orientation: 'vertical' })),
+        Scene.given(initialModel({ orientation: 'vertical' })),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
         ).toHaveAttr(
@@ -316,7 +317,7 @@ describe('shadcn/carousel view', () => {
     expect(() => {
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselDemo()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expectAll(
           Scene.all.selector('[data-slot="carousel-item"]'),
         ).toHaveCount(5),
@@ -326,7 +327,7 @@ describe('shadcn/carousel view', () => {
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselSize()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(Scene.selector('[data-slot="carousel-item"]')).toHaveAttr(
           'class',
           Carousel.carouselItemClassName({
@@ -339,14 +340,14 @@ describe('shadcn/carousel view', () => {
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselMultiple()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="carousel-previous"]'),
         ).toExist(),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselSpacing()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
         ).toHaveAttr(
@@ -356,7 +357,7 @@ describe('shadcn/carousel view', () => {
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselOrientation()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(
           Scene.selector('[data-slot="carousel-content"] div'),
         ).toHaveAttr(
@@ -366,12 +367,12 @@ describe('shadcn/carousel view', () => {
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselApi()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(Scene.text('Slide 1 of 5')).toBeVisible(),
       )
       Scene.scene(
         { update: staticUpdate, view: staticView(CarouselRtl()) },
-        Scene.with(staticModel),
+        Scene.given(staticModel),
         Scene.expect(Scene.selector('[data-slot="carousel"]')).toHaveAttr(
           'dir',
           'rtl',

@@ -3,8 +3,9 @@
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import {
   groupView as KbdGroup,
@@ -91,7 +92,7 @@ describe('shadcn/kbd views', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewKbd({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('kbd')).toHaveAttr('data-slot', 'kbd'),
         Scene.expect(Scene.selector('kbd')).toHaveAttr('class', kbdClassName()),
       )
@@ -102,7 +103,7 @@ describe('shadcn/kbd views', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewKbdGroup({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('kbd')).toHaveAttr(
           'data-slot',
           'kbd-group',

@@ -4,10 +4,11 @@ import { Match as M, Schema as S } from 'effect'
 import { Scene } from 'foldkit'
 import type { Command } from 'foldkit'
 import type { Html } from 'foldkit/html'
-import { html } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 import { describe, expect, test } from 'vitest'
+
+import { html } from '#foldkit-html'
 
 import * as BaseDialog from '../../base-ui/dialog'
 import * as Sheet from './index'
@@ -166,7 +167,7 @@ describe('shadcn/sheet view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSheet({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('[data-slot="sheet"]')).toHaveAttr(
           'data-modal',
           'true',
@@ -218,7 +219,7 @@ describe('shadcn/sheet view', () => {
             side: 'left',
           }),
         },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('[data-slot="sheet"]')).toHaveAttr(
           'data-modal',
           'false',
@@ -255,7 +256,7 @@ describe('shadcn/sheet view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSheet({ forceMount: true }) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.expect(Scene.selector('[data-slot="sheet-content"]')).toHaveAttr(
           'data-closed',
         ),
@@ -268,7 +269,7 @@ describe('shadcn/sheet view', () => {
       )
       Scene.scene(
         { update, view: viewSheet({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('[data-slot="sheet-content"]')).toHaveAttr(
           'data-open',
         ),
@@ -283,7 +284,7 @@ describe('shadcn/sheet view', () => {
     expect(() => {
       Scene.scene(
         { update, view: viewSheet({}) },
-        Scene.with(initialModel),
+        Scene.given(initialModel),
         Scene.click(Scene.role('button', { name: 'Open sheet' })),
         Scene.expect(Scene.selector('#profile-sheet')).toHaveAttr('open'),
         Scene.expect(Scene.text('Reason trigger-press')).toExist(),
@@ -292,13 +293,13 @@ describe('shadcn/sheet view', () => {
       )
       Scene.scene(
         { update, view: viewSheet({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.click(Scene.selector('div[role="presentation"]')),
         Scene.expect(Scene.text('Reason outside-press')).toExist(),
       )
       Scene.scene(
         { update, view: viewSheet({}) },
-        Scene.with({ ...initialModel, open: true }),
+        Scene.given({ ...initialModel, open: true }),
         Scene.expect(Scene.selector('#profile-sheet')).toHaveHandler('cancel'),
       )
     }).not.toThrow()
