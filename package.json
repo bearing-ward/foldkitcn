@@ -112,5 +112,8 @@
     "ultracite": "7.10.5",
     "vite": "^8.2.1",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "@hono/node-server": "1.19.17"
   }
 }
