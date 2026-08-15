@@ -134,6 +134,6 @@ None.
 
 ## Blocked
 
-| Item           | Readiness | Parity      | URLs                                                  | Blockers                                                                                                                                                                                                                                                                                                 |
-| -------------- | --------- | ----------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `shadcn/chart` | blocked   | not-started | [origin](https://ui.shadcn.com/docs/components/chart) | ADR 0001 gates charts on an explicit native chart foundation.<br>Recharts and React are origin evidence only unless a later architecture decision accepts a runtime chart dependency.<br>The chart namespace and chart example parity harness must exist before chart items become implementation-ready. |
+| Item | Readiness | Parity | URLs | Blockers |
+| --- | --- | --- | --- | --- |
+| `shadcn/chart` | blocked | not-started | [origin](https://ui.shadcn.com/docs/components/chart) | ADR 0001 gates charts on an explicit native chart foundation.<br>Recharts and React are origin evidence only unless a later architecture decision accepts a runtime chart dependency.<br>The chart namespace and chart example parity harness must exist before chart items become implementation-ready. |
