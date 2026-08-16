@@ -1,13 +1,8 @@
 # 053 - Implement Base UI and shadcn Combobox
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/combobox registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/combobox registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/combobox` and `shadcn/combobox`. Combobox should reuse local
-input, popup, collection, and selection conventions while preserving the origin
-filtering, highlighted item, chips, and value behavior.
+Implement `base-ui/combobox` and `shadcn/combobox`. Combobox should reuse local input, popup, collection, and selection conventions while preserving the origin filtering, highlighted item, chips, and value behavior.
 
 ## Source Evidence
 
@@ -42,27 +35,20 @@ filtering, highlighted item, chips, and value behavior.
 - Add `src/registry/base-ui/combobox/index.ts` and tests.
 - Add `src/registry/shadcn/combobox/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve root, input, trigger, value, list, item, empty state, group/label,
-  chip/chips/chip remove, popup, portal, positioner, arrow, backdrop, selection,
-  highlighted item, filtering, disabled state, data attributes, and ARIA.
+- Preserve root, input, trigger, value, list, item, empty state, group/label, chip/chips/chip remove, popup, portal, positioner, arrow, backdrop, selection, highlighted item, filtering, disabled state, data attributes, and ARIA.
 
 ## Implementation Notes
 
 - Reuse Select's collection/listbox/value conventions where they match.
 - Reuse Popover's positioning and dismiss conventions.
-- Query text, selected values, highlighted item, and chips should be model-owned
-  data with Effect Schema-derived types.
-- shadcn Combobox composes local `base-ui/combobox`, `shadcn/button`,
-  `shadcn/input`, and `utils/cn` as needed.
+- Query text, selected values, highlighted item, and chips should be model-owned data with Effect Schema-derived types.
+- shadcn Combobox composes local `base-ui/combobox`, `shadcn/button`, `shadcn/input`, and `utils/cn` as needed.
 
 ## Testing
 
-- Port the Base UI Combobox tests semantically for every part in the dossier,
-  including chips, filtering, empty state, keyboard navigation, selection, and
-  popup lifecycle.
+- Port the Base UI Combobox tests semantically for every part in the dossier, including chips, filtering, empty state, keyboard navigation, selection, and popup lifecycle.
 - Replicate shadcn Combobox examples.
-- Add parity for input/listbox structure, filtering states, selected values,
-  chips, dimensions, and styles.
+- Add parity for input/listbox structure, filtering states, selected values, chips, dimensions, and styles.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -76,5 +62,4 @@ filtering, highlighted item, chips, and value behavior.
 ## STOP Conditions
 
 - Stop if Select did not settle a reusable collection/listbox model.
-- Stop if filtering/chips require a broader local collection architecture before
-  Combobox can be implemented without duplication.
+- Stop if filtering/chips require a broader local collection architecture before Combobox can be implemented without duplication.

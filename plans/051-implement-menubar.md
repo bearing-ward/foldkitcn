@@ -1,13 +1,8 @@
 # 051 - Implement Base UI and shadcn Menubar
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/menubar registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/menubar registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/menubar` and `shadcn/menubar`, reusing the local Menu
-foundation for menu item semantics while adding menubar root navigation and
-trigger behavior.
+Implement `base-ui/menubar` and `shadcn/menubar`, reusing the local Menu foundation for menu item semantics while adding menubar root navigation and trigger behavior.
 
 ## Source Evidence
 
@@ -42,21 +35,17 @@ trigger behavior.
 - Add `src/registry/base-ui/menubar/index.ts` and tests.
 - Add `src/registry/shadcn/menubar/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve menubar root, menu triggers, menu popup composition, roving focus,
-  keyboard navigation, checked/radio items, submenus, data attributes, and ARIA.
+- Preserve menubar root, menu triggers, menu popup composition, roving focus, keyboard navigation, checked/radio items, submenus, data attributes, and ARIA.
 
 ## Implementation Notes
 
-- Reuse `base-ui/menu` behavior for item, group, checked, radio, submenu, and
-  popup semantics.
-- Menubar should own only the additional horizontal root and trigger navigation
-  behavior.
+- Reuse `base-ui/menu` behavior for item, group, checked, radio, submenu, and popup semantics.
+- Menubar should own only the additional horizontal root and trigger navigation behavior.
 - shadcn Menubar composes local `base-ui/menubar` and `utils/cn`.
 
 ## Testing
 
-- Port `Menubar.test.tsx` semantically and cover menu composition through Scene
-  tests.
+- Port `Menubar.test.tsx` semantically and cover menu composition through Scene tests.
 - Replicate shadcn Menubar examples, including checkbox/radio/submenu cases.
 - Add parity for root structure, keyboard navigation, menu opening, and styles.
 - Run:
@@ -71,5 +60,4 @@ trigger behavior.
 
 ## STOP Conditions
 
-- Stop if plan 043 is not landed or Menubar would duplicate Menu item/submenu
-  behavior.
+- Stop if plan 043 is not landed or Menubar would duplicate Menu item/submenu behavior.

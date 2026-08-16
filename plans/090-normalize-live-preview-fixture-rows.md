@@ -17,25 +17,25 @@ These rows are the first blocker in the live-preview backlog: the docs generator
 
 ## Target Rows
 
-| Item                   | Example id                             | Example title              |
-| ---------------------- | -------------------------------------- | -------------------------- |
-| `base-ui/avatar`       | `base-ui/avatar-hero`                  | `AvatarHero`               |
-| `base-ui/field`        | `base-ui/field-foldkit-fixture`        | `FieldFoldkitFixture`      |
-| `base-ui/field`        | `base-ui/field-origin-fixture`         | `FieldOriginFixture`       |
-| `base-ui/fieldset`     | `base-ui/fieldset-foldkit-fixture`     | `FieldsetFoldkitFixture`   |
-| `base-ui/fieldset`     | `base-ui/fieldset-origin-fixture`      | `FieldsetOriginFixture`    |
-| `base-ui/form`         | `base-ui/form-foldkit-fixture`         | `FormFoldkitFixture`       |
-| `base-ui/form`         | `base-ui/form-origin-fixture`          | `FormOriginFixture`        |
-| `base-ui/number-field` | `base-ui/number-field-foldkit-fixture` | `NumberFieldFixture`       |
-| `base-ui/number-field` | `base-ui/number-field-origin-fixture`  | `NumberFieldOriginFixture` |
-| `base-ui/otp-field`    | `base-ui/otp-field-foldkit-fixture`    | `OTPFieldFoldkitFixture`   |
-| `base-ui/otp-field`    | `base-ui/otp-field-origin-fixture`     | `OTPFieldOriginFixture`    |
-| `shadcn/field`         | `shadcn/field-foldkit-fixture`         | `FieldFoldkitFixture`      |
-| `shadcn/field`         | `shadcn/field-origin-fixture`          | `FieldOriginFixture`       |
-| `shadcn/input-otp`     | `shadcn/input-otp-foldkit-fixture`     | `InputOTPFoldkitFixture`   |
-| `shadcn/input-otp`     | `shadcn/input-otp-origin-fixture`      | `InputOTPOriginFixture`    |
-| `shadcn/kbd`           | `shadcn/kbd-group`                     | `KbdGroup`                 |
-| `shadcn/spinner`       | `shadcn/spinner-empty`                 | `SpinnerEmpty`             |
+| Item | Example id | Example title |
+| --- | --- | --- |
+| `base-ui/avatar` | `base-ui/avatar-hero` | `AvatarHero` |
+| `base-ui/field` | `base-ui/field-foldkit-fixture` | `FieldFoldkitFixture` |
+| `base-ui/field` | `base-ui/field-origin-fixture` | `FieldOriginFixture` |
+| `base-ui/fieldset` | `base-ui/fieldset-foldkit-fixture` | `FieldsetFoldkitFixture` |
+| `base-ui/fieldset` | `base-ui/fieldset-origin-fixture` | `FieldsetOriginFixture` |
+| `base-ui/form` | `base-ui/form-foldkit-fixture` | `FormFoldkitFixture` |
+| `base-ui/form` | `base-ui/form-origin-fixture` | `FormOriginFixture` |
+| `base-ui/number-field` | `base-ui/number-field-foldkit-fixture` | `NumberFieldFixture` |
+| `base-ui/number-field` | `base-ui/number-field-origin-fixture` | `NumberFieldOriginFixture` |
+| `base-ui/otp-field` | `base-ui/otp-field-foldkit-fixture` | `OTPFieldFoldkitFixture` |
+| `base-ui/otp-field` | `base-ui/otp-field-origin-fixture` | `OTPFieldOriginFixture` |
+| `shadcn/field` | `shadcn/field-foldkit-fixture` | `FieldFoldkitFixture` |
+| `shadcn/field` | `shadcn/field-origin-fixture` | `FieldOriginFixture` |
+| `shadcn/input-otp` | `shadcn/input-otp-foldkit-fixture` | `InputOTPFoldkitFixture` |
+| `shadcn/input-otp` | `shadcn/input-otp-origin-fixture` | `InputOTPOriginFixture` |
+| `shadcn/kbd` | `shadcn/kbd-group` | `KbdGroup` |
+| `shadcn/spinner` | `shadcn/spinner-empty` | `SpinnerEmpty` |
 
 ## Scope
 

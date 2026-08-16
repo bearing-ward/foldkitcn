@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement the Foldkit-native Base UI Fieldset primitive. This is a base-only
-form foundation and should land before Field/Form work that wants grouped form
-semantics.
+Implement the Foldkit-native Base UI Fieldset primitive. This is a base-only form foundation and should land before Field/Form work that wants grouped form semantics.
 
 ## Source Evidence
 
@@ -17,8 +15,7 @@ semantics.
 
 - Add `registry-src/base-ui/fieldset/item.json`.
 - Add `src/registry/base-ui/fieldset/index.ts`.
-- Port root, legend, description/error parts where present, disabled/invalid
-  state propagation, ARIA relationships, and data attributes.
+- Port root, legend, description/error parts where present, disabled/invalid state propagation, ARIA relationships, and data attributes.
 - Add a parity slot for `base-ui/fieldset`.
 
 ## Implementation Notes
@@ -31,8 +28,7 @@ semantics.
 ## Testing
 
 - Port Base UI fieldset tests semantically.
-- Cover disabled propagation, legend/description/error relationships, and data
-  attribute output.
+- Cover disabled propagation, legend/description/error relationships, and data attribute output.
 - Add parity for origin demos.
 - Run:
   - `bun run registry:check`
@@ -44,5 +40,4 @@ semantics.
 
 ## STOP Conditions
 
-- Stop if disabled propagation requires hidden runtime state that should instead
-  be modeled by a shared form helper.
+- Stop if disabled propagation requires hidden runtime state that should instead be modeled by a shared form helper.

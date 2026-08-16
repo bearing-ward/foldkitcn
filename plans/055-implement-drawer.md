@@ -1,13 +1,8 @@
 # 055 - Implement Base UI and shadcn Drawer
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/drawer registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/drawer registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/drawer` and `shadcn/drawer` as Foldkit-native modal drawer
-components that reuse Dialog's portal, focus, dismiss, and scroll-lock
-foundation.
+Implement `base-ui/drawer` and `shadcn/drawer` as Foldkit-native modal drawer components that reuse Dialog's portal, focus, dismiss, and scroll-lock foundation.
 
 ## Source Evidence
 
@@ -42,25 +35,19 @@ foundation.
 - Add `src/registry/base-ui/drawer/index.ts` and tests.
 - Add `src/registry/shadcn/drawer/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve root, trigger, portal, popup/content, backdrop, close, title,
-  description, indent/indent background, placement/direction if present, modal
-  behavior, focus restore, data attributes, and ARIA.
+- Preserve root, trigger, portal, popup/content, backdrop, close, title, description, indent/indent background, placement/direction if present, modal behavior, focus restore, data attributes, and ARIA.
 
 ## Implementation Notes
 
-- Reuse Dialog for modal lifecycle, portal, focus, escape/outside dismiss, and
-  aria labeling.
-- Drawer-specific placement, indentation, and styling should be represented as
-  Effect Schema variants and pure class maps.
+- Reuse Dialog for modal lifecycle, portal, focus, escape/outside dismiss, and aria labeling.
+- Drawer-specific placement, indentation, and styling should be represented as Effect Schema variants and pure class maps.
 - shadcn Drawer composes local `base-ui/drawer` and `utils/cn`.
 
 ## Testing
 
-- Port Drawer content, indent, indent background, popup, and root tests
-  semantically.
+- Port Drawer content, indent, indent background, popup, and root tests semantically.
 - Replicate shadcn Drawer examples and theme/style variants.
-- Add parity for placement, structure, dimensions, modal behavior, focus, and
-  data attributes.
+- Add parity for placement, structure, dimensions, modal behavior, focus, and data attributes.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -73,5 +60,4 @@ foundation.
 
 ## STOP Conditions
 
-- Stop if plan 033 is not landed or Drawer would fork Dialog's modal lifecycle,
-  focus, portal, or dismiss behavior.
+- Stop if plan 033 is not landed or Drawer would fork Dialog's modal lifecycle, focus, portal, or dismiss behavior.

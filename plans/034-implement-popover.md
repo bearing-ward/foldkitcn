@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement Base UI Popover and shadcn Popover together. Popover should reuse any
-overlay, portal, dismiss, or focus conventions established by Dialog while
-adding anchored positioning behavior.
+Implement Base UI Popover and shadcn Popover together. Popover should reuse any overlay, portal, dismiss, or focus conventions established by Dialog while adding anchored positioning behavior.
 
 ## Source Evidence
 
@@ -21,26 +19,20 @@ adding anchored positioning behavior.
 - Add `registry-src/shadcn/popover/item.json`.
 - Add `src/registry/base-ui/popover/index.ts`.
 - Add `src/registry/shadcn/popover/index.ts`.
-- Port root, trigger, portal, positioner, popup/content, arrow if present,
-  open/closed state, placement, collision behavior that can be represented, and
-  data attributes.
+- Port root, trigger, portal, positioner, popup/content, arrow if present, open/closed state, placement, collision behavior that can be represented, and data attributes.
 - Add parity slots for `base-ui/popover` and `shadcn/popover`.
 
 ## Implementation Notes
 
 - Open state belongs in the consuming Foldkit model.
 - Use Dialog's settled conventions for escape/outside dismiss and focus restore.
-- Treat positioning as deterministic view data where possible; isolate DOM
-  measurement behind commands if needed.
-- Keep shadcn styles local and do not depend on upstream floating/React runtime
-  packages in installable source.
+- Treat positioning as deterministic view data where possible; isolate DOM measurement behind commands if needed.
+- Keep shadcn styles local and do not depend on upstream floating/React runtime packages in installable source.
 
 ## Testing
 
-- Port Base UI popover tests semantically for trigger behavior, dismiss rules,
-  focus restore, placement attributes, and ARIA relationships.
-- Add parity for Base UI demos and shadcn examples, including dimension and
-  position tolerance where needed.
+- Port Base UI popover tests semantically for trigger behavior, dismiss rules, focus restore, placement attributes, and ARIA relationships.
+- Add parity for Base UI demos and shadcn examples, including dimension and position tolerance where needed.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -51,7 +43,5 @@ adding anchored positioning behavior.
 
 ## STOP Conditions
 
-- Stop if plan 033 is not landed and Popover would duplicate overlay/focus
-  behavior.
-- Stop if anchored positioning requires a shared measurement service before it
-  can be tested deterministically.
+- Stop if plan 033 is not landed and Popover would duplicate overlay/focus behavior.
+- Stop if anchored positioning requires a shared measurement service before it can be tested deterministically.

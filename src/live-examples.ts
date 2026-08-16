@@ -2575,37 +2575,49 @@ const selectInitialDate = (
 
 const initialDatePickerModel = (exampleId: string): DatePickerModel => {
   if (exampleId.endsWith('date-picker-basic')) {
-    return selectInitialDate(datePickerInit({
-      id: `${exampleId}-live`,
-      today: datePickerToday,
-      initialViewDate: datePickerBasicDate,
-    }), datePickerBasicDate)
+    return selectInitialDate(
+      datePickerInit({
+        id: `${exampleId}-live`,
+        today: datePickerToday,
+        initialViewDate: datePickerBasicDate,
+      }),
+      datePickerBasicDate,
+    )
   }
 
   if (exampleId.endsWith('date-picker-dob')) {
-    return selectInitialDate(datePickerInit({
-      id: `${exampleId}-live`,
-      today: datePickerToday,
-      initialViewDate: datePickerDobDate,
-      minDate: Calendar.make(1900, 1, 1),
-      maxDate: Calendar.make(2010, 12, 31),
-    }), datePickerDobDate)
+    return selectInitialDate(
+      datePickerInit({
+        id: `${exampleId}-live`,
+        today: datePickerToday,
+        initialViewDate: datePickerDobDate,
+        minDate: Calendar.make(1900, 1, 1),
+        maxDate: Calendar.make(2010, 12, 31),
+      }),
+      datePickerDobDate,
+    )
   }
 
   if (exampleId.endsWith('date-picker-rtl')) {
-    return selectInitialDate(datePickerInit({
+    return selectInitialDate(
+      datePickerInit({
+        id: `${exampleId}-live`,
+        today: datePickerToday,
+        initialViewDate: datePickerDemoDate,
+        locale: arabicLocale,
+      }),
+      datePickerDemoDate,
+    )
+  }
+
+  return selectInitialDate(
+    datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
       initialViewDate: datePickerDemoDate,
-      locale: arabicLocale,
-    }), datePickerDemoDate)
-  }
-
-  return selectInitialDate(datePickerInit({
-    id: `${exampleId}-live`,
-    today: datePickerToday,
-    initialViewDate: datePickerDemoDate,
-  }), datePickerDemoDate)
+    }),
+    datePickerDemoDate,
+  )
 }
 
 const datePickerExample = (

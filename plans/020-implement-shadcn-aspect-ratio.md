@@ -2,10 +2,7 @@
 
 ## Summary
 
-Create the Foldkit-native `shadcn/aspect-ratio` registry item from the existing
-dossier-ready row in the next-component selection. This is a shadcn-only
-component with no Base UI behavior dependency, so it is a good independent first
-item from the selection.
+Create the Foldkit-native `shadcn/aspect-ratio` registry item from the existing dossier-ready row in the next-component selection. This is a shadcn-only component with no Base UI behavior dependency, so it is a good independent first item from the selection.
 
 ## Source Evidence
 
@@ -25,18 +22,14 @@ item from the selection.
 ## Implementation Notes
 
 - Use Effect Schema literals for props and exported types.
-- Preserve the origin API shape while translating React-only child composition
-  into Foldkit `toView` or named renderer inputs.
-- Keep all shadcn styling local to the component folder and use the local `cn`
-  utility for class canonicalization.
-- The component should render a stable ratio box without runtime React,
-  `@radix-ui/react-aspect-ratio`, or browser mutation.
+- Preserve the origin API shape while translating React-only child composition into Foldkit `toView` or named renderer inputs.
+- Keep all shadcn styling local to the component folder and use the local `cn` utility for class canonicalization.
+- The component should render a stable ratio box without runtime React, `@radix-ui/react-aspect-ratio`, or browser mutation.
 
 ## Testing
 
 - Port any documented structural expectations from the shadcn source and docs.
-- Add fixture parity that compares the origin example DOM shape, dimensions, and
-  computed styles against the Foldkit implementation.
+- Add fixture parity that compares the origin example DOM shape, dimensions, and computed styles against the Foldkit implementation.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`

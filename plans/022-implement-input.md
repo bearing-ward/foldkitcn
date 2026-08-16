@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement the Foldkit-native Base UI Input primitive and shadcn Input wrapper.
-This is a foundational form-control plan and should land before Field,
-Number Field, and Form work consumes local input behavior.
+Implement the Foldkit-native Base UI Input primitive and shadcn Input wrapper. This is a foundational form-control plan and should land before Field, Number Field, and Form work consumes local input behavior.
 
 ## Source Evidence
 
@@ -21,26 +19,21 @@ Number Field, and Form work consumes local input behavior.
 - Add `registry-src/shadcn/input/item.json`.
 - Add `src/registry/base-ui/input/index.ts`.
 - Add `src/registry/shadcn/input/index.ts`.
-- Preserve value, disabled, invalid, required, read-only, placeholder, name,
-  id, type, and data attribute behavior from origin evidence.
+- Preserve value, disabled, invalid, required, read-only, placeholder, name, id, type, and data attribute behavior from origin evidence.
 - Add parity slots for `base-ui/input` and `shadcn/input`.
 
 ## Implementation Notes
 
-- Keep installable source stateless and Foldkit-native: input state belongs in
-  the consuming program model and messages, not hidden component state.
+- Keep installable source stateless and Foldkit-native: input state belongs in the consuming program model and messages, not hidden component state.
 - Expose Effect Schema-driven props and helpers for view attributes.
 - Compose shadcn Input from local Base UI Input plus local class maps and `cn`.
 - Do not import React, CVA, or upstream Base UI runtime packages.
-- Preserve Base UI accessibility and form attribute semantics exactly where
-  they are framework-independent.
+- Preserve Base UI accessibility and form attribute semantics exactly where they are framework-independent.
 
 ## Testing
 
-- Port origin tests for attributes, disabled/read-only behavior, invalid state,
-  focusability, and event payload shape as Foldkit Scene/Story tests.
-- Add parity fixtures for Base UI and shadcn demos, including class and
-  dimension checks.
+- Port origin tests for attributes, disabled/read-only behavior, invalid state, focusability, and event payload shape as Foldkit Scene/Story tests.
+- Add parity fixtures for Base UI and shadcn demos, including class and dimension checks.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -52,5 +45,4 @@ Number Field, and Form work consumes local input behavior.
 ## STOP Conditions
 
 - Stop if the component needs uncontrolled internal mutable state.
-- Stop if parity reveals a framework-level difference that needs an ADR or
-  shared form-control policy before continuing.
+- Stop if parity reveals a framework-level difference that needs an ADR or shared form-control policy before continuing.

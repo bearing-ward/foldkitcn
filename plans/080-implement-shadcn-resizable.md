@@ -1,13 +1,8 @@
 # 080 - Implement shadcn Resizable
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-resizable registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-resizable registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/resizable` as a local split-panel primitive with pointer and
-keyboard behavior, examples, docs artifacts, and parity.
+Implement `shadcn/resizable` as a local split-panel primitive with pointer and keyboard behavior, examples, docs artifacts, and parity.
 
 ## Source Evidence
 
@@ -42,22 +36,15 @@ keyboard behavior, examples, docs artifacts, and parity.
 
 ## Implementation Notes
 
-- Replace `react-resizable-panels` with a Foldkit-native model for group
-  direction, panel ids, panel sizes, active drag handle, pointer delta, collapse
-  state where supported, and keyboard resize steps.
-- Keep side effects confined to commands/subscriptions if pointer capture or
-  global pointer movement is needed; do not add raw listeners in view helpers.
-- Preserve origin handle structure, optional handle icon, horizontal and
-  vertical examples, and nested layout examples.
-- Represent panel-size constraints with Effect Schema and pure normalization
-  helpers.
+- Replace `react-resizable-panels` with a Foldkit-native model for group direction, panel ids, panel sizes, active drag handle, pointer delta, collapse state where supported, and keyboard resize steps.
+- Keep side effects confined to commands/subscriptions if pointer capture or global pointer movement is needed; do not add raw listeners in view helpers.
+- Preserve origin handle structure, optional handle icon, horizontal and vertical examples, and nested layout examples.
+- Represent panel-size constraints with Effect Schema and pure normalization helpers.
 
 ## Testing
 
-- Add Story tests for initial sizes, resize normalization, min/max constraints,
-  collapse behavior if supported, and keyboard resize steps.
-- Add Scene tests for separators, aria orientation/value attributes, keyboard
-  controls, handle focus, and example structure.
+- Add Story tests for initial sizes, resize normalization, min/max constraints, collapse behavior if supported, and keyboard resize steps.
+- Add Scene tests for separators, aria orientation/value attributes, keyboard controls, handle focus, and example structure.
 - Replicate all origin resizable examples and add parity cases.
 - Run:
   - `bun run registry:build`
@@ -73,7 +60,5 @@ keyboard behavior, examples, docs artifacts, and parity.
 
 ## STOP Conditions
 
-- Stop if robust pointer capture and keyboard resizing requires a reusable
-  interaction foundation larger than this row.
-- Stop if implementation requires `react-resizable-panels`, React hooks, or
-  upstream runtime source in installable output.
+- Stop if robust pointer capture and keyboard resizing requires a reusable interaction foundation larger than this row.
+- Stop if implementation requires `react-resizable-panels`, React hooks, or upstream runtime source in installable output.

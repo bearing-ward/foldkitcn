@@ -2,8 +2,7 @@
 
 ## Summary
 
-Implement the Foldkit-native `shadcn/label` registry item. This plan is ordered
-before Field because many shadcn form examples depend on a local Label item.
+Implement the Foldkit-native `shadcn/label` registry item. This plan is ordered before Field because many shadcn form examples depend on a local Label item.
 
 ## Source Evidence
 
@@ -28,8 +27,7 @@ before Field because many shadcn form examples depend on a local Label item.
 
 ## Testing
 
-- Add Scene coverage for `for`, nested control, disabled styling hooks, and
-  accessible name behavior.
+- Add Scene coverage for `for`, nested control, disabled styling hooks, and accessible name behavior.
 - Add parity fixtures for all origin examples.
 - Run:
   - `bun run registry:check`
@@ -41,6 +39,5 @@ before Field because many shadcn form examples depend on a local Label item.
 
 ## STOP Conditions
 
-- Stop if the current shadcn source row has no installable source and is now
-  docs/example-only.
+- Stop if the current shadcn source row has no installable source and is now docs/example-only.
 - Stop if implementation would need React Slot cloning.

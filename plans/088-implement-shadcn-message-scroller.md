@@ -1,13 +1,8 @@
 # 088 - Implement shadcn Message Scroller
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-message-scroller registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-message-scroller registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/message-scroller` as a Foldkit-native chat viewport and
-autoscroll composition over local message primitives, with examples, docs
-artifacts, and parity.
+Implement `shadcn/message-scroller` as a Foldkit-native chat viewport and autoscroll composition over local message primitives, with examples, docs artifacts, and parity.
 
 ## Source Evidence
 
@@ -32,8 +25,7 @@ artifacts, and parity.
 - Origin docs: `https://ui.shadcn.com/docs/components/message-scroller`
 - shadcn source: `repos/ui/apps/v4/styles/base-nova/ui/message-scroller.tsx`
 - Origin examples: `repos/ui/apps/v4/examples/base/message-scroller-*.tsx`
-- Origin slots include provider, scroller root, viewport, content, item, and
-  scroll button.
+- Origin slots include provider, scroller root, viewport, content, item, and scroll button.
 
 ## Scope
 
@@ -44,29 +36,16 @@ artifacts, and parity.
 
 ## Implementation Notes
 
-- Replace `@shadcn/react/message-scroller`, AI SDK hooks, and message animation
-  libraries with a Foldkit model for viewport scroll state, whether the view is
-  pinned to bottom, pending/new message state, scroll button visibility, and
-  deterministic message fixtures.
-- Compose local `shadcn/bubble`, `shadcn/button`, `shadcn/card`,
-  `shadcn/dropdown-menu`, `shadcn/empty`, `shadcn/hover-card`,
-  `shadcn/input-group`, `shadcn/marker`, `shadcn/message`, `shadcn/select`,
-  `shadcn/slider`, `shadcn/tabs`, `shadcn/toggle-group`,
-  `shadcn/tooltip`, and `utils/cn`.
-- Keep scrolling side effects in explicit commands such as `ScrollMessagesToEnd`
-  with `CompletedScrollMessagesToEnd` results; do not call DOM APIs directly in
-  view helpers.
-- Treat AI streaming, animation-library demos, and live network examples as
-  fixture-only or deferred unless existing local foundations cover them.
+- Replace `@shadcn/react/message-scroller`, AI SDK hooks, and message animation libraries with a Foldkit model for viewport scroll state, whether the view is pinned to bottom, pending/new message state, scroll button visibility, and deterministic message fixtures.
+- Compose local `shadcn/bubble`, `shadcn/button`, `shadcn/card`, `shadcn/dropdown-menu`, `shadcn/empty`, `shadcn/hover-card`, `shadcn/input-group`, `shadcn/marker`, `shadcn/message`, `shadcn/select`, `shadcn/slider`, `shadcn/tabs`, `shadcn/toggle-group`, `shadcn/tooltip`, and `utils/cn`.
+- Keep scrolling side effects in explicit commands such as `ScrollMessagesToEnd` with `CompletedScrollMessagesToEnd` results; do not call DOM APIs directly in view helpers.
+- Treat AI streaming, animation-library demos, and live network examples as fixture-only or deferred unless existing local foundations cover them.
 
 ## Testing
 
-- Add Story tests for pinned/unpinned state, new-message indicators, scroll
-  button visibility, item append behavior, and command results.
-- Add Scene tests for viewport structure, accessible button labels, keyboard
-  reachability, deterministic examples, and scroll command wiring.
-- Replicate all origin message-scroller examples that can be supported by local
-  dependencies and add origin/Foldkit parity cases.
+- Add Story tests for pinned/unpinned state, new-message indicators, scroll button visibility, item append behavior, and command results.
+- Add Scene tests for viewport structure, accessible button labels, keyboard reachability, deterministic examples, and scroll command wiring.
+- Replicate all origin message-scroller examples that can be supported by local dependencies and add origin/Foldkit parity cases.
 - Run:
   - `bun run registry:build`
   - `bun run origin:components:write`
@@ -81,7 +60,5 @@ artifacts, and parity.
 
 ## STOP Conditions
 
-- Stop if local message, bubble, marker, input-group, or empty contracts are not
-  complete.
-- Stop if source parity requires AI SDK, live network calls, animation runtime,
-  raw DOM scroll mutation in views, or `@shadcn/react/message-scroller`.
+- Stop if local message, bubble, marker, input-group, or empty contracts are not complete.
+- Stop if source parity requires AI SDK, live network calls, animation runtime, raw DOM scroll mutation in views, or `@shadcn/react/message-scroller`.

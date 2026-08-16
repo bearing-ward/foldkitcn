@@ -8,9 +8,7 @@
 - `shadcn/typography`
 - `shadcn/chart`
 
-This dossier does not implement registry source. It records the final
-outstanding rows from the pinned shadcn origin surface and keeps them blocked
-until the missing local foundations or resolver capabilities exist.
+This dossier does not implement registry source. It records the final outstanding rows from the pinned shadcn origin surface and keeps them blocked until the missing local foundations or resolver capabilities exist.
 
 ## Why These Rows Are Held
 
@@ -207,25 +205,17 @@ until the missing local foundations or resolver capabilities exist.
 - Keep these rows non-installable until local dependencies are available.
 - Use docs/example-only planning evidence for rows without primary shadcn source.
 - Keep React and origin registry paths fixture-only.
-- Replace React composition with Foldkit messages, state, commands,
-  subscriptions, Submodels, `toView`, or named part renderers as appropriate.
-- Use Effect Schema to define any future boundary data, variants, row models,
-  date models, chart config, and notification events.
-- Treat typography as local style or document primitives unless a later
-  implementation plan proves a component boundary.
-- For chart, create the native chart foundation first; do not plan a direct
-  Recharts wrapper as installable registry source.
+- Replace React composition with Foldkit messages, state, commands, subscriptions, Submodels, `toView`, or named part renderers as appropriate.
+- Use Effect Schema to define any future boundary data, variants, row models, date models, chart config, and notification events.
+- Treat typography as local style or document primitives unless a later implementation plan proves a component boundary.
+- For chart, create the native chart foundation first; do not plan a direct Recharts wrapper as installable registry source.
 
 ## Future Improve Plan Shape
 
 1. Keep these rows visible as blocked intake: `shadcn/data-table`, `shadcn/date-picker`, `shadcn/toast`, `shadcn/typography`, `shadcn/chart`.
-2. Decide whether `shadcn/typography` is installable component source,
-   style-token primitives, or docs/examples registry content.
+2. Decide whether `shadcn/typography` is installable component source, style-token primitives, or docs/examples registry content.
 3. Add a local table/query model before promoting `shadcn/data-table`.
 4. Add local date/calendar behavior before promoting `shadcn/date-picker`.
-5. Settle the notification model across `base-ui/toast`, `shadcn/sonner`, and
-   `shadcn/toast`.
-6. Add a native chart foundation before promoting `shadcn/chart` or chart
-   blocks.
-7. Run `bun run check`, `bun run typecheck`, `bun run registry:check`, and
-   `git diff --check -- plans scripts docs`.
+5. Settle the notification model across `base-ui/toast`, `shadcn/sonner`, and `shadcn/toast`.
+6. Add a native chart foundation before promoting `shadcn/chart` or chart blocks.
+7. Run `bun run check`, `bun run typecheck`, `bun run registry:check`, and `git diff --check -- plans scripts docs`.

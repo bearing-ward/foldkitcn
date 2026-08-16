@@ -2,8 +2,7 @@
 
 ## Summary
 
-Implement Base UI Checkbox and shadcn Checkbox together, preserving checked,
-unchecked, and indeterminate behavior in Foldkit-native form-control terms.
+Implement Base UI Checkbox and shadcn Checkbox together, preserving checked, unchecked, and indeterminate behavior in Foldkit-native form-control terms.
 
 ## Source Evidence
 
@@ -20,24 +19,20 @@ unchecked, and indeterminate behavior in Foldkit-native form-control terms.
 - Add `registry-src/shadcn/checkbox/item.json`.
 - Add `src/registry/base-ui/checkbox/index.ts`.
 - Add `src/registry/shadcn/checkbox/index.ts`.
-- Port root, indicator, data attributes, ARIA state, hidden input/form semantics,
-  and shadcn base-nova styling.
+- Port root, indicator, data attributes, ARIA state, hidden input/form semantics, and shadcn base-nova styling.
 - Add parity slots for `base-ui/checkbox` and `shadcn/checkbox`.
 
 ## Implementation Notes
 
 - Model checked state as a Schema union: checked, unchecked, indeterminate.
-- Keep installable source stateless; examples can update Foldkit model state via
-  messages.
-- Preserve origin data attributes such as checked, unchecked, indeterminate,
-  disabled, and invalid where present.
+- Keep installable source stateless; examples can update Foldkit model state via messages.
+- Preserve origin data attributes such as checked, unchecked, indeterminate, disabled, and invalid where present.
 - Do not add lucide-react or React as runtime dependencies for indicators.
 
 ## Testing
 
 - Port Base UI checkbox behavior tests semantically.
-- Cover pointer and keyboard toggling, disabled behavior, form value behavior,
-  indeterminate rendering, and ARIA checked values.
+- Cover pointer and keyboard toggling, disabled behavior, form value behavior, indeterminate rendering, and ARIA checked values.
 - Add origin parity for Base UI demos and shadcn examples.
 - Run:
   - `bun run registry:check`
@@ -49,7 +44,5 @@ unchecked, and indeterminate behavior in Foldkit-native form-control terms.
 
 ## STOP Conditions
 
-- Stop if indeterminate state cannot be represented without DOM mutation in the
-  installable source.
-- Stop if dependency classification requires an unimplemented installable Field
-  item rather than a fixture-only example shell.
+- Stop if indeterminate state cannot be represented without DOM mutation in the installable source.
+- Stop if dependency classification requires an unimplemented installable Field item rather than a fixture-only example shell.

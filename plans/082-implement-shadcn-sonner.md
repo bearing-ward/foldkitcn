@@ -1,13 +1,8 @@
 # 082 - Implement shadcn Sonner
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-sonner registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-sonner registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/sonner` as a styled local toast wrapper over `base-ui/toast`,
-with shadcn examples, theme-local classes, and origin parity.
+Implement `shadcn/sonner` as a styled local toast wrapper over `base-ui/toast`, with shadcn examples, theme-local classes, and origin parity.
 
 ## Source Evidence
 
@@ -42,19 +36,14 @@ with shadcn examples, theme-local classes, and origin parity.
 
 ## Implementation Notes
 
-- Compose the local `base-ui/toast` primitive from plan 081. Do not import the
-  upstream `sonner` package into installable source.
-- Replace `next-themes` with an explicit Effect Schema theme option or local
-  docs fixture state that maps to the same class/data-attribute output.
-- Preserve origin toast positions, rich colors, action/close styling, promise
-  states where supported by `base-ui/toast`, and examples.
-- Compose local `shadcn/button` and `utils/cn`; replace `lucide-react` with
-  inline local icons.
+- Compose the local `base-ui/toast` primitive from plan 081. Do not import the upstream `sonner` package into installable source.
+- Replace `next-themes` with an explicit Effect Schema theme option or local docs fixture state that maps to the same class/data-attribute output.
+- Preserve origin toast positions, rich colors, action/close styling, promise states where supported by `base-ui/toast`, and examples.
+- Compose local `shadcn/button` and `utils/cn`; replace `lucide-react` with inline local icons.
 
 ## Testing
 
-- Add tests for theme option mapping, toast type styling, positions, action and
-  close styling, class canonicalization, and example structure.
+- Add tests for theme option mapping, toast type styling, positions, action and close styling, class canonicalization, and example structure.
 - Add Scene tests for accessible live regions and interactive examples.
 - Replicate origin sonner examples and add origin/Foldkit parity cases.
 - Run:
@@ -71,7 +60,5 @@ with shadcn examples, theme-local classes, and origin parity.
 
 ## STOP Conditions
 
-- Stop if plan 081 is not complete and the local `base-ui/toast` contract is
-  unavailable.
-- Stop if fidelity would require importing `sonner`, `next-themes`, React
-  hooks, or origin repo paths into installable source.
+- Stop if plan 081 is not complete and the local `base-ui/toast` contract is unavailable.
+- Stop if fidelity would require importing `sonner`, `next-themes`, React hooks, or origin repo paths into installable source.

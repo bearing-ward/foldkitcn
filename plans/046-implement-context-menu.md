@@ -1,13 +1,8 @@
 # 046 - Implement Base UI and shadcn Context Menu
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/context-menu registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/context-menu registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/context-menu` and `shadcn/context-menu` using the local Menu
-foundation, with context-trigger positioning and platform-aware keyboard/pointer
-behavior.
+Implement `base-ui/context-menu` and `shadcn/context-menu` using the local Menu foundation, with context-trigger positioning and platform-aware keyboard/pointer behavior.
 
 ## Source Evidence
 
@@ -42,23 +35,18 @@ behavior.
 - Add `src/registry/base-ui/context-menu/index.ts` and tests.
 - Add `src/registry/shadcn/context-menu/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve trigger, popup positioning from context point, keyboard opening,
-  platform-specific behavior, nested items/submenus, checked/radio items, data
-  attributes, and ARIA.
+- Preserve trigger, popup positioning from context point, keyboard opening, platform-specific behavior, nested items/submenus, checked/radio items, data attributes, and ARIA.
 
 ## Implementation Notes
 
-- Compose or reuse `base-ui/menu` item semantics and only add context-menu
-  specific trigger/positioning behavior here.
-- Keep pointer coordinates and open state in Foldkit model data or deterministic
-  command results; do not hide them in mutable closures.
+- Compose or reuse `base-ui/menu` item semantics and only add context-menu specific trigger/positioning behavior here.
+- Keep pointer coordinates and open state in Foldkit model data or deterministic command results; do not hide them in mutable closures.
 - shadcn Context Menu composes local `base-ui/context-menu` and `utils/cn`.
 
 ## Testing
 
 - Port Base UI context menu tests semantically, including non-Mac behavior.
-- Replicate shadcn Context Menu examples, including checkbox/radio/submenu
-  cases where present.
+- Replicate shadcn Context Menu examples, including checkbox/radio/submenu cases where present.
 - Add parity for right-click/context-key opening and menu structure.
 - Run:
   - `bun run registry:check`
@@ -72,7 +60,5 @@ behavior.
 
 ## STOP Conditions
 
-- Stop if plan 043 is not landed or Context Menu would need to duplicate Menu
-  item, submenu, checked item, or roving focus behavior.
-- Stop if platform-specific context-key behavior cannot be represented in the
-  existing test harness.
+- Stop if plan 043 is not landed or Context Menu would need to duplicate Menu item, submenu, checked item, or roving focus behavior.
+- Stop if platform-specific context-key behavior cannot be represented in the existing test harness.

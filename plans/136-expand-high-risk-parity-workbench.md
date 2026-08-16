@@ -10,47 +10,18 @@
 
 ## Goal
 
-Add executable origin/local workbench cases for Popover, Tooltip, Dropdown Menu
-with submenu, Select or Combobox, Dialog, Date Picker, Data Table, Slider, and
-Sonner. Extend the neutral fixture model beyond its current Tabs-specific shape,
-promote stable geometry/style/ARIA comparisons to hard results, and keep only
-truly nondeterministic screenshots advisory.
+Add executable origin/local workbench cases for Popover, Tooltip, Dropdown Menu with submenu, Select or Combobox, Dialog, Date Picker, Data Table, Slider, and Sonner. Extend the neutral fixture model beyond its current Tabs-specific shape, promote stable geometry/style/ARIA comparisons to hard results, and keep only truly nondeterministic screenshots advisory.
 
 ## Completed slice
 
-The aggregate fixture now has executable workbench entries for Bubble tooltip,
-Bubble popover, Dropdown Menu submenu, Command dialog, Sonner, and native
-Select. Hard comparisons cover DOM, attributes, roles, ARIA state, accessible
-names, computed styles, dimensions, geometry, and interaction state; screenshots
-remain advisory. All six cases resolve in dry-run, and Dropdown Menu submenu
-has completed a real origin/local capture.
+The aggregate fixture now has executable workbench entries for Bubble tooltip, Bubble popover, Dropdown Menu submenu, Command dialog, Sonner, and native Select. Hard comparisons cover DOM, attributes, roles, ARIA state, accessible names, computed styles, dimensions, geometry, and interaction state; screenshots remain advisory. All six cases resolve in dry-run, and Dropdown Menu submenu has completed a real origin/local capture.
 
 ## Remaining
 
-The aggregate runner now exposes direct origin/local cases for PopoverBasic,
-TooltipDemo, SelectDemo, DialogDemo, and SliderDemo. All five capture without
-fixture-root failures. Their initial reports currently contain hard parity
-differences (8–10 findings each), which are the next calibration/fix backlog;
-the reports are intentionally not accepted as green evidence yet.
+The aggregate runner now exposes direct origin/local cases for PopoverBasic, TooltipDemo, SelectDemo, DialogDemo, and SliderDemo. All five capture without fixture-root failures. Their initial reports currently contain hard parity differences (8–10 findings each), which are the next calibration/fix backlog; the reports are intentionally not accepted as green evidence yet.
 
-PopoverBasic now has an executable open/Escape recipe, and the comparator honors
-case policies while using client geometry for narrowed roots. Select, Tooltip,
-Dropdown Menu, and Sonner have calibrated capture roots; Dialog and Slider keep
-geometry advisory because their origin browser shims are synthetic controls.
+PopoverBasic now has an executable open/Escape recipe, and the comparator honors case policies while using client geometry for narrowed roots. Select, Tooltip, Dropdown Menu, and Sonner have calibrated capture roots; Dialog and Slider keep geometry advisory because their origin browser shims are synthetic controls.
 
-The interaction recipes for Tooltip, Select, Dialog, and Slider are now
-declared and resolve in dry-run. Remaining work is to replace the Dialog and
-Slider synthetic shims with faithful origin surfaces, and add the Date
-Picker/Data Table cases after Plans 132 and 133 supply their fixture
-contracts.
+The interaction recipes for Tooltip, Select, Dialog, and Slider are now declared and resolve in dry-run. Remaining work is to replace the Dialog and Slider synthetic shims with faithful origin surfaces, and add the Date Picker/Data Table cases after Plans 132 and 133 supply their fixture contracts.
 
-The pinned Base Nova Dialog source now resolves through the existing Base UI
-aliases, and origin capture uses the repository's pinned `lucide-react`
-dependency instead of the incomplete virtual icon shim. Dialog examples now
-default closed like origin, the open/Escape interaction completes against both
-real implementations, and its stable comparison policy is hard. Slider now
-also resolves through the pinned Base Nova and Base UI sources. Its focused
-ArrowRight recipe completes with no hard differences. The remaining Plan 136
-scope is complete. Date Picker and Data Table now have faithful origin/local
-fixtures and green interaction cases alongside the previously promoted
-high-risk families.
+The pinned Base Nova Dialog source now resolves through the existing Base UI aliases, and origin capture uses the repository's pinned `lucide-react` dependency instead of the incomplete virtual icon shim. Dialog examples now default closed like origin, the open/Escape interaction completes against both real implementations, and its stable comparison policy is hard. Slider now also resolves through the pinned Base Nova and Base UI sources. Its focused ArrowRight recipe completes with no hard differences. The remaining Plan 136 scope is complete. Date Picker and Data Table now have faithful origin/local fixtures and green interaction cases alongside the previously promoted high-risk families.

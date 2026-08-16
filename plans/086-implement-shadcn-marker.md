@@ -1,13 +1,8 @@
 # 086 - Implement shadcn Marker
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-marker registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-marker registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/marker` as a local styled status marker composition with
-spinner/notification examples, docs artifacts, and origin parity.
+Implement `shadcn/marker` as a local styled status marker composition with spinner/notification examples, docs artifacts, and origin parity.
 
 ## Source Evidence
 
@@ -42,18 +36,14 @@ spinner/notification examples, docs artifacts, and origin parity.
 
 ## Implementation Notes
 
-- Represent marker tone, size, orientation, icon/content layout, and loading
-  variants with Effect Schema literals and local class maps.
+- Represent marker tone, size, orientation, icon/content layout, and loading variants with Effect Schema literals and local class maps.
 - Compose local `shadcn/spinner`, `shadcn/sonner`, and `utils/cn`.
-- Replace `lucide-react` with local inline icons and deterministic fixture
-  messages.
-- Preserve origin status examples, spinner examples, notification examples, and
-  slot attributes.
+- Replace `lucide-react` with local inline icons and deterministic fixture messages.
+- Preserve origin status examples, spinner examples, notification examples, and slot attributes.
 
 ## Testing
 
-- Add tests for exported parts, variants, icon/content layout, spinner
-  composition, class canonicalization, and example structure.
+- Add tests for exported parts, variants, icon/content layout, spinner composition, class canonicalization, and example structure.
 - Replicate all origin marker examples and add origin/Foldkit parity cases.
 - Run:
   - `bun run registry:build`
@@ -69,7 +59,5 @@ spinner/notification examples, docs artifacts, and origin parity.
 
 ## STOP Conditions
 
-- Stop if notification examples require nonlocal Sonner behavior or external
-  runtime packages.
-- Stop if source parity requires React, CVA, `lucide-react`, or origin repo
-  paths in installable source.
+- Stop if notification examples require nonlocal Sonner behavior or external runtime packages.
+- Stop if source parity requires React, CVA, `lucide-react`, or origin repo paths in installable source.

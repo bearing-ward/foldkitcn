@@ -1,13 +1,8 @@
 # 044 - Implement Base UI Radio
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/radio registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/radio registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/radio` as the standalone local radio primitive aligned with
-the already-landed radio group conventions.
+Implement `base-ui/radio` as the standalone local radio primitive aligned with the already-landed radio group conventions.
 
 ## Source Evidence
 
@@ -36,22 +30,18 @@ the already-landed radio group conventions.
 - Add `registry-src/base-ui/radio/item.json`.
 - Add `src/registry/base-ui/radio/index.ts` and colocated tests.
 - Add parity fixture coverage for `base-ui/radio`.
-- Preserve root, indicator, checked/unchecked, disabled/read-only if present,
-  data attributes, form attributes, and ARIA behavior.
+- Preserve root, indicator, checked/unchecked, disabled/read-only if present, data attributes, form attributes, and ARIA behavior.
 
 ## Implementation Notes
 
-- Reuse the state naming and data attributes established by
-  `base-ui/radio-group`.
+- Reuse the state naming and data attributes established by `base-ui/radio-group`.
 - Keep individual radio state controlled by Foldkit model data.
 - Do not create a shadcn wrapper in this plan; the selected row is Base UI only.
 
 ## Testing
 
-- Port `RadioRoot.test.tsx`, `RadioIndicator.test.tsx`, and parity-covered spec
-  expectations semantically.
-- Add Scene coverage for checked state, disabled state, indicator rendering,
-  keyboard/pointer activation, and data attributes.
+- Port `RadioRoot.test.tsx`, `RadioIndicator.test.tsx`, and parity-covered spec expectations semantically.
+- Add Scene coverage for checked state, disabled state, indicator rendering, keyboard/pointer activation, and data attributes.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -64,5 +54,4 @@ the already-landed radio group conventions.
 
 ## STOP Conditions
 
-- Stop if implementing standalone Radio requires changing the public API of the
-  landed Radio Group item.
+- Stop if implementing standalone Radio requires changing the public API of the landed Radio Group item.

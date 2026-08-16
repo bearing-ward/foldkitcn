@@ -1,13 +1,8 @@
 # 076 - Implement shadcn Pagination
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-pagination registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-pagination registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/pagination` as a local styled navigation component with
-button/field/select examples and shadcn origin parity.
+Implement `shadcn/pagination` as a local styled navigation component with button/field/select examples and shadcn origin parity.
 
 ## Source Evidence
 
@@ -31,8 +25,7 @@ button/field/select examples and shadcn origin parity.
 - Origin docs: `https://ui.shadcn.com/docs/components/pagination`
 - shadcn source: `repos/ui/apps/v4/styles/base-nova/ui/pagination.tsx`
 - Origin examples: `repos/ui/apps/v4/examples/base/pagination-*.tsx`
-- Origin slots include `pagination`, `pagination-content`,
-  `pagination-item`, `pagination-link`, previous/next controls, and ellipsis.
+- Origin slots include `pagination`, `pagination-content`, `pagination-item`, `pagination-link`, previous/next controls, and ellipsis.
 
 ## Scope
 
@@ -43,19 +36,14 @@ button/field/select examples and shadcn origin parity.
 
 ## Implementation Notes
 
-- Preserve origin nav/list semantics, current-page attributes, disabled states,
-  icons-only rendering, simple rendering, and RTL examples.
-- Compose local `shadcn/button`, `shadcn/field`, `shadcn/select`, and
-  `utils/cn`.
-- Replace `lucide-react` and language-selector runtime with local inline icons
-  and deterministic RTL fixture data.
-- Model link rendering through Foldkit `toView` or named part renderers instead
-  of React `asChild` or Next Link cloning semantics.
+- Preserve origin nav/list semantics, current-page attributes, disabled states, icons-only rendering, simple rendering, and RTL examples.
+- Compose local `shadcn/button`, `shadcn/field`, `shadcn/select`, and `utils/cn`.
+- Replace `lucide-react` and language-selector runtime with local inline icons and deterministic RTL fixture data.
+- Model link rendering through Foldkit `toView` or named part renderers instead of React `asChild` or Next Link cloning semantics.
 
 ## Testing
 
-- Add tests for semantic navigation structure, current page, previous/next,
-  ellipsis, disabled state, custom class canonicalization, and example output.
+- Add tests for semantic navigation structure, current page, previous/next, ellipsis, disabled state, custom class canonicalization, and example output.
 - Replicate origin demo, icons-only, RTL, and simple examples.
 - Add origin and Foldkit parity cases for each replicated example.
 - Run:
@@ -72,7 +60,5 @@ button/field/select examples and shadcn origin parity.
 
 ## STOP Conditions
 
-- Stop if parity requires a router, Next Link, React Slot cloning, or upstream
-  runtime dependency in installable source.
-- Stop if a selected pagination example depends on a not-yet-local registry
-  item not listed in this plan.
+- Stop if parity requires a router, Next Link, React Slot cloning, or upstream runtime dependency in installable source.
+- Stop if a selected pagination example depends on a not-yet-local registry item not listed in this plan.

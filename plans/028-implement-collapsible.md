@@ -2,8 +2,7 @@
 
 ## Summary
 
-Implement Base UI Collapsible and shadcn Collapsible together. This is the local
-foundation that Accordion can build on later.
+Implement Base UI Collapsible and shadcn Collapsible together. This is the local foundation that Accordion can build on later.
 
 ## Source Evidence
 
@@ -20,8 +19,7 @@ foundation that Accordion can build on later.
 - Add `registry-src/shadcn/collapsible/item.json`.
 - Add `src/registry/base-ui/collapsible/index.ts`.
 - Add `src/registry/shadcn/collapsible/index.ts`.
-- Port root, trigger, panel/content, open/closed data attributes, disabled
-  trigger behavior, and mounting policy.
+- Port root, trigger, panel/content, open/closed data attributes, disabled trigger behavior, and mounting policy.
 - Add parity slots for `base-ui/collapsible` and `shadcn/collapsible`.
 
 ## Implementation Notes
@@ -34,8 +32,7 @@ foundation that Accordion can build on later.
 ## Testing
 
 - Port Base UI collapsible tests semantically.
-- Cover trigger activation, disabled trigger behavior, ARIA state, and
-  conditional content rendering.
+- Cover trigger activation, disabled trigger behavior, ARIA state, and conditional content rendering.
 - Add parity for Base UI demos and shadcn examples.
 - Run:
   - `bun run registry:check`
@@ -47,5 +44,4 @@ foundation that Accordion can build on later.
 
 ## STOP Conditions
 
-- Stop if origin requires animation measurement that needs a shared transition
-  policy before implementation.
+- Stop if origin requires animation measurement that needs a shared transition policy before implementation.

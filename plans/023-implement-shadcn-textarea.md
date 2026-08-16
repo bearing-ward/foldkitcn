@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement the Foldkit-native `shadcn/textarea` registry item from the
-dossier-ready shadcn row. This can run independently from Input, but should
-mirror the same form-control conventions.
+Implement the Foldkit-native `shadcn/textarea` registry item from the dossier-ready shadcn row. This can run independently from Input, but should mirror the same form-control conventions.
 
 ## Source Evidence
 
@@ -24,14 +22,12 @@ mirror the same form-control conventions.
 
 - Use Effect Schema for props and exported types.
 - Keep value and update handling in the consuming Foldkit program.
-- Preserve native textarea attributes, disabled state, invalid state, sizing,
-  placeholder behavior, and accessibility attributes.
+- Preserve native textarea attributes, disabled state, invalid state, sizing, placeholder behavior, and accessibility attributes.
 - Keep styling local and route class merging through `cn`.
 
 ## Testing
 
-- Add Scene coverage for rendered attributes, disabled/read-only behavior,
-  invalid styling hooks, and multiline content.
+- Add Scene coverage for rendered attributes, disabled/read-only behavior, invalid styling hooks, and multiline content.
 - Add parity fixtures for all dependency-complete shadcn examples.
 - Run:
   - `bun run registry:check`

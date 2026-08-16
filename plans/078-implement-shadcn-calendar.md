@@ -1,13 +1,8 @@
 # 078 - Implement shadcn Calendar
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-calendar registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-calendar registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/calendar` with a local date-grid model, base-nova styling,
-examples, docs artifacts, and parity without importing React DayPicker or
-date-fns into installable source.
+Implement `shadcn/calendar` with a local date-grid model, base-nova styling, examples, docs artifacts, and parity without importing React DayPicker or date-fns into installable source.
 
 ## Source Evidence
 
@@ -42,28 +35,17 @@ date-fns into installable source.
 
 ## Implementation Notes
 
-- Replace `react-day-picker`, `date-fns`, and locale packages with an
-  Effect-Schema-backed local calendar model for visible month, selected dates,
-  disabled dates, focus target, week starts, and navigation.
-- Start with the origin single-month and single-date behavior needed by the
-  base examples. Range, Persian calendar, advanced locale, time, and natural
-  language examples may be fixture-only or deferred only if the dossier shows
-  they exceed a local first implementation.
-- Compose local `shadcn/button`, `shadcn/card`, `shadcn/field`,
-  `shadcn/input-group`, and `utils/cn`.
-- Preserve origin `CalendarDayButton` structure, data attributes, disabled/
-  selected/today/outside-month states, and keyboard/focus semantics.
+- Replace `react-day-picker`, `date-fns`, and locale packages with an Effect-Schema-backed local calendar model for visible month, selected dates, disabled dates, focus target, week starts, and navigation.
+- Start with the origin single-month and single-date behavior needed by the base examples. Range, Persian calendar, advanced locale, time, and natural language examples may be fixture-only or deferred only if the dossier shows they exceed a local first implementation.
+- Compose local `shadcn/button`, `shadcn/card`, `shadcn/field`, `shadcn/input-group`, and `utils/cn`.
+- Preserve origin `CalendarDayButton` structure, data attributes, disabled/ selected/today/outside-month states, and keyboard/focus semantics.
 - Replace `lucide-react`, `next/font`, and language-selector runtime locally.
 
 ## Testing
 
-- Add Story tests for month navigation, selecting a date, disabled dates,
-  outside-month behavior, focus movement, and controlled value updates.
-- Add Scene tests for grid roles, weekday labels, day button states,
-  accessible names, keyboard navigation, and RTL examples.
-- Replicate all origin calendar examples that can be supported by local
-  dependencies; document any intentionally deferred example in the registry
-  item and plan result.
+- Add Story tests for month navigation, selecting a date, disabled dates, outside-month behavior, focus movement, and controlled value updates.
+- Add Scene tests for grid roles, weekday labels, day button states, accessible names, keyboard navigation, and RTL examples.
+- Replicate all origin calendar examples that can be supported by local dependencies; document any intentionally deferred example in the registry item and plan result.
 - Add origin and Foldkit parity for each replicated example.
 - Run:
   - `bun run registry:build`
@@ -79,7 +61,5 @@ date-fns into installable source.
 
 ## STOP Conditions
 
-- Stop if the implementation would require `react-day-picker`, `date-fns`, a
-  calendar runtime package, or React hooks in installable source.
-- Stop if advanced date behavior requires a reusable date foundation larger
-  than this row; write the split plan instead of landing partial hidden logic.
+- Stop if the implementation would require `react-day-picker`, `date-fns`, a calendar runtime package, or React hooks in installable source.
+- Stop if advanced date behavior requires a reusable date foundation larger than this row; write the split plan instead of landing partial hidden logic.

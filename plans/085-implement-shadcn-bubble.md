@@ -1,13 +1,8 @@
 # 085 - Implement shadcn Bubble
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-bubble registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-bubble registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/bubble` as a styled chat bubble composition with grouping,
-content, reactions, examples, docs artifacts, and origin parity.
+Implement `shadcn/bubble` as a styled chat bubble composition with grouping, content, reactions, examples, docs artifacts, and origin parity.
 
 ## Source Evidence
 
@@ -31,8 +25,7 @@ content, reactions, examples, docs artifacts, and origin parity.
 - Origin docs: `https://ui.shadcn.com/docs/components/bubble`
 - shadcn source: `repos/ui/apps/v4/styles/base-nova/ui/bubble.tsx`
 - Origin examples: `repos/ui/apps/v4/examples/base/bubble-*.tsx`
-- Origin slots include bubble group, bubble, bubble content, and bubble
-  reactions.
+- Origin slots include bubble group, bubble, bubble content, and bubble reactions.
 
 ## Scope
 
@@ -43,22 +36,15 @@ content, reactions, examples, docs artifacts, and origin parity.
 
 ## Implementation Notes
 
-- Represent side, alignment, grouping, and reaction variants with Effect Schema
-  literals and pure class maps.
-- Compose local `shadcn/button`, `shadcn/collapsible`, `shadcn/popover`,
-  `shadcn/sonner`, `shadcn/tooltip`, and `utils/cn`.
-- Treat markdown rendering as fixture-only static markup unless a local
-  markdown foundation already exists. Do not add a markdown runtime here.
-- Preserve origin grouped-message spacing, incoming/outgoing variants,
-  reaction affordances, and copied/sonner examples where local dependencies
-  allow.
+- Represent side, alignment, grouping, and reaction variants with Effect Schema literals and pure class maps.
+- Compose local `shadcn/button`, `shadcn/collapsible`, `shadcn/popover`, `shadcn/sonner`, `shadcn/tooltip`, and `utils/cn`.
+- Treat markdown rendering as fixture-only static markup unless a local markdown foundation already exists. Do not add a markdown runtime here.
+- Preserve origin grouped-message spacing, incoming/outgoing variants, reaction affordances, and copied/sonner examples where local dependencies allow.
 
 ## Testing
 
-- Add tests for exported parts, variants, grouping, reactions, slot attributes,
-  custom class canonicalization, and example structure.
-- Replicate all origin bubble examples that can be supported without a new
-  markdown foundation and add origin/Foldkit parity cases.
+- Add tests for exported parts, variants, grouping, reactions, slot attributes, custom class canonicalization, and example structure.
+- Replicate all origin bubble examples that can be supported without a new markdown foundation and add origin/Foldkit parity cases.
 - Run:
   - `bun run registry:build`
   - `bun run origin:components:write`
@@ -73,7 +59,5 @@ content, reactions, examples, docs artifacts, and origin parity.
 
 ## STOP Conditions
 
-- Stop if a required example depends on a markdown renderer, AI runtime, or
-  upstream notification package that is not available locally.
-- Stop if the implementation requires React, CVA, or origin repo paths in
-  installable source.
+- Stop if a required example depends on a markdown renderer, AI runtime, or upstream notification package that is not available locally.
+- Stop if the implementation requires React, CVA, or origin repo paths in installable source.

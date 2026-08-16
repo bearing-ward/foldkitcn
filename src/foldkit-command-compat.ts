@@ -8,7 +8,7 @@ export type Command<T> = Readonly<{
   effect: Effect.Effect<T, never, never>
 }>
 
-export const mapMessages = FoldkitCommand.mapMessages
+export const { mapMessages } = FoldkitCommand
 
 export function define<
   Name extends string,

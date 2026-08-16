@@ -1,13 +1,8 @@
 # 047 - Implement Base UI OTP Field and shadcn Input OTP
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/otp-field-input-otp registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/otp-field-input-otp registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/otp-field` and `shadcn/input-otp` together. The Foldkit
-primitive should preserve the origin multi-slot input behavior and the shadcn
-wrapper should reproduce the local styled examples.
+Implement `base-ui/otp-field` and `shadcn/input-otp` together. The Foldkit primitive should preserve the origin multi-slot input behavior and the shadcn wrapper should reproduce the local styled examples.
 
 ## Source Evidence
 
@@ -42,24 +35,19 @@ wrapper should reproduce the local styled examples.
 - Add `src/registry/base-ui/otp-field/index.ts` and tests.
 - Add `src/registry/shadcn/input-otp/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve root, input/slot behavior, grouping, caret/focus movement, paste,
-  deletion, value normalization, disabled state, data attributes, and ARIA.
+- Preserve root, input/slot behavior, grouping, caret/focus movement, paste, deletion, value normalization, disabled state, data attributes, and ARIA.
 
 ## Implementation Notes
 
 - Reuse Input's form-control conventions and class handling where possible.
-- Value state belongs in the consuming Foldkit model. Expose helpers for slot
-  projection rather than storing mutable slot state internally.
-- shadcn Input OTP composes local `base-ui/otp-field`, `shadcn/input`, and
-  `utils/cn` where applicable.
+- Value state belongs in the consuming Foldkit model. Expose helpers for slot projection rather than storing mutable slot state internally.
+- shadcn Input OTP composes local `base-ui/otp-field`, `shadcn/input`, and `utils/cn` where applicable.
 
 ## Testing
 
-- Port `OTPFieldRoot.test.tsx`, `OTPFieldInput.test.tsx`, `otp.test.ts`, and
-  parity-covered specs semantically.
+- Port `OTPFieldRoot.test.tsx`, `OTPFieldInput.test.tsx`, `otp.test.ts`, and parity-covered specs semantically.
 - Replicate shadcn Input OTP examples, including separator/group examples.
-- Add Scene coverage for typing, pasting, deleting, focus movement, disabled
-  state, complete/incomplete values, and data attributes.
+- Add Scene coverage for typing, pasting, deleting, focus movement, disabled state, complete/incomplete values, and data attributes.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -72,5 +60,4 @@ wrapper should reproduce the local styled examples.
 
 ## STOP Conditions
 
-- Stop if the implementation requires low-level selection/focus commands that
-  should be added as shared Foldkit DOM helpers first.
+- Stop if the implementation requires low-level selection/focus commands that should be added as shared Foldkit DOM helpers first.

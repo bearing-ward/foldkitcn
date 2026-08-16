@@ -1,13 +1,8 @@
 # 050 - Implement Base UI Preview Card and shadcn Hover Card
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/preview-card-hover-card registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/preview-card-hover-card registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/preview-card` and `shadcn/hover-card` together. Preview Card
-should reuse the overlay/positioning work from Popover and delay/hover behavior
-from Tooltip where applicable.
+Implement `base-ui/preview-card` and `shadcn/hover-card` together. Preview Card should reuse the overlay/positioning work from Popover and delay/hover behavior from Tooltip where applicable.
 
 ## Source Evidence
 
@@ -42,8 +35,7 @@ from Tooltip where applicable.
 - Add `src/registry/base-ui/preview-card/index.ts` and tests.
 - Add `src/registry/shadcn/hover-card/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve root, trigger, portal, positioner, popup, arrow, backdrop, delay,
-  hover/focus behavior, data attributes, and ARIA relationships.
+- Preserve root, trigger, portal, positioner, popup, arrow, backdrop, delay, hover/focus behavior, data attributes, and ARIA relationships.
 
 ## Implementation Notes
 
@@ -53,8 +45,7 @@ from Tooltip where applicable.
 
 ## Testing
 
-- Port Preview Card arrow/backdrop/popup/portal/positioner/root/trigger tests
-  semantically.
+- Port Preview Card arrow/backdrop/popup/portal/positioner/root/trigger tests semantically.
 - Replicate shadcn Hover Card examples.
 - Add parity for hover/focus opening, placement, arrow, and dimensions.
 - Run:
@@ -72,5 +63,4 @@ from Tooltip where applicable.
 ## STOP Conditions
 
 - Stop if Tooltip delay behavior or Popover positioning is not landed.
-- Stop if hover/focus timers need a shared command/subscription abstraction
-  before Preview Card can be deterministic.
+- Stop if hover/focus timers need a shared command/subscription abstraction before Preview Card can be deterministic.

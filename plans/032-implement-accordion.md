@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement Base UI Accordion and shadcn Accordion together. Accordion should build
-on the local Collapsible behavior from plan 028 while preserving collection,
-single/multiple value, disabled item, keyboard, and data-attribute semantics.
+Implement Base UI Accordion and shadcn Accordion together. Accordion should build on the local Collapsible behavior from plan 028 while preserving collection, single/multiple value, disabled item, keyboard, and data-attribute semantics.
 
 ## Source Evidence
 
@@ -21,22 +19,19 @@ single/multiple value, disabled item, keyboard, and data-attribute semantics.
 - Add `registry-src/shadcn/accordion/item.json`.
 - Add `src/registry/base-ui/accordion/index.ts`.
 - Add `src/registry/shadcn/accordion/index.ts`.
-- Port root, item, header, trigger, panel/content, single/multiple selection,
-  collapsible behavior, disabled items, orientation, and data attributes.
+- Port root, item, header, trigger, panel/content, single/multiple selection, collapsible behavior, disabled items, orientation, and data attributes.
 - Add parity slots for `base-ui/accordion` and `shadcn/accordion`.
 
 ## Implementation Notes
 
 - Open item value state belongs in the consuming Foldkit model.
-- Reuse Collapsible render conventions and data attributes where they match
-  origin behavior.
+- Reuse Collapsible render conventions and data attributes where they match origin behavior.
 - Use keyed view branches for mounted/unmounted panel content.
 - Replace React `asChild` with `toView` or named part renderers.
 
 ## Testing
 
-- Port Base UI accordion tests semantically for single/multiple selection,
-  collapsible behavior, disabled items, keyboard navigation, and ARIA state.
+- Port Base UI accordion tests semantically for single/multiple selection, collapsible behavior, disabled items, keyboard navigation, and ARIA state.
 - Add parity for Base UI demos and shadcn examples.
 - Run:
   - `bun run registry:check`

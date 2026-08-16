@@ -1,13 +1,8 @@
 # 087 - Implement shadcn Message
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-message registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-message registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/message` as a local chat message composition over attachment,
-bubble, and marker primitives, with examples, docs artifacts, and origin parity.
+Implement `shadcn/message` as a local chat message composition over attachment, bubble, and marker primitives, with examples, docs artifacts, and origin parity.
 
 ## Source Evidence
 
@@ -31,8 +25,7 @@ bubble, and marker primitives, with examples, docs artifacts, and origin parity.
 - Origin docs: `https://ui.shadcn.com/docs/components/message`
 - shadcn source: `repos/ui/apps/v4/styles/base-nova/ui/message.tsx`
 - Origin examples: `repos/ui/apps/v4/examples/base/message-*.tsx`
-- Origin slots include message group, message, message avatar, message content,
-  message header, and message footer.
+- Origin slots include message group, message, message avatar, message content, message header, and message footer.
 
 ## Scope
 
@@ -43,22 +36,15 @@ bubble, and marker primitives, with examples, docs artifacts, and origin parity.
 
 ## Implementation Notes
 
-- Compose local `shadcn/attachment`, `shadcn/avatar`, `shadcn/bubble`,
-  `shadcn/button`, `shadcn/marker`, and `utils/cn`.
-- Represent message alignment, role, grouping, avatar placement, header/footer
-  metadata, and attachment presence with Effect Schema literals and class maps.
-- Treat markdown/AI examples as deterministic fixtures unless a local markdown
-  or AI foundation already exists. Do not add those foundations here.
-- Preserve origin message grouping, avatar, header/footer, attachment, and
-  marker examples.
+- Compose local `shadcn/attachment`, `shadcn/avatar`, `shadcn/bubble`, `shadcn/button`, `shadcn/marker`, and `utils/cn`.
+- Represent message alignment, role, grouping, avatar placement, header/footer metadata, and attachment presence with Effect Schema literals and class maps.
+- Treat markdown/AI examples as deterministic fixtures unless a local markdown or AI foundation already exists. Do not add those foundations here.
+- Preserve origin message grouping, avatar, header/footer, attachment, and marker examples.
 
 ## Testing
 
-- Add tests for exported parts, role/alignment variants, avatar rendering,
-  attachment composition, marker composition, class canonicalization, and
-  example structure.
-- Replicate all origin message examples that can be supported by local
-  dependencies and add origin/Foldkit parity cases.
+- Add tests for exported parts, role/alignment variants, avatar rendering, attachment composition, marker composition, class canonicalization, and example structure.
+- Replicate all origin message examples that can be supported by local dependencies and add origin/Foldkit parity cases.
 - Run:
   - `bun run registry:build`
   - `bun run origin:components:write`
@@ -74,5 +60,4 @@ bubble, and marker primitives, with examples, docs artifacts, and origin parity.
 ## STOP Conditions
 
 - Stop if local attachment, bubble, or marker contracts are not complete.
-- Stop if a required example needs markdown, AI runtime, or external chat
-  packages in installable source.
+- Stop if a required example needs markdown, AI runtime, or external chat packages in installable source.

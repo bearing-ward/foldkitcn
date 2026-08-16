@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement the Foldkit-native Base UI Form primitive. This should be the final
-form-foundation item from this selection because it should compose local Field
-semantics rather than inventing a competing validation and submission model.
+Implement the Foldkit-native Base UI Form primitive. This should be the final form-foundation item from this selection because it should compose local Field semantics rather than inventing a competing validation and submission model.
 
 ## Source Evidence
 
@@ -17,24 +15,19 @@ semantics rather than inventing a competing validation and submission model.
 
 - Add `registry-src/base-ui/form/item.json`.
 - Add `src/registry/base-ui/form/index.ts`.
-- Port form root, submit/reset handling, validation reporting hooks that are
-  framework-independent, disabled/invalid state relationships, and data
-  attributes from origin evidence.
+- Port form root, submit/reset handling, validation reporting hooks that are framework-independent, disabled/invalid state relationships, and data attributes from origin evidence.
 - Add a parity slot for `base-ui/form`.
 
 ## Implementation Notes
 
-- Submission state, validation results, and effects belong in the consuming
-  Foldkit program update/command flow.
-- The registry item should expose view helpers and typed event payloads, not
-  hidden imperative submission logic.
+- Submission state, validation results, and effects belong in the consuming Foldkit program update/command flow.
+- The registry item should expose view helpers and typed event payloads, not hidden imperative submission logic.
 - Use Effect Schema for submit payload metadata and validation state helpers.
 - Reuse local Field semantics from plan 038 wherever origin Form composes Field.
 
 ## Testing
 
-- Port Base UI form tests semantically for submit, reset, validation state,
-  disabled behavior, and event payload shape.
+- Port Base UI form tests semantically for submit, reset, validation state, disabled behavior, and event payload shape.
 - Add origin parity fixtures for demos, including field/error structure.
 - Run:
   - `bun run registry:check`
@@ -47,5 +40,4 @@ semantics rather than inventing a competing validation and submission model.
 ## STOP Conditions
 
 - Stop if plan 038 is not landed.
-- Stop if origin Form requires imperative validation APIs that conflict with the
-  Foldkit update/command architecture.
+- Stop if origin Form requires imperative validation APIs that conflict with the Foldkit update/command architecture.

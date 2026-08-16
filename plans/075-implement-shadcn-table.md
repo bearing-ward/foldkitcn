@@ -1,13 +1,8 @@
 # 075 - Implement shadcn Table
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-table registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat e5534d56..HEAD -- plans/artifacts/070-next-component-selection/selection.md plans/artifacts/070-next-component-dossiers/shadcn-table registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `shadcn/table` as the local styled table primitive with examples,
-theme-local classes, docs artifacts, and shadcn origin parity.
+Implement `shadcn/table` as the local styled table primitive with examples, theme-local classes, docs artifacts, and shadcn origin parity.
 
 ## Source Evidence
 
@@ -31,9 +25,7 @@ theme-local classes, docs artifacts, and shadcn origin parity.
 - Origin docs: `https://ui.shadcn.com/docs/components/table`
 - shadcn source: `repos/ui/apps/v4/styles/base-nova/ui/table.tsx`
 - Origin examples: `repos/ui/apps/v4/examples/base/table-*.tsx`
-- Origin slots include `table-container`, `table`, `table-header`,
-  `table-body`, `table-footer`, `table-row`, `table-head`, `table-cell`, and
-  `table-caption`.
+- Origin slots include `table-container`, `table`, `table-header`, `table-body`, `table-footer`, `table-row`, `table-head`, `table-cell`, and `table-caption`.
 
 ## Scope
 
@@ -44,20 +36,14 @@ theme-local classes, docs artifacts, and shadcn origin parity.
 
 ## Implementation Notes
 
-- Keep this plan scoped to the presentational Table primitive. Do not implement
-  `shadcn/data-table`, query state, sorting, filtering, or pagination here.
-- Preserve the origin wrapper element, table semantics, caption/header/body/
-  footer structure, row/cell slots, and responsive overflow behavior.
-- Compose local `shadcn/button`, `shadcn/dropdown-menu`, and `utils/cn` for the
-  action example; replace `lucide-react` and language-selector runtime with
-  local deterministic fixture data or inline icons.
-- Keep all style data local to `src/registry/shadcn/table` and represent any
-  variant-like options with Effect Schema literals.
+- Keep this plan scoped to the presentational Table primitive. Do not implement `shadcn/data-table`, query state, sorting, filtering, or pagination here.
+- Preserve the origin wrapper element, table semantics, caption/header/body/ footer structure, row/cell slots, and responsive overflow behavior.
+- Compose local `shadcn/button`, `shadcn/dropdown-menu`, and `utils/cn` for the action example; replace `lucide-react` and language-selector runtime with local deterministic fixture data or inline icons.
+- Keep all style data local to `src/registry/shadcn/table` and represent any variant-like options with Effect Schema literals.
 
 ## Testing
 
-- Add tests for every exported part, semantic table structure, slot attributes,
-  custom class canonicalization, and example structure.
+- Add tests for every exported part, semantic table structure, slot attributes, custom class canonicalization, and example structure.
 - Replicate origin table action, demo, footer, and RTL examples.
 - Add origin and Foldkit parity cases for each replicated example.
 - Run:
@@ -74,7 +60,5 @@ theme-local classes, docs artifacts, and shadcn origin parity.
 
 ## STOP Conditions
 
-- Stop if the implementation starts pulling in TanStack Table, data-table query
-  behavior, or runtime sorting/filtering state.
-- Stop if parity requires importing React, `lucide-react`, or origin repo paths
-  into installable source.
+- Stop if the implementation starts pulling in TanStack Table, data-table query behavior, or runtime sorting/filtering state.
+- Stop if parity requires importing React, `lucide-react`, or origin repo paths into installable source.

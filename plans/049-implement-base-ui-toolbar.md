@@ -1,13 +1,8 @@
 # 049 - Implement Base UI Toolbar
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/toolbar registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/toolbar registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,8 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/toolbar` as an unstyled Foldkit primitive for toolbar root,
-groups, buttons, links, inputs, and keyboard navigation.
+Implement `base-ui/toolbar` as an unstyled Foldkit primitive for toolbar root, groups, buttons, links, inputs, and keyboard navigation.
 
 ## Source Evidence
 
@@ -36,22 +30,18 @@ groups, buttons, links, inputs, and keyboard navigation.
 - Add `registry-src/base-ui/toolbar/item.json`.
 - Add `src/registry/base-ui/toolbar/index.ts` and colocated tests.
 - Add parity fixture coverage for `base-ui/toolbar`.
-- Preserve root, group, button, link, input, orientation, roving focus,
-  activation behavior, disabled state, data attributes, and ARIA.
+- Preserve root, group, button, link, input, orientation, roving focus, activation behavior, disabled state, data attributes, and ARIA.
 
 ## Implementation Notes
 
-- Reuse existing local Button, Toggle, Toggle Group, and Input conventions when
-  exposing toolbar parts.
-- Toolbar state should be explicit model state where the app owns it; toolbar
-  helpers should not smuggle mutable focus state through closures.
+- Reuse existing local Button, Toggle, Toggle Group, and Input conventions when exposing toolbar parts.
+- Toolbar state should be explicit model state where the app owns it; toolbar helpers should not smuggle mutable focus state through closures.
 - Do not add a shadcn wrapper in this plan; the selected row is Base UI only.
 
 ## Testing
 
 - Port Toolbar button/group/input/link/root tests semantically.
-- Add Scene coverage for keyboard navigation, orientation, disabled controls,
-  link/button/input rendering, and data attributes.
+- Add Scene coverage for keyboard navigation, orientation, disabled controls, link/button/input rendering, and data attributes.
 - Add parity for origin demos.
 - Run:
   - `bun run registry:check`
@@ -65,5 +55,4 @@ groups, buttons, links, inputs, and keyboard navigation.
 
 ## STOP Conditions
 
-- Stop if Toolbar requires a shared roving-focus abstraction that should be
-  extracted for Menu, Menubar, Navigation Menu, Select, and Combobox first.
+- Stop if Toolbar requires a shared roving-focus abstraction that should be extracted for Menu, Menubar, Navigation Menu, Select, and Combobox first.

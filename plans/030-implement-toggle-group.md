@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement Base UI Toggle Group and shadcn Toggle Group together. This plan
-depends on the local Toggle semantics from plan 029 and extends them to single
-and multiple selection groups.
+Implement Base UI Toggle Group and shadcn Toggle Group together. This plan depends on the local Toggle semantics from plan 029 and extends them to single and multiple selection groups.
 
 ## Source Evidence
 
@@ -21,8 +19,7 @@ and multiple selection groups.
 - Add `registry-src/shadcn/toggle-group/item.json`.
 - Add `src/registry/base-ui/toggle-group/index.ts`.
 - Add `src/registry/shadcn/toggle-group/index.ts`.
-- Preserve root, item, single/multiple selection, disabled items, orientation,
-  roving focus, ARIA pressed, and data attributes.
+- Preserve root, item, single/multiple selection, disabled items, orientation, roving focus, ARIA pressed, and data attributes.
 - Add parity slots for `base-ui/toggle-group` and `shadcn/toggle-group`.
 
 ## Implementation Notes
@@ -34,8 +31,7 @@ and multiple selection groups.
 
 ## Testing
 
-- Port Base UI tests semantically for single and multiple selection, disabled
-  items, keyboard navigation, and orientation.
+- Port Base UI tests semantically for single and multiple selection, disabled items, keyboard navigation, and orientation.
 - Add parity for Base UI demos and shadcn examples.
 - Run:
   - `bun run registry:check`
@@ -48,5 +44,4 @@ and multiple selection groups.
 ## STOP Conditions
 
 - Stop if plan 029 is not landed.
-- Stop if the shared roving-focus behavior diverges from Tabs or Radio Group and
-  needs a common helper first.
+- Stop if the shared roving-focus behavior diverges from Tabs or Radio Group and needs a common helper first.

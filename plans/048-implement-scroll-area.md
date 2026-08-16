@@ -1,13 +1,8 @@
 # 048 - Implement Base UI and shadcn Scroll Area
 
-> **Executor instructions**: Follow this plan step by step. Run every
-> verification command before moving on. If a STOP condition occurs, stop and
-> report instead of improvising.
+> **Executor instructions**: Follow this plan step by step. Run every verification command before moving on. If a STOP condition occurs, stop and report instead of improvising.
 >
-> **Drift check (run first)**:
-> `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/scroll-area registry-src src/registry tests/parity`
-> If any in-scope file changed, compare this plan with the live dossier before
-> proceeding.
+> **Drift check (run first)**: `git diff --stat 96baac1d..HEAD -- plans/artifacts/040-next-component-selection/selection.md plans/artifacts/040-next-component-dossiers/scroll-area registry-src src/registry tests/parity` If any in-scope file changed, compare this plan with the live dossier before proceeding.
 
 ## Status
 
@@ -20,9 +15,7 @@
 
 ## Summary
 
-Implement `base-ui/scroll-area` and `shadcn/scroll-area`, preserving the origin
-structure and data attributes while keeping browser measurement/scroll behavior
-behind deterministic tests and parity fixtures.
+Implement `base-ui/scroll-area` and `shadcn/scroll-area`, preserving the origin structure and data attributes while keeping browser measurement/scroll behavior behind deterministic tests and parity fixtures.
 
 ## Source Evidence
 
@@ -42,23 +35,19 @@ behind deterministic tests and parity fixtures.
 - Add `src/registry/base-ui/scroll-area/index.ts` and tests.
 - Add `src/registry/shadcn/scroll-area/index.ts`, `examples.ts`, and tests.
 - Add parity fixture coverage for both registry items.
-- Preserve root, viewport/content, scrollbar, thumb, corner, orientation,
-  visibility state, data attributes, and structure.
+- Preserve root, viewport/content, scrollbar, thumb, corner, orientation, visibility state, data attributes, and structure.
 
 ## Implementation Notes
 
 - Keep installable source free of React and upstream scroll-area packages.
-- DOM measurement and scroll position updates should be represented through
-  Foldkit commands/messages if needed, with pure helpers for testability.
+- DOM measurement and scroll position updates should be represented through Foldkit commands/messages if needed, with pure helpers for testability.
 - shadcn Scroll Area composes local `base-ui/scroll-area` and `utils/cn`.
 
 ## Testing
 
-- Port Base UI scroll area tests semantically for content, corner, root,
-  scrollbar, thumb, orientation, visibility, and data attributes.
+- Port Base UI scroll area tests semantically for content, corner, root, scrollbar, thumb, orientation, visibility, and data attributes.
 - Replicate shadcn Scroll Area examples.
-- Add parity for dimensions, DOM structure, scrollbar/thumb rendering, and
-  orientation.
+- Add parity for dimensions, DOM structure, scrollbar/thumb rendering, and orientation.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
@@ -71,5 +60,4 @@ behind deterministic tests and parity fixtures.
 
 ## STOP Conditions
 
-- Stop if scroll measurement requires a shared ResizeObserver/subscription layer
-  that should be planned before this component lands.
+- Stop if scroll measurement requires a shared ResizeObserver/subscription layer that should be planned before this component lands.

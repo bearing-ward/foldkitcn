@@ -2,9 +2,7 @@
 
 ## Summary
 
-Implement Base UI Slider and shadcn Slider together. This is a high-fidelity
-interaction primitive: value normalization, thumb movement, keyboard increments,
-orientation, min/max/step, and form behavior all need source-backed coverage.
+Implement Base UI Slider and shadcn Slider together. This is a high-fidelity interaction primitive: value normalization, thumb movement, keyboard increments, orientation, min/max/step, and form behavior all need source-backed coverage.
 
 ## Source Evidence
 
@@ -21,26 +19,20 @@ orientation, min/max/step, and form behavior all need source-backed coverage.
 - Add `registry-src/shadcn/slider/item.json`.
 - Add `src/registry/base-ui/slider/index.ts`.
 - Add `src/registry/shadcn/slider/index.ts`.
-- Port root, track, range, thumb, hidden input/form semantics, orientation,
-  direction, min/max/step, disabled, multiple thumbs if present in origin, and
-  data attributes.
+- Port root, track, range, thumb, hidden input/form semantics, orientation, direction, min/max/step, disabled, multiple thumbs if present in origin, and data attributes.
 - Add parity slots for `base-ui/slider` and `shadcn/slider`.
 
 ## Implementation Notes
 
-- Value belongs in the consuming Foldkit model; installable source exposes
-  geometry and event helpers.
-- Build a deterministic normalization helper so value arrays canonicalize before
-  comparison, regardless of input order.
+- Value belongs in the consuming Foldkit model; installable source exposes geometry and event helpers.
+- Build a deterministic normalization helper so value arrays canonicalize before comparison, regardless of input order.
 - Use pointer and keyboard behavior from Base UI tests as the source of truth.
 - Keep shadcn styling local and route class merging through `cn`.
 
 ## Testing
 
-- Port Base UI tests for normalization, clamping, step rounding, keyboard
-  behavior, disabled state, orientation, and thumb ordering.
-- Add visual parity that checks dimensions, thumb positions, track/range
-  structure, and shadcn variants.
+- Port Base UI tests for normalization, clamping, step rounding, keyboard behavior, disabled state, orientation, and thumb ordering.
+- Add visual parity that checks dimensions, thumb positions, track/range structure, and shadcn variants.
 - Run:
   - `bun run registry:check`
   - `bun run registry:build`
