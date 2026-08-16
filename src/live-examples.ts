@@ -2568,10 +2568,12 @@ const datePickerDemoDate = Calendar.make(2025, 6, 12)
 const datePickerBasicDate = Calendar.make(2025, 1, 6)
 const datePickerDobDate = Calendar.make(1995, 6, 12)
 
-const initialDatePickerModel = (exampleId: string): DatePickerModel => {
-  const selectInitialDate = (model: DatePickerModel, date: Calendar.CalendarDate) =>
-    datePickerSelectDate(model, date)[0]
+const selectInitialDate = (
+  model: DatePickerModel,
+  date: Calendar.CalendarDate,
+): DatePickerModel => datePickerSelectDate(model, date)[0]
 
+const initialDatePickerModel = (exampleId: string): DatePickerModel => {
   if (exampleId.endsWith('date-picker-basic')) {
     return selectInitialDate(datePickerInit({
       id: `${exampleId}-live`,
