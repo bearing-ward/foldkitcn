@@ -40,7 +40,7 @@ export const expectSurfaceAnchoredToTrigger = async (
   options?: { tolerance?: number; settleMs?: number },
 ): Promise<void> => {
   const tolerance = options?.tolerance ?? 8
-  const settleMs = options?.settleMs ?? 150
+  const settleMs = options?.settleMs ?? 500
 
   if (settleMs > 0) {
     await surface.page().waitForTimeout(settleMs)
