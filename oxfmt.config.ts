@@ -10,6 +10,7 @@ const ignorePatterns = [
   '.agents/skills/improve/**',
   'plans/001-establish-registry-foundation.md',
   'plans/artifacts/128-public-component-parity/public-component-matrix.json',
+  'plans/artifacts/128-public-component-parity/README.md',
   'plans/README.md',
   'src/main.ts',
   '*.tsbuildinfo',
