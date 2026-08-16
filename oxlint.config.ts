@@ -14,6 +14,7 @@ const ignorePatterns = [
   'plans/001-establish-registry-foundation.md',
   'plans/README.md',
   'plans/artifacts/139-typecheck/repro/**',
+  'plans/artifacts/128-public-component-parity/README.md',
   'src/main.ts',
   'src/scene.test.ts',
   'src/story.test.ts',
