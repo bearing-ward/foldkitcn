@@ -1,6 +1,7 @@
 # Public component parity contracts
 
-Generated from the checked-in docs index, docs artifacts, parity slots, and live-example renderer registry. Do not edit the matrix by hand.
+Generated from the checked-in docs index, docs artifacts, parity slots, and
+live-example renderer registry. Do not edit the matrix by hand.
 
 - Public routes: 100
 - Route and example contracts: 477
@@ -10,4 +11,6 @@ Generated from the checked-in docs index, docs artifacts, parity slots, and live
 - Examples on routes without a parity slot: 15
 - Active exceptions: 15
 
-Every example declares a profile, desktop and 390px viewports, required interaction recipes, origin evidence mode, live-renderer status, and parity slot status. `bun run parity:contracts` fails when this artifact is stale.
+Every example declares a profile, desktop and 390px viewports, required
+interaction recipes, origin evidence mode, live-renderer status, and parity
+slot status. `bun run parity:contracts` fails when this artifact is stale.
