@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-10T19:53:41.500Z",
+  "generatedAt": "2026-08-16T12:06:20.298Z",
   "summary": {
     "baseUi": {
       "total": 38,
@@ -46,7 +46,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/badge"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 22",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 16",
       "readiness": "imported"
     },
     {
@@ -71,7 +71,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/skeleton"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 23",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 17",
       "readiness": "imported"
     },
     {
@@ -96,7 +96,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/kbd"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 24",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 18",
       "readiness": "imported"
     },
     {
@@ -121,7 +121,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/aspect-ratio"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 25",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 19",
       "readiness": "imported"
     },
     {
@@ -144,7 +144,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/separator"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 26",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 20",
       "readiness": "imported"
     },
     {
@@ -169,7 +169,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/separator"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 26",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 20",
       "readiness": "imported"
     },
     {
@@ -192,7 +192,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/progress"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 27",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 21",
       "readiness": "imported"
     },
     {
@@ -217,7 +217,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/progress"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 27",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 21",
       "readiness": "imported"
     },
     {
@@ -240,7 +240,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/avatar"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 22",
       "readiness": "imported"
     },
     {
@@ -265,7 +265,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/avatar"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 22",
       "readiness": "imported"
     },
     {
@@ -288,7 +288,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/input"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 29",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 23",
       "readiness": "imported"
     },
     {
@@ -313,7 +313,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/input"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 29",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 23",
       "readiness": "imported"
     },
     {
@@ -338,7 +338,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/textarea"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 30",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 24",
       "readiness": "imported"
     },
     {
@@ -361,7 +361,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/switch"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 31",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 25",
       "readiness": "imported"
     },
     {
@@ -386,7 +386,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/switch"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 31",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 25",
       "readiness": "imported"
     },
     {
@@ -409,7 +409,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/checkbox"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 32",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 26",
       "readiness": "imported"
     },
     {
@@ -434,7 +434,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/checkbox"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 32",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 26",
       "readiness": "imported"
     },
     {
@@ -457,7 +457,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/radio-group"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 33",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 27",
       "readiness": "imported"
     },
     {
@@ -482,7 +482,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/radio-group"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 33",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 27",
       "readiness": "imported"
     },
     {
@@ -505,7 +505,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/tabs"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 34",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
       "readiness": "imported"
     },
     {
@@ -531,7 +531,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/tabs"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 34",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 28",
       "readiness": "imported"
     },
     {
@@ -554,7 +554,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/collapsible"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 29",
       "readiness": "imported"
     },
     {
@@ -579,7 +579,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/collapsible"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 29",
       "readiness": "imported"
     },
     {
@@ -603,7 +603,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/button"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 36",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 30",
       "readiness": "imported"
     },
     {
@@ -626,7 +626,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/toggle"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 36",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 30",
       "readiness": "imported"
     },
     {
@@ -652,7 +652,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/toggle"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 36",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 30",
       "readiness": "imported"
     },
     {
@@ -675,7 +675,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/toggle-group"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 37",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 31",
       "readiness": "imported"
     },
     {
@@ -701,7 +701,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/toggle-group"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 37",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 31",
       "readiness": "imported"
     },
     {
@@ -724,7 +724,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/slider"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 38",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 32",
       "readiness": "imported"
     },
     {
@@ -749,7 +749,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/slider"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 38",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 32",
       "readiness": "imported"
     },
     {
@@ -772,7 +772,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/accordion"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 39",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 33",
       "readiness": "imported"
     },
     {
@@ -797,7 +797,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/accordion"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 39",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 33",
       "readiness": "imported"
     },
     {
@@ -820,7 +820,30 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/dialog"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 40",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 34",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/meter",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/meter",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-meter/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/meter"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 34",
       "readiness": "imported"
     },
     {
@@ -845,7 +868,30 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/dialog"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 40",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 34",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/fieldset",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/fieldset",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-fieldset/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/fieldset"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 35",
       "readiness": "imported"
     },
     {
@@ -868,7 +914,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/popover"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 41",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
       "readiness": "imported"
     },
     {
@@ -893,53 +939,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/popover"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 41",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/meter",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/meter",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-meter/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/meter"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 45",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/fieldset",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/fieldset",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-fieldset/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/fieldset"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 46",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 35",
       "readiness": "imported"
     },
     {
@@ -962,7 +962,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/number-field"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 47",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 36",
       "readiness": "imported"
     },
     {
@@ -989,7 +989,7 @@
       "recommendedUrls": [
         "https://ui.shadcn.com/docs/components/native-select"
       ],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 48",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 37",
       "readiness": "imported"
     },
     {
@@ -1015,7 +1015,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/alert"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 49",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 38",
       "readiness": "imported"
     },
     {
@@ -1038,7 +1038,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/field"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 50",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 39",
       "readiness": "imported"
     },
     {
@@ -1064,7 +1064,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/field"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 50",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 39",
       "readiness": "imported"
     },
     {
@@ -1089,7 +1089,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/label"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 62",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 48",
       "readiness": "imported"
     },
     {
@@ -1112,57 +1112,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/form"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 64",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/tooltip",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/tooltip",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/tooltip"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 64",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/tooltip",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/tooltip",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/tooltip"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 64",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 50",
       "readiness": "imported"
     },
     {
@@ -1188,7 +1138,179 @@
       "recommendedUrls": [
         "https://base-ui.com/react/components/checkbox-group"
       ],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 65",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 51",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/radio",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/radio",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-radio/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/radio/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/radio"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 52",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/otp-field",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/otp-field",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/otp-field"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 55",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/input-otp",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/input-otp",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/input-otp"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 55",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/toolbar",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/toolbar",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/base-ui-toolbar/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/toolbar/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/toolbar"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 56",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/tooltip",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/tooltip",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/tooltip"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 56",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/tooltip",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/tooltip",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/tooltip/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/tooltip/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/tooltip"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 56",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/preview-card",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/preview-card",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/preview-card"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 57",
       "readiness": "imported"
     },
     {
@@ -1212,7 +1334,33 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/select"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 65",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 57",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/hover-card",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/hover-card",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/hover-card"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 57",
       "readiness": "imported"
     },
     {
@@ -1238,7 +1386,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/select"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 65",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 57",
       "readiness": "imported"
     },
     {
@@ -1262,21 +1410,21 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/menu"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 66",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 58",
       "readiness": "imported"
     },
     {
-      "itemId": "base-ui/radio",
+      "itemId": "base-ui/menubar",
       "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/radio",
+      "docsUrl": "https://base-ui.com/react/components/menubar",
       "originResolutionStatus": "source-backed",
       "hasOriginDocs": true,
       "hasOriginSource": true,
       "hasRegistryItem": true,
       "hasDossier": true,
       "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-radio/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/radio/dossier.json"
+        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/menubar/dossier.json"
       ],
       "paritySlotStatus": "ready",
       "implementationStatus": "implemented",
@@ -1285,8 +1433,8 @@
       "availability": "installable",
       "blockers": [],
       "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/radio"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 66",
+      "recommendedUrls": ["https://base-ui.com/react/components/menubar"],
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 58",
       "readiness": "imported"
     },
     {
@@ -1314,305 +1462,7 @@
       "recommendedUrls": [
         "https://ui.shadcn.com/docs/components/dropdown-menu"
       ],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 66",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/alert-dialog",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/alert-dialog",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/alert-dialog"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 67",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/alert-dialog",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/alert-dialog",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/alert-dialog"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 67",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/context-menu",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/context-menu",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/context-menu"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 68",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/context-menu",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/context-menu",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/context-menu"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 68",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/otp-field",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/otp-field",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/otp-field"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 69",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/scroll-area",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/scroll-area",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/scroll-area"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 69",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/input-otp",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/input-otp",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/otp-field-input-otp/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/otp-field-input-otp/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/input-otp"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 69",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/scroll-area",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/scroll-area",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/scroll-area"],
-      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 69",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/toolbar",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/toolbar",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/base-ui-toolbar/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/toolbar/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/toolbar"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 70",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/preview-card",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/preview-card",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/preview-card"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 71",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "shadcn/hover-card",
-      "namespace": "shadcn",
-      "docsUrl": "https://ui.shadcn.com/docs/components/hover-card",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/preview-card-hover-card/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/preview-card-hover-card/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [
-        "Select the first shadcn style pack for Foldkit parity fixtures."
-      ],
-      "recommendedUrls": ["https://ui.shadcn.com/docs/components/hover-card"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 71",
-      "readiness": "imported"
-    },
-    {
-      "itemId": "base-ui/menubar",
-      "namespace": "base-ui",
-      "docsUrl": "https://base-ui.com/react/components/menubar",
-      "originResolutionStatus": "source-backed",
-      "hasOriginDocs": true,
-      "hasOriginSource": true,
-      "hasRegistryItem": true,
-      "hasDossier": true,
-      "dossierPaths": [
-        "plans/artifacts/007-remaining-component-dossiers/menubar/dossier.json",
-        "plans/artifacts/040-next-component-dossiers/menubar/dossier.json"
-      ],
-      "paritySlotStatus": "ready",
-      "implementationStatus": "implemented",
-      "parityStatus": "accepted",
-      "driftStatus": "current",
-      "availability": "installable",
-      "blockers": [],
-      "unresolvedQuestions": [],
-      "recommendedUrls": ["https://base-ui.com/react/components/menubar"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 72",
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 58",
       "readiness": "imported"
     },
     {
@@ -1638,7 +1488,31 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/menubar"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 72",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 58",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/alert-dialog",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/alert-dialog",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/alert-dialog"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 59",
       "readiness": "imported"
     },
     {
@@ -1664,7 +1538,33 @@
       "recommendedUrls": [
         "https://base-ui.com/react/components/navigation-menu"
       ],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 73",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 59",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/alert-dialog",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/alert-dialog",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/alert-dialog/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/alert-dialog/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/alert-dialog"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 59",
       "readiness": "imported"
     },
     {
@@ -1693,7 +1593,7 @@
       "recommendedUrls": [
         "https://ui.shadcn.com/docs/components/navigation-menu"
       ],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 73",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 59",
       "readiness": "imported"
     },
     {
@@ -1717,7 +1617,31 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/combobox"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 74",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 60",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/context-menu",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/context-menu",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/context-menu"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 60",
       "readiness": "imported"
     },
     {
@@ -1743,7 +1667,33 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/combobox"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 74",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 60",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/context-menu",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/context-menu",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/context-menu/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/context-menu/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/context-menu"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 60",
       "readiness": "imported"
     },
     {
@@ -1767,7 +1717,57 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/autocomplete"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 75",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 61",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "base-ui/scroll-area",
+      "namespace": "base-ui",
+      "docsUrl": "https://base-ui.com/react/components/scroll-area",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [],
+      "recommendedUrls": ["https://base-ui.com/react/components/scroll-area"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 61",
+      "readiness": "imported"
+    },
+    {
+      "itemId": "shadcn/scroll-area",
+      "namespace": "shadcn",
+      "docsUrl": "https://ui.shadcn.com/docs/components/scroll-area",
+      "originResolutionStatus": "source-backed",
+      "hasOriginDocs": true,
+      "hasOriginSource": true,
+      "hasRegistryItem": true,
+      "hasDossier": true,
+      "dossierPaths": [
+        "plans/artifacts/004-foundational-component-dossiers/scroll-area/dossier.json",
+        "plans/artifacts/040-next-component-dossiers/scroll-area/dossier.json"
+      ],
+      "paritySlotStatus": "ready",
+      "implementationStatus": "implemented",
+      "parityStatus": "accepted",
+      "driftStatus": "current",
+      "availability": "installable",
+      "blockers": [],
+      "unresolvedQuestions": [
+        "Select the first shadcn style pack for Foldkit parity fixtures."
+      ],
+      "recommendedUrls": ["https://ui.shadcn.com/docs/components/scroll-area"],
+      "priorityHint": "plans/artifacts/004-foundational-component-backlog/component-backlog.md row 61",
       "readiness": "imported"
     },
     {
@@ -1791,7 +1791,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/drawer"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 76",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 62",
       "readiness": "imported"
     },
     {
@@ -1817,7 +1817,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/drawer"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 76",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 62",
       "readiness": "imported"
     },
     {
@@ -1843,7 +1843,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/sheet"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 77",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 63",
       "readiness": "imported"
     },
     {
@@ -1869,7 +1869,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/direction"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 78",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 64",
       "readiness": "imported"
     },
     {
@@ -1895,7 +1895,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/card"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 81",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 67",
       "readiness": "imported"
     },
     {
@@ -1921,7 +1921,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/breadcrumb"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 82",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 68",
       "readiness": "imported"
     },
     {
@@ -1948,7 +1948,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/button-group"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 83",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 69",
       "readiness": "imported"
     },
     {
@@ -1975,7 +1975,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/calendar"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 84",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 70",
       "readiness": "imported"
     },
     {
@@ -2001,7 +2001,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/carousel"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 85",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 71",
       "readiness": "imported"
     },
     {
@@ -2027,7 +2027,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/command"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 86",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 72",
       "readiness": "imported"
     },
     {
@@ -2054,7 +2054,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/empty"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 87",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 73",
       "readiness": "imported"
     },
     {
@@ -2081,7 +2081,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/input-group"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 88",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 74",
       "readiness": "imported"
     },
     {
@@ -2108,7 +2108,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/item"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 89",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 75",
       "readiness": "imported"
     },
     {
@@ -2134,7 +2134,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/pagination"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 90",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 76",
       "readiness": "imported"
     },
     {
@@ -2160,7 +2160,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/resizable"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 91",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 77",
       "readiness": "imported"
     },
     {
@@ -2187,7 +2187,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/sidebar"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 92",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 78",
       "readiness": "imported"
     },
     {
@@ -2213,7 +2213,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/sonner"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 93",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 79",
       "readiness": "imported"
     },
     {
@@ -2239,7 +2239,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/spinner"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 94",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 80",
       "readiness": "imported"
     },
     {
@@ -2265,7 +2265,7 @@
         "Select the first shadcn style pack for Foldkit parity fixtures."
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/table"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 95",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 81",
       "readiness": "imported"
     },
     {
@@ -2289,7 +2289,7 @@
       "blockers": [],
       "unresolvedQuestions": [],
       "recommendedUrls": ["https://base-ui.com/react/components/toast"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 96",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 82",
       "readiness": "imported"
     },
     {
@@ -2321,7 +2321,7 @@
         "Which dashboard dependencies should become local primitives before data-table can be planned as installable source?"
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/data-table"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 97",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 83",
       "readiness": "imported"
     },
     {
@@ -2353,7 +2353,7 @@
         "Which parsing and formatting dependencies are acceptable as fixture evidence versus deferred runtime behavior?"
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/date-picker"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 98",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 84",
       "readiness": "imported"
     },
     {
@@ -2385,7 +2385,7 @@
         "How should RTL language-selection examples be represented without importing origin fixture helpers into installable source?"
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/typography"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 100",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 86",
       "readiness": "imported"
     },
     {
@@ -2417,7 +2417,7 @@
         "What native Foldkit chart foundation should own scales, axes, legends, tooltips, and responsive layout?"
       ],
       "recommendedUrls": ["https://ui.shadcn.com/docs/components/chart"],
-      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 101",
+      "priorityHint": "plans/artifacts/007-remaining-component-queue/component-queue.md row 87",
       "readiness": "blocked"
     },
     {
