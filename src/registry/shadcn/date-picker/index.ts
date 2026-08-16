@@ -360,7 +360,8 @@ export const DatePicker = <Message = DatePickerMessage>(
     view: UiDatePicker.view,
     viewInputs: {
       anchor: config.anchor ?? defaultAnchor,
-      maybeSelectedDate: config.maybeSelectedDate ?? Option.none(),
+      maybeSelectedDate:
+        config.maybeSelectedDate ?? config.model.calendar.maybeFocusedDate,
       triggerContent: maybeDate => renderTriggerContent(maybeDate, config),
       toCalendarView: attributes =>
         toCalendarView<Message>(attributes, config.compact === true),

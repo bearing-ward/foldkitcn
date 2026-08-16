@@ -132,7 +132,7 @@ const picker = <Message = DatePickerMessage>(
     ...(config.dir === undefined ? {} : { dir: config.dir }),
     ...(config.compact === undefined ? {} : { compact: config.compact }),
     ...(config.maybeSelectedDate === undefined
-      ? {}
+      ? { maybeSelectedDate: controller.model.calendar.maybeFocusedDate }
       : { maybeSelectedDate: config.maybeSelectedDate }),
   })
 }
@@ -156,7 +156,9 @@ export const DatePickerDemo = <Message = DatePickerMessage>(
     id: 'date-picker-demo',
     today: deterministicToday,
     initialSelectedDate: demoSelectedDate,
-    maybeSelectedDate: Option.some(demoSelectedDate),
+    ...(controller === undefined
+      ? { maybeSelectedDate: Option.some(demoSelectedDate) }
+      : {}),
     placeholder: 'Pick a date',
   })
 
@@ -168,7 +170,9 @@ export const DatePickerBasic = <Message = DatePickerMessage>(
     id: 'date-picker-basic',
     today: deterministicToday,
     initialSelectedDate: basicSelectedDate,
-    maybeSelectedDate: Option.some(basicSelectedDate),
+    ...(controller === undefined
+      ? { maybeSelectedDate: Option.some(basicSelectedDate) }
+      : {}),
     placeholder: 'Select date',
     triggerClassName: 'min-w-40',
     compact: true,

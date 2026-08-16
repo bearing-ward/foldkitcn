@@ -251,7 +251,10 @@ import type {
   DataTableExampleController,
   DataTableExampleMessage,
 } from './registry/shadcn/data-table/examples'
-import { datePickerInit } from './registry/shadcn/date-picker'
+import {
+  datePickerInit,
+  datePickerSelectDate,
+} from './registry/shadcn/date-picker'
 import type {
   DatePickerMessage,
   DatePickerModel,
@@ -2566,38 +2569,41 @@ const datePickerBasicDate = Calendar.make(2025, 1, 6)
 const datePickerDobDate = Calendar.make(1995, 6, 12)
 
 const initialDatePickerModel = (exampleId: string): DatePickerModel => {
+  const selectInitialDate = (model: DatePickerModel, date: Calendar.CalendarDate) =>
+    datePickerSelectDate(model, date)[0]
+
   if (exampleId.endsWith('date-picker-basic')) {
-    return datePickerInit({
+    return selectInitialDate(datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
       initialViewDate: datePickerBasicDate,
-    })
+    }), datePickerBasicDate)
   }
 
   if (exampleId.endsWith('date-picker-dob')) {
-    return datePickerInit({
+    return selectInitialDate(datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
       initialViewDate: datePickerDobDate,
       minDate: Calendar.make(1900, 1, 1),
       maxDate: Calendar.make(2010, 12, 31),
-    })
+    }), datePickerDobDate)
   }
 
   if (exampleId.endsWith('date-picker-rtl')) {
-    return datePickerInit({
+    return selectInitialDate(datePickerInit({
       id: `${exampleId}-live`,
       today: datePickerToday,
       initialViewDate: datePickerDemoDate,
       locale: arabicLocale,
-    })
+    }), datePickerDemoDate)
   }
 
-  return datePickerInit({
+  return selectInitialDate(datePickerInit({
     id: `${exampleId}-live`,
     today: datePickerToday,
     initialViewDate: datePickerDemoDate,
-  })
+  }), datePickerDemoDate)
 }
 
 const datePickerExample = (
