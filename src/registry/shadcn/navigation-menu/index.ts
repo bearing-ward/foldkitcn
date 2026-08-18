@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -396,10 +396,9 @@ const shadcnAttributes = <Message>(
 
 export const chevronDownIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -414,15 +413,11 @@ export const chevronDownIcon = <Message>(
     ],
     [h.path([h.D('m6 9 6 6 6-6')], [])],
   )
-}
 
 const defaultContent = <Message>(
   itemAttributes: NavigationMenuItemAttributes<Message>,
-): Html => {
-  const h = html<Message>()
-
-  return h.div([...itemAttributes.content.root], [itemAttributes.item.label])
-}
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => h.div([...itemAttributes.content.root], [itemAttributes.item.label])
 
 const defaultItemView = <Message>(
   itemAttributes: NavigationMenuItemAttributes<Message>,
@@ -447,8 +442,10 @@ const defaultItemView = <Message>(
   )
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const {
     align = 'start',
     side = 'bottom',
@@ -494,7 +491,7 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
                                 itemAttributes =>
                                   itemAttributes.content.isMounted,
                               )
-                              .map(defaultContent),
+                              .map(item => defaultContent(item, h)),
                           ),
                           h.div([...navigationMenuAttributes.arrow.root], []),
                         ],

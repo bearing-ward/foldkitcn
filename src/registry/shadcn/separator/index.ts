@@ -37,7 +37,7 @@ export const separatorClassName = ({
 }: SeparatorStyleOptions = {}): string => cn(baseClassName, className)
 
 const shadcnAttributes = <Message>(
-  h: HtmlBuilder<Message> = html<Message>(),
+  h: HtmlBuilder<Message>,
   className: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => [
   h.DataAttribute('slot', 'separator'),
@@ -50,11 +50,17 @@ export const view = <Message>(
 ): Html => {
   const { toView, className, ...baseConfig } = config
 
-  return BaseSeparator.view<Message>({
-    ...baseConfig,
-    toView: attributes =>
-      toView({
-        separator: [...attributes.separator, ...shadcnAttributes(h, className)],
-      }),
-  }, h)
+  return BaseSeparator.view<Message>(
+    {
+      ...baseConfig,
+      toView: attributes =>
+        toView({
+          separator: [
+            ...attributes.separator,
+            ...shadcnAttributes(h, className),
+          ],
+        }),
+    },
+    h,
+  )
 }

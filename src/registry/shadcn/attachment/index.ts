@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -371,8 +371,10 @@ const partAttributes = <Message>(
   ...optionalAttributes(attributes),
 ]
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = attachmentAttributes(h, config)
 
   return config.toView === undefined
@@ -384,8 +386,8 @@ export const Attachment = view
 
 export const AttachmentMedia = <Message>(
   config: AttachmentMediaConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const variant = config.variant ?? 'icon'
   const attributes: AttachmentMediaAttributes<Message> = {
     media: [
@@ -403,8 +405,8 @@ export const AttachmentMedia = <Message>(
 
 export const AttachmentContent = <Message>(
   config: AttachmentContentConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentContentAttributes<Message> = {
     content: partAttributes(
       h,
@@ -421,8 +423,8 @@ export const AttachmentContent = <Message>(
 
 export const AttachmentTitle = <Message>(
   config: AttachmentTitleConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentTitleAttributes<Message> = {
     title: partAttributes(
       h,
@@ -439,8 +441,8 @@ export const AttachmentTitle = <Message>(
 
 export const AttachmentDescription = <Message>(
   config: AttachmentDescriptionConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentDescriptionAttributes<Message> = {
     description: partAttributes(
       h,
@@ -457,8 +459,8 @@ export const AttachmentDescription = <Message>(
 
 export const AttachmentActions = <Message>(
   config: AttachmentActionsConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentActionsAttributes<Message> = {
     actions: partAttributes(
       h,
@@ -475,8 +477,8 @@ export const AttachmentActions = <Message>(
 
 export const AttachmentAction = <Message>(
   config: AttachmentActionConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentActionAttributes<Message> = {
     action: [
       h.DataAttribute('slot', 'attachment-action'),
@@ -495,8 +497,8 @@ export const AttachmentAction = <Message>(
 
 export const AttachmentTrigger = <Message>(
   config: AttachmentTriggerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentTriggerAttributes<Message> = {
     trigger: partAttributes(
       h,
@@ -513,8 +515,8 @@ export const AttachmentTrigger = <Message>(
 
 export const AttachmentGroup = <Message>(
   config: AttachmentGroupConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes: AttachmentGroupAttributes<Message> = {
     group: partAttributes(
       h,

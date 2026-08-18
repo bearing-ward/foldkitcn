@@ -1,5 +1,5 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -236,8 +236,10 @@ const uncheckedInputAttributes = <Message>(
   ]
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = stateDataAttributes(h, config)
 
   return config.toView({

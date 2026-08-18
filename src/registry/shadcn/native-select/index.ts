@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -203,10 +203,9 @@ const optGroupAttributes = <Message>(
 
 export const chevronDownIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -221,10 +220,11 @@ export const chevronDownIcon = <Message>(
     ],
     [h.path([h.D('m6 9 6 6 6-6')], [])],
   )
-}
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const {
     toView,
     size = 'default',
@@ -243,8 +243,8 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
 
 export const optionView = <Message>(
   config: OptionViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { toView, ...optionConfig } = config
 
   return toView({
@@ -254,8 +254,8 @@ export const optionView = <Message>(
 
 export const optGroupView = <Message>(
   config: OptGroupViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { toView, ...optGroupConfig } = config
 
   return toView({

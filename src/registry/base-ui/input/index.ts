@@ -153,8 +153,7 @@ const inputAttributes = <Message>(
 export const view = <Message>(
   config: ViewConfig<Message>,
   h: HtmlBuilder<Message>,
-): Html => {
-  return config.toView({
+): Html =>
+  config.toView({
     input: inputAttributes(h, config),
   })
-}

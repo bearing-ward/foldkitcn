@@ -5,7 +5,7 @@ import {
   Predicate,
   Schema as S,
 } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -616,10 +616,11 @@ const parentAttributes = <Message>(
       })
     : Option.none()
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     root: rootAttributes(h, config),
     parent: parentAttributes(h, config),
     items: config.items.map(item => ({
@@ -634,4 +635,3 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
       input: inputAttributes(h, config, item),
     })),
   })
-}

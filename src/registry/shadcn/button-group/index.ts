@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -183,8 +183,10 @@ const buttonGroupSeparatorAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = buttonGroupAttributes(h, config)
 
   return config.toView === undefined
@@ -196,8 +198,8 @@ export const ButtonGroup = view
 
 export const ButtonGroupText = <Message>(
   config: ButtonGroupTextConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = buttonGroupTextAttributes(h, config)
 
   return config.toView === undefined
@@ -207,8 +209,8 @@ export const ButtonGroupText = <Message>(
 
 export const ButtonGroupSeparator = <Message>(
   config: ButtonGroupSeparatorConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { orientation = 'vertical' } = config
 
   return BaseSeparator.view<Message>({

@@ -1,5 +1,5 @@
 import { Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -171,10 +171,10 @@ const textareaAttributes = <Message>(
   ...eventAttributes(h, config),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     textarea: textareaAttributes(h, config),
   })
-}

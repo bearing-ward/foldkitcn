@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -391,10 +391,9 @@ const shadcnAttributes = <Message>(
 
 export const checkIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -409,14 +408,12 @@ export const checkIcon = <Message>(
     ],
     [h.path([h.D('m20 6-11 11-5-5')], [])],
   )
-}
 
 export const chevronRightIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -431,7 +428,6 @@ export const chevronRightIcon = <Message>(
     ],
     [h.path([h.D('m9 18 6-6-6-6')], [])],
   )
-}
 
 const defaultItemContent = <Message>(
   itemAttributes: MenuItemAttributes<Message>,
@@ -493,8 +489,10 @@ const popupView = <Message>(
   ]
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, ...baseConfig } = config
 
   return BaseMenu.view<Message>({

@@ -1,6 +1,6 @@
 import { Effect, Match as M, Schema as S } from 'effect'
 import * as Dom from 'foldkit/dom'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 import { m } from 'foldkit/message'
 import { evo } from 'foldkit/struct'
 
@@ -300,8 +300,10 @@ const optionalClassAttribute = <Message>(
 ): ReadonlyArray<Attribute<Message>> =>
   className === '' ? [] : [h.Class(className)]
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = {
     scroller: [
       h.DataAttribute('slot', 'message-scroller'),
@@ -319,8 +321,8 @@ export const MessageScroller = view
 
 export const MessageScrollerViewport = <Message>(
   config: MessageScrollerViewportConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     viewport: [
       h.DataAttribute('slot', 'message-scroller-viewport'),
@@ -339,8 +341,8 @@ export const MessageScrollerViewport = <Message>(
 
 export const MessageScrollerContent = <Message>(
   config: MessageScrollerContentConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     content: [
       h.DataAttribute('slot', 'message-scroller-content'),
@@ -360,8 +362,8 @@ export const MessageScrollerContent = <Message>(
 
 export const MessageScrollerItem = <Message>(
   config: MessageScrollerItemConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     item: [
       h.DataAttribute('slot', 'message-scroller-item'),
@@ -398,8 +400,8 @@ const arrowDownIcon = (): Html => {
 
 export const MessageScrollerButton = <Message>(
   config: MessageScrollerButtonConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const {
     ariaLabel,
     attributes: customAttributes = [],

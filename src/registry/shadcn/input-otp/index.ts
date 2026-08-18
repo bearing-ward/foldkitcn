@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -181,8 +181,10 @@ const shadcnSeparatorAttributes = <Message>(
   h.Class(inputOTPSeparatorClassName({ className })),
 ]
 
-export const InputOTPGroup = <Message>(config: GroupConfig<Message>): Html => {
-  const h = html<Message>()
+export const InputOTPGroup = <Message>(
+  config: GroupConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const includesAllSlots =
     config.indexes.length === config.attributes.state.length
 
@@ -225,10 +227,9 @@ export const InputOTPGroup = <Message>(config: GroupConfig<Message>): Html => {
 
 export const InputOTPSeparator = <Message>(
   config: SeparatorConfig = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...shadcnSeparatorAttributes(h, config.className)],
     [
       h.svg(
@@ -256,14 +257,12 @@ export const InputOTPSeparator = <Message>(
       ),
     ],
   )
-}
 
 const defaultToView = <Message>(
   attributes: InputOTPAttributes<Message>,
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...attributes.root],
     [
       h.div(
@@ -273,10 +272,11 @@ const defaultToView = <Message>(
       h.input([...attributes.hiddenInput]),
     ],
   )
-}
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView = defaultToView, ...baseConfig } = config
 
   return BaseOTPField.view<Message>({

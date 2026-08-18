@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -261,8 +261,10 @@ const messageFooterAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = messageAttributes(h, config)
 
   return config.toView === undefined
@@ -274,8 +276,8 @@ export const Message = view
 
 export const MessageGroup = <Message>(
   config: MessageGroupConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = messageGroupAttributes(h, config)
 
   return config.toView === undefined
@@ -285,8 +287,8 @@ export const MessageGroup = <Message>(
 
 export const MessageAvatar = <Message>(
   config: MessageAvatarConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = messageAvatarAttributes(h, config)
 
   return config.toView === undefined
@@ -296,8 +298,8 @@ export const MessageAvatar = <Message>(
 
 export const MessageContent = <Message>(
   config: MessageContentConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = messageContentAttributes(h, config)
 
   return config.toView === undefined
@@ -307,8 +309,8 @@ export const MessageContent = <Message>(
 
 export const MessageHeader = <Message>(
   config: MessageHeaderConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = messageHeaderAttributes(h, config)
 
   return config.toView === undefined
@@ -318,8 +320,8 @@ export const MessageHeader = <Message>(
 
 export const MessageFooter = <Message>(
   config: MessageFooterConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = messageFooterAttributes(h, config)
 
   return config.toView === undefined

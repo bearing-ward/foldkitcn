@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -196,42 +196,35 @@ const icon = <Message>(
 
 export const chevronLeftIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>> = [],
-): Html => {
-  const h = html<Message>()
-
-  return icon('lucide lucide-chevron-left cn-rtl-flip', attributes, [
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  icon('lucide lucide-chevron-left cn-rtl-flip', attributes, [
     h.path([h.D('m15 18-6-6 6-6')], []),
   ])
-}
 
 export const chevronRightIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>> = [],
-): Html => {
-  const h = html<Message>()
-
-  return icon('lucide lucide-chevron-right cn-rtl-flip', attributes, [
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  icon('lucide lucide-chevron-right cn-rtl-flip', attributes, [
     h.path([h.D('m9 18 6-6-6-6')], []),
   ])
-}
 
 export const moreHorizontalIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>> = [],
-): Html => {
-  const h = html<Message>()
-
-  return icon('lucide lucide-ellipsis', attributes, [
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  icon('lucide lucide-ellipsis', attributes, [
     h.circle([h.Cx('12'), h.Cy('12'), h.R('1')], []),
     h.circle([h.Cx('19'), h.Cy('12'), h.R('1')], []),
     h.circle([h.Cx('5'), h.Cy('12'), h.R('1')], []),
   ])
-}
 
 export const Pagination = <Message>(
   config: PaginationConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.nav(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.nav(
     [
       h.Role('navigation'),
       h.AriaLabel(config.ariaLabel ?? 'pagination'),
@@ -242,14 +235,12 @@ export const Pagination = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const PaginationContent = <Message>(
   config: PaginationContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.ul(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.ul(
     [
       ...containerAttributes(
         h,
@@ -260,14 +251,12 @@ export const PaginationContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const PaginationItem = <Message>(
   config: PaginationContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.li(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.li(
     [
       h.DataAttribute('slot', 'pagination-item'),
       h.Class(paginationItemClassName(config)),
@@ -275,12 +264,11 @@ export const PaginationItem = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const PaginationLink = <Message>(
   config: PaginationLinkConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const {
     children = [],
     className,
@@ -306,8 +294,8 @@ export const PaginationLink = <Message>(
 
 export const PaginationPrevious = <Message>(
   config: PaginationDirectionLinkConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { text = 'Previous', className, children, dir, ...linkConfig } = config
   const previousClassName =
     className === undefined
@@ -328,8 +316,8 @@ export const PaginationPrevious = <Message>(
 
 export const PaginationNext = <Message>(
   config: PaginationDirectionLinkConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { text = 'Next', className, children, dir, ...linkConfig } = config
   const nextClassName =
     className === undefined
@@ -350,10 +338,9 @@ export const PaginationNext = <Message>(
 
 export const PaginationEllipsis = <Message>(
   config: PaginationContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.span(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.span(
     [
       h.AriaHidden(true),
       h.DataAttribute('slot', 'pagination-ellipsis'),
@@ -366,4 +353,3 @@ export const PaginationEllipsis = <Message>(
       ...(config.children ?? []),
     ],
   )
-}

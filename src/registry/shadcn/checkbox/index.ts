@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -106,8 +106,10 @@ const checkIcon = <Message>(h: ReturnType<typeof html<Message>>): Html =>
     [h.path([h.D('M20 6 9 17l-5-5')], [])],
   )
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, ...baseConfig } = config
 
   return BaseCheckbox.view<Message>({

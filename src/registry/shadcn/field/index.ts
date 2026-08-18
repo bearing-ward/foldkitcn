@@ -1,5 +1,5 @@
 import { Array, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -148,8 +148,10 @@ const containerAttributes = <Message>(
   ...(config.attributes ?? []),
 ]
 
-export const Field = <Message>(config: FieldViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const Field = <Message>(
+  config: FieldViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const {
     children = [],
     className,
@@ -180,19 +182,17 @@ export const Field = <Message>(config: FieldViewConfig<Message> = {}): Html => {
 
 export const FieldSet = <Message>(
   config: FieldContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.fieldset(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.fieldset(
     [...containerAttributes(h, 'field-set', fieldSetBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const FieldLegend = <Message>(
   config: FieldLegendConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const variant = config.variant ?? 'legend'
 
   return h.legend(
@@ -211,21 +211,18 @@ export const FieldLegend = <Message>(
 
 export const FieldGroup = <Message>(
   config: FieldContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'field-group', fieldGroupBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const FieldContent = <Message>(
   config: FieldContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       ...containerAttributes(
         h,
@@ -236,39 +233,37 @@ export const FieldContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const FieldLabel = <Message>(
   config: FieldLabelConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html =>
-  ShadcnLabel.view<Message>({
-    ...config,
-    className: cn(fieldLabelBaseClassName, config.className),
-    toView: attributes => {
-      const h = html<Message>()
-
-      return h.label(
-        [...attributes.label, h.DataAttribute('slot', 'field-label')],
-        config.children ?? [],
-      )
+  ShadcnLabel.view<Message>(
+    {
+      ...config,
+      className: cn(fieldLabelBaseClassName, config.className),
+      toView: attributes =>
+        h.label(
+          [...attributes.label, h.DataAttribute('slot', 'field-label')],
+          config.children ?? [],
+        ),
     },
-  })
+    h,
+  )
 
 export const FieldTitle = <Message>(
   config: FieldContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'field-label', fieldTitleBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const FieldDescription = <Message>(
   config: FieldContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const className =
     config.dir === 'rtl'
       ? fieldDescriptionRtlBaseClassName
@@ -282,8 +277,8 @@ export const FieldDescription = <Message>(
 
 export const FieldSeparator = <Message>(
   config: FieldContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const children = config.children ?? []
 
   return h.div(
@@ -350,8 +345,8 @@ const errorContent = (
 
 export const FieldError = <Message>(
   config: FieldErrorConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const content = errorContent(config.children ?? [], config.errors ?? [])
 
   return Array.isReadonlyArrayNonEmpty(content)

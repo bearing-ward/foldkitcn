@@ -42,10 +42,13 @@ const viewInput =
   (_model: Model): Html => {
     const h = html<Message>()
 
-    return Input<Message>({
-      ...config,
-      toView: attributes => h.input([...attributes.input]),
-    }, h)
+    return Input<Message>(
+      {
+        ...config,
+        toView: attributes => h.input([...attributes.input]),
+      },
+      h,
+    )
   }
 
 const view =

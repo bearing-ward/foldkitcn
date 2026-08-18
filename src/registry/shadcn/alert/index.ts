@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -169,8 +169,10 @@ const actionAttributes = <Message>(
   h.Class(alertActionClassName({ direction, className })),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, variant = 'default', direction = 'ltr', className } = config
 
   return toView({
@@ -178,8 +180,10 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
   })
 }
 
-export const titleView = <Message>(config: TitleViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const titleView = <Message>(
+  config: TitleViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, className } = config
 
   return toView({
@@ -189,8 +193,8 @@ export const titleView = <Message>(config: TitleViewConfig<Message>): Html => {
 
 export const descriptionView = <Message>(
   config: DescriptionViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { toView, className } = config
 
   return toView({
@@ -200,8 +204,8 @@ export const descriptionView = <Message>(
 
 export const actionView = <Message>(
   config: ActionViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { toView, direction = 'ltr', className } = config
 
   return toView({

@@ -1,6 +1,11 @@
 import { Array, Match as M, Option, Schema as S, String, pipe } from 'effect'
 import type { Command as FoldkitCommand } from 'foldkit'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 import { m } from 'foldkit/message'
 
 import { html } from '#foldkit-html'
@@ -735,28 +740,27 @@ const iconBase = <Message>(
   )
 }
 
-export const searchIcon = <Message>(): Html => {
-  const h = html<Message>()
-
-  return iconBase('lucide lucide-search', [
+export const searchIcon = <Message>(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  iconBase('lucide lucide-search', [
     h.circle([h.Cx('11'), h.Cy('11'), h.R('8')], []),
     h.path([h.D('m21 21-4.3-4.3')], []),
   ])
-}
 
 export const checkIcon = <Message>(
   dir: string | undefined = undefined,
-): Html => {
-  const h = html<Message>()
-
-  return iconBase(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  iconBase(
     dir === 'rtl' ? commandCheckIconRtlClassName : commandCheckIconClassName,
     [h.path([h.D('M20 6 9 17l-5-5')], [])],
   )
-}
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = commandAttributes(h, config)
 
   return config.toView === undefined
@@ -768,8 +772,8 @@ export const Command = view
 
 export const CommandInput = <Message>(
   config: CommandInputConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandInputAttributes(h, config)
 
   if (config.toView !== undefined) {
@@ -798,8 +802,8 @@ export const CommandInput = <Message>(
 
 export const CommandList = <Message>(
   config: CommandPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandPartAttributes(
     h,
     'command-list',
@@ -815,8 +819,8 @@ export const CommandList = <Message>(
 
 export const CommandEmpty = <Message>(
   config: CommandPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandPartAttributes(
     h,
     'command-empty',
@@ -832,8 +836,8 @@ export const CommandEmpty = <Message>(
 
 export const CommandGroup = <Message>(
   config: CommandGroupConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandPartAttributes(
     h,
     'command-group',
@@ -861,8 +865,8 @@ export const CommandGroup = <Message>(
 
 export const CommandSeparator = <Message>(
   config: CommandPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandPartAttributes(
     h,
     'command-separator',
@@ -878,8 +882,8 @@ export const CommandSeparator = <Message>(
 
 export const CommandItem = <Message>(
   config: CommandItemConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandItemAttributes(h, config)
 
   return config.toView === undefined
@@ -892,8 +896,8 @@ export const CommandItem = <Message>(
 
 export const CommandShortcut = <Message>(
   config: CommandShortcutConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = commandPartAttributes(
     h,
     'command-shortcut',
@@ -909,8 +913,8 @@ export const CommandShortcut = <Message>(
 
 export const CommandDialog = <Message>(
   config: CommandDialogConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const {
     children = [],
     contentClassName,

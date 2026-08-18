@@ -208,12 +208,12 @@ export const itemFooterClassName = ({
 }: ItemPartStyleOptions = {}): string => cn(itemFooterBaseClassName, className)
 
 const optionalDir = <Message>(
-  h: HtmlBuilder<Message> = html<Message>(),
+  h: HtmlBuilder<Message>,
   dir: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => (dir === undefined ? [] : [h.Dir(dir)])
 
 const itemAttributes = <Message>(
-  h: HtmlBuilder<Message> = html<Message>(),
+  h: HtmlBuilder<Message>,
   config: ItemConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => {
   const variant = config.variant ?? 'default'
@@ -230,7 +230,7 @@ const itemAttributes = <Message>(
 }
 
 const partAttributes = <Message>(
-  h: HtmlBuilder<Message> = html<Message>(),
+  h: HtmlBuilder<Message>,
   slot: string,
   className: string,
   config: ItemPartConfig<Message>,
@@ -254,8 +254,8 @@ const withoutSeparatorSlotAndClass = <Message>(
 export const ItemGroup = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-  return h.div(
+): Html =>
+  h.div(
     [
       h.Role('list'),
       h.DataAttribute('slot', 'item-group'),
@@ -264,27 +264,28 @@ export const ItemGroup = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const ItemSeparator = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-  return Separator.view<Message>({
-    orientation: 'horizontal',
-    className: cn(itemSeparatorBaseClassName, config.className),
-    toView: attributes =>
-      h.div(
-        [
-          ...withoutSeparatorSlotAndClass(attributes.separator),
-          h.DataAttribute('slot', 'item-separator'),
-          h.Class(itemSeparatorClassName(config)),
-          ...(config.attributes ?? []),
-        ],
-        [],
-      ),
-  }, h)
-}
+): Html =>
+  Separator.view<Message>(
+    {
+      orientation: 'horizontal',
+      className: cn(itemSeparatorBaseClassName, config.className),
+      toView: attributes =>
+        h.div(
+          [
+            ...withoutSeparatorSlotAndClass(attributes.separator),
+            h.DataAttribute('slot', 'item-separator'),
+            h.Class(itemSeparatorClassName(config)),
+            ...(config.attributes ?? []),
+          ],
+          [],
+        ),
+    },
+    h,
+  )
 
 export const Item = <Message>(
   config: ItemConfig<Message> = {},
@@ -320,9 +321,8 @@ export const ItemMedia = <Message>(
 export const ItemContent = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.div(
+): Html =>
+  h.div(
     [
       ...partAttributes(
         h,
@@ -333,25 +333,21 @@ export const ItemContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const ItemTitle = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.div(
+): Html =>
+  h.div(
     [...partAttributes(h, 'item-title', itemTitleClassName(config), config)],
     config.children ?? [],
   )
-}
 
 export const ItemDescription = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.p(
+): Html =>
+  h.p(
     [
       ...partAttributes(
         h,
@@ -362,14 +358,12 @@ export const ItemDescription = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const ItemActions = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.div(
+): Html =>
+  h.div(
     [
       ...partAttributes(
         h,
@@ -380,26 +374,21 @@ export const ItemActions = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const ItemHeader = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.div(
+): Html =>
+  h.div(
     [...partAttributes(h, 'item-header', itemHeaderClassName(config), config)],
     config.children ?? [],
   )
-}
 
 export const ItemFooter = <Message>(
   config: ItemPartConfig<Message> = {},
   h: HtmlBuilder<Message> = html<Message>(),
-): Html => {
-
-  return h.div(
+): Html =>
+  h.div(
     [...partAttributes(h, 'item-footer', itemFooterClassName(config), config)],
     config.children ?? [],
   )
-}

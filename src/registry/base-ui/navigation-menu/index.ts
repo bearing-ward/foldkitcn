@@ -1,6 +1,11 @@
 import { Effect, Option, Predicate, Schema as S } from 'effect'
 import * as Dom from 'foldkit/dom'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 import { m } from 'foldkit/message'
 
 import * as Command from '#foldkit-command'
@@ -1097,8 +1102,10 @@ const defaultView = <Message>(
   )
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const isMounted = mounted(config)
   const items = navigationMenuItems(h, config)
   const attributes: NavigationMenuAttributes<Message> = {

@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -126,10 +126,9 @@ const containerAttributes = <Message>(
 
 export const chevronRightIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>> = [],
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -145,14 +144,12 @@ export const chevronRightIcon = <Message>(
     ],
     [h.path([h.D('m9 18 6-6-6-6')], [])],
   )
-}
 
 export const moreHorizontalIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>> = [],
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -172,12 +169,11 @@ export const moreHorizontalIcon = <Message>(
       h.circle([h.Cx('5'), h.Cy('12'), h.R('1')], []),
     ],
   )
-}
 
 export const Breadcrumb = <Message>(
   config: BreadcrumbConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const className = breadcrumbClassName(config)
 
   return h.nav(
@@ -194,10 +190,9 @@ export const Breadcrumb = <Message>(
 
 export const BreadcrumbList = <Message>(
   config: BreadcrumbContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.ol(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.ol(
     [
       ...containerAttributes(
         h,
@@ -208,14 +203,12 @@ export const BreadcrumbList = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const BreadcrumbItem = <Message>(
   config: BreadcrumbContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.li(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.li(
     [
       ...containerAttributes(
         h,
@@ -226,14 +219,12 @@ export const BreadcrumbItem = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const BreadcrumbLink = <Message>(
   config: BreadcrumbLinkConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.a(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.a(
     [
       h.DataAttribute('slot', 'breadcrumb-link'),
       ...optionalStringAttribute<Message>(config.href, value => h.Href(value)),
@@ -246,14 +237,12 @@ export const BreadcrumbLink = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const BreadcrumbPage = <Message>(
   config: BreadcrumbContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.span(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.span(
     [
       h.DataAttribute('slot', 'breadcrumb-page'),
       h.Role('link'),
@@ -264,14 +253,12 @@ export const BreadcrumbPage = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const BreadcrumbSeparator = <Message>(
   config: BreadcrumbContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.li(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.li(
     [
       h.DataAttribute('slot', 'breadcrumb-separator'),
       h.Role('presentation'),
@@ -281,14 +268,12 @@ export const BreadcrumbSeparator = <Message>(
     ],
     config.children ?? [chevronRightIcon<Message>()],
   )
-}
 
 export const BreadcrumbEllipsis = <Message>(
   config: BreadcrumbContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.span(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.span(
     [
       h.DataAttribute('slot', 'breadcrumb-ellipsis'),
       h.Role('presentation'),
@@ -302,4 +287,3 @@ export const BreadcrumbEllipsis = <Message>(
       ...(config.children ?? []),
     ],
   )
-}

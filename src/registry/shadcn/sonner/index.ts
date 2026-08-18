@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -394,10 +394,11 @@ const renderToast = <Message>(
   )
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
-  return ToastPrimitive.view<Message>({
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  ToastPrimitive.view<Message>({
     id: config.id,
     state: config.state,
     ...(config.label === undefined ? {} : { label: config.label }),
@@ -467,6 +468,5 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
           )
         : config.toView(attributes),
   })
-}
 
 export const Toaster = view

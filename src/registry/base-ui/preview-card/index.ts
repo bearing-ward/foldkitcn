@@ -1,6 +1,6 @@
 import { Effect, Option, Predicate, Schema as S } from 'effect'
 import * as Dom from 'foldkit/dom'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 import { m } from 'foldkit/message'
 
 import * as Command from '#foldkit-command'
@@ -640,8 +640,10 @@ const arrowAttributes = <Message>(
   isOpen: config.open,
 })
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const isMounted = mounted(config)
 
   return config.toView({

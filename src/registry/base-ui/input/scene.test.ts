@@ -68,12 +68,15 @@ const viewInput =
       [],
       [
         'Name',
-        Input.view<Message>({
-          value: model.value,
-          ...config,
-          onValueChange: change => ChangedInput(change),
-          toView: attributes => h.input([...attributes.input]),
-        }, h),
+        Input.view<Message>(
+          {
+            value: model.value,
+            ...config,
+            onValueChange: change => ChangedInput(change),
+            toView: attributes => h.input([...attributes.input]),
+          },
+          h,
+        ),
       ],
     )
   }

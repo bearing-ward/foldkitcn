@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -136,8 +136,10 @@ const markerContentAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = markerAttributes(h, config)
 
   return config.toView === undefined
@@ -149,8 +151,8 @@ export const Marker = view
 
 export const MarkerIcon = <Message>(
   config: MarkerIconConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = markerIconAttributes(h, config)
 
   return config.toView === undefined
@@ -160,8 +162,8 @@ export const MarkerIcon = <Message>(
 
 export const MarkerContent = <Message>(
   config: MarkerContentConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = markerContentAttributes(h, config)
 
   return config.toView === undefined

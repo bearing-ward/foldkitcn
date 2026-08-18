@@ -5,7 +5,7 @@ import {
   Predicate,
   Schema as S,
 } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 import { ts } from 'foldkit/schema'
 
 import { html } from '#foldkit-html'
@@ -1318,8 +1318,10 @@ const announcementAttributes = <Message>(
   description: [h.Id(`${rootId(config, toast)}-announcement-description`)],
 })
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const expanded = isExpanded(config.state)
   const metadata = toastMetadata(config.state)
   const metadataById = new Map(metadata.map(item => [item.id, item]))

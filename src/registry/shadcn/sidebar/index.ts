@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -554,8 +554,8 @@ export const SidebarProvider = <Message>(
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const style = '--sidebar-width: 16rem; --sidebar-width-icon: 3rem;'
 
   return h.div(
@@ -581,8 +581,8 @@ export const Sidebar = <Message>(
       collapsible?: SidebarCollapsible
       children?: ReadonlyArray<Child>
     }> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const {
     id = 'sidebar',
     open = true,
@@ -687,10 +687,9 @@ export const SidebarTrigger = <Message>(
     Readonly<{
       attributes?: ReadonlyArray<Attribute<Message>>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return Button.view<Message>({
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  Button.view<Message>({
     variant: 'ghost',
     size: 'icon-sm',
     className: config.className,
@@ -705,17 +704,15 @@ export const SidebarTrigger = <Message>(
         [panelLeftIcon(), h.span([h.Class('sr-only')], ['Toggle Sidebar'])],
       ),
   })
-}
 
 export const SidebarRail = <Message>(
   config: SidebarRailStyleOptions &
     Readonly<{
       attributes?: ReadonlyArray<Attribute<Message>>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.button(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.button(
     [
       h.DataAttribute('slot', 'sidebar-rail'),
       h.DataAttribute('sidebar', 'rail'),
@@ -727,34 +724,30 @@ export const SidebarRail = <Message>(
     ],
     [],
   )
-}
 
 export const SidebarInset = <Message>(
   config: SidebarInsetStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.main(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.main(
     [
       h.DataAttribute('slot', 'sidebar-inset'),
       h.Class(sidebarInsetClassName(config)),
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarHeader = <Message>(
   config: SidebarHeaderStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-header'),
       h.DataAttribute('sidebar', 'header'),
@@ -762,17 +755,15 @@ export const SidebarHeader = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarFooter = <Message>(
   config: SidebarFooterStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-footer'),
       h.DataAttribute('sidebar', 'footer'),
@@ -780,14 +771,12 @@ export const SidebarFooter = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarSeparator = <Message>(
   config: SidebarSeparatorStyleOptions = {},
-): Html => {
-  const h = html<Message>()
-
-  return Separator.view<Message>({
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  Separator.view<Message>({
     className: sidebarSeparatorClassName(config),
     toView: attributes =>
       h.hr([
@@ -795,17 +784,15 @@ export const SidebarSeparator = <Message>(
         h.DataAttribute('slot', 'sidebar-separator'),
       ]),
   })
-}
 
 export const SidebarContent = <Message>(
   config: SidebarContentStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-content'),
       h.DataAttribute('sidebar', 'content'),
@@ -814,17 +801,15 @@ export const SidebarContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarGroup = <Message>(
   config: SidebarGroupStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-group'),
       h.DataAttribute('sidebar', 'group'),
@@ -832,17 +817,15 @@ export const SidebarGroup = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarGroupLabel = <Message>(
   config: SidebarGroupLabelStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-group-label'),
       h.DataAttribute('sidebar', 'group-label'),
@@ -850,7 +833,6 @@ export const SidebarGroupLabel = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarGroupAction = <Message>(
   config: SidebarGroupActionStyleOptions &
@@ -858,10 +840,9 @@ export const SidebarGroupAction = <Message>(
       attributes?: ReadonlyArray<Attribute<Message>>
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.button(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.button(
     [
       h.Type('button'),
       h.DataAttribute('slot', 'sidebar-group-action'),
@@ -871,17 +852,15 @@ export const SidebarGroupAction = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarGroupContent = <Message>(
   config: SidebarGroupContentStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-group-content'),
       h.DataAttribute('sidebar', 'group-content'),
@@ -889,17 +868,15 @@ export const SidebarGroupContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenu = <Message>(
   config: SidebarMenuStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.ul(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.ul(
     [
       h.DataAttribute('slot', 'sidebar-menu'),
       h.DataAttribute('sidebar', 'menu'),
@@ -907,17 +884,15 @@ export const SidebarMenu = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuItem = <Message>(
   config: SidebarMenuItemStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.li(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.li(
     [
       h.DataAttribute('slot', 'sidebar-menu-item'),
       h.DataAttribute('sidebar', 'menu-item'),
@@ -925,7 +900,6 @@ export const SidebarMenuItem = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuButton = <Message>(
   config: SidebarMenuButtonStyleOptions &
@@ -936,8 +910,8 @@ export const SidebarMenuButton = <Message>(
       attributes?: ReadonlyArray<Attribute<Message>>
       children?: ReadonlyArray<Child>
     }> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const classes = sidebarMenuButtonClassName(config)
   const attrs = [
     h.DataAttribute('slot', 'sidebar-menu-button'),
@@ -965,10 +939,9 @@ export const SidebarMenuAction = <Message>(
       attributes?: ReadonlyArray<Attribute<Message>>
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.button(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.button(
     [
       h.Type('button'),
       h.DataAttribute('slot', 'sidebar-menu-action'),
@@ -978,17 +951,15 @@ export const SidebarMenuAction = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuBadge = <Message>(
   config: SidebarMenuBadgeStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       h.DataAttribute('slot', 'sidebar-menu-badge'),
       h.DataAttribute('sidebar', 'menu-badge'),
@@ -996,12 +967,11 @@ export const SidebarMenuBadge = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuSkeleton = <Message>(
   config: SidebarMenuSkeletonStyleOptions = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const width = config.width ?? '72%'
 
   return h.div(
@@ -1047,10 +1017,9 @@ export const SidebarMenuSub = <Message>(
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.ul(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.ul(
     [
       h.DataAttribute('slot', 'sidebar-menu-sub'),
       h.DataAttribute('sidebar', 'menu-sub'),
@@ -1058,17 +1027,15 @@ export const SidebarMenuSub = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuSubItem = <Message>(
   config: SidebarMenuSubItemStyleOptions &
     Readonly<{
       children?: ReadonlyArray<Child>
     }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.li(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.li(
     [
       h.DataAttribute('slot', 'sidebar-menu-sub-item'),
       h.DataAttribute('sidebar', 'menu-sub-item'),
@@ -1076,7 +1043,6 @@ export const SidebarMenuSubItem = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const SidebarMenuSubButton = <Message>(
   config: SidebarMenuSubButtonStyleOptions &
@@ -1087,8 +1053,8 @@ export const SidebarMenuSubButton = <Message>(
       attributes?: ReadonlyArray<Attribute<Message>>
       children?: ReadonlyArray<Child>
     }> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const classes = sidebarMenuSubButtonClassName(config)
   const attrs = [
     h.DataAttribute('slot', 'sidebar-menu-sub-button'),
@@ -1116,18 +1082,19 @@ export const SidebarInput = <Message>(
     attributes?: ReadonlyArray<Attribute<Message>>
     placeholder?: string
   }> = {},
-): Html => {
-  const h = html<Message>()
-
-  return Input.view<Message>({
-    className: sidebarInputClassName(config),
-    placeholder: config.placeholder,
-    toView: attributes =>
-      h.input([
-        ...attributes.input,
-        h.DataAttribute('slot', 'sidebar-input'),
-        h.DataAttribute('sidebar', 'input'),
-        ...(config.attributes ?? []),
-      ]),
-  }, h)
-}
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  Input.view<Message>(
+    {
+      className: sidebarInputClassName(config),
+      placeholder: config.placeholder,
+      toView: attributes =>
+        h.input([
+          ...attributes.input,
+          h.DataAttribute('slot', 'sidebar-input'),
+          h.DataAttribute('sidebar', 'input'),
+          ...(config.attributes ?? []),
+        ]),
+    },
+    h,
+  )

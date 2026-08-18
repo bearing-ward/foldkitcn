@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -137,8 +137,10 @@ const partAttributes = <Message>(
   ...(config.attributes ?? []),
 ]
 
-export const Empty = <Message>(config: EmptyConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const Empty = <Message>(
+  config: EmptyConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = {
     empty: [
       h.DataAttribute('slot', 'empty'),
@@ -157,8 +159,8 @@ export const Empty = <Message>(config: EmptyConfig<Message> = {}): Html => {
 
 export const EmptyHeader = <Message>(
   config: EmptyContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     part: partAttributes(h, 'empty-header', emptyHeaderBaseClassName, config),
   }
@@ -172,8 +174,8 @@ export const EmptyHeader = <Message>(
 
 export const EmptyMedia = <Message>(
   config: EmptyMediaConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const variant = config.variant ?? 'default'
   const attributes = {
     part: [
@@ -193,8 +195,8 @@ export const EmptyMedia = <Message>(
 
 export const EmptyTitle = <Message>(
   config: EmptyContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     part: partAttributes(h, 'empty-title', emptyTitleBaseClassName, config),
   }
@@ -208,8 +210,8 @@ export const EmptyTitle = <Message>(
 
 export const EmptyDescription = <Message>(
   config: EmptyContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     part: partAttributes(
       h,
@@ -228,8 +230,8 @@ export const EmptyDescription = <Message>(
 
 export const EmptyContent = <Message>(
   config: EmptyContainerConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = {
     part: partAttributes(h, 'empty-content', emptyContentBaseClassName, config),
   }

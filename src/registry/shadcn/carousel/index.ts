@@ -1,6 +1,11 @@
 import { Match as M, Option, Schema as S } from 'effect'
 import type { Command } from 'foldkit'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 import { m } from 'foldkit/message'
 
 import { html } from '#foldkit-html'
@@ -613,8 +618,10 @@ const carouselAttributes = <Message>(
   }
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = carouselAttributes(config)
 
   if (config.toView !== undefined) {

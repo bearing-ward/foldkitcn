@@ -39,22 +39,25 @@ const inputExample = <Message>(config: InputExampleConfig<Message>): Html => {
     [h.For(id), h.Class(labelClassName)],
     [
       config.label,
-      Input<Message>({
-        id,
-        value: config.value,
-        placeholder: config.placeholder,
-        ...(config.isDisabled === undefined
-          ? {}
-          : { isDisabled: config.isDisabled }),
-        ...(config.isInvalid === undefined
-          ? {}
-          : { isInvalid: config.isInvalid }),
-        ...(config.onValueChange === undefined
-          ? {}
-          : { onValueChange: config.onValueChange }),
-        toView: attributes =>
-          h.input([...attributes.input, h.Class(inputClassName)]),
-      }, h),
+      Input<Message>(
+        {
+          id,
+          value: config.value,
+          placeholder: config.placeholder,
+          ...(config.isDisabled === undefined
+            ? {}
+            : { isDisabled: config.isDisabled }),
+          ...(config.isInvalid === undefined
+            ? {}
+            : { isInvalid: config.isInvalid }),
+          ...(config.onValueChange === undefined
+            ? {}
+            : { onValueChange: config.onValueChange }),
+          toView: attributes =>
+            h.input([...attributes.input, h.Class(inputClassName)]),
+        },
+        h,
+      ),
     ],
   )
 }

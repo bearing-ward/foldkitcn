@@ -278,11 +278,14 @@ const buttonGroupLabel = (
 const standaloneInput = (id: string): Html => {
   const h = html<never>()
 
-  return Input<never>({
-    id,
-    placeholder: 'Placeholder',
-    toView: attributes => h.input([...attributes.input]),
-  }, h)
+  return Input<never>(
+    {
+      id,
+      placeholder: 'Placeholder',
+      toView: attributes => h.input([...attributes.input]),
+    },
+    h,
+  )
 }
 
 const fieldWithDataAttribute = (

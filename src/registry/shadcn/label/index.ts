@@ -1,5 +1,5 @@
 import { Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -71,10 +71,10 @@ const labelAttributes = <Message>(
   ),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     label: labelAttributes(h, config),
   })
-}

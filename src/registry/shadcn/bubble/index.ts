@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -253,8 +253,10 @@ const bubbleReactionsAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = bubbleAttributes(h, config)
 
   return config.toView === undefined
@@ -266,8 +268,8 @@ export const Bubble = view
 
 export const BubbleGroup = <Message>(
   config: BubbleGroupConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = bubbleGroupAttributes(h, config)
 
   return config.toView === undefined
@@ -277,8 +279,8 @@ export const BubbleGroup = <Message>(
 
 export const BubbleContent = <Message>(
   config: BubbleContentConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = bubbleContentAttributes(h, config)
 
   return config.toView === undefined
@@ -288,8 +290,8 @@ export const BubbleContent = <Message>(
 
 export const BubbleReactions = <Message>(
   config: BubbleReactionsConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = bubbleReactionsAttributes(h, config)
 
   return config.toView === undefined

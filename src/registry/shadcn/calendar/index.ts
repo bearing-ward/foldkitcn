@@ -1,5 +1,10 @@
 import { Array, Match as M, Option, Schema as S, pipe } from 'effect'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 import { m } from 'foldkit/message'
 
 import { html } from '#foldkit-html'
@@ -486,8 +491,8 @@ const chunkWeeks = (
 
 export const Calendar = <Message>(
   config: CalendarConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const visibleMonth = config.visibleMonth ?? '2025-01'
   const weekStartsOn = normalizedWeekStart(config.weekStartsOn)
   const days = calendarMonthDays(visibleMonth, config)

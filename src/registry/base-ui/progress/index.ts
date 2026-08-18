@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -186,8 +186,10 @@ const styleAttribute = <Message>(
 ): ReadonlyArray<Attribute<Message>> =>
   Object.keys(style).length === 0 ? [] : [h.Style(style)]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { labelId, toView } = config
   const state = progressState(config)
   const statusAttributes = progressStatusAttributes(h, state.status)

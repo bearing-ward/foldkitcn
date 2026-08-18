@@ -693,24 +693,27 @@ const filterInput = <Message>(
   const h = html<Message>()
   const { onDataTableMessage } = controller
 
-  return Input.view<Message>({
-    value: state.filters[columnId] ?? '',
-    placeholder,
-    className,
-    ...(dir === undefined ? {} : { dir }),
-    ...(onDataTableMessage === undefined
-      ? {}
-      : {
-          onValueChange: change =>
-            onDataTableMessage(
-              UpdatedDataTableFilter({
-                columnId,
-                value: change.value,
-              }),
-            ),
-        }),
-    toView: attributes => h.input([...attributes.input]),
-  }, h)
+  return Input.view<Message>(
+    {
+      value: state.filters[columnId] ?? '',
+      placeholder,
+      className,
+      ...(dir === undefined ? {} : { dir }),
+      ...(onDataTableMessage === undefined
+        ? {}
+        : {
+            onValueChange: change =>
+              onDataTableMessage(
+                UpdatedDataTableFilter({
+                  columnId,
+                  value: change.value,
+                }),
+              ),
+          }),
+      toView: attributes => h.input([...attributes.input]),
+    },
+    h,
+  )
 }
 
 const defaultMenuItemContent = <Message>(

@@ -1,5 +1,10 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -530,8 +535,10 @@ const indicatorAttributes = <Message>(
         ...stateDataAttributes(h, config),
       ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const panels = config.panels ?? []
 
   return config.toView({

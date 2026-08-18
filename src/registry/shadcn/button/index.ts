@@ -1,5 +1,4 @@
 import { Schema as S } from 'effect'
-
 import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
@@ -124,9 +123,9 @@ const shadcnAttributes = <Message>(
   size: ButtonSize,
   className: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => [
-    h.DataAttribute('slot', 'button'),
-    h.Class(cn(buttonVariants({ variant, size, className }))),
-  ]
+  h.DataAttribute('slot', 'button'),
+  h.Class(cn(buttonVariants({ variant, size, className }))),
+]
 
 export const view = <Message>(
   config: ViewConfig<Message>,
@@ -140,16 +139,19 @@ export const view = <Message>(
     ...baseConfig
   } = config
 
-  return BaseButton.view<Message>({
-    ...baseConfig,
-    toView: attributes =>
-      toView({
-        button: [
-          ...attributes.button,
-          ...shadcnAttributes(h, variant, size, className),
-        ],
-      }),
-  }, h)
+  return BaseButton.view<Message>(
+    {
+      ...baseConfig,
+      toView: attributes =>
+        toView({
+          button: [
+            ...attributes.button,
+            ...shadcnAttributes(h, variant, size, className),
+          ],
+        }),
+    },
+    h,
+  )
 }
 
 export const linkClassName = (options: ButtonStyleOptions = {}): string =>

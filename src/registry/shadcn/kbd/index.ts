@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -65,8 +65,10 @@ const groupAttributes = <Message>(
   h.Class(kbdGroupClassName({ className })),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, className } = config
 
   return toView({
@@ -74,8 +76,10 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
   })
 }
 
-export const groupView = <Message>(config: GroupViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const groupView = <Message>(
+  config: GroupViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, className } = config
 
   return toView({

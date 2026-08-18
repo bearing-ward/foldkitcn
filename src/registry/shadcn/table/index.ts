@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -135,10 +135,11 @@ const partAttributes = <Message>(
   ...(config.attributes ?? []),
 ]
 
-export const Table = <Message>(config: TableConfig<Message> = {}): Html => {
-  const h = html<Message>()
-
-  return h.div(
+export const Table = <Message>(
+  config: TableConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       ...slotAttributes(
         h,
@@ -158,14 +159,12 @@ export const Table = <Message>(config: TableConfig<Message> = {}): Html => {
       ),
     ],
   )
-}
 
 export const TableHeader = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.thead(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.thead(
     [
       ...partAttributes(
         h,
@@ -176,25 +175,21 @@ export const TableHeader = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const TableBody = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.tbody(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.tbody(
     [...partAttributes(h, 'table-body', tableBodyClassName(config), config)],
     config.children ?? [],
   )
-}
 
 export const TableFooter = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.tfoot(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.tfoot(
     [
       ...partAttributes(
         h,
@@ -205,14 +200,12 @@ export const TableFooter = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const TableRow = <Message>(
   config: TableRowConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.tr(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.tr(
     [
       ...slotAttributes(h, 'table-row', tableRowClassName(config)),
       ...(config.state === undefined
@@ -222,36 +215,30 @@ export const TableRow = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const TableHead = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.th(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.th(
     [...partAttributes(h, 'table-head', tableHeadClassName(config), config)],
     config.children ?? [],
   )
-}
 
 export const TableCell = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.td(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.td(
     [...partAttributes(h, 'table-cell', tableCellClassName(config), config)],
     config.children ?? [],
   )
-}
 
 export const TableCaption = <Message>(
   config: TablePartConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.caption(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.caption(
     [
       ...partAttributes(
         h,
@@ -262,4 +249,3 @@ export const TableCaption = <Message>(
     ],
     config.children ?? [],
   )
-}

@@ -1,6 +1,6 @@
 import { Schema as S } from 'effect'
 import * as Array from 'effect/Array'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -593,10 +593,9 @@ const shadcnAttributes = <Message>(
 
 export const chevronDownIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -611,14 +610,12 @@ export const chevronDownIcon = <Message>(
     ],
     [h.path([h.D('m6 9 6 6 6-6')], [])],
   )
-}
 
 export const checkIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -633,14 +630,12 @@ export const checkIcon = <Message>(
     ],
     [h.path([h.D('m20 6-11 11-5-5')], [])],
   )
-}
 
 export const xIcon = <Message>(
   attributes: ReadonlyArray<Attribute<Message>>,
-): Html => {
-  const h = html<Message>()
-
-  return h.svg(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.svg(
     [
       h.Xmlns('http://www.w3.org/2000/svg'),
       h.Width('24'),
@@ -655,7 +650,6 @@ export const xIcon = <Message>(
     ],
     [h.path([h.D('M18 6 6 18')], []), h.path([h.D('m6 6 12 12')], [])],
   )
-}
 
 const renderContent = <Message>(
   h: ReturnType<typeof html<Message>>,
@@ -708,8 +702,10 @@ const renderContent = <Message>(
       : [],
   )
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const {
     toView,
     showClear = false,

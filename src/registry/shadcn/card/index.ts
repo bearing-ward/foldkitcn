@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -100,8 +100,10 @@ const containerAttributes = <Message>(
   ...(config.attributes ?? []),
 ]
 
-export const Card = <Message>(config: CardConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const Card = <Message>(
+  config: CardConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const size = config.size ?? 'default'
 
   return h.div(
@@ -118,32 +120,27 @@ export const Card = <Message>(config: CardConfig<Message> = {}): Html => {
 
 export const CardHeader = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'card-header', cardHeaderBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const CardTitle = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'card-title', cardTitleBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const CardDescription = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       ...containerAttributes(
         h,
@@ -154,25 +151,21 @@ export const CardDescription = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const CardAction = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'card-action', cardActionBaseClassName, config)],
     config.children ?? [],
   )
-}
 
 export const CardContent = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [
       ...containerAttributes(
         h,
@@ -183,15 +176,12 @@ export const CardContent = <Message>(
     ],
     config.children ?? [],
   )
-}
 
 export const CardFooter = <Message>(
   config: CardContainerConfig<Message> = {},
-): Html => {
-  const h = html<Message>()
-
-  return h.div(
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  h.div(
     [...containerAttributes(h, 'card-footer', cardFooterBaseClassName, config)],
     config.children ?? [],
   )
-}

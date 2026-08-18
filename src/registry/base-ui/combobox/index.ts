@@ -1,5 +1,10 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html, KeyboardModifiers } from 'foldkit/html'
+import type {
+  Attribute,
+  Html,
+  KeyboardModifiers,
+  HtmlBuilder,
+} from 'foldkit/html'
 
 import type { Command } from '#foldkit-command'
 import { html } from '#foldkit-html'
@@ -1349,8 +1354,10 @@ const hiddenInputAttributes = <Message>(
   ])
 }
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const mounted = isMounted(config)
   const visibleItems = filteredItems(config)
   const selected = visibleSelectedItems(config)

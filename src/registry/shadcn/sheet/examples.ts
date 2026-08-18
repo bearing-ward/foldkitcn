@@ -46,15 +46,18 @@ const input = (
 ): Html => {
   const h = html<never>()
 
-  return Input<never>({
-    id: config.id,
-    value: config.value,
-    toView: attributes =>
-      h.input([
-        ...attributes.input,
-        ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
-      ]),
-  }, h)
+  return Input<never>(
+    {
+      id: config.id,
+      value: config.value,
+      toView: attributes =>
+        h.input([
+          ...attributes.input,
+          ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
+        ]),
+    },
+    h,
+  )
 }
 
 const profileFields = (

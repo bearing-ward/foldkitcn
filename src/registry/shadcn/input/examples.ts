@@ -33,16 +33,19 @@ const input = (
 ): Html => {
   const h = html<never>()
 
-  return Input<never>({
-    id: config.id,
-    type: config.type,
-    value: config.value,
-    placeholder: config.placeholder,
-    isDisabled: config.disabled,
-    isInvalid: config.invalid,
-    isRequired: config.required,
-    toView: attributes => h.input([...attributes.input]),
-  }, h)
+  return Input<never>(
+    {
+      id: config.id,
+      type: config.type,
+      value: config.value,
+      placeholder: config.placeholder,
+      isDisabled: config.disabled,
+      isInvalid: config.invalid,
+      isRequired: config.required,
+      toView: attributes => h.input([...attributes.input]),
+    },
+    h,
+  )
 }
 
 export const InputDemo = (): Html =>

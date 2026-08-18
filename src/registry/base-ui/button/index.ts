@@ -53,10 +53,10 @@ const nonNativeDisabledAttributes = <Message>(
   h: HtmlBuilder<Message>,
   isFocusableWhenDisabled: boolean,
 ): ReadonlyArray<Attribute<Message>> => [
-    h.AriaDisabled(true),
-    h.Tabindex(isFocusableWhenDisabled ? 0 : -1),
-    h.DataAttribute('disabled', ''),
-  ]
+  h.AriaDisabled(true),
+  h.Tabindex(isFocusableWhenDisabled ? 0 : -1),
+  h.DataAttribute('disabled', ''),
+]
 
 const disabledAttributes = <Message>(
   h: HtmlBuilder<Message>,
@@ -126,10 +126,10 @@ const keyboardAttributes = <Message>(
 ): ReadonlyArray<Attribute<Message>> =>
   Predicate.isNotUndefined(onClick) && !isDisabled && !isNativeButton
     ? [
-      h.OnKeyDownPreventDefault((key: string) =>
-        activationKeys.has(key) ? toSome(onClick) : Option.none(),
-      ),
-    ]
+        h.OnKeyDownPreventDefault((key: string) =>
+          activationKeys.has(key) ? toSome(onClick) : Option.none(),
+        ),
+      ]
     : []
 
 export const view = <Message>(

@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import type * as Command from '#foldkit-command'
 import { html } from '#foldkit-html'
@@ -121,14 +121,14 @@ const alertDialogAttributes = <Message>(
   action: actionAttributes(h, config),
 })
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
-  return Dialog.view<Message>({
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  Dialog.view<Message>({
     ...config,
     modal,
     disableOutsidePress: true,
     toView: attributes =>
       config.toView(alertDialogAttributes(h, config, attributes)),
   })
-}

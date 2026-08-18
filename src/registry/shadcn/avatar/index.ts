@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -195,8 +195,10 @@ export const shadcnAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, ...baseConfig } = config
 
   return BaseAvatar.view<Message>({
@@ -223,10 +225,9 @@ export const badgeView = <Message>(
     Readonly<{
       toView: (attributes: AvatarBadgeAttributes<Message>) => Html
     }>,
-): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     badge: [
       h.DataAttribute('slot', 'avatar-badge'),
       h.Class(
@@ -237,36 +238,31 @@ export const badgeView = <Message>(
       ),
     ],
   })
-}
 
 export const groupView = <Message>(
   config: AvatarGroupStyleOptions &
     Readonly<{
       toView: (attributes: AvatarGroupAttributes<Message>) => Html
     }>,
-): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     group: [
       h.DataAttribute('slot', 'avatar-group'),
       h.Class(avatarGroupClassName({ className: config.className })),
     ],
   })
-}
 
 export const groupCountView = <Message>(
   config: AvatarGroupCountStyleOptions &
     Readonly<{
       toView: (attributes: AvatarGroupCountAttributes<Message>) => Html
     }>,
-): Html => {
-  const h = html<Message>()
-
-  return config.toView({
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html =>
+  config.toView({
     count: [
       h.DataAttribute('slot', 'avatar-group-count'),
       h.Class(avatarGroupCountClassName({ className: config.className })),
     ],
   })
-}

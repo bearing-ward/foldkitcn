@@ -44,11 +44,14 @@ export const view = <Message>(
 ): Html => {
   const { toView, className, ...baseConfig } = config
 
-  return BaseInput.view<Message>({
-    ...baseConfig,
-    toView: attributes =>
-      toView({
-        input: [...attributes.input, ...shadcnAttributes(h, className)],
-      }),
-  }, h)
+  return BaseInput.view<Message>(
+    {
+      ...baseConfig,
+      toView: attributes =>
+        toView({
+          input: [...attributes.input, ...shadcnAttributes(h, className)],
+        }),
+    },
+    h,
+  )
 }

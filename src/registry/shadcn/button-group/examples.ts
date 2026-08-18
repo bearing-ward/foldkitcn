@@ -130,11 +130,14 @@ const input = (
 ): Html => {
   const h = html<never>()
 
-  return Input.view<never>({
-    placeholder,
-    toView: inputAttributes =>
-      h.input([...inputAttributes.input, ...attributes]),
-  }, h)
+  return Input.view<never>(
+    {
+      placeholder,
+      toView: inputAttributes =>
+        h.input([...inputAttributes.input, ...attributes]),
+    },
+    h,
+  )
 }
 
 const dropdownTriggerButton = (

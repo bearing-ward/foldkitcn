@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -305,8 +305,10 @@ const inputGroupTextAttributes = <Message>(
   ],
 })
 
-export const view = <Message>(config: ViewConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const attributes = inputGroupAttributes(h, config)
 
   return config.toView === undefined
@@ -318,8 +320,8 @@ export const InputGroup = view
 
 export const InputGroupAddon = <Message>(
   config: InputGroupAddonConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = inputGroupAddonAttributes(h, config)
 
   return config.toView === undefined
@@ -329,8 +331,8 @@ export const InputGroupAddon = <Message>(
 
 export const InputGroupButton = <Message>(
   config: InputGroupButtonConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const {
     ariaLabel,
     attributes = [],
@@ -365,8 +367,8 @@ export const InputGroupButton = <Message>(
 
 export const InputGroupText = <Message>(
   config: InputGroupTextConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const attributes = inputGroupTextAttributes(h, config)
 
   return config.toView === undefined
@@ -376,33 +378,36 @@ export const InputGroupText = <Message>(
 
 export const InputGroupInput = <Message>(
   config: InputGroupInputConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { attributes = [], className, toView, ...inputConfig } = config
 
-  return BaseInput.view<Message>({
-    ...inputConfig,
-    toView: inputAttributes => {
-      const mergedAttributes: InputGroupInputAttributes<Message> = {
-        input: [
-          ...inputAttributes.input,
-          h.Class(inputGroupInputClassName({ className })),
-          h.DataAttribute('slot', 'input-group-control'),
-          ...attributes,
-        ],
-      }
+  return BaseInput.view<Message>(
+    {
+      ...inputConfig,
+      toView: inputAttributes => {
+        const mergedAttributes: InputGroupInputAttributes<Message> = {
+          input: [
+            ...inputAttributes.input,
+            h.Class(inputGroupInputClassName({ className })),
+            h.DataAttribute('slot', 'input-group-control'),
+            ...attributes,
+          ],
+        }
 
-      return toView === undefined
-        ? h.input([...mergedAttributes.input])
-        : toView(mergedAttributes)
+        return toView === undefined
+          ? h.input([...mergedAttributes.input])
+          : toView(mergedAttributes)
+      },
     },
-  }, h)
+    h,
+  )
 }
 
 export const InputGroupTextarea = <Message>(
   config: InputGroupTextareaConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const { attributes = [], className, toView, ...textareaConfig } = config
 
   return ShadcnTextarea.view<Message>({
