@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -37,15 +37,17 @@ export const separatorClassName = ({
 }: SeparatorStyleOptions = {}): string => cn(baseClassName, className)
 
 const shadcnAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message> = html<Message>(),
   className: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => [
   h.DataAttribute('slot', 'separator'),
   h.Class(separatorClassName({ className })),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const { toView, className, ...baseConfig } = config
 
   return BaseSeparator.view<Message>({
@@ -54,5 +56,5 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
       toView({
         separator: [...attributes.separator, ...shadcnAttributes(h, className)],
       }),
-  })
+  }, h)
 }

@@ -134,7 +134,7 @@ const input = (
     placeholder,
     toView: inputAttributes =>
       h.input([...inputAttributes.input, ...attributes]),
-  })
+  }, h)
 }
 
 const dropdownTriggerButton = (

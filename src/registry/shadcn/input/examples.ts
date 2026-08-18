@@ -42,7 +42,7 @@ const input = (
     isInvalid: config.invalid,
     isRequired: config.required,
     toView: attributes => h.input([...attributes.input]),
-  })
+  }, h)
 }
 
 export const InputDemo = (): Html =>

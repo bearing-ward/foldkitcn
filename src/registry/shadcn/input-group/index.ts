@@ -396,7 +396,7 @@ export const InputGroupInput = <Message>(
         ? h.input([...mergedAttributes.input])
         : toView(mergedAttributes)
     },
-  })
+  }, h)
 }
 
 export const InputGroupTextarea = <Message>(

@@ -1,5 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -208,12 +208,12 @@ export const itemFooterClassName = ({
 }: ItemPartStyleOptions = {}): string => cn(itemFooterBaseClassName, className)
 
 const optionalDir = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message> = html<Message>(),
   dir: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => (dir === undefined ? [] : [h.Dir(dir)])
 
 const itemAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message> = html<Message>(),
   config: ItemConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => {
   const variant = config.variant ?? 'default'
@@ -230,7 +230,7 @@ const itemAttributes = <Message>(
 }
 
 const partAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message> = html<Message>(),
   slot: string,
   className: string,
   config: ItemPartConfig<Message>,
@@ -253,9 +253,8 @@ const withoutSeparatorSlotAndClass = <Message>(
 
 export const ItemGroup = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
-
   return h.div(
     [
       h.Role('list'),
@@ -269,9 +268,8 @@ export const ItemGroup = <Message>(
 
 export const ItemSeparator = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
-
   return Separator.view<Message>({
     orientation: 'horizontal',
     className: cn(itemSeparatorBaseClassName, config.className),
@@ -285,11 +283,13 @@ export const ItemSeparator = <Message>(
         ],
         [],
       ),
-  })
+  }, h)
 }
 
-export const Item = <Message>(config: ItemConfig<Message> = {}): Html => {
-  const h = html<Message>()
+export const Item = <Message>(
+  config: ItemConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const children = config.children ?? []
   const attributes = { item: itemAttributes(h, config) }
 
@@ -302,8 +302,8 @@ export const Item = <Message>(config: ItemConfig<Message> = {}): Html => {
 
 export const ItemMedia = <Message>(
   config: ItemMediaConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
   const variant = config.variant ?? 'default'
 
   return h.div(
@@ -319,8 +319,8 @@ export const ItemMedia = <Message>(
 
 export const ItemContent = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.div(
     [
@@ -337,8 +337,8 @@ export const ItemContent = <Message>(
 
 export const ItemTitle = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.div(
     [...partAttributes(h, 'item-title', itemTitleClassName(config), config)],
@@ -348,8 +348,8 @@ export const ItemTitle = <Message>(
 
 export const ItemDescription = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.p(
     [
@@ -366,8 +366,8 @@ export const ItemDescription = <Message>(
 
 export const ItemActions = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.div(
     [
@@ -384,8 +384,8 @@ export const ItemActions = <Message>(
 
 export const ItemHeader = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.div(
     [...partAttributes(h, 'item-header', itemHeaderClassName(config), config)],
@@ -395,8 +395,8 @@ export const ItemHeader = <Message>(
 
 export const ItemFooter = <Message>(
   config: ItemPartConfig<Message> = {},
+  h: HtmlBuilder<Message> = html<Message>(),
 ): Html => {
-  const h = html<Message>()
 
   return h.div(
     [...partAttributes(h, 'item-footer', itemFooterClassName(config), config)],

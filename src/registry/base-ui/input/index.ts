@@ -1,7 +1,5 @@
 import { Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
-
-import { html } from '#foldkit-html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 // MODEL
 
@@ -52,7 +50,7 @@ export type ViewConfig<Message> = InputOptions &
   }>
 
 const booleanAttribute = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   name: string,
   value: boolean | undefined,
 ): ReadonlyArray<Attribute<Message>> =>
@@ -71,13 +69,13 @@ const optionalBooleanAttribute = <Message>(
   value === true ? [toAttribute(true)] : []
 
 const valueAttribute = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   value: string | number | undefined,
 ): ReadonlyArray<Attribute<Message>> =>
   Predicate.isNotUndefined(value) ? [h.Value(String(value))] : []
 
 const dataStateAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   config: Pick<
     ViewConfig<Message>,
     | 'isDirty'
@@ -99,7 +97,7 @@ const dataStateAttributes = <Message>(
 ]
 
 const eventAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   config: ViewConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => {
   const { onValueChange } = config
@@ -125,7 +123,7 @@ const eventAttributes = <Message>(
 }
 
 const inputAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   config: ViewConfig<Message>,
 ): ReadonlyArray<Attribute<Message>> => [
   ...optionalAttribute<Message>(config.type, value => h.Type(value)),
@@ -152,9 +150,10 @@ const inputAttributes = <Message>(
   ...eventAttributes(h, config),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message>,
+): Html => {
   return config.toView({
     input: inputAttributes(h, config),
   })

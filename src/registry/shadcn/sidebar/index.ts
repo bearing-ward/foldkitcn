@@ -1129,5 +1129,5 @@ export const SidebarInput = <Message>(
         h.DataAttribute('sidebar', 'input'),
         ...(config.attributes ?? []),
       ]),
-  })
+  }, h)
 }

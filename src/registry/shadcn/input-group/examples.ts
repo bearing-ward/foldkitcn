@@ -282,7 +282,7 @@ const standaloneInput = (id: string): Html => {
     id,
     placeholder: 'Placeholder',
     toView: attributes => h.input([...attributes.input]),
-  })
+  }, h)
 }
 
 const fieldWithDataAttribute = (

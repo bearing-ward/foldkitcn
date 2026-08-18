@@ -14,8 +14,8 @@ import {
 import type { Runtime } from 'foldkit'
 import { Dom, Render, Subscription } from 'foldkit'
 import * as Command from '#foldkit-command'
-import type { Attribute, Document, Html } from 'foldkit/html'
-import { html } from '#foldkit-html'
+import type { Attribute, Document, Html, HtmlBuilder } from 'foldkit/html'
+import { html, withHtmlBuilder } from '#foldkit-html'
 import { m } from 'foldkit/message'
 import { UrlRequest, load, pushUrl } from 'foldkit/navigation'
 import { ts } from 'foldkit/schema'
@@ -2918,7 +2918,7 @@ const headerView = (model: Model): Html => {
             h.OnClick(ClickedToggleMobileNavigation()),
           ],
           children: ['Menu'],
-        }),
+        }, h),
       ]),
     ],
   )
@@ -3317,7 +3317,7 @@ const docsSidebarToggleView = (model: Model): Html => {
       h.OnClick(ClickedToggleDocsSidebar()),
     ],
     children: [model.docsSidebar.isOpen ? 'Hide components' : 'Browse components'],
-  })
+  }, h)
 }
 
 const exampleAnchorId = (example: ExampleDocsArtifact): string =>
@@ -3398,8 +3398,11 @@ const tableOfContentsView = (
   })
 }
 
-const shellView = (model: Model, content: Html): Html => {
-  const h = html<Message>()
+const shellView = (
+  model: Model,
+  content: Html,
+  h: HtmlBuilder<Message>,
+): Html => {
   const groups = namespaceGroups(model.data)
   const maybeTableOfContents = tableOfContentsComponent(model)
   const layoutClass = Option.match(maybeTableOfContents, {
@@ -3569,6 +3572,7 @@ const docsPageView = (): Html => {
         'Copy Foldkit CN components.json registry namespace',
         copiedSnippets,
         { title: 'components.json' },
+        h,
       ),
       docsCodePanel(
         'docs#installation#command',
@@ -3576,6 +3580,7 @@ const docsPageView = (): Html => {
         'Copy Foldkit CN shadcn button install command',
         copiedSnippets,
         { title: 'CLI' },
+        h,
       ),
       h.p([], [
         'Public GitHub registries can also use ',
@@ -3735,8 +3740,10 @@ type DocsCodePanelConfig = Readonly<{
   teaserLineCount: number
 }>
 
-const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
-  const h = html<Message>()
+const docsCodePanelView = (
+  config: DocsCodePanelConfig,
+  h: HtmlBuilder<Message>,
+): Html => {
   const isCopied = HashSet.has(config.copiedSnippets, config.text)
   const teaser = docsCodeTeaser(config.text, config.teaserLineCount)
   const codeAttributes = [
@@ -3789,7 +3796,7 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
                           ),
                         ],
                         children: [label],
-                      }),
+                      }, h),
                     ]),
               }),
             ],
@@ -3806,7 +3813,7 @@ const docsCodePanelView = (config: DocsCodePanelConfig): Html => {
         children: [
           h.span([h.AriaHidden(true)], [isCopied ? 'Copied' : 'Copy']),
         ],
-      }),
+      }, h),
       h.span(
         [h.Role('status'), h.AriaLive('polite'), h.Class('sr-only')],
         [isCopied ? 'Copied to clipboard' : ''],
@@ -3825,6 +3832,7 @@ const docsCodePanel = (
       title?: string
       revealLabel?: string
     }> = {},
+  h: HtmlBuilder<Message>,
 ): Html => {
   return docsCodePanelView({
     panelId,
@@ -3839,7 +3847,7 @@ const docsCodePanel = (
         ? Option.none()
         : Option.some(options.revealLabel),
     teaserLineCount: options.teaserLineCount ?? DEFAULT_DOCS_CODE_TEASER_LINES,
-  })
+  }, h)
 }
 
 type DocsButtonViewConfig = Readonly<{
@@ -3850,17 +3858,20 @@ type DocsButtonViewConfig = Readonly<{
   children: ReadonlyArray<Html | string>
 }>
 
-const docsButtonView = (config: DocsButtonViewConfig): Html =>
-  ShadcnButton.view<Message>({
-    variant: config.variant ?? 'outline',
-    size: config.size ?? 'sm',
-    className: config.className,
-    toView: attributes => {
-      const h = html<Message>()
-
-      return h.button([...attributes.button, ...config.attributes], config.children)
+const docsButtonView = (
+  config: DocsButtonViewConfig,
+  h: HtmlBuilder<Message>,
+): Html =>
+  ShadcnButton.view<Message>(
+    {
+      variant: config.variant ?? 'outline',
+      size: config.size ?? 'sm',
+      className: config.className,
+      toView: attributes =>
+        h.button([...attributes.button, ...config.attributes], config.children),
     },
-  })
+    h,
+  )
 
 const docsLinkButtonClassName = (
   options: ShadcnButton.ButtonStyleOptions = {},
@@ -3948,13 +3959,14 @@ const docsInstallTabButtonView = (
       h.OnClick(SelectedDocsInstallTab({ panelId, value })),
     ],
     children: [label],
-  })
+  }, h)
 }
 
 const manualSourcePanelView = (
   component: PublicComponent,
   sourceFile: ComponentDocsSourceFile,
   copiedSnippets: HashSet.HashSet<string>,
+  h: HtmlBuilder<Message>,
 ): Html =>
   docsCodePanel(
     `manual-source#${component.entry.item.id}#${sourceFile.path}`,
@@ -3965,6 +3977,7 @@ const manualSourcePanelView = (
       title: sourceFile.path,
       isExpanded: true,
     },
+    h,
   )
 
 const installationSectionView = (
@@ -4013,7 +4026,8 @@ const installationSectionView = (
 	                    installCommand,
 	                    `Copy ${component.entry.item.name} install command`,
 	                    copiedSnippets,
-	                    { title: 'CLI' },
+                    { title: 'CLI' },
+                    h,
                   )
                 : Option.match(component.maybeDocsArtifact, {
                     onNone: () =>
@@ -4032,6 +4046,7 @@ const installationSectionView = (
                                 component,
                                 sourceFile,
                                 copiedSnippets,
+                                h,
                               ),
                             ),
                           ),
@@ -4075,6 +4090,7 @@ const docsOnlyUsageView = (
       'Copy Typography usage snippet',
       copiedSnippets,
       { title: 'Usage' },
+      h,
     ),
   ])
 }
@@ -4105,6 +4121,7 @@ const usageSectionView = (
                 `Copy ${component.entry.item.name} import snippet`,
                 copiedSnippets,
                 { title: 'Import' },
+                h,
               ),
               h.dl([h.Class('meta-list wide')], [
                 h.div([], [
@@ -4126,8 +4143,8 @@ const docsPreviewCardView = (
   maybeLivePreview: Option.Option<Html>,
   copiedSnippets: HashSet.HashSet<string>,
   docsPreviewCodeOpenValues: Readonly<Record<string, boolean>>,
+  h: HtmlBuilder<Message>,
 ): Html => {
-  const h = html<Message>()
   const panelId = docsPreviewPanelIdForExample(example)
   const isCodeOpen = pipe(
     EffectRecord.get(docsPreviewCodeOpenValues, panelId),
@@ -4181,6 +4198,7 @@ const docsPreviewCardView = (
           isExpanded: isCodeOpen,
           revealLabel: `View ${example.title} code`,
         },
+        h,
       ),
     ],
   )
@@ -4239,8 +4257,8 @@ const examplesSectionView = (
   liveExampleSidebarOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarPanelOpenValues: Readonly<Record<string, boolean>>,
   liveExampleSidebarSelectedValues: Readonly<Record<string, string>>,
+  h: HtmlBuilder<Message>,
 ): Html => {
-  const h = html<Message>()
   const liveExampleContext = {
     inputValueFor: (
       example: ExampleDocsArtifact,
@@ -5000,6 +5018,7 @@ const examplesSectionView = (
             liveExamplePreviewView(example),
             copiedSnippets,
             docsPreviewCodeOpenValues,
+            h,
           )
 
         return h.div([h.Class('example-list')], [
@@ -5230,8 +5249,8 @@ const componentDetailPageView = (
   model: Model,
   namespace: string,
   slug: string,
+  h: HtmlBuilder<Message>,
 ): Html => {
-  const h = html<Message>()
   const maybeComponent = findRoutedComponent(model.data, namespace, slug)
 
   return Option.match(maybeComponent, {
@@ -5296,6 +5315,7 @@ const componentDetailPageView = (
           model.liveExampleSidebarOpenValues,
           model.liveExampleSidebarPanelOpenValues,
           model.liveExampleSidebarSelectedValues,
+          h,
         ),
         h.section([h.Id('implementation'), h.Class('content-section')], [
           h.h2([], ['Implementation']),
@@ -5540,7 +5560,7 @@ const notFoundPageView = (route: typeof NotFoundRoute.Type): Html => {
   ])
 }
 
-const routeContentView = (model: Model): Html =>
+const routeContentView = (model: Model, h: HtmlBuilder<Message>): Html =>
   M.value(model.route).pipe(
     M.withReturnType<Html>(),
     M.tagsExhaustive({
@@ -5550,7 +5570,7 @@ const routeContentView = (model: Model): Html =>
       ComponentsNamespace: ({ namespace }) =>
         componentsNamespacePageView(model, namespace),
       ComponentDetail: ({ namespace, slug }) =>
-        componentDetailPageView(model, namespace, slug),
+        componentDetailPageView(model, namespace, slug, h),
       Registry: () => registryPageView(),
       RegistrySchema: () => registrySchemaPageView(),
       RegistryLifecycle: () => registryLifecyclePageView(),
@@ -5568,7 +5588,8 @@ const routeMetadata = (data: DocsData, route: AppRoute) =>
 const routeTitle = (data: DocsData, route: AppRoute): string =>
   routeMetadata(data, route).title
 
-export const view = (model: Model): Document => ({
-  title: routeTitle(model.data, model.route),
-  body: shellView(model, routeContentView(model)),
-})
+export const view = (model: Model, h: HtmlBuilder<Message>): Document =>
+  withHtmlBuilder(h, () => ({
+    title: routeTitle(model.data, model.route),
+    body: shellView(model, routeContentView(model, h), h),
+  }))

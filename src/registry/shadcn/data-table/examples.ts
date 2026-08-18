@@ -710,7 +710,7 @@ const filterInput = <Message>(
             ),
         }),
     toView: attributes => h.input([...attributes.input]),
-  })
+  }, h)
 }
 
 const defaultMenuItemContent = <Message>(

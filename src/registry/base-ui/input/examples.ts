@@ -54,7 +54,7 @@ const inputExample = <Message>(config: InputExampleConfig<Message>): Html => {
           : { onValueChange: config.onValueChange }),
         toView: attributes =>
           h.input([...attributes.input, h.Class(inputClassName)]),
-      }),
+      }, h),
     ],
   )
 }

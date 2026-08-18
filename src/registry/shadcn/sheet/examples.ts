@@ -54,7 +54,7 @@ const input = (
         ...attributes.input,
         ...(config.dir === undefined ? [] : [h.Dir(config.dir)]),
       ]),
-  })
+  }, h)
 }
 
 const profileFields = (

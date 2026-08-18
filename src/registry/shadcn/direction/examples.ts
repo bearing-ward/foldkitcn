@@ -100,7 +100,7 @@ const input = (
     placeholder: config.placeholder,
     isRequired: config.isRequired,
     toView: attributes => h.input([...attributes.input]),
-  })
+  }, h)
 }
 
 const label = (forId: string, text: string): Html => {

@@ -33,7 +33,7 @@ const input = (
     placeholder: config.placeholder,
     isRequired: config.required,
     toView: attributes => h.input([...attributes.input]),
-  })
+  }, h)
 }
 
 const checkbox = (

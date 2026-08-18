@@ -1,7 +1,5 @@
 import { Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
-
-import { html } from '#foldkit-html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { cn } from '../../../utils/cn'
 import * as BaseInput from '../../base-ui/input'
@@ -33,15 +31,17 @@ export const inputClassName = ({ className }: InputStyleOptions = {}): string =>
   cn(inputBaseClassName, className)
 
 const shadcnAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   className: string | undefined,
 ): ReadonlyArray<Attribute<Message>> => [
   h.DataAttribute('slot', 'input'),
   h.Class(inputClassName({ className })),
 ]
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message>,
+): Html => {
   const { toView, className, ...baseConfig } = config
 
   return BaseInput.view<Message>({
@@ -50,5 +50,5 @@ export const view = <Message>(config: ViewConfig<Message>): Html => {
       toView({
         input: [...attributes.input, ...shadcnAttributes(h, className)],
       }),
-  })
+  }, h)
 }

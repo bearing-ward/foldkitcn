@@ -73,7 +73,7 @@ const viewInput =
           ...config,
           onValueChange: change => ChangedInput(change),
           toView: attributes => h.input([...attributes.input]),
-        }),
+        }, h),
       ],
     )
   }

@@ -1,5 +1,5 @@
 import { Option, Predicate, Schema as S } from 'effect'
-import type { Attribute, Html } from 'foldkit/html'
+import type { Attribute, Html, HtmlBuilder } from 'foldkit/html'
 
 import { html } from '#foldkit-html'
 
@@ -42,7 +42,7 @@ const toSome = <Message>(message: Message): Option.Option<Message> =>
   Option.some(message)
 
 const nativeDisabledAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   isFocusableWhenDisabled: boolean,
 ): ReadonlyArray<Attribute<Message>> =>
   isFocusableWhenDisabled
@@ -50,16 +50,16 @@ const nativeDisabledAttributes = <Message>(
     : [h.Disabled(true), h.Tabindex(0), h.DataAttribute('disabled', '')]
 
 const nonNativeDisabledAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   isFocusableWhenDisabled: boolean,
 ): ReadonlyArray<Attribute<Message>> => [
-  h.AriaDisabled(true),
-  h.Tabindex(isFocusableWhenDisabled ? 0 : -1),
-  h.DataAttribute('disabled', ''),
-]
+    h.AriaDisabled(true),
+    h.Tabindex(isFocusableWhenDisabled ? 0 : -1),
+    h.DataAttribute('disabled', ''),
+  ]
 
 const disabledAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   isDisabled: boolean,
   isFocusableWhenDisabled: boolean,
   isNativeButton: boolean,
@@ -74,7 +74,7 @@ const disabledAttributes = <Message>(
 }
 
 const buttonKindAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   isNativeButton: boolean,
   type: ButtonType,
 ): ReadonlyArray<Attribute<Message>> =>
@@ -83,14 +83,14 @@ const buttonKindAttributes = <Message>(
     : [h.Role('button'), h.Tabindex(0)]
 
 const clickAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   onClick: Message | undefined,
   isDisabled: boolean,
 ): ReadonlyArray<Attribute<Message>> =>
   Predicate.isNotUndefined(onClick) && !isDisabled ? [h.OnClick(onClick)] : []
 
 const mouseAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   onMouseDown: Message | undefined,
   isDisabled: boolean,
 ): ReadonlyArray<Attribute<Message>> =>
@@ -99,7 +99,7 @@ const mouseAttributes = <Message>(
     : []
 
 const pointerAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   onPointerDown: Message | undefined,
   onPointerUp: Message | undefined,
   isDisabled: boolean,
@@ -119,22 +119,23 @@ const pointerAttributes = <Message>(
 }
 
 const keyboardAttributes = <Message>(
-  h: ReturnType<typeof html<Message>>,
+  h: HtmlBuilder<Message>,
   onClick: Message | undefined,
   isDisabled: boolean,
   isNativeButton: boolean,
 ): ReadonlyArray<Attribute<Message>> =>
   Predicate.isNotUndefined(onClick) && !isDisabled && !isNativeButton
     ? [
-        h.OnKeyDownPreventDefault(key =>
-          activationKeys.has(key) ? toSome(onClick) : Option.none(),
-        ),
-      ]
+      h.OnKeyDownPreventDefault((key: string) =>
+        activationKeys.has(key) ? toSome(onClick) : Option.none(),
+      ),
+    ]
     : []
 
-export const view = <Message>(config: ViewConfig<Message>): Html => {
-  const h = html<Message>()
-
+export const view = <Message>(
+  config: ViewConfig<Message>,
+  h: HtmlBuilder<Message> = html<Message>(),
+): Html => {
   const {
     toView,
     onClick,

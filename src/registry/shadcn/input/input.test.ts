@@ -45,7 +45,7 @@ const viewInput =
     return Input<Message>({
       ...config,
       toView: attributes => h.input([...attributes.input]),
-    })
+    }, h)
   }
 
 const view =
